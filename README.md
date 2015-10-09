@@ -42,6 +42,13 @@ npm run build:start
 * [Cities](https://www.npmjs.com/package/cities)
 * [React Router](https://github.com/rackt/react-router)
 
+##Development Guidelines
+* `git fetch` and `git rebase` are preferred to `git pull`.
+* Only `commit` changes you really want. Don't `git add .` unless you really mean to add everything.
+* Use feature branches liberally
+* When making a PR assign to another dev for code review. They'll merge into `master`.
+* When creating a new page add required Sass stylesheets imports.
+
 ##Resources
 A bunch of resources, which helped me get a better understanding of React, Webpack, SASS and how to make them play nice together.
 
