@@ -13,7 +13,6 @@ const Header = React.createClass({
     };
   },
   render() {
-
     var iconClasses = cx(
       ['burger-icon'], 
       {'is-active': this.state.didClick }
@@ -23,7 +22,6 @@ const Header = React.createClass({
       ['navigation'],
       {'is-active': this.state.didClick }
     );
-
     return (
       <div className="header">
         <div className="menu">
