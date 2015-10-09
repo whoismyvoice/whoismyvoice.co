@@ -4,6 +4,15 @@ body {
   margin: 0 auto;
   font-family: 'Helvetica Neue';
   background-color: $light-green;
+  line-height: 1.5;
+  height: 100%;
+  width: 100%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 a {
@@ -18,14 +27,6 @@ ul {
   li {
     line-height: 1.5;
   }
-}
-
-.tc {
-  text-align: center;
-}
-
-.bold {
-  font-weight: bold;
 }
 
 .block {
@@ -47,35 +48,8 @@ img {
   filter: grayscale(100%);
 }
 
-button {
-  border-radius: 5px;
-  font-weight: bold;
-  background-color: $green;
-  color: $black;
-  border: 0;
-  padding: 10px;
-  width: 30%;
-
-  a {
-    color: $white;
-  }
-
-  &:hover {
-    background-color: $white;
-    a {
-      color: $green;
-    }
-  }
-}
-
-.blue {
-  color: $blue;
-}
-
-.red {
-  color: $red;
-}
-
-.green {
-  color: $green;
+//MIXINS (TRANSITIONS)
+@mixin transition($time) {
+  -webkit-transition: all $time ease-in-out;
+  transition: all ($time)s ease-in-out;
 }

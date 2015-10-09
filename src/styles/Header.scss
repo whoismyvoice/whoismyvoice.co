@@ -1,12 +1,34 @@
 @import 'variables';
+@import 'globals';
+@import '_burger';
 
 .header {
 	width: 100%;
-	height: 60px;
+	height: 80px;
 	text-align: center;
 	justify-content: center;
 	align-content: center;
 	display: flex;
+}
+
+.navigation {
+  height: 80%;
+  background-color: $light-green;
+  opacity: 0;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  visibility: hidden;
+  position: absolute;
+  @include transition(0.3s);
+
+  &.is-active {
+    visibility: visible;
+    height: 80%;
+    width: 100%;
+    opacity: 1;
+    @include transition(0.3s);
+  }
 }
 
 .menu {
@@ -15,4 +37,28 @@
 	height: 50px;
 	padding-top: 20px;
 	font-weight: bold;
+
+	a {
+		display: inline-block;
+		width: 100%;
+		color: $black;
+	}
+
+  .burger-wrapper {
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .burger-icon {
+    @include burger(30px, 3px, 5px, #222);
+    pointer-events: none;
+    top: 10px;
+
+    &.is-active {
+      @include burger-to-cross;
+    }
+  }
 }

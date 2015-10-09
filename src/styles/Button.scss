@@ -1,0 +1,15 @@
+@import 'variables';
+
+.button {
+  border: 3px solid $black;
+  padding: 12px;
+  width: 200px;
+  background-color: inherit;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+
+  &:hover {
+  	background-color: $black;
+  	color: $white;
+  }
+}
