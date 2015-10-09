@@ -1,0 +1,80 @@
+@import 'variables';
+
+body {
+  margin: 0 auto;
+  font-family: 'Helvetica Neue';
+}
+
+a {
+  color: $blue;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    line-height: 1.5;
+  }
+}
+
+.tc {
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.block {
+  background-color: $light-grey;
+  width: auto;
+  padding: 0.5%;
+  width: 40%;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  min-height: 200px;
+}
+
+img {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+button {
+  border-radius: 5px;
+  font-weight: bold;
+  background-color: $green;
+  color: $black;
+  border: 0;
+  padding: 10px;
+  width: 30%;
+
+  a {
+    color: $white;
+  }
+
+  &:hover {
+    background-color: $white;
+    a {
+      color: $green;
+    }
+  }
+}
+
+.blue {
+  color: $blue;
+}
+
+.red {
+  color: $red;
+}
+
+.green {
+  color: $green;
+}
