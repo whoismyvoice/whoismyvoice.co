@@ -11,24 +11,27 @@ Senate Project responsive website
 
 ###Prerequisites
 * [Webpack](https://webpack.github.io/docs/installation.html)
-* [Git](Install Git - https://git-scm.com/)
 
+###Steps
 1. `git clone https://github.com/oursiberia/senate-project.git`
 1. `cd senate-project`
 1. `gem install sass`
 1. `npm install`
 
 **Build for development**
-1. `npm start`
-1. Go to `http://localhost:4000`
+```
+npm start
+```
 
 **Build for production**
-1. `npm run build`
-1. Production files are placed in `/dist/`
+```
+npm run build
+```
 
 **Run production build**
-1. `npm run build:start`
-1. Go to `http://localhost:4000`
+```
+npm run build:start
+```
 
 **Run JSCS and ESLint**
 * ESLint `npm run eslint`
