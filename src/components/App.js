@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import style from './../styles/About.scss';
 
 const App = React.createClass({
 

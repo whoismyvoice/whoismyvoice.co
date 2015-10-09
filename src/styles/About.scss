@@ -4,4 +4,8 @@
 .about {
   color: $white;
   background-color: $blue;
+
+  &:hover {
+  	color: $blue;
+  }
 }
