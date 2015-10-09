@@ -1,5 +1,8 @@
 import React, {PropTypes} from 'react';
-import style from './../styles/About.scss';
+import style from './../styles/globals.scss';
+
+// Components
+import Header from './Header';
 
 const App = React.createClass({
 
@@ -9,7 +12,8 @@ const App = React.createClass({
 
   render() {
     return (
-      <div>
+      <div className="wrapper">
+        <Header />
         {this.props.children}
       </div>
     );

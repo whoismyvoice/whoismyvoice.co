@@ -3,6 +3,7 @@
 body {
   margin: 0 auto;
   font-family: 'Helvetica Neue';
+  background-color: $light-green;
 }
 
 a {
@@ -28,7 +29,7 @@ ul {
 }
 
 .block {
-  background-color: $light-grey;
+  background-color: $white;
   width: auto;
   padding: 0.5%;
   width: 40%;

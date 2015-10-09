@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
+
+// Styles
 import style from './../styles/Home.scss';
+
 
 const Home = React.createClass({
   render() {

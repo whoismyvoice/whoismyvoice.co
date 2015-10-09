@@ -48,6 +48,7 @@ npm run build:start
 * Use feature branches liberally
 * When making a PR assign to another dev for code review. They'll merge into `master`.
 * When creating a new page add required Sass stylesheets imports.
+* Images should be included using `require`, see [Stylesheets & Images](https://github.com/petehunt/webpack-howto#5-stylesheets-and-images)
 
 ##Resources
 A bunch of resources, which helped me get a better understanding of React, Webpack, SASS and how to make them play nice together.
