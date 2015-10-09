@@ -36,6 +36,13 @@
     opacity: 1;
     @include transition(0.3s);
   }
+
+  a {
+    &:first-of-type {
+      margin-top: 10%;
+    }
+    margin-bottom: 4%;
+  }
 }
 
 .menu {
