@@ -15,7 +15,7 @@ module.exports = {
     app: [
       path.join(__dirname, 'src/main.js')
     ],
-    vendors: ['react', 'cities']
+    vendors: ['react', 'superagent']
   },
   output: {
     path: path.join(__dirname, '/dist/'),
