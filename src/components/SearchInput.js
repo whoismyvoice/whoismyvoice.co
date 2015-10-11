@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
+import SenateStore from '../stores/SenateStore';
+import SenateActions from '../actions/SenateActions';
 
 // Styles
 import style from './../styles/SearchInput.scss';
@@ -29,6 +31,7 @@ const SearchInput = React.createClass({
   _catchEnter: function(e) {
     if(e.keyCode === 13) {
       console.log("Search for " + this.state.zip_code)
+      SenateActions.identifyMember(this.state.zip_code);
     }
   }
 });

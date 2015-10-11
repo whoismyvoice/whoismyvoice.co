@@ -5,11 +5,29 @@ import { Link } from 'react-router';
 import Button from './Button';
 import Circle from './Circle';
 import SearchInput from './SearchInput';
+import SenateStore from '../stores/SenateStore';
+import SenateActions from '../actions/SenateActions';
 
 // Styles
 import style from './../styles/Home.scss';
 
 const Home = React.createClass({
+  getInitialState: function() {
+    return SenateStore.getMember();
+  },
+
+  componentDidMount: function() {
+    SenateStore.addChangeListener(this._onChange);
+  },
+
+  componentWillUnmount: function() {
+    SenateStore.removeChangeListener(this._onChange);
+  },
+
+  _onChange: function() {
+    this.setState(SenateStore.getMember());
+  },
+
   render() {
     return (
       <div className="block">
