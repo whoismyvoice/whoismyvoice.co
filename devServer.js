@@ -8,7 +8,8 @@ const compiler = webpack(config);
 
 server.use(require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath,
-  contentBase: 'src',
+  contentBase: './src',
+  historyApiFallback: true,
   stats: {
     colors: true,
     hash: false,
