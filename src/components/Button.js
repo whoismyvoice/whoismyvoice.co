@@ -9,7 +9,7 @@ const Button = React.createClass({
     return (
       <Link to={this.props.link}>
         <button className="button">
-          {this.props.text}
+        {this.props.text}
         </button>
       </Link>
     );
