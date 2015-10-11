@@ -10,6 +10,7 @@ const CHANGE_EVENT = 'change';
 var _store = {
 	member_name: '',
 	member_bioguide: '',
+  member_zip_code: '',
 	voted_for: false
 }
 
@@ -20,8 +21,7 @@ const SenateStore = ObjectAssign( {}, EventEmitter.prototype, {
 
   addChangeListener: function(callback) {
     this.on(CHANGE_EVENT, callback);
-    console.log("Add change listener");
-    console.log(_store);
+    console.log("Added change listener");
   },
 
   removeChangeListener: function(callback) {
@@ -30,6 +30,8 @@ const SenateStore = ObjectAssign( {}, EventEmitter.prototype, {
   },
 
   getMember: function() {
+    console.log('GET MEMBER: ');
+    console.log(_store);
     return _store;
   }
 });
@@ -47,7 +49,11 @@ AppDispatcher.register(function(payload) {
 
       // Add the data defined in the actions
       // which the view will pass as a payload
-      console.log("Find Member started");
+      console.log("RESULTS FROM FIND_MEMBER ACTION: ");
+      _store.member_zip_code = action.zip_code;
+      _store.member_name = 'Testing Name';
+      _store.member_bioguide = 'XYZ123';
+
       SenateStore.emit(CHANGE_EVENT);
       break;
 

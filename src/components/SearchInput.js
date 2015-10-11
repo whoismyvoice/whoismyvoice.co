@@ -30,7 +30,6 @@ const SearchInput = React.createClass({
   },
   _catchEnter: function(e) {
     if(e.keyCode === 13) {
-      console.log("Search for " + this.state.zip_code)
       SenateActions.identifyMember(this.state.zip_code);
     }
   }
