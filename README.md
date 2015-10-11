@@ -37,6 +37,20 @@ npm run build:start
 * ESLint `npm run eslint`
 * JSCS `npm run jscs`
 
+##Docker
+After installing the dependencies using NPM run
+```
+npm run build
+```
+Then run the following Docker cmd
+
+```
+docker run -it --name senate-project \
+  -v $(pwd)/dist:/usr/share/nginx/html:ro \
+  -v $(pwd)/nginx.conf:/etc/nginx/nginx.conf:ro \
+  -P nginx bash
+```
+
 ##Dependencies
 * [Superagent](https://www.npmjs.com/package/superagent)
 * [Cities](https://www.npmjs.com/package/cities)
