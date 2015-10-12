@@ -1,5 +1,6 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import AppConstants from '../constants/SenateConstants';
+import SenateGetRandomActions from '../actions/SenateGetRandomActions';
 import ObjectAssign from 'object-assign';
 import { EventEmitter } from 'events';
 
@@ -30,12 +31,10 @@ const SenateStore = ObjectAssign( {}, EventEmitter.prototype, {
 
   addChangeListener: function(callback) {
     this.on(CHANGE_EVENT, callback);
-    console.log("Added change listener");
   },
 
   removeChangeListener: function(callback) {
     this.removeListener(CHANGE_EVENT, callback);
-    console.log("Removed change listener");
   },
 
   getMember: function() {
@@ -72,11 +71,10 @@ AppDispatcher.register(function(payload) {
 
       // Set var to returned object
       var details = action.response.results[0];
-      var didVote = (votedFor.indexOf(details.bioguide_id) > -1);
-      console.log(details);
+      var didVote = true;
 
       // Set store values to reflect returned object
-      
+      // 
       _store.member_name = details.first_name + ' ' + details.middle_name + ' ' + details.last_name || null;
       _store.member_bioguide = details.bioguide_id || null;
       _store.member_age = (2015-details.birthday.substring(0,4)) || null;
@@ -86,6 +84,11 @@ AppDispatcher.register(function(payload) {
       _store.member_tel = details.phone || null;
       _store.member_twitter = details.twitter_id || null;
       _store.voted_for = didVote;
+        // Select random bioguide_id from ../data/HFCMembers.js
+        // Retrieve new details based on bioguide_id using a separate utils method
+        // This new method should also call a separate actionType, which then overwrites the store
+        // The very same ActionType could be used to get a random member again and again and again
+        // getRandomHFC() e.g.
 
       // Emit change to update UI
       SenateStore.emit(CHANGE_EVENT);
