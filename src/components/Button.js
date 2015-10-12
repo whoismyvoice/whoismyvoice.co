@@ -17,7 +17,7 @@ const Button = React.createClass({
   	} else {
   		return (
       	<Link to={this.props.link}>
-        	<button className="button">
+        	<button className="button nav">
         		{this.props.text}
         	</button>
       	</Link>

@@ -36,6 +36,8 @@ const Header = React.createClass({
           </div>
 
           <nav className={menuClasses}>
+            <div className="black-line">
+            </div>
 
             <Button
               link="#" 

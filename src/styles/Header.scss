@@ -18,12 +18,11 @@
 }
 
 .navigation {
-  height: 80%;
+  height: 100%;
   background-color: $light-yellow;
   opacity: 0;
-  top: 80px;
+  top: 0;
   left: 0;
-  z-index: 10;
   width: 100%;
   visibility: hidden;
   position: fixed;
@@ -31,7 +30,7 @@
 
   &.is-active {
     visibility: visible;
-    height: 80%;
+    height: 100%;
     width: 100%;
     opacity: 1;
     @include transition(0.3s);
@@ -52,7 +51,7 @@
   right: 0;
   position: fixed;
 	height: 50px;
-  z-index: 12;
+  z-index: 3;
 	padding-top: 20px;
 	font-weight: bold;
 
@@ -65,6 +64,8 @@
   .burger-wrapper {
     width: 30px;
     height: 25px;
+    z-index: 4;
+    position: relative;
     cursor: pointer;
     display: block;
     margin: 0 auto;
