@@ -3,8 +3,8 @@
 input {
   width: 200px;
   border: 3px solid $black;
-  padding: 12px;
-  font-size: 14px;
+  padding: 20px;
+  font-size: 16px;
   background-color: inherit;
   text-transform: uppercase;
   color: $black;
@@ -13,6 +13,7 @@ input {
   z-index: 2;
   background-color: $light-green;
   position: relative;
+  margin: 20px 0 80px 0;
 
   &.input {
     color: $black;
