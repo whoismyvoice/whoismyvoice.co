@@ -22,6 +22,15 @@ const Home = React.createClass({
   },
 
   componentDidMount: function() {
+
+    //Allow fetching of member if id / zip_code is defined as a parameter
+
+    //let params = this.props.params;
+
+    //if(params.zip && params.zip.length === 5) {
+    //  SenateActions.identifyMember(params.zip);
+    //}
+
     SenateStore.addChangeListener(this._onChange);
   },
 
@@ -34,7 +43,6 @@ const Home = React.createClass({
   },
 
   render() {
-
     var blockClasses = cx(
       ['block', 'one'], 
       {'hide': this.state.did_search }

@@ -22,7 +22,7 @@ server.use(require('webpack-dev-middleware')(compiler, {
 
 server.use(require('webpack-hot-middleware')(compiler));
 
-server.use(express.static(__dirname + '/src'));
+server.use(express.static(__dirname + './src'));
 
 server.listen(config._hotPort, 'localhost', function(err) {
   if (err) {

@@ -7,8 +7,9 @@ import About from './components/About';
 const routes = (
   <Router>
     <Route path="/" component={App}>
-      <IndexRoute component={Home} />
-      <Route path="About" component={About} />
+    	<Route path="/:zip" component={Home} />
+    	<Route path="about" component={About} />
+    	<IndexRoute component={Home} />
     </Route>
     <Route path="*" component={Home}/>
   </Router>

@@ -13,7 +13,7 @@
   "scripts": {
     "start": "node es6-devServer",
     "build:start": "NODE_ENV=production node es6-prodServer",
-    "build": "rimraf dist && NODE_ENV=production webpack --config ./webpack.config.prod.js --progress --profile --colors",
+    "build": "rimraf dist && NODE_ENV=production webpack -p --config ./webpack.config.prod.js --progress --profile --colors",
     "eslint": "eslint .",
     "jscs": "jscs ."
   },

@@ -17,11 +17,10 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/dist/'),
     filename: '[name].js',
-    publicPath: '/'
+    publicPath: 'http://localhost:4000/'
   },
 
   headers: {'Access-Control-Allow-Origin': '*'},
-  historyApiFallback: true,
 
   plugins: [
     new HtmlWebpackPlugin({
