@@ -3,7 +3,7 @@
 body {
   margin: 0 auto;
   font-family: 'Helvetica Neue';
-  background-color: $light-green;
+  background-color: $white;
   line-height: 1.5;
   height: 100%;
   width: 100%;
@@ -23,16 +23,21 @@ ul {
   }
 }
 
+.wrapper {
+  margin: 1%;
+  height: 100%;
+  min-height: 100%;
+  background-color: $light-green;
+}
+
 .block {
-  width: auto;
-  padding: 0.5%;
+  width: 99%;
   text-align: center;
   margin: 0 auto;
   display: block;
-  border-radius: 5px;
   margin-top: 30px;
   margin-bottom: 30px;
-  min-height: 200px;
+  height: 100%;
 }
 
 img {

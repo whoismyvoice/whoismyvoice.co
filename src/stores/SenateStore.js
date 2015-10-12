@@ -3,6 +3,9 @@ import AppConstants from '../constants/SenateConstants';
 import ObjectAssign from 'object-assign';
 import { EventEmitter } from 'events';
 
+import HFCMembers from '../data/HFCMembers';
+import votedFor from '../data/votedFor';
+
 const CHANGE_EVENT = 'change';
 
 // Define store as empty
@@ -11,6 +14,12 @@ var _store = {
 	member_name: '',
 	member_bioguide: '',
   member_zip_code: '',
+  member_age: '',
+  member_chamber: '',
+  member_gender: '',
+  member_email: '',
+  member_tel: '',
+  member_twitter: '',
 	voted_for: false
 }
 
@@ -63,10 +72,20 @@ AppDispatcher.register(function(payload) {
 
       // Set var to returned object
       var details = action.response.results[0];
+      var didVote = (votedFor.indexOf(details.bioguide_id) > -1);
+      console.log(details);
 
       // Set store values to reflect returned object
-      _store.member_name = details.first_name;
-      _store.member_bioguide = details.bioguide_id;
+      
+      _store.member_name = details.first_name + ' ' + details.middle_name + ' ' + details.last_name || null;
+      _store.member_bioguide = details.bioguide_id || null;
+      _store.member_age = (2015-details.birthday.substring(0,4)) || null;
+      _store.member_chamber = details.chamber || null;
+      _store.member_gender = details.gender || null;
+      _store.member_email = details.oc_email || null;
+      _store.member_tel = details.phone || null;
+      _store.member_twitter = details.twitter_id || null;
+      _store.voted_for = didVote;
 
       // Emit change to update UI
       SenateStore.emit(CHANGE_EVENT);

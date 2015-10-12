@@ -5,7 +5,6 @@ import style from './../styles/globals.scss';
 import Header from './Header';
 
 const App = React.createClass({
-
   propTypes: typeof __DEV__ && {
     children: PropTypes.object.isRequired
   },
