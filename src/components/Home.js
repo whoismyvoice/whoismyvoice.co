@@ -41,35 +41,68 @@ const Home = React.createClass({
         member_tel = this.state.member_tel,
         member_twitter = this.state.member_twitter,
         voted_for = this.state.voted_for,
+        did_search = this.state.did_search,
+        party = this.state.member_party,
         member_random = this.state.member_random,
         vote_status,
         impact;
 
     impact = 'How you can directly impact keeping this '+ member_gender +' from being able to personally weigh in on the reproductive rights of millions of women this '+ member_gender +' has never met, the next time a similar vote comes up.';
 
-    if(!member_random) {
-      vote_status = 'Yes! Your Senator, a ' + member_age + ' old ' + member_gender + ' co-sponsored a bill to defund Planned Parenthood. This '+ member_gender + ' represents your voice!';
+    if(did_search) {
+      if(!member_random) {
+        vote_status = 'Yes! Your Senator, a ' + member_age + ' old ' + member_gender + ' co-sponsored a bill to defund Planned Parenthood. This '+ member_gender + ' represents your voice!';
+      } else {
+        vote_status = 'No! So great for you! But here is a winning member of the House of Freedom Caucus we would like to introduce you to. The House Freedom Caucus has publicly declared they are willing to shut down the government over the issue of funding Planned Parenthood.';
+      }
     } else {
-      vote_status = 'No! So great for you! But here is a winning member of the House of Freedom Caucus we would like to introduce you to. The House Freedom Caucus has publicly declared they are willing to shut down the government over the issue of funding Planned Parenthood.';
+      vote_status = 'You have not yet searched for a member';
     }
-
+    
     return (
       <div className="container">
 
         <div className="block">
-          <Circle desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?" />
-          <SearchInput /><br /><br />
+          <Circle 
+            desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
+          />
+
+          <SearchInput />
+          <br /><br />
         </div>
 
         <div className="block">
-          <Circle style="wide" desc={vote_status} />
-          <SenatorImg bioguide={member_bioguide} />
-          <SenatorName name={member_name} age={member_age} />
+          <Circle
+            style="wide"
+            desc={vote_status}
+          />
+
+          <SenatorImg
+            bioguide={member_bioguide}
+          />
+
+          <SenatorName
+            name={member_name}
+            age={member_age} 
+            did_search={did_search}
+          />
         </div>
 
+
         <div className="block">
-          <Circle style="wider" desc={impact} />
-          <SupportActions gender={member_gender} email={member_email} tel={member_tel} twitter={member_twitter} />
+          <Circle 
+            style="wider" 
+            desc={impact} 
+          />
+
+          <SupportActions 
+            random={member_random} 
+            gender={member_gender} 
+            email={member_email} 
+            tel={member_tel} 
+            twitter={member_twitter}
+            party={party}
+          />
         </div>
 
       </div>

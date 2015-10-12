@@ -5,9 +5,17 @@ import style from './../styles/SenatorImg.scss';
 
 const SenatorImg = React.createClass({
   render() {
-    return (
+
+  	// Check if bioguide is defined (i.e. if user has searched for any members yet)
+
+  	const imgSrc ='https://raw.githubusercontent.com/unitedstates/images/gh-pages/congress/original/';
+  	const img = this.props.bioguide === '' ? '' : imgSrc+this.props.bioguide+'.jpg';
+
+  	return (
     	<div className="senatorImg">
-    		<img src={'https://raw.githubusercontent.com/unitedstates/images/gh-pages/congress/original/'+this.props.bioguide+'.jpg'} />
+    		<img
+    			src={img} 
+    		/>
     	</div>
     );
   }

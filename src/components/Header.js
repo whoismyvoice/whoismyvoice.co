@@ -13,6 +13,9 @@ const Header = React.createClass({
     };
   },
   render() {
+
+    // Change classes for burger-icon and navigation based on whether onClick has been fired
+
     var iconClasses = cx(
       ['burger-icon'], 
       {'is-active': this.state.didClick }
@@ -25,15 +28,35 @@ const Header = React.createClass({
     
     return (
       <div className="header">
+
         <div className="menu">
+
           <div className="burger-wrapper" onClick={this._toggleMenu}>
             <div className={iconClasses}></div>
           </div>
+
           <nav className={menuClasses}>
-            <Button link="#" text="Data Sources" />
-            <Button link="#" text="About this project" />
-            <Button link="#" text="See All Senators" />
-            <Button link="#" text="Start Again" />
+
+            <Button
+              link="#" 
+              text="Data Sources" 
+            />
+
+            <Button
+              link="#" 
+              text="About this project"
+            />
+
+            <Button
+              link="#" 
+              text="See All Senators" 
+            />
+
+            <Button
+              link="#" 
+              text="Start Again" 
+            />
+
           </nav>
         </div>
       </div>

@@ -14,6 +14,7 @@ const SearchInput = React.createClass({
 	},
   render() {
     return (
+
     	<input 
         type="text" 
         value={this.state.zip_code}
@@ -21,6 +22,7 @@ const SearchInput = React.createClass({
         onKeyDown={this._catchEnter}
         placeholder="Enter Your Zip Code"
       />
+      
     );
   },
   _handleChange: function(event) {
