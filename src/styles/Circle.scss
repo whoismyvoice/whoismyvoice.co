@@ -9,8 +9,10 @@
 	position: relative;
   display: flex;
   justify-content: center;
+  background-color: $light-green;
   align-content: center;
 	border: 4px solid $black;
+  z-index: 2;
 
 	.description {
 		position: relative;
