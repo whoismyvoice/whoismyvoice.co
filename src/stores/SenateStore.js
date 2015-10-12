@@ -42,10 +42,6 @@ const SenateStore = ObjectAssign( {}, EventEmitter.prototype, {
   },
 
   getMember: function() {
-    console.log('GET MEMBER: ');
-
-    // Let us know when getMember is called and return store for cross checking
-    console.log(_store);
     return _store;
   }
 });
@@ -72,7 +68,6 @@ AppDispatcher.register(function(payload) {
     case AppConstants.GET_DETAILS:
 
       if(action.response === 'error') {
-        console.log("Error in store");
         _store.error_msg = 'Ineligible zip code';
       } else {
         // Set var to returned object

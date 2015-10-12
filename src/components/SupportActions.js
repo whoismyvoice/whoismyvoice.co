@@ -47,12 +47,12 @@ const SupportActions = React.createClass({
           <Button 
             type='external' 
             link={ 'mailto:' + email } 
-            text={ 'Email at ' + gender } 
+            text={ 'Email ' + gender } 
           />
           <Button
             type='external'
             link={ 'tel:' + tel }
-            text={ 'Call at ' + gender} 
+            text={ 'Call ' + gender} 
           />
           <Button
             type='external'

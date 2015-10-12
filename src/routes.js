@@ -1,6 +1,5 @@
 import React from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
-import createBrowserHistory from 'history/lib/createBrowserHistory';
 import App from './components/App';
 import Home from './components/Home';
 import About from './components/About';
