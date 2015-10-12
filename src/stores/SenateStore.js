@@ -24,7 +24,8 @@ var _store = {
   member_party: '',
 	voted_for: false,
   member_random: false,
-  did_search: false
+  did_search: false,
+  error_msg: ''
 }
 
 // Define the public event listeners and getters that
@@ -70,28 +71,35 @@ AppDispatcher.register(function(payload) {
 
     case AppConstants.GET_DETAILS:
 
-      // Set var to returned object
-      var details = action.response.results[0];
-      var didVote = true;
+      if(action.response === 'error') {
+        console.log("Error in store");
+        _store.error_msg = 'Ineligible zip code';
+      } else {
+        // Set var to returned object
+        var details = action.response.results[0];
+        var didVote = true;
 
-      // Set store values to reflect returned object
+        // Set store values to reflect returned object
 
-      _store.member_name = details.first_name + ' ' + details.middle_name + ' ' + details.last_name || null,
-      _store.member_bioguide = details.bioguide_id || null,
-      _store.member_age = (2015-details.birthday.substring(0,4)) || null,
-      _store.member_chamber = details.chamber || null,
-      _store.member_gender = details.gender || null,
-      _store.member_email = details.oc_email || null,
-      _store.member_tel = details.phone || null,
-      _store.member_twitter = details.twitter_id || null,
-      _store.voted_for = didVote,
-      _store.member_party = details.party,
-      _store.member_random = action.random,
-      _store.did_search = true;
+        _store.member_name = details.first_name + ' ' + details.middle_name + ' ' + details.last_name || null,
+        _store.member_bioguide = details.bioguide_id || null,
+        _store.member_age = (2015-details.birthday.substring(0,4)) || null,
+        _store.member_chamber = details.chamber || null,
+        _store.member_gender = details.gender || null,
+        _store.member_email = details.oc_email || null,
+        _store.member_tel = details.phone || null,
+        _store.member_twitter = details.twitter_id || null,
+        _store.voted_for = didVote,
+        _store.member_party = details.party,
+        _store.member_random = action.random,
+        _store.error_msg = '',
+        _store.did_search = true;
 
-      // Emit change
-      // 
+        // Emit change
+      }
+
       SenateStore.emit(CHANGE_EVENT);
+
       break;
 
     default:

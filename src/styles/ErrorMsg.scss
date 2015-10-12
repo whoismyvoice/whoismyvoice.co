@@ -1,0 +1,19 @@
+@import 'variables';
+@import 'globals';
+
+.errorMsg {
+	color: $red;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 14px;
+	background-color: $light-green;
+	position: relative;
+	padding: 0;
+	z-index: 2;
+	@include transition(0.3s);
+
+	&.show {
+		padding: 20px;
+		@include transition(0.3s);
+	}
+}

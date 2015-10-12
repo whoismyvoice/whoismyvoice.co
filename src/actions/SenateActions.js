@@ -20,13 +20,17 @@ module.exports = {
       .get('http://api.zippopotam.us/us/'+zip_code)
       .set('Accept', 'application/json')
       .end(function(err, res) {
-        if(err) return console.error(err);
+        if(err) {
+          console.error(err);
+          console.log("catched error");
+          CongressUtils.getMember('error');
+        } else {
+          place = res.body.places[0];
 
-        place = res.body.places[0];
-
-        // Call utility function CongressUtils to retrieve details about -
-        // congress person based on latlng for passed zip code
-        CongressUtils.getMember(place.latitude, place.longitude);
+          // Call utility function CongressUtils to retrieve details about -
+          // congress person based on latlng for passed zip code
+          CongressUtils.getMember(place.latitude, place.longitude);
+        }
       });
 	},
 };

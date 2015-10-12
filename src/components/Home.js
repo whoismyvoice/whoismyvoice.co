@@ -11,6 +11,7 @@ import SearchInput from './SearchInput';
 import SenatorImg from './SenatorImg';
 import SenatorName from './SenatorName';
 import SupportActions from './SupportActions';
+import ErrorMsg from './ErrorMsg';
 
 // Styles
 import style from './../styles/Home.scss';
@@ -51,6 +52,7 @@ const Home = React.createClass({
         did_search = this.state.did_search,
         party = this.state.member_party,
         member_random = this.state.member_random,
+        error_msg = this.state.error_msg,
         vote_status,
         impact;
 
@@ -75,6 +77,9 @@ const Home = React.createClass({
           />
 
           <SearchInput />
+          <ErrorMsg 
+            error={error_msg}
+           />
           <br /><br />
         </div>
 

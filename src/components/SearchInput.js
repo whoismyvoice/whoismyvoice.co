@@ -14,6 +14,7 @@ const SearchInput = React.createClass({
       error: false
 		}
 	},
+
   render() {
 
     var inputClasses = cx(
@@ -34,11 +35,13 @@ const SearchInput = React.createClass({
       
     );
   },
+
   _handleChange: function(event) {
     this.setState({
       zip_code: event.target.value,
     });
   },
+
   _catchEnter: function(e) {
     if(e.keyCode === 13) {
       if(this.state.zip_code.length === 5) {
@@ -53,10 +56,11 @@ const SearchInput = React.createClass({
         this.setState({
           error: true
         });
-        
-      }
+
+      } 
     }
   }
+  
 });
 
 export default SearchInput;
