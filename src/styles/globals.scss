@@ -43,9 +43,8 @@ ul {
 
 .wrapper {
   height: 100%;
-  z-index: 1;
   width: 100%;
-  background-color: $light-green;
+  z-index: 1;
 }
 
 .block {
@@ -53,9 +52,10 @@ ul {
   text-align: center;
   margin: 0 auto;
   display: block;
-  margin-top: 30px;
+  padding-top: 30px;
   margin-bottom: 30px;
   height: 100%;
+  background-color: $light-green;
   @include transition(0.3s);
 
   &.hide {
@@ -63,6 +63,14 @@ ul {
     opacity: 0;
     visibility: hidden;
     @include transition(0.3s);
+  }
+
+  &.two {
+    background-color: $light-orange;
+  }
+
+  &.three {
+    background-color: $light-purple;
   }
 }
 

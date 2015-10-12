@@ -17,6 +17,7 @@
 	.description {
 		position: relative;
     width: 50%;
+    line-height: 1.4;
     margin-top: 3%;
     align-self: center;
 		text-align: center;
@@ -25,12 +26,14 @@
 	}
 
   &.wide {
+    background-color: $light-orange;
     .description {
       width: 70%;
     }
   }
 
   &.wider {
+    background-color: $light-purple;
   	.description {
   		width: 75%;
   	}
