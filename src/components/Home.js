@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import SenateStore from '../stores/SenateStore';
 import SenateActions from '../actions/SenateActions';
+import cx from 'classnames';
 
 // Components
 import Button from './Button';
@@ -32,6 +33,12 @@ const Home = React.createClass({
   },
 
   render() {
+
+    var blockClasses = cx(
+      ['block', 'one'], 
+      {'hide': this.state.did_search }
+    );
+
     var member_name = this.state.member_name,
         member_bioguide = this.state.member_bioguide,
         member_zip_code = this.state.member_zip_code,
@@ -62,7 +69,7 @@ const Home = React.createClass({
     return (
       <div className="container">
 
-        <div className="block">
+        <div className="block one">
           <Circle 
             desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
           />
@@ -71,7 +78,7 @@ const Home = React.createClass({
           <br /><br />
         </div>
 
-        <div className="block">
+        <div className="block two">
           <Circle
             style="wide"
             desc={vote_status}
@@ -89,7 +96,7 @@ const Home = React.createClass({
         </div>
 
 
-        <div className="block">
+        <div className="block three">
           <Circle 
             style="wider" 
             desc={impact} 

@@ -1,5 +1,11 @@
 @import 'variables';
 
+// MIXINS (TRANSITIONS)
+@mixin transition($time) {
+  -webkit-transition: all $time ease-in-out;
+  transition: all ($time)s ease-in-out;
+}
+
 body {
   margin: 0 auto;
   font-family: 'Helvetica Neue';
@@ -37,8 +43,8 @@ ul {
 
 .wrapper {
   height: 100%;
-  z-index: 0;
-  min-height: 100%;
+  z-index: 1;
+  width: 100%;
   background-color: $light-green;
 }
 
@@ -50,12 +56,14 @@ ul {
   margin-top: 30px;
   margin-bottom: 30px;
   height: 100%;
-}
+  @include transition(0.3s);
 
-// MIXINS (TRANSITIONS)
-@mixin transition($time) {
-  -webkit-transition: all $time ease-in-out;
-  transition: all ($time)s ease-in-out;
+  &.hide {
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    @include transition(0.3s);
+  }
 }
 
 // STATIC WINDOW BORDERS
