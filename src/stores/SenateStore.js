@@ -31,6 +31,8 @@ const SenateStore = ObjectAssign( {}, EventEmitter.prototype, {
 
   getMember: function() {
     console.log('GET MEMBER: ');
+
+    // Let us know when getMember is called and return store for cross checking
     console.log(_store);
     return _store;
   }
@@ -38,6 +40,9 @@ const SenateStore = ObjectAssign( {}, EventEmitter.prototype, {
 
 // Register each of the actions with the dispatcher
 // by changing the store's data and emitting a change
+
+// Since zip_code and member details require two different API calls - 
+// two separate actionTypes have been defined
 
 AppDispatcher.register(function(payload) {
 
@@ -49,11 +54,21 @@ AppDispatcher.register(function(payload) {
 
       // Add the data defined in the actions
       // which the view will pass as a payload
-      console.log("RESULTS FROM FIND_MEMBER ACTION: ");
       _store.member_zip_code = action.zip_code;
-      _store.member_name = 'Testing Name';
-      _store.member_bioguide = 'XYZ123';
 
+      SenateStore.emit(CHANGE_EVENT);
+      break;
+
+    case AppConstants.GET_DETAILS:
+
+      // Set var to returned object
+      var details = action.response.results[0];
+
+      // Set store values to reflect returned object
+      _store.member_name = details.first_name;
+      _store.member_bioguide = details.bioguide_id;
+
+      // Emit change to update UI
       SenateStore.emit(CHANGE_EVENT);
       break;
 
