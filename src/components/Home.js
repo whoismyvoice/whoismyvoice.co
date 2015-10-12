@@ -41,12 +41,13 @@ const Home = React.createClass({
         member_tel = this.state.member_tel,
         member_twitter = this.state.member_twitter,
         voted_for = this.state.voted_for,
+        member_random = this.state.member_random,
         vote_status,
         impact;
 
     impact = 'How you can directly impact keeping this '+ member_gender +' from being able to personally weigh in on the reproductive rights of millions of women this '+ member_gender +' has never met, the next time a similar vote comes up.';
 
-    if(voted_for) {
+    if(!member_random) {
       vote_status = 'Yes! Your Senator, a ' + member_age + ' old ' + member_gender + ' co-sponsored a bill to defund Planned Parenthood. This '+ member_gender + ' represents your voice!';
     } else {
       vote_status = 'No! So great for you! But here is a winning member of the House of Freedom Caucus we would like to introduce you to. The House Freedom Caucus has publicly declared they are willing to shut down the government over the issue of funding Planned Parenthood.';

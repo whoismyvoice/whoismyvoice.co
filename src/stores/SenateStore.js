@@ -21,7 +21,8 @@ var _store = {
   member_email: '',
   member_tel: '',
   member_twitter: '',
-	voted_for: false
+	voted_for: false,
+  member_random: false
 }
 
 // Define the public event listeners and getters that
@@ -74,7 +75,7 @@ AppDispatcher.register(function(payload) {
       var didVote = true;
 
       // Set store values to reflect returned object
-      // 
+
       _store.member_name = details.first_name + ' ' + details.middle_name + ' ' + details.last_name || null;
       _store.member_bioguide = details.bioguide_id || null;
       _store.member_age = (2015-details.birthday.substring(0,4)) || null;
@@ -84,6 +85,7 @@ AppDispatcher.register(function(payload) {
       _store.member_tel = details.phone || null;
       _store.member_twitter = details.twitter_id || null;
       _store.voted_for = didVote;
+      _store.member_random = action.random;
         // Select random bioguide_id from ../data/HFCMembers.js
         // Retrieve new details based on bioguide_id using a separate utils method
         // This new method should also call a separate actionType, which then overwrites the store
