@@ -53,7 +53,6 @@ docker run -it --name senate-project \
 
 ##Dependencies
 * [Superagent](https://www.npmjs.com/package/superagent)
-* [Cities](https://www.npmjs.com/package/cities)
 * [React Router](https://github.com/rackt/react-router)
 
 ##Development Guidelines
