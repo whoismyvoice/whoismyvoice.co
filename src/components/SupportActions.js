@@ -8,6 +8,7 @@ import Button from './Button';
 
 const SupportActions = React.createClass({
   render() {
+    
   	var gender = this.props.gender === 'man' ? 'him' : 'her',
         gender_third = this.props.gender === 'man' ? 'his' : 'her',
         party = this.props.party === 'D' ? 'https://www.gop.com/rnc-victory-2016-membership-fund/' : 'https://my.democrats.org/page/contribute/help-elect-democrats-demsdotorg',
@@ -17,6 +18,7 @@ const SupportActions = React.createClass({
         random = this.props.random;
 
     if(random) {
+
       return(
         <div className="supportActions">
             <Button 
@@ -66,7 +68,6 @@ const SupportActions = React.createClass({
         </div>
       );
     }
-    
   }
 });
 

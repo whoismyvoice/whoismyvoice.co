@@ -24,7 +24,6 @@ ul {
 }
 
 .wrapper {
-  margin: 1%;
   height: 100%;
   min-height: 100%;
   background-color: $light-green;
@@ -40,8 +39,32 @@ ul {
   height: 100%;
 }
 
-//MIXINS (TRANSITIONS)
+// MIXINS (TRANSITIONS)
 @mixin transition($time) {
   -webkit-transition: all $time ease-in-out;
   transition: all ($time)s ease-in-out;
 }
+
+// STATIC WINDOW BORDERS
+
+#top, #bottom, #left, #right {
+  background: $white;
+  position: fixed;
+  z-index: 9;
+}
+
+#left, #right {
+  top: 0; bottom: 0;
+  width: 15px;
+}
+
+#left { left: 0; }
+#right { right: 0; }
+
+#top, #bottom {
+  left: 0; right: 0;
+  height: 15px;
+}
+
+#top { top: 0; }
+#bottom { bottom: 0; }

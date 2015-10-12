@@ -53,7 +53,7 @@ const Home = React.createClass({
       if(!member_random) {
         vote_status = 'Yes! Your Senator, a ' + member_age + ' old ' + member_gender + ' co-sponsored a bill to defund Planned Parenthood. This '+ member_gender + ' represents your voice!';
       } else {
-        vote_status = 'No! So great for you! But here is a winning member of the House of Freedom Caucus we would like to introduce you to. The House Freedom Caucus has publicly declared they are willing to shut down the government over the issue of funding Planned Parenthood.';
+        vote_status = 'No! Great for you! But here is a winning member of the House of Freedom Caucus we would like to introduce. The House Freedom Caucus has publicly declared they are willing to shut down the government over the issue of funding Planned Parenthood.';
       }
     } else {
       vote_status = 'You have not yet searched for a member';

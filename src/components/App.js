@@ -12,6 +12,11 @@ const App = React.createClass({
   render() {
     return (
       <div className="wrapper">
+        <div id="left"></div>
+        <div id="right"></div>
+        <div id="top"></div>
+        <div id="bottom"></div>
+        
         <Header />
         {this.props.children}
       </div>
