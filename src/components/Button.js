@@ -6,13 +6,23 @@ import style from './../styles/Button.scss';
 
 const Button = React.createClass({
   render() {
-    return (
-      <Link to={this.props.link}>
-        <button className="button">
-        {this.props.text}
-        </button>
-      </Link>
-    );
+  	if(this.props.type === 'external') {
+  		return (
+  			<a href={this.props.link} target="_blank">
+  				<button className="button">
+  					{this.props.text}
+  				</button>
+  			</a>
+  		)
+  	} else {
+  		return (
+      	<Link to={this.props.link}>
+        	<button className="button">
+        		{this.props.text}
+        	</button>
+      	</Link>
+    	);
+  	}
   }
 });
 

@@ -22,6 +22,7 @@ const Header = React.createClass({
       ['navigation'],
       {'is-active': this.state.didClick }
     );
+    
     return (
       <div className="header">
         <div className="menu">

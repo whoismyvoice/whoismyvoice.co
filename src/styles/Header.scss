@@ -26,7 +26,7 @@
   z-index: 10;
   width: 100%;
   visibility: hidden;
-  position: absolute;
+  position: fixed;
   @include transition(0.3s);
 
   &.is-active {
@@ -46,9 +46,13 @@
 }
 
 .menu {
-	width: 20%;
-	text-align: center;
+	width: 30px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  position: fixed;
 	height: 50px;
+  z-index: 12;
 	padding-top: 20px;
 	font-weight: bold;
 

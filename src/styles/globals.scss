@@ -40,11 +40,6 @@ ul {
   height: 100%;
 }
 
-img {
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
-}
-
 //MIXINS (TRANSITIONS)
 @mixin transition($time) {
   -webkit-transition: all $time ease-in-out;
