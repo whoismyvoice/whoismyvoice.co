@@ -3,11 +3,11 @@ import express from 'express';
 
 const server = express();
 
-server.use(express.static(__dirname + '/dist'));
+server.use(express.static(__dirname + '/dist'))
 
-server.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
-});
+server.get('*', function (request, response){
+  response.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
+})
 
 server.listen(4000, 'localhost', function(err) {
   if (err) {

@@ -11,9 +11,9 @@ const routes = (
     	<Route path="/" component={Home} />
     	<IndexRoute component={Home} />
       <Route path="about" component={About} />
-      <Route path=":id" component={Home} />
-      <Route path="*" component={NoMatch}/>
+      <Route path=":zip" component={Home} />
     </Route>
+    <Route path="*" component={NoMatch}/>
   </Router>
 );
 

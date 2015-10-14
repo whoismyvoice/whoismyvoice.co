@@ -8,7 +8,7 @@ const compiler = webpack(config);
 
 server.use(require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath,
-  contentBase: './src',
+  contentBase: 'src',
   historyApiFallback: true,
   stats: {
     colors: true,
@@ -22,7 +22,7 @@ server.use(require('webpack-dev-middleware')(compiler, {
 
 server.use(require('webpack-hot-middleware')(compiler));
 
-server.use(express.static(__dirname + './src'));
+server.use(express.static(__dirname + './dist'));
 
 server.listen(config._hotPort, 'localhost', function(err) {
   if (err) {

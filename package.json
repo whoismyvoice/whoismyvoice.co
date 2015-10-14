@@ -16,7 +16,6 @@
     "build": "rimraf dist && NODE_ENV=production webpack -p --config ./webpack.config.prod.js --progress --profile --colors",
     "eslint": "eslint .",
     "jscs": "jscs .",
-    "test-server": "node server.js"
   },
   "dependencies": {
     "classnames": "^2.1.5",
