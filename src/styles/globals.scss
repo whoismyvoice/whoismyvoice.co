@@ -33,7 +33,7 @@ ul {
   width: 4px;
   margin: 0 auto;
   z-index: 2;
-  height: 80%;
+  height: 80vh;
   top: 7.4%;
   position: fixed;
   left: 0;
@@ -42,27 +42,30 @@ ul {
 }
 
 .wrapper {
-  height: 100%;
+  height: auto;
   width: 100%;
-  z-index: 1;
 }
 
 .block {
-  width: 99%;
+  width: 99vw;
   text-align: center;
   margin: 0 auto;
   display: block;
-  padding-top: 60px;
+  padding-top: 10vh;
   margin-bottom: 0px;
-  height: 100%;
-  background-color: $light-green;
-  @include transition(0.3s);
+  position: relative;
+  height: 87vh;
+  @include transition(1s);
+
+  &.one {
+    background-color: $light-green;
+    top: 0;
+    @include transition(1s);
+  }
 
   &.hide {
-    height: 0;
-    opacity: 0;
-    visibility: hidden;
-    @include transition(0.3s);
+    top: -99vh;
+    @include transition(1s);
   }
 
   &.two {
@@ -71,8 +74,19 @@ ul {
 
   &.three {
     background-color: $light-purple;
-    padding-bottom: 15%;
-    padding-top: 8%;
+  }
+}
+
+.second-wrapper {
+  top: 0;
+  height: 195.5vh;
+  overflow: hidden;
+  position: relative;
+  @include transition(1s);
+
+  &.move-up {
+    top: -96.5vh;
+    @include transition(1s);
   }
 }
 

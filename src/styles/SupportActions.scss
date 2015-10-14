@@ -1,9 +1,13 @@
 @import 'variables';
 
 .supportActions {
+	position: relative;
+	z-index: 10;
 	width: auto;
 	margin: 0 auto;
+
 	a {
 		margin: 0 25px 0 25px;
+		position: relative;
 	}
 }

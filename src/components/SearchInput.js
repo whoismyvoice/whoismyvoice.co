@@ -38,7 +38,7 @@ const SearchInput = React.createClass({
 
   _handleChange: function(event) {
     this.setState({
-      zip_code: event.target.value,
+      zip_code: event.target.value
     });
   },
 

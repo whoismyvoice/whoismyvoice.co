@@ -51,6 +51,16 @@ const Home = React.createClass({
       {'hide': this.state.did_search }
     );
 
+    var backgroundClasses = cx(
+      ['second-wrapper'], 
+      {'move-up': this.state.did_search }
+    );
+
+    var containerClasses = cx(
+      ['container'], 
+      {'reveal': this.state.did_search }
+    );
+
     var member_name = this.state.member_name,
         member_bioguide = this.state.member_bioguide,
         member_zip_code = this.state.member_zip_code,
@@ -80,10 +90,10 @@ const Home = React.createClass({
     }
     
     return (
-      <div className="container">
+      <div className={containerClasses}>
+        <div className={blockClasses}>
 
-        <div className="block one">
-          <Circle 
+          <Circle
             desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
           />
 
@@ -94,40 +104,41 @@ const Home = React.createClass({
           <br /><br />
         </div>
 
-        <div className="block two">
-          <Circle
-            style="wide"
-            desc={vote_status}
-          />
+        <div className={backgroundClasses}>
+          <div className="block two">
+            <Circle
+              style="wide"
+              desc={vote_status}
+            />
 
-          <SenatorImg
-            bioguide={member_bioguide}
-          />
+            <SenatorImg
+              bioguide={member_bioguide}
+            />
 
-          <SenatorName
-            name={member_name}
-            age={member_age} 
-            did_search={did_search}
-          />
+            <SenatorName
+              name={member_name}
+              age={member_age} 
+              did_search={did_search}
+            />
+          </div>
+
+
+          <div className="block three">
+            <Circle 
+              style="wider" 
+              desc={impact} 
+            />
+
+            <SupportActions 
+              random={member_random} 
+              gender={member_gender} 
+              email={member_email} 
+              tel={member_tel} 
+              twitter={member_twitter}
+              party={party}
+            />
+          </div>
         </div>
-
-
-        <div className="block three">
-          <Circle 
-            style="wider" 
-            desc={impact} 
-          />
-
-          <SupportActions 
-            random={member_random} 
-            gender={member_gender} 
-            email={member_email} 
-            tel={member_tel} 
-            twitter={member_twitter}
-            party={party}
-          />
-        </div>
-
       </div>
     );
   }

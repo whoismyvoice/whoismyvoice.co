@@ -9,6 +9,8 @@
   text-transform: uppercase;
   font-weight: bold;
   color: $black;
+  position: relative;
+  z-index: 2;
 
   &:hover {
   	background-color: $black;
@@ -18,8 +20,6 @@
   &.nav {
     width: 300px;
     background-color: $light-yellow;
-    z-index: 2;
-    position: relative;
     padding: 20px;
     font-size: 16px;
 
