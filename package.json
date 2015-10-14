@@ -15,7 +15,7 @@
     "build:start": "NODE_ENV=production node es6-prodServer",
     "build": "rimraf dist && NODE_ENV=production webpack -p --config ./webpack.config.prod.js --progress --profile --colors",
     "eslint": "eslint .",
-    "jscs": "jscs .",
+    "jscs": "jscs ."
   },
   "dependencies": {
     "classnames": "^2.1.5",
@@ -59,6 +59,6 @@
     "url-loader": "^0.5.6",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.2.0",
-    "webpack-hot-middleware": "^2.3.0"
+    "webpack-dev-server": "^1.12.0"
   }
 }

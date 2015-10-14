@@ -9,19 +9,21 @@ var testDir = path.resolve(__dirname, 'test');
 module.exports = {
   devtool: 'eval-source-map',
 
+  devServer: {
+    historyApiFallback: true
+  },
+
   entry: [
-    'webpack-hot-middleware/client?reload=true',
+    'webpack-dev-server/client?http://localhost:4000',
+    'webpack/hot/dev-server',
     path.join(__dirname, 'src/main.js')
   ],
 
   output: {
     path: path.join(__dirname, '/dist/'),
     filename: '[name].js',
-    publicPath: 'http://localhost:4000/'
+    publicPath: '/'
   },
-
-  headers: {'Access-Control-Allow-Origin': '*'},
-
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.tpl.html',
@@ -60,6 +62,5 @@ module.exports = {
   node: {
     fs: "empty"
   },
-
   _hotPort: 4000
 };
