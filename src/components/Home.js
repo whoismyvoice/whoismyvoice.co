@@ -1,20 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router';
-import SenateStore from '../stores/SenateStore';
-import SenateActions from '../actions/SenateActions';
-import cx from 'classnames';
+import React from 'react'
+import { Link } from 'react-router'
+import SenateStore from '../stores/SenateStore'
+import SenateActions from '../actions/SenateActions'
+import cx from 'classnames'
 
 // Components
-import Button from './Button';
-import Circle from './Circle';
-import SearchInput from './SearchInput';
-import SenatorImg from './SenatorImg';
-import SenatorName from './SenatorName';
-import SupportActions from './SupportActions';
-import ErrorMsg from './ErrorMsg';
+import Button from './Button'
+import Circle from './Circle'
+import SearchInput from './SearchInput'
+import SenatorImg from './SenatorImg'
+import SenatorName from './SenatorName'
+import SupportActions from './SupportActions'
+import ErrorMsg from './ErrorMsg'
+import RandomButton from './RandomButton'
 
 // Styles
-import style from './../styles/Home.scss';
+import style from './../styles/Home.scss'
 
 const Home = React.createClass({
   getInitialState: function() {
@@ -120,6 +121,8 @@ const Home = React.createClass({
               age={member_age} 
               did_search={did_search}
             />
+
+            <RandomButton random={member_random} />
           </div>
 
 

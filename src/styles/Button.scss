@@ -17,6 +17,10 @@
   	color: $white;
   }
 
+  &.hide {
+    display: none;
+  }
+
   &.nav {
     width: 300px;
     background-color: $light-yellow;

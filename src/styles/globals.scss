@@ -51,10 +51,11 @@ ul {
   text-align: center;
   margin: 0 auto;
   display: block;
+  background-color: $light-green;
   padding-top: 10vh;
   margin-bottom: 0px;
   position: relative;
-  height: 87vh;
+  height: 88.5vh;
   @include transition(1s);
 
   &.one {
@@ -85,7 +86,7 @@ ul {
   @include transition(1s);
 
   &.move-up {
-    top: -96.5vh;
+    top: -97vh;
     @include transition(1s);
   }
 }
