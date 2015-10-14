@@ -24,6 +24,7 @@ module.exports = {
           if(err) return console.error(err);
 
           var bioguide = res.body.results[0].bioguide_id;
+          //console.log(res.body.results);
 
           if(votedFor.indexOf(bioguide) > -1) {
             SenateServerActions.getDetails(res.body);

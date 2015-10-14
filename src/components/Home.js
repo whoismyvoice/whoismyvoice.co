@@ -23,12 +23,15 @@ const Home = React.createClass({
 
   componentDidMount: function() {
 
-    //Allow fetching of member if id / zip_code is defined as a parameter
+    // Allow fetching of member if id / zip_code is defined as a parameter
+    // First check if member has already been fetched
 
-    //let params = this.props.params;
-
-    //if(params.zip && params.zip.length === 5) {
-    //  SenateActions.identifyMember(params.zip);
+    //if(!this.state.did_search) {
+      console.log(this.props.params);
+    //  let params = this.props.params;
+    //  if(params.zip && params.zip.length === 5) {
+    //    SenateActions.identifyMember(params.zip);
+    //  }
     //}
 
     SenateStore.addChangeListener(this._onChange);

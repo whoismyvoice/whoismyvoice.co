@@ -45,7 +45,6 @@ const SearchInput = React.createClass({
   _catchEnter: function(e) {
     if(e.keyCode === 13) {
       if(this.state.zip_code.length === 5) {
-
         this.setState({
           error: false
         });
