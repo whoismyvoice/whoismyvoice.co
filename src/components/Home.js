@@ -12,7 +12,7 @@ import SenatorImg from './Senator/SenatorImg'
 import SenatorName from './Senator/SenatorName'
 import SupportActions from './Senator/SupportActions'
 import ErrorMsg from './ErrorMsg'
-import RandomButton from './RandomButton'
+import RandomButton from './Senator/RandomButton'
 
 // Styles
 import style from './../styles/Home.scss'
@@ -95,6 +95,7 @@ const Home = React.createClass({
         <div className={blockClasses}>
 
           <Circle
+            style="one"
             desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
           />
 

@@ -13,6 +13,8 @@ body {
   line-height: 1.5;
   height: 100%;
   width: 100%;
+  font-size: 100%;
+  font-size: 13px;
 }
 
 a {
@@ -39,6 +41,21 @@ ul {
   left: 0;
   right: 0;
   background-color: $black;
+
+  &.menu {
+    top: 9%;
+
+    &:before {
+      width: 30px;
+      height: 3px;
+      background-color: $black;
+      content:'';
+      position: absolute;
+      top: 0;
+      left: -13px;
+      right: auto;
+    }
+  }
 }
 
 .wrapper {

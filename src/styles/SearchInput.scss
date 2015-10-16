@@ -4,7 +4,7 @@ input {
   width: 200px;
   border: 3px solid $black;
   padding: 20px;
-  font-size: 16px;
+  font-size: 1.2em;
   background-color: inherit;
   text-transform: uppercase;
   color: $black;
@@ -14,6 +14,12 @@ input {
   background-color: $light-green;
   position: relative;
   margin: 2vh 0 4vh 0;
+
+  @media screen and (max-width: $iphone6) {
+    padding: 15px;
+    font-size: 0.9em;
+    margin-top: 4vh;
+  }
 
   &.input {
     color: $black;

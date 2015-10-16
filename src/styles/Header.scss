@@ -41,6 +41,9 @@
   a {
     &:first-of-type {
       margin-top: 10%;
+      @media screen and (max-width: $iphone6) {
+        margin-top: 25vh;
+      }
     }
     margin-bottom: 4%;
   }
@@ -56,6 +59,10 @@
   z-index: 3;
 	padding-top: 40px;
 	font-weight: bold;
+
+  @media screen and (max-width: $iphone6) {
+    padding-top: 20px;
+  }
 
 	a {
 		display: inline-block;

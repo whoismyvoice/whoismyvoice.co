@@ -36,7 +36,7 @@ const Header = React.createClass({
           </div>
 
           <nav className={menuClasses}>
-            <div className="black-line">
+            <div className="black-line menu">
             </div>
 
             <Button
