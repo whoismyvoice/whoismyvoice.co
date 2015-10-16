@@ -26,14 +26,13 @@ const Home = React.createClass({
 
     // Allow fetching of member if id / zip_code is defined as a parameter
     // First check if member has already been fetched
-
-    //if(!this.state.did_search) {
-      console.log(this.props.params);
-    //  let params = this.props.params;
-    //  if(params.zip && params.zip.length === 5) {
-    //    SenateActions.identifyMember(params.zip);
-    //  }
-    //}
+    if(!this.state.did_search) {
+      let params = this.props.params;
+      // Check length to make sure zip is supplied
+      if(params.zip && params.zip.length === 5 && !isNaN(params.zip)) {
+        SenateActions.identifyMember(params.zip);
+      }
+    }
 
     SenateStore.addChangeListener(this._onChange);
   },
