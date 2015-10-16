@@ -40,22 +40,22 @@ const Header = React.createClass({
             </div>
 
             <Button
-              link="#" 
+              link="/sources" 
               text="Data Sources" 
             />
 
             <Button
-              link="#" 
+              link="/about" 
               text="About this project"
             />
 
             <Button
-              link="#" 
+              link="/senators" 
               text="See All Senators" 
             />
 
             <Button
-              link="#" 
+              link="/11216" 
               text="Start Again" 
             />
 

@@ -3,6 +3,8 @@ import { Router, Route, IndexRoute } from 'react-router';
 import App from './components/App';
 import Home from './components/Home';
 import About from './components/About';
+import Sources from './components/Sources';
+import Senators from './components/Senators';
 import NoMatch from './components/NoMatch';
 
 const routes = (
@@ -11,12 +13,12 @@ const routes = (
     	<Route path="/" component={Home} />
     	<IndexRoute component={Home} />
       <Route path="about" component={About} />
+      <Route path="sources" component={Sources} />
+      <Route path="senators" component={Senators} />
       <Route path=":zip" component={Home} />
     </Route>
-    <Route path="*" component={NoMatch}/>
+    <Route path="*" component={Home}/>
   </Router>
 );
 
 export default routes;
-
-//<Route path="/:zip" component={Home} />
