@@ -92,6 +92,9 @@ const Home = React.createClass({
     
     return (
       <div className={containerClasses}>
+        <div className="overlay">
+          This site is only supported in portrait mode. Please turn your phone.
+        </div>
         <div className={blockClasses}>
 
           <Circle

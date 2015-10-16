@@ -131,3 +131,30 @@ ul {
 
 #top { top: 0; }
 #bottom { bottom: 0; }
+
+@media only screen and (orientation:portrait){
+  .overlay {
+    display: none;
+    opacity: 0;
+    @include transition(1s);
+  }
+}
+
+@media only screen and (orientation:landscape){
+  .overlay {
+    font-family: Helvetica;
+    text-align: center;
+    align-self: center;
+    position: fixed;
+    width: 100vw;
+    font-size: 1.3em;
+    padding-top: 45vh;
+    height: 100vh;
+    z-index: 12;
+    color: $white;
+    background-color: $black;
+    opacity: 0.95;
+    @include transition(1s);
+  }
+}
+
