@@ -75,8 +75,10 @@ AppDispatcher.register(function(payload) {
         var didVote = true;
 
         // Set store values to reflect returned object
+        
+        var middle_name = details.middle_name === null ? '' : details.middle_name;
 
-        _store.member_name = details.first_name + ' ' + details.middle_name + ' ' + details.last_name || null,
+        _store.member_name = details.first_name + ' ' + middle_name + ' ' + details.last_name || '',
         _store.member_bioguide = details.bioguide_id || null,
         _store.member_age = (2015-details.birthday.substring(0,4)) || null,
         _store.member_chamber = details.chamber || null,
@@ -90,9 +92,9 @@ AppDispatcher.register(function(payload) {
         _store.error_msg = '',
         _store.did_search = true;
 
-        // Emit change
       }
 
+      // Emit change
       SenateStore.emit(CHANGE_EVENT);
 
       break;
