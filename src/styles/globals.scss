@@ -162,3 +162,9 @@ ul {
   }
 }
 
+::selection {
+  text-shadow: 2px 2px 1px #B43092;
+}
+::-moz-selection {
+  text-shadow: 1px 1px 1px #B43092;
+}
