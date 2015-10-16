@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Styles
-import style from './../styles/SenatorName.scss';
+import style from './../../styles/SenatorName.scss';
 
 const SenatorName = React.createClass({
   render() {

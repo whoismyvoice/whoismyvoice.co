@@ -1,9 +1,9 @@
 import React from 'react'
 import cx from 'classnames'
-import SenateGetRandomActions from '../actions/SenateGetRandomActions'
+import SenateGetRandomActions from '../../actions/SenateGetRandomActions'
 
 // Styles
-import style from './../styles/Button.scss';
+import style from './../../styles/Button.scss';
 
 const RandomButton = React.createClass({
   render() {

@@ -1,10 +1,10 @@
 import React from 'react';
 
 // Styles
-import style from './../styles/SupportActions.scss';
+import style from './../../styles/SupportActions.scss';
 
 // Components
-import Button from './Button';
+import Button from './../Button';
 
 const SupportActions = React.createClass({
   render() {
