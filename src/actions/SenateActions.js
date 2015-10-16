@@ -9,6 +9,7 @@ module.exports = {
   // Pass zip_code value from SearchInput and identify latitude and longitude for zip code
   // latlng is needed in order for Sunlight Foundation to identify correct congress person
 	identifyMember: function(zip_code) {
+    
 		AppDispatcher.handleViewAction({
 			actionType: SenateConstants.FIND_MEMBER,
       zip_code: zip_code
@@ -17,9 +18,16 @@ module.exports = {
     var place;
 
     if(isNaN(zip_code)) {
+
       // Check if the passed value is a full state name or abbr
       place = zip_code.length > 2 ? abbrState(zip_code, 'abbr') : zip_code.toUpperCase();
-      CongressUtils.getMember(place);
+
+      if(place === undefined) {
+        CongressUtils.getMember('error');
+      } else {
+        CongressUtils.getMember(place);
+      }
+
     } else {
       // Send request to Zippopotamus to get latlng based on zip
       request

@@ -48,12 +48,10 @@ const SearchInput = React.createClass({
         this.setState({
           error: true
         });
-        console.log("Error");
       } else if(!isNaN(this.state.zip_code) && this.state.zip_code.length !== 5) {
         this.setState({
           error: true
         });
-        console.log("Error2");
       } else {
         this.setState({
           error: false

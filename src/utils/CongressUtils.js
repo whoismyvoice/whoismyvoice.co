@@ -30,8 +30,6 @@ module.exports = {
         .end(function(err, res) {
           if(err) return console.error(err);
 
-          console.log(res.body);
-
           var bioguide = res.body.results[0].bioguide_id;
           //console.log(res.body.results);
 

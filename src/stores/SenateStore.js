@@ -68,7 +68,7 @@ AppDispatcher.register(function(payload) {
     case AppConstants.GET_DETAILS:
 
       if(action.response === 'error') {
-        _store.error_msg = 'Ineligible zip code';
+        _store.error_msg = 'Ineligible zip code or state';
       } else {
         // Set var to returned object
         var details = action.response.results[0];
