@@ -10,19 +10,17 @@ const App = React.createClass({
   },
 
   render() {
-    return (
-      <div className="wrapper">
-        <div id="left"></div>
-        <div id="right"></div>
-        <div id="top"></div>
-        <div id="bottom"></div>
+    return  <div className="wrapper">
+      <div id="left"></div>
+      <div id="right"></div>
+      <div id="top"></div>
+      <div id="bottom"></div>
 
-        <div className="black-line"></div>
+      <div className="black-line"></div>
 
-        <Header />
-        {this.props.children}
-      </div>
-    );
+      <Header />
+      {this.props.children}
+    </div>;
   }
 });
 

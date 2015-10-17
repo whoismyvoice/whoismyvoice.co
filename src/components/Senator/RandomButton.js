@@ -6,6 +6,11 @@ import SenateGetRandomActions from '../../actions/SenateGetRandomActions'
 import style from './../../styles/Button.scss';
 
 const RandomButton = React.createClass({
+
+  _handleClick: function() {
+    SenateGetRandomActions.getRandomMember();
+  },
+
   render() {
 
     var buttonClasses = cx(
@@ -13,15 +18,9 @@ const RandomButton = React.createClass({
       {'hide': !this.props.random }
     );
 
-    return (
-      <button className={buttonClasses} onClick={this._onClick}>
-        Show Me Another
-      </button>
-    );
-  },
-
-  _onClick: function() {
-    SenateGetRandomActions.getRandomMember();
+    return  <button className={buttonClasses} onClick={this._handleClick}>
+      Show Me Another
+    </button>;
   }
 });
 

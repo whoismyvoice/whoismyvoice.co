@@ -34,14 +34,14 @@ const Home = React.createClass({
       }
     }
 
-    SenateStore.addChangeListener(this._onChange);
+    SenateStore.addChangeListener(this._handleChange);
   },
 
   componentWillUnmount: function() {
-    SenateStore.removeChangeListener(this._onChange);
+    SenateStore.removeChangeListener(this._handleChange);
   },
 
-  _onChange: function() {
+  _handleChange: function() {
     this.setState(SenateStore.getMember());
   },
 
@@ -89,64 +89,61 @@ const Home = React.createClass({
       vote_status = 'You have not yet searched for a member';
     }
     
-    return (
-      <div className={containerClasses}>
-        <div className="overlay">
-          This site is only supported in portrait mode. Please turn your phone.
-        </div>
-        <div className={blockClasses}>
+    return  <div className={containerClasses}>
+      <div className="overlay">
+        This site is only supported in portrait mode. Please turn your phone.
+      </div>
+      <div className={blockClasses}>
 
+        <Circle
+          style="one"
+          desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
+        />
+
+        <SearchInput />
+        <ErrorMsg 
+          error={error_msg}
+          />
+      </div>
+
+      <div className={backgroundClasses}>
+        <div className="block two">
           <Circle
-            style="one"
-            desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
+            style="wide"
+            desc={vote_status}
           />
 
-          <SearchInput />
-          <ErrorMsg 
-            error={error_msg}
-           />
-          <br /><br />
+          <SenatorImg
+            bioguide={member_bioguide}
+          />
+
+          <SenatorName
+            name={member_name}
+            age={member_age} 
+            did_search={did_search}
+          />
+
+          <RandomButton random={member_random} />
         </div>
 
-        <div className={backgroundClasses}>
-          <div className="block two">
-            <Circle
-              style="wide"
-              desc={vote_status}
-            />
 
-            <SenatorImg
-              bioguide={member_bioguide}
-            />
+        <div className="block three">
+          <Circle 
+            style="wider" 
+            desc={impact} 
+          />
 
-            <SenatorName
-              name={member_name}
-              age={member_age} 
-              did_search={did_search}
-            />
-
-            <RandomButton random={member_random} />
-          </div>
-
-
-          <div className="block three">
-            <Circle 
-              style="wider" 
-              desc={impact} 
-            />
-
-            <SupportActions 
-              random={member_random} 
-              gender={member_gender} 
-              email={member_email} 
-              tel={member_tel} 
-              twitter={member_twitter}
-              party={party}
-            />
-          </div>
+          <SupportActions 
+            random={member_random} 
+            gender={member_gender} 
+            email={member_email} 
+            tel={member_tel} 
+            twitter={member_twitter}
+            party={party}
+          />
         </div>
       </div>
-    );
+    </div>;
   }
 });
 

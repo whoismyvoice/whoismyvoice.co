@@ -11,13 +11,11 @@ const SenatorImg = React.createClass({
   	const imgSrc ='https://raw.githubusercontent.com/unitedstates/images/gh-pages/congress/original/';
   	const img = this.props.bioguide === '' ? '' : imgSrc+this.props.bioguide+'.jpg';
 
-  	return (
-    	<div className="senatorImg">
-    		<img
-    			src={img} 
-    		/>
-    	</div>
-    );
+  	return <div className="senatorImg">
+    	<img
+    		src={img} 
+    	/>
+    </div>;
   }
 });
 

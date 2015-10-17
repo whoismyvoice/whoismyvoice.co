@@ -17,13 +17,10 @@ const SenatorName = React.createClass({
   		age = '';
   	}
   	
-
-    return (
-    	<div className="senatorName">
-    		<h2>{ name }</h2>
-    		<h2>{ age }</h2>
-    	</div>
-    );
+    return <div className="senatorName">
+    	<h2>{ name }</h2>
+    	<h2>{ age }</h2>
+    </div>;
   }
 });
 

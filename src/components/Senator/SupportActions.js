@@ -19,54 +19,50 @@ const SupportActions = React.createClass({
 
     if(random) {
 
-      return(
-        <div className="supportActions">
-            <Button 
-              type='external' 
-              link={ 'http://twitter.com/' + twitter } 
-              rel='external' 
-              text={ 'Tweet at ' + gender } 
-            />
-            <Button
-              type='external' 
-              link={ party } 
-              text={'Donate to ' + gender_third + ' opponent'} 
-            />
-            <Button
-              type='external'
-              link="https://vote.usa.gov/"
-              text="Register to vote" 
-            />
-          </div>
-        );
+      return  <div className="supportActions">
+        <Button 
+          type='external' 
+          link={ 'http://twitter.com/' + twitter } 
+          rel='external' 
+          text={ 'Tweet at ' + gender } 
+        />
+        <Button
+          type='external' 
+          link={ party } 
+          text={'Donate to ' + gender_third + ' opponent'} 
+        />
+        <Button
+          type='external'
+          link="https://vote.usa.gov/"
+          text="Register to vote" 
+        />
+        </div>;
 
     } else {
       
-      return (
-        <div className="supportActions">
-          <Button 
-            type='external' 
-            link={ 'mailto:' + email } 
-            text={ 'Email ' + gender } 
-          />
-          <Button
-            type='external'
-            link={ 'tel:' + tel }
-            text={ 'Call ' + gender} 
-          />
-          <Button
-            type='external'
-            link={ 'http://twitter.com/' + twitter }
-            rel='external' 
-            text={ 'Tweet at ' + gender }
-          />
-          <Button
-            type='external'
-            link="https://vote.usa.gov/"
-            text="Register to vote" 
-          />
-        </div>
-      );
+      return  <div className="supportActions">
+        <Button 
+          type='external' 
+          link={ 'mailto:' + email } 
+          text={ 'Email ' + gender } 
+        />
+        <Button
+          type='external'
+          link={ 'tel:' + tel }
+          text={ 'Call ' + gender} 
+        />
+        <Button
+          type='external'
+          link={ 'http://twitter.com/' + twitter }
+          rel='external' 
+          text={ 'Tweet at ' + gender }
+        />
+        <Button
+          type='external'
+          link="https://vote.usa.gov/"
+          text="Register to vote" 
+        />
+      </div>;
     }
   }
 });

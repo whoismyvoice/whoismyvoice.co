@@ -15,13 +15,11 @@ const Button = React.createClass({
   			</a>
   		)
   	} else {
-  		return (
-      	<Link to={this.props.link}>
-        	<button className="button nav">
-        		{this.props.text}
-        	</button>
-      	</Link>
-    	);
+  		return  <Link to={this.props.link}>
+        <button className="button nav">
+        	{this.props.text}
+        </button>
+      </Link>;
   	}
   }
 });

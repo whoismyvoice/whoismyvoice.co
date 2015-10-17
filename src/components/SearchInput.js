@@ -15,34 +15,13 @@ const SearchInput = React.createClass({
 		}
 	},
 
-  render() {
-
-    var inputClasses = cx(
-      ['input'], 
-      {'error': this.state.error }
-    );
-
-    return (
-
-    	<input 
-        className={inputClasses}
-        type="text" 
-        value={this.state.zip_code}
-        onChange={this._handleChange}
-        onKeyDown={this._catchEnter}
-        placeholder="Enter Your Zip Code"
-      />
-      
-    );
-  },
-
-  _handleChange: function(event) {
+   _handleChange: function(event) {
     this.setState({
       zip_code: event.target.value
     });
   },
 
-  _catchEnter: function(e) {
+  _handleEnter: function(e) {
     if(e.keyCode === 13) {
       if(isNaN(this.state.zip_code) && this.state.zip_code.length < 2) {
         this.setState({
@@ -59,8 +38,24 @@ const SearchInput = React.createClass({
         SenateActions.identifyMember(this.state.zip_code);
       }
     }
-  }
-  
+  },
+
+  render() {
+
+    var inputClasses = cx(
+      ['input'], 
+      {'error': this.state.error }
+    );
+
+    return <input 
+        className={inputClasses}
+        type="text" 
+        value={this.state.zip_code}
+        onChange={this._handleChange}
+        onKeyDown={this._handleEnter}
+        placeholder="Enter Your Zip Code"
+      />;
+  }  
 });
 
 export default SearchInput;

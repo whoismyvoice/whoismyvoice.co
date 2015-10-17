@@ -15,11 +15,9 @@ const ErrorMsg = React.createClass({
     );
 
   	// Check if bioguide is defined (i.e. if user has searched for any members yet)
-  	return (
-    	<div className={errorClasses}>
-        {this.props.error}
-    	</div>
-    );
+  	return <div className={errorClasses}>
+      {this.props.error}
+    </div>;
   }
 });
 

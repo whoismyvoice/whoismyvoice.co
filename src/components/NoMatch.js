@@ -2,11 +2,9 @@ import React from 'react';
 
 const NoMatch = React.createClass({
   render() {
-  	return (
-    	<div className="error">
-        Error
-    	</div>
-    );
+  	return	<div className="error">
+    	Error
+    </div>;
   }
 });
 
