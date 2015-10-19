@@ -121,8 +121,8 @@ const Home = React.createClass({
 
       <div className={backgroundClasses}>
         <SectionsContainer {...options}>
-          <div className="block two">
-            <Section>
+          <Section>
+            <div className="block two">
               <div className="black-line"></div>
               <Circle
                 style="wide"
@@ -140,13 +140,19 @@ const Home = React.createClass({
                 did_search={did_search}
               />
 
+              <a href="#actions">
+                <div className="downArrow">
+                </div>
+              </a>
+              
               <RandomButton random={member_random} />
 
-            </Section>
-          </div>
+            </div>
+          </Section>
 
-          <div className="block three">
-            <Section>
+          <Section>
+            <div className="block three">
+
               <div className="black-line"></div>
               <Circle 
                 style="wider" 
@@ -161,9 +167,8 @@ const Home = React.createClass({
                 twitter={member_twitter}
                 party={party}
               />
-
-            </Section>
-          </div>
+            </div>
+          </Section>
         </SectionsContainer>
 
       </div>

@@ -36,11 +36,15 @@ ul {
   margin: 0 auto;
   z-index: 2;
   height: 80vh;
-  top: 7.4%;
+  top: 7.2vh;
   position: absolute;
   left: 0;
   right: 0;
   background-color: $black;
+
+  @media only screen and (max-width: $iphone6) {
+    top: 7.4vh;
+  }
 
   &.menu {
     top: 9%;
@@ -172,4 +176,11 @@ ul {
 
 .Section {
   overflow: hidden!important;
+}
+
+.downArrow {
+  display: block;
+  width: 100px;
+  height: 50px;
+  background-color: $black;
 }
