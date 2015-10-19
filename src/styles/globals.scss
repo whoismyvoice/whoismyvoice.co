@@ -37,7 +37,7 @@ ul {
   z-index: 2;
   height: 80vh;
   top: 7.4%;
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   background-color: $black;
@@ -64,7 +64,7 @@ ul {
 }
 
 .block {
-  width: 99vw;
+  width: 100vw;
   text-align: center;
   margin: 0 auto;
   display: block;
@@ -101,6 +101,7 @@ ul {
   overflow: hidden;
   position: relative;
   @include transition(1s);
+  z-index: 1;
 
   &.move-up {
     top: -97vh;
@@ -171,5 +172,4 @@ ul {
 
 .Section {
   overflow: hidden!important;
-  width: 100%!important;
 }

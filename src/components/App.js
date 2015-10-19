@@ -16,8 +16,6 @@ const App = React.createClass({
       <div id="top"></div>
       <div id="bottom"></div>
 
-      <div className="black-line"></div>
-
       <Header />
       {this.props.children}
     </div>;

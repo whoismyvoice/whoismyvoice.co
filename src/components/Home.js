@@ -34,7 +34,6 @@ const Home = React.createClass({
         SenateActions.identifyMember(params.zip);
       }
     }
-
     SenateStore.addChangeListener(this._handleChange);
   },
 
@@ -79,7 +78,7 @@ const Home = React.createClass({
 
     let options = {
           activeClass:          'active', // the class that is appended to the sections links
-          anchors:              ['one','two'], // the anchors for each sections
+          anchors:              ['result','actions'], // the anchors for each sections
           arrowNavigation:      false, // use arrow keys
           className:            'SectionContainer', // the class name for the section container
           delay:                1000, // the scroll animation speed
@@ -104,25 +103,27 @@ const Home = React.createClass({
     }
     
     return  <div className={containerClasses}>
+
       <div className="overlay">
         This site is only supported in portrait mode. Please turn your phone.
       </div>
-      <div className={blockClasses}>
 
+      <div className={blockClasses}>
+        <div className="black-line"></div>
         <Circle
           style="one"
           desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
         />
 
         <SearchInput />
-        <ErrorMsg 
-          error={error_msg}
-          />
+        <ErrorMsg error={error_msg} />
       </div>
-        <div className={backgroundClasses}>
-          <SectionsContainer>
+
+      <div className={backgroundClasses}>
+        <SectionsContainer {...options}>
+          <div className="block two">
             <Section>
-            <div className="block two">
+              <div className="black-line"></div>
               <Circle
                 style="wide"
                 desc={vote_status}
@@ -140,11 +141,13 @@ const Home = React.createClass({
               />
 
               <RandomButton random={member_random} />
-            </div>
-          </Section>
 
-          <Section>
-            <div className="block three">
+            </Section>
+          </div>
+
+          <div className="block three">
+            <Section>
+              <div className="black-line"></div>
               <Circle 
                 style="wider" 
                 desc={impact} 
@@ -158,9 +161,11 @@ const Home = React.createClass({
                 twitter={member_twitter}
                 party={party}
               />
-            </div>
-        </Section>
-      </SectionsContainer>
+
+            </Section>
+          </div>
+        </SectionsContainer>
+
       </div>
     </div>;
   }
