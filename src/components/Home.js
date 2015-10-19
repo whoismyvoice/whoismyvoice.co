@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import SenateStore from '../stores/SenateStore'
 import SenateActions from '../actions/SenateActions'
 import cx from 'classnames'
+import {SectionsContainer, Section} from 'react-fullpage';
 
 // Components
 import Button from './Button'
@@ -74,10 +75,23 @@ const Home = React.createClass({
         party = this.state.member_party,
         member_random = this.state.member_random,
         error_msg = this.state.error_msg,
-        vote_status,
-        impact;
+        vote_status;
 
-    impact = 'How you can directly impact keeping this '+ member_gender +' from being able to personally weigh in on the reproductive rights of millions of women this '+ member_gender +' has never met, the next time a similar vote comes up.';
+    let options = {
+          activeClass:          'active', // the class that is appended to the sections links
+          anchors:              ['one','two'], // the anchors for each sections
+          arrowNavigation:      false, // use arrow keys
+          className:            'SectionContainer', // the class name for the section container
+          delay:                1000, // the scroll animation speed
+          navigation:           false, // use dots navigatio
+          scrollBar:            false, // use the browser default scrollbar
+          sectionClassName:     'Section', // the section class name
+          sectionPaddingTop:    '0', // the section top padding
+          sectionPaddingBottom: '0', // the section bottom padding
+          verticalAlign:        false // align the content of each section vertical
+    };
+
+    let impact = 'How you can directly impact keeping this '+ member_gender +' from being able to personally weigh in on the reproductive rights of millions of women this '+ member_gender +' has never met, the next time a similar vote comes up.';
 
     if(did_search) {
       if(!member_random) {
@@ -105,44 +119,48 @@ const Home = React.createClass({
           error={error_msg}
           />
       </div>
+        <div className={backgroundClasses}>
+          <SectionsContainer>
+            <Section>
+            <div className="block two">
+              <Circle
+                style="wide"
+                desc={vote_status}
+              />
 
-      <div className={backgroundClasses}>
-        <div className="block two">
-          <Circle
-            style="wide"
-            desc={vote_status}
-          />
+              <SenatorImg
+                bioguide={member_bioguide}
+              />
 
-          <SenatorImg
-            bioguide={member_bioguide}
-          />
+              <SenatorName
+                random={member_random}
+                name={member_name}
+                age={member_age} 
+                did_search={did_search}
+              />
 
-          <SenatorName
-            random={member_random}
-            name={member_name}
-            age={member_age} 
-            did_search={did_search}
-          />
+              <RandomButton random={member_random} />
+            </div>
+          </Section>
 
-          <RandomButton random={member_random} />
-        </div>
+          <Section>
+            <div className="block three">
+              <Circle 
+                style="wider" 
+                desc={impact} 
+              />
 
-
-        <div className="block three">
-          <Circle 
-            style="wider" 
-            desc={impact} 
-          />
-
-          <SupportActions 
-            random={member_random} 
-            gender={member_gender} 
-            email={member_email} 
-            tel={member_tel} 
-            twitter={member_twitter}
-            party={party}
-          />
-        </div>
+              <SupportActions 
+                random={member_random} 
+                gender={member_gender} 
+                email={member_email} 
+                tel={member_tel} 
+                twitter={member_twitter}
+                party={party}
+              />
+            </div>
+        </Section>
+      </SectionsContainer>
       </div>
     </div>;
   }
