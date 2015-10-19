@@ -29,22 +29,8 @@ module.exports = {
       }
 
     } else {
-      // Send request to Zippopotamus to get latlng based on zip
-      request
-        .get('http://api.zippopotam.us/us/'+zip_code)
-        .set('Accept', 'application/json')
-        .end(function(err, res) {
-          if(err) {
-            console.error(err);
-            CongressUtils.getMember('error');
-          } else {
-            place = res.body.places[0];
-
-            // Call utility function CongressUtils to retrieve details about -
-            // congress person based on latlng for passed zip code
-          CongressUtils.getMember(place.latitude, place.longitude);
-          }
-      });
+      //Get senators based on passed zip_code
+      CongressUtils.getMember(zip_code);
     }
 	},
 };

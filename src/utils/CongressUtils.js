@@ -4,10 +4,10 @@ import votedFor from '../data/votedFor';
 import request from 'superagent';
 
 module.exports = {
-  getMember: function(lat,lng) {
+  getMember: function(zip_code) {
 
     // Check if there was an error parsing zip code
-    if(lat === 'error' && lng === undefined) {
+    if(zip_code === 'error') {
       SenateServerActions.getDetails('error');
     } else {
 
@@ -16,10 +16,10 @@ module.exports = {
       var api;
 
       // Decipher whether user passed a State or a zip code
-      if(isNaN(lat)) {
-        api = 'https://congress.api.sunlightfoundation.com/legislators?state=' + lat + '&apikey=' + apikey;
+      if(isNaN(zip_code)) {
+        api = 'https://congress.api.sunlightfoundation.com/legislators?state=' + zip_code + '&apikey=' + apikey;
       } else {
-        api = 'https://congress.api.sunlightfoundation.com/legislators/locate?latitude=' + lat + '&longitude=' + lng + '&apikey=' + apikey;
+        api = 'https://congress.api.sunlightfoundation.com/legislators/locate?zip=' + zip_code + '&apikey=' + apikey;
       }
 
       // Request Sunlight Foundation API to get further details about congress person
