@@ -83,7 +83,7 @@ const Home = React.createClass({
           arrowNavigation:      false, // use arrow keys
           className:            'SectionContainer', // the class name for the section container
           delay:                1000, // the scroll animation speed
-          navigation:           false, // use dots navigatio
+          navigation:           false, // use dots navigation
           scrollBar:            false, // use the browser default scrollbar
           sectionClassName:     'Section', // the section class name
           sectionPaddingTop:    '0', // the section top padding

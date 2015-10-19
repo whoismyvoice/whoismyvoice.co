@@ -17,6 +17,7 @@ const Header = React.createClass({
     evt.preventDefault();
     evt.stopPropagation();
     this.setState({ didClick: !this.state.didClick });
+    console.log(this.state.didClick);
   },
 
   render() {
@@ -41,7 +42,7 @@ const Header = React.createClass({
           <div className={iconClasses}></div>
         </div>
 
-        <nav className={menuClasses}>
+        <nav className={menuClasses} onClick={this._handleClick}>
           <div className="black-line menu">
           </div>
 
@@ -61,7 +62,7 @@ const Header = React.createClass({
           />
 
           <Button
-            link="/11216" 
+            link="/" 
             text="Start Again" 
           />
 

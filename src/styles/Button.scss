@@ -28,9 +28,17 @@
 
   &.nav {
     width: 300px;
+    margin: 0 auto;
+    display: block;
     background-color: $light-yellow;
-    padding: 20px;
-    font-size: 16px;
+    padding: 10px;
+    padding-top: 0;
+    margin-bottom: 60px;
+    font-size: 1.3em;
+
+    &:first-of-type {
+      margin-top: 12%;
+    }
 
     @media screen and (max-width: $iphone6) {
       width: 220px;
@@ -40,6 +48,10 @@
 
     &:hover {
       background-color: $black;
+
+      a {
+        color: $white;
+      }
     }
   }
 }

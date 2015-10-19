@@ -15,7 +15,7 @@ module.exports = {
     app: [
       path.join(__dirname, 'src/main.js')
     ],
-    vendors: ['react', 'superagent']
+    vendors: ['react', 'superagent', 'react-fullpage']
   },
   output: {
     path: path.join(__dirname, '/dist/'),
