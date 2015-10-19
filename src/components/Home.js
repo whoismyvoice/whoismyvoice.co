@@ -29,6 +29,7 @@ const Home = React.createClass({
     // First check if member has already been fetched
     if(!this.state.did_search) {
       let params = this.props.params;
+
       // Check length to make sure zip is supplied
       if(params.zip && params.zip.length === 5 && !isNaN(params.zip)) {
         SenateActions.identifyMember(params.zip);
@@ -139,11 +140,6 @@ const Home = React.createClass({
                 age={member_age} 
                 did_search={did_search}
               />
-
-              <a href="#actions">
-                <div className="downArrow">
-                </div>
-              </a>
               
               <RandomButton random={member_random} />
 
