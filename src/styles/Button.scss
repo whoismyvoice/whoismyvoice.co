@@ -31,17 +31,20 @@
     margin: 0 auto;
     display: block;
     background-color: $light-yellow;
-    padding: 10px;
-    padding-top: 0;
+    padding: 20px;
     margin-bottom: 60px;
     font-size: 1.3em;
 
     &:first-of-type {
       margin-top: 12%;
+      @media screen and (max-width: $iphone6) {
+        margin-top: 40%;
+      }
     }
 
     @media screen and (max-width: $iphone6) {
       width: 220px;
+      margin-bottom: 30px;
       padding: 15px;
       font-size: 0.8em;
     }

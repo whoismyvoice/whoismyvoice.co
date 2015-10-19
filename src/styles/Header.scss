@@ -37,16 +37,6 @@
     opacity: 1;
     @include transition(0.3s);
   }
-
-  a {
-    &:first-of-type {
-      margin-top: 10%;
-      @media screen and (max-width: $iphone6) {
-        margin-top: 25vh;
-      }
-    }
-    margin-bottom: 4%;
-  }
 }
 
 .menu {
