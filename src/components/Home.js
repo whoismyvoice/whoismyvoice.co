@@ -118,6 +118,7 @@ const Home = React.createClass({
           />
 
           <SenatorName
+            random={member_random}
             name={member_name}
             age={member_age} 
             did_search={did_search}

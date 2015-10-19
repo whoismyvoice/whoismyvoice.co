@@ -7,11 +7,15 @@ const SenatorName = React.createClass({
   render() {
 
   	var name,
-  			age;
+  			age,
+        title;
 
   	if(this.props.did_search) {
-  		name = 'Senator ' + this.props.name;
+
+      title = this.props.random ? 'Congressman' : 'Senator';
+      name = title + ' ' + this.props.name;
   		age = this.props.age + ' years old';
+      
   	} else {
   		name = '';
   		age = '';
