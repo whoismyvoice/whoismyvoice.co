@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'globals';
 
 .arrowDown {
 	width: 50px;
@@ -12,6 +13,7 @@
 	cursor: pointer;
 	border: 3px solid $black;
 	z-index: 3;
+	@include transition(0.2s);
 
 	@media screen and (max-width: $iphone6) {
 		width: 30px;
@@ -32,6 +34,15 @@
 			border-left: solid 6px transparent;
 			border-right: solid 6px transparent;
 			border-top: solid 6px $black;
+		}
+	}
+
+	&:hover {
+		background-color: $black;
+		@include transition(0.2s);
+
+		&:before {
+			border-top-color: $white;
 		}
 	}
 

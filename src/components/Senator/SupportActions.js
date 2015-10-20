@@ -20,7 +20,7 @@ const SupportActions = React.createClass({
 
     if(random) {
 
-      return  <div className="supportActions">
+      return  <div className="supportActions rand">
         <Button 
           type='external' 
           link={ 'http://twitter.com/home/?status=@' + twitter } 

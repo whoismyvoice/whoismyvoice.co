@@ -191,3 +191,49 @@ button, input {
   background-color: $light-purple;
   @include transition(0.5s);
 }
+
+.blue {
+  background-color: $light-blue;
+  @include transition(0.5s);
+}
+
+.bright-green {
+  background-color: $bright-green;
+  @include transition(0.5s);
+}
+
+.bright-red {
+  background-color: $bright-red;
+  @include transition(0.5s);
+}
+
+.page-block {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 90vh;
+  text-align: center;
+  padding-top: 10vh;
+  justify-content: center;
+}
+
+.pageIntroduction, .pageDesc {
+  font-weight: bold;
+  font-size: 1.8em;
+  flex: 1;
+  align-self: center;
+  width: 65%;
+  line-height: 1.8;
+
+  a {
+    color: $black;
+  }
+
+  .resources {
+    font-size: 0.7em;
+  }
+}
+
+.pageDesc {
+  flex: 1;
+}

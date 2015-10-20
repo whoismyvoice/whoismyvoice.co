@@ -81,7 +81,9 @@ const Home = React.createClass({
     });
   },
   _destroyFullpage: function() {
-    $.fn.fullpage.destroy();
+    if($.fn.fullpage.destroy != undefined) {
+      $.fn.fullpage.destroy();
+    }
   },
 
   render() {
