@@ -18,6 +18,7 @@ var _store = {
   member_age: '',
   member_chamber: '',
   member_gender: '',
+  member_state: '',
   member_email: '',
   member_tel: '',
   member_twitter: '',
@@ -89,10 +90,10 @@ AppDispatcher.register(function(payload) {
         _store.member_twitter = details.twitter_id || null,
         _store.voted_for = didVote,
         _store.member_party = details.party,
+        _store.member_state = details.state || null,
         _store.member_random = action.random,
         _store.error_msg = '',
-        _store.did_search = true;
-
+        _store.did_search = true
       }
 
       // Emit change

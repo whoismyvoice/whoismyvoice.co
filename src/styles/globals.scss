@@ -34,17 +34,13 @@ ul {
 .black-line {
   width: 4px;
   margin: 0 auto;
-  z-index: 2;
+  z-index: 1;
   height: 60vh;
-  top: 7.2vh;
-  position: absolute;
+  top: 7.4vh;
+  position: fixed;
   left: 0;
   right: 0;
   background-color: $black;
-
-  @media only screen and (max-width: $iphone6) {
-    top: 6.3vh;
-  }
 
   &.menu {
     top: 9%;
@@ -79,7 +75,7 @@ ul {
   @include transition(1s);
 
   &.one {
-    top: 1%;
+    top: 1.5vh;
     @include transition(1s);
   }
 

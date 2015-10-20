@@ -3,10 +3,10 @@
 .senatorName {
 	text-transform: uppercase;
 	margin: 0 auto;
-	margin-top: 10px;
 	position: relative;
 	z-index: 2;
 	padding: 15px;
+	margin-bottom: 1vh;
 
 	@media screen and (max-width: $iphone6) {
 		padding: 10px;

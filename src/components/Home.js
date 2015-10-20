@@ -114,6 +114,7 @@ const Home = React.createClass({
         member_email = this.state.member_email,
         member_tel = this.state.member_tel,
         member_twitter = this.state.member_twitter,
+        member_state = this.state.member_state,
         voted_for = this.state.voted_for,
         did_search = this.state.did_search,
         party = this.state.member_party,
@@ -125,13 +126,11 @@ const Home = React.createClass({
 
     if(did_search) {
       this._initializeFullpage();
-
       if(!member_random) {
         vote_status = 'co-sponsored a bill to defund Planned Parenthood. This '+ member_gender + ' represents your voice!';
       } else {
         vote_status = 'supports Planned Parenthood! But, have you heard of the House Freedom Caucus? These are the guys who have publicly declared they are willing to shut down the government over the issue of funding Planned Parenthood.';
       }
-
     } else {
       vote_status = 'You have not yet searched for a member';
     }
@@ -155,7 +154,6 @@ const Home = React.createClass({
 
       <div className={backgroundClasses} id="fullpage">
       	<div className="section block two">
-          <div className="black-line"></div>
           <Circle
             style="wide"
             random={member_random}
@@ -171,7 +169,8 @@ const Home = React.createClass({
           <SenatorName
             random={member_random}
             name={member_name}
-            age={member_age} 
+            age={member_age}
+            state={member_state}
             did_search={did_search}
           />
               
@@ -180,7 +179,6 @@ const Home = React.createClass({
         </div>
 
         <div className="section block three">
-          <div className="black-line"></div>
           <Circle 
             style="wider" 
             desc={impact} 
