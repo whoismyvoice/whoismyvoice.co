@@ -18,6 +18,7 @@ const App = React.createClass({
 
       <Header />
       {this.props.children}
+      
     </div>;
   }
 });

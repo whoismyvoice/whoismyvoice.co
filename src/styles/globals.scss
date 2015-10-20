@@ -100,15 +100,16 @@ ul {
 }
 
 .second-wrapper {
-  top: 0;
+  top: 0vh;
+  opacity: 0;
   height: 195.5vh;
-  overflow: hidden;
   position: relative;
   @include transition(1s);
   z-index: 1;
 
   &.move-up {
     top: -97vh;
+    opacity: 1;
     @include transition(1s);
   }
 }

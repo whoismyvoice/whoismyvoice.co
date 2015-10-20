@@ -27,7 +27,6 @@
     "object-assign": "^4.0.1",
     "react": "0.14.0 ",
     "react-dom": "0.14.0",
-    "react-fullpage": "^0.1.1",
     "react-resolver": "^2.0.5",
     "react-router": "1.0.0-rc3",
     "superagent": "^1.4.0"

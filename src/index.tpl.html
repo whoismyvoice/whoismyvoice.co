@@ -5,6 +5,41 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Senate Project</title>
     <meta name="description" content="Senate Project">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.7.4/jquery.fullPage.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('#fullpage').fullpage({
+        //Navigation
+        navigation: false,
+        showActiveTooltip: false,
+        slidesNavigation: false,
+
+        //Scrolling
+        css3: true,
+        scrollingSpeed: 1000,
+        autoScrolling: true,
+        fitToSection: true,
+        fitToSectionDelay: 1000,
+        easingcss3: 'ease-in',
+        loopHorizontal: false,
+        touchSensitivity: 15,
+        normalScrollElementTouchThreshold: 5,
+        normalScrollElements: ('.one'),
+
+        //Accessibility
+        keyboardScrolling: true,
+        animateAnchor: true,
+        recordHistory: true,
+
+        //Design
+        controlArrows: false,
+        verticalCentered: false,
+        resize : true,
+        sectionSelector: '.section',
+      });
+    });
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
   </head>
   <body>

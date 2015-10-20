@@ -3,7 +3,6 @@ import { Link } from 'react-router'
 import SenateStore from '../stores/SenateStore'
 import SenateActions from '../actions/SenateActions'
 import cx from 'classnames'
-import {SectionsContainer, Section} from 'react-fullpage';
 
 // Components
 import Button from './Button'
@@ -54,7 +53,8 @@ const Home = React.createClass({
 
     var backgroundClasses = cx(
       ['second-wrapper'], 
-      {'move-up': this.state.did_search }
+      {'move-up': this.state.did_search },
+      {'static': !this.state.did_search }
     );
 
     var containerClasses = cx(
@@ -76,20 +76,6 @@ const Home = React.createClass({
         member_random = this.state.member_random,
         error_msg = this.state.error_msg,
         vote_status;
-
-    let options = {
-          activeClass:          'active', // the class that is appended to the sections links
-          anchors:              ['result','actions'], // the anchors for each sections
-          arrowNavigation:      false, // use arrow keys
-          className:            'SectionContainer', // the class name for the section container
-          delay:                1000, // the scroll animation speed
-          navigation:           false, // use dots navigation
-          scrollBar:            false, // use the browser default scrollbar
-          sectionClassName:     'Section', // the section class name
-          sectionPaddingTop:    '0', // the section top padding
-          sectionPaddingBottom: '0', // the section bottom padding
-          verticalAlign:        false // align the content of each section vertical
-    };
 
     let impact = 'How you can directly impact keeping this '+ member_gender +' from being able to personally weigh in on the reproductive rights of millions of women this '+ member_gender +' has never met, the next time a similar vote comes up.';
 
@@ -120,38 +106,34 @@ const Home = React.createClass({
         <ErrorMsg error={error_msg} />
       </div>
 
-      <div className={backgroundClasses}>
-        <SectionsContainer {...options}>
-          <Section>
-            <div className="block two">
-              <div className="black-line"></div>
-              <Circle
-                style="wide"
-                desc={vote_status}
-              />
+      <div className={backgroundClasses} id="fullpage">
+      	<div className="section block two">
+          <div className="black-line"></div>
+            <Circle
+              style="wide"
+              desc={vote_status}
+             />
 
-              <SenatorImg
-                bioguide={member_bioguide}
-              />
+             <SenatorImg
+               bioguide={member_bioguide}
+             />
 
-              <SenatorName
-                random={member_random}
-                name={member_name}
-                age={member_age} 
-                did_search={did_search}
-              />
+             <SenatorName
+              random={member_random}
+              name={member_name}
+              age={member_age} 
+               did_search={did_search}
+            />
               
-              <RandomButton random={member_random} />
+            <RandomButton random={member_random} />
 
-            </div>
-          </Section>
+          </div>
 
-          <Section>
-            <div className="block three">
+          <div className="section block three">
 
-              <div className="black-line"></div>
+            <div className="black-line"></div>
               <Circle 
-                style="wider" 
+               	style="wider" 
                 desc={impact} 
               />
 
@@ -162,13 +144,10 @@ const Home = React.createClass({
                 tel={member_tel} 
                 twitter={member_twitter}
                 party={party}
-              />
-            </div>
-          </Section>
-        </SectionsContainer>
-
-      </div>
-    </div>;
+            	/>
+        	</div>
+      	</div>
+    	</div>;
   }
 });
 
