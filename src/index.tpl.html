@@ -9,13 +9,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.7.4/jquery.fullPage.min.js"></script>
     <script>
       $(document).ready(function() {
+        var input =  document.querySelector('.input');
 
-      //Check if event key is pressed for .input before initializing fullPage
-      document.querySelector('.input').addEventListener('keypress', function (e) {
-        var key = e.which || e.keyCode;
-        if (key === 13) { // 13 is enter
-          setFullPage();
-        }
+        //Check if event key is pressed for .input before initializing fullPage
+        document.querySelector('.input').addEventListener('keypress', function (e) {
+
+          var key = e.which || e.keyCode;
+          if (key === 13) { // 13 is enter
+            if((isNaN(input.value) && input.value.length > 1) || (!isNaN(input.value) && input.value.length === 5)) {
+              setFullPage()
+            }
+          }
       });
 
       var setFullPage = function() {
