@@ -7,53 +7,6 @@
     <meta name="description" content="Senate Project">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.7.4/jquery.fullPage.min.js"></script>
-    <script>
-      $(document).ready(function() {
-        var input =  document.querySelector('.input');
-
-        //Check if event key is pressed for .input before initializing fullPage
-        document.querySelector('.input').addEventListener('keypress', function (e) {
-
-          var key = e.which || e.keyCode;
-          if (key === 13) { // 13 is enter
-            if((isNaN(input.value) && input.value.length > 1) || (!isNaN(input.value) && input.value.length === 5)) {
-              setFullPage()
-            }
-          }
-      });
-
-      var setFullPage = function() {
-        $('#fullpage').fullpage({
-          //Navigation
-          navigation: false,
-          showActiveTooltip: false,
-          slidesNavigation: false,
-
-          //Scrolling
-          css3: true,
-          scrollingSpeed: 700,
-          autoScrolling: true,
-          fitToSection: true,
-          fitToSectionDelay: 700,
-          easingcss3: 'ease-in',
-          loopHorizontal: false,
-          touchSensitivity: 15,
-          normalScrollElementTouchThreshold: 5,
-
-          //Accessibility
-          keyboardScrolling: true,
-          animateAnchor: true,
-          recordHistory: true,
-
-          //Design
-          controlArrows: false,
-          verticalCentered: false,
-          resize : true,
-          sectionSelector: '.section',
-        });
-      }   
-    });
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
   </head>
   <body>

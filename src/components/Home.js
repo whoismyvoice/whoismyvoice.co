@@ -39,10 +39,46 @@ const Home = React.createClass({
 
   componentWillUnmount: function() {
     SenateStore.removeChangeListener(this._handleChange);
+    this._destroyFullpage();
   },
 
   _handleChange: function() {
     this.setState(SenateStore.getMember());
+  },
+
+  _initializeFullpage: function() {
+    $('#fullpage').fullpage({
+      //Navigation
+      navigation: false,
+      showActiveTooltip: false,
+      slidesNavigation: false,
+
+      //Scrolling
+      css3: true,
+      scrollingSpeed: 700,
+      autoScrolling: true,
+      fitToSection: true,
+      fitToSectionDelay: 700,
+      easingcss3: 'ease-in',
+      loopHorizontal: false,
+      touchSensitivity: 15,
+      normalScrollElementTouchThreshold: 5,
+
+      //Accessibility
+      keyboardScrolling: false,
+      animateAnchor: true,
+      recordHistory: true,
+
+      //Design
+      controlArrows: false,
+      verticalCentered: false,
+      resize : true,
+      sectionSelector: '.section',
+    });
+  },
+
+  _destroyFullpage: function() {
+    $.fn.fullpage.destroy();
   },
 
   render() {
@@ -80,6 +116,9 @@ const Home = React.createClass({
     let impact = 'How you can directly impact keeping this '+ member_gender +' from being able to personally weigh in on the reproductive rights of millions of women this '+ member_gender +' has never met, the next time a similar vote comes up.';
 
     if(did_search) {
+
+      this._initializeFullpage();
+
       if(!member_random) {
         vote_status = 'Yes! Your Senator, a ' + member_age + ' old ' + member_gender + ' co-sponsored a bill to defund Planned Parenthood. This '+ member_gender + ' represents your voice!';
       } else {

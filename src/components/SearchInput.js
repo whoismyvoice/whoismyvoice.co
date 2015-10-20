@@ -23,11 +23,7 @@ const SearchInput = React.createClass({
 
   _handleEnter: function(e) {
     if(e.keyCode === 13) {
-      if(isNaN(this.state.zip_code) && this.state.zip_code.length < 2) {
-        this.setState({
-          error: true
-        });
-      } else if(!isNaN(this.state.zip_code) && this.state.zip_code.length !== 5) {
+      if((isNaN(this.state.zip_code) && this.state.zip_code.length < 2) || (!isNaN(this.state.zip_code) && this.state.zip_code.length !== 5)) {
         this.setState({
           error: true
         });
