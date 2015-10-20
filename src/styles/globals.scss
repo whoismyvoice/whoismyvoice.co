@@ -168,6 +168,11 @@ ul {
   }
 }
 
+button, input {
+  -webkit-focus-ring-color: none;
+  outline:none;
+}
+
 ::selection {
   text-shadow: 2px 2px 1px #B43092;
 }

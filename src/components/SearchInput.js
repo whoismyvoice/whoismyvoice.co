@@ -1,8 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router';
-import SenateStore from '../stores/SenateStore';
-import SenateActions from '../actions/SenateActions';
-import cx from 'classnames';
+import React from 'react'
+import { Link } from 'react-router'
+import SenateStore from '../stores/SenateStore'
+import SenateActions from '../actions/SenateActions'
+import cx from 'classnames'
+import ArrowDown from './ArrowDown'
 
 // Styles
 import style from './../styles/SearchInput.scss';
@@ -36,6 +37,20 @@ const SearchInput = React.createClass({
     }
   },
 
+  _handleClick: function() {
+    console.log("Click");
+    if((isNaN(this.state.zip_code) && this.state.zip_code.length < 2) || (!isNaN(this.state.zip_code) && this.state.zip_code.length !== 5)) {
+      this.setState({
+        error: true
+      });
+    } else {
+      this.setState({
+        error: false
+      });
+      SenateActions.identifyMember(this.state.zip_code);
+    }
+  },
+
   render() {
 
     var inputClasses = cx(
@@ -43,14 +58,23 @@ const SearchInput = React.createClass({
       {'error': this.state.error }
     );
 
-    return <input 
-        className={inputClasses}
-        type="text" 
-        value={this.state.zip_code}
-        onChange={this._handleChange}
-        onKeyDown={this._handleEnter}
-        placeholder="Enter Your Zip Code"
-      />;
+    return <span>
+    
+        <input 
+          className={inputClasses}
+          type="text" 
+          value={this.state.zip_code}
+          onChange={this._handleChange}
+          onKeyDown={this._handleEnter}
+          placeholder="Enter Your Zip Code"
+        />
+
+        <button 
+          className="arrowDown spacing" 
+          onClick={this._handleClick}>
+        </button>
+      
+    </span>;
   }  
 });
 

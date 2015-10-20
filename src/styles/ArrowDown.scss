@@ -1,0 +1,30 @@
+@import 'variables';
+
+.arrowDown {
+	width: 58px;
+	height: 0;
+
+	padding-bottom: 50px;
+	border-radius: 50%;
+	background: inherit;
+	position: relative;
+	display: block;
+	margin: 0 auto;
+	cursor: pointer;
+	border: 3px solid $black;
+
+	&:before {
+		content: '';
+		display: block;
+		border-left: solid 10px transparent;
+		border-right: solid 10px transparent;
+		border-top: solid 10px $black;
+		position: absolute;
+		top: 45%;
+		left: 30%;
+	}
+
+	&.spacing {
+		margin-top: 100px;
+	}
+}

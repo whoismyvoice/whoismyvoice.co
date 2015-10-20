@@ -13,6 +13,7 @@ import SenatorName from './Senator/SenatorName'
 import SupportActions from './Senator/SupportActions'
 import ErrorMsg from './ErrorMsg'
 import RandomButton from './Senator/RandomButton'
+import ArrowDown from './ArrowDown'
 
 // Styles
 import style from './../styles/Home.scss'
