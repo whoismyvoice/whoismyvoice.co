@@ -35,6 +35,8 @@ const Home = React.createClass({
       if(params.zip && params.zip.length === 5 && !isNaN(params.zip)) {
         SenateActions.identifyMember(params.zip);
       }
+    } else {
+      this._initializeFullpage();
     }
     SenateStore.addChangeListener(this._handleChange);
   },
