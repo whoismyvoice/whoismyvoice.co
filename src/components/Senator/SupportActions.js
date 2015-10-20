@@ -22,7 +22,7 @@ const SupportActions = React.createClass({
       return  <div className="supportActions">
         <Button 
           type='external' 
-          link={ 'http://twitter.com/' + twitter } 
+          link={ 'http://twitter.com/home/?status=@' + twitter } 
           rel='external' 
           text={ 'Tweet at ' + gender } 
         />
@@ -53,7 +53,7 @@ const SupportActions = React.createClass({
         />
         <Button
           type='external'
-          link={ 'http://twitter.com/' + twitter }
+          link={ 'http://twitter.com/home/?status=@' + twitter }
           rel='external' 
           text={ 'Tweet at ' + gender }
         />
