@@ -4,9 +4,13 @@ import React from 'react'
 import style from './../styles/ArrowDown.scss';
 
 const ArrowDown = React.createClass({
-  render() {
+  
+  _handleClick: function(event) {
+    $.fn.fullpage.moveSectionDown();
+  },
 
-  	return <div className="arrowDown">
+  render() {
+  	return <div className="arrowDown" onClick={this._handleClick}>
     </div>;
   }
 });

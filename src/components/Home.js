@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import SenateStore from '../stores/SenateStore'
 import SenateActions from '../actions/SenateActions'
+import ContainerActions from '../actions/ContainerActions'
 import cx from 'classnames'
 
 // Components
@@ -18,13 +19,18 @@ import ArrowDown from './ArrowDown'
 // Styles
 import style from './../styles/Home.scss'
 
+
 const Home = React.createClass({
+
   getInitialState: function() {
     return SenateStore.getMember();
   },
 
-  componentDidMount: function() {
+  testfunction: function() {
+    console.log("Called test");
+  },
 
+  componentDidMount: function() {
     // Allow fetching of member if id / zip_code is defined as a parameter
     // First check if member has already been fetched
     if(!this.state.did_search) {
@@ -74,15 +80,18 @@ const Home = React.createClass({
       controlArrows: false,
       verticalCentered: false,
       resize : true,
-      sectionSelector: '.section',
+      onLeave: function(index, nextIndex, direction){
+        ContainerActions.identifySection(nextIndex);
+      }
     });
   },
-
   _destroyFullpage: function() {
     $.fn.fullpage.destroy();
   },
 
   render() {
+    var LastScreen = false;
+
     var blockClasses = cx(
       ['block', 'one'], 
       {'hide': this.state.did_search }
@@ -96,7 +105,10 @@ const Home = React.createClass({
 
     var containerClasses = cx(
       ['container'], 
-      {'reveal': this.state.did_search }
+      {'reveal': this.state.did_search},
+      {'green': !this.state.did_search},
+      {'orange': this.state.did_search && !this.state.last_screen},
+      {'purple': this.state.last_screen}
     );
 
     var member_name = this.state.member_name,
@@ -114,7 +126,7 @@ const Home = React.createClass({
         error_msg = this.state.error_msg,
         vote_status;
 
-    let impact = 'Here are some ways you can keep this man '+ member_gender +' from being able to personally weigh in on the reproductive rights of millions of underserved women the next time a similar vote comes up:';
+    let impact = 'Here are some ways you can keep this man '+ member_gender +' from being able to personally weigh in on the reproductive rights of millions of underserved women the next time a similar vote comes up.';
 
     if(did_search) {
       this._initializeFullpage();
@@ -133,7 +145,7 @@ const Home = React.createClass({
         This site is only supported in portrait mode. Please turn your phone.
       </div>
 
-      <div className={blockClasses}>
+      <div className={blockClasses} onScroll={this._handleScroll}>
         <div className="black-line"></div>
         <Circle
           style="one"
@@ -164,6 +176,7 @@ const Home = React.createClass({
           />
               
           <RandomButton random={member_random} />
+          <ArrowDown className="orange" />
         </div>
 
         <div className="section block three">

@@ -37,7 +37,7 @@
 		font-size: 2em;
 
     @media screen and (max-width: $iphone6) {
-      font-size: 1.35em;
+      font-size: 1.25em;
       width: 60%;
     }
 	}
@@ -53,6 +53,7 @@
     background-color: $light-purple;
   	.description {
   		width: 75%;
+      font-size: 1.2em;
   	}
   }
 }

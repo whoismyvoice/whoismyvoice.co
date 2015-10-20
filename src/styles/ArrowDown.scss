@@ -1,7 +1,7 @@
 @import 'variables';
 
 .arrowDown {
-	width: 58px;
+	width: 50px;
 	height: 0;
 
 	padding-bottom: 50px;
@@ -12,6 +12,12 @@
 	margin: 0 auto;
 	cursor: pointer;
 	border: 3px solid $black;
+	z-index: 2;
+
+	@media screen and (max-width: $iphone6) {
+		width: 40px;
+		padding-bottom: 40px;
+	}
 
 	&:before {
 		content: '';
@@ -22,9 +28,28 @@
 		position: absolute;
 		top: 45%;
 		left: 30%;
+
+		@media screen and (max-width: $iphone6) {
+			border-left: solid 8px transparent;
+			border-right: solid 8px transparent;
+			border-top: solid 8px $black;
+		}
 	}
 
 	&.spacing {
-		margin-top: 100px;
+		margin-top: 10vh;
+		width: 58px;
+
+		@media screen and (max-width: $iphone6) {
+			margin-top: 6vh;
+		}
+
+		@media screen and (max-width: $iphone6) {
+			width: 48px;
+		}
+	}
+
+	&.nav-arrow {
+		margin-top: 10vh;
 	}
 }

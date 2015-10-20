@@ -70,7 +70,7 @@ const SearchInput = React.createClass({
         />
 
         <button 
-          className="arrowDown spacing" 
+          className="arrowDown spacing green" 
           onClick={this._handleClick}>
         </button>
       

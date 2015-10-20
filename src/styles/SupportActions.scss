@@ -3,7 +3,7 @@
 .supportActions {
 	position: relative;
 	z-index: 10;
-	width: auto;
+	width: 100%;
 	margin: 0 auto;
 
 	a {
@@ -11,10 +11,11 @@
 		position: relative;
 
 		@media only screen and (max-width: $iphone6) {
-
-			&:last-of-type {
-				margin: 0 0 0 25px;
-			}
+			margin: 0;
 		}
+	}
+
+	button {
+		background-color: $light-purple;
 	}
 }

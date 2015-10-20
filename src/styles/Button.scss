@@ -6,15 +6,18 @@
   width: 220px;
   background-color: inherit;
   margin-bottom: 10px;
-  text-transform: uppercase;
   font-weight: bold;
   color: $black;
   position: relative;
-  z-index: 2;
+  z-index: 3;
 
   @media screen and (max-width: $iphone6) {
-    padding: 12px;
+    padding: 10px;
     font-size: 0.8em;
+  }
+
+  .text {
+    text-transform: uppercase;
   }
 
   &:hover {
@@ -58,3 +61,12 @@
     }
   }
 }
+
+.secondary {
+  font-size: 11px;
+
+  @media screen and (max-width: $iphone6) {
+    font-size: 0.8em;
+  }
+}
+

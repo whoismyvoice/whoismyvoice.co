@@ -35,7 +35,7 @@ ul {
   width: 4px;
   margin: 0 auto;
   z-index: 2;
-  height: 80vh;
+  height: 60vh;
   top: 7.2vh;
   position: absolute;
   left: 0;
@@ -43,7 +43,7 @@ ul {
   background-color: $black;
 
   @media only screen and (max-width: $iphone6) {
-    top: 7.4vh;
+    top: 6.3vh;
   }
 
   &.menu {
@@ -72,7 +72,6 @@ ul {
   text-align: center;
   margin: 0 auto;
   display: block;
-  background-color: $light-green;
   padding-top: 10vh;
   margin-bottom: 0px;
   position: relative;
@@ -80,22 +79,13 @@ ul {
   @include transition(1s);
 
   &.one {
-    background-color: $light-green;
-    top: 0;
+    top: 1%;
     @include transition(1s);
   }
 
   &.hide {
     top: -99vh;
     @include transition(1s);
-  }
-
-  &.two {
-    background-color: $light-orange;
-  }
-
-  &.three {
-    background-color: $light-purple;
   }
 }
 
@@ -189,4 +179,19 @@ button, input {
   width: 100px;
   height: 50px;
   background-color: $black;
+}
+
+.green {
+  background-color: $light-green;
+  @include transition(0.5s);
+}
+
+.orange {
+  background-color: $light-orange;
+  @include transition(0.5s);
+}
+
+.purple {
+  background-color: $light-purple;
+  @include transition(0.5s);
 }

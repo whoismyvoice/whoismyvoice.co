@@ -10,7 +10,12 @@ const Button = React.createClass({
   		return (
   			<a href={this.props.link} target="_blank">
   				<button className="button">
-  					{this.props.text}
+            <div className="text">
+  					   {this.props.text}
+            </div>
+            <div className="secondary">
+              {this.props.secondary}
+            </div>
   				</button>
   			</a>
   		)

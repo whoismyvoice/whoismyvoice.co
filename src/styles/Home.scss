@@ -12,9 +12,11 @@ h1 {
 	width: 100vw;
 	height: 98.5vh;
 	overflow: hidden;
+	@include transition(1s);
 
 	&.reveal {
 		overflow: visible;
 		width: 99.1vw;
+		@include transition(1s);
 	}
 }

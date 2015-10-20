@@ -63,7 +63,7 @@ const Header = React.createClass({
             link="/" 
             text="Start Again" 
           />
-
+          <div className="arrowDown nav-arrow"></div>
         </nav>
       </div>
     </div>;
