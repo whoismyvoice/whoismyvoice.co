@@ -19,15 +19,10 @@ import ArrowDown from './ArrowDown'
 // Styles
 import style from './../styles/Home.scss'
 
-
 const Home = React.createClass({
 
   getInitialState: function() {
     return SenateStore.getMember();
-  },
-
-  testfunction: function() {
-    console.log("Called test");
   },
 
   componentDidMount: function() {
@@ -126,15 +121,17 @@ const Home = React.createClass({
         error_msg = this.state.error_msg,
         vote_status;
 
-    let impact = 'Here are some ways you can keep this man '+ member_gender +' from being able to personally weigh in on the reproductive rights of millions of underserved women the next time a similar vote comes up.';
+    let impact = 'Here are some ways you can keep this '+ member_gender +' from being able to personally weigh in on the reproductive rights of millions of underserved women the next time a similar vote comes up.';
 
     if(did_search) {
       this._initializeFullpage();
+
       if(!member_random) {
-        vote_status = 'Yes! Your Senator, a ' + member_age + ' old ' + member_gender + ' co-sponsored a bill to defund Planned Parenthood. This '+ member_gender + ' represents your voice!';
+        vote_status = 'co-sponsored a bill to defund Planned Parenthood. This '+ member_gender + ' represents your voice!';
       } else {
-        vote_status = 'No! Your senator does not support Planned Parenthood! But, have you heard of the House Freedom Caucus? These are the guys who have publicly declared they are willing to shut down the government over the issue of funding Planned Parenthood.';
+        vote_status = 'supports Planned Parenthood! But, have you heard of the House Freedom Caucus? These are the guys who have publicly declared they are willing to shut down the government over the issue of funding Planned Parenthood.';
       }
+
     } else {
       vote_status = 'You have not yet searched for a member';
     }
@@ -161,6 +158,9 @@ const Home = React.createClass({
           <div className="black-line"></div>
           <Circle
             style="wide"
+            random={member_random}
+            age={member_age}
+            gender={member_gender}
             desc={vote_status}
           />
 

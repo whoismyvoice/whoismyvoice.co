@@ -1,10 +1,10 @@
 @import 'variables';
 
 .circle {
-	width: 25%;
+	width: 30%;
   height: 0;
   position: relative;
-  padding: 12.5% 0;
+  padding: 15% 0;
 	margin: 0 auto;
 	margin-bottom: 3vh;
 	border-radius: 50%;
@@ -14,10 +14,14 @@
   align-content: center;
 	border: 4px solid $black;
   z-index: 2;
+  margin-top: 6vh;
+  margin-bottom: 6vh;
 
   @media screen and (max-width: $iphone6) {
     width: 70%;
     padding: 35% 0;
+    margin-top: 0vh;
+    margin-bottom: 3vh;
   }
 
   &.one {
@@ -34,7 +38,7 @@
     align-self: center;
 		text-align: center;
 		font-weight: bold;
-		font-size: 2em;
+		font-size: 1.8em;
 
     @media screen and (max-width: $iphone6) {
       font-size: 1.25em;
@@ -46,6 +50,20 @@
     background-color: $light-orange;
     .description {
       width: 80%;
+      margin-top: -2vh;
+      font-size: 1.8em;
+      @media screen and (max-width: $iphone6) {
+        font-size: 1.4em;
+      }
+    }
+  }
+
+  &.long {
+    .description {
+      font-size: 1.65em;
+      @media screen and (max-width: $iphone6) {
+        font-size: 1.05em;
+      }
     }
   }
 
@@ -53,7 +71,14 @@
     background-color: $light-purple;
   	.description {
   		width: 75%;
-      font-size: 1.2em;
+      @media screen and (max-width: $iphone6) {
+        font-size: 1.2em;
+      }
   	}
   }
 }
+
+.strike-out {
+  border-bottom: 2px solid $black;
+}
+

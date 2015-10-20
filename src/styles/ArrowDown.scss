@@ -3,7 +3,6 @@
 .arrowDown {
 	width: 50px;
 	height: 0;
-
 	padding-bottom: 50px;
 	border-radius: 50%;
 	background: inherit;
@@ -15,8 +14,8 @@
 	z-index: 2;
 
 	@media screen and (max-width: $iphone6) {
-		width: 40px;
-		padding-bottom: 40px;
+		width: 30px;
+		padding-bottom: 30px;
 	}
 
 	&:before {
@@ -30,14 +29,14 @@
 		left: 30%;
 
 		@media screen and (max-width: $iphone6) {
-			border-left: solid 8px transparent;
-			border-right: solid 8px transparent;
-			border-top: solid 8px $black;
+			border-left: solid 6px transparent;
+			border-right: solid 6px transparent;
+			border-top: solid 6px $black;
 		}
 	}
 
 	&.spacing {
-		margin-top: 10vh;
+		margin-top: 5vh;
 		width: 58px;
 
 		@media screen and (max-width: $iphone6) {
@@ -45,7 +44,7 @@
 		}
 
 		@media screen and (max-width: $iphone6) {
-			width: 48px;
+			width: 38px;
 		}
 	}
 
