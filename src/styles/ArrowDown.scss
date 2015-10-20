@@ -11,7 +11,7 @@
 	margin: 0 auto;
 	cursor: pointer;
 	border: 3px solid $black;
-	z-index: 2;
+	z-index: 3;
 
 	@media screen and (max-width: $iphone6) {
 		width: 30px;

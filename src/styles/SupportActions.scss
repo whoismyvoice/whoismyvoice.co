@@ -3,8 +3,16 @@
 .supportActions {
 	position: relative;
 	z-index: 10;
-	width: 100%;
 	margin: 0 auto;
+	background-color: $light-purple;
+	z-index: 5;
+	padding-top: 45px;
+	width: 70%;
+
+	@media screen and (max-width: $iphone6) {
+		padding-top: 10px;
+		background-color: inherit;
+	}
 
 	a {
 		margin: 0 25px 0 25px;
@@ -15,7 +23,43 @@
 		}
 	}
 
+	&:before {
+		content: '';
+		display: block;
+		position: relative;
+		width: 70%;
+		max-width: 814px;
+		min-width: 814px;
+		height: 4px;
+		left: 0.2%;
+		right: 0;
+		top: -45px;
+		margin: 0 auto;
+		background-color: $black;
+
+		@media screen and (max-width: $iphone6) {
+			display: none;
+		}
+	}
+
 	button {
 		background-color: $light-purple;
+
+		&:before {
+			content:'';
+			width: 4px;
+			display: block;
+			height: 50px;
+			position: absolute;
+			top: -50px;
+			left: 50%;
+			right: auto;
+			margin: 0 auto;
+			background-color: $black;
+
+			@media screen and (max-width: $iphone6) {
+				display: none;
+			}
+		}
 	}
 }

@@ -71,6 +71,14 @@
 
   &.wider {
     background-color: $light-purple;
+    margin-top: 3vh;
+    margin-bottom: 9vh;
+
+    @media screen and (max-width: $iphone6) {
+      margin-bottom: 1vh;
+      margin-top: 1vh;
+    }
+
   	.description {
   		width: 75%;
       @media screen and (max-width: $iphone6) {
