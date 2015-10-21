@@ -106,7 +106,6 @@ AppDispatcher.register(function(payload) {
 
       // Emit change
       SenateStore.emit(CHANGE_EVENT);
-
       break;
       
     case AppConstants.IDENTIFY_SECTION:
@@ -120,11 +119,7 @@ AppDispatcher.register(function(payload) {
       break;
 
     case AppConstants.SET_CURRENT_MEMBER:
-      if(action.index === 0) {
-        _store.current_senator = 0;
-      } else {
-        _store.current_senator = 1;
-      }
+        _store.current_senator = action.index;
 
       SenateStore.emit(CHANGE_EVENT);
       break;

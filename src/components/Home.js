@@ -127,6 +127,7 @@ const Home = React.createClass({
         error_msg = this.state.error_msg,
         additional_member = this.state.additional_member,
         additionalExists = additional_member !== null,
+        current_member = this.state.current_senator,
         vote_status;
 
     let impact = 'Here are some ways you can keep this '+ member_gender +' from being able to personally weigh in on the reproductive rights of millions of underserved women the next time a similar vote comes up.';
@@ -199,7 +200,9 @@ const Home = React.createClass({
             desc={impact} 
           />
 
-          <SupportActions 
+          <SupportActions
+            additional={additional_member}
+            currentSenator={current_member}
             random={member_random} 
             gender={member_gender} 
             email={member_email} 

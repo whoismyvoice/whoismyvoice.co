@@ -20,6 +20,10 @@
 		padding-bottom: 30px;
 	}
 
+	&.hide {
+		display: none;
+	}
+
 	&:before {
 		content: '';
 		display: block;
@@ -61,20 +65,5 @@
 
 	&.nav-arrow {
 		margin-top: 10vh;
-	}
-}
-
-.arrowWrapper {
-	width: 60%;
-	display: block;
-	margin: 0 auto;
-
-	@media screen and (max-width: $iphone6) {
-		width: 100%;
-	}
-
-	.arrowDown {
-		display: inline-block;
-		margin: 0 18% 0 18%;
 	}
 }

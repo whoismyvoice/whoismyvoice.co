@@ -22,21 +22,6 @@ const SenatorGroup = React.createClass({
 
           <div className="senatorContainer">
             <SenatorImg
-              bioguide={additional_bioguide}
-            />
-
-            <SenatorName
-              name={additional_name}
-              age={additional_age}
-              state={this.props.state}
-              did_search={this.props.did_search}
-            />
-
-            <ArrowDown id="0" />
-          </div>
-
-          <div className="senatorContainer">
-            <SenatorImg
               bioguide={this.props.bioguide}
             />
 
@@ -47,8 +32,24 @@ const SenatorGroup = React.createClass({
               did_search={this.props.did_search}
             />
 
+            <ArrowDown id="0" />
+          </div>
+
+          <div className="senatorContainer">
+            <SenatorImg
+              bioguide={additional_bioguide}
+            />
+
+            <SenatorName
+              name={additional_name}
+              age={additional_age}
+              state={this.props.state}
+              did_search={this.props.did_search}
+            />
+
             <ArrowDown id="1" />
           </div>
+
         </div>;
     } else {
       return  <div>
