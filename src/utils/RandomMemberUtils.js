@@ -23,7 +23,7 @@ module.exports = {
       .set('Accept', 'application/json')
       .end(function(err, res) {
         if(err) return console.error(err);
-        SenateServerActions.getDetails(res.body, random);
+        SenateServerActions.getDetails(res.body.results, random);
       });
   }
 };

@@ -73,7 +73,7 @@ AppDispatcher.register(function(payload) {
         _store.error_msg = 'Ineligible zip code or state';
       } else {
         // Set var to returned object
-        var details = action.response.results[0];
+        var details = action.response[0];
         var didVote = true;
 
         // Set store values to reflect returned object

@@ -34,7 +34,7 @@ module.exports = {
           //console.log(res.body.results);
 
           if(votedFor.indexOf(bioguide) > -1) {
-            SenateServerActions.getDetails(res.body);
+            SenateServerActions.getDetails(res.body.results);
           } else {
             SenateGetRandomActions.getRandomMember();
           }
