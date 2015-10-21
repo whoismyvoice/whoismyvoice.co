@@ -17,7 +17,6 @@ const SenatorName = React.createClass({
       name = title + ' ' + this.props.name;
   		age = this.props.age + ' years old';
 
-      
   	} else {
   		name = '';
   		age = '';

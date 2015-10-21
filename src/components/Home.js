@@ -3,14 +3,15 @@ import { Link } from 'react-router'
 import SenateStore from '../stores/SenateStore'
 import SenateActions from '../actions/SenateActions'
 import ContainerActions from '../actions/ContainerActions'
+import {abbrState} from '../utils/StateConverter'
 import cx from 'classnames'
+
 
 // Components
 import Button from './Button'
 import Circle from './Circle'
 import SearchInput from './SearchInput'
-import SenatorImg from './Senator/SenatorImg'
-import SenatorName from './Senator/SenatorName'
+import SenatorGroup from './Senator/SenatorGroup'
 import SupportActions from './Senator/SupportActions'
 import ErrorMsg from './ErrorMsg'
 import RandomButton from './Senator/RandomButton'
@@ -119,6 +120,7 @@ const Home = React.createClass({
         member_tel = this.state.member_tel,
         member_twitter = this.state.member_twitter,
         member_state = this.state.member_state,
+        member_state_full = abbrState(this.state.member_state, 'name'),
         voted_for = this.state.voted_for,
         did_search = this.state.did_search,
         party = this.state.member_party,
@@ -131,8 +133,11 @@ const Home = React.createClass({
 
     if(did_search) {
       this._initializeFullpage();
-      if(!member_random) {
+
+      if(!member_random && additional_member === null) {
         vote_status = 'co-sponsored a bill to defund Planned Parenthood. This '+ member_gender + ' represents your voice!';
+      } else if(!member_random && additional_member !== null) {
+        vote_status = 'Both senators from ' + member_state_full + ' co-sponsored the bill to defund Planned Parenthood';
       } else {
         vote_status = 'supports Planned Parenthood! But, have you heard of the House Freedom Caucus? These are the guys who have publicly declared they are willing to shut down the government over the issue of funding Planned Parenthood.';
       }
@@ -148,6 +153,7 @@ const Home = React.createClass({
 
       <div className={blockClasses} onScroll={this._handleScroll}>
         <div className="black-line"></div>
+
         <Circle
           style="one"
           desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
@@ -159,20 +165,19 @@ const Home = React.createClass({
 
       <div className={backgroundClasses} id="fullpage">
       	<div className="section block two">
+
           <Circle
             style="wide"
+            additional={additional_member}
             random={member_random}
             age={member_age}
             gender={member_gender}
             desc={vote_status}
           />
 
-          <SenatorImg
+          <SenatorGroup
             additional={additional_member}
             bioguide={member_bioguide}
-          />
-
-          <SenatorName
             random={member_random}
             name={member_name}
             age={member_age}

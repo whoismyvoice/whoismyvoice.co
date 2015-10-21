@@ -23,7 +23,7 @@ var _store = {
   member_tel: '',
   member_twitter: '',
   member_party: '',
-  additional_member: '',
+  additional_member: null,
 	voted_for: false,
   member_random: false,
   did_search: false,
