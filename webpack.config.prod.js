@@ -5,7 +5,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var StatsPlugin = require('stats-webpack-plugin');
+var StatsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin;
 var nodeModulesDir = path.resolve(__dirname, 'node_modules');
 var testDir = path.resolve(__dirname, 'test');
 
@@ -49,9 +49,8 @@ module.exports = {
       }
     }),
 
-    new StatsPlugin('webpack.stats.json', {
-      source: false,
-      modules: false
+    new StatsWriterPlugin({
+      filename: "webpack.stats.json" // Default
     }),
 
     // Gather all vendor-related code inside vendors.min.js
@@ -74,7 +73,7 @@ module.exports = {
 
     loaders: [{
       test: /\.css?$/,
-      loader: ExtractTextPlugin.extract('css!postcss!sass')
+      loader: ExtractTextPlugin.extract('css!postcss')
     }, {
       test: /\.js?$/,
       exclude: [nodeModulesDir, testDir],
