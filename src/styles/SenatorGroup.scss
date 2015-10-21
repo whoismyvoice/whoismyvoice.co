@@ -2,9 +2,7 @@
 
 .senatorWrapper {
 	width: 50%;
-	height: 200px;
 	margin: 0 auto;
-
 
 	@media screen and (max-width: $iphone6) {
 		width: 90%;
@@ -33,8 +31,15 @@
 
 	.senatorName {
 		width: 100%;
+
 		h2 {
-			font-size: 0.8em;
+			font-size: 1.2em;
+			margin-right: 5%;
+
+			@media screen and (max-width: $iphone6) {
+				margin-right: 10%;
+				font-size: 0.8em;
+			}
 		}
 	}
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import SenatorImg from './SenatorImg'
 import SenatorName from './SenatorName'
+import ArrowDown from '../ArrowDown'
 
 // Styles
 import style from './../../styles/SenatorGroup.scss';
@@ -30,6 +31,8 @@ const SenatorGroup = React.createClass({
               state={this.props.state}
               did_search={this.props.did_search}
             />
+
+            <ArrowDown id="0" />
           </div>
 
           <div className="senatorContainer">
@@ -43,6 +46,8 @@ const SenatorGroup = React.createClass({
               state={this.props.state}
               did_search={this.props.did_search}
             />
+
+            <ArrowDown id="1" />
           </div>
         </div>;
     } else {

@@ -28,7 +28,8 @@ var _store = {
   member_random: false,
   did_search: false,
   error_msg: '',
-  last_screen: false
+  last_screen: false,
+  current_senator: null
 }
 
 // Define the public event listeners and getters that
@@ -113,6 +114,16 @@ AppDispatcher.register(function(payload) {
         _store.last_screen = false;
       } else {
         _store.last_screen = true;
+      }
+
+      SenateStore.emit(CHANGE_EVENT);
+      break;
+
+    case AppConstants.SET_CURRENT_MEMBER:
+      if(action.index === 0) {
+        _store.current_senator = 0;
+      } else {
+        _store.current_senator = 1;
       }
 
       SenateStore.emit(CHANGE_EVENT);

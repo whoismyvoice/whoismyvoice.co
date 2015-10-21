@@ -3,7 +3,7 @@ import React from 'react';
 // Styles
 import style from './../../styles/SupportActions.scss';
 
-// Components
+// Component
 import Button from './../Button';
 
 const SupportActions = React.createClass({
