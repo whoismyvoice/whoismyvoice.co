@@ -22,7 +22,7 @@ import style from './../styles/Home.scss'
 const Home = React.createClass({
 
   getInitialState: function() {
-    return SenateStore.getMember();
+    return  SenateStore.getMember()
   },
 
   componentDidMount: function() {
@@ -124,6 +124,7 @@ const Home = React.createClass({
         party = this.state.member_party,
         member_random = this.state.member_random,
         error_msg = this.state.error_msg,
+        additional_member = this.state.additional_member,
         vote_status;
 
     let impact = 'Here are some ways you can keep this '+ member_gender +' from being able to personally weigh in on the reproductive rights of millions of underserved women the next time a similar vote comes up.';
@@ -167,6 +168,7 @@ const Home = React.createClass({
           />
 
           <SenatorImg
+            additional={additional_member}
             bioguide={member_bioguide}
           />
 

@@ -7,9 +7,10 @@ const SenatorImg = React.createClass({
   render() {
 
   	// Check if bioguide is defined (i.e. if user has searched for any members yet)
-
   	const imgSrc ='https://raw.githubusercontent.com/unitedstates/images/gh-pages/congress/original/';
   	const img = this.props.bioguide === '' ? '' : imgSrc+this.props.bioguide+'.jpg';
+
+    var additional = this.props.additional;
 
   	return <div className="senatorImg">
     	<img

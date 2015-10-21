@@ -30,11 +30,17 @@ module.exports = {
         .end(function(err, res) {
           if(err) return console.error(err);
 
-          var bioguide = res.body.results[0].bioguide_id;
-          //console.log(res.body.results);
+          var senators = res.body.results.filter(function(senator) {
+            if((senator.chamber === 'senate') && (votedFor.indexOf(senator.bioguide_id)) > -1) {
+              return senator
+            }
+          });
 
-          if(votedFor.indexOf(bioguide) > -1) {
-            SenateServerActions.getDetails(res.body.results);
+          if(res.body.results.length === 0) {
+            console.log("Nothing returned from Sunlight Foundation");
+          } else if(senators.length > 0) {
+            //console.log(res.body.results);
+            SenateServerActions.getDetails(senators);
           } else {
             SenateGetRandomActions.getRandomMember();
           }

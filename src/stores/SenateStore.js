@@ -23,6 +23,7 @@ var _store = {
   member_tel: '',
   member_twitter: '',
   member_party: '',
+  additional_member: '',
 	voted_for: false,
   member_random: false,
   did_search: false,
@@ -72,12 +73,17 @@ AppDispatcher.register(function(payload) {
       if(action.response === 'error') {
         _store.error_msg = 'Ineligible zip code or state';
       } else {
+
         // Set var to returned object
-        var details = action.response[0];
+        // Set details according to the utils doing the fetching
+        // If two senators have been fetched, set var to correspond to that
+
+        var details = action.random ? action.response[0] : action.response[0];
+        var additionalSenator = action.response.length > 1 ? action.response[1]: ''; 
+
         var didVote = true;
 
         // Set store values to reflect returned object
-        
         var middle_name = details.middle_name === null ? '' : details.middle_name;
 
         _store.member_name = details.first_name + ' ' + middle_name + ' ' + details.last_name || '',
@@ -93,7 +99,8 @@ AppDispatcher.register(function(payload) {
         _store.member_state = details.state || null,
         _store.member_random = action.random,
         _store.error_msg = '',
-        _store.did_search = true
+        _store.did_search = true,
+        _store.additional_member = additionalSenator || null
       }
 
       // Emit change
