@@ -32,7 +32,7 @@ const HFCOverview = React.createClass({
 		return member;
   	});
 
-    return  <div className="HFCOverview">
+    return  <div className={'HFCOverview ' + this.props.color}>
       {members}
     </div>;
   }

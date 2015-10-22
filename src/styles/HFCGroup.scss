@@ -1,16 +1,19 @@
 @import 'variables';
 
 .HFCOverview {
-	width: 100%;
+	width: 98%;
 	height: auto;
 	margin: 0 auto;
+	margin-right: 1.25%;
 	position: relative;
+	overflow: hidden;
 	top: 0;
 }
 
 .HFCMember {
 	display: inline-block;
 	width: 25%;
+	overflow: hidden;
 
 	@media screen and (max-width: $iphone6) {
 		width: 70%;

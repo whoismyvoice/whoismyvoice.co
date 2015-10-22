@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import SenateStore from '../stores/SenateStore'
 import SenateActions from '../actions/SenateActions'
 import ContainerActions from '../actions/ContainerActions'
+import {abbrState} from '../utils/StateConverter'
 import cx from 'classnames'
 import HFCMembers from '../data/HFCMembers'
 
@@ -35,7 +36,7 @@ const Home = React.createClass({
       if(params.zip && params.zip.length === 5 && !isNaN(params.zip)) {
         SenateActions.identifyMember(params.zip);
       }
-    } else if(this.state.did_search && !this.member_hfc) {
+    } else if(this.state.did_search && !this.state.member_hfc) {
       this._initializeFullpage();
     }
     SenateStore.addChangeListener(this._handleChange);
@@ -59,14 +60,12 @@ const Home = React.createClass({
 
       //Scrolling
       css3: true,
-      scrollingSpeed: 700,
       autoScrolling: true,
       fitToSection: true,
       fitToSectionDelay: 700,
       easingcss3: 'ease-in',
       loopHorizontal: false,
-      touchSensitivity: 10,
-      normalScrollElementTouchThreshold: 5,
+      touchSensitivity: 5,
 
       //Accessibility
       keyboardScrolling: false,
@@ -83,7 +82,7 @@ const Home = React.createClass({
     });
   },
   _destroyFullpage: function() {
-    if($.fn.fullpage.destroy != undefined) {
+    if($.fn.fullpage.destroy !== undefined) {
       $.fn.fullpage.destroy();
     }
   },
@@ -169,20 +168,15 @@ const Home = React.createClass({
         </div>
 
         <div className={backgroundClasses} id="fullpage">
-         <div className="section block two full">
+         <div className="section block two">
 
           <p className="impact">
             No! Your senators supports Planned Parenthood! But, have you hear of the House Freedom Caucus? These are the gys who have publicly declared they are willing to shut down the government over the issue of funding Planned Parenthood.
           </p>
 
-          <HFCOverview 
+          <HFCOverview
+            color="bright-red"
             members={HFCMembers}
-          />
-
-          <ArrowDown 
-            className="orange"
-            additional={additionalExists}
-            id='0'
           />
 
         </div>

@@ -16,6 +16,9 @@ h1 {
 
 	&.full {
 		height: auto;
+		min-height: 99vh;
+		width: 99vw;
+		padding-bottom: 2vh;
 	}
 
 	&.reveal {

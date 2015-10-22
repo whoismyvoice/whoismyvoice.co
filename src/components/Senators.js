@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router'
 import HFCOverview from './HFCOverview'
 import HFCMembers from '../data/HFCMembers'
-import ArrowDown from './ArrowDown'
 
 const Senators = React.createClass({
   render() {
@@ -15,9 +14,6 @@ const Senators = React.createClass({
       <HFCOverview
     		members={HFCMembers}
     	/>
-
-    	<ArrowDown />
-
     </div>;
   }
 });

@@ -24,20 +24,25 @@
 		padding: 25% 0;
 
 		@media screen and (max-width: $iphone6) {
-			width: 100%;
-			padding: 50% 0;
+			width: 85%;
+			padding: 42.5% 0;
+			margin-bottom: 0;
 		}
 	}
 
 	.senatorName {
 		width: 100%;
 
+		@media screen and (max-width: $iphone6) {
+			padding: 5px;
+		}
+
 		h2 {
 			font-size: 1.2em;
 			margin-right: 5%;
 
 			@media screen and (max-width: $iphone6) {
-				margin-right: 10%;
+				margin-right: 5%;
 				font-size: 0.8em;
 			}
 		}
