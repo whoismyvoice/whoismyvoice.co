@@ -16,7 +16,6 @@ var _store = {
 	member_bioguide: '',
   member_zip_code: '',
   member_age: '',
-  member_chamber: '',
   member_gender: '',
   member_state: '',
   member_email: '',
@@ -24,7 +23,6 @@ var _store = {
   member_twitter: '',
   member_party: '',
   additional_member: null,
-	voted_for: false,
   member_hfc: false,
   did_search: false,
   error_msg: '',
@@ -50,12 +48,6 @@ const SenateStore = ObjectAssign( {}, EventEmitter.prototype, {
   }
 });
 
-// Register each of the actions with the dispatcher
-// by changing the store's data and emitting a change
-
-// Since zip_code and member details require two different API calls - 
-// two separate actionTypes have been defined
-
 AppDispatcher.register(function(payload) {
 
   var action = payload.action;
@@ -75,14 +67,8 @@ AppDispatcher.register(function(payload) {
         _store.error_msg = 'Ineligible zip code or state';
       } else if(!action.hfc) {
 
-        // Set var to returned object
-        // Set details according to the utils doing the fetching
-        // If two senators have been fetched, set var to correspond to that
-
         var details = action.hfc ? action.response[0] : action.response[0];
         var additionalSenator = action.response.length > 1 ? action.response[1]: ''; 
-
-        var didVote = true;
 
         // Set store values to reflect returned object
         var middle_name = details.middle_name === null ? '' : details.middle_name;
@@ -90,12 +76,10 @@ AppDispatcher.register(function(payload) {
         _store.member_name = details.first_name + ' ' + middle_name + ' ' + details.last_name || '',
         _store.member_bioguide = details.bioguide_id || null,
         _store.member_age = (2015-details.birthday.substring(0,4)) || null,
-        _store.member_chamber = details.chamber || null,
         _store.member_gender = details.gender || null,
         _store.member_email = details.oc_email || null,
         _store.member_tel = details.phone || null,
         _store.member_twitter = details.twitter_id || null,
-        _store.voted_for = didVote,
         _store.member_party = details.party,
         _store.member_state = details.state || null,
         _store.member_state_full = details.state_name || null,
@@ -108,9 +92,6 @@ AppDispatcher.register(function(payload) {
         _store.member_hfc = action.hfc
       }
 
-
-
-      // Emit change
       SenateStore.emit(CHANGE_EVENT);
       break;
       

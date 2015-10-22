@@ -11,7 +11,6 @@ module.exports = {
       SenateServerActions.getDetails('error');
     } else {
 
-      // Set apiKey and api
       const apikey = '4f501d505d514b85a01f39d4ceb9a353';
       var api;
 
