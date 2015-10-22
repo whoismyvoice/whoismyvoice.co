@@ -8,7 +8,7 @@ module.exports = {
 
     // Get random id from HFCMembers array to insert into API call
     const ranId = Math.floor(Math.random() * HFCMembers.length); 
-    const randomMember = HFCMembers[ranId];
+    const randomMember = HFCMembers[ranId].bioguide;
 
     // Set apiKey and api
     const apikey = '4f501d505d514b85a01f39d4ceb9a353';

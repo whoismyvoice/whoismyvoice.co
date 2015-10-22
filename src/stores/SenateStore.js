@@ -98,6 +98,7 @@ AppDispatcher.register(function(payload) {
         _store.voted_for = didVote,
         _store.member_party = details.party,
         _store.member_state = details.state || null,
+        _store.member_state_full = details.state_name || null,
         _store.member_random = action.random,
         _store.error_msg = '',
         _store.did_search = true,
