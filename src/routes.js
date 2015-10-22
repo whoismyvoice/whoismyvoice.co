@@ -14,7 +14,7 @@ const routes = (
     	<IndexRoute component={Home} />
       <Route path="about" component={About} />
       <Route path="sources" component={Sources} />
-      <Route path="senators" component={Senators} />
+      <Route path="hfc" component={Senators} />
       <Route path=":zip" component={Home} />
     </Route>
     <Route path="*" component={Home}/>

@@ -55,8 +55,8 @@ const Header = React.createClass({
           />
 
           <Button
-            link="/senators" 
-            text="See All Senators" 
+            link="/hfc" 
+            text="House Freedom Caucus" 
           />
 
           <Button

@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 const Sources = React.createClass({
   render() {
     return  <div className="page-block bright-green">
+      <h2>Data Sources</h2>
       <p className="pageIntroduction">
       	Every senator listed on this website is a listed co-sponsor of Senate Bill 1881. Senate Bill 1881 is a "bill to prohibit the federal funding of the Planned Parenthood Federation of America". (1)<br /><br />
       	The Congressmen listed on this website are the listed members of the House Freedom Caucus, who issued a press release via Congressman Jim Jordan on September 10, 2015:
