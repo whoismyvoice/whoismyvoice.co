@@ -246,6 +246,16 @@ button, input {
   }
 }
 
+.impact {
+  width: 60%;
+  margin: 0 auto;
+  font-size: 1.8em;
+  background-color: $bright-red;
+  padding: 3vh;
+  color: $black;
+  font-weight: bold;
+}
+
 .pageDesc {
   flex: 1;
 }

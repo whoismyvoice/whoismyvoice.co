@@ -5,6 +5,7 @@ import SenateActions from '../actions/SenateActions'
 import ContainerActions from '../actions/ContainerActions'
 import {abbrState} from '../utils/StateConverter'
 import cx from 'classnames'
+import HFCMembers from '../data/HFCMembers'
 
 // Components
 import Button from './Button'
@@ -14,6 +15,7 @@ import SenatorGroup from './Senator/SenatorGroup'
 import SupportActions from './Senator/SupportActions'
 import ErrorMsg from './ErrorMsg'
 import ArrowDown from './ArrowDown'
+import HFCOverview from './HFCOverview'
 
 // Styles
 import style from './../styles/Home.scss'
@@ -64,7 +66,7 @@ const Home = React.createClass({
       fitToSectionDelay: 700,
       easingcss3: 'ease-in',
       loopHorizontal: false,
-      touchSensitivity: 15,
+      touchSensitivity: 10,
       normalScrollElementTouchThreshold: 5,
 
       //Accessibility
@@ -105,8 +107,9 @@ const Home = React.createClass({
       ['container'], 
       {'reveal': this.state.did_search},
       {'green': !this.state.did_search},
-      {'orange': this.state.did_search && !this.state.last_screen},
-      {'purple': this.state.last_screen}
+      {'orange': this.state.did_search && !this.state.member_hfc},
+      {'purple': this.state.current_screen === 2 && !this.state.member_hfc},
+      {'bright-red': this.state.did_search && this.state.member_hfc}
     );
 
     var member_name = this.state.member_name,
@@ -149,7 +152,7 @@ const Home = React.createClass({
 
       // RANDOM
       return <div className={containerClasses}>
-            <div className="overlay">
+        <div className="overlay">
           This site is only supported in portrait mode. Please turn your phone.
         </div>
 
@@ -169,34 +172,23 @@ const Home = React.createClass({
         <div className={backgroundClasses} id="fullpage">
          <div className="section block two">
 
-            <Circle
-              style="wide"
-              additional={additional_member}
-              hfc={member_hfc}
-              age={member_age}
-              did_search={did_search}
-              gender={member_gender}
-              desc={vote_status}
-            />
+          <p className="impact">
+            No! Your senators supports Planned Parenthood! But, have you hear of the House Freedom Caucus? These are the gys who have publicly declared they are willing to shut down the government over the issue of funding Planned Parenthood.
+          </p>
 
-            <SenatorGroup
-              additional={additional_member}
-              bioguide={member_bioguide}
-              hfc={member_hfc}
-              name={member_name}
-              age={member_age}
-              state={member_state}
-              did_search={did_search}
-            />
+          <HFCOverview 
+            members={HFCMembers}
+          />
 
-            <ArrowDown 
-              className="orange"
-              additional={additionalExists}
-              id='0'
-            />
-          </div>
+          <ArrowDown 
+            className="orange"
+            additional={additionalExists}
+            id='0'
+          />
+
         </div>
-      </div>;
+      </div>
+    </div>;
 
     } else {
 
@@ -254,7 +246,8 @@ const Home = React.createClass({
 
           <div className="section block three">
             <Circle 
-              style="wider" 
+              style="wider"
+              hide={true}
               desc={impact} 
             />
 

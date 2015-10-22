@@ -23,16 +23,6 @@
 		}
 	}
 
-	&.rand {
-		&:before {
-			content: '';
-			width: 70%;
-			max-width: 544px;
-			min-width: 544px;
-			left: 0.15%
-		}
-	}
-
 	&:before {
 		content: '';
 		display: block;

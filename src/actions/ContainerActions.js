@@ -9,7 +9,7 @@ module.exports = {
     
 		AppDispatcher.handleViewAction({
 			actionType: SenateConstants.IDENTIFY_SECTION,
-      index: index
+      		index: index
 		});
 	},
 };

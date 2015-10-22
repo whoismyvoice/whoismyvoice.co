@@ -39,7 +39,6 @@ module.exports = {
           if(res.body.results.length === 0) {
             console.log("Nothing returned from Sunlight Foundation");
           } else if(senators.length > 0) {
-            //console.log(res.body.results);
             SenateServerActions.getDetails(senators);
           } else {
             SenateGetRandomActions.getRandomMember();

@@ -28,7 +28,7 @@ var _store = {
   member_hfc: false,
   did_search: false,
   error_msg: '',
-  last_screen: false,
+  current_screen: null,
   current_senator: null
 }
 
@@ -73,7 +73,7 @@ AppDispatcher.register(function(payload) {
 
       if(action.response === 'error') {
         _store.error_msg = 'Ineligible zip code or state';
-      } else {
+      } else if(!action.hfc) {
 
         // Set var to returned object
         // Set details according to the utils doing the fetching
@@ -103,18 +103,20 @@ AppDispatcher.register(function(payload) {
         _store.error_msg = '',
         _store.did_search = true,
         _store.additional_member = additionalSenator || null
+      } else {
+        _store.did_search = true
+        _store.member_hfc = action.hfc
       }
+
+
 
       // Emit change
       SenateStore.emit(CHANGE_EVENT);
       break;
       
     case AppConstants.IDENTIFY_SECTION:
-      if(action.index === 1) {
-        _store.last_screen = false;
-      } else {
-        _store.last_screen = true;
-      }
+
+      _store.current_screen = action.index;
 
       SenateStore.emit(CHANGE_EVENT);
       break;

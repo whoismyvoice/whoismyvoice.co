@@ -60,15 +60,6 @@
     }
   }
 
-  &.long {
-    .description {
-      font-size: 1.65em;
-      @media screen and (max-width: $iphone6) {
-        font-size: 1.05em;
-      }
-    }
-  }
-
   &.wider {
     background-color: $light-purple;
     margin-top: 3vh;
