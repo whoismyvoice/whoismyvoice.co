@@ -12,6 +12,20 @@ $light-yellow: #F4F3CC;
 $bright-red: #FEDADA;
 $bright-green: #CDF2EA;
 
+$iphone5-min: 320px;
+$iphone5-max: 568px;
+
+//@media only screen 
+//and (min-device-width : 320px) 
+//and (max-device-width : 568px) { /* STYLES GO HERE */}
+
 $iphone6: 420px;
-$ipad: 768px;
+
+$ipad-min: 768px;
+$ipad-max: 1024px;
+
+// @media only screen 
+//and (min-device-width : 768px) 
+//and (max-device-width : 1024px)  { /* STYLES GO HERE */}
+
 $mac: 1600px;
