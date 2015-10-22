@@ -3,7 +3,6 @@ import { Link } from 'react-router'
 import SenateStore from '../stores/SenateStore'
 import SenateActions from '../actions/SenateActions'
 import ContainerActions from '../actions/ContainerActions'
-import {abbrState} from '../utils/StateConverter'
 import cx from 'classnames'
 import HFCMembers from '../data/HFCMembers'
 
@@ -36,7 +35,7 @@ const Home = React.createClass({
       if(params.zip && params.zip.length === 5 && !isNaN(params.zip)) {
         SenateActions.identifyMember(params.zip);
       }
-    } else {
+    } else if(this.state.did_search && !this.member_hfc) {
       this._initializeFullpage();
     }
     SenateStore.addChangeListener(this._handleChange);
@@ -109,7 +108,8 @@ const Home = React.createClass({
       {'green': !this.state.did_search},
       {'orange': this.state.did_search && !this.state.member_hfc},
       {'purple': this.state.current_screen === 2 && !this.state.member_hfc},
-      {'bright-red': this.state.did_search && this.state.member_hfc}
+      {'bright-red': this.state.did_search && this.state.member_hfc},
+      {'full': this.state.did_search && this.state.member_hfc}
     );
 
     var member_name = this.state.member_name,
@@ -134,16 +134,15 @@ const Home = React.createClass({
 
     let impact = 'Here are some ways you can keep this '+ member_gender +' from being able to personally weigh in on the reproductive rights of millions of underserved women the next time a similar vote comes up.';
 
-    if(did_search) {
+    if(did_search && !member_hfc) {
       this._initializeFullpage();
 
-      if(!member_hfc && additional_member === null) {
+      if(additional_member === null) {
         vote_status = 'co-sponsored a bill to defund Planned Parenthood. This '+ member_gender + ' represents your voice!';
-      } else if(!member_hfc && additional_member !== null) {
+      } else if(additional_member !== null) {
         vote_status = 'Both senators from ' + member_state_full + ' co-sponsored the bill to defund Planned Parenthood';
-      } else {
-        vote_status = 'supports Planned Parenthood! But, have you heard of the House Freedom Caucus? These are the guys who have publicly declared they are willing to shut down the government over the issue of funding Planned Parenthood.';
       }
+
     } else {
       vote_status = 'You have not yet searched for a member';
     }
@@ -170,7 +169,7 @@ const Home = React.createClass({
         </div>
 
         <div className={backgroundClasses} id="fullpage">
-         <div className="section block two">
+         <div className="section block two full">
 
           <p className="impact">
             No! Your senators supports Planned Parenthood! But, have you hear of the House Freedom Caucus? These are the gys who have publicly declared they are willing to shut down the government over the issue of funding Planned Parenthood.

@@ -14,6 +14,10 @@ h1 {
 	overflow: hidden;
 	@include transition(1s);
 
+	&.full {
+		height: auto;
+	}
+
 	&.reveal {
 		overflow: visible;
 		width: 99.1vw;
