@@ -25,7 +25,7 @@ var _store = {
   member_party: '',
   additional_member: null,
 	voted_for: false,
-  member_random: false,
+  member_hfc: false,
   did_search: false,
   error_msg: '',
   last_screen: false,
@@ -79,7 +79,7 @@ AppDispatcher.register(function(payload) {
         // Set details according to the utils doing the fetching
         // If two senators have been fetched, set var to correspond to that
 
-        var details = action.random ? action.response[0] : action.response[0];
+        var details = action.hfc ? action.response[0] : action.response[0];
         var additionalSenator = action.response.length > 1 ? action.response[1]: ''; 
 
         var didVote = true;
@@ -99,7 +99,7 @@ AppDispatcher.register(function(payload) {
         _store.member_party = details.party,
         _store.member_state = details.state || null,
         _store.member_state_full = details.state_name || null,
-        _store.member_random = action.random,
+        _store.member_hfc = action.hfc,
         _store.error_msg = '',
         _store.did_search = true,
         _store.additional_member = additionalSenator || null

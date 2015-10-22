@@ -13,7 +13,7 @@ module.exports = {
     // Set apiKey and api
     const apikey = '4f501d505d514b85a01f39d4ceb9a353';
     const api = 'http://congress.api.sunlightfoundation.com/legislators?bioguide_id='+randomMember+'&apikey='+apikey;
-    const random = true;
+    const hfc = true;
 
     // Request Sunlight Foundation API to get further details about congress person
     // When details have been retrieved call SenateServerActions w. response body object
@@ -23,7 +23,7 @@ module.exports = {
       .set('Accept', 'application/json')
       .end(function(err, res) {
         if(err) return console.error(err);
-        SenateServerActions.getDetails(res.body.results, random);
+        SenateServerActions.getDetails(res.body.results, hfc);
       });
   }
 };

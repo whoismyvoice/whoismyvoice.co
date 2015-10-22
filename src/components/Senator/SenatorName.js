@@ -13,7 +13,7 @@ const SenatorName = React.createClass({
 
   	if(this.props.did_search) {
 
-      title = this.props.random ? 'Congressman' : 'Senator';
+      title = this.props.hfc ? 'Congressman' : 'Senator';
       name = title + ' ' + this.props.name;
   		age = this.props.age + ' years old';
 

@@ -58,7 +58,7 @@ const SenatorGroup = React.createClass({
         />
 
         <SenatorName
-          random={this.props.random}
+          hfc={this.props.hfc}
           name={this.props.name}
           age={this.props.age}
           state={this.props.state}

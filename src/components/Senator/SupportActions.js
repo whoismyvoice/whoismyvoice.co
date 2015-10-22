@@ -11,7 +11,6 @@ const SupportActions = React.createClass({
     
     var additional = this.props.additional,
         current = this.props.currentSenator,
-        random = this.props.random,
         gender,
         email,
         twitter,

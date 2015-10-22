@@ -7,13 +7,13 @@ import style from './../styles/Circle.scss';
 const Circle = React.createClass({
   render() {
 
-  	var random = this.props.random ? 'long' : '',
-  		status = this.props.random ? 'No!' : 'Yes!',
+  	var hfc = this.props.hfc ? 'long' : '',
+  		status = this.props.hfc ? 'No!' : 'Yes!',
       additional = this.props.additional === null ? null : this.props.additional,
       senator = additional === null ? 'Your Senator, ' : '',
   		details;
 
-  	if(!random && additional === null) {
+  	if(!hfc && additional === null) {
   		details = 'a ' + this.props.age + ' year old ' + this.props.gender + ' ';
   	}
 
@@ -24,9 +24,9 @@ const Circle = React.createClass({
       {'hide': additional}
     );
 
-  	if(this.props.random !== undefined) {
+  	if(hfc !== undefined) {
 
-  		return <div className={'circle' + ' ' + this.props.style + ' ' + random}>
+  		return <div className={'circle' + ' ' + this.props.style + ' ' + hfc}>
 
   			<div className="description">
           {status}<br />
@@ -45,7 +45,7 @@ const Circle = React.createClass({
 
   	} else {
 
-  		return	<div className={'circle ' + ' ' + this.props.style + ' ' + random}>
+  		return	<div className={'circle ' + ' ' + this.props.style + ' ' + hfc}>
     		<div className="description">
     			{this.props.desc}
     		</div>

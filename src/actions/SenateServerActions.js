@@ -2,11 +2,11 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 import SenateConstants from '../constants/SenateConstants';
 
 module.exports = {
-  getDetails: function(response, random) {
+  getDetails: function(response, hfc) {
     AppDispatcher.handleServerAction({
       actionType: SenateConstants.GET_DETAILS,
       response: response,
-      random: random || false
+      hfc: hfc || false
     });
   },
 };

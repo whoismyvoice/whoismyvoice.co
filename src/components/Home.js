@@ -122,7 +122,7 @@ const Home = React.createClass({
         voted_for = this.state.voted_for,
         did_search = this.state.did_search,
         party = this.state.member_party,
-        member_random = this.state.member_random,
+        member_hfc = this.state.member_hfc,
         error_msg = this.state.error_msg,
         additional_member = this.state.additional_member,
         additionalExists = additional_member !== null,
@@ -134,9 +134,9 @@ const Home = React.createClass({
     if(did_search) {
       this._initializeFullpage();
 
-      if(!member_random && additional_member === null) {
+      if(!member_hfc && additional_member === null) {
         vote_status = 'co-sponsored a bill to defund Planned Parenthood. This '+ member_gender + ' represents your voice!';
-      } else if(!member_random && additional_member !== null) {
+      } else if(!member_hfc && additional_member !== null) {
         vote_status = 'Both senators from ' + member_state_full + ' co-sponsored the bill to defund Planned Parenthood';
       } else {
         vote_status = 'supports Planned Parenthood! But, have you heard of the House Freedom Caucus? These are the guys who have publicly declared they are willing to shut down the government over the issue of funding Planned Parenthood.';
@@ -145,7 +145,7 @@ const Home = React.createClass({
       vote_status = 'You have not yet searched for a member';
     }
       
-    if(member_random) {
+    if(member_hfc) {
       return <div className={containerClasses}>
             <div className="overlay">
           This site is only supported in portrait mode. Please turn your phone.
@@ -169,7 +169,7 @@ const Home = React.createClass({
             <Circle
               style="wide"
               additional={additional_member}
-              random={member_random}
+              hfc={member_hfc}
               age={member_age}
               gender={member_gender}
               desc={vote_status}
@@ -178,7 +178,7 @@ const Home = React.createClass({
             <SenatorGroup
               additional={additional_member}
               bioguide={member_bioguide}
-              random={member_random}
+              hfc={member_hfc}
               name={member_name}
               age={member_age}
               state={member_state}
@@ -220,7 +220,7 @@ const Home = React.createClass({
             <Circle
               style="wide"
               additional={additional_member}
-              random={member_random}
+              hfc={member_hfc}
               age={member_age}
               gender={member_gender}
               desc={vote_status}
@@ -229,7 +229,7 @@ const Home = React.createClass({
             <SenatorGroup
               additional={additional_member}
               bioguide={member_bioguide}
-              random={member_random}
+              hfc={member_hfc}
               name={member_name}
               age={member_age}
               state={member_state}
@@ -252,7 +252,7 @@ const Home = React.createClass({
             <SupportActions
               additional={additional_member}
               currentSenator={current_member}
-              random={member_random} 
+              hfc={member_hfc} 
               gender={member_gender} 
               email={member_email} 
               tel={member_tel} 
