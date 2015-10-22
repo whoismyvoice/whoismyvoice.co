@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 // Styles
 import style from './../../styles/SupportActions.scss';
@@ -12,23 +12,22 @@ const SupportActions = React.createClass({
     var additional = this.props.additional,
         current = this.props.currentSenator,
         random = this.props.random,
-        democrats_web = 'https://my.democrats.org/page/contribute/help-elect-democrats-demsdotorg',
-        republican_web = 'https://www.gop.com/rnc-victory-2016-membership-fund/';
+        gender,
+        email,
+        twitter,
+        tel;
 
     if(additional !== null && current === '1') {
-      var gender = additional.gender === 'M' ? 'him' : 'her',
-          party = additional.party === 'D' ? republican_web : democrats_web,
-          email = additional.oc_email,
-          twitter = additional.twitter_id,
-          tel = additional.phone;
+      gender = additional.gender === 'M' ? 'him' : 'her',
+      email = additional.oc_email,
+      twitter = additional.twitter_id,
+      tel = additional.phone;
 
     } else {
-
-      var gender = this.props.gender === 'man' ? 'him' : 'her',
-          party = this.props.party === 'D' ? republican_web : democrats_web,
-          email = this.props.email,
-          twitter = this.props.twitter,
-          tel = this.props.tel;
+      gender = this.props.gender === 'man' ? 'him' : 'her',
+      email = this.props.email,
+      twitter = this.props.twitter,
+      tel = this.props.tel;
     }
 
     return  <div className="supportActions">

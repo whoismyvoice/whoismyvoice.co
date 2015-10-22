@@ -1,0 +1,45 @@
+@import 'variables';
+
+.senatorWrapper {
+	width: 50%;
+	margin: 0 auto;
+
+	@media screen and (max-width: $iphone6) {
+		width: 90%;
+	}
+}
+
+.senatorContainer {
+	width: 50%;
+	display: inline-block;
+
+	@media screen and (max-width: $iphone6) {
+		width: 40%;
+		margin-right: 5%;
+		margin-left: 5%;
+	}
+
+	.senatorImg {
+		width: 50%;
+		padding: 25% 0;
+
+		@media screen and (max-width: $iphone6) {
+			width: 100%;
+			padding: 50% 0;
+		}
+	}
+
+	.senatorName {
+		width: 100%;
+
+		h2 {
+			font-size: 1.2em;
+			margin-right: 5%;
+
+			@media screen and (max-width: $iphone6) {
+				margin-right: 10%;
+				font-size: 0.8em;
+			}
+		}
+	}
+}

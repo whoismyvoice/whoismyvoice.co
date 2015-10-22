@@ -193,6 +193,7 @@ const Home = React.createClass({
           </div>
         </div>
       </div>;
+
     } else {
 
       return  <div className={containerClasses}>
