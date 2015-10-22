@@ -13,7 +13,6 @@ import SearchInput from './SearchInput'
 import SenatorGroup from './Senator/SenatorGroup'
 import SupportActions from './Senator/SupportActions'
 import ErrorMsg from './ErrorMsg'
-import RandomButton from './Senator/RandomButton'
 import ArrowDown from './ArrowDown'
 
 // Styles
@@ -185,8 +184,7 @@ const Home = React.createClass({
             state={member_state}
             did_search={did_search}
           />
-              
-          <RandomButton random={member_random} />
+
           <ArrowDown 
             className="orange"
             additional={additionalExists}
