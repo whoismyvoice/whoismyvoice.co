@@ -214,6 +214,18 @@ const HFCMembers = [
     name: 'Marlin A. Stutzman',
     state: 'IN',
     twitter: 'RepStutzman'
+  },
+  {
+    bioguide: 'W000814',
+    name: 'Randy K. Weber',
+    state: 'TX',
+    twitter: 'TXRandy14'
+  },
+  {
+    bioguide: 'Y000065',
+    name: 'Ted S. Yoho',
+    state: 'FL',
+    twitter: 'RepTedYoho'
   }
 ];
 

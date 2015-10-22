@@ -215,6 +215,11 @@ button, input {
   text-align: center;
   padding-top: 10vh;
   justify-content: center;
+
+  &.senators {
+    height: auto;
+    padding-bottom: 50px;
+  }
 }
 
 .pageIntroduction, .pageDesc {
@@ -222,8 +227,15 @@ button, input {
   font-size: 1.8em;
   flex: 1;
   align-self: center;
-  width: 65%;
+  width: 70%;
   line-height: 1.8;
+  margin-bottom: 5vh;
+
+  @media screen and (max-width: $iphone6) {
+    font-size: 1.2em;
+    width: 90%;
+    margin-bottom: 1vh;
+  }
 
   a {
     color: $black;

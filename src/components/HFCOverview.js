@@ -5,18 +5,26 @@ import HFCGroup from './Senator/HFCGroup'
 import style from './../styles/HFCGroup.scss';
 
 const HFCOverview = React.createClass({
+ 
   render() {
+  	var members = this.props.members.map(function(member, idx) {
+  		member = (
+  			<HFCGroup
+      			bioguide={member.bioguide}
+      			name={member.name}
+      			age={member.age}
+      			twitter={member.twitter}
+      			state={member.state}
+      			did_search={true}
+      			hfc={true}
+      			key ={idx}
+      		/>
+		);
+		return member;
+  	});
+
     return  <div className="HFCOverview">
-
-      <HFCGroup
-      	bioguide={'S001188'}
-      	name={'test'}
-      	age={'test'}
-      	state={'Texas'}
-      	did_search={true}
-      	random={true}
-      />
-
+      {members}
     </div>;
   }
 });

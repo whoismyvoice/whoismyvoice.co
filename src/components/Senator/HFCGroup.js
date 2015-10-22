@@ -10,15 +10,16 @@ const HFCGroup = React.createClass({
     return  <div className="HFCMember">
 
       <SenatorImg 
-        bioguide={this.props.bioguide}
+        bioguide={'Y000065'}
       />
 
       <SenatorName
         name={this.props.name}
         age={this.props.age}
         state={this.props.state}
+        twitter={this.props.twitter}
         did_search={this.props.did_search}
-        random={this.props.random}
+        hfc={this.props.hfc}
       />
 
     </div>;

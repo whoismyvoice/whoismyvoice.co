@@ -1,45 +1,29 @@
 @import 'variables';
 
-.senatorWrapper {
-	width: 50%;
+.HFCOverview {
+	width: 100%;
+	height: auto;
 	margin: 0 auto;
-
-	@media screen and (max-width: $iphone6) {
-		width: 90%;
-	}
+	position: relative;
+	top: 0;
 }
 
-.senatorContainer {
-	width: 50%;
+.HFCMember {
 	display: inline-block;
+	width: 25%;
 
 	@media screen and (max-width: $iphone6) {
-		width: 40%;
-		margin-right: 5%;
-		margin-left: 5%;
+		width: 70%;
+		margin-bottom: 1vh;
 	}
 
 	.senatorImg {
 		width: 50%;
 		padding: 25% 0;
-
-		@media screen and (max-width: $iphone6) {
-			width: 100%;
-			padding: 50% 0;
-		}
+		margin-bottom: 0;
 	}
 
 	.senatorName {
-		width: 100%;
-
-		h2 {
-			font-size: 1.2em;
-			margin-right: 5%;
-
-			@media screen and (max-width: $iphone6) {
-				margin-right: 10%;
-				font-size: 0.8em;
-			}
-		}
+		font-size: 0.9em;
 	}
 }
