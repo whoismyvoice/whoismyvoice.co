@@ -146,6 +146,8 @@ const Home = React.createClass({
     }
       
     if(member_hfc) {
+
+      // RANDOM
       return <div className={containerClasses}>
             <div className="overlay">
           This site is only supported in portrait mode. Please turn your phone.
@@ -156,6 +158,7 @@ const Home = React.createClass({
 
           <Circle
             style="one"
+            hide={true}
             desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
           />
 
@@ -171,6 +174,7 @@ const Home = React.createClass({
               additional={additional_member}
               hfc={member_hfc}
               age={member_age}
+              did_search={did_search}
               gender={member_gender}
               desc={vote_status}
             />
@@ -196,6 +200,7 @@ const Home = React.createClass({
 
     } else {
 
+      // NOT RANDOM
       return  <div className={containerClasses}>
 
         <div className="overlay">
@@ -207,6 +212,8 @@ const Home = React.createClass({
 
           <Circle
             style="one"
+            hide={true}
+            did_search={did_search}
             desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
           />
 
@@ -222,6 +229,7 @@ const Home = React.createClass({
               additional={additional_member}
               hfc={member_hfc}
               age={member_age}
+              did_search={did_search}
               gender={member_gender}
               desc={vote_status}
             />
@@ -232,6 +240,7 @@ const Home = React.createClass({
               hfc={member_hfc}
               name={member_name}
               age={member_age}
+              did_search={did_search}
               state={member_state}
               did_search={did_search}
             />

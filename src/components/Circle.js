@@ -11,6 +11,7 @@ const Circle = React.createClass({
   		status = this.props.hfc ? 'No!' : 'Yes!',
       additional = this.props.additional === null ? null : this.props.additional,
       senator = additional === null ? 'Your Senator, ' : '',
+      hide = this.props.did_search === false ? true : false,
   		details;
 
   	if(!hfc && additional === null) {
@@ -20,8 +21,14 @@ const Circle = React.createClass({
     // Define classes for showing second line to allow for not displaying anything
     // when two senators have been fetched
     var statusClasses = cx(
+      ['status'],
+      {'hide': this.props.hide}
+    );
+
+    var introductionClasses = cx(
       ['status'], 
-      {'hide': additional}
+      {'hide': additional},
+      {'hide': this.props.hide}
     );
 
   	if(hfc !== undefined) {
@@ -29,9 +36,11 @@ const Circle = React.createClass({
   		return <div className={'circle' + ' ' + this.props.style + ' ' + hfc}>
 
   			<div className="description">
-          {status}<br />
-
           <div className={statusClasses}>
+            {status}<br />
+          </div>
+
+          <div className={introductionClasses}>
   				  {senator} <br />
           </div>
 
