@@ -144,73 +144,124 @@ const Home = React.createClass({
     } else {
       vote_status = 'You have not yet searched for a member';
     }
-    
-    return  <div className={containerClasses}>
+      
+    if(member_random) {
+      return <div className={containerClasses}>
+            <div className="overlay">
+          This site is only supported in portrait mode. Please turn your phone.
+        </div>
 
-      <div className="overlay">
-        This site is only supported in portrait mode. Please turn your phone.
-      </div>
-
-      <div className={blockClasses} onScroll={this._handleScroll}>
-        <div className="black-line"></div>
-
-        <Circle
-          style="one"
-          desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
-        />
-
-        <SearchInput />
-        <ErrorMsg error={error_msg} />
-      </div>
-
-      <div className={backgroundClasses} id="fullpage">
-      	<div className="section block two">
+        <div className={blockClasses} onScroll={this._handleScroll}>
+          <div className="black-line"></div>
 
           <Circle
-            style="wide"
-            additional={additional_member}
-            random={member_random}
-            age={member_age}
-            gender={member_gender}
-            desc={vote_status}
+            style="one"
+            desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
           />
 
-          <SenatorGroup
-            additional={additional_member}
-            bioguide={member_bioguide}
-            random={member_random}
-            name={member_name}
-            age={member_age}
-            state={member_state}
-            did_search={did_search}
-          />
-
-          <ArrowDown 
-            className="orange"
-            additional={additionalExists}
-            id='0'
-          />
+          <SearchInput />
+          <ErrorMsg error={error_msg} />
         </div>
 
-        <div className="section block three">
-          <Circle 
-            style="wider" 
-            desc={impact} 
+        <div className={backgroundClasses} id="fullpage">
+         <div className="section block two">
+
+            <Circle
+              style="wide"
+              additional={additional_member}
+              random={member_random}
+              age={member_age}
+              gender={member_gender}
+              desc={vote_status}
+            />
+
+            <SenatorGroup
+              additional={additional_member}
+              bioguide={member_bioguide}
+              random={member_random}
+              name={member_name}
+              age={member_age}
+              state={member_state}
+              did_search={did_search}
+            />
+
+            <ArrowDown 
+              className="orange"
+              additional={additionalExists}
+              id='0'
+            />
+          </div>
+        </div>
+      </div>;
+    } else {
+
+      return  <div className={containerClasses}>
+
+        <div className="overlay">
+          This site is only supported in portrait mode. Please turn your phone.
+        </div>
+
+        <div className={blockClasses} onScroll={this._handleScroll}>
+          <div className="black-line"></div>
+
+          <Circle
+            style="one"
+            desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
           />
 
-          <SupportActions
-            additional={additional_member}
-            currentSenator={current_member}
-            random={member_random} 
-            gender={member_gender} 
-            email={member_email} 
-            tel={member_tel} 
-            twitter={member_twitter}
-            party={party}
-          />
+          <SearchInput />
+          <ErrorMsg error={error_msg} />
         </div>
-      </div>
-    </div>;
+
+        <div className={backgroundClasses} id="fullpage">
+      	 <div className="section block two">
+
+            <Circle
+              style="wide"
+              additional={additional_member}
+              random={member_random}
+              age={member_age}
+              gender={member_gender}
+              desc={vote_status}
+            />
+
+            <SenatorGroup
+              additional={additional_member}
+              bioguide={member_bioguide}
+              random={member_random}
+              name={member_name}
+              age={member_age}
+              state={member_state}
+              did_search={did_search}
+            />
+
+            <ArrowDown 
+              className="orange"
+              additional={additionalExists}
+              id='0'
+            />
+          </div>
+
+          <div className="section block three">
+            <Circle 
+              style="wider" 
+              desc={impact} 
+            />
+
+            <SupportActions
+              additional={additional_member}
+              currentSenator={current_member}
+              random={member_random} 
+              gender={member_gender} 
+              email={member_email} 
+              tel={member_tel} 
+              twitter={member_twitter}
+              party={party}
+            />
+          </div>
+        </div>
+      </div>;
+    }
   }
 });
 
