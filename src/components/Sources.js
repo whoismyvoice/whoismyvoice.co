@@ -1,7 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React from 'react'
+import { Link } from 'react-router'
 
 const Sources = React.createClass({
+
+  componentDidMount: function() {
+    $(document).scrollTop(0);
+  },
+
   render() {
     return  <div className="page-block bright-green">
       <p className="pageIntroduction">

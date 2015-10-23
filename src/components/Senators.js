@@ -4,6 +4,9 @@ import HFCOverview from './HFCOverview'
 import HFCMembers from '../data/HFCMembers'
 
 const Senators = React.createClass({
+  componentDidMount: function() {
+    $(document).scrollTop(0);
+  },
   render() {
     return  <div className="page-block senators blue">
       <p className="pageIntroduction">
