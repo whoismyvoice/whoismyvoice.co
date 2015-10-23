@@ -26,7 +26,7 @@ const Results = React.createClass({
 				email = this.props.email,
 				tel = this.props.tel,
 				twitter = this.props.twitter,
-				party = this.props.party;
+				party = this.props.party
 
 		if (isHFC) {
 			return <div className={this.props.backgroundClasses} id="fullpage">

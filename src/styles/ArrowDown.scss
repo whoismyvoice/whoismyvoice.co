@@ -2,7 +2,7 @@
 @import 'globals';
 
 .arrowDown {
-	width: 50px;
+	width: 52px;
 	height: 0;
 	padding-bottom: 50px;
 	border-radius: 50%;
@@ -25,19 +25,18 @@
 	}
 
 	&:before {
-		content: '';
+		font-family: FontAwesome;
+		font-weight: normal;
+		content: '\f107';
 		display: block;
-		border-left: solid 10px transparent;
-		border-right: solid 10px transparent;
-		border-top: solid 10px $black;
+		font-size: 2.5em;
+		color: $black;
 		position: absolute;
-		top: 45%;
+		top: 4%;
 		left: 30%;
 
 		@media screen and (max-width: $iphone6) {
-			border-left: solid 6px transparent;
-			border-right: solid 6px transparent;
-			border-top: solid 6px $black;
+			font-size: 1.5em;
 		}
 	}
 
@@ -46,7 +45,7 @@
 		@include transition(0.2s);
 
 		&:before {
-			border-top-color: $white;
+			color: $white;
 		}
 	}
 
@@ -55,14 +54,15 @@
 		width: 58px;
 
 		@media screen and (max-width: $iphone6) {
-
-			&:before {
-				border-left: solid 7px transparent;
-				border-right: solid 7px transparent;
-			}
-			
 			margin-top: 3vh;
 			width: 38px;
+		}
+
+		&:before {
+			@media screen and (max-width: $iphone6) {
+				font-size: 1.7em;
+			}
+			top: 5%;
 		}
 	}
 

@@ -23,6 +23,10 @@ input {
     margin-top: 3vh;
   }
 
+  @media screen and (max-width: $iphone5-min) {
+    width: 220px;
+  }
+
   &.input {
     color: $black;
     border: 3px solid $black;

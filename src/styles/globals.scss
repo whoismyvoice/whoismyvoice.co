@@ -2,8 +2,11 @@
 
 // MIXINS (TRANSITIONS)
 @mixin transition($time) {
-  -webkit-transition: all $time ease-in-out;
-  transition: all $time ease-in-out;
+  -webkit-transition:all $time ease-in;
+  -moz-transition:all $time ease-in;
+  -ms-transition:all $time ease-in;
+  -o-transition:all $time ease-in;
+  transition:all $time ease-in;
 }
 
 body {
@@ -57,6 +60,10 @@ ul {
       right: auto;
     }
   }
+
+  @media screen and (max-width: $iphone5-min) {
+   top: 8.5vh;
+  }
 }
 
 .wrapper {
@@ -89,7 +96,7 @@ ul {
   opacity: 0;
   height: 195.5vh;
   position: relative;
-  @include transition(5s);
+  @include transition(1s);
   z-index: 1;
 
   &.move-up {
@@ -203,12 +210,19 @@ button, input {
     margin-bottom: 1vh;
   }
 
+  @media screen and (max-width: $iphone5-min) {
+    font-size: 1em;
+  }
+
   a {
     color: $black;
   }
 
   .resources {
     font-size: 0.7em;
+    @media screen and (max-width: $iphone5-min) {
+      font-size: 0.8em;
+    }
   }
 }
 
