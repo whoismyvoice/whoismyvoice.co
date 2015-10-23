@@ -59,10 +59,45 @@ ul {
       left: -13px;
       right: auto;
     }
+
+    @media only screen 
+    and (min-device-width: 768px) 
+    and (max-device-width: 1024px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+      top: 7%;
+      height: 55vh;
+    }
+
+    @media only screen 
+    and (min-device-width: 768px) 
+    and (max-device-width: 1024px) 
+    and (orientation: landscape) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+      top: 9.5%;
+      height: 55vh;
+    }
   }
 
   @media screen and (max-width: $iphone5-min) {
    top: 8.5vh;
+  }
+
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    top: 6.6vh;
+  }
+
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    top: 9vh;
+    height: 55vh;
   }
 }
 
@@ -98,6 +133,14 @@ ul {
   position: relative;
   @include transition(1s);
   z-index: 1;
+
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    top: 18vh;
+  }
 
   &.move-up {
     opacity: 1;
@@ -214,6 +257,25 @@ button, input {
     font-size: 1em;
   }
 
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    width: 90%;
+    font-size: 1.6em;
+  }
+
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    width: 90%;
+    font-size: 1.6em;
+    margin-bottom: 2.5vh;
+  }
+
   a {
     color: $black;
   }
@@ -235,6 +297,24 @@ button, input {
   color: $black;
   font-weight: bold;
 
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    width: 90%;
+    font-size: 1.6em;
+  }
+
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    width: 90%;
+    font-size: 1.6em;
+  }
+
   @media screen and (max-width: $iphone6) {
     font-size: 1.2em;
     width: 85%;
@@ -247,7 +327,7 @@ button, input {
 }
 
 .green {
-  background-color: $light-green;
+  background-color: $light-green!important;
   @include transition(0.5s);
 }
 
