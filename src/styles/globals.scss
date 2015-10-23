@@ -77,25 +77,22 @@ ul {
 
   &.one {
     top: 1.5vh;
-    @include transition(1s);
   }
 
   &.hide {
     top: -99vh;
-    @include transition(1s);
   }
 }
 
 .second-wrapper {
-  top: 0vh;
+  top: 15vh;
   opacity: 0;
   height: 195.5vh;
   position: relative;
-  @include transition(1s);
+  @include transition(5s);
   z-index: 1;
 
   &.move-up {
-    top: 15vh;
     opacity: 1;
     @include transition(1s);
   }

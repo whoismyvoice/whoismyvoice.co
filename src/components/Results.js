@@ -11,7 +11,22 @@ import HFCOverview from './HFCOverview'
 const Results = React.createClass({
 
 	render() {
-		var isHFC = this.props.hfc;
+		var isHFC = this.props.hfc,
+				additional_member = this.props.additional_member,
+				age = this.props.age,
+				did_search = this.props.did_search,
+				gender = this.props.gender,
+				vote_status = this.props.vote_status,
+				bioguide = this.props.bioguide,
+				name = this.props.name,
+				state = this.props.state,
+				additional_exists = this.props.additional_exists,
+				impact = this.props.impact,
+				current_member = this.props.current_member,
+				email = this.props.email,
+				tel = this.props.tel,
+				twitter = this.props.twitter,
+				party = this.props.party;
 
 		if (isHFC) {
 			return <div className={this.props.backgroundClasses} id="fullpage">
@@ -35,27 +50,26 @@ const Results = React.createClass({
 
             <Circle
               style="wide"
-              additional={this.props.additional_member}
-              hfc={this.props.hfc}
-              age={this.props.age}
-              did_search={this.props.did_search}
-              gender={this.props.gender}
-              desc={this.props.vote_status}
+              additional={additional_member}
+              hfc={isHFC}
+              age={age}
+              did_search={did_search}
+              gender={gender}
+              desc={vote_status}
             />
 
             <SenatorGroup
-              additional={this.props.additional_member}
-              bioguide={this.props.bioguide}
-              hfc={this.props.hfc}
-              name={this.props.name}
-              age={this.props.age}
-              did_search={this.props.did_search}
-              state={this.props.state}
+              additional={additional_member}
+              bioguide={bioguide}
+              hfc={isHFC}
+              name={name}
+              age={age}
+              did_search={did_search}
+              state={state}
             />
 
-            <ArrowDown 
-              className="orange"
-              additional={this.props.additional_exists}
+            <ArrowDown
+              additional={additional_exists}
               id='0'
             />
           </div>
@@ -64,18 +78,18 @@ const Results = React.createClass({
             <Circle 
               style="wider"
               hide={true}
-              desc={this.props.impact} 
+              desc={impact} 
             />
 
             <SupportActions
-              additional={this.props.additional_member}
-              currentSenator={this.props.current_member}
-              hfc={this.props.additional_member} 
-              gender={this.props.gender} 
-              email={this.props.email} 
-              tel={this.props.tel} 
-              twitter={this.props.twitter}
-              party={this.props.party}
+              additional={additional_member}
+              currentSenator={current_member}
+              hfc={isHFC} 
+              gender={gender} 
+              email={email} 
+              tel={tel} 
+              twitter={twitter}
+              party={party}
             />
           </div>
      	</div>;
