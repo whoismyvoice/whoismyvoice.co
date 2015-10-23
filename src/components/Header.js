@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router';
-import Button from './Button';
-import cx from 'classnames';
+import React from 'react'
+import { Link } from 'react-router'
+import Button from './Button'
+import cx from 'classnames'
 
 // Styles
 import style from './../styles/Header.scss';
@@ -59,6 +59,7 @@ const Header = React.createClass({
 
           <Button
             link="/"
+            flush={true}
             text="Start Again"
           />
           <div className="arrowDown nav-arrow"></div>

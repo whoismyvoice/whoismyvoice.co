@@ -29,5 +29,11 @@ module.exports = {
       // Get senators based on passed zip_code
       CongressUtils.getMember(ZIP_CODE);
     }
-	}
+	},
+
+  flush: function() {
+    AppDispatcher.handleViewAction({
+      actionType: SenateConstants.FLUSH_STORE
+    });
+  }
 };

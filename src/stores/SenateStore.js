@@ -27,7 +27,8 @@ var _store = {
   did_search: false,
   error_msg: '',
   current_screen: null,
-  current_senator: null
+  current_senator: null,
+  did_reset: false
 }
 
 // Define the public event listeners and getters that
@@ -63,12 +64,14 @@ AppDispatcher.register(function(payload) {
 
     case AppConstants.GET_DETAILS:
 
+      _store.did_reset = false;
+
       if(action.response === 'error') {
         _store.error_msg = 'Ineligible zip code or state';
       } else if(!action.hfc) {
 
-        var details = action.hfc ? action.response[0] : action.response[0];
-        var additionalSenator = action.response.length > 1 ? action.response[1]: ''; 
+        var details = action.response[0];
+        var additionalSenator = action.response.length > 1 ? action.response[1]: '';
 
         // Set store values to reflect returned object
         var middle_name = details.middle_name === null ? '' : details.middle_name;
@@ -83,14 +86,20 @@ AppDispatcher.register(function(payload) {
         _store.member_party = details.party,
         _store.member_state = details.state || null,
         _store.member_state_full = details.state_name || null,
-        _store.member_hfc = action.hfc,
         _store.error_msg = '',
         _store.did_search = true,
         _store.additional_member = additionalSenator || null
       } else {
-        _store.did_search = true
-        _store.member_hfc = action.hfc
+        _store.did_search = true;
+        _store.member_hfc = true;
       }
+
+      SenateStore.emit(CHANGE_EVENT);
+      break;
+
+    case AppConstants.GET_RANDOM_DETAILS:
+      _store.member_hfc = true;
+      _store.did_search = true;
 
       SenateStore.emit(CHANGE_EVENT);
       break;
@@ -104,6 +113,14 @@ AppDispatcher.register(function(payload) {
 
     case AppConstants.SET_CURRENT_MEMBER:
         _store.current_senator = action.index;
+
+      SenateStore.emit(CHANGE_EVENT);
+      break;
+
+    case AppConstants.FLUSH_STORE:
+      _store.did_search = false;
+      _store.member_hfc = false;
+      _store.did_reset = true;
 
       SenateStore.emit(CHANGE_EVENT);
       break;

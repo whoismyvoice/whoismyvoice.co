@@ -34,10 +34,11 @@ const Home = React.createClass({
     //  if(params.zip && params.zip.length === 5 && !isNaN(params.zip)) {
     //    SenateActions.identifyMember(params.zip);
     //  }
-    //}
-    
+    //}  
     if(this.state.did_search && !this.state.member_hfc) {
       this._initializeFullpage();
+    } else {
+      this._destroyFullpage();
     }
     SenateStore.addChangeListener(this._handleChange);
   },
@@ -84,7 +85,6 @@ const Home = React.createClass({
       $.fn.fullpage.destroy();
     }
   },
-
   render() {
     var LastScreen = false;
 
@@ -132,6 +132,9 @@ const Home = React.createClass({
     let impact = 'Here are some ways you can keep this ' + MEMBER_GENDER + ' from being able to personally weigh in on the reproductive rights of millions of underserved women the next time a similar vote comes up.';
 
     if (DID_SEARCH && !MEMBER_HFC) {
+      console.log("DID SEARCH: " + DID_SEARCH);
+      console.log("MEMBER_HFC: " + MEMBER_HFC);
+      console.log("Initialize");
       this._initializeFullpage();
       VOTE_STATUS = ADDITIONAL_MEMBER === null ? 'co-sponsored a bill to defund Planned Parenthood. ' + MEMBER_THIRD + ' represents your voice!' : 'Both senators from ' + MEMBER_STATE_FULL + ' co-sponsored the bill to defund Planned Parenthood';
     } else {

@@ -6,7 +6,7 @@ module.exports = {
     AppDispatcher.handleServerAction({
       actionType: SenateConstants.GET_DETAILS,
       response: response,
-      hfc: hfc || false
+      hfc: hfc || false
     });
   }
 };

@@ -30,10 +30,11 @@ const SearchInput = React.createClass({
           error: true
         });
       } else {
-        this.setState({
-          error: false
-        });
         SenateActions.identifyMember(this.state.zip_code);
+        this.setState({
+          error: false,
+          zip_code: ''
+        });
       }
     }
   },
@@ -46,7 +47,8 @@ const SearchInput = React.createClass({
       });
     } else {
       this.setState({
-        error: false
+        error: false,
+        zip_code: ''
       });
       SenateActions.identifyMember(this.state.zip_code);
     }
