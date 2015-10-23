@@ -5,7 +5,7 @@ import SenateActions from '../actions/SenateActions'
 import ContainerActions from '../actions/ContainerActions'
 import {abbrState} from '../utils/StateConverter'
 import cx from 'classnames'
-import HFCMembers from '../data/HFCMembers'
+import Results from './Results'
 
 // Components
 import Button from './Button'
@@ -132,126 +132,51 @@ const Home = React.createClass({
     let impact = 'Here are some ways you can keep this ' + MEMBER_GENDER + ' from being able to personally weigh in on the reproductive rights of millions of underserved women the next time a similar vote comes up.';
 
     if (DID_SEARCH && !MEMBER_HFC) {
-      console.log("DID SEARCH: " + DID_SEARCH);
-      console.log("MEMBER_HFC: " + MEMBER_HFC);
-      console.log("Initialize");
       this._initializeFullpage();
       VOTE_STATUS = ADDITIONAL_MEMBER === null ? 'co-sponsored a bill to defund Planned Parenthood. ' + MEMBER_THIRD + ' represents your voice!' : 'Both senators from ' + MEMBER_STATE_FULL + ' co-sponsored the bill to defund Planned Parenthood';
     } else {
       VOTE_STATUS = 'You have not yet searched for a member';
     }
-      
-    if (MEMBER_HFC) {
-      // RANDOM
-      return <div className={containerClasses}>
-        <div className="overlay">
-          This site is only supported in portrait mode. Please turn your phone.
-        </div>
+    // NOT RANDOM
+    return  <div className={containerClasses}>
+      <div className="overlay">
+        This site is only supported in portrait mode. Please turn your phone.
+      </div>
 
-        <div className={blockClasses} onScroll={this._handleScroll}>
-          <div className="black-line"></div>
+      <div className={blockClasses} onScroll={this._handleScroll}>
+        <div className="black-line"></div>
 
-          <Circle
-            style="one"
-            hide={true}
-            desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
-          />
+        <Circle
+          style="one"
+          hide={true}
+          did_search={DID_SEARCH}
+          desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
+        />
 
-          <SearchInput />
-          <ErrorMsg error={ERROR_MSG} />
-        </div>
+        <SearchInput />
+        <ErrorMsg error={ERROR_MSG} />
 
-        <div className={backgroundClasses} id="fullpage">
-         <div className="section block two">
-
-          <p className="impact">
-            No! Your senators support Planned Parenthood!<br />
-            But, have you heard of the House Freedom Caucus? These are the guys who have publicly declared they are willing to shut down the government over the issue of funding Planned Parenthood.
-          </p>
-
-          <HFCOverview
-            color="bright-red"
-            members={HFCMembers}
-          />
-
-        </div>
+        <Results
+          hfc={MEMBER_HFC}
+          backgroundClasses={backgroundClasses}
+          additional_member={ADDITIONAL_MEMBER}
+          age={MEMBER_AGE}
+          did_search={DID_SEARCH}
+          gender={MEMBER_GENDER}
+          vote_status={VOTE_STATUS}
+          bioguide={MEMBER_BIOGUIDE}
+          name={MEMBER_NAME}
+          state={MEMBER_STATE}
+          impact={impact}
+          additional_exists={ADDITIONALEXISTS}
+          current_member={CURRENT_MEMBER}
+          email={MEMBER_EMAIL}
+          tel={MEMBER_TEL}
+          twitter={MEMBER_TWITTER}
+          party={PARTY}
+        />
       </div>
     </div>;
-
-    } else {
-
-      // NOT RANDOM
-      return  <div className={containerClasses}>
-
-        <div className="overlay">
-          This site is only supported in portrait mode. Please turn your phone.
-        </div>
-
-        <div className={blockClasses} onScroll={this._handleScroll}>
-          <div className="black-line"></div>
-
-          <Circle
-            style="one"
-            hide={true}
-            did_search={DID_SEARCH}
-            desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
-          />
-
-          <SearchInput />
-          <ErrorMsg error={ERROR_MSG} />
-        </div>
-
-        <div className={backgroundClasses} id="fullpage">
-      	 <div className="section block two">
-
-            <Circle
-              style="wide"
-              additional={ADDITIONAL_MEMBER}
-              hfc={MEMBER_HFC}
-              age={MEMBER_AGE}
-              did_search={DID_SEARCH}
-              gender={MEMBER_GENDER}
-              desc={VOTE_STATUS}
-            />
-
-            <SenatorGroup
-              additional={ADDITIONAL_MEMBER}
-              bioguide={MEMBER_BIOGUIDE}
-              hfc={MEMBER_HFC}
-              name={MEMBER_NAME}
-              age={MEMBER_AGE}
-              did_search={DID_SEARCH}
-              state={MEMBER_STATE}
-            />
-
-            <ArrowDown 
-              className="orange"
-              additional={ADDITIONALEXISTS}
-              id='0'
-            />
-          </div>
-
-          <div className="section block three">
-            <Circle 
-              style="wider"
-              hide={true}
-              desc={impact} 
-            />
-
-            <SupportActions
-              additional={ADDITIONAL_MEMBER}
-              currentSenator={CURRENT_MEMBER}
-              hfc={MEMBER_HFC} 
-              gender={MEMBER_GENDER} 
-              email={MEMBER_EMAIL} 
-              tel={MEMBER_TEL} 
-              twitter={MEMBER_TWITTER}
-              party={PARTY}
-            />
-          </div>
-        </div>
-      </div>;
-    }
   }
 });
 

@@ -36,7 +36,7 @@ module.exports = {
           });
 
           if(res.body.results.length === 0) {
-            console.log("Nothing returned from Sunlight Foundation");
+            SenateServerActions.getDetails('error');
           } else if(senators.length > 0) {
             SenateServerActions.getDetails(senators);
           } else {

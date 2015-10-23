@@ -18,7 +18,8 @@ const SearchInput = React.createClass({
 
   _handleChange: function(event) {
     this.setState({
-      zip_code: event.target.value
+      zip_code: event.target.value,
+      error: false
     });
   },
 
@@ -70,7 +71,7 @@ const SearchInput = React.createClass({
           placeholder="Enter Your Zip Code"
         />
         <button 
-          className="arrowDown spacing green" 
+          className="arrowDown spacing" 
           onClick={this._handleClick}>
         </button>
     </span>;

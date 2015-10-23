@@ -9,7 +9,7 @@
 body {
   margin: 0 auto;
   font-family: 'Helvetica Neue';
-  background-color: $white;
+  background-color: $bright-red;
   line-height: 1.5;
   height: 100%;
   overflow-x: hidden;
@@ -95,7 +95,7 @@ ul {
   z-index: 1;
 
   &.move-up {
-    top: -97vh;
+    top: 15vh;
     opacity: 1;
     @include transition(1s);
   }
@@ -176,36 +176,6 @@ button, input {
   background-color: $black;
 }
 
-.green {
-  background-color: $light-green;
-  @include transition(0.5s);
-}
-
-.orange {
-  background-color: $light-orange;
-  @include transition(0.5s);
-}
-
-.purple {
-  background-color: $light-purple;
-  @include transition(0.5s);
-}
-
-.blue {
-  background-color: $light-blue;
-  @include transition(0.5s);
-}
-
-.bright-green {
-  background-color: $bright-green;
-  @include transition(0.5s);
-}
-
-.bright-red {
-  background-color: $bright-red;
-  @include transition(0.5s);
-}
-
 .page-block {
   display: flex;
   flex-direction: column;
@@ -263,4 +233,34 @@ button, input {
 
 .pageDesc {
   flex: 1;
+}
+
+.green {
+  background-color: $light-green;
+  @include transition(0.5s);
+}
+
+.orange {
+  background-color: $light-orange;
+  @include transition(0.5s);
+}
+
+.purple {
+  background-color: $light-purple;
+  @include transition(0.5s);
+}
+
+.blue {
+  background-color: $light-blue;
+  @include transition(0.5s);
+}
+
+.bright-green {
+  background-color: $bright-green;
+  @include transition(0.5s);
+}
+
+.bright-red {
+  background-color: $bright-red;
+  @include transition(0.5s);
 }

@@ -55,10 +55,13 @@
 		width: 58px;
 
 		@media screen and (max-width: $iphone6) {
-			margin-top: 4vh;
-		}
 
-		@media screen and (max-width: $iphone6) {
+			&:before {
+				border-left: solid 7px transparent;
+				border-right: solid 7px transparent;
+			}
+			
+			margin-top: 3vh;
 			width: 38px;
 		}
 	}

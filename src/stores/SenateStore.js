@@ -27,8 +27,7 @@ var _store = {
   did_search: false,
   error_msg: '',
   current_screen: null,
-  current_senator: null,
-  did_reset: false
+  current_senator: null
 }
 
 // Define the public event listeners and getters that
@@ -64,10 +63,8 @@ AppDispatcher.register(function(payload) {
 
     case AppConstants.GET_DETAILS:
 
-      _store.did_reset = false;
-
       if(action.response === 'error') {
-        _store.error_msg = 'Ineligible zip code or state';
+        _store.error_msg = 'Ineligible zip code';
       } else if(!action.hfc) {
 
         var details = action.response[0];
@@ -120,7 +117,6 @@ AppDispatcher.register(function(payload) {
     case AppConstants.FLUSH_STORE:
       _store.did_search = false;
       _store.member_hfc = false;
-      _store.did_reset = true;
 
       SenateStore.emit(CHANGE_EVENT);
       break;
