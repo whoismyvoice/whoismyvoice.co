@@ -49,7 +49,7 @@ const Header = React.createClass({
 
           <Button
             link="/about"
-            text="About this project"
+            text="About This project"
           />
 
           <Button

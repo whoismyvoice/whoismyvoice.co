@@ -7,12 +7,10 @@ import style from './../../styles/HFCGroup.scss';
 
 const HFCGroup = React.createClass({
   render() {
-    return  <div className="HFCMember">
-
+    return <div className="HFCMember">
       <SenatorImg 
         bioguide={'Y000065'}
       />
-
       <SenatorName
         name={this.props.name}
         age={this.props.age}
@@ -21,7 +19,6 @@ const HFCGroup = React.createClass({
         did_search={this.props.did_search}
         hfc={this.props.hfc}
       />
-
     </div>;
   }
 });

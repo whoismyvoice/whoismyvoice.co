@@ -27,16 +27,16 @@ const Home = React.createClass({
   },
 
   componentDidMount: function() {
-    // Allow fetching of member if id / zip_code is defined as a parameter
-    // First check if member has already been fetched
-    if(!this.state.did_search) {
-      let params = this.props.params;
 
-      // Check length to make sure zip is supplied
-      if(params.zip && params.zip.length === 5 && !isNaN(params.zip)) {
-        SenateActions.identifyMember(params.zip);
-      }
-    } else if(this.state.did_search && !this.state.member_hfc) {
+    // Allow fetching of member if id / zip_code is defined as a parameter
+    //if(!this.state.did_search) {
+    //  let params = this.props.params;
+    //  if(params.zip && params.zip.length === 5 && !isNaN(params.zip)) {
+    //    SenateActions.identifyMember(params.zip);
+    //  }
+    //}
+    
+    if(this.state.did_search && !this.state.member_hfc) {
       this._initializeFullpage();
     }
     SenateStore.addChangeListener(this._handleChange);
@@ -62,10 +62,8 @@ const Home = React.createClass({
       css3: true,
       autoScrolling: true,
       fitToSection: true,
-      fitToSectionDelay: 700,
       easingcss3: 'ease-in',
       loopHorizontal: false,
-      touchSensitivity: 5,
 
       //Accessibility
       keyboardScrolling: false,
@@ -116,6 +114,7 @@ const Home = React.createClass({
         MEMBER_ZIP_CODE = this.state.member_zip_code,
         MEMBER_AGE = this.state.member_age,
         MEMBER_GENDER = this.state.member_gender === 'M' ? 'man' : 'woman',
+        MEMBER_THIRD = MEMBER_GENDER === 'man' ? 'he' : 'she',
         MEMBER_EMAIL = this.state.member_email,
         MEMBER_TEL = this.state.member_tel,
         MEMBER_TWITTER = this.state.member_twitter,
@@ -130,16 +129,11 @@ const Home = React.createClass({
         CURRENT_MEMBER = this.state.current_senator,
         VOTE_STATUS;
 
-    let impact = 'Here are some ways you can keep this '+ MEMBER_GENDER +' from being able to personally weigh in on the reproductive rights of millions of underserved women the next time a similar vote comes up.';
+    let impact = 'Here are some ways you can keep this ' + MEMBER_GENDER + ' from being able to personally weigh in on the reproductive rights of millions of underserved women the next time a similar vote comes up.';
 
     if (DID_SEARCH && !MEMBER_HFC) {
       this._initializeFullpage();
-
-      if (ADDITIONAL_MEMBER === null) {
-        VOTE_STATUS = 'co-sponsored a bill to defund Planned Parenthood. This '+ MEMBER_GENDER + ' represents your voice!';
-      } else if(ADDITIONAL_MEMBER !== null) {
-        VOTE_STATUS = 'Both senators from ' + MEMBER_STATE_FULL + ' co-sponsored the bill to defund Planned Parenthood';
-      }
+      VOTE_STATUS = ADDITIONAL_MEMBER === null ? 'co-sponsored a bill to defund Planned Parenthood. ' + MEMBER_THIRD + ' represents your voice!' : 'Both senators from ' + MEMBER_STATE_FULL + ' co-sponsored the bill to defund Planned Parenthood';
     } else {
       VOTE_STATUS = 'You have not yet searched for a member';
     }
@@ -168,7 +162,8 @@ const Home = React.createClass({
          <div className="section block two">
 
           <p className="impact">
-            No! Your senators supports Planned Parenthood! But, have you hear of the House Freedom Caucus? These are the gys who have publicly declared they are willing to shut down the government over the issue of funding Planned Parenthood.
+            No! Your senators support Planned Parenthood!<br />
+            But, have you heard of the House Freedom Caucus? These are the guys who have publicly declared they are willing to shut down the government over the issue of funding Planned Parenthood.
           </p>
 
           <HFCOverview

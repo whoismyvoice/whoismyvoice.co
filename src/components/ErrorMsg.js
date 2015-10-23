@@ -6,7 +6,8 @@ import style from './../styles/errorMsg.scss';
 
 const ErrorMsg = React.createClass({
   render() {
-    var isError = this.props.error === '';
+
+    var isError = this.props.error;
 
     var errorClasses = cx(
       ['errorMsg'],

@@ -59,7 +59,6 @@ const SearchInput = React.createClass({
     );
 
     return <span>
-    
         <input 
           className={inputClasses}
           type="text" 
@@ -68,12 +67,10 @@ const SearchInput = React.createClass({
           onKeyDown={this._handleEnter}
           placeholder="Enter Your Zip Code"
         />
-
         <button 
           className="arrowDown spacing green" 
           onClick={this._handleClick}>
         </button>
-      
     </span>;
   }  
 });

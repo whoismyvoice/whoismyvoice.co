@@ -3,7 +3,7 @@ import React from 'react'
 const NoMatch = React.createClass({
   render() {
   	return <div className="error">
-    	Error
+    	Page does not exist
     </div>;
   }
 });

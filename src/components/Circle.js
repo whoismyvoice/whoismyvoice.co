@@ -13,9 +13,7 @@ const Circle = React.createClass({
         hide = this.props.did_search === false ? true : false,
   		  details;
 
-  	if (!hfc && additional === null) {
-  		details = 'a ' + this.props.age + ' year old ' + this.props.gender + ' ';
-  	}
+    details = (!hfc && additional === null) ? 'a ' + this.props.age + ' year old ' + this.props.gender + ' ' : '';
 
     // Define classes for showing second line to allow for not displaying anything
     // when two senators have been fetched

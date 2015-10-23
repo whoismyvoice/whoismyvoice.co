@@ -8,7 +8,6 @@ import Button from './../Button';
 
 const SupportActions = React.createClass({
   render() {
-    
     var additional = this.props.additional,
         current = this.props.currentSenator,
         gender,
@@ -21,7 +20,6 @@ const SupportActions = React.createClass({
       email = additional.oc_email,
       twitter = additional.twitter_id,
       tel = additional.phone;
-
     } else {
       gender = this.props.gender === 'man' ? 'him' : 'her',
       email = this.props.email,

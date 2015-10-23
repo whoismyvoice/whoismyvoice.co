@@ -3,7 +3,7 @@
 // MIXINS (TRANSITIONS)
 @mixin transition($time) {
   -webkit-transition: all $time ease-in-out;
-  transition: all ($time)s ease-in-out;
+  transition: all $time ease-in-out;
 }
 
 body {
