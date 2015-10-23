@@ -10,7 +10,7 @@ const App = React.createClass({
   },
 
   render() {
-    return  <div className="wrapper">
+    return <div className="wrapper">
       <div id="left"></div>
       <div id="right"></div>
       <div id="top"></div>
@@ -18,7 +18,6 @@ const App = React.createClass({
 
       <Header />
       {this.props.children}
-      
     </div>;
   }
 });

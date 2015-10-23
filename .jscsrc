@@ -61,13 +61,13 @@
   "validateLineBreaks": "LF",
   "validateQuoteMarks": null,
   "validateIndentation": 2,
-  "disallowMixedSpacesAndTabs": true,
+  "disallowMixedSpacesAndTabs": false,
   "disallowTrailingWhitespace": true,
   "disallowTrailingComma": true,
   "disallowKeywordsOnNewLine": ["else", "catch"],
   "requireLineFeedAtFileEnd": true,
   "maximumLineLength": {
-    "value": 150,
+    "value": 200,
     "allowUrlComments": true
   },
   "requireCapitalizedConstructors": true,

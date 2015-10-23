@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
 const NoMatch = React.createClass({
   render() {
-  	return	<div className="error">
+  	return <div className="error">
     	Error
     </div>;
   }

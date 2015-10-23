@@ -6,12 +6,11 @@ import style from './../styles/errorMsg.scss';
 
 const ErrorMsg = React.createClass({
   render() {
-
     var isError = this.props.error === '';
 
     var errorClasses = cx(
-      ['errorMsg'], 
-      {'show': !isError }
+      ['errorMsg'],
+      {'show': !isError}
     );
 
   	// Check if bioguide is defined (i.e. if user has searched for any members yet)

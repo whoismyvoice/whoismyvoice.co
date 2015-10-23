@@ -16,24 +16,22 @@ const Header = React.createClass({
   _handleClick: function(evt) {
     evt.preventDefault();
     evt.stopPropagation();
-    this.setState({ didClick: !this.state.didClick });
+    this.setState({didClick: !this.state.didClick});
   },
 
   render() {
-
     // Change classes for burger-icon and navigation based on whether onClick has been fired
     var iconClasses = cx(
-      ['burger-icon'], 
-      {'is-active': this.state.didClick }
+      ['burger-icon'],
+      {'is-active': this.state.didClick}
     );
 
     var menuClasses = cx(
       ['navigation'],
-      {'is-active': this.state.didClick }
+      {'is-active': this.state.didClick}
     );
-    
-    return<div className="header">
 
+    return <div className="header">
       <div className="menu">
 
         <div className="burger-wrapper" onClick={this._handleClick}>
@@ -45,23 +43,23 @@ const Header = React.createClass({
           </div>
 
           <Button
-            link="/sources" 
-            text="Data Sources" 
+            link="/sources"
+            text="Data Sources"
           />
 
           <Button
-            link="/about" 
+            link="/about"
             text="About this project"
           />
 
           <Button
-            link="/hfc" 
-            text="House Freedom Caucus" 
+            link="/hfc"
+            text="House Freedom Caucus"
           />
 
           <Button
-            link="/" 
-            text="Start Again" 
+            link="/"
+            text="Start Again"
           />
           <div className="arrowDown nav-arrow"></div>
         </nav>

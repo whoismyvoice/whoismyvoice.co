@@ -6,7 +6,7 @@ import cx from 'classnames'
 import ArrowDown from './ArrowDown'
 
 // Styles
-import style from './../styles/SearchInput.scss';
+import style from './../styles/SearchInput.scss'
 
 const SearchInput = React.createClass({
   getInitialState() {
@@ -16,14 +16,15 @@ const SearchInput = React.createClass({
 		}
 	},
 
-   _handleChange: function(event) {
+  _handleChange: function(event) {
     this.setState({
       zip_code: event.target.value
     });
   },
 
   _handleEnter: function(e) {
-    if(e.keyCode === 13) {
+
+    if (e.keyCode === 13) {
       if((isNaN(this.state.zip_code) && this.state.zip_code.length < 2) || (!isNaN(this.state.zip_code) && this.state.zip_code.length !== 5)) {
         this.setState({
           error: true
@@ -38,8 +39,8 @@ const SearchInput = React.createClass({
   },
 
   _handleClick: function() {
-    console.log("Click");
-    if((isNaN(this.state.zip_code) && this.state.zip_code.length < 2) || (!isNaN(this.state.zip_code) && this.state.zip_code.length !== 5)) {
+
+    if ((isNaN(this.state.zip_code) && this.state.zip_code.length < 2) || (!isNaN(this.state.zip_code) && this.state.zip_code.length !== 5)) {
       this.setState({
         error: true
       });
@@ -52,7 +53,6 @@ const SearchInput = React.createClass({
   },
 
   render() {
-
     var inputClasses = cx(
       ['input'], 
       {'error': this.state.error }

@@ -8,5 +8,5 @@ module.exports = {
       response: response,
       hfc: hfc || false
     });
-  },
+  }
 };

@@ -111,43 +111,40 @@ const Home = React.createClass({
       {'full': this.state.did_search && this.state.member_hfc}
     );
 
-    var member_name = this.state.member_name,
-        member_bioguide = this.state.member_bioguide,
-        member_zip_code = this.state.member_zip_code,
-        member_age = this.state.member_age,
-        member_gender = this.state.member_gender === 'M' ? 'man' : 'woman',
-        member_email = this.state.member_email,
-        member_tel = this.state.member_tel,
-        member_twitter = this.state.member_twitter,
-        member_state = this.state.member_state,
-        member_state_full = this.state.member_state_full,
-        voted_for = this.state.voted_for,
-        did_search = this.state.did_search,
-        party = this.state.member_party,
-        member_hfc = this.state.member_hfc,
-        error_msg = this.state.error_msg,
-        additional_member = this.state.additional_member,
-        additionalExists = additional_member !== null,
-        current_member = this.state.current_senator,
-        vote_status;
+    var MEMBER_NAME = this.state.member_name,
+        MEMBER_BIOGUIDE = this.state.member_bioguide,
+        MEMBER_ZIP_CODE = this.state.member_zip_code,
+        MEMBER_AGE = this.state.member_age,
+        MEMBER_GENDER = this.state.member_gender === 'M' ? 'man' : 'woman',
+        MEMBER_EMAIL = this.state.member_email,
+        MEMBER_TEL = this.state.member_tel,
+        MEMBER_TWITTER = this.state.member_twitter,
+        MEMBER_STATE = this.state.member_state,
+        MEMBER_STATE_FULL = this.state.member_state_full,
+        DID_SEARCH = this.state.did_search,
+        PARTY = this.state.member_party,
+        MEMBER_HFC = this.state.member_hfc,
+        ERROR_MSG = this.state.error_msg,
+        ADDITIONAL_MEMBER = this.state.additional_member,
+        ADDITIONALEXISTS = ADDITIONAL_MEMBER !== null,
+        CURRENT_MEMBER = this.state.current_senator,
+        VOTE_STATUS;
 
-    let impact = 'Here are some ways you can keep this '+ member_gender +' from being able to personally weigh in on the reproductive rights of millions of underserved women the next time a similar vote comes up.';
+    let impact = 'Here are some ways you can keep this '+ MEMBER_GENDER +' from being able to personally weigh in on the reproductive rights of millions of underserved women the next time a similar vote comes up.';
 
-    if(did_search && !member_hfc) {
+    if (DID_SEARCH && !MEMBER_HFC) {
       this._initializeFullpage();
 
-      if(additional_member === null) {
-        vote_status = 'co-sponsored a bill to defund Planned Parenthood. This '+ member_gender + ' represents your voice!';
-      } else if(additional_member !== null) {
-        vote_status = 'Both senators from ' + member_state_full + ' co-sponsored the bill to defund Planned Parenthood';
+      if (ADDITIONAL_MEMBER === null) {
+        VOTE_STATUS = 'co-sponsored a bill to defund Planned Parenthood. This '+ MEMBER_GENDER + ' represents your voice!';
+      } else if(ADDITIONAL_MEMBER !== null) {
+        VOTE_STATUS = 'Both senators from ' + MEMBER_STATE_FULL + ' co-sponsored the bill to defund Planned Parenthood';
       }
-
     } else {
-      vote_status = 'You have not yet searched for a member';
+      VOTE_STATUS = 'You have not yet searched for a member';
     }
       
-    if(member_hfc) {
-
+    if (MEMBER_HFC) {
       // RANDOM
       return <div className={containerClasses}>
         <div className="overlay">
@@ -164,7 +161,7 @@ const Home = React.createClass({
           />
 
           <SearchInput />
-          <ErrorMsg error={error_msg} />
+          <ErrorMsg error={ERROR_MSG} />
         </div>
 
         <div className={backgroundClasses} id="fullpage">
@@ -198,12 +195,12 @@ const Home = React.createClass({
           <Circle
             style="one"
             hide={true}
-            did_search={did_search}
+            did_search={DID_SEARCH}
             desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
           />
 
           <SearchInput />
-          <ErrorMsg error={error_msg} />
+          <ErrorMsg error={ERROR_MSG} />
         </div>
 
         <div className={backgroundClasses} id="fullpage">
@@ -211,28 +208,27 @@ const Home = React.createClass({
 
             <Circle
               style="wide"
-              additional={additional_member}
-              hfc={member_hfc}
-              age={member_age}
-              did_search={did_search}
-              gender={member_gender}
-              desc={vote_status}
+              additional={ADDITIONAL_MEMBER}
+              hfc={MEMBER_HFC}
+              age={MEMBER_AGE}
+              did_search={DID_SEARCH}
+              gender={MEMBER_GENDER}
+              desc={VOTE_STATUS}
             />
 
             <SenatorGroup
-              additional={additional_member}
-              bioguide={member_bioguide}
-              hfc={member_hfc}
-              name={member_name}
-              age={member_age}
-              did_search={did_search}
-              state={member_state}
-              did_search={did_search}
+              additional={ADDITIONAL_MEMBER}
+              bioguide={MEMBER_BIOGUIDE}
+              hfc={MEMBER_HFC}
+              name={MEMBER_NAME}
+              age={MEMBER_AGE}
+              did_search={DID_SEARCH}
+              state={MEMBER_STATE}
             />
 
             <ArrowDown 
               className="orange"
-              additional={additionalExists}
+              additional={ADDITIONALEXISTS}
               id='0'
             />
           </div>
@@ -245,14 +241,14 @@ const Home = React.createClass({
             />
 
             <SupportActions
-              additional={additional_member}
-              currentSenator={current_member}
-              hfc={member_hfc} 
-              gender={member_gender} 
-              email={member_email} 
-              tel={member_tel} 
-              twitter={member_twitter}
-              party={party}
+              additional={ADDITIONAL_MEMBER}
+              currentSenator={CURRENT_MEMBER}
+              hfc={MEMBER_HFC} 
+              gender={MEMBER_GENDER} 
+              email={MEMBER_EMAIL} 
+              tel={MEMBER_TEL} 
+              twitter={MEMBER_TWITTER}
+              party={PARTY}
             />
           </div>
         </div>

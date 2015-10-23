@@ -6,15 +6,14 @@ import style from './../styles/Circle.scss';
 
 const Circle = React.createClass({
   render() {
-
   	var hfc = this.props.hfc ? 'long' : '',
-  		status = this.props.hfc ? 'No!' : 'Yes!',
-      additional = this.props.additional === null ? null : this.props.additional,
-      senator = additional === null ? 'Your Senator, ' : '',
-      hide = this.props.did_search === false ? true : false,
-  		details;
+  		  status = hfc ? 'No!' : 'Yes!',
+        additional = this.props.additional === null ? null : this.props.additional,
+        senator = additional === null ? 'Your Senator, ' : '',
+        hide = this.props.did_search === false ? true : false,
+  		  details;
 
-  	if(!hfc && additional === null) {
+  	if (!hfc && additional === null) {
   		details = 'a ' + this.props.age + ' year old ' + this.props.gender + ' ';
   	}
 
@@ -26,13 +25,12 @@ const Circle = React.createClass({
     );
 
     var introductionClasses = cx(
-      ['status'], 
+      ['status'],
       {'hide': additional},
       {'hide': this.props.hide}
     );
 
-  	if(hfc !== undefined) {
-
+  	if (hfc !== undefined) {
   		return <div className={'circle' + ' ' + this.props.style + ' ' + hfc}>
 
   			<div className="description">
@@ -51,9 +49,7 @@ const Circle = React.createClass({
   				{this.props.desc}
   			</div>
   		</div>;
-
   	} else {
-
   		return	<div className={'circle ' + ' ' + this.props.style + ' ' + hfc}>
     		<div className="description">
     			{this.props.desc}

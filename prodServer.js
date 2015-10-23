@@ -1,11 +1,11 @@
-import path from 'path';
-import express from 'express';
+import path from 'path'
+import express from 'express'
 
 const server = express();
 
 server.use(express.static(__dirname + '/dist'))
 
-server.get('*', function (request, response){
+server.get('*', function (request, response) {
   response.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
 })
 

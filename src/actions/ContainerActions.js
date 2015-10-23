@@ -5,7 +5,7 @@ module.exports = {
 	identifySection: function(index) {
 		AppDispatcher.handleViewAction({
 			actionType: SenateConstants.IDENTIFY_SECTION,
-      		index: index
+      index: index
 		});
-	},
+	}
 };

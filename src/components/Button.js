@@ -6,7 +6,7 @@ import style from './../styles/Button.scss';
 
 const Button = React.createClass({
   render() {
-  	if(this.props.type === 'external') {
+  	if (this.props.type === 'external') {
   		return (
   			<a href={this.props.link} target="_blank">
   				<button className="button">
@@ -20,7 +20,7 @@ const Button = React.createClass({
   			</a>
   		)
   	} else {
-  		return  <button className="button nav">
+  		return <button className="button nav">
         <Link to={this.props.link}>
         	{this.props.text}
         </Link>

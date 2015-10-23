@@ -8,7 +8,7 @@ import ArrowActions from '../actions/ArrowActions.js'
 import style from './../styles/ArrowDown.scss';
 
 const ArrowDown = React.createClass({
-  
+
   _handleClick: function(event) {
   	// Listen for event.target.id in order to decipher which of the arrows was tapped
   	ArrowActions.setCurrentMember(event.target.id);
@@ -16,12 +16,11 @@ const ArrowDown = React.createClass({
   },
 
   render() {
-
   	var arrowClasses = cx(
-      ['arrowDown'], 
+      ['arrowDown'],
       {'hide': this.props.additional}
     );
-  	
+
   	return <div className={arrowClasses} id={this.props.id} onClick={this._handleClick}>
     	</div>;
   	}
