@@ -8,6 +8,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var StatsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin;
 var nodeModulesDir = path.resolve(__dirname, 'node_modules');
 var testDir = path.resolve(__dirname, 'test');
+var autoprefixer = require('autoprefixer');
 
 module.exports = {
   devtool: 'eval',
@@ -86,6 +87,8 @@ module.exports = {
       loader: 'url?limit=10000!img'
     }]
   },
+  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
+
   node: {
     fs: "empty"
   }

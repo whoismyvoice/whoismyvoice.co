@@ -18,6 +18,7 @@
     "jscs": "jscs ."
   },
   "dependencies": {
+    "autoprefixer": "^6.0.3",
     "classnames": "^2.1.5",
     "flux": "^2.1.1",
     "history": "^1.11.1",
