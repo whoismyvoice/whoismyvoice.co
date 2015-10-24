@@ -117,6 +117,7 @@ AppDispatcher.register(function(payload) {
     case AppConstants.FLUSH_STORE:
       _store.did_search = false;
       _store.member_hfc = false;
+      _store.current_screen = 0;
 
       SenateStore.emit(CHANGE_EVENT);
       break;

@@ -9,7 +9,7 @@ const Button = React.createClass({
 
   _destroyFullpage: function() {
     if($.fn.fullpage.destroy !== undefined) {
-      $.fn.fullpage.destroy();
+      $.fn.fullpage.destroy('all');
     }
   },
 

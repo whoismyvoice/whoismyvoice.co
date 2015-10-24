@@ -53,6 +53,7 @@ const Home = React.createClass({
   },
 
   _initializeFullpage: function() {
+  	console.log("Initialized");
     $('#fullpage').fullpage({
       //Navigation
       navigation: false,
@@ -75,6 +76,7 @@ const Home = React.createClass({
       controlArrows: false,
       verticalCentered: false,
       resize : true,
+
       onLeave: function(index, nextIndex, direction){
         ContainerActions.identifySection(nextIndex);
       }
@@ -82,7 +84,7 @@ const Home = React.createClass({
   },
   _destroyFullpage: function() {
     if($.fn.fullpage.destroy !== undefined) {
-      $.fn.fullpage.destroy();
+      $.fn.fullpage.destroy('all');
     }
   },
   render() {
