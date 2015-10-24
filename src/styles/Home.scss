@@ -14,6 +14,14 @@ h1 {
 	overflow: hidden;
 	@include transition(1s);
 
+	@media screen and (max-width: $iphone6) {
+		height: 88vh;
+	}
+
+	@media screen and (max-width: $iphone5-min) {
+		height: 86vh;
+	}
+
 	&.full {
 		height: auto;
 		min-height: 99vh;

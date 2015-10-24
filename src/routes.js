@@ -16,8 +16,8 @@ const routes = (
       <Route path="sources" component={Sources} />
       <Route path="hfc" component={Senators} />
       <Route path=":zip" component={Home} />
+      <Route path="*" component={Home}/>
     </Route>
-    <Route path="*" component={Home}/>
   </Router>
 );
 
