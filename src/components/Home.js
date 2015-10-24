@@ -34,8 +34,9 @@ const Home = React.createClass({
     //  if(params.zip && params.zip.length === 5 && !isNaN(params.zip)) {
     //    SenateActions.identifyMember(params.zip);
     //  }
-    //}  
-    if(this.state.did_search && !this.state.member_hfc) {
+    //}
+
+    if (this.state.did_search && !this.state.member_hfc) {
       this._initializeFullpage();
     } else {
       this._destroyFullpage();
@@ -83,7 +84,7 @@ const Home = React.createClass({
     });
   },
   _destroyFullpage: function() {
-    if($.fn.fullpage.destroy !== undefined) {
+    if ($.fn.fullpage.destroy !== undefined) {
       $.fn.fullpage.destroy('all');
     }
   },
@@ -98,7 +99,8 @@ const Home = React.createClass({
     var backgroundClasses = cx(
       ['second-wrapper'], 
       {'move-up': this.state.did_search },
-      {'static': !this.state.did_search }
+      {'static': !this.state.did_search },
+      {'short': this.state.member_hfc}
     );
 
     var containerClasses = cx(
@@ -116,7 +118,7 @@ const Home = React.createClass({
         MEMBER_ZIP_CODE = this.state.member_zip_code,
         MEMBER_AGE = this.state.member_age,
         MEMBER_GENDER = this.state.member_gender === 'M' ? 'man' : 'woman',
-        MEMBER_THIRD = MEMBER_GENDER === 'man' ? 'he' : 'she',
+        MEMBER_THIRD = MEMBER_GENDER === 'man' ? 'He' : 'She',
         MEMBER_EMAIL = this.state.member_email,
         MEMBER_TEL = this.state.member_tel,
         MEMBER_TWITTER = this.state.member_twitter,

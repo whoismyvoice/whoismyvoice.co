@@ -20,7 +20,7 @@
 	@media screen and (max-width: $iphone6) {
     	width: 30%;
     	padding: 15% 0;
-    	margin-bottom: 15px;
+    	margin-bottom: 5px;
   	}
 
     @media only screen 
@@ -30,6 +30,15 @@
     and (-webkit-min-device-pixel-ratio: 1) {
       width: 20%;
       padding: 10% 0;
+    }
+
+    @media only screen 
+    and (min-device-width: 768px) 
+    and (max-device-width: 1024px) 
+    and (orientation: landscape) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+      width: 14%;
+      padding: 7% 0;
     }
 
 	&.hide {

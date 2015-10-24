@@ -39,15 +39,16 @@ ul {
   width: 4px;
   margin: 0 auto;
   z-index: 1;
-  height: 60vh;
-  top: 7.4vh;
+  height: 60%;
+  top: 7.4%;
   position: fixed;
   left: 0;
   right: 0;
   background-color: $black;
 
   &.menu {
-    top: 9%;
+    top: 8%;
+    height: 56%;
 
     &:before {
       width: 30px;
@@ -66,7 +67,7 @@ ul {
     and (orientation: portrait) 
     and (-webkit-min-device-pixel-ratio: 1) {
       top: 7%;
-      height: 55vh;
+      height: 55%;
     }
 
     @media only screen 
@@ -75,7 +76,14 @@ ul {
     and (orientation: landscape) 
     and (-webkit-min-device-pixel-ratio: 1) {
       top: 9.5%;
-      height: 55vh;
+      height: 55%;
+    }
+
+    @media screen and (max-width: $iphone5-min) {
+      top: 9.5%;
+    }
+    @media screen and (max-width: $iphone6) {
+      top: 8.5%;
     }
   }
 
@@ -111,10 +119,10 @@ ul {
   text-align: center;
   margin: 0 auto;
   display: block;
-  padding-top: 10vh;
+  padding-top: 6%;
   margin-bottom: 0px;
   position: relative;
-  height: 88.5vh;
+  height: 100%;
   @include transition(1s);
 
   &.one {
@@ -140,6 +148,10 @@ ul {
   and (orientation: portrait) 
   and (-webkit-min-device-pixel-ratio: 1) {
     top: 18vh;
+  }
+
+  &.short {
+    height: 100vh;
   }
 
   &.move-up {
@@ -188,10 +200,10 @@ ul {
     text-align: center;
     align-self: center;
     position: fixed;
-    width: 100vw;
+    width: 100%;
     font-size: 1.3em;
     padding-top: 45vh;
-    height: 100vh;
+    height: 100%;
     z-index: 12;
     color: $white;
     background-color: $black;
@@ -226,11 +238,36 @@ button, input {
 .page-block {
   display: flex;
   flex-direction: column;
-  min-height: 90vh;
-  width: 100vw;
+  min-height: 89vh;
+  width: 100%;
   text-align: center;
-  padding-top: 10vh;
+  padding-top: 6%;
   justify-content: center;
+
+  @media screen and (max-width: $iphone6) {
+    padding-top: 14%;
+  }
+
+  @media screen and (max-width: $iphone5-min) {
+    padding-top: 18%;
+  }
+
+
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    padding-top: 8%;
+  }
+
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    padding-top: 8%;
+  }
 
   &.senators {
     height: auto;
@@ -245,7 +282,7 @@ button, input {
   align-self: center;
   width: 70%;
   line-height: 1.8;
-  margin-bottom: 5vh;
+  margin-bottom: 5%;
 
   @media screen and (max-width: $iphone6) {
     font-size: 1.2em;
@@ -273,7 +310,7 @@ button, input {
   and (-webkit-min-device-pixel-ratio: 1) {
     width: 90%;
     font-size: 1.6em;
-    margin-bottom: 2.5vh;
+    margin-bottom: 2.5%;
   }
 
   a {
@@ -293,7 +330,7 @@ button, input {
   margin: 0 auto;
   font-size: 1.8em;
   background-color: $bright-red;
-  padding: 3vh;
+  padding: 2%;
   color: $black;
   font-weight: bold;
 
@@ -303,7 +340,11 @@ button, input {
   and (orientation: portrait) 
   and (-webkit-min-device-pixel-ratio: 1) {
     width: 90%;
+    padding: 2%;
+    padding-bottom: 4%;
+    margin-bottom: 0%;
     font-size: 1.6em;
+    margin-top: 15%;
   }
 
   @media only screen 
@@ -312,7 +353,9 @@ button, input {
   and (orientation: landscape) 
   and (-webkit-min-device-pixel-ratio: 1) {
     width: 90%;
+    padding-top: 2%;
     font-size: 1.6em;
+    margin-top: 4%;
   }
 
   @media screen and (max-width: $iphone6) {

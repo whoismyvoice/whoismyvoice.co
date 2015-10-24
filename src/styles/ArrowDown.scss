@@ -20,6 +20,15 @@
 		padding-bottom: 30px;
 	}
 
+	@media only screen 
+  	and (min-device-width: 768px) 
+  	and (max-device-width: 1024px) 
+  	and (orientation: landscape) 
+  	and (-webkit-min-device-pixel-ratio: 1) {
+    	width: 46px;
+    	padding-bottom: 44px;
+  	}
+
 	&.hide {
 		display: none;
 	}
@@ -38,6 +47,15 @@
 		@media screen and (max-width: $iphone6) {
 			font-size: 1.5em;
 		}
+
+		@media only screen 
+  		and (min-device-width: 768px) 
+  		and (max-device-width: 1024px) 
+  		and (orientation: landscape) 
+  		and (-webkit-min-device-pixel-ratio: 1) {
+    		top: -1%;
+    		left: 28%;
+  		}
 	}
 
 	&:hover {
@@ -50,23 +68,58 @@
 	}
 
 	&.spacing {
-		margin-top: 5vh;
+		margin-top: 3%;
 		width: 58px;
 
 		@media screen and (max-width: $iphone6) {
-			margin-top: 3vh;
+			margin-top: 8%;
 			width: 38px;
 		}
 
 		&:before {
 			@media screen and (max-width: $iphone6) {
 				font-size: 1.7em;
+				left: 28%;
+				margin-top: -2%;
 			}
+
 			top: 5%;
+
+  			@media only screen 
+  			and (min-device-width: 768px) 
+  			and (max-device-width: 1024px) 
+  			and (orientation: landscape) 
+  			and (-webkit-min-device-pixel-ratio: 1) {
+    			top: 0;
+  			}
 		}
+
+		@media only screen 
+  		and (min-device-width: 768px) 
+  		and (max-device-width: 1024px) 
+  		and (orientation: portrait) 
+  		and (-webkit-min-device-pixel-ratio: 1) {
+    		margin-top: 5%;
+  		}
+
+  		@media only screen 
+  		and (min-device-width: 768px) 
+  		and (max-device-width: 1024px) 
+  		and (orientation: landscape) 
+  		and (-webkit-min-device-pixel-ratio: 1) {
+    		width: 54px;
+  		}
 	}
 
 	&.nav-arrow {
-		margin-top: 10vh;
+		margin-top: 5%;
+
+		@media only screen 
+  		and (min-device-width: 768px) 
+  		and (max-device-width: 1024px) 
+  		and (orientation: landscape) 
+  		and (-webkit-min-device-pixel-ratio: 1) {
+    		margin-top: 0;
+  		}
 	}
 }
