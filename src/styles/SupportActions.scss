@@ -14,6 +14,10 @@
 		background-color: inherit;
 	}
 
+  @media screen and (max-width: $iphone5-min) {
+    padding-top: 5px;
+  }
+
 	@media only screen 
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
@@ -104,6 +108,12 @@
     and (orientation: landscape) 
     and (-webkit-min-device-pixel-ratio: 1) {
       width: 200px;
+    }
+    @media screen and (max-width: $iphone5-min) {
+      padding: 8px;
+      width: 160px;
+      margin-bottom: 5px;
+      font-size: 0.7em;
     }
 
 		&:before {

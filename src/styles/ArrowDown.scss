@@ -76,6 +76,10 @@
 			width: 38px;
 		}
 
+		@media screen and (max-width: $iphone5-min) {
+      		margin-top: 5%;
+    	}
+
 		&:before {
 			@media screen and (max-width: $iphone6) {
 				font-size: 1.7em;
@@ -113,6 +117,10 @@
 
 	&.nav-arrow {
 		margin-top: 5%;
+
+		@media screen and (max-width: $iphone5-min) {
+      		margin-top: -4%;
+    	}
 
 		@media only screen 
   		and (min-device-width: 768px) 

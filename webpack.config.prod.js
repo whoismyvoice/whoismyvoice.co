@@ -7,7 +7,6 @@ var ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var StatsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin;
 var nodeModulesDir = path.resolve(__dirname, 'node_modules');
-var testDir = path.resolve(__dirname, 'test');
 var autoprefixer = require('autoprefixer');
 
 module.exports = {
@@ -16,7 +15,7 @@ module.exports = {
     app: [
       path.join(__dirname, 'src/main.js')
     ],
-    vendors: ['react', 'superagent']
+    vendors: ['react-dom', 'react', 'superagent', 'react-router', 'classnames', 'flux', 'history']
   },
   output: {
     path: path.join(__dirname, '/dist/'),
@@ -25,6 +24,11 @@ module.exports = {
     pathinfo: true
   },
   plugins: [
+
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      '__DEV__': JSON.stringify(process.env.NODE_ENV)
+    }),
 
     new ChunkManifestPlugin({
       filename: "manifest.json",
@@ -46,7 +50,7 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false,
-        screw_ie8: true
+        screw_ie8: true,
       }
     }),
 
@@ -54,17 +58,10 @@ module.exports = {
       filename: "webpack.stats.json" // Default
     }),
 
-    // Gather all vendor-related code inside vendors.min.js
     new webpack.optimize.CommonsChunkPlugin(
       'vendors',
       'js/vendors-[chunkhash].min.js'
-    ),
-
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-      '__DEV__': JSON.stringify(process.env.NODE_ENV)
-    })
-  ],
+    )],
 
   module: {
     preLoaders: [{
@@ -77,7 +74,7 @@ module.exports = {
       loader: ExtractTextPlugin.extract('css!postcss')
     }, {
       test: /\.js?$/,
-      exclude: [nodeModulesDir, testDir],
+      exclude: [nodeModulesDir],
       loader: 'babel'
     }, {
       test: /\.json?$/,
