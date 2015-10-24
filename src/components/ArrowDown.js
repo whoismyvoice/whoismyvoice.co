@@ -16,7 +16,7 @@ const ArrowDown = React.createClass({
   },
 
   render() {
-  	var arrowClasses = cx(
+  	let arrowClasses = cx(
       ['arrowDown'],
       {'hide': this.props.additional}
     );

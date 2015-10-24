@@ -6,7 +6,7 @@ import style from './../../styles/SenatorName.scss';
 
 const SenatorName = React.createClass({
   render() {
-  	var title = this.props.hfc ? '' : 'Senator',
+  	let title = this.props.hfc ? '' : 'Senator',
         name = title + ' ' + this.props.name,
         age = this.props.age === undefined ? '' : this.props.age + ' years old',
         twitterHandle = this.props.twitter === undefined ? '' : '@'+this.props.twitter,

@@ -21,12 +21,12 @@ const Header = React.createClass({
 
   render() {
     // Change classes for burger-icon and navigation based on whether onClick has been fired
-    var iconClasses = cx(
+    let iconClasses = cx(
       ['burger-icon'],
       {'is-active': this.state.didClick}
     );
 
-    var menuClasses = cx(
+    let menuClasses = cx(
       ['navigation'],
       {'is-active': this.state.didClick}
     );

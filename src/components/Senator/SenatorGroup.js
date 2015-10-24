@@ -9,11 +9,11 @@ import style from './../../styles/SenatorGroup.scss';
 const SenatorGroup = React.createClass({
   render() {
 
-    var additional = this.props.additional;
+    let additional = this.props.additional;
 
     if (additional !== null) {
       
-      var additional_mid_name = additional.middle_name === null ? '' : additional.middle_name,
+      let additional_mid_name = additional.middle_name === null ? '' : additional.middle_name,
           additional_bioguide = additional.bioguide_id,
           additional_name = additional.first_name + ' ' + additional_mid_name + ' ' + additional.last_name || '',
           additional_age = (2015-additional.birthday.substring(0,4)) || null;

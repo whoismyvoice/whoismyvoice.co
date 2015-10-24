@@ -89,21 +89,19 @@ const Home = React.createClass({
     }
   },
   render() {
-    var LastScreen = false;
-
-    var blockClasses = cx(
+    let blockClasses = cx(
       ['block', 'one'], 
       {'hide': this.state.did_search }
     );
 
-    var backgroundClasses = cx(
+    let backgroundClasses = cx(
       ['second-wrapper'], 
       {'move-up': this.state.did_search },
       {'static': !this.state.did_search },
       {'short': this.state.member_hfc}
     );
 
-    var containerClasses = cx(
+    let containerClasses = cx(
       ['container'], 
       {'reveal': this.state.did_search},
       {'green': !this.state.did_search},
@@ -113,7 +111,7 @@ const Home = React.createClass({
       {'full': this.state.did_search && this.state.member_hfc}
     );
 
-    var MEMBER_NAME = this.state.member_name,
+    let MEMBER_NAME = this.state.member_name,
         MEMBER_BIOGUIDE = this.state.member_bioguide,
         MEMBER_ZIP_CODE = this.state.member_zip_code,
         MEMBER_AGE = this.state.member_age,

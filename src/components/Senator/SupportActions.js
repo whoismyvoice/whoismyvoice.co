@@ -8,14 +8,14 @@ import Button from './../Button';
 
 const SupportActions = React.createClass({
   render() {
-    var additional = this.props.additional,
+    let additional = this.props.additional,
         current = this.props.currentSenator,
         gender,
         email,
         twitter,
         tel;
 
-    if(additional !== null && current === '1') {
+    if (additional !== null && current === '1') {
       gender = additional.gender === 'M' ? 'him' : 'her',
       email = additional.oc_email,
       twitter = additional.twitter_id,

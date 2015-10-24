@@ -6,7 +6,7 @@ import style from './../styles/Circle.scss';
 
 const Circle = React.createClass({
   render() {
-  	var hfc = this.props.hfc ? 'long' : '',
+  	let hfc = this.props.hfc ? 'long' : '',
   		  status = hfc ? 'No!' : 'Yes!',
         additional = this.props.additional === null ? null : this.props.additional,
         senator = additional === null ? 'Your Senator, ' : '',
@@ -17,12 +17,12 @@ const Circle = React.createClass({
 
     // Define classes for showing second line to allow for not displaying anything
     // when two senators have been fetched
-    var statusClasses = cx(
+    let statusClasses = cx(
       ['status'],
       {'hide': this.props.hide}
     );
 
-    var introductionClasses = cx(
+    let introductionClasses = cx(
       ['status'],
       {'hide': additional},
       {'hide': this.props.hide}

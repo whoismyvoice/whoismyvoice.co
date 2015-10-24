@@ -11,7 +11,7 @@ import HFCOverview from './HFCOverview'
 const Results = React.createClass({
 
 	render() {
-		var isHFC = this.props.hfc,
+		let isHFC = this.props.hfc,
 				additional_member = this.props.additional_member,
 				age = this.props.age,
 				did_search = this.props.did_search,

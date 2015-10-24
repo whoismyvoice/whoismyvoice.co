@@ -15,9 +15,9 @@ const HFCOverview = React.createClass({
       return o;
     }
 
-  	var shuffledMembers = shuffle(this.props.members);
+  	let shuffledMembers = shuffle(this.props.members);
 
-  	var members = shuffledMembers.map(function(member, idx) {
+  	let members = shuffledMembers.map(function(member, idx) {
   		member = (
   			<HFCGroup
       			bioguide={member.bioguide}
