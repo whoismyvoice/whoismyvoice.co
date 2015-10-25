@@ -30,7 +30,8 @@ const Results = React.createClass({
 
 		if (isHFC) {
 			return <div className={this.props.backgroundClasses} id="fullpage">
-         <div className="section block two">
+        <div className="black-top-line"></div>
+        <div className="section block two">
 
           <p className="impact">
             No! Your senators support Planned Parenthood!<br />
@@ -40,6 +41,10 @@ const Results = React.createClass({
           <HFCOverview
             color="bright-red"
             members={HFCMembers}
+          />
+
+          <ArrowDown 
+            scroll={'true'}
           />
 
         </div>

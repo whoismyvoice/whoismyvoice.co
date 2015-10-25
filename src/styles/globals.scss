@@ -9,6 +9,16 @@
   transition:all $time ease-in;
 }
 
+// MIXINS (TRANSITIONS)
+@mixin fade($time) {
+  -webkit-transition:opacity $time ease-in;
+  -moz-transition:opacity $time ease-in;
+  -ms-transition:opacity $time ease-in;
+  -o-transition:opacity $time ease-in;
+  transition:opacity $time ease-in;
+}
+
+
 body {
   margin: 0 auto;
   font-family: 'Helvetica Neue';
@@ -40,14 +50,14 @@ ul {
   margin: 0 auto;
   z-index: 1;
   height: 60%;
-  top: 7.4%;
+  top: 68px;
   position: fixed;
   left: 0;
   right: 0;
   background-color: $black;
 
   &.menu {
-    top: 8%;
+    top: 74px;
     height: 56%;
 
     &:before {
@@ -66,7 +76,6 @@ ul {
     and (max-device-width: 1024px) 
     and (orientation: portrait) 
     and (-webkit-min-device-pixel-ratio: 1) {
-      top: 7%;
       height: 55%;
     }
 
@@ -75,28 +84,23 @@ ul {
     and (max-device-width: 1024px) 
     and (orientation: landscape) 
     and (-webkit-min-device-pixel-ratio: 1) {
-      top: 9.5%;
       height: 55%;
     }
 
     @media screen and (max-width: $iphone6) {
-      top: 9.5%;
       height: 55%;
     }
 
     @media screen and (max-width: $iphone5-min) {
-      top: 11.5%;
       height: 60%;
     }
   }
 
   @media screen and (max-width: $iphone6) {
-   top: 7.8vh;
    height: 65%;
   }
 
   @media screen and (max-width: $iphone5-min) {
-   top: 10%;
   }
 
   @media only screen 
@@ -104,7 +108,6 @@ ul {
   and (max-device-width: 1024px) 
   and (orientation: portrait) 
   and (-webkit-min-device-pixel-ratio: 1) {
-    top: 6.6vh;
   }
 
   @media only screen 
@@ -112,8 +115,27 @@ ul {
   and (max-device-width: 1024px) 
   and (orientation: landscape) 
   and (-webkit-min-device-pixel-ratio: 1) {
-    top: 9vh;
     height: 55vh;
+  }
+}
+
+.black-top-line {
+  width: 4px;
+  display: block;
+  margin: 0 auto;
+  background-color: $black;
+  height: 50px;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  right: 0;
+  opacity: 1;
+  @include fade(1s);
+
+  &.hide {
+    opacity: 0;
+    @include fade(1s);
   }
 }
 

@@ -16,6 +16,7 @@ import SupportActions from './Senator/SupportActions'
 import ErrorMsg from './ErrorMsg'
 import ArrowDown from './ArrowDown'
 import HFCOverview from './HFCOverview'
+import WhiteBorder from './WhiteBorder'
 
 // Styles
 import style from './../styles/Home.scss'
@@ -93,6 +94,11 @@ const Home = React.createClass({
       {'hide': this.state.did_search }
     );
 
+    let topLineClasses = cx(
+      ['black-top-line'],
+      {'hide': !this.state.did_search}
+    );
+
     let backgroundClasses = cx(
       ['second-wrapper'], 
       {'move-up': this.state.did_search },
@@ -140,6 +146,10 @@ const Home = React.createClass({
     }
     // NOT RANDOM
     return  <div className={containerClasses}>
+      <div className={topLineClasses}></div>
+
+      <WhiteBorder />
+
       <div className="overlay">
         This site is only supported in portrait mode. Please turn your phone.
       </div>

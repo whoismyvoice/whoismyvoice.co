@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
+import ArrowDown from './ArrowDown'
+import WhiteBorder from './WhiteBorder'
 
 const About = React.createClass({
   componentDidMount: function() {
@@ -8,6 +10,8 @@ const About = React.createClass({
   
   render() {
     return <div className="page-block bright-red">
+      <div className="black-top-line"></div>
+      <WhiteBorder />
       <p className="pageIntroduction">
       	This website is unaffiliated with any government party or entity, nor are we a media outlet. Its objective is to provide comprehensive,
         actionable data to constituents who have a desire to better understand and contact the decision makers representing them.

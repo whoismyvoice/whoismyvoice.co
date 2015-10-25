@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
+import WhiteBorder from './WhiteBorder'
 
 const Sources = React.createClass({
 
@@ -9,6 +10,8 @@ const Sources = React.createClass({
 
   render() {
     return  <div className="page-block bright-green">
+      <div className="black-top-line"></div>
+      <WhiteBorder />
       <p className="pageIntroduction">
       	Every senator listed on this website is a listed co-sponsor of Senate Bill 1881. Senate Bill 1881 is a "bill to prohibit the federal funding of the Planned Parenthood Federation of America". (1)<br /><br />
       	The Congressmen listed on this website are the listed members of the House Freedom Caucus, who issued a press release via Congressman Jim Jordan on September 10, 2015:
