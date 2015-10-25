@@ -8,11 +8,13 @@
 	border-radius: 50%;
 	background: inherit;
 	position: relative;
-	display: block;
 	margin: 0 auto;
 	cursor: pointer;
 	border: 3px solid $black;
 	z-index: 3;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	@include transition(0.2s);
 
 	@media screen and (max-width: $iphone6) {
@@ -34,15 +36,14 @@
 	}
 
 	&:before {
+		position: relative;
 		font-family: FontAwesome;
 		font-weight: normal;
 		content: '\f107';
-		display: block;
 		font-size: 2.5em;
+		height: 10px;
+		margin-top: 32%;
 		color: $black;
-		position: absolute;
-		top: 4%;
-		left: 30%;
 
 		@media screen and (max-width: $iphone6) {
 			font-size: 1.5em;
@@ -70,6 +71,7 @@
 	&.spacing {
 		margin-top: 3%;
 		width: 58px;
+		padding-bottom: 48px;
 
 		@media screen and (max-width: $iphone6) {
 			margin-top: 8%;
@@ -86,8 +88,6 @@
 				left: 28%;
 				margin-top: -2%;
 			}
-
-			top: 5%;
 
   			@media only screen 
   			and (min-device-width: 768px) 
@@ -116,7 +116,7 @@
 	}
 
 	&.nav-arrow {
-		margin-top: 5%;
+		margin-top: 3%;
 
 		@media screen and (max-width: $iphone5-min) {
       		margin-top: -4%;
