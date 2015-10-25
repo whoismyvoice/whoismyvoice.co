@@ -83,6 +83,8 @@
     	}
 
 		&:before {
+			margin-top: 0;
+			
 			@media screen and (max-width: $iphone6) {
 				font-size: 1.7em;
 				left: 28%;
