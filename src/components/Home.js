@@ -54,7 +54,6 @@ const Home = React.createClass({
   },
 
   _initializeFullpage: function() {
-  	console.log("Initialized");
     $('#fullpage').fullpage({
       //Navigation
       navigation: false,

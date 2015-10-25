@@ -1,13 +1,11 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import AppConstants from '../constants/SenateConstants';
-import SenateGetRandomActions from '../actions/SenateGetRandomActions';
-import ObjectAssign from 'object-assign';
-import { EventEmitter } from 'events';
+import AppConstants from '../constants/SenateConstants'
+import ObjectAssign from 'object-assign'
+import { EventEmitter } from 'events'
+import HFCMembers from '../data/HFCMembers'
+import votedFor from '../data/votedFor'
 
-import HFCMembers from '../data/HFCMembers';
-import votedFor from '../data/votedFor';
-
-const CHANGE_EVENT = 'change';
+const CHANGE_EVENT = 'change'
 
 // Define store as empty
 
@@ -65,7 +63,7 @@ AppDispatcher.register(function(payload) {
 
       if(action.response === 'error') {
         _store.error_msg = 'Ineligible zip code';
-      } else if(!action.hfc) {
+      } else {
 
         var details = action.response[0];
         var additionalSenator = action.response.length > 1 ? action.response[1]: '';
@@ -86,9 +84,6 @@ AppDispatcher.register(function(payload) {
         _store.error_msg = '',
         _store.did_search = true,
         _store.additional_member = additionalSenator || null
-      } else {
-        _store.did_search = true;
-        _store.member_hfc = true;
       }
 
       SenateStore.emit(CHANGE_EVENT);

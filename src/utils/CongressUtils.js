@@ -1,5 +1,4 @@
 import SenateServerActions from '../actions/SenateServerActions';
-import SenateGetRandomActions from '../actions/SenateGetRandomActions';
 import votedFor from '../data/votedFor';
 import request from 'superagent';
 
@@ -40,7 +39,7 @@ module.exports = {
           } else if(senators.length > 0) {
             SenateServerActions.getDetails(senators);
           } else {
-            SenateGetRandomActions.getRandomMember();
+            SenateServerActions.getRandomMember();
           }
         });
     }
