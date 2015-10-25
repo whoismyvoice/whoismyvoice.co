@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 
 const About = React.createClass({
-   componentDidMount: function() {
+  componentDidMount: function() {
     $(document).scrollTop(0);
   },
   

@@ -5,7 +5,9 @@ import HFCGroup from './Senator/HFCGroup'
 import style from './../styles/HFCGroup.scss';
 
 const HFCOverview = React.createClass({
-
+  componentDidMount: function() {
+    $(document).scrollTop(0);
+  },
   render() {
     
   	// Shuffle function to make sure that congressmen are not shown the same way each time

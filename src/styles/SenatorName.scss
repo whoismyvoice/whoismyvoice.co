@@ -20,6 +20,7 @@
 	h2 {
 		margin: 0;
 		font-size: 1.3em;
+		font-size: 1vw;
 
 		@media screen and (max-width: $iphone6) {
     		font-size: 1em;
