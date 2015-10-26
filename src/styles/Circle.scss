@@ -135,9 +135,9 @@
     and (orientation: landscape) 
     and (-webkit-min-device-pixel-ratio: 1) {
       margin-top: 1%;
-      margin-bottom: 0.8%;
-      width: 30%;
-      padding: 15% 0;
+      margin-bottom: 0;
+      width: 27%;
+      padding: 13.5% 0;
     }
 
     @media only screen 
@@ -146,6 +146,8 @@
     and (orientation: portrait) 
     and (-webkit-min-device-pixel-ratio: 1) {
       margin-top: 15%;
+      width: 50%;
+      padding: 25% 0;
       margin-bottom: 10%;
     }
 
@@ -225,7 +227,7 @@
     and (max-device-width: 1024px) 
     and (orientation: landscape) 
     and (-webkit-min-device-pixel-ratio: 1) {
-      margin-top: 3%;
+      margin-top: 1.5%;
       width: 30%;
       padding: 15% 0;
     }
@@ -235,7 +237,7 @@
     and (max-device-width: 1024px) 
     and (orientation: portrait) 
     and (-webkit-min-device-pixel-ratio: 1) {
-      margin-top: 16%;
+      margin-top: 10%;
     }
 
   	.description {

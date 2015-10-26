@@ -20,6 +20,22 @@
 	.twitterHandle {
 		font-size: 1vw;
 
+		@media only screen 
+  		and (min-device-width: 768px) 
+  		and (max-device-width: 1024px) 
+  		and (orientation: portrait) 
+  		and (-webkit-min-device-pixel-ratio: 1) {
+  			font-size: 0.9em!important;
+  		}
+
+  		@media only screen 
+  		and (min-device-width: 768px) 
+  		and (max-device-width: 1024px) 
+  		and (orientation: landscape) 
+  		and (-webkit-min-device-pixel-ratio: 1) {
+    		font-size: 1.2em;
+  		}
+
 		@media screen and (max-width: $iphone6) {
     		font-size: 0.8em;
   		}
@@ -57,7 +73,7 @@
   		and (max-device-width: 1024px) 
   		and (orientation: landscape) 
   		and (-webkit-min-device-pixel-ratio: 1) {
-    		font-size: 1.2em;
+    		font-size: 1.4em;
   		}
 
   		@media only screen 

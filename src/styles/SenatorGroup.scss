@@ -37,6 +37,22 @@
 		@media screen and (max-width: $iphone6) {
     		margin-left: 5%;
   		}
+
+  		@media only screen 
+    	and (min-device-width: 768px) 
+    	and (max-device-width: 1024px) 
+    	and (orientation: portrait) 
+    	and (-webkit-min-device-pixel-ratio: 1) {
+      		margin-left: 0%;
+    	}
+
+    	@media only screen 
+    	and (min-device-width: 768px) 
+    	and (max-device-width: 1024px) 
+    	and (orientation: landscape) 
+    	and (-webkit-min-device-pixel-ratio: 1) {
+      		margin-left: 0%;
+    	}
 	}
 
 	@media screen and (max-width: $iphone6) {
@@ -90,6 +106,14 @@
 				margin-right: 5%;
 				font-size: 0.8em;
 			}
+
+			@media only screen 
+  			and (min-device-width: 768px) 
+  			and (max-device-width: 1024px) 
+  			and (orientation: landscape) 
+  			and (-webkit-min-device-pixel-ratio: 1) {
+    			font-size: 1.1em;
+  			}
 		}
 	}
 }
@@ -126,5 +150,13 @@
 		margin: 0 auto;
 		height: 115px;
 		content: '';
+
+		@media only screen 
+   		and (min-device-width: 768px) 
+    	and (max-device-width: 1024px) 
+    	and (orientation: portrait) 
+    	and (-webkit-min-device-pixel-ratio: 1) {
+      		left: 13px;
+    	}
 	}
 }

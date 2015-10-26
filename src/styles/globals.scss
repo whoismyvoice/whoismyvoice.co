@@ -86,7 +86,7 @@ ul {
     and (max-device-width: 1024px) 
     and (orientation: portrait) 
     and (-webkit-min-device-pixel-ratio: 1) {
-      height: 66%;
+      height: 65%;
     }
 
     @media only screen 
@@ -118,6 +118,14 @@ ul {
   and (orientation: landscape) 
   and (-webkit-min-device-pixel-ratio: 1) {
     height: 60%;
+  }
+
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    height: 58%;
   }
 }
 
@@ -182,7 +190,15 @@ ul {
   and (max-device-width: 1024px) 
   and (orientation: portrait) 
   and (-webkit-min-device-pixel-ratio: 1) {
-    top: 18vh;
+    top: 20vh;
+  }
+
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    top: 20vh;
   }
 
   &.short {
@@ -265,17 +281,6 @@ button, input {
   text-shadow: 1px 1px 1px #B43092;
 }
 
-.Section {
-  overflow: hidden!important;
-}
-
-.downArrow {
-  display: block;
-  width: 100px;
-  height: 50px;
-  background-color: $black;
-}
-
 .page-block {
   display: flex;
   flex-direction: column;
@@ -298,7 +303,7 @@ button, input {
   and (max-device-width: 1024px) 
   and (orientation: portrait) 
   and (-webkit-min-device-pixel-ratio: 1) {
-    padding-top: 8%;
+    padding-top: 10%;
   }
 
   @media only screen 
@@ -342,6 +347,7 @@ button, input {
   and (-webkit-min-device-pixel-ratio: 1) {
     width: 90%;
     font-size: 1.6em;
+    margin-bottom: -2%;
   }
 
   @media only screen 
@@ -351,7 +357,8 @@ button, input {
   and (-webkit-min-device-pixel-ratio: 1) {
     width: 90%;
     font-size: 1.6em;
-    margin-bottom: 2.5%;
+    margin-bottom: 0%;
+    margin-top: 4%;
   }
 
   a {
@@ -442,6 +449,14 @@ button, input {
     and (orientation: portrait) 
     and (-webkit-min-device-pixel-ratio: 1) {
       height: 65.5%;
+    }
+
+    @media only screen 
+    and (min-device-width: 768px) 
+    and (max-device-width: 1024px) 
+    and (orientation: landscape) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+      height: 60%;
     }
   }
 }
