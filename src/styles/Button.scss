@@ -44,6 +44,10 @@
         margin-top: 30%;
       }
 
+      @media screen and (max-width: $iphone5-min) {
+        margin-top: 25%;
+      }
+
       @media only screen 
       and (min-device-width: 768px) 
       and (max-device-width: 1024px) 
@@ -58,6 +62,10 @@
       margin-bottom: 30px;
       padding: 14px;
       font-size: 1.1em;
+    }
+
+    @media screen and (max-width: $iphone5-min) {
+      margin-bottom: 20px;
     }
 
     a {

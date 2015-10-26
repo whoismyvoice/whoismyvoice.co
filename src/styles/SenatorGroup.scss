@@ -111,6 +111,10 @@
 		top: 31%;
 	}
 
+	@media screen and (max-width: $iphone5-min) {
+      width: 180px;
+    }
+
 	&:before {
 		width: 4px;
 		background-color: $black;

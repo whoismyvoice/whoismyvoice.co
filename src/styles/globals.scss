@@ -410,6 +410,10 @@ button, input {
     width: 85%;
     padding: 2vh;
   }
+
+  @media screen and (max-width: $iphone5-min) {
+      padding: 4vh;
+  }
 }
 
 .pageDesc {

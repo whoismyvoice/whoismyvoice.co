@@ -126,7 +126,7 @@
     @media screen and (max-width: $iphone5-min) {
       width: 55%;
       padding: 27.5% 0;
-      margin-top: 8%;
+      margin-top: 18%;
     }
 
     @media only screen 
@@ -214,9 +214,10 @@
     }
 
     @media screen and (max-width: $iphone5-min) {
-      margin-top: 8%;
-      width: 54%;
-      padding: 27% 0;
+      margin-top: 17%;
+      width: 70%;
+      padding-bottom: 25%;
+      padding-top: 20%;
     }
 
     @media only screen 
@@ -247,8 +248,7 @@
       }
 
       @media screen and (max-width: $iphone5-min) {
-        font-size: 0.8em;
-        margin-top: 0;
+        font-size: 1.1em;
       }
 
       @media only screen 

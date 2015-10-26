@@ -24,6 +24,10 @@
 		margin-bottom: 1vh;
 	}
 
+	@media screen and (max-width: $iphone5-min) {
+		margin-bottom: 0;
+	}
+
 	.senatorImg {
 		width: 50%;
 		padding: 25% 0;

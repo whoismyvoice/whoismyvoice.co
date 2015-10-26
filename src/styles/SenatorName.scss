@@ -25,6 +25,18 @@
   		}
 	}
 
+	.age {
+		font-size: 1em;
+
+		@media screen and (max-width: $iphone6) {
+    		font-size: 0.9em;
+  		}
+
+  		@media screen and (max-width: $iphone5-min) {
+    		font-size: 0.8em;
+  		}
+	}
+
 	h2 {
 		margin: 0;
 		font-size: 1.2em;
@@ -32,6 +44,11 @@
 
 		@media screen and (max-width: $iphone6) {
     		font-size: 1em;
+    		margin-top: 0;
+  		}
+
+  		@media screen and (max-width: $iphone5-min) {
+    		font-size: 0.8em;
     		margin-top: 0;
   		}
 
