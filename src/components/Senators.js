@@ -23,7 +23,8 @@ const Senators = React.createClass({
     	/>
 
       <ArrowDown
-        scroll={'true'}
+        scroll='true'
+        color='blue-text'
       />
     </div>;
   }

@@ -28,19 +28,22 @@ const SupportActions = React.createClass({
     }
 
     return  <div className="supportActions">
-      <Button 
+      <Button
+        color='purple-text'
         type='external' 
         link={ 'mailto:' + email } 
         text={ 'Email ' + gender }
         secondary={email}
       />
       <Button
+        color='purple-text'
         type='external'
         link={ 'tel:' + tel }
         text={ 'Call ' + gender}
         secondary={tel}
       />
       <Button
+        color='purple-text'
         type='external'
         link={ 'http://twitter.com/home/?status=@' + twitter }
         rel='external' 
@@ -48,6 +51,7 @@ const SupportActions = React.createClass({
         secondary={'@'+twitter}
       />
       <Button
+        color='purple-text'
         type='external'
         link="https://registertovote.org/"
         text="Register to vote"

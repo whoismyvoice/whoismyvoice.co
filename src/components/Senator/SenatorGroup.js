@@ -32,7 +32,7 @@ const SenatorGroup = React.createClass({
               did_search={this.props.did_search}
             />
 
-            <ArrowDown id="0" />
+            <ArrowDown id="0" color='orange-text' />
           </div>
 
           <div className="connectingLine"></div>
@@ -49,7 +49,7 @@ const SenatorGroup = React.createClass({
               did_search={this.props.did_search}
             />
 
-            <ArrowDown id="1" />
+            <ArrowDown id="1" color='orange-text' />
           </div>
 
         </div>;

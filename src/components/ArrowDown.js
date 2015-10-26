@@ -27,11 +27,13 @@ const ArrowDown = React.createClass({
       {'sticky': this.props.scroll}
     );
 
+    let color = this.props.color;
+
     if(this.props.scroll) {
-      return <div className={arrowClasses} onClick={this._handleScroll}>
+      return <div className={arrowClasses+' '+color} onClick={this._handleScroll}>
         </div>
     } else {
-      return <div className={arrowClasses} id={this.props.id} onClick={this._handleClick}>
+      return <div className={arrowClasses+' '+color} id={this.props.id} onClick={this._handleClick}>
         </div>;
       }
     }  	

@@ -48,26 +48,30 @@ const Header = React.createClass({
           </div>
 
           <Button
+            color={'yellow-text'}
             link="/sources"
             text="Data Sources"
           />
 
           <Button
+            color={'yellow-text'}
             link="/about"
             text="About This project"
           />
 
           <Button
+            color={'yellow-text'}
             link="/hfc"
             text="House Freedom Caucus"
           />
 
           <Button
+            color={'yellow-text'}
             link="/"
             flush={true}
             text="Start Again"
           />
-          <div className="arrowDown nav-arrow"></div>
+          <div className="arrowDown yellow-text nav-arrow"></div>
         </nav>
       </div>
     </div>;

@@ -71,7 +71,7 @@ const SearchInput = React.createClass({
           placeholder="Enter Your Zip Code"
         />
         <button 
-          className="arrowDown spacing" 
+          className="arrowDown green-text spacing" 
           onClick={this._handleClick}>
         </button>
     </span>;

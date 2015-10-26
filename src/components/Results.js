@@ -42,7 +42,8 @@ const Results = React.createClass({
             members={HFCMembers}
           />
 
-          <ArrowDown 
+          <ArrowDown
+            color='red-text'
             scroll={'true'}
           />
 
@@ -70,11 +71,6 @@ const Results = React.createClass({
               age={age}
               did_search={did_search}
               state={state}
-            />
-
-            <ArrowDown
-              additional={additional_exists}
-              id='0'
             />
           </div>
 

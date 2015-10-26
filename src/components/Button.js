@@ -19,9 +19,12 @@ const Button = React.createClass({
   },
 
   render() {
+
+    var color = this.props.color;
+
   	if (this.props.type === 'external') {
   		return (
-  			<a href={this.props.link} target="_blank">
+  			<a href={this.props.link} className={color} target="_blank">
   				<button className="button">
             <div className="text">
   					   {this.props.text}
@@ -33,13 +36,13 @@ const Button = React.createClass({
   			</a>
   		)
   	} else if(this.props.flush === true) {
-  		return <button className="button nav" onClick={this._handleRestart}>
+  		return <button className={'button nav '+color} onClick={this._handleRestart}>
         <Link to={this.props.link}>
         	{this.props.text}
         </Link>
       </button>;
   	} else {
-      return <button className="button nav">
+      return <button className={'button nav '+color}>
         <Link to={this.props.link}>
           {this.props.text}
         </Link>

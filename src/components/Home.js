@@ -14,7 +14,6 @@ import SearchInput from './SearchInput'
 import SenatorGroup from './Senator/SenatorGroup'
 import SupportActions from './Senator/SupportActions'
 import ErrorMsg from './ErrorMsg'
-import ArrowDown from './ArrowDown'
 import HFCOverview from './HFCOverview'
 import WhiteBorder from './WhiteBorder'
 

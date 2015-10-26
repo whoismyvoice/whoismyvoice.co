@@ -49,16 +49,21 @@ ul {
   width: 4px;
   margin: 0 auto;
   z-index: 1;
-  height: 60%;
+  height: 65%;
   top: 68px;
   position: fixed;
   left: 0;
   right: 0;
   background-color: $black;
 
+  @supports (overflow:-webkit-marquee)
+  and (justify-content:inherit) {
+    height: 64%;
+  }
+
   &.menu {
     top: 74px;
-    height: 62%;
+    height: 65%;
 
     &:before {
       width: 30px;
@@ -73,7 +78,7 @@ ul {
 
     @supports (overflow:-webkit-marquee)
     and (justify-content:inherit) {
-      height: 65%;
+      height: 60%;
     }
 
     @media only screen 
@@ -367,7 +372,13 @@ button, input {
   background-color: $bright-red;
   padding: 2%;
   color: $black;
+  margin-top: -4%;
   font-weight: bold;
+
+  @supports (overflow:-webkit-marquee)
+  and (justify-content:inherit) {
+    margin-top: 5%;
+  }
 
   @media only screen 
   and (min-device-width: 768px) 
@@ -414,6 +425,7 @@ button, input {
   @include transition(0.5s);
 
   .black-line {
+    height: 48%;
 
     @media screen and (max-width: $iphone6) {
       height: 61%;
@@ -437,6 +449,8 @@ button, input {
   background-color: $light-purple;
 
   .black-line {
+    height: 65%;
+
     @media only screen 
     and (min-device-width: 768px) 
     and (max-device-width: 1024px) 
@@ -462,4 +476,13 @@ button, input {
 .bright-red {
   background-color: $bright-red;
   @include transition(0.5s);
+}
+.purple-text {
+  color: $light-purple!important;
+
+  .button {
+    &:hover {
+      color:$light-purple;
+    }
+  }
 }
