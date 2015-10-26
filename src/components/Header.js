@@ -3,6 +3,9 @@ import { Link } from 'react-router'
 import Button from './Button'
 import cx from 'classnames'
 
+// Components
+import WhiteBorder from './WhiteBorder'
+
 // Styles
 import style from './../styles/Header.scss';
 
@@ -17,6 +20,7 @@ const Header = React.createClass({
     evt.preventDefault();
     evt.stopPropagation();
     this.setState({didClick: !this.state.didClick});
+    $(document).scrollTop(0);
   },
 
   render() {
@@ -39,6 +43,7 @@ const Header = React.createClass({
         </div>
 
         <nav className={menuClasses} onClick={this._handleClick}>
+          <WhiteBorder />
           <div className="black-line menu">
           </div>
 

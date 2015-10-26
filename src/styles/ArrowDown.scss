@@ -12,7 +12,8 @@
 	cursor: pointer;
 	border: 3px solid $black;
 	z-index: 3;
-	display: flex;
+  display: flex;
+  display: -webkit-box;
 	align-items: center;
 	justify-content: center;
 	@include transition(0.2s);
@@ -37,9 +38,14 @@
 
 	&.sticky {
 		position: fixed;
-		bottom: 20px;
+		bottom: 30px;
 		left: 0;
 		right: 0;
+
+    &:before {
+      left: 70%;
+      top: 2px;
+    }
 
     	@media screen and (max-width: $iphone6) {
       		display: none;
@@ -77,8 +83,9 @@
 		content: '\f107';
 		font-size: 2.5em;
 		height: 10px;
-		margin-top: 32%;
 		color: $black;
+    left: 70%;
+    top: 2px;
 
 		@media screen and (max-width: $iphone6) {
 			font-size: 1.5em;
@@ -114,14 +121,16 @@
 		}
 
 		@media screen and (max-width: $iphone5-min) {
-      		margin-top: 3%;
-      		width: 42px;
-      		padding-bottom: 36px;
-      		font-size: 0.8em;
-    	}
+      margin-top: 3%;
+      width: 42px;
+      padding-bottom: 36px;
+      font-size: 0.8em;
+    }
 
 		&:before {
 			margin-top: 0;
+      top: 0;
+      left: 0;
 			
 			@media screen and (max-width: $iphone6) {
 				font-size: 2.4em;
@@ -159,8 +168,13 @@
 		margin-top: 3%;
 
 		@media screen and (max-width: $iphone5-min) {
-      		margin-top: -4%;
-    	}
+      margin-top: -4%;
+    }
+
+    &:before {
+      left: 70%;
+      top: 2px;
+    }
 
 		@media only screen 
   		and (min-device-width: 768px) 
