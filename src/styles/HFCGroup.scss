@@ -8,6 +8,10 @@
 	position: relative;
 	overflow: hidden;
 	top: 0;
+
+	@media screen and (max-width: $iphone6) {
+		margin-top: -15%;
+	}
 }
 
 .HFCMember {

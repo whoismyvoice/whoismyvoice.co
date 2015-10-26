@@ -98,7 +98,7 @@ ul {
     }
 
     @media screen and (max-width: $iphone6) {
-      height: 65%;
+      height: 74%;
       top: 54px;
     }
 
@@ -328,6 +328,7 @@ button, input {
     font-size: 1.2em;
     width: 85%;
     margin-bottom: 1vh;
+    padding-bottom: 10%;
   }
 
   @media screen and (max-width: $iphone5-min) {
@@ -358,7 +359,7 @@ button, input {
   }
 
   .resources {
-    font-size: 0.7em;
+    background-color: $bright-green;
     @media screen and (max-width: $iphone5-min) {
       font-size: 0.8em;
     }
@@ -428,11 +429,7 @@ button, input {
     height: 48%;
 
     @media screen and (max-width: $iphone6) {
-      height: 61%;
-    }
-
-    @media screen and (max-width: $iphone6) {
-      height: 54.5%;
+      height: 55%;
     }
 
     @media only screen 
@@ -476,13 +473,4 @@ button, input {
 .bright-red {
   background-color: $bright-red;
   @include transition(0.5s);
-}
-.purple-text {
-  color: $light-purple!important;
-
-  .button {
-    &:hover {
-      color:$light-purple;
-    }
-  }
 }

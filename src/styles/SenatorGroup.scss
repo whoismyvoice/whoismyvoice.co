@@ -41,7 +41,7 @@
 
 	@media screen and (max-width: $iphone6) {
 		width: 40%;
-		margin-right: 5%;
+		margin-right: 2%;
 		margin-left: 5%;
 	}
 
@@ -68,8 +68,8 @@
   		}
 
 		@media screen and (max-width: $iphone6) {
-			width: 80%;
-			padding: 40% 0;
+			width: 75%;
+			padding: 37.5% 0;
 			margin-bottom: 0;
 		}
 	}
@@ -108,6 +108,7 @@
 
 	@media screen and (max-width: $iphone6) {
 		width: 200px;
+		top: 31%;
 	}
 
 	&:before {

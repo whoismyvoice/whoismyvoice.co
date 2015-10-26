@@ -13,7 +13,6 @@ import Circle from './Circle'
 import SearchInput from './SearchInput'
 import SenatorGroup from './Senator/SenatorGroup'
 import SupportActions from './Senator/SupportActions'
-import ErrorMsg from './ErrorMsg'
 import HFCOverview from './HFCOverview'
 import WhiteBorder from './WhiteBorder'
 
@@ -164,7 +163,6 @@ const Home = React.createClass({
         />
 
         <SearchInput />
-        <ErrorMsg error={ERROR_MSG} />
 
         <Results
           hfc={MEMBER_HFC}

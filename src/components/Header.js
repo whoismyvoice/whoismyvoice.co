@@ -56,7 +56,7 @@ const Header = React.createClass({
           <Button
             color={'yellow-text'}
             link="/about"
-            text="About This project"
+            text="About This Project"
           />
 
           <Button

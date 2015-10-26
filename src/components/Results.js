@@ -72,6 +72,11 @@ const Results = React.createClass({
               did_search={did_search}
               state={state}
             />
+
+            <ArrowDown
+              additional={additional_exists}
+              id='0'
+            />
           </div>
 
           <div className="section block three">
