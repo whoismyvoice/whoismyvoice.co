@@ -35,6 +35,8 @@ const SenatorGroup = React.createClass({
             <ArrowDown id="0" />
           </div>
 
+          <div className="connectingLine"></div>
+
           <div className="senatorContainer">
             <SenatorImg
               bioguide={additional_bioguide}

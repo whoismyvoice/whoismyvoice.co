@@ -3,9 +3,10 @@
 .senatorWrapper {
 	width: 50%;
 	margin: 0 auto;
+	position: relative;
 
 	@media screen and (max-width: $iphone6) {
-		width: 90%;
+		width: 85%;
 	}
 
 	@media only screen 
@@ -26,8 +27,17 @@
 }
 
 .senatorContainer {
-	width: 50%;
+	width: 48%;
 	display: inline-block;
+
+
+	&:first-of-type {
+		margin-left: 2%;
+
+		@media screen and (max-width: $iphone6) {
+    		margin-left: 5%;
+  		}
+	}
 
 	@media screen and (max-width: $iphone6) {
 		width: 40%;
@@ -81,5 +91,21 @@
 				font-size: 0.8em;
 			}
 		}
+	}
+}
+
+.connectingLine {
+	width: 250px;
+	position: absolute;
+	left: 0;
+	top: 26%;
+	right: 0;
+	margin: 0 auto;
+	height: 4px;
+	display: inline-block;
+	background-color: $black;
+
+	@media screen and (max-width: $iphone6) {
+		width: 200px;
 	}
 }

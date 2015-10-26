@@ -37,9 +37,14 @@
 
 	&.sticky {
 		position: fixed;
-		bottom: 50px;
+		bottom: 20px;
 		left: 0;
+		background-color: $bright-red;
 		right: 0;
+
+    	@media screen and (max-width: $iphone6) {
+      		display: none;
+    	}
 	}
 
 	&:before {
@@ -82,20 +87,22 @@
 
 		@media screen and (max-width: $iphone6) {
 			margin-top: 8%;
-			width: 38px;
+			width: 52px;
+			padding-bottom: 44px;
 		}
 
 		@media screen and (max-width: $iphone5-min) {
-      		margin-top: 5%;
+      		margin-top: 3%;
+      		width: 42px;
+      		padding-bottom: 36px;
+      		font-size: 0.8em;
     	}
 
 		&:before {
 			margin-top: 0;
 			
 			@media screen and (max-width: $iphone6) {
-				font-size: 1.7em;
-				left: 28%;
-				margin-top: -2%;
+				font-size: 2.4em;
 			}
 
   			@media only screen 

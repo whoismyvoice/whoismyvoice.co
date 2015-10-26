@@ -96,7 +96,7 @@ const Home = React.createClass({
 
     let topLineClasses = cx(
       ['black-top-line'],
-      {'hide': !this.state.did_search}
+      {'hide-it': !this.state.did_search}
     );
 
     let backgroundClasses = cx(

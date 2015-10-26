@@ -18,7 +18,6 @@
   transition:opacity $time ease-in;
 }
 
-
 body {
   margin: 0 auto;
   font-family: 'Helvetica Neue';
@@ -58,7 +57,7 @@ ul {
 
   &.menu {
     top: 74px;
-    height: 56%;
+    height: 70%;
 
     &:before {
       width: 30px;
@@ -88,16 +87,18 @@ ul {
     }
 
     @media screen and (max-width: $iphone6) {
-      height: 55%;
+      height: 65%;
+      top: 54px;
     }
 
     @media screen and (max-width: $iphone5-min) {
-      height: 60%;
+      height: 75%;
     }
   }
 
   @media screen and (max-width: $iphone6) {
    height: 65%;
+   top: 48px;
   }
 
   @media screen and (max-width: $iphone5-min) {
@@ -133,9 +134,12 @@ ul {
   opacity: 1;
   @include fade(1s);
 
-  &.hide {
+  &.hide-it {
     opacity: 0;
-    @include fade(1s);
+  }
+
+  @media screen and (max-width: $iphone6) {
+    height: 30px;
   }
 }
 
@@ -412,6 +416,16 @@ button, input {
 .orange {
   background-color: $light-orange;
   @include transition(0.5s);
+
+  .black-line {
+    @media screen and (max-width: $iphone6) {
+      height: 61%;
+    }
+
+    @media screen and (max-width: $iphone6) {
+      height: 54.5%;
+    }
+  }
 }
 
 .purple {

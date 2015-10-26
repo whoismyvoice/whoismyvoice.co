@@ -11,9 +11,10 @@ const Circle = React.createClass({
         additional = this.props.additional === null ? null : this.props.additional,
         senator = additional === null ? 'Your Senator, ' : '',
         hide = this.props.did_search === false ? true : false,
-  		  details;
+  		  details,
+        proposition = additional === null ? 'a ' : '';
 
-    details = (!hfc && additional === null) ? 'a ' + this.props.age + ' year old ' + this.props.gender + ' ' : '';
+    details = (!hfc && additional === null) ? this.props.age + ' year old ' + this.props.gender + ' ' : '';
 
     // Define classes for showing second line to allow for not displaying anything
     // when two senators have been fetched
@@ -40,8 +41,9 @@ const Circle = React.createClass({
   				  {senator} <br />
           </div>
 
+          {proposition}
   				<span className="strike-out">
-  					{details}
+  				 {details}
   				</span>
 
   				{this.props.desc}

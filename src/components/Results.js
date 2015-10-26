@@ -30,7 +30,6 @@ const Results = React.createClass({
 
 		if (isHFC) {
 			return <div className={this.props.backgroundClasses} id="fullpage">
-        <div className="black-top-line"></div>
         <div className="section block two">
 
           <p className="impact">
