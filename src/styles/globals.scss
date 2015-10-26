@@ -75,7 +75,7 @@ ul {
     and (max-device-width: 1024px) 
     and (orientation: portrait) 
     and (-webkit-min-device-pixel-ratio: 1) {
-      height: 55%;
+      height: 66%;
     }
 
     @media only screen 
@@ -83,7 +83,7 @@ ul {
     and (max-device-width: 1024px) 
     and (orientation: landscape) 
     and (-webkit-min-device-pixel-ratio: 1) {
-      height: 55%;
+      height: 72%;
     }
 
     @media screen and (max-width: $iphone6) {
@@ -101,22 +101,12 @@ ul {
    top: 48px;
   }
 
-  @media screen and (max-width: $iphone5-min) {
-  }
-
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
-  and (-webkit-min-device-pixel-ratio: 1) {
-  }
-
   @media only screen 
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
   and (orientation: landscape) 
   and (-webkit-min-device-pixel-ratio: 1) {
-    height: 55vh;
+    height: 60%;
   }
 }
 
@@ -383,7 +373,7 @@ button, input {
     padding-bottom: 4%;
     margin-bottom: 0%;
     font-size: 1.6em;
-    margin-top: 15%;
+    margin-top: 6%;
   }
 
   @media only screen 
@@ -425,11 +415,30 @@ button, input {
     @media screen and (max-width: $iphone6) {
       height: 54.5%;
     }
+
+    @media only screen 
+    and (min-device-width: 768px) 
+    and (max-device-width: 1024px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+      height: 65.5%;
+    }
   }
 }
 
 .purple {
   background-color: $light-purple;
+
+  .black-line {
+    @media only screen 
+    and (min-device-width: 768px) 
+    and (max-device-width: 1024px) 
+    and (orientation: landscape) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+      height: 57%;
+    }
+  }
+
   @include transition(0.5s);
 }
 

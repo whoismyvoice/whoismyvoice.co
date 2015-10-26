@@ -58,10 +58,10 @@
 
 	.description {
 		position: relative;
-    	width: 50%;
-    	line-height: 1.4;
-    	margin-top: 5%;
-    	align-self: center;
+    width: 50%;
+    line-height: 1.4;
+    margin-top: 5%;
+    align-self: center;
 		text-align: center;
 		font-weight: bold;
 		font-size: 1.8em;
@@ -76,7 +76,8 @@
     	and (max-device-width: 1024px) 
     	and (orientation: portrait) 
     	and (-webkit-min-device-pixel-ratio: 1) {
-      		font-size: 1.8em;
+      		font-size: 2.2em;
+          width: 80%;
     	}
 
     	@media only screen 
@@ -120,8 +121,8 @@
     and (max-device-width: 1024px) 
     and (orientation: landscape) 
     and (-webkit-min-device-pixel-ratio: 1) {
-      margin-top: 4%;
-      margin-bottom: 2%;
+      margin-top: 1%;
+      margin-bottom: 0.8%;
       width: 30%;
       padding: 15% 0;
     }
@@ -159,7 +160,8 @@
       and (max-device-width: 1024px) 
       and (orientation: portrait) 
       and (-webkit-min-device-pixel-ratio: 1) {
-        font-size: 1.8em;
+        font-size: 2em;
+        width: 85%;
         margin-top: 0;
       }
 
@@ -201,7 +203,7 @@
     and (max-device-width: 1024px) 
     and (orientation: landscape) 
     and (-webkit-min-device-pixel-ratio: 1) {
-      margin-top: 7%;
+      margin-top: 3%;
       width: 30%;
       padding: 15% 0;
     }
