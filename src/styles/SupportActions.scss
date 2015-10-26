@@ -9,6 +9,11 @@
 	padding-top: 28px;
 	width: 70%;
 
+  @supports (overflow:-webkit-marquee)
+  and (justify-content:inherit) {
+    padding-top: 45px;
+  }
+
 	@media screen and (max-width: $iphone6) {
 		padding-top: 10px;
 		background-color: inherit;

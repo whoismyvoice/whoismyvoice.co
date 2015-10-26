@@ -28,6 +28,7 @@ body {
   width: 100%;
   font-size: 100%;
   font-size: 13px;
+
 }
 
 a {
@@ -68,6 +69,11 @@ ul {
       top: 0;
       left: -13px;
       right: auto;
+    }
+
+    @supports (overflow:-webkit-marquee)
+    and (justify-content:inherit) {
+      height: 65%;
     }
 
     @media only screen 
@@ -408,6 +414,7 @@ button, input {
   @include transition(0.5s);
 
   .black-line {
+
     @media screen and (max-width: $iphone6) {
       height: 61%;
     }

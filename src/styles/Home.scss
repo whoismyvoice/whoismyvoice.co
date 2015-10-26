@@ -12,6 +12,7 @@ h1 {
 	width: 100vw;
 	height: 98.5vh;
 	overflow: hidden;
+	-webkit-overflow-scrolling: touch;
 	@include transition(1s);
 
 	@media screen and (max-width: $iphone6) {
