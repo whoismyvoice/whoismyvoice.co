@@ -12,6 +12,7 @@ input {
   font-weight: bold;
   text-align: center;
   z-index: 2;
+  opacity: 1;
   background-color: $light-green;
   position: relative;
   margin: 2vh 0 0 0;
@@ -24,6 +25,11 @@ input {
     margin-top: 3vh;
   }
 
+  &.fade {
+    @include fadeIn(0.5s, 1s);
+    opacity: 0;
+  }
+
   @media screen and (max-width: $iphone5-min) {
     width: 60%;
   }
@@ -34,8 +40,7 @@ input {
   }
 
   &.error {
-    border: 3px solid $red;
-    color: $red;
+    @include shakeError(0.4s);
   }
 
   &::-webkit-input-placeholder {

@@ -1,23 +1,5 @@
 @import 'variables';
 
-// MIXINS (TRANSITIONS)
-@mixin transition($time) {
-  -webkit-transition:all $time ease-in;
-  -moz-transition:all $time ease-in;
-  -ms-transition:all $time ease-in;
-  -o-transition:all $time ease-in;
-  transition:all $time ease-in;
-}
-
-// MIXINS (TRANSITIONS)
-@mixin fade($time) {
-  -webkit-transition:opacity $time ease-in;
-  -moz-transition:opacity $time ease-in;
-  -ms-transition:opacity $time ease-in;
-  -o-transition:opacity $time ease-in;
-  transition:opacity $time ease-in;
-}
-
 body {
   margin: 0 auto;
   font-family: 'Helvetica Neue';
@@ -45,6 +27,24 @@ ul {
   }
 }
 
+// MIXINS (TRANSITIONS)
+@mixin transition($time) {
+  -webkit-transition:all $time ease-in;
+  -moz-transition:all $time ease-in;
+  -ms-transition:all $time ease-in;
+  -o-transition:all $time ease-in;
+  transition:all $time ease-in;
+}
+
+// MIXINS (TRANSITIONS)
+@mixin fade($time) {
+  -webkit-transition:opacity $time ease-in;
+  -moz-transition:opacity $time ease-in;
+  -ms-transition:opacity $time ease-in;
+  -o-transition:opacity $time ease-in;
+  transition:opacity $time ease-in;
+}
+
 .black-line {
   width: 4px;
   margin: 0 auto;
@@ -55,10 +55,12 @@ ul {
   left: 0;
   right: 0;
   background-color: $black;
+  @include drawIn(55%);
 
   @supports (overflow:-webkit-marquee)
   and (justify-content:inherit) {
     height: 64%;
+    @include drawIn(64%);
   }
 
   @media screen 
@@ -66,6 +68,7 @@ ul {
   and (max-width: 699px)
   and (-webkit-min-device-pixel-ratio: 1) {
     height: 230px;
+    @include drawIn(230px);
   }
 
   @media screen 
@@ -73,6 +76,7 @@ ul {
   and (max-width: 899px)
   and (-webkit-min-device-pixel-ratio: 1) {
     height: 305px;
+    @include drawIn(305px);
   }
 
   @media screen 
@@ -80,6 +84,7 @@ ul {
   and (max-width: 1000px)
   and (-webkit-min-device-pixel-ratio: 1) {
     height: 330px;
+    @include drawIn(330px);
   }
 
   @media screen 
@@ -87,6 +92,7 @@ ul {
   and (max-width: 1199px)
   and (-webkit-min-device-pixel-ratio: 1) {
     height: 370px;
+    @include drawIn(370px);
   }
 
   @media screen 
@@ -94,6 +100,7 @@ ul {
   and (max-width: 1399px)
   and (-webkit-min-device-pixel-ratio: 1) {
     height: 440px;
+    @include drawIn(440px);
   }
 
   @media screen 
@@ -101,6 +108,15 @@ ul {
   and (max-width: 1700px)
   and (-webkit-min-device-pixel-ratio: 1) {
     height: 550px;
+    @include drawIn(550px);
+  }
+
+  @media screen 
+  and (min-width: 1701px)
+  and (max-width: 1900px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    height: 615px;
+    @include drawIn(615px);
   }
 
   &.menu {
