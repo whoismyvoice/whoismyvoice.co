@@ -25,12 +25,14 @@
     padding: 17.5% 0;
   }
 
+
+
   @media screen 
   and (min-width: 1201px)
   and (max-width: 1400px)
   and (-webkit-min-device-pixel-ratio: 1) {
-    width: 30%;
-    padding: 15% 0;
+    width: 26%;
+    padding: 13% 0;
   }
 
   @media screen 
@@ -160,6 +162,15 @@
     }
 
     @media screen 
+    and (min-width: 1000px)
+    and (max-width: 1199px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      margin-top: -8%;
+      width: 25%;
+      padding: 12.5% 0;
+    }
+
+    @media screen 
     and (min-width: 1200px)
     and (max-width: 1399px)
     and (-webkit-min-device-pixel-ratio: 1) {
@@ -174,6 +185,14 @@
       width: 24%;
       padding: 12% 0;
       margin-top: 0;
+    }
+
+    @media screen 
+    and (min-width: 1501px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      margin-top: 5%;
+      width: 26%;
+      padding: 13% 0;
     }
 
     @supports (overflow:-webkit-marquee)
@@ -271,6 +290,15 @@
     left: 0.5%;
 
     @media screen 
+    and (min-width: 1000px)
+    and (max-width: 1199px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      margin-top: -8%;
+      width: 30%;
+      padding: 15% 0;
+    }
+
+    @media screen 
     and (min-width: 1200px)
     and (max-width: 1400px)
     and (-webkit-min-device-pixel-ratio: 1) {
@@ -283,7 +311,15 @@
     and (min-width: 1401px)
     and (max-width: 1700px)
     and (-webkit-min-device-pixel-ratio: 1) {
-      margin-top: -10px;
+      margin-top: 0;
+      width: 25%;
+      padding: 12.5% 0;
+    }
+
+    @media screen 
+    and (min-width: 1701px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      margin-top: 2%;
     }
 
     @supports (overflow:-webkit-marquee)

@@ -23,7 +23,12 @@
   and (min-width: 1100px)
   and (max-width: 1300px)
   and (-webkit-min-device-pixel-ratio: 1) {
-    font-size: 1.2em;
+    font-size: 1em;
+
+    @supports (overflow:-webkit-marquee)
+    and (justify-content:inherit) {
+      font-size: 1em
+    }
   }
 
 	@media screen and (max-width: $iphone6) {
@@ -253,9 +258,22 @@
 
     @media screen 
     and (min-width: 1400px)
-    and (max-width: 1900px)
+    and (max-width: 1500px)
     and (-webkit-min-device-pixel-ratio: 1) {
       margin-top: 80px;
+    }
+
+    @media screen 
+    and (min-width: 1500px)
+    and (max-width: 1700px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      margin-top: 92px;
+    }
+
+    @media screen 
+    and (min-width: 1700px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      margin-top: 170px;
     }
 
     @media screen and (max-width: $iphone6) {

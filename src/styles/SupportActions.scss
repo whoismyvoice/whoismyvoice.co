@@ -15,6 +15,13 @@
     padding-top: 25px;
   }
 
+  @media screen 
+  and (min-width: 1000px)
+  and (max-width: 1199px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    width: 100%;
+  }
+
 	@media screen and (max-width: $iphone6) {
 		padding-top: 10px;
 		background-color: inherit;
@@ -47,6 +54,13 @@
 	a {
 		margin: 0 25px 0 25px;
 		position: relative;
+
+    @media screen 
+    and (min-width: 1000px)
+    and (max-width: 1199px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      margin: 0 5px 0 5px;
+    }
 
 		@media only screen 
     and (min-device-width: 768px) 
@@ -119,6 +133,14 @@
       width: 60%;
       min-width: 723px;
       max-width: 723px;
+    }
+
+    @media screen 
+    and (min-width: 1000px)
+    and (max-width: 1199px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      min-width: 694px;
+      max-width: 694px;
     }
 
     @media only screen 
