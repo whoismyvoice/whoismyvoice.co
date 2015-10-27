@@ -109,8 +109,8 @@ ul {
   and (min-width: 1200px)
   and (max-width: 1399px)
   and (-webkit-min-device-pixel-ratio: 1) {
-    height: 510px;
-    @include drawIn(510px);
+    height: 500px;
+    @include drawIn(500px);
   }
 
   @media screen 
@@ -539,6 +539,11 @@ button, input {
   and (max-width: 1025px)
   and (-webkit-min-device-pixel-ratio: 1) {
     margin-bottom: 5%;
+    
+    @supports (overflow:-webkit-marquee)
+    and (justify-content:inherit) {
+      margin-bottom: 1%;   
+    }
   }
 
   @media screen 
@@ -601,11 +606,6 @@ button, input {
   margin-top: -4%;
   font-weight: bold;
 
-  @supports (overflow:-webkit-marquee)
-  and (justify-content:inherit) {
-    margin-top: 5%;
-  }
-
   @media screen and (max-width: $iphone6) {
     font-size: 1.2em;
     width: 85%;
@@ -643,10 +643,14 @@ button, input {
 
   @media screen 
   and (min-width: 1000px)
-  and (max-width: 1025px)
-  and (-webkit-min-device-pixel-ratio: 1) {
+  and (max-width: 1025px) {
     margin-top: -100px;
     width: 85%;
+
+    @supports (-moz-appearance:meterbar) {
+      margin-top: 50px;
+      width: 75%;
+    }
   }
 
   @media screen 
@@ -656,30 +660,60 @@ button, input {
     margin-top: 20px;
     font-size: 1.6em;
     width: 75%;
+
+    @supports (overflow:-webkit-marquee)
+    and (justify-content:inherit) {
+      margin-top: 65px;
+    }
+
+    @supports (-moz-appearance:meterbar) {
+      margin-top: 200px;
+    }
   }
 
   @media screen 
   and (min-width: 1301px)
   and (max-width: 1500px)
   and (-webkit-min-device-pixel-ratio: 1) {
-    margin-top: 0px;
+    margin-top: 0;
     font-size: 1.8em;
     width: 65%;
+    @supports (overflow:-webkit-marquee)
+    and (justify-content:inherit) {
+      margin-top: 60px;
+    }
   }
 
   @media screen 
   and (min-width: 1501px)
+  and (max-width: 1700px)
   and (-webkit-min-device-pixel-ratio: 1) {
-    margin-top: 1%;
+    margin-top: -8%;
     font-size: 1.8em;
-    width: 70%;
+    width: 75%;
+
+    @supports (overflow:-webkit-marquee)
+    and (justify-content:inherit) {
+      margin-top: -5%;
+    }
+  }
+
+  @media screen 
+  and (min-width: 1701px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    margin-top: 2%;
+
+    @supports (overflow:-webkit-marquee)
+    and (justify-content:inherit) {
+      margin-top: 4%;
+    }
   }
 
   @media screen and (max-width: $iphone5-min) {
-      padding: 4vh;
-      font-size: 1em;
-      height: 160px;
-      margin-top: 0;
+    padding: 4vh;
+    font-size: 1em;
+    height: 160px;
+    margin-top: 0;
   }
 
   @media only screen 

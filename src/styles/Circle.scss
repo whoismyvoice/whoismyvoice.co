@@ -17,6 +17,10 @@
   margin-bottom: 2%;
   @include fadeIn(0.5s,0);
 
+  @supports (-moz-appearance:meterbar) {
+    margin-top: 70px;
+  }
+
   @media screen 
   and (min-width: 300px)
   and (max-width: 999px)
@@ -24,8 +28,6 @@
     width: 35%;
     padding: 17.5% 0;
   }
-
-
 
   @media screen 
   and (min-width: 1201px)
@@ -152,7 +154,7 @@
 
   &.wide {
     background-color: $light-orange;
-    margin-top: 1%;
+    margin-top: 0%;
     margin-bottom: -0.5%;
     width: 20%;
     padding: 10% 0;
@@ -163,18 +165,31 @@
 
     @media screen 
     and (min-width: 1000px)
-    and (max-width: 1199px)
-    and (-webkit-min-device-pixel-ratio: 1) {
+    and (max-width: 1199px) {
       margin-top: -8%;
-      width: 25%;
-      padding: 12.5% 0;
+      width: 28%;
+      padding: 14% 0;
+
+      @supports (-moz-appearance:meterbar) {
+        margin-top: 50px;
+      }
+
+      @supports (overflow:-webkit-marquee)
+      and (justify-content:inherit) {
+        margin-top: -4%;
+      }
     }
 
     @media screen 
     and (min-width: 1200px)
     and (max-width: 1399px)
     and (-webkit-min-device-pixel-ratio: 1) {
-      margin-top: 0;
+      margin-top: -1%;
+
+      @supports (overflow:-webkit-marquee)
+      and (justify-content:inherit) {
+        margin-top: 6.5%;
+      }
     }
 
     @media screen 
@@ -189,17 +204,30 @@
 
     @media screen 
     and (min-width: 1501px)
+    and (max-width: 1700px)
     and (-webkit-min-device-pixel-ratio: 1) {
-      margin-top: 5%;
-      width: 26%;
-      padding: 13% 0;
+      margin-top: -7%;
+      width: 20%;
+      padding: 10% 0;
+
+      @supports (overflow:-webkit-marquee)
+      and (justify-content:inherit) {
+        margin-top: -2.9%;
+      }
     }
 
-    @supports (overflow:-webkit-marquee)
-    and (justify-content:inherit) {
-      margin-top: 5.4%;
+
+    @media screen 
+    and (min-width: 1701px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      margin-top: 3%;
       width: 25%;
       padding: 12.5% 0;
+
+      @supports (overflow:-webkit-marquee)
+      and (justify-content:inherit) {
+        margin-top: 5%;
+      }
     }
 
     @media screen and (max-width: $iphone6) {
@@ -258,6 +286,17 @@
         font-size: 1.1em;
       }
 
+      @media screen 
+      and (min-width: 1300px)
+      and (max-width: 1400px)
+      and (-webkit-min-device-pixel-ratio: 1) {
+
+        @supports (overflow:-webkit-marquee)
+        and (justify-content:inherit) {
+          font-size: 1.4em;
+        }
+      }
+
       @media only screen 
       and (min-device-width: 768px) 
       and (max-device-width: 1024px) 
@@ -296,6 +335,11 @@
       margin-top: -8%;
       width: 30%;
       padding: 15% 0;
+      
+      @supports (overflow:-webkit-marquee)
+      and (justify-content:inherit) {
+        margin-top: -2%;
+      }
     }
 
     @media screen 
@@ -305,11 +349,16 @@
       margin-top: 0px;
       width: 25%;
       padding: 12.5% 0;
+
+      @supports (overflow:-webkit-marquee)
+      and (justify-content:inherit) {
+        margin-top: 5%;
+      }
     }
 
     @media screen 
     and (min-width: 1401px)
-    and (max-width: 1700px)
+    and (max-width: 1500px)
     and (-webkit-min-device-pixel-ratio: 1) {
       margin-top: 0;
       width: 25%;
@@ -317,14 +366,28 @@
     }
 
     @media screen 
+    and (min-width: 1501px)
+    and (max-width: 1700px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      margin-top: -7%;
+      width: 25%;
+      padding: 12.5% 0;
+
+      @supports (overflow:-webkit-marquee)
+      and (justify-content:inherit) {
+        margin-top: -2.5%;
+      }
+    }
+
+    @media screen 
     and (min-width: 1701px)
     and (-webkit-min-device-pixel-ratio: 1) {
       margin-top: 2%;
-    }
 
-    @supports (overflow:-webkit-marquee)
-    and (justify-content:inherit) {
-      margin-top: 6%;
+      @supports (overflow:-webkit-marquee)
+      and (justify-content:inherit) {
+        margin-top: 5%;
+      }
     }
 
     @media screen and (max-width: $iphone6) {

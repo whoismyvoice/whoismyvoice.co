@@ -71,6 +71,11 @@
     &:before {
       left: 70%;
       top: 2px;
+
+      @supports (-moz-appearance:meterbar) {
+        left: 0;
+        top: 20px;
+      }
     }
 
     	@media screen and (max-width: $iphone6) {
@@ -111,6 +116,21 @@
 		color: $black;
     left: 65%;
     top: 2px;
+
+    @supports (-moz-appearance:meterbar) {
+      left: 0;
+      top: 20px;
+    }
+
+    @media screen 
+    and (min-width: 1000px)
+    and (max-width: 1100px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      @supports (overflow:-webkit-marquee)
+      and (justify-content:inherit) {
+        font-size: 1.9em;
+      }
+    }
 
 		@media screen and (max-width: $iphone6) {
 			font-size: 1.6em;
@@ -257,6 +277,28 @@
     left: 0;
 
     @media screen 
+    and (min-width: 1000px)
+    and (max-width: 1050px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+
+      @supports (overflow:-webkit-marquee)
+      and (justify-content:inherit) {
+        margin-top: 50px;
+      }
+    }
+
+    @media screen 
+    and (min-width: 1260px)
+    and (max-width: 1300px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+
+      @supports (overflow:-webkit-marquee)
+      and (justify-content:inherit) {
+        margin-top: 60px;
+      }
+    }
+
+    @media screen 
     and (min-width: 1400px)
     and (max-width: 1500px)
     and (-webkit-min-device-pixel-ratio: 1) {
@@ -284,6 +326,11 @@
     &:before {
       left: 66%;
       top: 2px;
+
+      @supports (-moz-appearance:meterbar) {
+        left: 0;
+        top: 20px;
+      }
 
       @media screen and (max-width: $iphone6) {
         font-size: 2.1em;

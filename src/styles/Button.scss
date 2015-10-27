@@ -56,6 +56,17 @@
       }
 
       @media screen 
+      and (min-width: 1000px)
+      and (max-width: 1050px)
+      and (-webkit-min-device-pixel-ratio: 1) {
+
+        @supports (overflow:-webkit-marquee)
+        and (justify-content:inherit) {
+          margin-top: 130px;
+        }
+      }
+
+      @media screen 
       and (min-width: 1400px)
       and (max-width: 1500px)
       and (-webkit-min-device-pixel-ratio: 1) {
