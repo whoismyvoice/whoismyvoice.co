@@ -11,8 +11,6 @@ import Results from './Results'
 import Button from './Button'
 import Circle from './Circle'
 import SearchInput from './SearchInput'
-import SenatorGroup from './Senator/SenatorGroup'
-import SupportActions from './Senator/SupportActions'
 import HFCOverview from './HFCOverview'
 import WhiteBorder from './WhiteBorder'
 

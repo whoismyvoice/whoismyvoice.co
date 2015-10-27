@@ -124,8 +124,7 @@
 
     @media screen 
     and (min-width: 1000px)
-    and (max-width: 1100px)
-    and (-webkit-min-device-pixel-ratio: 1) {
+    and (max-width: 1100px) {
       @supports (overflow:-webkit-marquee)
       and (justify-content:inherit) {
         font-size: 1.9em;
@@ -139,11 +138,15 @@
 
     @media screen 
     and (min-width: 1400px)
-    and (max-width: 1500px)
-    and (-webkit-min-device-pixel-ratio: 1) {
+    and (max-width: 1500px) {
       left: 70%;
       font-size: 2em;
       top: 2px;
+
+      @supports (-moz-appearance:meterbar) {
+        left: 0;
+        top: 20px;
+      }
     }
 
 		@media only screen 
@@ -289,8 +292,7 @@
 
     @media screen 
     and (min-width: 1260px)
-    and (max-width: 1300px)
-    and (-webkit-min-device-pixel-ratio: 1) {
+    and (max-width: 1300px) {
 
       @supports (overflow:-webkit-marquee)
       and (justify-content:inherit) {
@@ -300,21 +302,18 @@
 
     @media screen 
     and (min-width: 1400px)
-    and (max-width: 1500px)
-    and (-webkit-min-device-pixel-ratio: 1) {
-      margin-top: 80px;
+    and (max-width: 1500px) {
+      margin-top: 50px;
     }
 
     @media screen 
     and (min-width: 1500px)
-    and (max-width: 1700px)
-    and (-webkit-min-device-pixel-ratio: 1) {
+    and (max-width: 1700px) {
       margin-top: 92px;
     }
 
     @media screen 
-    and (min-width: 1700px)
-    and (-webkit-min-device-pixel-ratio: 1) {
+    and (min-width: 1700px) {
       margin-top: 170px;
     }
 
@@ -338,9 +337,12 @@
 
       @media screen 
       and (min-width: 1400px)
-      and (max-width: 1500px)
-      and (-webkit-min-device-pixel-ratio: 1) {
+      and (max-width: 1500px) {
         top: 2px;
+
+        @supports (-moz-appearance:meterbar) {
+          top: 20px;
+        }
       }
     }
 

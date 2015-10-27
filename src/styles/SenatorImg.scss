@@ -19,6 +19,14 @@
 	opacity: 1;
 	@include transition(0.5s);
 
+	&.single {
+		margin-top: 40px;
+
+		@supports (-moz-appearance:meterbar) {
+    		margin-top: 60px;
+    	}
+	}
+
 	@media screen and (max-width: $iphone6) {
     	width: 25%;
     	left: 0;

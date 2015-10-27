@@ -57,6 +57,7 @@ const SenatorGroup = React.createClass({
       return <div>
         <SenatorImg
           bioguide={this.props.bioguide}
+          single={true}
         />
 
         <SenatorName
