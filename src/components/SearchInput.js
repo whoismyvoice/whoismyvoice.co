@@ -59,7 +59,7 @@ const SearchInput = React.createClass({
   render() {
     let inputClasses = cx(
       ['input'], 
-      {'error': this.state.error},
+      {'error': this.state.error || this.props.error},
       {'fade': this.state.fade}
     );
 

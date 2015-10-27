@@ -23,7 +23,7 @@ var _store = {
   additional_member: null,
   member_hfc: false,
   did_search: false,
-  error_msg: '',
+  error: false,
   current_screen: null,
   current_senator: null
 }
@@ -55,6 +55,7 @@ AppDispatcher.register(function(payload) {
     case AppConstants.FIND_MEMBER:
 
       _store.member_zip_code = action.zip_code;
+      _store.error = false;
 
       SenateStore.emit(CHANGE_EVENT);
       break;
@@ -62,7 +63,9 @@ AppDispatcher.register(function(payload) {
     case AppConstants.GET_DETAILS:
 
       if(action.response === 'error') {
-        _store.error_msg = 'Ineligible zip code';
+
+        _store.error = true;
+        
       } else {
 
         var details = action.response[0];
@@ -81,7 +84,7 @@ AppDispatcher.register(function(payload) {
         _store.member_party = details.party,
         _store.member_state = details.state || null,
         _store.member_state_full = details.state_name || null,
-        _store.error_msg = '',
+        _store.error = false,
         _store.did_search = true,
         _store.additional_member = additionalSenator || null
       }

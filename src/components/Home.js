@@ -128,7 +128,7 @@ const Home = React.createClass({
         DID_SEARCH = this.state.did_search,
         PARTY = this.state.member_party,
         MEMBER_HFC = this.state.member_hfc,
-        ERROR_MSG = this.state.error_msg,
+        ERROR = this.state.error,
         ADDITIONAL_MEMBER = this.state.additional_member,
         ADDITIONALEXISTS = ADDITIONAL_MEMBER !== null,
         CURRENT_MEMBER = this.state.current_senator,
@@ -162,7 +162,9 @@ const Home = React.createClass({
           desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
         />
 
-        <SearchInput />
+        <SearchInput
+          error={ERROR}
+        />
 
         <Results
           hfc={MEMBER_HFC}
