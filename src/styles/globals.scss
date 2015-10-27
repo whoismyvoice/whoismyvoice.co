@@ -49,7 +49,7 @@ ul {
   width: 4px;
   margin: 0 auto;
   z-index: 1;
-  height: 65%;
+  height: 420px;
   top: 68px;
   position: fixed;
   left: 0;
@@ -59,6 +59,48 @@ ul {
   @supports (overflow:-webkit-marquee)
   and (justify-content:inherit) {
     height: 64%;
+  }
+
+  @media screen 
+  and (min-width: 300px)
+  and (max-width: 699px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    height: 230px;
+  }
+
+  @media screen 
+  and (min-width: 700px)
+  and (max-width: 899px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    height: 305px;
+  }
+
+  @media screen 
+  and (min-width: 900px)
+  and (max-width: 1000px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    height: 330px;
+  }
+
+  @media screen 
+  and (min-width: 1000px)
+  and (max-width: 1199px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    height: 370px;
+  }
+
+  @media screen 
+  and (min-width: 1200px)
+  and (max-width: 1399px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    height: 440px;
+  }
+
+  @media screen 
+  and (min-width: 1400px)
+  and (max-width: 1700px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    height: 550px;
   }
 
   &.menu {
@@ -76,6 +118,27 @@ ul {
       right: auto;
     }
 
+    @media screen 
+    and (min-width: 700px)
+    and (max-width: 999px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      height: 425px;
+    }
+
+    @media screen 
+    and (min-width: 1000px)
+    and (max-width: 1399px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      height: 445px;
+    }
+
+    @media screen 
+    and (min-width: 1400px)
+    and (max-width: 1700px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      height: 500px;
+    }
+
     @supports (overflow:-webkit-marquee)
     and (justify-content:inherit) {
       height: 60%;
@@ -86,7 +149,7 @@ ul {
     and (max-device-width: 1024px) 
     and (orientation: portrait) 
     and (-webkit-min-device-pixel-ratio: 1) {
-      height: 65%;
+      height: 600px;
     }
 
     @media only screen 
@@ -94,7 +157,7 @@ ul {
     and (max-device-width: 1024px) 
     and (orientation: landscape) 
     and (-webkit-min-device-pixel-ratio: 1) {
-      height: 72%;
+      height: 500px;
     }
 
     @media screen and (max-width: $iphone6) {
@@ -103,7 +166,7 @@ ul {
     }
 
     @media screen and (max-width: $iphone5-min) {
-      height: 75%;
+      height: 320px;
     }
   }
 
@@ -169,11 +232,25 @@ ul {
   @include transition(1s);
 
   &.one {
-    top: 1.5vh;
+    top: 20px;
+
+    @media screen 
+    and (min-width: 300px)
+    and (max-width: 699px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      top: 40px;
+    }
+
+    @media screen 
+    and (min-width: 700px)
+    and (max-width: 900px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      top: 45px;
+    }
   }
 
   &.hide {
-    top: -99vh;
+    top: -98vh;
   }
 }
 
@@ -185,12 +262,68 @@ ul {
   @include transition(1s);
   z-index: 1;
 
+  @media screen 
+  and (min-width: 400px)
+  and (max-width: 599px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    top: 130px;
+  }
+
+  @media screen and (max-width: $iphone6) {
+    top: 110px;
+  }
+
+  @media screen and (max-width: $iphone5-min) {
+    top: 21vh;
+  }
+
+  @media screen 
+  and (min-width: 600px)
+  and (max-width: 699px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    top: 130px;
+  }
+
+  @media screen 
+  and (min-width: 700px)
+  and (max-width: 999px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    top: 140px;
+  }
+
+  @media screen 
+  and (min-width: 1000px)
+  and (max-width: 1199px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    top: 200px;
+  }
+
+  @media screen 
+  and (min-width: 1200px)
+  and (max-width: 1499px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    top: 220px;
+  }
+
+  @media screen 
+  and (min-width: 1400px)
+  and (max-width: 1500px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    top: 180px;
+  }
+
   @media only screen 
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
   and (orientation: portrait) 
   and (-webkit-min-device-pixel-ratio: 1) {
     top: 20vh;
+  }
+
+  @media screen 
+  and (min-width: 1500px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    top: 200px;
   }
 
   @media only screen 
@@ -329,6 +462,13 @@ button, input {
   line-height: 1.8;
   margin-bottom: 5%;
 
+  @media screen 
+  and (min-width: 1440px)
+  and (max-width: 1500px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    margin-bottom: 2%;
+  }
+
   @media screen and (max-width: $iphone6) {
     font-size: 1.2em;
     width: 85%;
@@ -455,6 +595,13 @@ button, input {
     and (min-device-width: 768px) 
     and (max-device-width: 1024px) 
     and (orientation: landscape) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+      height: 60%;
+    }
+
+    @media screen 
+    and (min-width: 1440px)
+    and (max-width: 1550px)
     and (-webkit-min-device-pixel-ratio: 1) {
       height: 60%;
     }

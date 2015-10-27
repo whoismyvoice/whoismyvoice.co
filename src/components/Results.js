@@ -75,6 +75,7 @@ const Results = React.createClass({
 
             <ArrowDown
               additional={additional_exists}
+              color='orange-text'
               id='0'
             />
           </div>

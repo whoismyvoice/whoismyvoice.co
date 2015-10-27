@@ -40,12 +40,34 @@
 
     &:first-of-type {
       margin-top: 10%;
+
+      @media screen 
+      and (min-width: 300px)
+      and (max-width: 799px)
+      and (-webkit-min-device-pixel-ratio: 1) {
+        margin-top: 120px;
+      }
+
+      @media screen 
+      and (min-width: 700px)
+      and (max-width: 999px)
+      and (-webkit-min-device-pixel-ratio: 1) {
+        margin-top: 120px;
+      }
+
+      @media screen 
+      and (min-width: 1400px)
+      and (max-width: 1500px)
+      and (-webkit-min-device-pixel-ratio: 1) {
+        margin-top: 13%;
+      }
+
       @media screen and (max-width: $iphone6) {
         margin-top: 30%;
       }
 
       @media screen and (max-width: $iphone5-min) {
-        margin-top: 25%;
+        margin-top: 90px;
       }
 
       @media only screen 

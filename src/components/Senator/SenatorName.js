@@ -18,9 +18,7 @@ const SenatorName = React.createClass({
         { age }
       </h2>
       <h2 className="twitterHandle">
-        <a target="_blank" href={'http://twitter.com/home/?status=@' + this.props.twitter }>
-          {twitterHandle}
-        </a>
+        {twitterHandle}
       </h2>
     </div>;
   }

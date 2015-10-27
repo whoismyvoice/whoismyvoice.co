@@ -16,6 +16,14 @@
   margin-top: 1%;
   margin-bottom: 2%;
 
+  @media screen 
+  and (min-width: 1400px)
+  and (max-width: 1500px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    width: 30%;
+    padding: 15% 0;
+  }
+
   @media screen and (max-width: $iphone6) {
     width: 70%;
     padding: 35% 0;
@@ -44,7 +52,11 @@
 
   &.one {
     @media screen and (max-width: $iphone6) {
-      margin-top: 16%;
+      margin-top: 40px;
+    }
+
+    @media screen and (max-width: $iphone5-min) {
+      margin-top: 10px;
     }
 
     @media only screen 
@@ -66,6 +78,13 @@
 		font-weight: bold;
 		font-size: 1.8em;
 		font-size: 1.5vw;
+
+      @media screen 
+      and (min-width: 1400px)
+      and (max-width: 1500px)
+      and (-webkit-min-device-pixel-ratio: 1) {
+        font-size: 2vw;
+      }
 
     	@media only screen and (min-width: 801px) and (max-width: 1100px) {
       		font-size: 1.3em;
@@ -107,6 +126,16 @@
 
     @media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0) {
       left: 0.5%
+    }
+
+    @media screen 
+    and (min-width: 1400px)
+    and (max-width: 1500px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      margin-bottom: 1%;
+      width: 25%;
+      padding: 12.5% 0;
+      margin-top: 0;
     }
 
     @supports (overflow:-webkit-marquee)
@@ -154,7 +183,7 @@
     .description {
       width: 80%;
       margin-top: 1%;
-      font-size: 2vw;
+      font-size: 1.5vw;
 
       @media screen and (max-width: $iphone6) {
         font-size: 1.5em;
@@ -162,12 +191,6 @@
 
       @media screen and (max-width: $iphone5-min) {
         font-size: 1.1em;
-      }
-
-      @media only screen and (min-width: 1101px) {
-        font-size: 1.6em;
-        margin-top: 0;
-        font-size: 1.6vw;
       }
 
       @media only screen 

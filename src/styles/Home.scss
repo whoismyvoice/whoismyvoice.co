@@ -34,7 +34,6 @@ h1 {
 	&.reveal {
 		overflow: visible;
 		z-index: 1;
-		height: 100%;
 		width: 99.1vw;
 		@include transition(1s);
 	}

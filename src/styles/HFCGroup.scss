@@ -20,6 +20,10 @@
 	@media screen and (max-width: $iphone6) {
 		margin-top: -15%;
 	}
+
+	a {
+		color: $black;
+	}
 }
 
 .HFCMember {
@@ -33,6 +37,12 @@
   	and (orientation: portrait) 
   	and (-webkit-min-device-pixel-ratio: 1) {
   		width: 33%;
+  	}
+
+  	@media screen 
+  	and (max-width: 1299px)
+  	and (-webkit-min-device-pixel-ratio: 1) {
+    	width: 33%
   	}
 
 	@media screen and (max-width: $iphone6) {
