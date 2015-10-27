@@ -17,11 +17,11 @@ h1 {
 	z-index: 1;
 
 	@media screen and (max-width: $iphone6) {
-		height: 88vh;
+		height: 89.5vh;
 	}
 
 	@media screen and (max-width: $iphone5-min) {
-		height: 86vh;
+		height: 86.5vh;
 	}
 
 	&.full {

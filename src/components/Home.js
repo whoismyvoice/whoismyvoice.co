@@ -89,7 +89,7 @@ const Home = React.createClass({
   render() {
     let blockClasses = cx(
       ['block', 'one'], 
-      {'hide': this.state.did_search }
+      {'hide': this.state.did_search}
     );
 
     let topLineClasses = cx(
@@ -99,8 +99,8 @@ const Home = React.createClass({
 
     let backgroundClasses = cx(
       ['second-wrapper'], 
-      {'move-up': this.state.did_search },
-      {'static': !this.state.did_search },
+      {'move-up': this.state.did_search},
+      {'static': !this.state.did_search},
       {'short': this.state.member_hfc}
     );
 
@@ -165,7 +165,7 @@ const Home = React.createClass({
         <SearchInput
           error={ERROR}
         />
-
+        
         <Results
           hfc={MEMBER_HFC}
           backgroundClasses={backgroundClasses}

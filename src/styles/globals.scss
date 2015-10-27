@@ -64,59 +64,83 @@ ul {
   }
 
   @media screen 
-  and (min-width: 300px)
-  and (max-width: 699px)
+  and (min-width: 400px)
+  and (max-width: 420px)
   and (-webkit-min-device-pixel-ratio: 1) {
-    height: 230px;
-    @include drawIn(230px);
+    height: 400px;
+    @include drawIn(400px);
   }
 
   @media screen 
-  and (min-width: 700px)
+  and (min-width: 421px)
+  and (max-width: 499px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    height: 270px;
+    @include drawIn(270px);
+  }
+
+  @media screen 
+  and (min-width: 500px)
+  and (max-width: 649px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    height: 290px;
+    @include drawIn(290px);
+  }
+
+  @media screen 
+  and (min-width: 650px)
   and (max-width: 899px)
   and (-webkit-min-device-pixel-ratio: 1) {
-    height: 305px;
-    @include drawIn(305px);
+    height: 400px;
+    @include drawIn(400px);
   }
 
   @media screen 
   and (min-width: 900px)
   and (max-width: 1000px)
   and (-webkit-min-device-pixel-ratio: 1) {
-    height: 330px;
-    @include drawIn(330px);
+    height: 440px;
+    @include drawIn(440px);
   }
 
   @media screen 
   and (min-width: 1000px)
   and (max-width: 1199px)
   and (-webkit-min-device-pixel-ratio: 1) {
-    height: 370px;
-    @include drawIn(370px);
+    height: 490px;
+    @include drawIn(490px);
   }
 
   @media screen 
   and (min-width: 1200px)
   and (max-width: 1399px)
   and (-webkit-min-device-pixel-ratio: 1) {
-    height: 440px;
-    @include drawIn(440px);
+    height: 510px;
+    @include drawIn(510px);
   }
 
   @media screen 
   and (min-width: 1400px)
-  and (max-width: 1700px)
+  and (max-width: 1550px)
   and (-webkit-min-device-pixel-ratio: 1) {
     height: 550px;
     @include drawIn(550px);
   }
 
   @media screen 
+  and (min-width: 1551px)
+  and (max-width: 1700px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    height: 600px;
+    @include drawIn(600px);
+  }
+
+  @media screen 
   and (min-width: 1701px)
   and (max-width: 1900px)
   and (-webkit-min-device-pixel-ratio: 1) {
-    height: 615px;
-    @include drawIn(615px);
+    height: 640px;
+    @include drawIn(640px);
   }
 
   &.menu {
@@ -145,27 +169,20 @@ ul {
     and (min-width: 1000px)
     and (max-width: 1399px)
     and (-webkit-min-device-pixel-ratio: 1) {
-      height: 445px;
+      height: 465px;
+      @include drawIn(465px);
     }
 
     @media screen 
     and (min-width: 1400px)
     and (max-width: 1700px)
     and (-webkit-min-device-pixel-ratio: 1) {
-      height: 500px;
+      height: 450px;
     }
 
     @supports (overflow:-webkit-marquee)
     and (justify-content:inherit) {
       height: 60%;
-    }
-
-    @media only screen 
-    and (min-device-width: 768px) 
-    and (max-device-width: 1024px) 
-    and (orientation: portrait) 
-    and (-webkit-min-device-pixel-ratio: 1) {
-      height: 600px;
     }
 
     @media only screen 
@@ -183,6 +200,7 @@ ul {
 
     @media screen and (max-width: $iphone5-min) {
       height: 320px;
+      @include drawIn(320px);
     }
   }
 
@@ -204,7 +222,8 @@ ul {
   and (max-device-width: 1024px) 
   and (orientation: portrait) 
   and (-webkit-min-device-pixel-ratio: 1) {
-    height: 58%;
+    height: 640px;
+    @include drawIn(640px);
   }
 }
 
@@ -241,27 +260,52 @@ ul {
   text-align: center;
   margin: 0 auto;
   display: block;
-  padding-top: 6%;
+  top: 0;
+  padding-top: 20px;
   margin-bottom: 0px;
   position: relative;
   height: 88.5vh;
   @include transition(1s);
 
   &.one {
-    top: 20px;
+    padding-top: 20px;
 
     @media screen 
     and (min-width: 300px)
+    and (max-width: 419px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      padding-top: 30px;
+    }
+
+    @media screen 
+    and (min-width: 420px)
     and (max-width: 699px)
     and (-webkit-min-device-pixel-ratio: 1) {
-      top: 40px;
+      padding-top: 80px;
     }
 
     @media screen 
     and (min-width: 700px)
-    and (max-width: 900px)
+    and (max-width: 1100px)
     and (-webkit-min-device-pixel-ratio: 1) {
-      top: 45px;
+      padding-top: 100px;
+    }
+
+    @media screen and (max-width: $iphone5-min) {
+      padding-top: 60px;
+    }
+
+    @media screen 
+    and (min-width: 1101px)
+    and (max-width: 1400px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      padding-top: 90px;
+    }
+
+    @media screen 
+    and (min-width: 1401px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      padding-top: 100px;
     }
   }
 
@@ -318,7 +362,7 @@ ul {
   and (min-width: 1200px)
   and (max-width: 1499px)
   and (-webkit-min-device-pixel-ratio: 1) {
-    top: 220px;
+    top: 100px;
   }
 
   @media screen 
@@ -339,7 +383,7 @@ ul {
   @media screen 
   and (min-width: 1500px)
   and (-webkit-min-device-pixel-ratio: 1) {
-    top: 200px;
+    top: 250px;
   }
 
   @media only screen 
@@ -479,10 +523,10 @@ button, input {
   margin-bottom: 5%;
 
   @media screen 
-  and (min-width: 1440px)
+  and (min-width: 1339px)
   and (max-width: 1500px)
   and (-webkit-min-device-pixel-ratio: 1) {
-    margin-bottom: 2%;
+    margin-bottom: 0%;
   }
 
   @media screen and (max-width: $iphone6) {
@@ -520,13 +564,6 @@ button, input {
   a {
     color: $black;
   }
-
-  .resources {
-    background-color: $bright-green;
-    @media screen and (max-width: $iphone5-min) {
-      font-size: 0.8em;
-    }
-  }
 }
 
 .impact {
@@ -544,6 +581,74 @@ button, input {
     margin-top: 5%;
   }
 
+  @media screen and (max-width: $iphone6) {
+    font-size: 1.2em;
+    width: 85%;
+    padding: 2vh;
+    margin-top: 3vh;
+    height: 240px;
+  }
+
+  @media screen 
+  and (min-width: 421px)
+  and (max-width: 700px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    margin-top: 200px;
+    font-size: 1.2em;
+    width: 85%;
+  }
+
+  @media screen 
+  and (min-width: 701px)
+  and (max-width: 900px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    margin-top: 150px;
+    font-size: 1.4em;
+    width: 85%;
+  }
+
+  @media screen 
+  and (min-width: 901px)
+  and (max-width: 1000px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    margin-top: 140px;
+    font-size: 1.5em;
+    width: 80%;
+  }
+
+  @media screen 
+  and (min-width: 1001px)
+  and (max-width: 1300px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    margin-top: 20px;
+    font-size: 1.6em;
+    width: 75%;
+  }
+
+  @media screen 
+  and (min-width: 1301px)
+  and (max-width: 1500px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    margin-top: 0px;
+    font-size: 1.8em;
+    width: 65%;
+  }
+
+  @media screen 
+  and (min-width: 1501px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    margin-top: 90px;
+    font-size: 1.8em;
+    width: 70%;
+  }
+
+  @media screen and (max-width: $iphone5-min) {
+      padding: 4vh;
+      font-size: 1em;
+      height: 160px;
+      margin-top: 0;
+  }
+
   @media only screen 
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
@@ -554,7 +659,7 @@ button, input {
     padding-bottom: 4%;
     margin-bottom: 0%;
     font-size: 1.6em;
-    margin-top: 6%;
+    margin-top: 2%;
   }
 
   @media only screen 
@@ -565,17 +670,7 @@ button, input {
     width: 90%;
     padding-top: 2%;
     font-size: 1.6em;
-    margin-top: 4%;
-  }
-
-  @media screen and (max-width: $iphone6) {
-    font-size: 1.2em;
-    width: 85%;
-    padding: 2vh;
-  }
-
-  @media screen and (max-width: $iphone5-min) {
-      padding: 4vh;
+    margin-top: 2%;
   }
 }
 
@@ -616,10 +711,11 @@ button, input {
     }
 
     @media screen 
-    and (min-width: 1440px)
-    and (max-width: 1550px)
+    and (min-width: 1100px)
+    and (max-width: 1400px)
     and (-webkit-min-device-pixel-ratio: 1) {
-      height: 60%;
+      height: 410px;
+      @include drawIn(410px);
     }
   }
 }
@@ -655,4 +751,12 @@ button, input {
 .bright-red {
   background-color: $bright-red;
   @include transition(0.5s);
+}
+
+.blocker {
+  height: 10px;
+  width: 100%;
+  position: relative;
+  background-color: inherit;
+  display: block;
 }

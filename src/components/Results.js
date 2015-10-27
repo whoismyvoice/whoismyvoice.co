@@ -30,6 +30,7 @@ const Results = React.createClass({
 
 		if (isHFC) {
 			return <div className={this.props.backgroundClasses} id="fullpage">
+        <div className="blocker"></div>
         <div className="section block two">
 
           <p className="impact">
@@ -52,7 +53,7 @@ const Results = React.createClass({
 		} else {
 			return <div className={this.props.backgroundClasses} id="fullpage">
       	 <div className="section block two">
-
+            <div className="blocker"></div>
             <Circle
               style="wide"
               additional={additional_member}
