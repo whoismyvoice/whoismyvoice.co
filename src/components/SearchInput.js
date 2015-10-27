@@ -29,23 +29,25 @@ const SearchInput = React.createClass({
     if (e.keyCode === 13) {
       if((isNaN(this.state.zip_code) && this.state.zip_code.length < 2) || (!isNaN(this.state.zip_code) && this.state.zip_code.length !== 5)) {
         this.setState({
-          error: true
+          error: true,
+          fade: false
         });
       } else {
         SenateActions.identifyMember(this.state.zip_code);
         this.setState({
           error: false,
-          zip_code: ''
+          zip_code: '',
+          fade: false
         });
       }
     }
   },
 
   _handleClick: function() {
-
     if ((isNaN(this.state.zip_code) && this.state.zip_code.length < 2) || (!isNaN(this.state.zip_code) && this.state.zip_code.length !== 5)) {
       this.setState({
-        error: true
+        error: true,
+        fade: false
       });
     } else {
       this.setState({
