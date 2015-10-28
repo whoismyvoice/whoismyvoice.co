@@ -142,7 +142,7 @@
     }
 
 		@media screen and (max-width: $iphone6) {
-			font-size: 1.6em;
+			font-size: 20px;
       top: 1px;
 		}
 
@@ -248,7 +248,6 @@
 		margin-top: 2%;
 		width: 48px;
 		padding-bottom: 40px;
-    left: 0;
     @include fadeIn(0.5s,1.5s);
 
 		@media screen and (max-width: $iphone6) {
@@ -267,21 +266,28 @@
 			margin-top: 0;
       top: 0;
       left: 0;
+
+      @media screen and (max-width: $iphone6)
+      and (-webkit-min-device-pixel-ratio: 1) {
+        font-size: 24px;
+        left: 0%;
+      }
 			
-			@media screen and (max-width: $iphone6) {
-				font-size: 1.9em;
+			@media screen and (max-width: $iphone6)
+      and (-webkit-min-device-pixel-ratio: 2) {
+				font-size: 24px;
         top: 0;
         left: -25%;
 			}
 
-  			@media only screen 
-  			and (min-device-width: 768px) 
-  			and (max-device-width: 1024px) 
-  			and (orientation: landscape) 
-  			and (-webkit-min-device-pixel-ratio: 1) {
-    			top: 0;
-    			left: -1px;
-  			}
+  		@media only screen 
+  		and (min-device-width: 768px) 
+  		and (max-device-width: 1024px) 
+  		and (orientation: landscape) 
+  		and (-webkit-min-device-pixel-ratio: 1) {
+    		top: 0;
+    		left: -1px;
+  		}
 		}
 
 		@media only screen 
@@ -377,7 +383,7 @@
       }
 
       @media screen and (max-width: $iphone6) {
-        font-size: 2.1em;
+        font-size: 26px;
       }
 
       @media screen 

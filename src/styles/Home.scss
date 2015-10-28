@@ -17,10 +17,22 @@ h1 {
 	z-index: 1;
 
 	@media screen and (max-width: $iphone6) {
+		height: 100vh;
+	}
+
+	@media screen and (max-width: $iphone6)
+	and (-webkit-min-device-pixel-ratio: 2)
+	and (device-aspect-ratio: 375/667) {
 		height: 89.5vh;
 	}
 
 	@media screen and (max-width: $iphone5-min) {
+		height: 99vh;
+	}
+
+	@media screen and (max-width: $iphone5-min)
+	and (-webkit-min-device-pixel-ratio: 2)
+	and (device-aspect-ratio: 40/71) {
 		height: 86.5vh;
 	}
 

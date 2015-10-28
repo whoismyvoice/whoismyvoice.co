@@ -211,9 +211,17 @@
     }
 
     @media screen and (max-width: $iphone6) {
+      margin-bottom: -2%;
+      margin-top: -1%;
+      width: 60%;
+      padding: 30% 0;
+    }
+
+    @media screen and (max-width: $iphone6)
+    and(-webkit-min-device-pixel-ratio: 2) {
       margin-bottom: 0;
-      width: 65%;
-      padding: 32.5% 0;
+      width: 60%;
+      padding: 30% 0;
     }
 
     @media screen and (max-width: $iphone5-min) {
@@ -249,7 +257,7 @@
       font-size: 1.5vw;
 
       @media screen and (max-width: $iphone6) {
-        font-size: 1.45em;
+        font-size: 16px;
         width: 75%;
       }
 
@@ -361,8 +369,8 @@
       margin-bottom: 0%;
       width: 70%;
       border: 0;
-      padding-bottom: 30%;
-      padding-top: 25%;
+      padding-bottom: 25%;
+      padding-top: 20%;
     }
 
     @media screen and (max-width: $iphone5-min) {
@@ -394,7 +402,7 @@
       font-size: 1.4vw;
 
       @media screen and (max-width: $iphone6) {
-        font-size: 1.4em;
+        font-size: 17px;
         width: 100%;
       }
 

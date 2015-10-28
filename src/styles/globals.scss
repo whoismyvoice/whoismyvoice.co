@@ -493,6 +493,10 @@ button, input {
     and (justify-content:inherit) {
       margin-bottom: 1%;   
     }
+
+    @media screen and (min-width:0\0) {
+      margin-bottom: 11%;
+    }
   }
 
   @media screen 
@@ -500,6 +504,10 @@ button, input {
   and (max-width: 1338px) {
     font-size: 1.4em;
     margin-bottom: 1%;
+
+    @media screen and (min-width:0\0) {
+      margin-bottom: 11%;
+    }
   }
 
   @media screen 
@@ -507,11 +515,19 @@ button, input {
   and (max-width: 1500px) {
     margin-bottom: 2%;
     font-size: 1.4em;
+
+    @media screen and (min-width:0\0) {
+      margin-bottom: 11%;
+    }
   }
 
   @media screen 
   and (min-width: 1501px) {
     margin-bottom: 1%;
+
+    @media screen and (min-width:0\0) {
+      margin-bottom: 10%;
+    }
   }
 
   @media screen and (max-width: $iphone6) {
