@@ -72,39 +72,44 @@
       left: 70%;
       top: 2px;
 
-      @supports (-moz-appearance:meterbar) {
+      @media screen and (min-width:0\0) {
         left: 0;
         top: 20px;
       }
+
+      @supports (-moz-appearance:meterbar) {
+        left: 0;
+        top: 0;
+      }
     }
 
-    	@media screen and (max-width: $iphone6) {
-      	display: none;
-    	}
+    @media screen and (max-width: $iphone6) {
+      display: none;
+    }
 
-    	@media only screen 
-  		and (min-device-width: 768px) 
-  		and (max-device-width: 1024px) 
-  		and (orientation: portrait) 
-  		and (-webkit-min-device-pixel-ratio: 1) {
-    		width: 38px;
-    		bottom: 30px;
-    		font-size: 0.9em;
-    		padding-bottom: 38px;
+    @media only screen 
+  	and (min-device-width: 768px) 
+  	and (max-device-width: 1024px) 
+  	and (orientation: portrait) 
+  	and (-webkit-min-device-pixel-ratio: 1) {
+    	width: 38px;
+    	bottom: 30px;
+    	font-size: 0.9em;
+    	padding-bottom: 38px;
+  	}
+
+  	@media only screen 
+  	and (min-device-width: 768px) 
+  	and (max-device-width: 1024px) 
+  	and (orientation: landscape) 
+  	and (-webkit-min-device-pixel-ratio: 1) {
+  		bottom: 30px;
+
+  		&:before {
+  			top: 2px;
+  			left: 70%;
   		}
-
-  		@media only screen 
-  		and (min-device-width: 768px) 
-  		and (max-device-width: 1024px) 
-  		and (orientation: landscape) 
-  		and (-webkit-min-device-pixel-ratio: 1) {
-  			bottom: 30px;
-
-  			&:before {
-  				top: 2px;
-  				left: 70%;
-  			}
-  		}
+  	}
 	}
 
 	&:before {
@@ -118,6 +123,11 @@
     top: 2px;
 
     @supports (-moz-appearance:meterbar) {
+      left: 0;
+      top: 20px;
+    }
+
+    @media screen and (min-width:0\0) {
       left: 0;
       top: 20px;
     }
@@ -275,21 +285,30 @@
 		}
 
 		@media only screen 
-  		and (min-device-width: 768px) 
-  		and (max-device-width: 1024px) 
-  		and (orientation: portrait) 
-  		and (-webkit-min-device-pixel-ratio: 1) {
-    		margin-top: 8%;
-    		width: 48px;
-  		}
+  	and (min-device-width: 768px) 
+  	and (max-device-width: 1024px) 
+  	and (orientation: portrait) 
+  	and (-webkit-min-device-pixel-ratio: 1) {
+    	margin-top: 8%;
+    	width: 48px;
+  	}
 
-  		@media only screen 
-  		and (min-device-width: 768px) 
-  		and (max-device-width: 1024px) 
-  		and (orientation: landscape) 
-  		and (-webkit-min-device-pixel-ratio: 1) {
-    		width: 48px;
-  		}
+  	@media only screen 
+  	and (min-device-width: 768px) 
+  	and (max-device-width: 1024px) 
+  	and (orientation: landscape) 
+  	and (-webkit-min-device-pixel-ratio: 1) {
+    	width: 48px;
+  	}
+
+    @media screen and (min-width:0\0) {
+      background-color: $light-green;
+
+      &:before {
+        margin-top: 150%;
+        display: block;
+      }
+    }
 	}
 
 	&.nav-arrow {
@@ -348,6 +367,11 @@
       top: 2px;
 
       @supports (-moz-appearance:meterbar) {
+        left: 0;
+        top: 20px;
+      }
+
+      @media screen and (min-width:0\0) {
         left: 0;
         top: 20px;
       }
