@@ -37,6 +37,12 @@
 		padding-bottom: 30px;
 	}
 
+  @media only screen
+  and (min-width: 421px)
+  and (max-width: 799px) {
+    font-size: 13px;
+  }
+
   @media screen 
   and (min-width: 1400px)
   and (max-width: 1500px) {
@@ -256,7 +262,12 @@
 			padding-bottom: 36px;
 		}
 
-		@media screen and (max-width: $iphone5-min) {
+    @media screen and (max-width: 361px) {
+      left: 0;
+    }
+
+		@media screen and (max-width: $iphone5-min)
+    and (-webkit-min-device-pixel-ratio: 2) {
       margin-top: 3%;
       width: 42px;
       padding-bottom: 36px;
@@ -270,7 +281,7 @@
       @media screen and (max-width: $iphone6)
       and (-webkit-min-device-pixel-ratio: 1) {
         font-size: 24px;
-        left: 0%;
+        left: 25%;
       }
 			
 			@media screen and (max-width: $iphone6)
@@ -279,6 +290,23 @@
         top: 0;
         left: -25%;
 			}
+
+      @media screen and (max-device-width: 413px) {
+        left: 0;
+      }
+
+      @media screen and (max-width: 361px) {
+        font-size: 24px;
+        top: 0;
+        left: 0;
+      }
+
+      @media screen and (max-width: $iphone5-min)
+      and (-webkit-min-device-pixel-ratio: 2) {
+        font-size: 24px;
+        top: 0;
+        left: -25%;
+      }
 
   		@media only screen 
   		and (min-device-width: 768px) 

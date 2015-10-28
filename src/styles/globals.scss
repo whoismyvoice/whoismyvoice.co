@@ -5,6 +5,7 @@ body {
   font-family: 'Helvetica Neue', Helvetica;
   background-color: $bright-red;
   line-height: 1.5;
+  min-height: 100%!important;
   height: 100%;
   overflow-x: hidden;
   width: 100%;
@@ -223,9 +224,21 @@ ul {
   }
 
   @media screen and (max-width: $iphone6) {
-   height: 365px;
-   @include drawIn(365px);
-   top: 48px;
+    height: 350px;
+    @include drawIn(350px);
+    top: 48px;
+  }
+
+  @media screen and (max-width: $iphone6)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    height: 365px;
+    @include drawIn(365px);
+    top: 48px;
+  }
+
+  @media screen and (max-width: 361px) {
+    height: 350px;
+    @include drawIn(350px);
   }
 
   @media screen and (max-width: $iphone5-min) {
@@ -287,6 +300,7 @@ ul {
   top: 0;
   position: relative;
   height: 88.5vh;
+  min-height: 100%;
   @include transition(1s);
 
   &.one {
@@ -537,7 +551,16 @@ button, input {
     padding-bottom: 10%;
   }
 
-  @media screen and (max-width: $iphone5-min) {
+  @media screen and (max-width: 361px) {
+    font-size: 15px;
+  }
+
+  @media screen and (max-device-width: 413px) {
+    font-size: 15px;
+  }
+
+  @media screen and (max-width: $iphone5-min)
+  and(-webkit-min-device-pixel-ratio: 2) {
     font-size: 1em;
   }
 
@@ -734,6 +757,7 @@ button, input {
 
 .section-block {
   height: 100vh;
+  min-height: 100%;
   display: block;
   width: 100%;
 }

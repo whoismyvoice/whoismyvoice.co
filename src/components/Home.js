@@ -155,14 +155,14 @@ const Home = React.createClass({
         	<div className="black-line"></div>
 
         	<Circle
-          	style="one"
-          	hide={true}
-          	did_search={DID_SEARCH}
-          	desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
+          		style="one"
+          		hide={true}
+          		did_search={DID_SEARCH}
+          		desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
         	/>
 
         	<SearchInput
-          	error={ERROR}
+          		error={ERROR}
         	/>
         </div>
         

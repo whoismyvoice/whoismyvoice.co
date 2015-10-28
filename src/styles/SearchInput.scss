@@ -30,6 +30,15 @@ input {
     opacity: 0;
   }
 
+  @media screen
+  and (max-width: 361px) {
+    font-size: 14px;
+  }
+
+  @media screen and (max-device-width: 413px) {
+    font-size: 14px;
+  }
+
   @media screen and (max-width: $iphone5-min) {
     width: 60%;
   }

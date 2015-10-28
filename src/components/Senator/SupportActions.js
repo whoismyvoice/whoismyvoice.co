@@ -8,12 +8,12 @@ import Button from './../Button';
 
 const SupportActions = React.createClass({
   render() {
-    let additional = this.props.additional,
+    var additional = this.props.additional,
         current = this.props.currentSenator,
         gender,
         email,
         twitter,
-        tel;
+        tel = this.props.tel;
 
     if (additional !== null && current === '1') {
       gender = additional.gender === 'M' ? 'him' : 'her',
@@ -26,6 +26,8 @@ const SupportActions = React.createClass({
       twitter = this.props.twitter,
       tel = this.props.tel;
     }
+
+    console.log(tel);
 
     return  <div className="supportActions">
       <Button

@@ -10,6 +10,12 @@
 		width: 85%;
 	}
 
+	@media only screen
+    and (min-width: 421px)
+    and (max-width: 799px) {
+      width: 95%;
+    }
+
 	@media only screen 
   	and (min-device-width: 768px) 
   	and (max-device-width: 1024px) 
@@ -113,6 +119,21 @@
 				margin-right: 5%;
 				font-size: 0.8em;
 			}
+
+			@media only screen
+    		and (min-width: 421px)
+    		and (max-width: 799px) {
+      			font-size: 9px;
+    		}
+
+    		@media screen and (max-width: 361px) {
+        		font-size: 10px;
+        		margin-top: 0;
+      		}
+
+      		@media screen and (max-device-width: 413px) {
+        		font-size: 10px;
+      		}
 
 			@media only screen 
   			and (min-device-width: 768px) 

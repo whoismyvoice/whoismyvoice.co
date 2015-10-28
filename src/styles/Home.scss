@@ -18,6 +18,7 @@ h1 {
 
 	@media screen and (max-width: $iphone6) {
 		height: 100vh;
+		 min-height: 100%!important;
 	}
 
 	@media screen and (max-width: $iphone6)
@@ -28,6 +29,7 @@ h1 {
 
 	@media screen and (max-width: $iphone5-min) {
 		height: 99vh;
+		min-height: 100%!important;
 	}
 
 	@media screen and (max-width: $iphone5-min)
