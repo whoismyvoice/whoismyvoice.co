@@ -80,7 +80,7 @@
     }
 
     @media screen and (max-width: $iphone5-min) {
-      margin-top: 0px;
+      margin-top: 0;
     }
 
     @media only screen 
@@ -88,7 +88,7 @@
     and (max-device-width: 1024px) 
     and (orientation: landscape) 
     and (-webkit-min-device-pixel-ratio: 1) {
-      margin-top: 0%;
+      margin-top: 0;
     }
   }
 
@@ -137,7 +137,9 @@
       font-size: 1.6em;
     }
 
-    @media only screen and (min-width: 421px) and (max-width: 600px) {
+    @media only screen
+    and (min-width: 421px)
+    and (max-width: 600px) {
       font-size: 1em;
     }
 
@@ -153,10 +155,6 @@
     margin-bottom: -0.5%;
     width: 20%;
     padding: 10% 0;
-
-    @media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0) {
-      left: 0.5%
-    }
 
     @media screen 
     and (min-width: 800px)
@@ -178,8 +176,6 @@
     and (min-width: 1200px)
     and (max-width: 1399px) {
       margin-top: -2%;
-      @supports (-moz-appearance:meterbar) {
-      }
     }
 
     @media screen 
@@ -195,10 +191,6 @@
     and (max-width: 1601px){
       width: 20%;
       padding: 10% 0;
-
-      @supports (overflow:-webkit-marquee)
-      and (justify-content:inherit) {
-      }
     }
 
     @media screen 
@@ -206,20 +198,12 @@
     and (max-width: 1700px){
       width: 20%;
       padding: 10% 0;
-
-      @supports (overflow:-webkit-marquee)
-      and (justify-content:inherit) {
-      }
     }
 
     @media screen 
     and (min-width: 1701px) {
       width: 25%;
       padding: 12.5% 0;
-
-      @supports (overflow:-webkit-marquee)
-      and (justify-content:inherit) {
-      }
     }
 
     @media screen and (max-width: $iphone6) {
@@ -332,10 +316,6 @@
     and (max-width: 1199px) {
       width: 30%;
       padding: 15% 0;
-      
-      @supports (overflow:-webkit-marquee)
-      and (justify-content:inherit) {
-      }
     }
 
     @media screen 
@@ -379,11 +359,6 @@
       border: 0;
       padding-bottom: 30%;
       padding-top: 25%;
-    }
-
-    @media screen 
-    and (min-width: 414px)
-    and (max-width: 736px) {
     }
 
     @media screen and (max-width: $iphone5-min) {

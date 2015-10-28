@@ -79,7 +79,7 @@
     }
 
     	@media screen and (max-width: $iphone6) {
-      		display: none;
+      	display: none;
     	}
 
     	@media only screen 
@@ -309,7 +309,6 @@
     @media screen 
     and (min-width: 1260px)
     and (max-width: 1300px) {
-
       @supports (overflow:-webkit-marquee)
       and (justify-content:inherit) {
         margin-top: 60px;

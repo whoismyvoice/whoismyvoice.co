@@ -402,7 +402,9 @@ ul {
   @include transition(1s);
 }
 
-@media only screen and (max-width: $iphone6) and (orientation:landscape){
+@media only screen
+and (max-width: $iphone6)
+and (orientation:landscape){
   .overlay {
     font-family: Helvetica;
     text-align: center;
@@ -428,6 +430,7 @@ button, input {
 ::selection {
   text-shadow: 2px 2px 1px #B43092;
 }
+
 ::-moz-selection {
   text-shadow: 1px 1px 1px #B43092;
 }
@@ -507,13 +510,7 @@ button, input {
   }
 
   @media screen 
-  and (min-width: 1501px)
-  and (max-width: 1749px) {
-    margin-bottom: 1%;
-  }
-
-  @media screen 
-  and (min-width: 1750px) {
+  and (min-width: 1501px) {
     margin-bottom: 1%;
   }
 
@@ -607,10 +604,6 @@ button, input {
   and (max-width: 1300px) {
     font-size: 1.6em;
     width: 75%;
-
-    @supports (overflow:-webkit-marquee)
-    and (justify-content:inherit) {
-    }
   }
 
   @media screen 
@@ -618,9 +611,6 @@ button, input {
   and (max-width: 1500px) {
     font-size: 1.6em;
     width: 70%;
-    @supports (overflow:-webkit-marquee)
-    and (justify-content:inherit) {
-    }
   }
 
   @media screen 
@@ -628,10 +618,6 @@ button, input {
   and (max-width: 1700px){
     font-size: 1.8em;
     width: 75%;
-
-    @supports (overflow:-webkit-marquee)
-    and (justify-content:inherit) {
-    }
   }
 
   @media screen and (max-width: $iphone5-min) {
@@ -712,7 +698,6 @@ button, input {
       height: 57%;
     }
   }
-
   @include transition(0.5s);
 }
 
