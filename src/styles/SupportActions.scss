@@ -129,13 +129,12 @@
     and (max-device-width: 1024px) 
     and (orientation: landscape) 
     and (-webkit-min-device-pixel-ratio: 1) {
-      width: 60%;
-      min-width: 723px;
-      max-width: 723px;
+      min-width: 724px;
+      max-width: 724px;
     }
 
     @media screen 
-    and (min-width: 1000px)
+    and (min-width: 1025px)
     and (max-width: 1199px) {
       min-width: 694px;
       max-width: 694px;
