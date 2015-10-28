@@ -57,13 +57,6 @@ ul {
   @include drawIn(420px);
 
   @media screen 
-  and (min-width: 400px)
-  and (max-width: 420px) {
-    height: 400px;
-    @include drawIn(400px);
-  }
-
-  @media screen 
   and (min-width: 421px)
   and (max-width: 499px) {
     height: 270px;
@@ -117,6 +110,15 @@ ul {
   and (max-width: 1700px) {
     height: 600px;
     @include drawIn(600px);
+
+    @media screen and(min-height: 700px)
+    and (max-height: 850px) {
+      @include drawIn(750px);
+    }
+
+    @media screen and(min-height: 851px){
+      @include drawIn(800px);
+    }
   }
 
   @media screen 
@@ -190,8 +192,7 @@ ul {
     }
 
     @media screen and (max-width: $iphone6) {
-      height: 74%;
-      top: 54px;
+      top: 58px;
     }
 
     @media screen and (max-width: $iphone5-min) {
@@ -201,7 +202,8 @@ ul {
   }
 
   @media screen and (max-width: $iphone6) {
-   height: 65%;
+   height: 370px;
+   @include drawIn(370px);
    top: 48px;
   }
 
@@ -721,10 +723,6 @@ button, input {
 
   .black-line {
     height: 48%;
-
-    @media screen and (max-width: $iphone6) {
-      height: 55%;
-    }
 
     @media only screen 
     and (min-device-width: 768px) 
