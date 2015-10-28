@@ -140,13 +140,19 @@
     and (min-width: 1400px)
     and (max-width: 1500px) {
       left: 70%;
-      font-size: 2em;
       top: 2px;
 
       @supports (-moz-appearance:meterbar) {
-        left: 0;
         top: 20px;
       }
+    }
+
+    @media screen 
+    and (min-width: 1500px)
+    and (max-width: 1700px) {
+      left: 70%;
+      font-size: 2em;
+      top: 2px;
     }
 
 		@media only screen 
