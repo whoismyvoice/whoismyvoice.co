@@ -20,10 +20,57 @@
 	@include transition(0.5s);
 
 	&.single {
-		margin-top: 40px;
+		margin-top: 20px;
 
-		@supports (-moz-appearance:meterbar) {
-    		margin-top: 60px;
+		@media screen 
+  		and (min-width: 1000px)
+  		and (max-width: 1100px) {
+  			margin-top: 40px;
+  			width: 12%;
+			padding: 6% 0;
+    	}
+
+    	@media screen 
+  		and (min-width: 1101px)
+  		and (max-width: 1299px) {
+  			margin-top: 40px;
+  			width: 12%;
+			padding: 6% 0;
+
+			@supports (overflow:-webkit-marquee)
+      		and (justify-content:inherit) {
+      			margin-top: 50px;
+      		}
+    	}
+
+    	@media screen 
+  		and (min-width: 1300px)
+  		and (max-width: 1499px){
+  			margin-bottom: 0;
+  			margin-top: 40px;
+  			width: 10%;
+  			padding: 5% 0;
+
+  			@supports (overflow:-webkit-marquee)
+      		and (justify-content:inherit) {
+      			margin-top: 50px;
+      		}
+    	}
+
+    	@media screen and (max-width: $iphone6) {
+    		margin-top: 28px;
+  		}
+
+    	@media screen 
+  		and (min-width: 1500px)
+  		and (max-width: 1699px) {
+  			margin-bottom: 0px;
+  			margin-top: 40px;
+    	}
+
+    	@media screen 
+  		and (min-width: 1700px) {
+  			margin-top: 40px;
     	}
 	}
 

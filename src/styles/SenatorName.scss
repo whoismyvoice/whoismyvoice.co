@@ -17,6 +17,12 @@
 		text-transform: capitalize;
 	}
 
+  @media screen 
+  and (min-width: 1100px)
+  and (max-width: 1499px) {
+    margin-bottom: 0vh;
+  }
+
 	.twitterHandle {
 		font-size: 1vw;
 
@@ -67,6 +73,11 @@
     		font-size: 0.8em;
     		margin-top: 0;
   		}
+
+      @media screen and (min-width: 1600px) {
+        font-size: 1.5em;
+        margin-bottom: 5px;
+      }
 
   		@media only screen 
   		and (min-device-width: 768px) 

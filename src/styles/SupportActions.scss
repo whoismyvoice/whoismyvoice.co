@@ -17,9 +17,33 @@
 
   @media screen 
   and (min-width: 1000px)
-  and (max-width: 1199px)
-  and (-webkit-min-device-pixel-ratio: 1) {
+  and (max-width: 1199px) {
     width: 100%;
+  }
+
+  @media screen 
+  and (min-width: 1200px)
+  and (max-width: 1399px) {
+    padding-top: 22px;
+  }
+
+  @media screen 
+  and (min-width: 1400px)
+  and (max-width: 1599px) {
+    padding-top: 16px;
+
+    @supports (overflow:-webkit-marquee)
+    and (justify-content:inherit) {
+      padding-top: 22px;
+    }
+  }
+
+  @media screen 
+  and (min-width: 1700px) {
+    @supports (overflow:-webkit-marquee)
+    and (justify-content:inherit) {
+      padding-top: 20px;
+    }
   }
 
 	@media screen and (max-width: $iphone6) {
@@ -124,17 +148,8 @@
 			display: none;
 		}
 
-		@media only screen 
-    and (min-device-width: 768px) 
-    and (max-device-width: 1024px) 
-    and (orientation: landscape) 
-    and (-webkit-min-device-pixel-ratio: 1) {
-      min-width: 724px;
-      max-width: 724px;
-    }
-
     @media screen 
-    and (min-width: 1025px)
+    and (min-width: 1000px)
     and (max-width: 1199px) {
       min-width: 694px;
       max-width: 694px;
@@ -142,6 +157,15 @@
       @supports (-moz-appearance:meterbar) {
         left: 3px;
       }
+    }
+
+		@media only screen 
+    and (min-device-width: 768px) 
+    and (max-device-width: 1024px) 
+    and (orientation: landscape) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+      min-width: 724px;
+      max-width: 724px;
     }
 
     @media only screen 
@@ -199,6 +223,16 @@
         top: -15px;
         height: 15px;
       }
+
+      @media only screen
+      and (min-width: 1399px)
+      and (max-width: 1499px) {
+        @supports (-moz-appearance:meterbar) {
+          top: -52px;
+        }
+      }
+
+       
 
       @media only screen 
   		and (min-device-width: 768px) 

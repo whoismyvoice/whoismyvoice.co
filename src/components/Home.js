@@ -151,18 +151,20 @@ const Home = React.createClass({
       </div>
 
       <div className={blockClasses} onScroll={this._handleScroll}>
-        <div className="black-line"></div>
+      	<div className="section-block">
+        	<div className="black-line"></div>
 
-        <Circle
-          style="one"
-          hide={true}
-          did_search={DID_SEARCH}
-          desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
-        />
+        	<Circle
+          	style="one"
+          	hide={true}
+          	did_search={DID_SEARCH}
+          	desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
+        	/>
 
-        <SearchInput
-          error={ERROR}
-        />
+        	<SearchInput
+          	error={ERROR}
+        	/>
+        </div>
         
         <Results
           hfc={MEMBER_HFC}
