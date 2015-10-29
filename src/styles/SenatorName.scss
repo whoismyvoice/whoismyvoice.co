@@ -10,6 +10,7 @@
 
 	@media screen and (max-width: $iphone6) {
 		padding: 10px;
+    width: 90%;
 	}
 
 	a {
@@ -28,24 +29,29 @@
     color: $dark-grey;
 
 		@media only screen 
-  		and (min-device-width: 768px) 
-  		and (max-device-width: 1024px) 
-  		and (orientation: portrait) 
-  		and (-webkit-min-device-pixel-ratio: 1) {
-  			font-size: 0.9em!important;
-  		}
+  	and (min-device-width: 768px) 
+  	and (max-device-width: 1024px) 
+  	and (orientation: portrait) 
+  	and (-webkit-min-device-pixel-ratio: 1) {
+  		font-size: 0.9em!important;
+  	}
 
-  		@media only screen 
-  		and (min-device-width: 768px) 
-  		and (max-device-width: 1024px) 
-  		and (orientation: landscape) 
-  		and (-webkit-min-device-pixel-ratio: 1) {
-    		font-size: 1.2em;
-  		}
+  	@media only screen 
+  	and (min-device-width: 768px) 
+  	and (max-device-width: 1024px) 
+  	and (orientation: landscape) 
+  	and (-webkit-min-device-pixel-ratio: 1) {
+    	font-size: 1.2em;
+  	}
 
 		@media screen and (max-width: $iphone6) {
-    		font-size: 0.8em;
-  		}
+    	font-size: 0.8em;
+  	}
+
+    @media screen 
+    and (min-width: 1500px) {
+      font-size: 0.8vw;
+    }
 	}
 
 	.age {
@@ -91,7 +97,7 @@
 
   		@media screen and (max-width: $iphone5-min)
       and (-webkit-min-device-pixel-ratio: 2) {
-    		font-size: 0.8em;
+    		font-size: 0.85em;
     		margin-top: 0;
         margin-bottom: 0;
   		}

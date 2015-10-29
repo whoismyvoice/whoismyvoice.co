@@ -93,8 +93,8 @@ ul {
 
     @media screen
     and (max-height: 650px) {
-      height: 400px;
-      @include drawIn(400px);
+      height: 420px;
+      @include drawIn(420px);
     }
   }
 
