@@ -422,32 +422,6 @@ ul {
 #top { top: 0; }
 #bottom { bottom: 0; }
 
-.overlay {
-  display: none;
-  opacity: 0;
-  @include transition(1s);
-}
-
-@media only screen
-and (max-width: $iphone6)
-and (orientation:landscape){
-  .overlay {
-    font-family: Helvetica;
-    text-align: center;
-    align-self: center;
-    position: fixed;
-    width: 100%;
-    font-size: 1.3em;
-    padding-top: 45vh;
-    height: 100%;
-    z-index: 12;
-    color: $white;
-    background-color: $black;
-    opacity: 0.95;
-    @include transition(1s);
-  }
-}
-
 button, input {
   -webkit-focus-ring-color: none;
   outline:none;
@@ -779,4 +753,33 @@ button, input {
   min-height: 100%;
   display: block;
   width: 100%;
+}
+
+.overlay {
+  display: none;
+  opacity: 0;
+  @include transition(1s);
+}
+
+@media only screen
+and (max-width: 736px)
+and (orientation: landscape){
+  .overlay {
+    font-family: Helvetica;
+    text-align: center;
+    align-self: center;
+    position: fixed;
+    width: 100%;
+    font-size: 1.3em;
+    padding-top: 45vh;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: block;
+    z-index: 99;
+    color: $white;
+    background-color: $black;
+    opacity: 0.95;
+    @include transition(1s);
+  }
 }
