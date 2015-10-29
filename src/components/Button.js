@@ -36,17 +36,17 @@ const Button = React.createClass({
   			</a>
   		)
   	} else if(this.props.flush === true) {
-  		return <button className={'button nav '+color} onClick={this._handleRestart}>
-        <Link to={this.props.link}>
-        	{this.props.text}
-        </Link>
-      </button>;
+  		return <Link to={this.props.link}>
+          <button className={'button nav '+color} onClick={this._handleRestart}>
+        	 {this.props.text}
+        </button>
+        </Link>;
   	} else {
-      return <button className={'button nav '+color}>
-        <Link to={this.props.link}>
+      return <Link to={this.props.link}>
+        <button className={'button nav '+color}>
           {this.props.text}
-        </Link>
-      </button>;
+        </button>
+      </Link>;
     }
   }
 });

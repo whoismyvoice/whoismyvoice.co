@@ -38,71 +38,6 @@
     margin-bottom: 40px;
     font-size: 1.3em;
 
-    &:first-of-type {
-      margin-top: 10%;
-
-      @media screen 
-      and (min-width: 300px)
-      and (max-width: 799px) {
-        margin-top: 120px;
-      }
-
-      @media screen 
-      and (min-width: 700px)
-      and (max-width: 999px) {
-        margin-top: 120px;
-      }
-
-      @media screen 
-      and (min-width: 1000px)
-      and (max-width: 1050px) {
-
-        @supports (overflow:-webkit-marquee)
-        and (justify-content:inherit) {
-          margin-top: 130px;
-        }
-      }
-
-      @media screen 
-      and (min-width: 1400px)
-      and (max-width: 1500px) {
-        margin-top: 9%;
-      }
-
-      @media screen and (max-width: $iphone6) {
-        margin-top: 25%;
-      }
-
-      @media screen and (max-width: $iphone5-min) {
-        margin-top: 90px;
-      }
-
-      @media only screen 
-      and (min-device-width : 414px) 
-      and (max-device-width : 736px) 
-      and (orientation : portrait) 
-      and (-webkit-min-device-pixel-ratio : 3) 
-      {
-        margin-top: 90px; 
-      }
-
-      @media only screen 
-      and (min-device-width: 768px) 
-      and (max-device-width: 1024px) 
-      and (orientation: portrait) 
-      and (-webkit-min-device-pixel-ratio: 1) {
-        margin-top: 28%;
-      }
-
-      @media only screen 
-      and (min-device-width: 768px) 
-      and (max-device-width: 1024px) 
-      and (orientation: landscape) 
-      and (-webkit-min-device-pixel-ratio: 1) {
-        margin-top: 12%;
-      }
-    }
-
     @media screen and (max-width: $iphone6) {
       width: 220px;
       margin-bottom: 30px;
@@ -129,34 +64,6 @@
       @media screen
       and (max-height: 650px) {
         margin-bottom: 20px;
-      }
-    }
-
-    a {
-      color: $black;
-    }
-
-    &:hover {
-      background-color: $black;
-
-      a {
-        color: $white;
-      }
-
-      &.yellow-text {
-        a {
-          color: $light-yellow;
-        }
-      }
-      &.blue-text {
-        a {
-          color: $light-blue;
-        }
-      }
-      &.purple-text {
-        a {
-          color: $light-purple!important;
-        }
       }
     }
   }
