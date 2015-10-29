@@ -123,6 +123,15 @@
       font-size: 11px;
     }
 
+    @media screen
+    and (min-width: 1051px)
+    and (max-width: 1399px) {
+      @media screen
+      and (max-height: 650px) {
+        margin-bottom: 20px;
+      }
+    }
+
     a {
       color: $black;
     }

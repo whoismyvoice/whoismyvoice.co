@@ -22,6 +22,12 @@
   and (max-width: 1200px) {
     width: 30%;
     padding: 15% 0;
+
+    @media screen
+    and (max-height: 650px) {
+      width: 22%;
+      padding: 11% 0;
+    }
   }
 
   @media screen 
@@ -193,6 +199,12 @@
       width: 25%;
       padding: 12.5% 0;
       margin-top: -2%;
+
+      @media screen
+      and (max-height: 650px) {
+        width: 20%;
+        padding: 10% 0;
+      }
     }
 
     @media screen 
@@ -355,6 +367,12 @@
     and (max-width: 1199px) {
       width: 30%;
       padding: 15% 0;
+
+      @media screen
+      and (max-height: 650px) {
+        width: 25%;
+        padding: 12.5% 0;
+      }
     }
 
     @media screen 
