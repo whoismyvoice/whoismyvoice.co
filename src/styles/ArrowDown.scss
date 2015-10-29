@@ -278,12 +278,6 @@
       top: 0;
       left: 0;
 
-      @media screen and (max-width: $iphone6)
-      and (-webkit-min-device-pixel-ratio: 1) {
-        font-size: 24px;
-        left: 25%;
-      }
-
       @media screen and (max-device-width: 413px) {
         left: 0;
       }
@@ -294,8 +288,14 @@
         left: 0;
       }
 
+      @media screen and (max-width: $iphone6) {
+        font-size: 24px;
+        left: 0%;
+      }
+
 			@media screen and (max-width: $iphone6)
-      and (-webkit-min-device-pixel-ratio: 2) {
+      and (-webkit-min-device-pixel-ratio: 2)
+      and (device-aspect-ratio : 375/667) {
 				font-size: 24px;
         top: 0;
         left: -25%;
