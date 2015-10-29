@@ -22,7 +22,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/dist/'),
     filename: '[name].js',
-    publicPath: '/'
+    publicPath: '/internal/senate-project/9-17/'
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -55,7 +55,7 @@ module.exports = {
       loader: 'json'
     }, {
       test: /\.(jpe?g|png|gif|svg)$/,
-      loader: 'url?limit=10000!image-webpack'
+      loader: 'url?limit=30000!image-webpack'
     }]
   },
 
