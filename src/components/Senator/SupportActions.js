@@ -27,8 +27,6 @@ const SupportActions = React.createClass({
       tel = this.props.tel;
     }
 
-    console.log(tel);
-
     return  <div className="supportActions">
       <Button
         color='purple-text'

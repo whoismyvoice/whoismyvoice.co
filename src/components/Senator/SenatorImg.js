@@ -9,8 +9,7 @@ const SenatorImg = React.createClass({
   	const imgSrc ='https://raw.githubusercontent.com/unitedstates/images/gh-pages/congress/original/';
   	const img = this.props.bioguide === '' ? '' : imgSrc+this.props.bioguide+'.jpg';
     var single = this.props.single === true ? 'single': '';
-
-    console.log(single);
+    
   	return <div className={'senatorImg '+single}>
     	<img
     		src={img}
