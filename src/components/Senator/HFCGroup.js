@@ -10,7 +10,7 @@ const HFCGroup = React.createClass({
     return <a target="_blank" href={'http://twitter.com/home/?status=@' + this.props.twitter }>
       <div className="HFCMember">
         <SenatorImg 
-          bioguide={'Y000065'}
+          bioguide={this.props.bioguide}
         />
         <SenatorName
           name={this.props.name}

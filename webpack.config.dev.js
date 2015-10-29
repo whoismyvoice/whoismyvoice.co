@@ -55,7 +55,7 @@ module.exports = {
       loader: 'json'
     }, {
       test: /\.(jpe?g|png|gif|svg)$/,
-      loader: 'url?limit=10000!img'
+      loader: 'url?limit=10000!image-webpack'
     }]
   },
 
