@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import WhiteBorder from './WhiteBorder'
+import FadedBG from './FadedBg'
 
 const Sources = React.createClass({
 
@@ -10,6 +11,7 @@ const Sources = React.createClass({
 
   render() {
     return  <div className="page-block bright-green">
+      <FadedBG color="green" />
       <div className="black-top-line"></div>
       <WhiteBorder />
       <p className="pageIntroduction">

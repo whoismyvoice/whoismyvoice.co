@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import ArrowDown from './ArrowDown'
 import WhiteBorder from './WhiteBorder'
+import FadedBG from './FadedBg'
 
 const About = React.createClass({
   componentDidMount: function() {
@@ -10,6 +11,7 @@ const About = React.createClass({
   
   render() {
     return <div className="page-block bright-red">
+      <FadedBG color="red" />
       <div className="black-top-line"></div>
       <WhiteBorder />
       <p className="pageIntroduction">
@@ -20,7 +22,8 @@ const About = React.createClass({
 		    <br /><br />
 		    Please send any comments or fact checks <Link className="strike-out" to="#">here</Link>.
 		    <br /><br />
-		    Please send any Business or Media inquiries <Link className="strike-out" to="#">here</Link>.
+		    Please send any Business or Media inquiries <Link className="strike-out" to="#">here</Link>.<br /><br />
+        <img src={require('../img/siberia_logo.png')} width="40" />
       </p>
     </div>;
   }

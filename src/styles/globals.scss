@@ -478,13 +478,14 @@ button, input {
 .page-block {
   display: flex;
   flex-direction: column;
-  min-height: 60vh;
+  min-height: 88.1vh;
   width: 100%;
   text-align: center;
   padding-top: 6%;
   justify-content: center;
 
   @media screen and (max-width: $iphone6) {
+    min-height: 60vh;
     padding-top: 14%;
   }
 

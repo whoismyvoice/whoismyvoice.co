@@ -4,6 +4,7 @@ import HFCOverview from './HFCOverview'
 import HFCMembers from '../data/HFCMembers'
 import ArrowDown from './ArrowDown'
 import WhiteBorder from './WhiteBorder'
+import FadedBG from './FadedBg'
 
 const Senators = React.createClass({
   componentDidMount: function() {
@@ -11,6 +12,7 @@ const Senators = React.createClass({
   },
   render() {
     return  <div className="page-block senators blue">
+      <FadedBG color="blue" />
       <div className="black-top-line"></div>
       <WhiteBorder />
       <p className="pageIntroduction">

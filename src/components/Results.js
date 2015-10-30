@@ -7,6 +7,7 @@ import SenatorGroup from './Senator/SenatorGroup'
 import ArrowDown from './ArrowDown'
 import SupportActions from './Senator/SupportActions'
 import HFCOverview from './HFCOverview'
+import FadedBG from './FadedBg'
 
 const Results = React.createClass({
 
@@ -30,7 +31,7 @@ const Results = React.createClass({
 
 		if (isHFC) {
 			return <div className={this.props.backgroundClasses} id="fullpage">
-        <div className="blocker"></div>
+        <FadedBG color="red" />
         <div className="section block two">
 
           <p className="impact">
