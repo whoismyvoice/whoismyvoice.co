@@ -68,7 +68,8 @@ const SearchInput = React.createClass({
     return <span>
         <input 
           className={inputClasses}
-          type="number" 
+          type="text"
+          pattern="[0-9]*"
           value={this.state.zip_code}
           onChange={this._handleChange}
           onKeyDown={this._handleEnter}

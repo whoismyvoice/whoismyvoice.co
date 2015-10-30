@@ -763,7 +763,9 @@ button, input {
 
 @media only screen
 and (max-width: 736px)
-and (orientation: landscape){
+and (-webkit-min-device-pixel-ratio: 2)
+and (orientation: landscape)
+and (min-aspect-ratio: 13/9) {
   .overlay {
     font-family: Helvetica;
     text-align: center;

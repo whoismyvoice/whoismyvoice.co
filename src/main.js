@@ -1,4 +1,4 @@
-import 'babel/polyfill'
+import 'babel-core/polyfill'
 import 'normalize.css'
 import './styles/globals.scss'
 import React from 'react'
