@@ -15,7 +15,7 @@ module.exports = {
     app: [
       path.join(__dirname, 'src/main.js')
     ],
-    vendors: ['react-dom', 'react', 'superagent', 'react-router', 'classnames', 'flux', 'history']
+    vendors: ['react', 'superagent', 'react-router', 'classnames', 'flux', 'history']
   },
   output: {
     path: path.join(__dirname, '/dist/'),

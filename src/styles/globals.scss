@@ -78,7 +78,7 @@ ul {
     @include drawIn(400px);
   }
 
-  @media screen 
+  @media screen
   and (min-width: 900px)
   and (max-width: 1000px) {
     height: 440px;
@@ -92,9 +92,9 @@ ul {
     @include drawIn(490px);
 
     @media screen
-    and (max-height: 650px) {
-      height: 420px;
-      @include drawIn(420px);
+    and (max-height: 680px) {
+      height: 400px;
+      @include drawIn(400px);
     }
   }
 
@@ -166,6 +166,12 @@ ul {
     and (max-width: 1099px) {
       height: 440px;
       @include drawIn(440px);
+
+      @media screen
+      and (max-height: 530px) {
+        height: 340px;
+        @include drawIn(340px);
+      }
     }
 
     @media screen 
@@ -181,9 +187,15 @@ ul {
       }
 
       @media screen
-      and (max-height: 650px) {
+      and (max-height: 680px) {
         height: 390px;
         @include drawIn(390px);
+
+        @supports (overflow:-webkit-marquee)
+        and (justify-content:inherit) {
+          height: 430px!important;
+          @include drawIn(430px);
+        }
       }
     }
 
@@ -195,6 +207,11 @@ ul {
 
       @media screen and (min-height: 850px) {
         @include drawIn(480px);
+
+        @supports (overflow:-webkit-marquee)
+        and (justify-content:inherit) {
+          @include drawIn(600px);
+        }
       }
     }
 
