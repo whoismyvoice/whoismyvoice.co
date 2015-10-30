@@ -13,9 +13,23 @@ const SearchInput = React.createClass({
 	  return {
 		  zip_code: '',
       error: false,
-      fade: true
+      fade: true,
+      placeholder: 'Enter Your Zip Code'
 		}
 	},
+
+  _handleFocus: function(event) {
+    this.setState({
+      placeholder: ''
+    });
+  },
+
+  _handleBlur: function(event) {
+    if(this.state.zip_code === '')
+    this.setState({
+      placeholder: 'Enter Your Zip Code'
+    });
+  },
 
   _handleChange: function(event) {
     this.setState({
@@ -73,7 +87,9 @@ const SearchInput = React.createClass({
           value={this.state.zip_code}
           onChange={this._handleChange}
           onKeyDown={this._handleEnter}
-          placeholder="Enter Your Zip Code"
+          onFocus={this._handleFocus}
+          placeholder={this.state.placeholder}
+          onBlur={this._handleBlur}
         />
         <button 
           className="arrowDown green-text spacing" 
