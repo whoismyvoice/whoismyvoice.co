@@ -11,26 +11,36 @@
 	}
 
 	@media only screen
-    and (min-width: 421px)
-    and (max-width: 799px) {
-      width: 95%;
+  and (min-width: 421px)
+  and (max-width: 799px) {
+    width: 95%;
+  }
+
+	@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    width: 100%;
+  }
+
+	@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    width: 65%;
+  }
+
+  @media screen 
+  and (min-width: 1000px)
+  and (max-width: 1199px) {
+
+    @media screen
+    and (max-height: 530px) {
+      margin-top: -35px;
     }
-
-	@media only screen 
-  	and (min-device-width: 768px) 
-  	and (max-device-width: 1024px) 
-  	and (orientation: portrait) 
-  	and (-webkit-min-device-pixel-ratio: 1) {
-    	width: 100%;
-  	}
-
-	@media only screen 
-  	and (min-device-width: 768px) 
-  	and (max-device-width: 1024px) 
-  	and (orientation: landscape) 
-  	and (-webkit-min-device-pixel-ratio: 1) {
-    	width: 65%;
-  	}
+  }
 }
 
 .senatorContainer {
@@ -48,33 +58,33 @@
       margin-left: 6.5%;
     }
 
-  		@media only screen 
-    	and (min-device-width: 768px) 
-    	and (max-device-width: 1024px) 
-    	and (orientation: portrait) 
-    	and (-webkit-min-device-pixel-ratio: 1) {
-      		margin-left: 0%;
-    	}
+  	@media only screen 
+    and (min-device-width: 768px) 
+    and (max-device-width: 1024px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+      margin-left: 0%;
+    }
 
-    	@media only screen 
-    	and (min-device-width: 768px) 
-    	and (max-device-width: 1024px) 
-    	and (orientation: landscape) 
-    	and (-webkit-min-device-pixel-ratio: 1) {
-      		margin-left: 0%;
-    	}
+    @media only screen 
+    and (min-device-width: 768px) 
+    and (max-device-width: 1024px) 
+    and (orientation: landscape) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+      margin-left: 0%;
+    }
 
-    	@media screen 
-  		and (min-width: 1400px)
-  		and (max-width: 1500px)
-  		and (-webkit-min-device-pixel-ratio: 1) {
-  			margin-left: 0;
-  		}
+    @media screen 
+  	and (min-width: 1400px)
+  	and (max-width: 1500px)
+  	and (-webkit-min-device-pixel-ratio: 1) {
+  		margin-left: 0;
+  	}
 	}
 
 	@media screen and (max-device-width: 362px) {
-       	margin-top: -10px;
-    }
+    margin-top: -10px;
+  }
 
 	@media screen and (max-width: $iphone6)
 	and (-webkit-min-device-pixel-ratio: 2) {
@@ -110,6 +120,16 @@
 			padding: 37.5% 0;
 			margin-bottom: 0;
 		}
+
+    @media screen 
+    and (min-width: 1000px)
+    and (max-width: 1199px) {
+
+      @media screen
+      and (max-height: 530px) {
+        margin-bottom: -5px;
+      }
+    }
 	}
 
 	.senatorName {
@@ -130,27 +150,27 @@
 			}
 
 			@media only screen
-    		and (min-width: 421px)
-    		and (max-width: 799px) {
-      			font-size: 9px;
-    		}
+    	and (min-width: 421px)
+    	and (max-width: 799px) {
+      	font-size: 9px;
+    	}
 
-    		@media screen and (max-width: 361px) {
-        		font-size: 10px;
-        		margin-top: 0;
-      		}
+    	@media screen and (max-width: 361px) {
+        font-size: 10px;
+        margin-top: 0;
+      }
 
-      		@media screen and (max-device-width: 413px) {
-        		font-size: 10px;
-      		}
+      @media screen and (max-device-width: 413px) {
+        font-size: 10px;
+      }
 
 			@media only screen 
-  			and (min-device-width: 768px) 
-  			and (max-device-width: 1024px) 
-  			and (orientation: landscape) 
-  			and (-webkit-min-device-pixel-ratio: 1) {
-    			font-size: 1.1em;
-  			}
+  		and (min-device-width: 768px) 
+  		and (max-device-width: 1024px) 
+  		and (orientation: landscape) 
+  		and (-webkit-min-device-pixel-ratio: 1) {
+    		font-size: 1.1em;
+  		}
 		}
 	}
 }
