@@ -243,8 +243,8 @@ ul {
 
   @media screen and (max-width: $iphone6)
   and (-webkit-min-device-pixel-ratio: 2) {
-    height: 365px;
-    @include drawIn(365px);
+    height: 370px;
+    @include drawIn(370px);
     top: 48px;
   }
 
@@ -264,6 +264,7 @@ ul {
   and (orientation: landscape) 
   and (-webkit-min-device-pixel-ratio: 1) {
     height: 60%;
+    @include drawIn(60%);
   }
 
   @media only screen 

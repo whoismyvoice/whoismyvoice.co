@@ -23,86 +23,93 @@
 		margin-top: 20px;
 
 		@media screen 
-  		and (min-width: 1000px)
-  		and (max-width: 1100px) {
-  			margin-top: 40px;
-  			width: 12%;
-			 padding: 6% 0;
-    	}
+  	and (min-width: 1000px)
+  	and (max-width: 1100px) {
+  		margin-top: 40px;
+      width: 12%;
+		  padding: 6% 0;
+    }
 
-    	@media screen 
-  		and (min-width: 1101px)
-  		and (max-width: 1299px) {
-  			margin-top: 40px;
-  			width: 12%;
+    @media screen 
+  	and (min-width: 1101px)
+  	and (max-width: 1299px) {
+  		margin-top: 40px;
+  		width: 12%;
 			padding: 6% 0;
 
-			@supports (overflow:-webkit-marquee)
-      		and (justify-content:inherit) {
-      			margin-top: 50px;
-      		}
-    	}
+		@supports (overflow:-webkit-marquee)
+    and (justify-content:inherit) {
+      margin-top: 50px;
+      }
+    }
 
-    	@media screen 
-  		and (min-width: 1300px)
-  		and (max-width: 1499px){
-  			margin-bottom: 0;
-  			margin-top: 40px;
-  			width: 10%;
-  			padding: 5% 0;
+    @media screen 
+  	and (min-width: 1300px)
+  	and (max-width: 1499px){
+  		margin-bottom: 0;
+  		margin-top: 40px;
+  		width: 10%;
+  		padding: 5% 0;
 
-  			@supports (overflow:-webkit-marquee)
-      		and (justify-content:inherit) {
-      			margin-top: 50px;
-      		}
-    	}
+  		@supports (overflow:-webkit-marquee)
+      and (justify-content:inherit) {
+      	margin-top: 50px;
+      }
+    }
 
-    	@media screen and (max-width: $iphone6)
-    	and (-webkit-min-device-pixel-ratio:2) {
-    		margin-top: 28px;
-  		}
+    @media screen and (max-width: $iphone6)
+    and (-webkit-min-device-pixel-ratio:2) {
+    	margin-top: 28px;
+  	}
 
-  		@media screen and (max-device-width: 362px) {
-       		margin-top: 10px;
-      	}
+  	@media screen and (max-device-width: 362px) {
+      margin-top: 10px;
+    }
 
-    	@media screen 
-  		and (min-width: 1500px)
-  		and (max-width: 1699px) {
-  			margin-bottom: 0px;
-  			margin-top: 40px;
-    	}
+    @media screen and (max-width: $iphone5-min)
+    and (-webkit-min-device-pixel-ratio:2) {
+      margin-top: 15px;
+      width: 30%;
+      padding: 15% 0;
+    }
 
-    	@media screen 
-  		and (min-width: 1700px) {
-  			margin-top: 40px;
-    	}
+    @media screen 
+  	and (min-width: 1500px)
+  	and (max-width: 1699px) {
+  		margin-bottom: 0px;
+  		margin-top: 40px;
+    }
+
+    @media screen 
+  	and (min-width: 1700px) {
+  		margin-top: 40px;
+    }
 	}
 
 	@media screen and (max-width: $iphone6) {
-    	width: 25%;
-    	left: 0;
-    	padding: 12.5% 0;
-    	margin-bottom: 5px;
-  	}
+    width: 25%;
+    left: 0;
+    padding: 12.5% 0;
+    margin-bottom: 5px;
+  }
 
-    @media only screen 
-    and (min-device-width: 768px) 
-    and (max-device-width: 1024px) 
-    and (orientation: portrait) 
-    and (-webkit-min-device-pixel-ratio: 1) {
-      width: 20%;
-      padding: 10% 0;
-    }
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    width: 20%;
+    padding: 10% 0;
+  }
 
-    @media only screen 
-    and (min-device-width: 768px) 
-    and (max-device-width: 1024px) 
-    and (orientation: landscape) 
-    and (-webkit-min-device-pixel-ratio: 1) {
-      width: 12%;
-      padding: 6% 0;
-    }
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    width: 12%;
+    padding: 6% 0;
+  }
 
 	&.hide {
 		display: none;

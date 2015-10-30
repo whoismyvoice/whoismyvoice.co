@@ -72,14 +72,14 @@
     min-width: inherit;
   }
 
-  @media only screen 
+  @media only screen
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
   and (orientation: portrait) 
   and (-webkit-min-device-pixel-ratio: 1) {
     width: 50%;
-    left: 0px;
-    padding-top: 0;
+    left: 10px;
+    padding-top: 10px;
   }
 
 	a {
@@ -244,8 +244,18 @@
     and (max-device-width: 1024px) 
     and (orientation: portrait) 
     and (-webkit-min-device-pixel-ratio: 1) {
-      font-size: 1.2em;
-      width: 260px;
+      font-size: 1.3em;
+      width: 280px;
+      margin-bottom: 20px;
+    }
+
+    @media only screen 
+    and (min-device-width : 414px) 
+    and (max-device-width : 736px) 
+    and (orientation : portrait) 
+    and (-webkit-min-device-pixel-ratio : 3) {
+      width: 75%;
+      height: 60px;
     }
 
 		&:before {
@@ -268,8 +278,24 @@
       }
 
 			@media screen and (max-width: $iphone6) {
-				display: none;
+        height: 15px;
+        top: -15px;
+        left: 47.5%;
 			}
+
+      @media screen and (max-width: $iphone5-min) {
+        height: 15px;
+        top: -15px;
+        left: 46.3%;
+      }
+
+      @media only screen 
+      and (min-device-width : 414px) 
+      and (max-device-width : 736px) 
+      and (orientation : portrait) 
+      and (-webkit-min-device-pixel-ratio : 3) {
+        left: 47.6%;
+      }
 
 			@media only screen and (min-width: 600px) and (max-width: 800px) {
         top: -15px;
@@ -289,8 +315,10 @@
   		and (max-device-width: 1024px) 
   		and (orientation: portrait) 
   		and (-webkit-min-device-pixel-ratio: 1) {
-    		width: 3px;
-    		left: 50.8%;
+    		width: 4px;
+    		left: 51.5%;
+        top: -25px;
+        height: 25px;
   		}
 		}
 	}

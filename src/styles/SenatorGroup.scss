@@ -21,7 +21,7 @@
   	and (max-device-width: 1024px) 
   	and (orientation: portrait) 
   	and (-webkit-min-device-pixel-ratio: 1) {
-    	width: 85%;
+    	width: 100%;
   	}
 
 	@media only screen 
@@ -170,6 +170,7 @@
 
 	@media screen and (max-width: $iphone5-min) {
       width: 180px;
+      top: 28%;
     }
 
 	&:before {
