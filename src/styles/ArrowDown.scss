@@ -288,6 +288,7 @@
   }
 
   &.green-text {
+    background-color: $light-green;
     &:hover {
       &:before {
         color: $light-green;
