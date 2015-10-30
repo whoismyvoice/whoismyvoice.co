@@ -35,7 +35,8 @@ const Results = React.createClass({
 
           <p className="impact">
             No! Your senators support Planned Parenthood!<br />
-            But, have you heard of the House Freedom Caucus? These are the guys who have publicly declared they are willing to shut down the government over the issue of funding Planned Parenthood.
+            But have you heard of the House Freedom Caucus? The HFC is a group of 40+ conservative congressmen who have publicly declared they will oppose any spending bill that does not defund Planned Parenthood. 
+        Yes, these men and women are willing to shut down your government over this issue. <span className="strike-out">If you live in their district</span>, email them. If you don’t, tweet at them.
           </p>
 
           <HFCOverview
