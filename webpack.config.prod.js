@@ -81,7 +81,7 @@ module.exports = {
       loader: 'json'
     }, {
       test: /\.(jpg|png|gif|svg)$/,
-      loader: 'url?limit=36000!image-webpack'
+      loader: 'file?name=img/[name]-[hash].[ext]!image-webpack'
     }]
   },
   postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
