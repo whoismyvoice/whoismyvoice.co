@@ -422,6 +422,14 @@
       @supports (-ms-accelerator:true) {
         left: 35%;
       }
+
+      @media only screen 
+      and (min-device-width: 1024px) 
+      and (max-device-width: 1366px) 
+      and (orientation: portrait) 
+      and (-webkit-min-device-pixel-ratio: 1) {
+        top: 3px;
+      }
 		}
 
 		@media only screen 
@@ -502,6 +510,36 @@
       padding-bottom: 40px;
     }
 
+    @media only screen 
+    and (min-device-width: 768px) 
+    and (max-device-width: 1024px) 
+    and (orientation: landscape) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+      margin-top: 4%;
+
+      &:before {
+        top: 2px;
+        left: 69%;
+      }
+    }
+    
+    @media only screen 
+    and (min-device-width: 1024px) 
+    and (max-device-width: 1366px) 
+    and (orientation: landscape) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+      margin-top: 110px;
+    }
+
+    @media only screen 
+    and (min-device-width: 768px) 
+    and (max-device-width: 1024px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+      margin-top: 17%;
+
+    }
+
     &:before {
       left: 66%;
       top: 2px;
@@ -536,28 +574,6 @@
         top: 2px;
         left: 77%;
       }
-    }
-
-		@media only screen 
-  	and (min-device-width: 768px) 
-  	and (max-device-width: 1024px) 
-  	and (orientation: landscape) 
-  	and (-webkit-min-device-pixel-ratio: 1) {
-  		margin-top: 4%;
-
-  		&:before {
-  			top: 2px;
-  			left: 69%;
-      }
-  	}
-
-    @media only screen 
-    and (min-device-width: 768px) 
-    and (max-device-width: 1024px) 
-    and (orientation: portrait) 
-    and (-webkit-min-device-pixel-ratio: 1) {
-      margin-top: 17%;
-
     }
 	}
 }
