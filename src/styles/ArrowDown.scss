@@ -271,7 +271,6 @@
 	}
 
 	&:hover {
-		background-color: $black;
 		@include transition(0.2s);
 
 		&:before {
@@ -280,7 +279,9 @@
 	}
 
   &.purple-text {
+
     &:hover {
+      background-color: $black;
       &:before {
         color: $light-purple;
       }
@@ -290,6 +291,7 @@
   &.green-text {
     background-color: $light-green;
     &:hover {
+      background-color: $black;
       &:before {
         color: $light-green;
       }
@@ -298,6 +300,7 @@
 
   &.orange-text {
     &:hover {
+      background-color: $black;
       &:before {
         color: $light-orange;
       }
@@ -306,6 +309,7 @@
 
   &.yellow-text {
     &:hover {
+      background-color: $black;
       &:before {
         color: $light-yellow;
       }
@@ -314,6 +318,7 @@
 
   &.blue-text {
     &:hover {
+      background-color: $black;
       &:before {
         color: $light-blue;
       }
@@ -322,6 +327,7 @@
 
   &.red-text {
     &:hover {
+      background-color: $black;
       &:before {
         color: $bright-red;
       }

@@ -10,6 +10,8 @@ import style from './../styles/ArrowDown.scss';
 const ArrowDown = React.createClass({
 
   _handleClick: function(event) {
+    event.preventDefault();
+    event.stopPropagation();
   	// Listen for event.target.id in order to decipher which of the arrows was tapped
   	ContainerActions.setCurrentMember(event.target.id);
     $.fn.fullpage.moveSectionDown();
