@@ -1,8 +1,11 @@
-RUN apt-get update && apt-get install -y nginx #Install NGINX
+FROM node:latest
 
-RUN mkdir /www && mkdir /senate/log #
+ENV PORT 80
 
-RUN rm /etc/nginx/sites-enabled/default
-ADD config/nginx.conf /etc/nginx/sites-enabled/nginx
+ADD ./ /app
+WORKDIR /app
 
-EXPOSE 80 443
+EXPOSE 80
+
+RUN npm install
+CMD ["bash", "start.sh"]

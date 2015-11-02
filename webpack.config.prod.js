@@ -3,7 +3,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var StatsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin;
 var nodeModulesDir = path.resolve(__dirname, 'node_modules');
@@ -15,7 +14,7 @@ module.exports = {
     app: [
       path.join(__dirname, 'src/main.js')
     ],
-    vendors: ['react', 'superagent', 'react-router', 'classnames', 'flux', 'history']
+    vendors: ['react']
   },
   output: {
     path: path.join(__dirname, '/dist/'),
@@ -28,11 +27,6 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       '__DEV__': JSON.stringify(process.env.NODE_ENV)
-    }),
-
-    new ChunkManifestPlugin({
-      filename: "manifest.json",
-      manifestVariable: "webpackManifest"
     }),
 
     new webpack.optimize.OccurenceOrderPlugin(),
