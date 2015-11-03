@@ -1,11 +1,21 @@
-FROM node:latest
+FROM centos:centos7
 
-ENV PORT 80
+RUN yum install -y wget
 
-ADD ./ /app
+RUN wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+
+RUN rpm -ivh epel-release-7-5.noarch.rpm
+
+RUN wget https://rpm.nodesource.com/pub_0.12/el/7/x86_64/nodejs-0.12.7-1nodesource.el7.centos.x86_64.rpm
+
+RUN rpm -Uvh nodejs-0.12.7-1nodesource.el7.centos.x86_64.rpm
+
+RUN yum install -y npm --enablerepo=epel --skip-broken
+
+COPY . /app
+
 WORKDIR /app
 
-EXPOSE 80
+EXPOSE 8080
 
-RUN npm install
 CMD ["bash", "start.sh"]
