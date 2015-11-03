@@ -11,6 +11,7 @@ Senate Project responsive website
 
 ###Prerequisites
 * [Webpack](https://webpack.github.io/docs/installation.html)
+* [Docker Toolbox](https://www.docker.com/docker-toolbox)
 
 ###Steps
 1. `git clone https://github.com/oursiberia/senate-project.git`
@@ -38,18 +39,12 @@ npm run build:start
 * JSCS `npm run jscs`
 
 ##Docker
-After installing the dependencies using NPM run
-```
-npm run build
-```
-Then run the following Docker cmd
-
-```
-docker run -it --name senate-project \
-  -v $(pwd)/dist:/usr/share/nginx/html:ro \
-  -v $(pwd)/nginx.conf:/etc/nginx/nginx.conf:ro \
-  -P nginx bash
-```
+To set up the Docker image and container open a terminal window using `docker quickstart terminal`.
+* Navigate to senate-project folder
+* Build the image `docker build -t oursiberia/senate-project .`
+* After the image has been built, run a container w. `docker run -p 8080:8080 oursiberia/senate-project`
+* To see the running container: Get your docker-machine ip using `docker-machine ip default`
+* Visit docker-machine ip:8080
 
 ##Dependencies
 * [Superagent](https://www.npmjs.com/package/superagent)
@@ -60,7 +55,7 @@ docker run -it --name senate-project \
 * Only `commit` changes you really want. Don't `git add .` unless you really mean to add everything.
 * Use feature branches liberally
 * When making a PR assign to another dev for code review. They'll merge into `master`.
-* When creating a new page add required Sass stylesheets imports.
+* When creating a new page add required SASS stylesheets imports.
 * Images should be included using `require`, see [Stylesheets & Images](https://github.com/petehunt/webpack-howto#5-stylesheets-and-images)
 
 ##Resources
