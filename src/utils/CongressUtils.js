@@ -24,11 +24,7 @@ module.exports = {
         if (err) return console.error(err);
 
         let senators = res.body.results.filter(function(senator) {
-          if(senator.chamber === SenateConstants.CHAMBER) {
-
-            console.log(senator);
-            return senator
-          }
+          return senator.chamber === SenateConstants.CHAMBER
         });
 
         if (res.body.results.length === 0) {
