@@ -1,8 +1,8 @@
-import AppDispatcher from '../dispatcher/AppDispatcher'
-import SenateConstants from '../constants/SenateConstants'
-import request from 'superagent'
-import CongressUtils from '../utils/CongressUtils'
-import {abbrState} from '../utils/StateConverter'
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import SenateConstants from '../constants/SenateConstants';
+import request from 'superagent';
+import CongressUtils from '../utils/CongressUtils';
+import {abbrState} from '../utils/StateConverter';
 
 module.exports = {
   // Pass zip_code value from SearchInput and identify latitude and longitude for zip code
@@ -24,13 +24,11 @@ module.exports = {
       } else {
         CongressUtils.getMember(place);
       }
-
     } else {
       // Get senators based on passed zip_code
       CongressUtils.getMember(ZIP_CODE);
     }
 	},
-
   flush: function() {
     AppDispatcher.handleViewAction({
       actionType: SenateConstants.FLUSH_STORE

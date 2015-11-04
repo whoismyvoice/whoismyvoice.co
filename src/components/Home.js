@@ -1,6 +1,6 @@
 import React from 'react';
 import SenateStore from '../stores/SenateStore';
-//import SenateActions from '../actions/SenateActions';
+// import SenateActions from '../actions/SenateActions';
 
 import ContainerActions from '../actions/ContainerActions';
 import cx from 'classnames';
@@ -16,16 +16,17 @@ import style from './../styles/Home.scss';
 
 const Home = React.createClass({
   getInitialState: function() {
+
     return  SenateStore.getMember()
   },
   componentDidMount: function() {
     // Allow fetching of member if id / zip_code is defined as a parameter
-    //if(!this.state.did_search) {
+    // if(!this.state.did_search) {
     //  let params = this.props.params;
     //  if(params.zip && params.zip.length === 5 && !isNaN(params.zip)) {
     //    SenateActions.identifyMember(params.zip);
     //  }
-    //}
+    // }
 
     if (this.state.did_search && !this.state.member_hfc) {
       this._initializeFullpage();
@@ -59,8 +60,8 @@ const Home = React.createClass({
       recordHistory: true,
       controlArrows: false,
       verticalCentered: false,
-      resize : true,
-      onLeave: function(index, nextIndex){
+      resize: true,
+      onLeave: function(index, nextIndex) {
         ContainerActions.identifySection(nextIndex);
       }
     });
@@ -72,7 +73,7 @@ const Home = React.createClass({
   },
   render() {
     const blockClasses = cx(
-      ['block', 'one'], 
+      ['block', 'one'],
       {'hide': this.state.did_search}
     );
 
@@ -82,14 +83,14 @@ const Home = React.createClass({
     );
 
     const backgroundClasses = cx(
-      ['second-wrapper'], 
+      ['second-wrapper'],
       {'move-up': this.state.did_search},
       {'static': !this.state.did_search},
       {'short': this.state.member_hfc}
     );
 
     const containerClasses = cx(
-      ['container'], 
+      ['container'],
       {'reveal': this.state.did_search},
       {'green': !this.state.did_search},
       {'orange': this.state.did_search && !this.state.member_hfc},
@@ -126,6 +127,7 @@ const Home = React.createClass({
       VOTE_STATUS = 'You have not yet searched for a member';
     }
     // NOT RANDOM
+
     return  <div className={containerClasses}>
       <div className={topLineClasses}></div>
 

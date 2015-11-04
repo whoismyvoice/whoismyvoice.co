@@ -44,7 +44,7 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false,
-        screw_ie8: true,
+        screw_ie8: true
       }
     }),
 
@@ -76,10 +76,11 @@ module.exports = {
     }, {
       test: /\.(jpg|png|gif|svg)$/,
       loader: 'file?name=img/[name]-[hash].[ext]'
-      //loader: 'url?limit=38000!image-webpack'
+      // loader: 'url?limit=38000!image-webpack'
+
     }]
   },
-  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
+  postcss: [autoprefixer({browsers: ['last 2 versions']})],
 
   node: {
     fs: "empty"

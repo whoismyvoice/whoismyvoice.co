@@ -6,7 +6,6 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var nodeModulesDir = path.resolve(__dirname, 'node_modules');
 var testDir = path.resolve(__dirname, 'test');
 
-
 module.exports = {
   devtool: 'eval-source-map',
 

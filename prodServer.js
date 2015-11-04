@@ -11,7 +11,6 @@ server.get('*', function (request, response) {
 })
 
 server.listen(port, function(err) {
-
   if (err) {
     console.log(err);
   }

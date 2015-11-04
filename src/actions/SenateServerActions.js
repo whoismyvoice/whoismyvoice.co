@@ -10,7 +10,7 @@ module.exports = {
   },
   getRandomMember: function(response) {
     AppDispatcher.handleServerAction({
-      actionType: SenateConstants.GET_RANDOM_DETAILS,
+      actionType: SenateConstants.GET_RANDOM_DETAILS
     });
   }
 };
