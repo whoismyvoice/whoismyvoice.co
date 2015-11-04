@@ -1,11 +1,11 @@
-import React from 'react'
-import { Router, Route, IndexRoute } from 'react-router'
-import App from './components/App'
-import Home from './components/Home'
-import About from './components/About'
-import Sources from './components/Sources'
-import Senators from './components/Senators'
-import NoMatch from './components/NoMatch'
+import React from 'react';
+import { Router, Route, IndexRoute } from 'react-router';
+import App from './components/App';
+import Home from './components/Home';
+import About from './components/About';
+import Sources from './components/Sources';
+import Senators from './components/Senators';
+import NoMatch from './components/NoMatch';
 
 const routes = (
   <Router>

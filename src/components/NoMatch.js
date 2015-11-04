@@ -1,5 +1,5 @@
-import React from 'react'
-import WhiteBorder from './WhiteBorder'
+import React from 'react';
+import WhiteBorder from './WhiteBorder';
 
 const NoMatch = React.createClass({
   render() {

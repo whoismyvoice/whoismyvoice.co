@@ -1,8 +1,8 @@
-import React from 'react'
-import cx from 'classnames'
+import React from 'react';
+import cx from 'classnames';
 
 // Component
-import ContainerActions from '../actions/ContainerActions.js'
+import ContainerActions from '../actions/ContainerActions.js';
 
 // Styles
 import style from './../styles/ArrowDown.scss';
@@ -17,13 +17,13 @@ const ArrowDown = React.createClass({
     $.fn.fullpage.moveSectionDown();
   },
 
-  _handleScroll: function(event) {
-    var y = $(window).scrollTop();
-    $("html, body").animate({ scrollTop: y + $(window).height() }, 600);
+  _handleScroll: function() {
+    let y = $(window).scrollTop();
+    $('html, body').animate({ scrollTop: y + $(window).height() }, 600);
   },
 
   render() {
-  	let arrowClasses = cx(
+  	const arrowClasses = cx(
       ['arrowDown'],
       {'hide': this.props.additional && !this.props.double},
       {'sticky': this.props.scroll},
@@ -31,16 +31,16 @@ const ArrowDown = React.createClass({
       {'double': this.props.additional}
     );
 
-    let color = this.props.color;
+    const color = this.props.color;
 
-    if(this.props.scroll) {
+    if (this.props.scroll) {
       return <div className={arrowClasses+' '+color} onClick={this._handleScroll}>
-        </div>
+        </div>;
     } else {
       return <div className={arrowClasses+' '+color} id={this.props.id} onClick={this._handleClick}>
         </div>;
       }
-    }  	
+    }
 });
 
 export default ArrowDown;

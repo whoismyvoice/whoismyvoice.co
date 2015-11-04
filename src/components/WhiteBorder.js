@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const WhiteBorder = React.createClass({
   render() {
@@ -7,7 +7,7 @@ const WhiteBorder = React.createClass({
       	<div id="right"></div>
       	<div id="top"></div>
       	<div id="bottom"></div>
-      </div>
+      </div>;
   }
 });
 

@@ -1,36 +1,35 @@
-import React from 'react'
-import cx from 'classnames'
+import React from 'react';
+import cx from 'classnames';
 
 // Styles
 import style from './../styles/Circle.scss';
 
 const Circle = React.createClass({
   render() {
-  	let hfc = this.props.hfc ? 'long' : '',
-  		  status = hfc ? 'No!' : 'Yes!',
-        additional = this.props.additional === null ? null : this.props.additional,
-        senator = additional === null ? 'Your Senator, ' : '',
-        hide = this.props.did_search === false ? true : false,
-  		  details,
-        proposition = additional === null ? 'a ' : '';
+  	const hfc = this.props.hfc ? 'long' : '';
+  	const status = hfc ? 'No!' : 'Yes!';
+    const additional = this.props.additional === null ? null : this.props.additional;
+    const senator = additional === null ? 'Your Senator, ' : '';
+  	let details;
+    const proposition = additional === null ? 'a ' : '';
 
     details = (!hfc && additional === null) ? this.props.age + ' year old ' + this.props.gender + ' ' : '';
 
     // Define classes for showing second line to allow for not displaying anything
     // when two senators have been fetched
-    let statusClasses = cx(
+    const statusClasses = cx(
       ['status'],
       {'hide': this.props.hide}
     );
 
-    let introductionClasses = cx(
+    const introductionClasses = cx(
       ['status'],
       {'hide': additional},
       {'hide': this.props.hide}
     );
 
   	if (hfc !== undefined) {
-  		return <div className={'circle' + ' ' + this.props.style + ' ' + hfc}>
+  		return <div className={'circle ' + this.props.style + ' ' + hfc}>
 
   			<div className="description">
           <div className={statusClasses}>

@@ -1,31 +1,28 @@
-import React from 'react'
-import { Link } from 'react-router'
-import SenateStore from '../stores/SenateStore'
-import SenateActions from '../actions/SenateActions'
-import cx from 'classnames'
-import ArrowDown from './ArrowDown'
+import React from 'react';
+import SenateActions from '../actions/SenateActions';
+import cx from 'classnames';
 
 // Styles
-import style from './../styles/SearchInput.scss'
+import style from './../styles/SearchInput.scss';
 
 const SearchInput = React.createClass({
-  getInitialState() {
+  getInitialState(){
 	  return {
 		  zip_code: '',
       error: false,
       fade: true,
       placeholder: 'Enter Your Zip Code'
-		}
+		};
 	},
 
-  _handleFocus: function(event) {
+  _handleFocus: function() {
     this.setState({
       placeholder: ''
     });
   },
 
-  _handleBlur: function(event) {
-    if(this.state.zip_code === '')
+  _handleBlur: function() {
+    if (this.state.zip_code === '')
     this.setState({
       placeholder: 'Enter Your Zip Code'
     });
@@ -42,7 +39,7 @@ const SearchInput = React.createClass({
 
   _handleEnter: function(e) {
     if (e.keyCode === 13) {
-      if((isNaN(this.state.zip_code) && this.state.zip_code.length < 2) || (!isNaN(this.state.zip_code) && this.state.zip_code.length !== 5)) {
+      if ((isNaN(this.state.zip_code) && this.state.zip_code.length < 2) || (!isNaN(this.state.zip_code) && this.state.zip_code.length !== 5)) {
         this.setState({
           error: true,
           fade: false,
@@ -78,14 +75,14 @@ const SearchInput = React.createClass({
   },
 
   render() {
-    let inputClasses = cx(
-      ['input'], 
+    const inputClasses = cx(
+      ['input'],
       {'error': this.state.error || this.props.error},
       {'fade': this.state.fade}
     );
 
     return <span>
-        <input 
+        <input
           className={inputClasses}
           type="text"
           pattern="[0-9]*"
@@ -96,12 +93,12 @@ const SearchInput = React.createClass({
           placeholder={this.state.placeholder}
           onBlur={this._handleBlur}
         />
-        <button 
-          className="arrowDown green-text spacing" 
+        <button
+          className="arrowDown green-text spacing"
           onClick={this._handleClick}>
         </button>
     </span>;
-  }  
+  }
 });
 
 export default SearchInput;

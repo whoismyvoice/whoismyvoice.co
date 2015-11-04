@@ -1,10 +1,9 @@
-import React from 'react'
-import { Link } from 'react-router'
-import Button from './Button'
-import cx from 'classnames'
+import React from 'react';
+import Button from './Button';
+import cx from 'classnames';
 
 // Components
-import WhiteBorder from './WhiteBorder'
+import WhiteBorder from './WhiteBorder';
 
 // Styles
 import style from './../styles/Header.scss';
@@ -25,12 +24,12 @@ const Header = React.createClass({
 
   render() {
     // Change classes for burger-icon and navigation based on whether onClick has been fired
-    let iconClasses = cx(
+    const iconClasses = cx(
       ['burger-icon'],
       {'is-active': this.state.didClick}
     );
 
-    let menuClasses = cx(
+    const menuClasses = cx(
       ['navigation'],
       {'is-active': this.state.didClick}
     );

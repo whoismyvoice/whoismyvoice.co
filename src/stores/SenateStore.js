@@ -1,15 +1,11 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import AppConstants from '../constants/SenateConstants'
-import ObjectAssign from 'object-assign'
-import { EventEmitter } from 'events'
-import HFCMembers from '../data/HFCMembers'
-import votedFor from '../data/votedFor'
+import AppConstants from '../constants/SenateConstants';
+import ObjectAssign from 'object-assign';
+import { EventEmitter } from 'events';
 
-const CHANGE_EVENT = 'change'
+const CHANGE_EVENT = 'change';
 
-// Define store as empty
-
-var _store = {
+let _store = {
 	member_name: '',
 	member_bioguide: '',
   member_zip_code: '',
@@ -26,21 +22,18 @@ var _store = {
   error: false,
   current_screen: null,
   current_senator: null
-}
+};
 
 // Define the public event listeners and getters that
 //  the views will use to listen for changes and retrieve the store
 
 const SenateStore = ObjectAssign( {}, EventEmitter.prototype, {
-
   addChangeListener: function(callback) {
     this.on(CHANGE_EVENT, callback);
   },
-
   removeChangeListener: function(callback) {
     this.removeListener(CHANGE_EVENT, callback);
   },
-
   getMember: function() {
     return _store;
   }
@@ -48,7 +41,7 @@ const SenateStore = ObjectAssign( {}, EventEmitter.prototype, {
 
 AppDispatcher.register(function(payload) {
 
-  var action = payload.action;
+  const action = payload.action;
 
   switch(action.actionType) {
 
@@ -61,18 +54,13 @@ AppDispatcher.register(function(payload) {
       break;
 
     case AppConstants.GET_DETAILS:
-
-      if(action.response === 'error') {
-
+      if (action.response === 'error') {
         _store.error = true;
-        
       } else {
-
-        var details = action.response[0];
-        var additionalSenator = action.response.length > 1 ? action.response[1]: '';
-
+        const details = action.response[0];
+        const additionalSenator = action.response.length > 1 ? action.response[1]: '';
         // Set store values to reflect returned object
-        var middle_name = details.middle_name === null ? '' : details.middle_name;
+        const middle_name = details.middle_name === null ? '' : details.middle_name;
 
         _store.member_name = details.first_name + ' ' + middle_name + ' ' + details.last_name || '',
         _store.member_bioguide = details.bioguide_id || null,
@@ -87,7 +75,7 @@ AppDispatcher.register(function(payload) {
         _store.error = false,
         _store.did_search = true,
         _store.additional_member = additionalSenator || null
-      }
+      };
 
       SenateStore.emit(CHANGE_EVENT);
       break;

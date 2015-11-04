@@ -5,10 +5,9 @@
 // --> 'NY'
 
 module.exports = {
-    
+
     abbrState: function(input, to){
-    
-        var states = [
+        let states = [
             ['Arizona', 'AZ'],
             ['Alabama', 'AL'],
             ['Alaska', 'AK'],
@@ -62,20 +61,20 @@ module.exports = {
             ['Wisconsin', 'WI'],
             ['Wyoming', 'WY'],
         ];
-        if (to == 'abbr'){
+        if (to === 'abbr') {
             input = input.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-            for(var i = 0; i < states.length; i++){
-                if(states[i][0] == input){
-                    return(states[i][1]);
+            for (let i = 0; i < states.length; i++) {
+                if (states[i][0] === input){
+                    return (states[i][1]);
                 }
-            }    
-        } else if (to == 'name'){
+            }
+        } else if (to === 'name') {
             input = input.toUpperCase();
-            for(var i = 0; i < states.length; i++){
-                if(states[i][1] == input){
-                    return(states[i][0]);
+            for (let i = 0; i < states.length; i++) {
+                if (states[i][1] === input){
+                    return (states[i][0]);
                 }
-            }    
+            }
         }
     }
-}
+};

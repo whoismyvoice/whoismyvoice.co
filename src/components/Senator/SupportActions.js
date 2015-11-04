@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 // Styles
 import style from './../../styles/SupportActions.scss';
@@ -8,7 +8,7 @@ import Button from './../Button';
 
 const SupportActions = React.createClass({
   render() {
-    var additional = this.props.additional,
+    let additional = this.props.additional,
         current = this.props.currentSenator,
         gender,
         email,

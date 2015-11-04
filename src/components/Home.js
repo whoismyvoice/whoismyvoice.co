@@ -1,30 +1,24 @@
-import React from 'react'
-import { Link } from 'react-router'
-import SenateStore from '../stores/SenateStore'
-import SenateActions from '../actions/SenateActions'
-import ContainerActions from '../actions/ContainerActions'
-import {abbrState} from '../utils/StateConverter'
-import cx from 'classnames'
-import Results from './Results'
+import React from 'react';
+import SenateStore from '../stores/SenateStore';
+//import SenateActions from '../actions/SenateActions';
+
+import ContainerActions from '../actions/ContainerActions';
+import cx from 'classnames';
+import Results from './Results';
 
 // Components
-import Button from './Button'
-import Circle from './Circle'
-import SearchInput from './SearchInput'
-import HFCOverview from './HFCOverview'
-import WhiteBorder from './WhiteBorder'
+import Circle from './Circle';
+import SearchInput from './SearchInput';
+import WhiteBorder from './WhiteBorder';
 
 // Styles
-import style from './../styles/Home.scss'
+import style from './../styles/Home.scss';
 
 const Home = React.createClass({
-
   getInitialState: function() {
     return  SenateStore.getMember()
   },
-
   componentDidMount: function() {
-
     // Allow fetching of member if id / zip_code is defined as a parameter
     //if(!this.state.did_search) {
     //  let params = this.props.params;
@@ -52,29 +46,21 @@ const Home = React.createClass({
 
   _initializeFullpage: function() {
     $('#fullpage').fullpage({
-      //Navigation
       navigation: false,
       showActiveTooltip: false,
       slidesNavigation: false,
-
-      //Scrolling
       css3: true,
       autoScrolling: true,
       fitToSection: true,
       easingcss3: 'ease-in',
       loopHorizontal: false,
-
-      //Accessibility
       keyboardScrolling: false,
       animateAnchor: true,
       recordHistory: true,
-
-      //Design
       controlArrows: false,
       verticalCentered: false,
       resize : true,
-
-      onLeave: function(index, nextIndex, direction){
+      onLeave: function(index, nextIndex){
         ContainerActions.identifySection(nextIndex);
       }
     });
@@ -85,24 +71,24 @@ const Home = React.createClass({
     }
   },
   render() {
-    let blockClasses = cx(
+    const blockClasses = cx(
       ['block', 'one'], 
       {'hide': this.state.did_search}
     );
 
-    let topLineClasses = cx(
+    const topLineClasses = cx(
       ['black-top-line'],
       {'hide-it': !this.state.did_search}
     );
 
-    let backgroundClasses = cx(
+    const backgroundClasses = cx(
       ['second-wrapper'], 
       {'move-up': this.state.did_search},
       {'static': !this.state.did_search},
       {'short': this.state.member_hfc}
     );
 
-    let containerClasses = cx(
+    const containerClasses = cx(
       ['container'], 
       {'reveal': this.state.did_search},
       {'green': !this.state.did_search},
@@ -112,27 +98,26 @@ const Home = React.createClass({
       {'full': this.state.did_search && this.state.member_hfc}
     );
 
-    let MEMBER_NAME = this.state.member_name,
-        MEMBER_BIOGUIDE = this.state.member_bioguide,
-        MEMBER_ZIP_CODE = this.state.member_zip_code,
-        MEMBER_AGE = this.state.member_age,
-        MEMBER_GENDER = this.state.member_gender === 'M' ? 'man' : 'woman',
-        MEMBER_THIRD = MEMBER_GENDER === 'man' ? 'He' : 'She',
-        MEMBER_EMAIL = this.state.member_email,
-        MEMBER_TEL = this.state.member_tel,
-        MEMBER_TWITTER = this.state.member_twitter,
-        MEMBER_STATE = this.state.member_state,
-        MEMBER_STATE_FULL = this.state.member_state_full,
-        DID_SEARCH = this.state.did_search,
-        PARTY = this.state.member_party,
-        MEMBER_HFC = this.state.member_hfc,
-        ERROR = this.state.error,
-        ADDITIONAL_MEMBER = this.state.additional_member,
-        ADDITIONALEXISTS = ADDITIONAL_MEMBER !== null,
-        CURRENT_MEMBER = this.state.current_senator,
-        VOTE_STATUS;
+    const MEMBER_NAME = this.state.member_name,
+          MEMBER_BIOGUIDE = this.state.member_bioguide,
+          MEMBER_AGE = this.state.member_age,
+          MEMBER_GENDER = this.state.member_gender === 'M' ? 'man' : 'woman',
+          MEMBER_THIRD = MEMBER_GENDER === 'man' ? 'He' : 'She',
+          MEMBER_EMAIL = this.state.member_email,
+          MEMBER_TEL = this.state.member_tel,
+          MEMBER_TWITTER = this.state.member_twitter,
+          MEMBER_STATE = this.state.member_state,
+          MEMBER_STATE_FULL = this.state.member_state_full,
+          DID_SEARCH = this.state.did_search,
+          PARTY = this.state.member_party,
+          MEMBER_HFC = this.state.member_hfc,
+          ERROR = this.state.error,
+          ADDITIONAL_MEMBER = this.state.additional_member,
+          ADDITIONALEXISTS = ADDITIONAL_MEMBER !== null,
+          CURRENT_MEMBER = this.state.current_senator;
+    let VOTE_STATUS;
 
-    let impact = 'Here are some ways you can keep this ' + MEMBER_GENDER + ' from being able to personally weigh in on the reproductive rights of millions of underserved women the next time a similar vote comes up.';
+    const impact = 'Here are some ways you can keep this ' + MEMBER_GENDER + ' from being able to personally weigh in on the reproductive rights of millions of underserved women the next time a similar vote comes up.';
 
     if (DID_SEARCH && !MEMBER_HFC) {
       this._initializeFullpage();
@@ -165,7 +150,7 @@ const Home = React.createClass({
           		error={ERROR}
         	/>
         </div>
-        
+
         <Results
           hfc={MEMBER_HFC}
           backgroundClasses={backgroundClasses}

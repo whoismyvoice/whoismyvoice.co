@@ -1,6 +1,6 @@
 import React from 'react';
-import SenatorImg from './SenatorImg'
-import SenatorName from './SenatorName'
+import SenatorImg from './SenatorImg';
+import SenatorName from './SenatorName';
 
 // Styles
 import style from './../../styles/HFCGroup.scss';
@@ -9,7 +9,7 @@ const HFCGroup = React.createClass({
   render() {
     return <a target="_blank" href={'http://twitter.com/home/?status=@' + this.props.twitter }>
       <div className="HFCMember">
-        <SenatorImg 
+        <SenatorImg
           group={'true'}
           bioguide={this.props.bioguide}
         />

@@ -1,19 +1,16 @@
 import React from 'react';
-import SenatorImg from './SenatorImg'
-import SenatorName from './SenatorName'
-import ArrowDown from '../ArrowDown'
+import SenatorImg from './SenatorImg';
+import SenatorName from './SenatorName';
+import ArrowDown from '../ArrowDown';
 
 // Styles
 import style from './../../styles/SenatorGroup.scss';
 
 const SenatorGroup = React.createClass({
   render() {
-
-    let additional = this.props.additional;
-
+    const additional = this.props.additional;
     if (additional !== null) {
-      
-      let additional_mid_name = additional.middle_name === null ? '' : additional.middle_name,
+      const additional_mid_name = additional.middle_name === null ? '' : additional.middle_name,
           additional_bioguide = additional.bioguide_id,
           additional_name = additional.first_name + ' ' + additional_mid_name + ' ' + additional.last_name || '',
           additional_age = (2015-additional.birthday.substring(0,4)) || null;
@@ -32,7 +29,7 @@ const SenatorGroup = React.createClass({
               did_search={this.props.did_search}
             />
 
-            <ArrowDown id="0" additional={this.props.additional} double={'true'} color='orange-text' />
+            <ArrowDown id="0" additional={this.props.additional} double={"true"} color="orange-text" />
           </div>
 
           <div className="connectingLine"></div>
@@ -49,7 +46,7 @@ const SenatorGroup = React.createClass({
               did_search={this.props.did_search}
             />
 
-            <ArrowDown id="1" additional={this.props.additional} double={'true'} color='orange-text' />
+            <ArrowDown id="1" additional={this.props.additional} double={"true"} color="orange-text" />
           </div>
 
         </div>;

@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router'
-import WhiteBorder from './WhiteBorder'
-import FadedBG from './FadedBg'
+import React from 'react';
+import { Link } from 'react-router';
+import WhiteBorder from './WhiteBorder';
+import FadedBG from './FadedBg';
 
 const Sources = React.createClass({
 
