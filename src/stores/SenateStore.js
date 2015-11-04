@@ -80,10 +80,7 @@ AppDispatcher.register(function(payload) {
       SenateStore.emit(CHANGE_EVENT);
       break;
 
-    case AppConstants.GET_RANDOM_DETAILS:
-      _store.member_hfc = true;
-      _store.did_search = true;
-
+    case AppConstants.FIND_SPECIFIC_MEMBER:
       SenateStore.emit(CHANGE_EVENT);
       break;
       

@@ -2,6 +2,7 @@ import React from 'react';
 import SenatorImg from './SenatorImg';
 import SenatorName from './SenatorName';
 import ArrowDown from '../ArrowDown';
+import SearchAddress from '../SearchAddress';
 
 // Styles
 import style from './../../styles/SenatorGroup.scss';
@@ -48,6 +49,10 @@ const SenatorGroup = React.createClass({
 
             <ArrowDown id="1" additional={this.props.additional} double={"true"} color="orange-text" />
           </div>
+
+          <SearchAddress
+            zip_code={this.props.zip_code}
+          />
 
         </div>;
     } else {

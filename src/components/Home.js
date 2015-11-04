@@ -115,6 +115,7 @@ const Home = React.createClass({
           ERROR = this.state.error,
           ADDITIONAL_MEMBER = this.state.additional_member,
           ADDITIONALEXISTS = ADDITIONAL_MEMBER !== null,
+          MEMBER_ZIP_CODE = this.state.member_zip_code,
           CURRENT_MEMBER = this.state.current_senator;
     let VOTE_STATUS;
 
@@ -171,6 +172,7 @@ const Home = React.createClass({
           tel={MEMBER_TEL}
           twitter={MEMBER_TWITTER}
           party={PARTY}
+          zip_code={MEMBER_ZIP_CODE}
         />
       </div>
     </div>;

@@ -8,9 +8,4 @@ module.exports = {
       response: response
     });
   },
-  getRandomMember: function(response) {
-    AppDispatcher.handleServerAction({
-      actionType: SenateConstants.GET_RANDOM_DETAILS
-    });
-  }
 };

@@ -3,8 +3,10 @@ import votedFor from '../data/votedFor';
 import request from 'superagent';
 
 module.exports = {
-  getMember: function(zip_code) {
+  getMember: function(zip_code, congress) {
     // Check if there was an error parsing zip code
+    const chamber = 'house';
+
     if (zip_code === 'error') {
       SenateServerActions.getDetails('error');
     } else {
@@ -25,7 +27,9 @@ module.exports = {
         if (err) return console.error(err);
 
         let senators = res.body.results.filter(function(senator) {
-          if((senator.chamber === 'senate') && (votedFor.indexOf(senator.bioguide_id)) > -1) {
+          if(senator.chamber === chamber) {
+
+            console.log(senator);
             return senator
           }
         });
@@ -33,9 +37,10 @@ module.exports = {
         if (res.body.results.length === 0) {
           SenateServerActions.getDetails('error');
         } else if (senators.length > 0) {
+          if(senators.length > 1) {
+            console.log("More than 1 congress man, prompt for street name");
+          }
           SenateServerActions.getDetails(senators);
-        } else {
-          SenateServerActions.getRandomMember();
         }
       });
     }

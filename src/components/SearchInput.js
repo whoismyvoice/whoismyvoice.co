@@ -47,7 +47,7 @@ const SearchInput = React.createClass({
           zip_code: ''
         });
       } else {
-        SenateActions.identifyMember(this.state.zip_code);
+        SenateActions.fetchDistricts(this.state.zip_code);
         this.setState({
           error: false,
           zip_code: '',
@@ -70,7 +70,7 @@ const SearchInput = React.createClass({
         error: false,
         zip_code: ''
       });
-      SenateActions.identifyMember(this.state.zip_code);
+      SenateActions.fetchDistricts(this.state.zip_code);
     }
   },
 

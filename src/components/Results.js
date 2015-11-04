@@ -27,7 +27,8 @@ const Results = React.createClass({
 				  email = this.props.email,
 				  tel = this.props.tel,
 				  twitter = this.props.twitter,
-				  party = this.props.party;
+				  party = this.props.party,
+          zip_code = this.props.zip_code;
 
 		if (isHFC) {
 			return <div className={this.props.backgroundClasses} id="fullpage">
@@ -71,6 +72,7 @@ const Results = React.createClass({
               age={age}
               did_search={did_search}
               state={state}
+              zip_code={zip_code}
             />
 
             <ArrowDown
@@ -78,6 +80,7 @@ const Results = React.createClass({
               color='orange-text'
               id='0'
             />
+
           </div>
 
           <div className="section block three">
