@@ -1,22 +1,19 @@
 import SenateServerActions from '../actions/SenateServerActions';
-import votedFor from '../data/votedFor';
 import request from 'superagent';
+import SenateConstants from '../constants/SenateConstants';
 
 module.exports = {
   getMember: function(zip_code, congress) {
     // Check if there was an error parsing zip code
-    const chamber = 'house';
-
     if (zip_code === 'error') {
       SenateServerActions.getDetails('error');
     } else {
-      const apikey = '4f501d505d514b85a01f39d4ceb9a353';
       let api;
       // Decipher whether user passed a State or a zip code
       if (isNaN(zip_code)) {
-        api = 'https://congress.api.sunlightfoundation.com/legislators?state=' + zip_code + '&apikey=' + apikey;
+        api = 'https://congress.api.sunlightfoundation.com/legislators?state=' + zip_code + '&apikey=' + SenateConstants.API_KEY;
       } else {
-        api = 'https://congress.api.sunlightfoundation.com/legislators/locate?zip=' + zip_code + '&apikey=' + apikey;
+        api = 'https://congress.api.sunlightfoundation.com/legislators/locate?zip=' + zip_code + '&apikey=' + SenateConstants.API_KEY;
       }
       // Request Sunlight Foundation API to get further details about congress person
       // When details have been retrieved call SenateServerActions w. response body object
@@ -27,7 +24,7 @@ module.exports = {
         if (err) return console.error(err);
 
         let senators = res.body.results.filter(function(senator) {
-          if(senator.chamber === chamber) {
+          if(senator.chamber === SenateConstants.CHAMBER) {
 
             console.log(senator);
             return senator

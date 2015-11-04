@@ -1,17 +1,16 @@
 import request from 'superagent';
 import SenateServerActions from '../actions/SenateServerActions';
+import SenateConstants from '../constants/SenateConstants';
 
 module.exports = {
   findMember: function(lat, lng) {
-
     console.log(lat);
     console.log(lng);
 
     const chamber = 'house';
     const apikey = '4f501d505d514b85a01f39d4ceb9a353';
-    const api = 'https://congress.api.sunlightfoundation.com/legislators/locate?latitude='+ lat +'&longitude='+ lng +'&apikey=' + apikey;
-
-    console.log(api);
+    const api = 'https://congress.api.sunlightfoundation.com/legislators/locate?latitude='+ lat +'&longitude='+ lng +'&apikey='+ SenateConstants.API_KEY;
+    let voters;
 
     request
     .get(api)
@@ -19,11 +18,8 @@ module.exports = {
     .end(function(err, res) {
       if (err) return console.error(err);
 
-      console.log(res.body);
-
       let senators = res.body.results.filter(function(senator) {
-        if(senator.chamber === chamber) {
-
+        if(senator.chamber === SenateConstants.CHAMBER) {
           console.log(senator);
           return senator
         }
