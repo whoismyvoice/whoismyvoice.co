@@ -9,14 +9,11 @@ module.exports = {
       SenateServerActions.getDetails('error');
     } else {
       let api;
-      // Decipher whether user passed a State or a zip code
       if (isNaN(zip_code)) {
         api = 'https://congress.api.sunlightfoundation.com/legislators?state=' + zip_code + '&apikey=' + SenateConstants.API_KEY;
       } else {
         api = 'https://congress.api.sunlightfoundation.com/legislators/locate?zip=' + zip_code + '&apikey=' + SenateConstants.API_KEY;
       }
-      // Request Sunlight Foundation API to get further details about congress person
-      // When details have been retrieved call SenateServerActions w. response body object
       request
       .get(api)
       .set('Accept', 'application/json')
