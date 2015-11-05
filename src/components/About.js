@@ -12,7 +12,6 @@ const About = React.createClass({
   render() {
     return <div className="page-block bright-red">
       <FadedBG color="red" />
-      <div className="black-top-line"></div>
       <WhiteBorder />
       <p className="pageIntroduction">
       	This website is unaffiliated with any government party or entity, nor are we a media outlet. Its objective is to provide comprehensive,

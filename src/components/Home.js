@@ -8,7 +8,7 @@ import Results from './Results';
 
 // Components
 import Circle from './Circle';
-import SearchInput from './SearchInput';
+import SearchGroup from './SearchGroup';
 import WhiteBorder from './WhiteBorder';
 
 // Styles
@@ -140,17 +140,16 @@ const Home = React.createClass({
 
       <div className={blockClasses} onScroll={this._handleScroll}>
       	<div className="section-block">
-        	<div className="black-line"></div>
 
         	<Circle
-          		style="one"
-          		hide={true}
-          		did_search={DID_SEARCH}
-          		desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
+          	style="one"
+          	hide={true}
+          	did_search={DID_SEARCH}
+          	desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
         	/>
 
-        	<SearchInput
-          		error={ERROR}
+        	<SearchGroup
+          	error={ERROR}
         	/>
         </div>
 

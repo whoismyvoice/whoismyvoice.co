@@ -12,7 +12,6 @@ const Sources = React.createClass({
   render() {
     return  <div className="page-block bright-green">
       <FadedBG color="green" />
-      <div className="black-top-line"></div>
       <WhiteBorder />
       <p className="pageIntroduction">
       	Every senator listed on this website is a listed co-sponsor of Senate Bill 1881. Senate Bill 1881 is a "bill to prohibit the federal funding of the Planned Parenthood Federation of America". (1)<br /><br />

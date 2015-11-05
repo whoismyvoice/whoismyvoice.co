@@ -12,7 +12,6 @@ const Senators = React.createClass({
   render() {
     return  <div className="page-block senators blue">
       <FadedBG color="blue" />
-      <div className="black-top-line"></div>
       <WhiteBorder />
       <p className="pageIntroduction">
       	Meet the members of the House Freedom Caucus. The HFC is a group of 40+ conservative congressmen who have publicly declared they will oppose any spending bill that does not defund Planned Parenthood.

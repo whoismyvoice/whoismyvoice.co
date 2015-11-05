@@ -43,8 +43,6 @@ const Header = React.createClass({
 
         <nav className={menuClasses} onClick={this._handleClick}>
           <WhiteBorder />
-          <div className="black-line menu">
-          </div>
 
           <Button
             color={'yellow-text'}

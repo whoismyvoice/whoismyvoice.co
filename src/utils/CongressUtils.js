@@ -8,12 +8,8 @@ module.exports = {
     if (zip_code === 'error') {
       SenateServerActions.getDetails('error');
     } else {
-      let api;
-      if (isNaN(zip_code)) {
-        api = 'https://congress.api.sunlightfoundation.com/legislators?state=' + zip_code + '&apikey=' + SenateConstants.API_KEY;
-      } else {
-        api = 'https://congress.api.sunlightfoundation.com/legislators/locate?zip=' + zip_code + '&apikey=' + SenateConstants.API_KEY;
-      }
+      let api = 'https://congress.api.sunlightfoundation.com/legislators/locate?zip=' + zip_code + '&apikey=' + SenateConstants.API_KEY;
+      
       request
       .get(api)
       .set('Accept', 'application/json')

@@ -13,24 +13,11 @@ module.exports = {
 			actionType: SenateConstants.FIND_MEMBER,
       zip_code: ZIP_CODE
 		});
-
-    var place;
-
-    if (isNaN(ZIP_CODE)) {
-      // Check if the passed value is a full state name or abbr
-      place = ZIP_CODE.length > 2 ? abbrState(ZIP_CODE, 'abbr') : ZIP_CODE.toUpperCase();
-
-      if (place === undefined) {
-        CongressUtils.getMember('error');
-      } else {
-        CongressUtils.getMember(place);
-      }
-    } else {
-      // Get senators based on passed zip_code
-      CongressUtils.getMember(ZIP_CODE);
-    }
-	},
-  fetchSpecificMember: function(ADDRESS, ZIP_CODE) {
+    
+    CongressUtils.getMember(ZIP_CODE);
+  },
+  
+  fetchSpecificMember: function(ADDRESS,ZIP_CODE) {
     AppDispatcher.handleViewAction({
       actionType: SenateConstants.FIND_SPECIFIC_MEMBER,
       address: ADDRESS,
@@ -59,6 +46,5 @@ module.exports = {
     AppDispatcher.handleViewAction({
       actionType: SenateConstants.FLUSH_STORE
     });
-  },
-  
+  }
 };
