@@ -2,7 +2,6 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 import SenateConstants from '../constants/SenateConstants';
 import request from 'superagent';
 import CongressUtils from '../utils/CongressUtils';
-import MemberUtils from '../utils/MemberUtils';
 import {abbrState} from '../utils/StateConverter';
 
 module.exports = {
@@ -38,7 +37,7 @@ module.exports = {
         console.log('Results found. Here they are:');
         const lat = res.body.results[0].geometry.location.lat,
               lng = res.body.results[0].geometry.location.lng;
-        MemberUtils.findMember(lat, lng);
+        CongressUtils.getMember(lat, lng);
       }
     });
   },

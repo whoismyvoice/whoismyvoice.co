@@ -29,7 +29,7 @@ const CongressmanGroup = React.createClass({
         />
 
         <SenatorName
-          name={item.first_name}
+          name={item.full_name}
           age={item.age}
           state={item.state}
           voted={item.voted}

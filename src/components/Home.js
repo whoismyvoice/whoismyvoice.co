@@ -120,7 +120,7 @@ const Home = React.createClass({
 
     if (DID_SEARCH && !MEMBER_HFC) {
       this._initializeFullpage();
-      VOTE_STATUS = ADDITIONAL_MEMBER === null ? 'co-sponsored a bill to defund Planned Parenthood. ' + MEMBER_THIRD + ' represents your voice!' : 'Both senators from ' + MEMBER_STATE_FULL + ' co-sponsored the bill to defund Planned Parenthood';
+      VOTE_STATUS = ADDITIONAL_MEMBER === null ? 'co-sponsored a bill to defund Planned Parenthood. ' + MEMBER_THIRD + ' represents your voice!' : 'Both congressmen from ' + MEMBER_STATE_FULL + ' co-sponsored the bill to defund Planned Parenthood';
     } else {
       VOTE_STATUS = 'You have not yet searched for a member';
     }
@@ -138,7 +138,7 @@ const Home = React.createClass({
           	style="one"
           	hide={true}
           	did_search={DID_SEARCH}
-          	desc="Did my Senator co-sponsor the bill to defund Planned Parenthood?"
+          	desc="Did my representative co-sponsor the bill to defund Planned Parenthood?"
         	/>
 
         	<SearchGroup
