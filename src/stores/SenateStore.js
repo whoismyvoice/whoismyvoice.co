@@ -21,7 +21,8 @@ let _store = {
   did_search: false,
   error: false,
   current_screen: null,
-  current_senator: null
+  current_senator: null,
+  number_representatives: null
 };
 
 // Define the public event listeners and getters that
@@ -54,29 +55,34 @@ AppDispatcher.register(function(payload) {
       break;
 
     case AppConstants.GET_DETAILS:
-      if (action.response === 'error') {
-        _store.error = true;
+
+      _store.number_representatives = action.numRep;
+
+      if(action.numRep > 3) {
+        console.log("More than 3 representatives within zip code");
       } else {
-        const details = action.response[0];
-        const additionalSenator = action.response.length > 1 ? action.response[1]: '';
-        // Set store values to reflect returned object
-        const middle_name = details.middle_name === null ? '' : details.middle_name;
+        if (action.response === 'error') {
+        _store.error = true;
+        } else {
+          const details = action.response[0],
+                additionalSenator = action.response.length > 1 ? action.response[1]: '',
+                middle_name = details.middle_name === null ? '' : details.middle_name;
 
-        _store.member_name = details.first_name + ' ' + middle_name + ' ' + details.last_name || '',
-        _store.member_bioguide = details.bioguide_id || null,
-        _store.member_age = (2015-details.birthday.substring(0,4)) || null,
-        _store.member_gender = details.gender || null,
-        _store.member_email = details.oc_email || null,
-        _store.member_tel = details.phone || null,
-        _store.member_twitter = details.twitter_id || null,
-        _store.member_party = details.party,
-        _store.member_state = details.state || null,
-        _store.member_state_full = details.state_name || null,
-        _store.error = false,
-        _store.did_search = true,
-        _store.additional_member = additionalSenator || null
-      };
-
+          _store.member_name = details.first_name + ' ' + middle_name + ' ' + details.last_name || '',
+          _store.member_bioguide = details.bioguide_id || null,
+          _store.member_age = (2015-details.birthday.substring(0,4)) || null,
+          _store.member_gender = details.gender || null,
+          _store.member_email = details.oc_email || null,
+          _store.member_tel = details.phone || null,
+          _store.member_twitter = details.twitter_id || null,
+          _store.member_party = details.party,
+          _store.member_state = details.state || null,
+          _store.member_state_full = details.state_name || null,
+          _store.error = false,
+          _store.did_search = true,
+          _store.additional_member = additionalSenator || null
+        };
+      }
       SenateStore.emit(CHANGE_EVENT);
       break;
 

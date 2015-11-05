@@ -1,12 +1,13 @@
 import React from 'react';
 import stateConverter from '../../utils/StateConverter';
+import SenateConstants from '../../constants/SenateConstants';
 
 // Styles
 import style from './../../styles/SenatorName.scss';
 
 const SenatorName = React.createClass({
   render() {
-  	const title = this.props.hfc ? '' : 'Senator',
+  	const title = SenateConstants.CHAMBER === 'house' ? 'Congressman' : 'Senator',
         name = title + ' ' + this.props.name,
         age = this.props.age === undefined ? '' : this.props.age + ' years old',
         twitterHandle = this.props.twitter === undefined ? '' : '@'+this.props.twitter,

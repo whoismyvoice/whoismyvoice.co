@@ -26,7 +26,7 @@ module.exports = {
           if(senators.length > 1) {
             console.log("More than 1 congress man, prompt for street name");
           }
-          SenateServerActions.getDetails(senators);
+          SenateServerActions.getDetails(senators, senators.length);
         }
       });
     }

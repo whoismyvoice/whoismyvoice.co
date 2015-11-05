@@ -77,11 +77,6 @@ const Home = React.createClass({
       {'hide': this.state.did_search}
     );
 
-    const topLineClasses = cx(
-      ['black-top-line'],
-      {'hide-it': !this.state.did_search}
-    );
-
     const backgroundClasses = cx(
       ['second-wrapper'],
       {'move-up': this.state.did_search},
@@ -116,7 +111,8 @@ const Home = React.createClass({
           ADDITIONAL_MEMBER = this.state.additional_member,
           ADDITIONALEXISTS = ADDITIONAL_MEMBER !== null,
           MEMBER_ZIP_CODE = this.state.member_zip_code,
-          CURRENT_MEMBER = this.state.current_senator;
+          CURRENT_MEMBER = this.state.current_senator,
+          NUMBER_REPRESENTATIVES = this.state.number_representatives;
     let VOTE_STATUS;
 
     const impact = 'Here are some ways you can keep this ' + MEMBER_GENDER + ' from being able to personally weigh in on the reproductive rights of millions of underserved women the next time a similar vote comes up.';
@@ -130,8 +126,6 @@ const Home = React.createClass({
     // NOT RANDOM
 
     return  <div className={containerClasses}>
-      <div className={topLineClasses}></div>
-
       <WhiteBorder />
 
       <div className="overlay">
@@ -149,6 +143,7 @@ const Home = React.createClass({
         	/>
 
         	<SearchGroup
+            repNum={NUMBER_REPRESENTATIVES}
           	error={ERROR}
         	/>
         </div>

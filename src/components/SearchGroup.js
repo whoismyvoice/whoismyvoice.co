@@ -5,11 +5,18 @@ import SearchInput from './SearchInput';
 
 const SearchGroup = React.createClass({
   render() {
-    return <div>
-      <SearchInput
-        error={this.props.error}
-      />
-    </div>;
+
+  	if(this.props.repNum > 3) {
+  		return <div>
+  			More than 3
+  		</div>;	
+  	} else {
+    	return <div>
+      	<SearchInput
+        	error={this.props.error}
+      	/>
+    	</div>;
+    }
   }
 });
 
