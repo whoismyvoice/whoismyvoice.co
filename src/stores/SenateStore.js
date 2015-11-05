@@ -70,7 +70,6 @@ AppDispatcher.register(function(payload) {
 
           _store.member_name = details.first_name + ' ' + middle_name + ' ' + details.last_name || '',
           _store.member_bioguide = details.bioguide_id || null,
-          _store.member_age = (2015-details.birthday.substring(0,4)) || null,
           _store.member_gender = details.gender || null,
           _store.member_email = details.oc_email || null,
           _store.member_tel = details.phone || null,

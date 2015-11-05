@@ -3,12 +3,25 @@ import SenatorImg from './SenatorImg';
 import SenatorName from './SenatorName';
 import ArrowDown from '../ArrowDown';
 import SearchAddress from '../SearchAddress';
+import cx from 'classnames';
 
 // Styles
 import style from './../../styles/SenatorGroup.scss';
 
 const CongressmanGroup = React.createClass({
   render() {
+
+    let searchClasses = 'search';
+    let reps = this.props.representatives;
+    if(reps) {
+      searchClasses = cx(
+        ['search'],
+        {'hide': reps.length < 2},
+      );
+    } else {
+      searchClasses = 'search';
+    }
+
     let representatives = (this.props.representatives || []).map(function(item, idx) {
       return <div className="senatorContainer" key={idx}>
         <SenatorImg
@@ -17,7 +30,7 @@ const CongressmanGroup = React.createClass({
 
         <SenatorName
           name={item.first_name}
-          age={item.birthday}
+          age={item.age}
           state={item.state}
           voted={item.voted}
         />
@@ -33,9 +46,11 @@ const CongressmanGroup = React.createClass({
     return <div className="senatorWrapper">
       {representatives}
 
-      <SearchAddress
-        zip_code={this.props.zip_code}
-      />
+      <div className={searchClasses}>
+        <SearchAddress
+          zip_code={this.props.zip_code}
+        />
+      </div>
 
     </div>;
   }

@@ -226,3 +226,9 @@
     }
 	}
 }
+
+.search {
+  &.hide {
+    display: none;
+  }
+}

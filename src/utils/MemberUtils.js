@@ -33,6 +33,8 @@ let getSpecificDetails = function(voters,lat,lng) {
     let senators = res.body.results.filter(function(senator) {
       if(senator.chamber === SenateConstants.CHAMBER && senator.bioguide_id in voters) {
         senator.voted = voters[senator.bioguide_id];
+        senator.full_name = senator.first_name + ' ' + senator.last_name;
+        senator.age = (new Date().getFullYear()-senator.birthday.substring(0,4));
         return senator
       }
     });

@@ -24,13 +24,9 @@ module.exports = {
       zip_code: ZIP
     });
 
-    console.log(ZIP);
-
     const apikey = 'AIzaSyBszQnBTm_2qjgMd57K0CLfE0i3zuveKhE';
     const api = 'https://maps.googleapis.com/maps/api/geocode/json?address='+ ADDRESS +','+ ZIP +',USA&key='+ apikey;
     
-    console.log(api);
-
     request
     .get(api)
     .set('Accept', 'application/json')

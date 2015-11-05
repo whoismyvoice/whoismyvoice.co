@@ -3,7 +3,6 @@ import HFCMembers from '../data/HFCMembers';
 
 // Components
 import Circle from './Circle';
-import SenatorGroup from './Senator/SenatorGroup';
 import ArrowDown from './ArrowDown';
 import SupportActions from './Senator/SupportActions';
 import HFCOverview from './HFCOverview';
@@ -41,7 +40,6 @@ const Results = React.createClass({
 
         <CongressmanGroup
           representatives={this.props.representatives}
-          did_search={'test'}
           zip_code={zip_code}
         />
       </div>
