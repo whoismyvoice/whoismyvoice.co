@@ -145,6 +145,7 @@ const Home = React.createClass({
         	<SearchGroup
             repNum={NUMBER_REPRESENTATIVES}
           	error={ERROR}
+            zip_code={MEMBER_ZIP_CODE}
         	/>
         </div>
 
