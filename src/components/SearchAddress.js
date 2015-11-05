@@ -1,5 +1,6 @@
 import React from 'react';
 import SenateActions from '../actions/SenateActions';
+import cx from 'classnames';
 
 const SearchAddress = React.createClass({
 
@@ -35,7 +36,7 @@ const SearchAddress = React.createClass({
 
   _handleEnter: function(e) {
     if (e.keyCode === 13) {
-      if (this.state.address < 4) {
+      if (this.state.address.length < 4) {
         this.setState({
           error: true,
           placeholder: 'Enter Street Name',
@@ -51,9 +52,34 @@ const SearchAddress = React.createClass({
     }
   },
 
+  _handleClick: function(evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
+    if (this.state.address.length < 4) {
+      this.setState({
+        error: true,
+        placeholder: 'Enter Street Name',
+        address: ''
+      });
+    } else {
+      this.setState({
+        error: false,
+        address: ''
+      });
+      SenateActions.fetchSpecificMember(this.state.address, this.state.zip_code);
+    }
+  },
+
   render() {
+    const inputClasses = cx(
+      ['input'],
+      {'error': this.state.error || this.props.error},
+      {'fade': this.state.fade}
+    );
+
   	return <div>
-  		<input 
+  		<input
+        className={inputClasses}
   			type="text"
   			placeholder={this.state.placeholder}
   			onChange={this._handleChange}
@@ -61,6 +87,11 @@ const SearchAddress = React.createClass({
   			onFocus={this._handleFocus}
   			onBlur={this._handleBlur}
   		/>
+
+      <button
+        className="arrowDown green-text spacing"
+        onClick={this._handleClick}>
+      </button>
   	</div>;
   }
 });
