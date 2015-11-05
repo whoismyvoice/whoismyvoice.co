@@ -39,7 +39,7 @@ const SearchInput = React.createClass({
 
   _handleEnter: function(e) {
     if (e.keyCode === 13) {
-      if ((isNaN(this.state.zip_code) && this.state.zip_code.length < 2) || (!isNaN(this.state.zip_code) && this.state.zip_code.length !== 5)) {
+      if ((isNaN(this.state.zip_code)) || (!isNaN(this.state.zip_code) && this.state.zip_code.length !== 5)) {
         this.setState({
           error: true,
           fade: false,
@@ -60,7 +60,7 @@ const SearchInput = React.createClass({
   _handleClick: function(evt) {
     evt.preventDefault();
     evt.stopPropagation();
-    if ((isNaN(this.state.zip_code) && this.state.zip_code.length < 2) || (!isNaN(this.state.zip_code) && this.state.zip_code.length !== 5)) {
+    if ((isNaN(this.state.zip_code)) || (!isNaN(this.state.zip_code) && this.state.zip_code.length !== 5)) {
       this.setState({
         error: true,
         fade: false
@@ -68,7 +68,8 @@ const SearchInput = React.createClass({
     } else {
       this.setState({
         error: false,
-        zip_code: ''
+        zip_code: '',
+        fade: false
       });
       SenateActions.fetchDistricts(this.state.zip_code);
     }

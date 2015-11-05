@@ -9,7 +9,8 @@ const SearchGroup = React.createClass({
 
   	if(this.props.repNum > 3) {
   		return <div>
-  			<i>Zip Code: {this.props.zip_code}</i>
+  			<i>Zip Code: {this.props.zip_code}</i><br />
+  			<b>Please provide street name to get more specific result</b>
   			<SearchAddress
   				error={this.props.error}
   			/>

@@ -9,7 +9,6 @@ const SearchAddress = React.createClass({
 		  address: '',
       error: false,
       placeholder: 'Enter Street Name',
-      zip_code: this.props.zip_code
 		};
 	},
 
@@ -43,7 +42,7 @@ const SearchAddress = React.createClass({
           address: ''
         });
       } else {
-        SenateActions.fetchSpecificMember(this.state.address, this.state.zip_code);
+        SenateActions.fetchSpecificMember(this.state.address, this.props.zip_code);
         this.setState({
           error: false,
           address: '',
@@ -55,7 +54,7 @@ const SearchAddress = React.createClass({
   _handleClick: function(evt) {
     evt.preventDefault();
     evt.stopPropagation();
-    if (this.state.address.length < 4) {
+    if (this.state.address < 4) {
       this.setState({
         error: true,
         placeholder: 'Enter Street Name',
@@ -66,7 +65,7 @@ const SearchAddress = React.createClass({
         error: false,
         address: ''
       });
-      SenateActions.fetchSpecificMember(this.state.address, this.state.zip_code);
+      SenateActions.fetchSpecificMember(this.state.address, this.props.zip_code);
     }
   },
 

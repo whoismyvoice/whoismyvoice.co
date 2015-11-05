@@ -17,12 +17,12 @@ let _store = {
   member_twitter: '',
   member_party: '',
   additional_member: null,
-  member_hfc: false,
   did_search: false,
   error: false,
   current_screen: null,
   current_senator: null,
-  number_representatives: null
+  number_representatives: null,
+  representatives: null
 };
 
 // Define the public event listeners and getters that
@@ -80,7 +80,8 @@ AppDispatcher.register(function(payload) {
           _store.member_state_full = details.state_name || null,
           _store.error = false,
           _store.did_search = true,
-          _store.additional_member = additionalSenator || null
+          _store.additional_member = additionalSenator || null,
+          _store.representatives = action.response;
         };
       }
       SenateStore.emit(CHANGE_EVENT);
@@ -105,7 +106,6 @@ AppDispatcher.register(function(payload) {
 
     case AppConstants.FLUSH_STORE:
       _store.did_search = false;
-      _store.member_hfc = false;
       _store.current_screen = 0;
 
       SenateStore.emit(CHANGE_EVENT);

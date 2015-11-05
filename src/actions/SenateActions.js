@@ -17,16 +17,20 @@ module.exports = {
     CongressUtils.getMember(ZIP_CODE);
   },
   
-  fetchSpecificMember: function(ADDRESS,ZIP_CODE) {
+  fetchSpecificMember: function(ADDRESS, ZIP) {
     AppDispatcher.handleViewAction({
       actionType: SenateConstants.FIND_SPECIFIC_MEMBER,
       address: ADDRESS,
-      zip_code: ZIP_CODE
+      zip_code: ZIP
     });
 
+    console.log(ZIP);
+
     const apikey = 'AIzaSyBszQnBTm_2qjgMd57K0CLfE0i3zuveKhE';
-    const api = 'https://maps.googleapis.com/maps/api/geocode/json?address='+ ADDRESS +','+ ZIP_CODE +',USA&key='+ apikey;
+    const api = 'https://maps.googleapis.com/maps/api/geocode/json?address='+ ADDRESS +','+ ZIP +',USA&key='+ apikey;
     
+    console.log(api);
+
     request
     .get(api)
     .set('Accept', 'application/json')

@@ -112,7 +112,8 @@ const Home = React.createClass({
           ADDITIONALEXISTS = ADDITIONAL_MEMBER !== null,
           MEMBER_ZIP_CODE = this.state.member_zip_code,
           CURRENT_MEMBER = this.state.current_senator,
-          NUMBER_REPRESENTATIVES = this.state.number_representatives;
+          NUMBER_REPRESENTATIVES = this.state.number_representatives,
+          REPRESENTATIVES = this.state.representatives;
     let VOTE_STATUS;
 
     const impact = 'Here are some ways you can keep this ' + MEMBER_GENDER + ' from being able to personally weigh in on the reproductive rights of millions of underserved women the next time a similar vote comes up.';
@@ -123,8 +124,6 @@ const Home = React.createClass({
     } else {
       VOTE_STATUS = 'You have not yet searched for a member';
     }
-    // NOT RANDOM
-
     return  <div className={containerClasses}>
       <WhiteBorder />
 
@@ -150,11 +149,10 @@ const Home = React.createClass({
         </div>
 
         <Results
-          hfc={MEMBER_HFC}
+          representatives={REPRESENTATIVES}
           backgroundClasses={backgroundClasses}
           additional_member={ADDITIONAL_MEMBER}
           age={MEMBER_AGE}
-          did_search={DID_SEARCH}
           gender={MEMBER_GENDER}
           vote_status={VOTE_STATUS}
           bioguide={MEMBER_BIOGUIDE}

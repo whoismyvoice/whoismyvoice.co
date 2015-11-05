@@ -32,7 +32,7 @@ let getSpecificDetails = function(voters,lat,lng) {
 
     let senators = res.body.results.filter(function(senator) {
       if(senator.chamber === SenateConstants.CHAMBER && senator.bioguide_id in voters) {
-        console.log(voters[senator.bioguide_id]);
+        senator.voted = voters[senator.bioguide_id];
         return senator
       }
     });
@@ -40,7 +40,6 @@ let getSpecificDetails = function(voters,lat,lng) {
     if (res.body.results.length === 0) {
       SenateServerActions.getDetails('error');
     } else if (senators.length > 0) {
-      console.log(senators);
       SenateServerActions.getDetails(senators);
     }
   });
