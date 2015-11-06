@@ -6,16 +6,8 @@ import { EventEmitter } from 'events';
 const CHANGE_EVENT = 'change';
 
 let _store = {
-	member_name: '',
-	member_bioguide: '',
-  member_zip_code: '',
-  member_age: '',
-  member_gender: '',
-  member_state: '',
-  member_email: '',
-  member_tel: '',
-  member_party: '',
-  additional_member: null,
+  zip_code: '',
+  state_full: '',
   did_search: false,
   error: false,
   current_screen: null,
@@ -47,7 +39,7 @@ AppDispatcher.register(function(payload) {
 
     case AppConstants.FIND_MEMBER:
 
-      _store.member_zip_code = action.zip_code;
+      _store.zip_code = action.zip_code;
       _store.error = false;
 
       SenateStore.emit(CHANGE_EVENT);
@@ -63,17 +55,10 @@ AppDispatcher.register(function(payload) {
         if (action.response === 'error') {
         _store.error = true;
         } else {
-          const details = action.response[0],
-                additionalSenator = action.response.length > 1 ? action.response[1]: '';
-
-          _store.member_name = details.full_name
-          _store.member_age = details.age,
-          _store.member_bioguide = details.bioguide_id || null,
-          _store.member_gender = details.gender_full || null,
-          _store.member_state_full = details.state_name || null,
+          const details = action.response[0];
+          _store.state_full = details.state_name || null,
           _store.error = false,
           _store.did_search = true,
-          _store.additional_member = additionalSenator || null,
           _store.representatives = action.response || null;
         };
       }
@@ -100,6 +85,7 @@ AppDispatcher.register(function(payload) {
     case AppConstants.FLUSH_STORE:
       _store.did_search = false;
       _store.current_screen = 0;
+      _store.current_senator = 0;
 
       SenateStore.emit(CHANGE_EVENT);
       break;

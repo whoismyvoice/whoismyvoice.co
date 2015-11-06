@@ -84,29 +84,29 @@ const Home = React.createClass({
       {'full': this.state.did_search}
     );
 
-    const MEMBER_NAME = this.state.member_name,
-          MEMBER_BIOGUIDE = this.state.member_bioguide,
-          MEMBER_GENDER = this.state.member_gender,
-          MEMBER_THIRD = MEMBER_GENDER === 'man' ? 'He' : 'She',
-          MEMBER_STATE_FULL = this.state.member_state_full,
+    const NUMBER_REPRESENTATIVES = this.state.number_representatives,
+          REPRESENTATIVES = this.state.representatives,
           DID_SEARCH = this.state.did_search,
           ERROR = this.state.error,
-          MEMBER_ZIP_CODE = this.state.member_zip_code,
+          ZIP_CODE = this.state.zip_code,
           CURRENT_MEMBER = this.state.current_senator,
-          NUMBER_REPRESENTATIVES = this.state.number_representatives || null,
-          REPRESENTATIVES = this.state.representatives || null,
+          STATE = this.state.state_full,
           MEMBER_STATUS_THIRD = SenateConstants.CHAMBER === 'house' ? 'Congressmen' : 'Senators';
 
-    let VOTE_STATUS;
+    let impact = SenateConstants.IMPACT_PRE_GENDER + ' these people ' + SenateConstants.IMPACT_POST_GENDER,
+        VOTE_STATUS = ' from ' + STATE + ' co-sponsored the bill to defund Planned Parenthood';
+
+    if(DID_SEARCH && NUMBER_REPRESENTATIVES === 1) {
+      const MEMBER_THIRD = REPRESENTATIVES[0].gender_full === 'man' ? 'He' : 'She';
+      impact = SenateConstants.IMPACT_PRE_GENDER +' this '+ REPRESENTATIVES[0].gender_full +' '+ SenateConstants.IMPACT_POST_GENDER;
+      VOTE_STATUS = 'co-sponsored a bill to defund Planned Parenthood. ' + MEMBER_THIRD + ' represents your voice!';
+    }
 
     if (DID_SEARCH) {
       this._initializeFullpage();
-      VOTE_STATUS = NUMBER_REPRESENTATIVES === 1 ? 'co-sponsored a bill to defund Planned Parenthood. ' + MEMBER_THIRD + ' represents your voice!' : ' from ' + MEMBER_STATE_FULL + ' co-sponsored the bill to defund Planned Parenthood';
     } else {
       VOTE_STATUS = 'You have not yet searched for a member';
     }
-
-    const impact = NUMBER_REPRESENTATIVES > 1 ? SenateConstants.IMPACT_PRE_GENDER + ' these people ' + SenateConstants.IMPACT_POST_GENDER : SenateConstants.IMPACT_PRE_GENDER +' this '+ MEMBER_GENDER +' '+ SenateConstants.IMPACT_POST_GENDER;
 
     return  <div className={containerClasses}>
       <WhiteBorder />
@@ -128,7 +128,7 @@ const Home = React.createClass({
         	<SearchGroup
             repNum={NUMBER_REPRESENTATIVES}
           	error={ERROR}
-            zip_code={MEMBER_ZIP_CODE}
+            zip_code={ZIP_CODE}
         	/>
         </div>
 
@@ -137,10 +137,9 @@ const Home = React.createClass({
           numRep={NUMBER_REPRESENTATIVES}
           backgroundClasses={backgroundClasses}
           vote_status={VOTE_STATUS}
-          bioguide={MEMBER_BIOGUIDE}
           impact={impact}
           current_member={CURRENT_MEMBER}
-          zip_code={MEMBER_ZIP_CODE}
+          zip_code={ZIP_CODE}
         />
       </div>
     </div>;

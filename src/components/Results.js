@@ -11,7 +11,6 @@ const Results = React.createClass({
 
 	render() {
 		const vote_status = this.props.vote_status,
-				  bioguide = this.props.bioguide,
 				  impact = this.props.impact,
 				  current_member = this.props.current_member,
           zip_code = this.props.zip_code,
