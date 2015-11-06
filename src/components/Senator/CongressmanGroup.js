@@ -36,7 +36,7 @@ const CongressmanGroup = React.createClass({
         />
 
         <ArrowDown 
-          id="0" 
+          id={idx}
           additional={item.additional} 
           double={"true"} 
           color="orange-text" 

@@ -52,6 +52,7 @@ const Results = React.createClass({
         />
 
         <SupportActions
+          representatives={this.props.representatives}
           additional={additional_member}
           currentSenator={current_member}
           gender={gender}

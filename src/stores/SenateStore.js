@@ -81,7 +81,7 @@ AppDispatcher.register(function(payload) {
           _store.error = false,
           _store.did_search = true,
           _store.additional_member = additionalSenator || null,
-          _store.representatives = action.response;
+          _store.representatives = action.response || null;
         };
       }
       SenateStore.emit(CHANGE_EVENT);

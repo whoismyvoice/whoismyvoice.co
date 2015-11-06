@@ -8,23 +8,20 @@ import Button from './../Button';
 
 const SupportActions = React.createClass({
   render() {
-    let additional = this.props.additional,
-        current = this.props.currentSenator,
+    let current = this.props.currentSenator || 0,
+        representatives = this.props.representatives,
+        representative,
         gender,
         email,
         twitter,
-        tel = this.props.tel;
+        tel;
 
-    if (additional !== null && current === '1') {
-      gender = additional.gender === 'M' ? 'him' : 'her',
-      email = additional.oc_email,
-      twitter = additional.twitter_id,
-      tel = additional.phone;
-    } else {
-      gender = this.props.gender === 'man' ? 'him' : 'her',
-      email = this.props.email,
-      twitter = this.props.twitter,
-      tel = this.props.tel;
+    if(representatives !== null) {
+      representative = representatives[current],
+      gender = representative.gender === 'M' ? 'him' : 'her',
+      email = representative.oc_email,
+      twitter = representative.twitter_id,
+      tel = representative.phone;
     }
 
     return  <div className="supportActions">

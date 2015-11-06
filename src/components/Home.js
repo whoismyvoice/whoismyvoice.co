@@ -101,8 +101,8 @@ const Home = React.createClass({
           ADDITIONALEXISTS = ADDITIONAL_MEMBER !== null,
           MEMBER_ZIP_CODE = this.state.member_zip_code,
           CURRENT_MEMBER = this.state.current_senator,
-          NUMBER_REPRESENTATIVES = this.state.number_representatives,
-          REPRESENTATIVES = this.state.representatives,
+          NUMBER_REPRESENTATIVES = this.state.number_representatives || null,
+          REPRESENTATIVES = this.state.representatives || null,
           MEMBER_STATUS_THIRD = SenateConstants.CHAMBER === 'house' ? 'Congressmen' : 'Senators';
 
     let VOTE_STATUS;
