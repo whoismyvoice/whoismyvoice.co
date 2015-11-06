@@ -10,14 +10,25 @@ const Circle = React.createClass({
   	let numRep = this.props.numRep,
         proposition = this.props.representatives !== null && numRep === 1 ? 'a ' : '',
         details = this.props.representatives !== null && numRep === 1 ? this.props.representatives[0].age + ' year old ' + this.props.representatives[0].gender_full + ' ' : '',
-        desc = this.props.numRep > 1 ? '' : this.props.desc,
         title,
-        several = numRep > 1 ? ' several': '';
+        status,
+        desc,
+        state,
+        several = numRep > 1 && SenateConstants.CHAMBER === 'house' ? ' several': '';
+
+    if(numRep > 0 && SenateConstants.CHAMBER === 'senate') {
+      status = this.props.representatives[0].voted === 'Yea' ? 'Yes!' : 'No!';
+      desc = this.props.representatives[0].voted === 'Yea' ? 'co-sponsored the bill to defund Planned Parenthood.' : 'support Planned Parenthood!';
+      state = 'from ' + this.props.representatives[0].state_name + ' ';
+    } else {
+      desc = this.props.numRep > 1 ? '' : this.props.desc;
+    }
 
     if(SenateConstants.CHAMBER === 'house') {
       title = numRep > 1 ? 'representatives' : 'representative';
+      status = '';
     } else {
-      title = numRep > 1 ? 'senator' : 'senators';
+      title = numRep > 1 ? 'senators' : 'senator';
     }
 
     const introductionClasses = cx(
@@ -27,10 +38,11 @@ const Circle = React.createClass({
   	
     return <div className={'circle ' + this.props.style + several}>
   		<div className="description">
+      {status}
         <div className={introductionClasses}>
-  				{'Your ' + title} <br />
+  				{'Your ' + title}
         </div>
-        {proposition}
+        {proposition}{state}
   			<span className="strike-out">
   				{details}
   			</span>

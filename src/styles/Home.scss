@@ -59,4 +59,8 @@ h1 {
 		width: 99.1vw;
 		@include transition(1s);
 	}
+
+	&.visible {
+		overflow: visible;
+	}
 }

@@ -39,7 +39,6 @@ AppDispatcher.register(function(payload) {
   switch(action.actionType) {
 
     case AppConstants.FIND_MEMBER:
-
       _store.zip_code = action.zip_code;
       _store.error = false;
 
@@ -47,26 +46,31 @@ AppDispatcher.register(function(payload) {
       break;
 
     case AppConstants.GET_DETAILS:
-
       _store.number_representatives = action.numRep;
 
-      if (action.numRep > 3) {
-        console.log("More than 3 representatives within zip code");
-      } else if (action.numRep > 1 && action.numRep < 4) {
-        _store.second_search = true,
-        _store.representatives = action.response || null,
-        _store.error = false,
-        _store.did_search = true;
-      } else if(action.numRep === 1) {
-        if (action.response === 'error') {
+      console.log("GET DETAILS");
+
+      if (action.response === 'error') {
         _store.error = true;
-        } else {
+        console.log("Error");
+      } else {
+        if (action.numRep > 3) {
+          console.log("More than 3 representatives within zip code");
+        } else if (action.numRep > 1 && action.numRep < 4) {
+          _store.second_search = true,
+          _store.representatives = action.response || null,
+          _store.error = false,
+          _store.did_search = true;
+        } else if(action.numRep === 1) {
           const details = action.response[0];
           _store.state_full = details.state_name || null,
           _store.error = false,
           _store.did_search = true,
           _store.representatives = action.response || null;
-        };
+        } else if (AppConstants.CHAMBER === 'senate' && action.numRep === 0) {
+          _store.did_search = true,
+          _store.error = false;
+        }
       }
       SenateStore.emit(CHANGE_EVENT);
       break;

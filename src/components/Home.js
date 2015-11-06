@@ -84,7 +84,7 @@ const Home = React.createClass({
       VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ' voted for the '+ SenateConstants.BILL_TITLE +'. ' + MEMBER_THIRD + ' represents your voice!' : ' voted against the '+ SenateConstants.BILL_TITLE +'. '+MEMBER_THIRD + ' represents your voice!';
     }
 
-    if (DID_SEARCH) {
+    if (DID_SEARCH && NUMBER_REPRESENTATIVES !== 0) {
       this._initializeFullpage();
     } else {
       VOTE_STATUS = 'You have not yet searched for a member';
@@ -110,7 +110,9 @@ const Home = React.createClass({
       ['container'],
       {'reveal': DID_SEARCH},
       {'green': !DID_SEARCH},
-      {'orange': DID_SEARCH},
+      {'orange': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0},
+      {'red': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && SenateConstants.CHAMBER === 'senate'},
+      {'visible': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && SenateConstants.CHAMBER === 'senate'},
       {'purple': this.state.current_screen === 2},
       {'full': DID_SEARCH}
     );
