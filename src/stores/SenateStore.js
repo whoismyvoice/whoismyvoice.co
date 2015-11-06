@@ -68,7 +68,8 @@ AppDispatcher.register(function(payload) {
                 additionalSenator = action.response.length > 1 ? action.response[1]: '',
                 middle_name = details.middle_name === null ? '' : details.middle_name;
 
-          _store.member_name = details.first_name + ' ' + middle_name + ' ' + details.last_name || '',
+          _store.member_name = details.full_name
+          _store.member_age = details.age,
           _store.member_bioguide = details.bioguide_id || null,
           _store.member_gender = details.gender || null,
           _store.member_email = details.oc_email || null,

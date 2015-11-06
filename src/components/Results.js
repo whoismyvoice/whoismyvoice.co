@@ -1,11 +1,9 @@
 import React from 'react';
-import HFCMembers from '../data/HFCMembers';
 
 // Components
 import Circle from './Circle';
 import ArrowDown from './ArrowDown';
 import SupportActions from './Senator/SupportActions';
-import HFCOverview from './HFCOverview';
 import FadedBG from './FadedBg';
 import CongressmanGroup from './Senator/CongressmanGroup';
 
@@ -26,7 +24,8 @@ const Results = React.createClass({
 				  tel = this.props.tel,
 				  twitter = this.props.twitter,
 				  party = this.props.party,
-          zip_code = this.props.zip_code;
+          zip_code = this.props.zip_code,
+          numRep = this.props.numRep;
 
 		return <div className={this.props.backgroundClasses} id="fullpage">
       <div className="section block two">
@@ -36,6 +35,7 @@ const Results = React.createClass({
           age={age}
           gender={gender}
           desc={vote_status}
+          numRep={numRep}
         />
 
         <CongressmanGroup

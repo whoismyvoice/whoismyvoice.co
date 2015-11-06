@@ -1,6 +1,6 @@
 import React from 'react';
 import SenateStore from '../stores/SenateStore';
-// import SenateActions from '../actions/SenateActions';
+import SenateConstants from '../constants/SenateConstants';
 
 import ContainerActions from '../actions/ContainerActions';
 import cx from 'classnames';
@@ -20,14 +20,6 @@ const Home = React.createClass({
     return  SenateStore.getMember()
   },
   componentDidMount: function() {
-    // Allow fetching of member if id / zip_code is defined as a parameter
-    // if(!this.state.did_search) {
-    //  let params = this.props.params;
-    //  if(params.zip && params.zip.length === 5 && !isNaN(params.zip)) {
-    //    SenateActions.identifyMember(params.zip);
-    //  }
-    // }
-
     if (this.state.did_search && !this.state.member_hfc) {
       this._initializeFullpage();
     } else {
@@ -80,18 +72,16 @@ const Home = React.createClass({
     const backgroundClasses = cx(
       ['second-wrapper'],
       {'move-up': this.state.did_search},
-      {'static': !this.state.did_search},
-      {'short': this.state.member_hfc}
+      {'static': !this.state.did_search}
     );
 
     const containerClasses = cx(
       ['container'],
       {'reveal': this.state.did_search},
       {'green': !this.state.did_search},
-      {'orange': this.state.did_search && !this.state.member_hfc},
-      {'purple': this.state.current_screen === 2 && !this.state.member_hfc},
-      {'bright-red': this.state.did_search && this.state.member_hfc},
-      {'full': this.state.did_search && this.state.member_hfc}
+      {'orange': this.state.did_search},
+      {'purple': this.state.current_screen === 2},
+      {'full': this.state.did_search}
     );
 
     const MEMBER_NAME = this.state.member_name,
@@ -106,24 +96,26 @@ const Home = React.createClass({
           MEMBER_STATE_FULL = this.state.member_state_full,
           DID_SEARCH = this.state.did_search,
           PARTY = this.state.member_party,
-          MEMBER_HFC = this.state.member_hfc,
           ERROR = this.state.error,
           ADDITIONAL_MEMBER = this.state.additional_member,
           ADDITIONALEXISTS = ADDITIONAL_MEMBER !== null,
           MEMBER_ZIP_CODE = this.state.member_zip_code,
           CURRENT_MEMBER = this.state.current_senator,
           NUMBER_REPRESENTATIVES = this.state.number_representatives,
-          REPRESENTATIVES = this.state.representatives;
+          REPRESENTATIVES = this.state.representatives,
+          MEMBER_STATUS_THIRD = SenateConstants.CHAMBER === 'house' ? 'Congressmen' : 'Senators';
+
     let VOTE_STATUS;
 
-    const impact = 'Here are some ways you can keep this ' + MEMBER_GENDER + ' from being able to personally weigh in on the reproductive rights of millions of underserved women the next time a similar vote comes up.';
-
-    if (DID_SEARCH && !MEMBER_HFC) {
+    if (DID_SEARCH) {
       this._initializeFullpage();
-      VOTE_STATUS = ADDITIONAL_MEMBER === null ? 'co-sponsored a bill to defund Planned Parenthood. ' + MEMBER_THIRD + ' represents your voice!' : 'Both congressmen from ' + MEMBER_STATE_FULL + ' co-sponsored the bill to defund Planned Parenthood';
+      VOTE_STATUS = ADDITIONAL_MEMBER === null ? 'co-sponsored a bill to defund Planned Parenthood. ' + MEMBER_THIRD + ' represents your voice!' : 'Both '+ MEMBER_STATUS_THIRD +' from ' + MEMBER_STATE_FULL + ' co-sponsored the bill to defund Planned Parenthood';
     } else {
       VOTE_STATUS = 'You have not yet searched for a member';
     }
+
+    const impact = NUMBER_REPRESENTATIVES > 1 ? SenateConstants.IMPACT_PRE_GENDER + ' these people ' + SenateConstants.IMPACT_POST_GENDER : SenateConstants.IMPACT_PRE_GENDER +' this '+ MEMBER_GENDER +' '+ SenateConstants.IMPACT_POST_GENDER;
+
     return  <div className={containerClasses}>
       <WhiteBorder />
 
@@ -138,7 +130,7 @@ const Home = React.createClass({
           	style="one"
           	hide={true}
           	did_search={DID_SEARCH}
-          	desc="Did my representative co-sponsor the bill to defund Planned Parenthood?"
+          	desc={SenateConstants.BILL_DESC+'?'}
         	/>
 
         	<SearchGroup
@@ -150,6 +142,7 @@ const Home = React.createClass({
 
         <Results
           representatives={REPRESENTATIVES}
+          numRep={NUMBER_REPRESENTATIVES}
           backgroundClasses={backgroundClasses}
           additional_member={ADDITIONAL_MEMBER}
           age={MEMBER_AGE}
@@ -157,8 +150,8 @@ const Home = React.createClass({
           vote_status={VOTE_STATUS}
           bioguide={MEMBER_BIOGUIDE}
           name={MEMBER_NAME}
-          state={MEMBER_STATE}
           impact={impact}
+          state={MEMBER_STATE}
           additional_exists={ADDITIONALEXISTS}
           current_member={CURRENT_MEMBER}
           email={MEMBER_EMAIL}

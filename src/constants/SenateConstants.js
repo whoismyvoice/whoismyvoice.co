@@ -7,7 +7,11 @@ module.exports = {
     SET_CURRENT_MEMBER: 'SET_CURRENT_MEMBER',
     FLUSH_STORE: 'FLUSH_STORE',
     FIND_SPECIFIC_MEMBER: 'FIND_SPECIFIC_MEMBER',
-    BILL_ID: 'hr41-113',
+    BILL_ID: 'hr1599-114',
     API_KEY: '4f501d505d514b85a01f39d4ceb9a353',
-    CHAMBER: 'house'
+    CHAMBER: 'house',
+    BILL_TITLE: 'Safe and Accurate Food Labeling Act of 2015',
+    BILL_DESC: 'Did my representative vote against the Safe and Accurate Food Labeling Act of 2015',
+    IMPACT_PRE_GENDER: 'Here are some ways you can keep',
+    IMPACT_POST_GENDER: 'from being able to personally weigh in on safe and accurate food labeling the next time a similar vote comes up.'
 };
