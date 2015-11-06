@@ -18,7 +18,7 @@ h1 {
 
 	@media screen and (max-width: $iphone6) {
 		height: 100vh;
-		 min-height: 100%!important;
+		min-height: 100%!important;
 	}
 
 	@media screen and (max-width: $iphone6)
@@ -54,7 +54,7 @@ h1 {
 	}
 
 	&.reveal {
-		overflow: visible;
+		overflow: hidden;
 		z-index: 1;
 		width: 99.1vw;
 		@include transition(1s);

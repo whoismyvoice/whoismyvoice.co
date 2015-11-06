@@ -13,7 +13,8 @@ let _store = {
   current_screen: null,
   current_senator: null,
   number_representatives: null,
-  representatives: null
+  representatives: null,
+  second_search: null
 };
 
 // Define the public event listeners and getters that
@@ -49,9 +50,14 @@ AppDispatcher.register(function(payload) {
 
       _store.number_representatives = action.numRep;
 
-      if(action.numRep > 3) {
+      if (action.numRep > 3) {
         console.log("More than 3 representatives within zip code");
-      } else {
+      } else if (action.numRep > 1 && action.numRep < 4) {
+        _store.second_search = true,
+        _store.representatives = action.response || null,
+        _store.error = false,
+        _store.did_search = true;
+      } else if(action.numRep === 1) {
         if (action.response === 'error') {
         _store.error = true;
         } else {

@@ -5,6 +5,7 @@ import SenateConstants from '../constants/SenateConstants';
 import ContainerActions from '../actions/ContainerActions';
 import cx from 'classnames';
 import Results from './Results';
+import CongressmanGroup from './Senator/CongressmanGroup';
 
 // Components
 import Circle from './Circle';
@@ -64,26 +65,6 @@ const Home = React.createClass({
     }
   },
   render() {
-    const blockClasses = cx(
-      ['block', 'one'],
-      {'hide': this.state.did_search}
-    );
-
-    const backgroundClasses = cx(
-      ['second-wrapper'],
-      {'move-up': this.state.did_search},
-      {'static': !this.state.did_search}
-    );
-
-    const containerClasses = cx(
-      ['container'],
-      {'reveal': this.state.did_search},
-      {'green': !this.state.did_search},
-      {'orange': this.state.did_search},
-      {'purple': this.state.current_screen === 2},
-      {'full': this.state.did_search}
-    );
-
     const NUMBER_REPRESENTATIVES = this.state.number_representatives,
           REPRESENTATIVES = this.state.representatives,
           DID_SEARCH = this.state.did_search,
@@ -91,6 +72,7 @@ const Home = React.createClass({
           ZIP_CODE = this.state.zip_code,
           CURRENT_MEMBER = this.state.current_senator,
           STATE = this.state.state_full,
+          SECOND_SEARCH = this.state.second_search,
           MEMBER_STATUS_THIRD = SenateConstants.CHAMBER === 'house' ? 'Congressmen' : 'Senators';
 
     let impact = SenateConstants.IMPACT_PRE_GENDER + ' these people ' + SenateConstants.IMPACT_POST_GENDER,
@@ -107,6 +89,31 @@ const Home = React.createClass({
     } else {
       VOTE_STATUS = 'You have not yet searched for a member';
     }
+
+    const sectionClasses = cx(
+      ['section-block'],
+      {'hide': NUMBER_REPRESENTATIVES === 1 && !SECOND_SEARCH}
+    );
+
+    const blockClasses = cx(
+      ['block', 'one'],
+      {'hide': DID_SEARCH}
+    );
+
+    const backgroundClasses = cx(
+      ['second-wrapper'],
+      {'move-up': DID_SEARCH},
+      {'static': !DID_SEARCH}
+    );
+
+    const containerClasses = cx(
+      ['container'],
+      {'reveal': DID_SEARCH},
+      {'green': !DID_SEARCH},
+      {'orange': DID_SEARCH},
+      {'purple': this.state.current_screen === 2},
+      {'full': DID_SEARCH}
+    );
 
     return  <div className={containerClasses}>
       <WhiteBorder />
@@ -142,6 +149,7 @@ const Home = React.createClass({
           zip_code={ZIP_CODE}
         />
       </div>
+
     </div>;
   }
 });

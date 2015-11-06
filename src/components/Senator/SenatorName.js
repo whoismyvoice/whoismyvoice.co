@@ -7,8 +7,7 @@ import style from './../../styles/SenatorName.scss';
 
 const SenatorName = React.createClass({
   render() {
-  	const title = SenateConstants.CHAMBER === 'house' ? 'Congressman' : 'Senator',
-        name = title + ' ' + this.props.name,
+  	const name = this.props.name,
         age = this.props.age === undefined ? '' : this.props.age + ' years old',
         twitterHandle = this.props.twitter === undefined ? '' : '@'+this.props.twitter,
         state = stateConverter.abbrState(this.props.state, 'name'),
@@ -20,7 +19,7 @@ const SenatorName = React.createClass({
         {age}
       </h2>
       <h2 className="twitterHandle">
-        {voted} {twitterHandle}
+        {voted}
       </h2>
     </div>;
   }

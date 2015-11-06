@@ -11,12 +11,18 @@ import style from './../../styles/CongressmanGroup.scss';
 const CongressmanGroup = React.createClass({
   render() {
 
-    let searchClasses = 'search';
-    let reps = this.props.representatives;
+    let searchClasses = 'search',
+        wrapperClasses = 'senatorWrapper',
+        reps = this.props.representatives;
+
     if(reps) {
       searchClasses = cx(
         ['search'],
         {'hide': reps.length < 2},
+      );
+      wrapperClasses = cx(
+        ['senatorWrapper'],
+        {'several': reps.length > 1}
       );
     } else {
       searchClasses = 'search';
@@ -44,7 +50,7 @@ const CongressmanGroup = React.createClass({
         />
       </div>;
     });
-    return <div className="senatorWrapper">
+    return <div className={wrapperClasses}>
       {representatives}
 
       <div className={searchClasses}>
