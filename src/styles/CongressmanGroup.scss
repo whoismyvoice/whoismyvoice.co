@@ -1,5 +1,234 @@
+@import 'variables';
+
+.senatorWrapper {
+	width: 100%;
+	margin: 0 auto;
+	position: relative;
+	background-color: $light-orange;
+
+	@media screen and (max-width: $iphone6) {
+		width: 85%;
+	}
+
+	@media only screen
+  and (min-width: 421px)
+  and (max-width: 799px) {
+    width: 95%;
+  }
+
+	@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    width: 100%;
+  }
+
+	@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    width: 65%;
+  }
+
+  @media screen 
+  and (min-width: 1000px)
+  and (max-width: 1199px) {
+
+    @media screen
+    and (max-height: 550px) {
+      margin-top: -35px;
+    }
+  }
+}
+
+.senatorContainer {
+	width: 32.5%;
+	display: inline-block;
+
+	&:first-of-type {
+		margin-left: 2%;
+
+		@media screen and (max-width: $iphone6) {
+    	margin-left: 5%;
+  	}
+
+    @media screen and (max-width: $iphone5-min) {
+      margin-left: 6.5%;
+    }
+
+  	@media only screen 
+    and (min-device-width: 768px) 
+    and (max-device-width: 1024px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+      margin-left: 0%;
+    }
+
+    @media only screen 
+    and (min-device-width: 768px) 
+    and (max-device-width: 1024px) 
+    and (orientation: landscape) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+      margin-left: 0%;
+    }
+
+    @media screen 
+  	and (min-width: 1400px)
+  	and (max-width: 1500px)
+  	and (-webkit-min-device-pixel-ratio: 1) {
+  		margin-left: 0;
+  	}
+	}
+
+	@media screen and (max-device-width: 362px) {
+    margin-top: -10px;
+  }
+
+	@media screen and (max-width: $iphone6)
+	and (-webkit-min-device-pixel-ratio: 2) {
+		width: 40%;
+		margin-right: 2%;
+		margin-left: 5%;
+	}
+
+	.senatorImg {
+		width: 40%;
+		padding: 20% 0;
+
+		@media only screen 
+  		and (min-device-width: 768px) 
+  		and (max-device-width: 1024px) 
+  		and (orientation: portrait) 
+  		and (-webkit-min-device-pixel-ratio: 1) {
+    		width: 40%;
+    		padding: 20% 0;
+  		}
+
+  		@media only screen 
+  		and (min-device-width: 768px) 
+  		and (max-device-width: 1024px) 
+  		and (orientation: landscape) 
+  		and (-webkit-min-device-pixel-ratio: 1) {
+    		width: 40%;
+    		padding: 20% 0;
+  		}
+
+		@media screen and (max-width: $iphone6) {
+			width: 75%;
+			padding: 37.5% 0;
+			margin-bottom: 0;
+		}
+
+    @media screen 
+    and (min-width: 1000px)
+    and (max-width: 1199px) {
+
+      @media screen
+      and (max-height: 550px) {
+        margin-bottom: -5px;
+      }
+    }
+	}
+
+	.senatorName {
+		width: 100%;
+
+		@media screen and (max-width: $iphone6) {
+			padding: 5px;
+		}
+
+		h2 {
+			font-size: 1.2em;
+			font-size: 1.1vw;
+			margin-right: 5%;
+
+			@media screen and (max-width: $iphone6) {
+				margin-right: 5%;
+				font-size: 0.8em;
+			}
+
+			@media only screen
+    	and (min-width: 421px)
+    	and (max-width: 799px) {
+      	font-size: 9px;
+    	}
+
+    	@media screen and (max-width: 361px) {
+        font-size: 10px;
+        margin-top: 0;
+      }
+
+      @media screen and (max-device-width: 413px) {
+        font-size: 10px;
+      }
+
+			@media only screen 
+  		and (min-device-width: 768px) 
+  		and (max-device-width: 1024px) 
+  		and (orientation: landscape) 
+  		and (-webkit-min-device-pixel-ratio: 1) {
+    		font-size: 1.1em;
+  		}
+		}
+	}
+}
+
+.connectingLine {
+	width: 50%;
+	z-index: 1;
+	position: absolute;
+	left: 0;
+	top: 30%;
+	right: 6px;
+	margin: 0 auto;
+	height: 4px;
+	display: inline-block;
+	background-color: $black;
+
+	@media screen and (max-width: $iphone6) {
+		width: 200px;
+		top: 31%;
+	}
+
+	@media screen and (max-width: $iphone5-min) {
+      width: 180px;
+      top: 28%;
+    }
+
+	&:before {
+		width: 4px;
+		background-color: $black;
+		left: 18px;
+		top: -115px;
+		right: 0;
+		position: absolute;
+		display: block;
+		margin: 0 auto;
+		height: 115px;
+		content: '';
+
+		@media only screen 
+   	and (min-device-width: 768px) 
+    and (max-device-width: 1024px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+      left: 13px;
+    }
+
+    @media only screen 
+    and (min-device-width: 1024px) 
+    and (max-device-width: 1366px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1) {
+      left: 15px;
+    }
+	}
+}
+
 .search {
-  
+  margin-top: 40px;
   &.hide {
     display: none;
   }

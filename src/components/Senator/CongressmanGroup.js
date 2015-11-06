@@ -6,7 +6,7 @@ import SearchAddress from '../SearchAddress';
 import cx from 'classnames';
 
 // Styles
-import style from './../../styles/SenatorGroup.scss';
+import style from './../../styles/CongressmanGroup.scss';
 
 const CongressmanGroup = React.createClass({
   render() {
@@ -48,6 +48,7 @@ const CongressmanGroup = React.createClass({
       {representatives}
 
       <div className={searchClasses}>
+        <b>Find specific congressional district and representative</b>
         <SearchAddress
           zip_code={this.props.zip_code}
         />

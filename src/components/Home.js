@@ -99,7 +99,7 @@ const Home = React.createClass({
     if(DID_SEARCH && NUMBER_REPRESENTATIVES === 1) {
       const MEMBER_THIRD = REPRESENTATIVES[0].gender_full === 'man' ? 'He' : 'She';
       impact = SenateConstants.IMPACT_PRE_GENDER +' this '+ REPRESENTATIVES[0].gender_full +' '+ SenateConstants.IMPACT_POST_GENDER;
-      VOTE_STATUS = 'co-sponsored a bill to defund Planned Parenthood. ' + MEMBER_THIRD + ' represents your voice!';
+      VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ' voted for the '+ SenateConstants.BILL_TITLE +'. ' + MEMBER_THIRD + ' represents your voice!' : ' voted against the '+ SenateConstants.BILL_TITLE +'. '+MEMBER_THIRD + ' represents your voice!';
     }
 
     if (DID_SEARCH) {

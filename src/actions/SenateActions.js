@@ -12,7 +12,6 @@ module.exports = {
 			actionType: SenateConstants.FIND_MEMBER,
       zip_code: ZIP_CODE
 		});
-    
     CongressUtils.getMember(ZIP_CODE);
   },
   

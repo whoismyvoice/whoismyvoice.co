@@ -14,9 +14,9 @@ const Circle = React.createClass({
           title;
 
     if(SenateConstants.CHAMBER === 'house') {
-      title = numRep > 1 ? 'Congressmen' : 'Congressman';
+      title = numRep > 1 ? 'representatives' : 'representative';
     } else {
-      title = numRep > 1 ? 'Senator' : 'Senators';
+      title = numRep > 1 ? 'senator' : 'senators';
     }
 
     const introductionClasses = cx(
