@@ -25,10 +25,7 @@ const ArrowDown = React.createClass({
   render() {
   	const arrowClasses = cx(
       ['arrowDown'],
-      {'hide': this.props.additional && !this.props.double},
-      {'sticky': this.props.scroll},
-      {'single': !this.props.additional},
-      {'double': this.props.additional}
+      {'sticky': this.props.scroll}
     );
 
     const color = this.props.color;

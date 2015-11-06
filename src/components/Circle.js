@@ -7,12 +7,11 @@ import style from './../styles/Circle.scss';
 
 const Circle = React.createClass({
   render() {
-  	const additional = this.props.additional === null ? null : this.props.additional,
-          proposition = additional === null ? 'a ' : '',
-  	      details = (additional === null) ? this.props.age + ' year old ' + this.props.gender + ' ' : '',
-          numRep = this.props.numRep;
-
-    let title;
+  	let   numRep = this.props.numRep,
+          proposition = this.props.representatives !== null && numRep === 1 ? 'a ' : '',
+  	      details = this.props.representatives !== null && numRep === 1 ? this.props.representatives[0].age + ' year old ' + this.props.representatives[0].gender_full + ' ' : '',
+          desc = this.props.numRep > 1 ? '' : this.props.desc,
+          title;
 
     if(SenateConstants.CHAMBER === 'house') {
       title = numRep > 1 ? 'Congressmen' : 'Congressman';
@@ -22,7 +21,6 @@ const Circle = React.createClass({
 
     const introductionClasses = cx(
       ['status'],
-      {'hide': additional},
       {'hide': this.props.hide}
     );
   	
@@ -35,7 +33,7 @@ const Circle = React.createClass({
   			<span className="strike-out">
   				{details}
   			</span>
-  			{this.props.desc}
+  			{desc}
   		</div>
   	</div>;
   }

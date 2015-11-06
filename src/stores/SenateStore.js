@@ -14,7 +14,6 @@ let _store = {
   member_state: '',
   member_email: '',
   member_tel: '',
-  member_twitter: '',
   member_party: '',
   additional_member: null,
   did_search: false,
@@ -65,18 +64,12 @@ AppDispatcher.register(function(payload) {
         _store.error = true;
         } else {
           const details = action.response[0],
-                additionalSenator = action.response.length > 1 ? action.response[1]: '',
-                middle_name = details.middle_name === null ? '' : details.middle_name;
+                additionalSenator = action.response.length > 1 ? action.response[1]: '';
 
           _store.member_name = details.full_name
           _store.member_age = details.age,
           _store.member_bioguide = details.bioguide_id || null,
-          _store.member_gender = details.gender || null,
-          _store.member_email = details.oc_email || null,
-          _store.member_tel = details.phone || null,
-          _store.member_twitter = details.twitter_id || null,
-          _store.member_party = details.party,
-          _store.member_state = details.state || null,
+          _store.member_gender = details.gender_full || null,
           _store.member_state_full = details.state_name || null,
           _store.error = false,
           _store.did_search = true,

@@ -32,6 +32,7 @@ const CongressmanGroup = React.createClass({
           name={item.full_name}
           age={item.age}
           state={item.state}
+          twitter={item.twitter_id}
           voted={item.voted}
         />
 

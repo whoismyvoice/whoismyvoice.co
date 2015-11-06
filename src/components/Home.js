@@ -86,19 +86,11 @@ const Home = React.createClass({
 
     const MEMBER_NAME = this.state.member_name,
           MEMBER_BIOGUIDE = this.state.member_bioguide,
-          MEMBER_AGE = this.state.member_age,
-          MEMBER_GENDER = this.state.member_gender === 'M' ? 'man' : 'woman',
+          MEMBER_GENDER = this.state.member_gender,
           MEMBER_THIRD = MEMBER_GENDER === 'man' ? 'He' : 'She',
-          MEMBER_EMAIL = this.state.member_email,
-          MEMBER_TEL = this.state.member_tel,
-          MEMBER_TWITTER = this.state.member_twitter,
-          MEMBER_STATE = this.state.member_state,
           MEMBER_STATE_FULL = this.state.member_state_full,
           DID_SEARCH = this.state.did_search,
-          PARTY = this.state.member_party,
           ERROR = this.state.error,
-          ADDITIONAL_MEMBER = this.state.additional_member,
-          ADDITIONALEXISTS = ADDITIONAL_MEMBER !== null,
           MEMBER_ZIP_CODE = this.state.member_zip_code,
           CURRENT_MEMBER = this.state.current_senator,
           NUMBER_REPRESENTATIVES = this.state.number_representatives || null,
@@ -109,7 +101,7 @@ const Home = React.createClass({
 
     if (DID_SEARCH) {
       this._initializeFullpage();
-      VOTE_STATUS = ADDITIONAL_MEMBER === null ? 'co-sponsored a bill to defund Planned Parenthood. ' + MEMBER_THIRD + ' represents your voice!' : 'Both '+ MEMBER_STATUS_THIRD +' from ' + MEMBER_STATE_FULL + ' co-sponsored the bill to defund Planned Parenthood';
+      VOTE_STATUS = NUMBER_REPRESENTATIVES === 1 ? 'co-sponsored a bill to defund Planned Parenthood. ' + MEMBER_THIRD + ' represents your voice!' : ' from ' + MEMBER_STATE_FULL + ' co-sponsored the bill to defund Planned Parenthood';
     } else {
       VOTE_STATUS = 'You have not yet searched for a member';
     }
@@ -144,20 +136,10 @@ const Home = React.createClass({
           representatives={REPRESENTATIVES}
           numRep={NUMBER_REPRESENTATIVES}
           backgroundClasses={backgroundClasses}
-          additional_member={ADDITIONAL_MEMBER}
-          age={MEMBER_AGE}
-          gender={MEMBER_GENDER}
           vote_status={VOTE_STATUS}
           bioguide={MEMBER_BIOGUIDE}
-          name={MEMBER_NAME}
           impact={impact}
-          state={MEMBER_STATE}
-          additional_exists={ADDITIONALEXISTS}
           current_member={CURRENT_MEMBER}
-          email={MEMBER_EMAIL}
-          tel={MEMBER_TEL}
-          twitter={MEMBER_TWITTER}
-          party={PARTY}
           zip_code={MEMBER_ZIP_CODE}
         />
       </div>

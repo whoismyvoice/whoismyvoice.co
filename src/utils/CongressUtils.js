@@ -35,6 +35,7 @@ let getMemberDetails = function(zip_code, lng, voters) {
       if(senator.chamber === SenateConstants.CHAMBER && senator.bioguide_id in voters) {
         senator.voted = voters[senator.bioguide_id];
         senator.full_name = senator.middle_name === null ? senator.first_name +' '+ senator.last_name : senator.first_name +' '+ senator.middle_name +' '+ senator.last_name;
+        senator.gender_full = senator.gender === 'M' ? 'man' : 'woman';
         senator.age = (new Date().getFullYear()-senator.birthday.substring(0,4));
         return senator
       }
