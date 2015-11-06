@@ -54,9 +54,7 @@ AppDispatcher.register(function(payload) {
         _store.error = true;
         console.log("Error");
       } else {
-        if (action.numRep > 3) {
-          console.log("More than 3 representatives within zip code");
-        } else if (action.numRep > 1 && action.numRep < 4) {
+        if (action.numRep > 1 && action.numRep < 4) {
           _store.second_search = true,
           _store.representatives = action.response || null,
           _store.error = false,
