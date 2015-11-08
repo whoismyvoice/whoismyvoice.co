@@ -1,5 +1,4 @@
 import React from 'react';
-import stateConverter from '../../utils/StateConverter';
 import SenateConstants from '../../constants/SenateConstants';
 
 // Styles
@@ -10,17 +9,13 @@ const SenatorName = React.createClass({
   	const name = this.props.name,
         age = this.props.age === undefined ? '' : this.props.age + ' years old',
         twitterHandle = this.props.twitter === undefined ? '' : '@'+this.props.twitter,
-        state = stateConverter.abbrState(this.props.state, 'name'),
+        state = this.props.state,
         voted = this.props.voted === 'Yea' ? 'Voted Yea' : 'Voted Nay';
 
     return <div className="senatorName">
     	<h2>{name} ({state})</h2>
-    	<h2 className="age">
-        {age}
-      </h2>
-      <h2 className="twitterHandle">
-        {voted}
-      </h2>
+    	<h2 className="age">{age}</h2>
+      <h2 className="twitterHandle">{voted}</h2>
     </div>;
   }
 });

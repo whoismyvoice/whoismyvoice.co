@@ -3,192 +3,192 @@ const HFCMembers = [
   {
     'bioguide': 'J000289', 
     'name': 'Jim Jordan', 
-    'state': 'OH', 
+    'state': 'Ohio', 
     'twitter': 'Jim_Jordan'
   },{
     'bioguide': 'A000367', 
     'name': 'Justin Amash', 
-    'state': 'MI', 
+    'state': 'Michigan', 
     'twitter': 'justinamash'
   },{
     'bioguide': 'B001291', 
     'name': 'Brian Babin', 
-    'state': 'TX', 
+    'state': 'Texas', 
     'twitter': 'RepBrianBabin'
   },{
     'bioguide': 'B001294', 
     'name': 'Rod Blum', 
-    'state': 'IA', 
+    'state': 'Iowa', 
     'twitter': 'RepRodBlum'
   },{
     'bioguide': 'B001290', 
     'name': 'David Brat', 
-    'state': 'VA', 
+    'state': 'Virginia', 
     'twitter': 'RepDaveBrat'
   },{
     'bioguide': 'B001283', 
     'name': 'Jim Bridenstine', 
-    'state': 'OK', 
+    'state': 'Oklahoma', 
     'twitter': 'RepJBridenstine'
   },{
     'bioguide': 'B001274', 
     'name': 'Mo Brooks', 
-    'state': 'AL', 
+    'state': 'Alabama', 
     'twitter': 'RepMoBrooks'
   },{
     'bioguide': 'B001297', 
     'name': 'Ken Buck', 
-    'state': 'CO', 
+    'state': 'Colorado', 
     'twitter': 'RepKenBuck'
   },{
     'bioguide': 'C001102', 
     'name': 'Curtis Clawson', 
-    'state': 'FL', 
+    'state': 'Florida', 
     'twitter': 'RepCurtClawson'
   },{
     'bioguide': 'D000621', 
     'name': 'Ron DeSantis', 
-    'state': 'FL', 
+    'state': 'Florida', 
     'twitter': 'RepDeSantis'
   },{
     'bioguide': 'D000616', 
     'name': 'Scott DesJarlais', 
-    'state': 'TN', 
+    'state': 'Tennessee', 
     'twitter': 'DesJarlaisTN04'
   },{
     'bioguide': 'D000615', 
     'name': 'Jeff Duncan', 
-    'state': 'SC', 
+    'state': 'South Carolina', 
     'twitter': 'RepJeffDuncan'
   },{
     'bioguide': 'F000456', 
     'name': 'John Fleming', 
-    'state': 'LA', 
+    'state': 'Louisiana', 
     'twitter': 'RepFleming'
   },{
     'bioguide': 'F000448', 
     'name': 'Trent Franks', 
-    'state': 'AZ', 
+    'state': 'Arizona', 
     'twitter': 'RepTrentFranks'
   },{
     'bioguide': 'G000548', 
     'name': 'Scott Garrett', 
-    'state': 'NJ', 
+    'state': 'New Jersey', 
     'twitter': 'RepGarrett'
   },{
     'bioguide': 'G000565', 
     'name': 'Paul Gosar', 
-    'state': 'AZ', 
+    'state': 'Arizona', 
     'twitter': 'RepGosar'
   },{
     'bioguide': 'G000568', 
     'name': 'H. Griffith Morgan', 
-    'state': 'VA', 
+    'state': 'Virginia', 
     'twitter': 'RepMGriffith'
   },{
     'bioguide': 'H001052', 
     'name': 'Andy Harris', 
-    'state': 'MD', 
+    'state': 'Maryland', 
     'twitter': 'RepAndyHarrisMD'
   }, {
     'bioguide': 'H001071', 
     'name': 'Jody Hice', 
-    'state': 'GA', 
+    'state': 'Georgia', 
     'twitter': 'congressmanhice'
   },{
     'bioguide': 'H001057', 
     'name': 'Tim Huelskamp', 
-    'state': 'KS', 
+    'state': 'Kansas', 
     'twitter': 'CongHuelskamp'
   },{
     'bioguide': 'L000573', 
     'name': 'Raúl Labrador', 
-    'state': 'ID', 
+    'state': 'Idaho', 
     'twitter': 'Raul_Labrador'
   },{
     'bioguide': 'L000583', 
     'name': 'Barry Loudermilk', 
-    'state': 'GA', 
+    'state': 'Georgia', 
     'twitter': 'RepLoudermilk'
   },{
     'bioguide': 'L000571', 
     'name': 'Cynthia Lummis', 
-    'state': 'WY', 
+    'state': 'Wyoming', 
     'twitter': 'CynthiaLummis'
   },{
     'bioguide': 'M001195', 
     'name': 'Alex Mooney', 
-    'state': 'WV', 
+    'state': 'West Virginia', 
     'twitter': 'RepAlexMooney'
   },{
     'bioguide': 'P000609', 
     'name': 'Gary Palmer', 
-    'state': 'AL', 
+    'state': 'Alabama', 
     'twitter': 'USRepGaryPalmer'
   },{
     'bioguide': 'P000588', 
     'name': 'Stevan E. Pearce', 
-    'state': 'NM', 
+    'state': 'New Mexico', 
     'twitter': 'RepStevePearce'
   },{
     'bioguide': 'P000605', 
     'name': 'Scott Perry', 
-    'state': 'PA', 
+    'state': 'Pennsylvania', 
     'twitter': 'RepScottPerry'
   },{
     'bioguide': 'P000592', 
     'name': 'Ted Poe', 
-    'state': 'TX', 
+    'state': 'Texas', 
     'twitter': 'JudgeTedPoe'
   },{
     'bioguide': 'P000599', 
     'name': 'Bill Posey', 
-    'state': 'FL', 
+    'state': 'Florida', 
     'twitter': 'CongBillPosey'
   },{
     'bioguide': 'M001187', 
     'name': 'Mark Meadows', 
-    'state': 'NC', 
+    'state': 'North Carolina', 
     'twitter': 'RepMarkMeadows'
   },{
     'bioguide': 'M001182', 
     'name': 'Mick Mulvaney', 
-    'state': 'SC', 
+    'state': 'South Carolina', 
     'twitter': 'RepMickMulvaney'
   },{
     'bioguide': 'R000587', 
     'name': 'Reid J. Ribble', 
-    'state': 'WI', 
+    'state': 'Wisconsin', 
     'twitter': 'RepRibble'
   },{
     'bioguide': 'R000598', 
     'name': 'Keith J. Rothfus', 
-    'state': 'PA', 
+    'state': 'Pennsylvania', 
     'twitter': 'KeithRothfus'
   },{
     'bioguide': 'S000018', 
     'name': 'Matt Salmon', 
-    'state': 'AZ', 
+    'state': 'Arizona', 
     'twitter': 'RepMattSalmon'
   },{
     'bioguide': 'S001183', 
     'name': 'David Schweikert', 
-    'state': 'AZ', 
+    'state': 'Arizona', 
     'twitter': 'RepDavid'
   },{
     'bioguide': 'S001188', 
     'name': 'Marlin A. Stutzman', 
-    'state': 'IN', 
+    'state': 'Indiana', 
     'twitter': 'RepStutzman'
   },{
     'bioguide': 'W000814', 
     'name': 'Randy K. Weber', 
-    'state': 'TX', 
+    'state': 'Texas', 
     'twitter': 'TXRandy14'
   },{
     'bioguide': 'Y000065', 
     'name': 'Ted S. Yoho', 
-    'state': 'FL', 
+    'state': 'Florida', 
     'twitter': 'RepTedYoho'
   }
 ];

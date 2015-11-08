@@ -36,32 +36,26 @@ const Header = React.createClass({
 
     return <div className="header">
       <div className="menu">
-
         <div className="burger-wrapper" onClick={this._handleClick}>
           <div className={iconClasses}></div>
         </div>
-
         <nav className={menuClasses} onClick={this._handleClick}>
           <WhiteBorder />
-
           <Button
             color={'yellow-text'}
             link="/sources"
             text="Data Sources"
           />
-
           <Button
             color={'yellow-text'}
             link="/about"
             text="About This Project"
           />
-
           <Button
             color={'yellow-text'}
             link="/hfc"
             text="House Freedom Caucus"
           />
-
           <Button
             color={'yellow-text'}
             link="/"

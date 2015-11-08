@@ -119,28 +119,23 @@ const Home = React.createClass({
 
     return  <div className={containerClasses}>
       <WhiteBorder />
-
       <div className="overlay">
         This site is only supported in portrait mode. Please turn your phone.
       </div>
-
       <div className={blockClasses} onScroll={this._handleScroll}>
       	<div className="section-block">
-
         	<Circle
           	style="one"
           	hide={true}
           	did_search={DID_SEARCH}
           	desc={SenateConstants.BILL_DESC+'?'}
         	/>
-
         	<SearchGroup
             repNum={NUMBER_REPRESENTATIVES}
           	error={ERROR}
             zip_code={ZIP_CODE}
         	/>
         </div>
-
         <Results
           representatives={REPRESENTATIVES}
           numRep={NUMBER_REPRESENTATIVES}
@@ -151,7 +146,6 @@ const Home = React.createClass({
           zip_code={ZIP_CODE}
         />
       </div>
-
     </div>;
   }
 });

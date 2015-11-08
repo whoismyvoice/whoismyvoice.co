@@ -32,10 +32,10 @@ const ArrowDown = React.createClass({
 
     if (this.props.scroll) {
       return <div className={arrowClasses +' '+ color} onClick={this._handleScroll}>
-        </div>;
+      </div>;
     } else {
       return <div className={arrowClasses +' '+ color} id={this.props.id} onClick={this._handleClick}>
-        </div>;
+      </div>;
       }
     }
 });

@@ -15,22 +15,23 @@ const HFCOverview = React.createClass({
 
       return o;
     }
-  	const shuffledMembers = shuffle(this.props.members);
 
-  	const members = shuffledMembers.map(function(member, idx) {
+  	const shuffledMembers = shuffle(this.props.members),
+      
+    members = shuffledMembers.map(function(member, idx) {
   		member = (
   			<HFCGroup
-      			bioguide={member.bioguide}
-      			name={member.name}
-      			age={member.age}
-      			twitter={member.twitter}
-      			state={member.state}
-      			did_search={true}
-      			hfc={true}
-      			key ={idx}
-      		/>
+      		bioguide={member.bioguide}
+      		name={member.name}
+      		age={member.age}
+      		twitter={member.twitter}
+      		state={member.state}
+      		did_search={true}
+      		hfc={true}
+      		key ={idx}
+      	/>
 		  );
-      
+
 		  return member;
   	});
 

@@ -83,21 +83,21 @@ const SearchInput = React.createClass({
     );
 
     return <span>
-        <input
-          className={inputClasses}
-          type="text"
-          pattern="[0-9]*"
-          value={this.state.zip_code}
-          onChange={this._handleChange}
-          onKeyDown={this._handleEnter}
-          onFocus={this._handleFocus}
-          placeholder={this.state.placeholder}
-          onBlur={this._handleBlur}
-        />
-        <button
-          className="arrowDown green-text spacing"
-          onClick={this._handleClick}>
-        </button>
+      <input
+        className={inputClasses}
+        type="text"
+        pattern="[0-9]*"
+        value={this.state.zip_code}
+        onChange={this._handleChange}
+        onKeyDown={this._handleEnter}
+        onFocus={this._handleFocus}
+        placeholder={this.state.placeholder}
+        onBlur={this._handleBlur}
+      />
+      <button
+        className="arrowDown green-text spacing"
+        onClick={this._handleClick}>
+      </button>
     </span>;
   }
 });

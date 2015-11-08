@@ -38,15 +38,16 @@ const Circle = React.createClass({
   	
     return <div className={'circle ' + this.props.style + several}>
   		<div className="description">
-      {status}
+        {status}
         <div className={introductionClasses}>
-  				{'Your ' + title}
+          {'Your ' + title}
         </div>
-        {proposition}{state}
+        {proposition}
+        {state}
   			<span className="strike-out">
-  				{details}
+          {details}
   			</span>
-  			{desc}
+        {desc}
   		</div>
   	</div>;
   }

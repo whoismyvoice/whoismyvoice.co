@@ -60,7 +60,6 @@ const CongressmanGroup = React.createClass({
           zip_code={this.props.zip_code}
         />
       </div>
-
     </div>;
   }
 });

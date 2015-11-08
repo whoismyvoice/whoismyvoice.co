@@ -24,7 +24,7 @@ const Button = React.createClass({
   		return <a href={this.props.link} className={color} target="_blank">
   				<button className="button">
             <div className="text">
-  					   {this.props.text}
+              {this.props.text}
             </div>
             <div className="secondary">
               {this.props.secondary}
@@ -33,10 +33,10 @@ const Button = React.createClass({
   			</a>;
   	} else if (this.props.flush === true) {
   		return <Link to={this.props.link}>
-          <button className={'button nav '+ color} onClick={this._handleRestart}>
-        	 {this.props.text}
+        <button className={'button nav '+ color} onClick={this._handleRestart}>
+          {this.props.text}
         </button>
-        </Link>;
+      </Link>;
   	} else {
       return <Link to={this.props.link}>
         <button className={'button nav '+ color}>

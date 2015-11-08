@@ -2,7 +2,6 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 import SenateConstants from '../constants/SenateConstants';
 import request from 'superagent';
 import CongressUtils from '../utils/CongressUtils';
-import {abbrState} from '../utils/StateConverter';
 
 module.exports = {
   // Pass zip_code value from SearchInput and identify latitude and longitude for zip code
@@ -32,8 +31,8 @@ module.exports = {
     if (err) return console.error(err);
       if(res.body.results.length === 0) {
         console.log('No results found');
+        CongressUtils.getMember('error');
       } else {
-        console.log('Results found. Here they are:');
         const lat = res.body.results[0].geometry.location.lat,
               lng = res.body.results[0].geometry.location.lng;
         CongressUtils.getMember(lat, lng);

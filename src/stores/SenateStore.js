@@ -44,15 +44,11 @@ AppDispatcher.register(function(payload) {
 
       SenateStore.emit(CHANGE_EVENT);
       break;
-
     case AppConstants.GET_DETAILS:
       _store.number_representatives = action.numRep;
 
-      console.log("GET DETAILS");
-
       if (action.response === 'error') {
         _store.error = true;
-        console.log("Error");
       } else {
         if (action.numRep > 1 && action.numRep < 4) {
           _store.second_search = true,

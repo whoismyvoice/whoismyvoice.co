@@ -10,9 +10,7 @@ const SenatorImg = React.createClass({
     const single = this.props.single === true ? 'single': '';
 
   	return <div className={'senatorImg '+single}>
-    	<img
-    		src={img}
-    	/>
+    	<img src={img} />
     </div>;
   }
 });
