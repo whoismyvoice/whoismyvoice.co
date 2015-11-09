@@ -66,18 +66,23 @@ const Home = React.createClass({
           ERROR = this.state.error,
           ZIP_CODE = this.state.zip_code,
           CURRENT_MEMBER = this.state.current_senator,
-          STATE = this.state.state_full,
           SECOND_SEARCH = this.state.second_search;
 
-    let impact = `${Settings.senate.impact_pre_text} this person ${Settings.senate.impact_post_text}`,
-        VOTE_STATUS = `${STATE} ${Settings.senate.cosponsor_post_text}`;
+    let impact = Settings.senate.impact_text.replace('#gender_third', 'this person'),
+        VOTE_STATUS = `${Settings.senate.cosponsor_post_text}`;
 
     if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && Settings.chamber === 'house') {
-      const MEMBER_THIRD = REPRESENTATIVES[0].gender_full === 'man' ? 'He' : 'She';
-      impact =`${Settings.senate.impact_pre_text} this ${REPRESENTATIVES[0].gender_full} ${Settings.senate.impact_post_text}`;
-      VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` ${Settings.house.single_voted_for} ${MEMBER_THIRD} represents your voice!` : ` ${Settings.house.single_voted_against} ${MEMBER_THIRD} represents your voice!`;
+
+      const MEMBER_THIRD = REPRESENTATIVES[0].gender_full === 'man' ? 'He' : 'She',
+            represent = Settings.senate.represent.replace('#gender', MEMBER_THIRD);
+      impact = Settings.senate.impact_text.replace('#gender_third', `this ${REPRESENTATIVES[0].gender_full}`);
+
+      VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` ${Settings.house.single_voted_for} ${represent}` : ` ${Settings.house.single_voted_against} ${represent}`;
+
     } else if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && Settings.chamber === 'senate'){
+
       VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` ${Settings.senate.cosponsor_post_text}` : '';
+
     }
 
     if (DID_SEARCH && NUMBER_REPRESENTATIVES !== 0) {

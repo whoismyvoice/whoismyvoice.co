@@ -32,8 +32,8 @@ const Results = React.createClass({
         <FadedBG color="red" />
         <div className="section block two">
           <p className="impact">
-            {Settings.senate.no_cosponsor_title}<br />
-            {Settings.senate.no_cosponsor_desc}
+            `${Settings.senate.no_cosponsor_title}
+            {Settings.senate.no_cosponsor_desc}`
           </p>
           <HFCOverview
             color="bright-red"
