@@ -10,18 +10,20 @@ const SearchGroup = React.createClass({
     error: React.PropTypes.bool
   },
   render() {
-  	if (this.props.repNum > 3) {
+    const {zip_code, error, repNum} = this.props;
+
+  	if (repNum > 3) {
   		return <div>
-  			<i>Zip Code: {this.props.zip_code}</i><br />
+  			<i>Zip Code: {zip_code}</i><br />
   			<b>Please provide street name to get more specific result</b>
   			<SearchAddress
-  				error={this.props.error}
+  				error={error}
   			/>
   		</div>;
   	} else {
     	return <div>
       	<SearchInput
-        	error={this.props.error}
+        	error={error}
       	/>
     	</div>;
     }

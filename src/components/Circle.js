@@ -25,7 +25,7 @@ const Circle = React.createClass({
       representative = this.props.representatives[0];
     }
 
-    const numRep = this.props.numRep,
+    const {numRep, style, hide} = this.props,
           proposition = numRep === 1 ? 'a ' : '',
           details = numRep === 1 ? `${representative.age} year old ${representative.gender_full}` : '',
           several = numRep > 1 && Settings.chamber === 'house' ? ' several': '';
@@ -34,7 +34,7 @@ const Circle = React.createClass({
       status = representative.voted === 'Yea' ? 'Yes!' : 'No!';
       state = `from ${representative.state_name} `;
     } else {
-      desc = this.props.numRep > 1 ? '' : this.props.desc;
+      desc = numRep > 1 ? '' : this.props.desc;
     }
 
     if (Settings.chamber === 'house') {
@@ -46,10 +46,10 @@ const Circle = React.createClass({
 
     const introductionClasses = cx(
       ['status'],
-      {'hide': this.props.hide}
+      {'hide': hide}
     );
 
-    return <div className={`circle ${this.props.style} ${several}`}>
+    return <div className={`circle ${style} ${several}`}>
   		<div className="description">
         {status}
         <div className={introductionClasses}>

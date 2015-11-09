@@ -27,29 +27,29 @@ const Button = React.createClass({
     this._destroyFullpage();
   },
   render() {
-    const color = this.props.color;
+    const {color, link, text, secondary, flush}= this.props;
 
     if (this.props.type === 'external') {
-      return <a href={this.props.link} className={color} target="_blank">
+      return <a href={link} className={color} target="_blank">
   				<button className="button">
             <div className="text">
-              {this.props.text}
+              {text}
             </div>
             <div className="secondary">
-              {this.props.secondary}
+              {secondary}
             </div>
   				</button>
   			</a>;
-  	} else if (this.props.flush === true) {
-  		return <Link to={this.props.link}>
+  	} else if (flush === true) {
+  		return <Link to={link}>
         <button className={`button nav ${color}`} onClick={this._handleRestart}>
-          {this.props.text}
+          {text}
         </button>
       </Link>;
   	} else {
-      return <Link to={this.props.link}>
+      return <Link to={link}>
         <button className={`button nav ${color}`}>
-          {this.props.text}
+          {text}
         </button>
       </Link>;
     }

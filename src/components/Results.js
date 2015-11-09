@@ -21,14 +21,10 @@ const Results = React.createClass({
     zip_code: React.PropTypes.string
   },
 	render() {
-		const voteStatus = this.props.vote_status,
-				  impact = this.props.impact,
-				  currentMember = this.props.current_member,
-          zipCode = this.props.zip_code,
-          numRep = this.props.numRep;
+		const {vote_status, impact, current_member, zip_code, numRep, representatives, backgroundClasses} = this.props;
 
     if (Settings.chamber === 'senate' && numRep === 0) {
-      return <div className={this.props.backgroundClasses} id="fullpage">
+      return <div className={backgroundClasses} id="fullpage">
         <FadedBG color="red" />
         <div className="section block two">
           <p className="impact">
@@ -46,17 +42,17 @@ const Results = React.createClass({
         </div>
       </div>;
     } else {
-		  return <div className={this.props.backgroundClasses} id="fullpage">
+		  return <div className={backgroundClasses} id="fullpage">
         <div className="section block two">
           <Circle
             style="wide"
-            desc={voteStatus}
+            desc={vote_status}
             numRep={numRep}
-            representatives={this.props.representatives}
+            representatives={representatives}
           />
           <CongressmanGroup
-            representatives={this.props.representatives}
-            zip_code={zipCode}
+            representatives={representatives}
+            zip_code={zip_code}
           />
         </div>
         <div className="section block three">
@@ -66,8 +62,8 @@ const Results = React.createClass({
             desc={impact}
           />
           <SupportActions
-            representatives={this.props.representatives}
-            currentSenator={currentMember}
+            representatives={representatives}
+            currentSenator={current_member}
           />
         </div>
       </div>;
