@@ -21,7 +21,15 @@ const Results = React.createClass({
     zip_code: React.PropTypes.string
   },
 	render() {
-		const {vote_status, impact, current_member, zip_code, numRep, representatives, backgroundClasses} = this.props;
+		const vote_status = this.props.vote_status,
+          impact = this.props.impact,
+          current_member = this.props.current_member,
+          zip_code = this.props.zip_code,
+          numRep = this.props.numRep,
+          representatives = this.props.representatives,
+          backgroundClasses = this.props.backgroundClasses;
+
+    console.log(this.props.representatives);
 
     if (Settings.chamber === 'senate' && numRep === 0) {
       return <div className={backgroundClasses} id="fullpage">
@@ -48,10 +56,10 @@ const Results = React.createClass({
             style="wide"
             desc={vote_status}
             numRep={numRep}
-            representatives={representatives}
+            representatives={this.props.representatives}
           />
           <CongressmanGroup
-            representatives={representatives}
+            representatives={this.props.representatives}
             zip_code={zip_code}
           />
         </div>
@@ -62,7 +70,7 @@ const Results = React.createClass({
             desc={impact}
           />
           <SupportActions
-            representatives={representatives}
+            representatives={this.props.representatives}
             currentSenator={current_member}
           />
         </div>

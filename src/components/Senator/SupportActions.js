@@ -16,13 +16,11 @@ const SupportActions = React.createClass({
       gender,
       email,
       twitter,
-      tel;
+      tel,
+      current = this.props.currentSenator || 0;
 
-    const current = this.props.currentSenator || 0,
-          representatives = this.props.representatives;
-
-    if (representatives !== null) {
-      representative = representatives[current];
+    if (this.props.representatives !== null) {
+      representative = this.props.representatives[current];
       gender = representative.gender === 'M' ? 'him' : 'her';
       email = representative.oc_email;
       twitter = representative.twitter_id;

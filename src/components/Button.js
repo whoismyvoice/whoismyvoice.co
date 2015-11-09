@@ -27,7 +27,11 @@ const Button = React.createClass({
     this._destroyFullpage();
   },
   render() {
-    const {color, link, text, secondary, flush}= this.props;
+    const color = this.props.color,
+          link = this.props.color,
+          text = this.props.text,
+          secondary = this.props.secondary,
+          flush = this.props.flush;
 
     if (this.props.type === 'external') {
       return <a href={link} className={color} target="_blank">

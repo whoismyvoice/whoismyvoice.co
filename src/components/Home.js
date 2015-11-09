@@ -72,18 +72,18 @@ const Home = React.createClass({
     let impact = Settings.senate.impact_text.replace('#gender_third', 'this person'),
         VOTE_STATUS = `${Settings.senate.cosponsor_post_text}`;
 
+    // Make sure that search has been done, result yields one rep and that the set chamber is house
     if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && Settings.chamber === 'house') {
 
       const MEMBER_THIRD = REPRESENTATIVES[0].gender_full === 'man' ? 'He' : 'She',
-            represent = Settings.senate.represent.replace('#gender', MEMBER_THIRD);
+        represent = Settings.senate.represent.replace('#gender', MEMBER_THIRD);
+
       impact = Settings.senate.impact_text.replace('#gender_third', `this ${REPRESENTATIVES[0].gender_full}`);
+      VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` ${Settings.house.single_voted_for} ${Settings.senate.represent}` : ` ${Settings.house.single_voted_against} ${Settings.senate.represent}`;
 
-      VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` ${Settings.house.single_voted_for} ${represent}` : ` ${Settings.house.single_voted_against} ${represent}`;
-
+      // If chamber is senate, make sure to update VOTE_STATUS, which is then passed on to the Circle component
     } else if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && Settings.chamber === 'senate'){
-
       VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` ${Settings.senate.cosponsor_post_text}` : '';
-
     }
 
     if (DID_SEARCH && NUMBER_REPRESENTATIVES !== 0) {

@@ -18,7 +18,8 @@ const CongressmanGroup = React.createClass({
     let searchClasses = 'search',
         wrapperClasses = 'senatorWrapper';
 
-    const reps = this.props.representatives;
+    const reps = this.props.representatives,
+          zip_code = this.props.zip_code;
 
     if (reps) {
       searchClasses = cx(
@@ -33,7 +34,7 @@ const CongressmanGroup = React.createClass({
       searchClasses = 'search';
     }
 
-    const representatives = (this.props.representatives || []).map(function(item, idx) {
+    const members = (this.props.representatives || []).map(function(item, idx) {
       return <div className="senatorContainer" key={idx}>
         <SenatorImg
           bioguide={item.bioguide_id}
@@ -55,13 +56,13 @@ const CongressmanGroup = React.createClass({
       </div>;
     });
     return <div className={wrapperClasses}>
-      {representatives}
+      {members}
 
       <div className={searchClasses}>
         <b>Find specific congressional district and representative</b>
         <SearchAddress
           color="orange"
-          zip_code={this.props.zip_code}
+          zip_code={zip_code}
         />
       </div>
     </div>;

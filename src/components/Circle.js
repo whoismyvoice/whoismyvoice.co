@@ -17,15 +17,15 @@ const Circle = React.createClass({
   render() {
     let title,
         status,
-        desc = this.props.desc,
         state,
-        representative;
+        representative,
+        description = this.props.desc;
 
     if(this.props.representatives) {
       representative = this.props.representatives[0];
     }
 
-    const {numRep, style, hide} = this.props,
+    const {numRep, style, hide, desc} = this.props,
           proposition = numRep === 1 ? 'a ' : '',
           details = numRep === 1 ? `${representative.age} year old ${representative.gender_full}` : '',
           several = numRep > 1 && Settings.chamber === 'house' ? ' several': '';
@@ -34,7 +34,7 @@ const Circle = React.createClass({
       status = representative.voted === 'Yea' ? 'Yes!' : 'No!';
       state = `from ${representative.state_name} `;
     } else {
-      desc = numRep > 1 ? '' : this.props.desc;
+      description = numRep > 1 ? '' : desc;
     }
 
     if (Settings.chamber === 'house') {
@@ -60,7 +60,7 @@ const Circle = React.createClass({
           {details}
   			</span>
         {state}
-        {desc}
+        {description}
   		</div>
   	</div>;
   }
