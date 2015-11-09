@@ -60,6 +60,7 @@ const CongressmanGroup = React.createClass({
       <div className={searchClasses}>
         <b>Find specific congressional district and representative</b>
         <SearchAddress
+          color="orange"
           zip_code={this.props.zip_code}
         />
       </div>

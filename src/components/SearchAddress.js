@@ -81,9 +81,17 @@ const SearchAddress = React.createClass({
       {'fade': this.state.fade}
     );
 
+    let color;
+
+    if(this.props.color) {
+      color = 'orange-text';
+    } else {
+      color = 'green-text';
+    }
+
   	return <div>
   		<input
-        className={inputClasses}
+        className={`${inputClasses} ${this.props.color}`}
   			type="text"
   			placeholder={this.state.placeholder}
   			onChange={this._handleChange}
@@ -93,7 +101,7 @@ const SearchAddress = React.createClass({
   		/>
 
       <button
-        className="arrowDown green-text spacing"
+        className={`arrowDown ${color} spacing`}
         onClick={this._handleClick}>
       </button>
   	</div>;
