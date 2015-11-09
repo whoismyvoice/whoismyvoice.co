@@ -1,13 +1,16 @@
 import React from 'react';
-import cx from 'classnames';
 
 import SearchInput from './SearchInput';
 import SearchAddress from './SearchAddress';
 
 const SearchGroup = React.createClass({
+  propTypes: {
+    repNum: React.PropTypes.number,
+    zip_code: React.PropTypes.string,
+    error: React.PropTypes.bool
+  },
   render() {
-
-  	if(this.props.repNum > 3) {
+  	if (this.props.repNum > 3) {
   		return <div>
   			<i>Zip Code: {this.props.zip_code}</i><br />
   			<b>Please provide street name to get more specific result</b>

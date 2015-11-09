@@ -6,6 +6,14 @@ import SenatorName from './SenatorName';
 import style from './../../styles/HFCGroup.scss';
 
 const HFCGroup = React.createClass({
+  propTypes: {
+    age: React.PropTypes.number,
+    bioguide: React.PropTypes.string,
+    did_search: React.PropTypes.bool,
+    name: React.PropTypes.string,
+    state: React.PropTypes.string,
+    twitter: React.PropTypes.string,
+  },
   render() {
     return <a target="_blank" href={'http://twitter.com/home/?status=@' + this.props.twitter }>
       <div className="HFCMember">
@@ -19,7 +27,6 @@ const HFCGroup = React.createClass({
           state={this.props.state}
           twitter={this.props.twitter}
           did_search={this.props.did_search}
-          hfc={this.props.hfc}
         />
       </div>
     </a>;

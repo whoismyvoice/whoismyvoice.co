@@ -2,10 +2,13 @@ import React from 'react';
 import cx from 'classnames';
 
 const FadedBG = React.createClass({
-	getInitialState() {
-	  return {
+  propTypes: {
+    color: React.PropTypes.string
+  },
+  getInitialState() {
+    return {
 		  did_scroll: false
-		}
+		};
 	},
 	componentDidMount: function() {
     window.addEventListener('scroll', this._handleScroll);
@@ -26,13 +29,13 @@ const FadedBG = React.createClass({
   _disruptScroll: function() {
   	this.setState({
   		did_scroll: false
-  	})
+  	});
   },
 
   _addScrollState: function() {
   	this.setState({
   		did_scroll: true
-  	})
+  	});
   },
 
   render() {

@@ -5,6 +5,10 @@ import HFCGroup from './Senator/HFCGroup';
 import style from './../styles/HFCGroup.scss';
 
 const HFCOverview = React.createClass({
+  propTypes: {
+    color: React.PropTypes.string,
+    members: React.PropTypes.object
+  },
   componentDidMount: function() {
     $(document).scrollTop(0);
   },
@@ -17,7 +21,7 @@ const HFCOverview = React.createClass({
     }
 
   	const shuffledMembers = shuffle(this.props.members),
-      
+
     members = shuffledMembers.map(function(member, idx) {
   		member = (
   			<HFCGroup

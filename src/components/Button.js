@@ -7,6 +7,15 @@ import style from './../styles/Button.scss';
 
 const Button = React.createClass({
 
+  propTypes: {
+    color: React.PropTypes.string,
+    flush: React.PropTypes.bool,
+    link: React.PropTypes.string,
+    secondary: React.PropTypes.string,
+    text: React.PropTypes.string,
+    type: React.PropTypes.string
+  },
+
   _destroyFullpage: function() {
     if ($.fn.fullpage.destroy !== undefined) {
       $.fn.fullpage.destroy('all');
@@ -20,8 +29,8 @@ const Button = React.createClass({
   render() {
     const color = this.props.color;
 
-  	if (this.props.type === 'external') {
-  		return <a href={this.props.link} className={color} target="_blank">
+    if (this.props.type === 'external') {
+      return <a href={this.props.link} className={color} target="_blank">
   				<button className="button">
             <div className="text">
               {this.props.text}
@@ -33,13 +42,13 @@ const Button = React.createClass({
   			</a>;
   	} else if (this.props.flush === true) {
   		return <Link to={this.props.link}>
-        <button className={'button nav '+ color} onClick={this._handleRestart}>
+        <button className={'button nav ' + color} onClick={this._handleRestart}>
           {this.props.text}
         </button>
       </Link>;
   	} else {
       return <Link to={this.props.link}>
-        <button className={'button nav '+ color}>
+        <button className={'button nav ' + color}>
           {this.props.text}
         </button>
       </Link>;

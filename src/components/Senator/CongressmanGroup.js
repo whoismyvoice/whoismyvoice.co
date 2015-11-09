@@ -10,13 +10,17 @@ import cx from 'classnames';
 import style from './../../styles/CongressmanGroup.scss';
 
 const CongressmanGroup = React.createClass({
+  propTypes: {
+    representatives: React.PropTypes.object,
+    zip_code: React.PropTypes.string
+  },
   render() {
-
     let searchClasses = 'search',
-        wrapperClasses = 'senatorWrapper',
-        reps = this.props.representatives;
+        wrapperClasses = 'senatorWrapper';
 
-    if(reps) {
+    const reps = this.props.representatives;
+
+    if (reps) {
       searchClasses = cx(
         ['search'],
         {'hide': reps.length < 2 || SenateConstants.CHAMBER === 'senate'},
@@ -29,7 +33,7 @@ const CongressmanGroup = React.createClass({
       searchClasses = 'search';
     }
 
-    let representatives = (this.props.representatives || []).map(function(item, idx) {
+    const representatives = (this.props.representatives || []).map(function(item, idx) {
       return <div className="senatorContainer" key={idx}>
         <SenatorImg
           bioguide={item.bioguide_id}
@@ -43,11 +47,11 @@ const CongressmanGroup = React.createClass({
           voted={item.voted}
         />
 
-        <ArrowDown 
+        <ArrowDown
           id={idx}
-          additional={item.additional} 
-          double={"true"} 
-          color="orange-text" 
+          additional={item.additional}
+          double={"true"}
+          color="orange-text"
         />
       </div>;
     });

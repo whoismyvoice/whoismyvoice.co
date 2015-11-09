@@ -13,7 +13,7 @@ module.exports = {
 		});
     CongressUtils.getMember(ZIP_CODE);
   },
-  
+
   fetchSpecificMember: function(ADDRESS, ZIP) {
     AppDispatcher.handleViewAction({
       actionType: SenateConstants.FIND_SPECIFIC_MEMBER,
@@ -22,19 +22,19 @@ module.exports = {
     });
 
     const apikey = 'AIzaSyBszQnBTm_2qjgMd57K0CLfE0i3zuveKhE';
-    const api = 'https://maps.googleapis.com/maps/api/geocode/json?address='+ ADDRESS +','+ ZIP +',USA&key='+ apikey;
-    
+    const api = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + ADDRESS + ',' + ZIP + ',USA&key=' + apikey;
+
     request
     .get(api)
     .set('Accept', 'application/json')
     .end(function(err, res) {
-    if (err) return console.error(err);
-      if(res.body.results.length === 0) {
+      if (err) return console.error(err);
+      if (res.body.results.length === 0) {
         console.log('No results found');
         CongressUtils.getMember('error');
       } else {
         const lat = res.body.results[0].geometry.location.lat,
-              lng = res.body.results[0].geometry.location.lng;
+        lng = res.body.results[0].geometry.location.lng;
         CongressUtils.getMember(lat, lng);
       }
     });

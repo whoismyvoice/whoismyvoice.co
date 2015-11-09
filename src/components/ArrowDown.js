@@ -9,6 +9,12 @@ import style from './../styles/ArrowDown.scss';
 
 const ArrowDown = React.createClass({
 
+  propTypes: {
+    color: React.PropTypes.string,
+    id: React.PropTypes.number,
+    scroll: React.PropTypes.bool
+  },
+
   _handleClick: function(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -18,12 +24,12 @@ const ArrowDown = React.createClass({
   },
 
   _handleScroll: function() {
-    let y = $(window).scrollTop();
+    const y = $(window).scrollTop();
     $('html, body').animate({scrollTop: y + $(window).height()}, 600);
   },
 
   render() {
-  	const arrowClasses = cx(
+    const arrowClasses = cx(
       ['arrowDown'],
       {'sticky': this.props.scroll}
     );
@@ -31,13 +37,13 @@ const ArrowDown = React.createClass({
     const color = this.props.color;
 
     if (this.props.scroll) {
-      return <div className={arrowClasses +' '+ color} onClick={this._handleScroll}>
+      return <div className={arrowClasses + ' ' + color} onClick={this._handleScroll}>
       </div>;
     } else {
-      return <div className={arrowClasses +' '+ color} id={this.props.id} onClick={this._handleClick}>
+      return <div className={arrowClasses + ' ' + color} id={this.props.id} onClick={this._handleClick}>
       </div>;
-      }
     }
+  }
 });
 
 export default ArrowDown;

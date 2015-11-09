@@ -6,7 +6,10 @@ import cx from 'classnames';
 import style from './../styles/SearchInput.scss';
 
 const SearchInput = React.createClass({
-  getInitialState(){
+  propTypes: {
+    error: React.PropTypes.bool
+  },
+  getInitialState() {
 	  return {
 		  zip_code: '',
       error: false,
@@ -22,10 +25,11 @@ const SearchInput = React.createClass({
   },
 
   _handleBlur: function() {
-    if (this.state.zip_code === '')
-    this.setState({
-      placeholder: 'Enter Your Zip Code'
-    });
+    if (this.state.zip_code === '') {
+      this.setState({
+        placeholder: 'Enter Your Zip Code'
+      });
+    }
   },
 
   _handleChange: function(event) {

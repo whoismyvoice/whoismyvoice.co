@@ -33,11 +33,8 @@ const SenateStore = ObjectAssign( {}, EventEmitter.prototype, {
 });
 
 AppDispatcher.register(function(payload) {
-
   const action = payload.action;
-
-  switch(action.actionType) {
-
+  switch (action.actionType) {
     case AppConstants.FIND_MEMBER:
       _store.zip_code = action.zip_code;
       _store.error = false;
@@ -51,18 +48,18 @@ AppDispatcher.register(function(payload) {
         _store.error = true;
       } else {
         if (action.numRep > 1 && action.numRep < 4) {
-          _store.second_search = true,
-          _store.representatives = action.response || null,
-          _store.error = false,
+          _store.second_search = true;
+          _store.representatives = action.response || null;
+          _store.error = false;
           _store.did_search = true;
-        } else if(action.numRep === 1) {
+        } else if (action.numRep === 1) {
           const details = action.response[0];
-          _store.state_full = details.state_name || null,
-          _store.error = false,
-          _store.did_search = true,
-          _store.representatives = action.response || null;
+          _store.state_full = details.state_name || null;
+          _store.error = false;
+          _store.did_search = true;
+          _store.representatives = action.response || null;
         } else if (AppConstants.CHAMBER === 'senate' && action.numRep === 0) {
-          _store.did_search = true,
+          _store.did_search = true;
           _store.error = false;
         }
       }
@@ -72,7 +69,7 @@ AppDispatcher.register(function(payload) {
     case AppConstants.FIND_SPECIFIC_MEMBER:
       SenateStore.emit(CHANGE_EVENT);
       break;
-      
+
     case AppConstants.IDENTIFY_SECTION:
 
       _store.current_screen = action.index;

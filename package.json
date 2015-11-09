@@ -5,6 +5,12 @@
   "private": true,
   "author": "Thomas Carlson",
   "license": "MIT",
+  "eslintConfig": {
+  	"env": {
+  		"browser": true,
+  		"node": true
+  	}
+  },
   "bugs": {
     "url": "https://github.com/oursiberia/senate-project/issues"
   },

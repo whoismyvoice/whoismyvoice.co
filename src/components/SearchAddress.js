@@ -3,8 +3,11 @@ import SenateActions from '../actions/SenateActions';
 import cx from 'classnames';
 
 const SearchAddress = React.createClass({
-
-	getInitialState(){
+  propTypes: {
+    zip_code: React.PropTypes.string,
+    error: React.PropTypes.string
+  },
+	getInitialState() {
 	 	return {
 		  address: '',
       error: false,
@@ -27,10 +30,11 @@ const SearchAddress = React.createClass({
   },
 
   _handleBlur: function() {
-    if (this.state.address === '')
-    this.setState({
-      placeholder: 'Enter Street Name'
-    });
+    if (this.state.address === '') {
+      this.setState({
+        placeholder: 'Enter Street Name'
+      });
+    }
   },
 
   _handleEnter: function(e) {

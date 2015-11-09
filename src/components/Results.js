@@ -11,21 +11,29 @@ import FadedBG from './FadedBg';
 import CongressmanGroup from './Senator/CongressmanGroup';
 
 const Results = React.createClass({
-
+  propTypes: {
+    backgroundClasses: React.PropTypes.any,
+    current_member: React.PropTypes.number,
+    impact: React.PropTypes.string,
+    numRep: React.PropTypes.number,
+    representatives: React.PropTypes.object,
+    vote_status: React.PropTypes.string,
+    zip_code: React.PropTypes.string
+  },
 	render() {
-		const vote_status = this.props.vote_status,
+		const voteStatus = this.props.vote_status,
 				  impact = this.props.impact,
-				  current_member = this.props.current_member,
-          zip_code = this.props.zip_code,
+				  currentMember = this.props.current_member,
+          zipCode = this.props.zip_code,
           numRep = this.props.numRep;
 
-    if(SenateConstants.CHAMBER === 'senate' && numRep === 0) {
+    if (SenateConstants.CHAMBER === 'senate' && numRep === 0) {
       return <div className={this.props.backgroundClasses} id="fullpage">
         <FadedBG color="red" />
         <div className="section block two">
           <p className="impact">
             No! Your senators support Planned Parenthood!<br />
-            But have you heard of the House Freedom Caucus? The HFC is a group of 40+ conservative congressmen who have publicly declared they will oppose any spending bill that does not defund Planned Parenthood. 
+            But have you heard of the House Freedom Caucus? The HFC is a group of 40+ conservative congressmen who have publicly declared they will oppose any spending bill that does not defund Planned Parenthood.
             Yes, these men and women are willing to shut down your government over this issue. <span className="strike-out">If you live in their district</span>, email them. If you don’t, tweet at them.
           </p>
           <HFCOverview
@@ -43,13 +51,13 @@ const Results = React.createClass({
         <div className="section block two">
           <Circle
             style="wide"
-            desc={vote_status}
+            desc={voteStatus}
             numRep={numRep}
             representatives={this.props.representatives}
           />
           <CongressmanGroup
             representatives={this.props.representatives}
-            zip_code={zip_code}
+            zip_code={zipCode}
           />
         </div>
         <div className="section block three">
@@ -60,7 +68,7 @@ const Results = React.createClass({
           />
           <SupportActions
             representatives={this.props.representatives}
-            currentSenator={current_member}
+            currentSenator={currentMember}
           />
         </div>
       </div>;
