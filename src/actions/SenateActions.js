@@ -21,11 +21,9 @@ module.exports = {
       zip_code: ZIP
     });
 
-    const apikey = 'AIzaSyBszQnBTm_2qjgMd57K0CLfE0i3zuveKhE';
-    const api = `https://maps.googleapis.com/maps/api/geocode/json?address=${ADDRESS},${ZIP},USA&key=${apikey}`;
-
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${ADDRESS},${ZIP},USA&key=${SenateConstants.GOOGLE_API_KEY}`;
     request
-    .get(api)
+    .get(url)
     .set('Accept', 'application/json')
     .end(function(err, res) {
       if (err) return console.error(err);

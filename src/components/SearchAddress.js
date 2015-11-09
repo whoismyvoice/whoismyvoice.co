@@ -25,7 +25,8 @@ const SearchAddress = React.createClass({
 
   _handleFocus: function() {
     this.setState({
-      placeholder: ''
+      placeholder: '',
+      error: false
     });
   },
 

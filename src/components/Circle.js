@@ -39,7 +39,7 @@ const Circle = React.createClass({
 
     if (Settings.chamber === 'house') {
       title = numRep > 1 ? 'representatives' : 'representative';
-      status = numRep > 1 ? Settings.house.multiple_results: '';
+      status = '';
     } else {
       title = numRep > 1 ? 'senators' : 'senator';
     }

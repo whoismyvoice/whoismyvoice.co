@@ -66,7 +66,8 @@ const Home = React.createClass({
           ERROR = this.state.error,
           ZIP_CODE = this.state.zip_code,
           CURRENT_MEMBER = this.state.current_senator,
-          SECOND_SEARCH = this.state.second_search;
+          SECOND_SEARCH = this.state.second_search,
+          MEMBER = Settings.chamber === 'senate' ? 'senator' : 'representative';
 
     let impact = Settings.senate.impact_text.replace('#gender_third', 'this person'),
         VOTE_STATUS = `${Settings.senate.cosponsor_post_text}`;
@@ -124,7 +125,7 @@ const Home = React.createClass({
           	style="one"
           	hide={true}
           	did_search={DID_SEARCH}
-          	desc={Settings.bill_desc + '?'}
+          	desc={Settings.bill_desc.replace('#member', MEMBER)}
         	/>
         	<SearchGroup
             repNum={NUMBER_REPRESENTATIVES}

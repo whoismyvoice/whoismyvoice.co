@@ -22,14 +22,14 @@ module.exports = {
 };
 
 const getMemberDetails = function(zipCode, lng, voters) {
-  const api = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${zipCode}&longitude=${lng}&apikey=${SenateConstants.API_KEY}`: `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${zipCode}&apikey=${SenateConstants.API_KEY}`;
+  const url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${zipCode}&longitude=${lng}&apikey=${SenateConstants.API_KEY}`: `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${zipCode}&apikey=${SenateConstants.API_KEY}`;
   request
-  .get(api)
+  .get(url)
   .set('Accept', 'application/json')
   .end(function(err, res) {
     if (err) return console.error(err);
     const senators = res.body.results.filter(function(senator) {
-      const filter = Settings.bill_id[0] === 's' ? voters[senator.bioguide_id] === Settings.vote_against : true;
+      const filter = Settings.bill_id[0] === 's' ? voters[senator.bioguide_id] === Settings.vote_favor : true;
       if (senator.chamber[0] === Settings.bill_id[0] && filter && senator.bioguide_id in voters) {
         senator.voted = voters[senator.bioguide_id];
         senator.full_name = senator.middle_name === null ? `${senator.first_name} ${senator.last_name}` : `${senator.first_name} ${senator.middle_name} ${senator.last_name}`;
