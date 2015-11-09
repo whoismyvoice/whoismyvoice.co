@@ -7,7 +7,7 @@ import style from './../styles/HFCGroup.scss';
 const HFCOverview = React.createClass({
   propTypes: {
     color: React.PropTypes.string,
-    members: React.PropTypes.object
+    members: React.PropTypes.array
   },
   componentDidMount: function() {
     $(document).scrollTop(0);

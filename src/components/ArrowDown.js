@@ -12,7 +12,7 @@ const ArrowDown = React.createClass({
   propTypes: {
     color: React.PropTypes.string,
     id: React.PropTypes.number,
-    scroll: React.PropTypes.bool
+    scroll: React.PropTypes.string
   },
 
   _handleClick: function(event) {

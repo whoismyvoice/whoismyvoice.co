@@ -2,6 +2,7 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 import AppConstants from '../constants/SenateConstants';
 import ObjectAssign from 'object-assign';
 import { EventEmitter } from 'events';
+import Settings from '../data/settings.json'
 
 const CHANGE_EVENT = 'change';
 
@@ -43,7 +44,6 @@ AppDispatcher.register(function(payload) {
       break;
     case AppConstants.GET_DETAILS:
       _store.number_representatives = action.numRep;
-
       if (action.response === 'error') {
         _store.error = true;
       } else {
@@ -58,7 +58,7 @@ AppDispatcher.register(function(payload) {
           _store.error = false;
           _store.did_search = true;
           _store.representatives = action.response || null;
-        } else if (AppConstants.CHAMBER === 'senate' && action.numRep === 0) {
+        } else if (Settings.chamber === 'senate' && action.numRep === 0) {
           _store.did_search = true;
           _store.error = false;
         }
