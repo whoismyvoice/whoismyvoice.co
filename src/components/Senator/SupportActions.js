@@ -9,7 +9,7 @@ import Button from './../Button';
 const SupportActions = React.createClass({
   propTypes: {
     currentSenator: React.PropTypes.number,
-    representatives: React.PropTypes.object
+    representatives: React.PropTypes.array
   },
   render() {
     let representative,

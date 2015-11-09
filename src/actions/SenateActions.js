@@ -22,7 +22,7 @@ module.exports = {
     });
 
     const apikey = 'AIzaSyBszQnBTm_2qjgMd57K0CLfE0i3zuveKhE';
-    const api = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + ADDRESS + ',' + ZIP + ',USA&key=' + apikey;
+    const api = `https://maps.googleapis.com/maps/api/geocode/json?address=${ADDRESS},${ZIP},USA&key=${apikey}`;
 
     request
     .get(api)

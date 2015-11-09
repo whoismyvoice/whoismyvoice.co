@@ -11,7 +11,7 @@ const Circle = React.createClass({
     desc: React.PropTypes.string,
     hide: React.PropTypes.bool,
     numRep: React.PropTypes.number,
-    representatives: React.PropTypes.object,
+    representatives: React.PropTypes.array,
     style: React.PropTypes.string
   },
   render() {
@@ -28,7 +28,7 @@ const Circle = React.createClass({
     if (numRep > 0 && SenateConstants.CHAMBER === 'senate') {
       status = this.props.representatives[0].voted === 'Yea' ? 'Yes!' : 'No!';
       desc = this.props.representatives[0].voted === 'Yea' ? 'co-sponsored the bill to defund Planned Parenthood.' : 'support Planned Parenthood!';
-      state = 'from ' + this.props.representatives[0].state_name + ' ';
+      state = `from ${this.props.representatives[0].state_name} `;
     } else {
       desc = this.props.numRep > 1 ? '' : this.props.desc;
     }

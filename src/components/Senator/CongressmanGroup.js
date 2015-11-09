@@ -11,7 +11,7 @@ import style from './../../styles/CongressmanGroup.scss';
 
 const CongressmanGroup = React.createClass({
   propTypes: {
-    representatives: React.PropTypes.object,
+    representatives: React.PropTypes.array,
     zip_code: React.PropTypes.string
   },
   render() {
@@ -43,7 +43,6 @@ const CongressmanGroup = React.createClass({
           name={item.full_name}
           age={item.age}
           state={item.state}
-          twitter={item.twitter_id}
           voted={item.voted}
         />
 

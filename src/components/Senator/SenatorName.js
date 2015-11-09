@@ -16,7 +16,7 @@ const SenatorName = React.createClass({
         age = this.props.age === undefined ? '' : this.props.age + ' years old',
         twitterHandle = this.props.twitter === undefined ? '' : '@' + this.props.twitter,
         state = this.props.state,
-        voted = this.props.voted === undefined ? '' : 'Voted' + this.props.voted;
+        voted = this.props.voted === undefined ? '' : 'Voted ' + this.props.voted;
 
     return <div className="senatorName">
     	<h2>{name} ({state})</h2>

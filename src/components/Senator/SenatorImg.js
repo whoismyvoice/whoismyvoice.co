@@ -5,7 +5,7 @@ import style from './../../styles/SenatorImg.scss';
 
 const SenatorImg = React.createClass({
   propTypes: {
-    bioguide: React.PropTypes.number,
+    bioguide: React.PropTypes.string,
     single: React.PropTypes.bool
   },
   render() {

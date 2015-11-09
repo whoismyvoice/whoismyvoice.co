@@ -69,13 +69,13 @@ const Home = React.createClass({
           STATE = this.state.state_full,
           SECOND_SEARCH = this.state.second_search;
 
-    let impact = SenateConstants.IMPACT_PRE_GENDER + ' these people ' + SenateConstants.IMPACT_POST_GENDER,
-        VOTE_STATUS = ' from ' + STATE + ' co-sponsored the bill to defund Planned Parenthood';
+    let impact = `${SenateConstants.IMPACT_PRE_GENDER} these people ${SenateConstants.IMPACT_POST_GENDER}`,
+        VOTE_STATUS = ` from ${STATE} co-sponsored the bill to defund Planned Parenthood`;
 
     if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1) {
       const MEMBER_THIRD = REPRESENTATIVES[0].gender_full === 'man' ? 'He' : 'She';
-      impact = SenateConstants.IMPACT_PRE_GENDER + ' this ' + REPRESENTATIVES[0].gender_full + ' ' + SenateConstants.IMPACT_POST_GENDER;
-      VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ' voted for the '+ SenateConstants.BILL_TITLE +'. ' + MEMBER_THIRD + ' represents your voice!' : ' voted against the ' + SenateConstants.BILL_TITLE + '. ' + MEMBER_THIRD + ' represents your voice!';
+      impact =`${SenateConstants.IMPACT_PRE_GENDER} this ${REPRESENTATIVES[0].gender_full} ${SenateConstants.IMPACT_POST_GENDER}`;
+      VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` voted for the ${SenateConstants.BILL_TITLE} ${MEMBER_THIRD} represents your voice!` : ` voted against the ${SenateConstants.BILL_TITLE} ${MEMBER_THIRD} represents your voice!`;
     }
 
     if (DID_SEARCH && NUMBER_REPRESENTATIVES !== 0) {
