@@ -1,5 +1,5 @@
 import React from 'react';
-import SenateConstants from '../constants/SenateConstants';
+import Settings from '../data/settings.json';
 import HFCMembers from '../data/HFCMembers';
 
 // Components
@@ -27,13 +27,13 @@ const Results = React.createClass({
           zipCode = this.props.zip_code,
           numRep = this.props.numRep;
 
-    if (SenateConstants.CHAMBER === 'senate' && numRep === 0) {
+    if (Settings.chamber === 'senate' && numRep === 0) {
       return <div className={this.props.backgroundClasses} id="fullpage">
         <FadedBG color="red" />
         <div className="section block two">
           <p className="impact">
-            {SenateConstants.IMPACT_NO_COSPONSOR_TITLE}<br />
-            {SenateConstants.IMPACT_NO_COSPONSOR_DESC}
+            {Settings.senate.no_cosponsor_title}<br />
+            {Settings.senate.no_cosponsor_desc}
           </p>
           <HFCOverview
             color="bright-red"

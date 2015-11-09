@@ -3,7 +3,7 @@ import SenatorImg from './SenatorImg';
 import SenatorName from './SenatorName';
 import ArrowDown from '../ArrowDown';
 import SearchAddress from '../SearchAddress';
-import SenateConstants from '../../constants/SenateConstants';
+import Settings from '../../data/settings.json';
 import cx from 'classnames';
 
 // Styles
@@ -23,7 +23,7 @@ const CongressmanGroup = React.createClass({
     if (reps) {
       searchClasses = cx(
         ['search'],
-        {'hide': reps.length < 2 || SenateConstants.CHAMBER === 'senate'},
+        {'hide': reps.length < 2 || Settings.chamber === 'senate'},
       );
       wrapperClasses = cx(
         ['senatorWrapper'],

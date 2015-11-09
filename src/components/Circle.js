@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import SenateConstants from '../constants/SenateConstants';
+import Settings from '../data/settings.json';
 
 // Styles
 import style from './../styles/Circle.scss';
@@ -18,14 +18,14 @@ const Circle = React.createClass({
     const numRep = this.props.numRep,
           proposition = this.props.representatives !== null && numRep === 1 ? 'a ' : '',
           details = this.props.representatives !== null && numRep === 1 ? this.props.representatives[0].age + ' year old ' + this.props.representatives[0].gender_full + ' ' : '',
-          several = numRep > 1 && SenateConstants.CHAMBER === 'house' ? ' several': '';
+          several = numRep > 1 && Settings.chamber === 'house' ? ' several': '';
 
     let title,
         status,
         desc,
         state;
 
-    if (numRep > 0 && SenateConstants.CHAMBER === 'senate') {
+    if (numRep > 0 && Settings.chamber === 'senate') {
       status = this.props.representatives[0].voted === 'Yea' ? 'Yes!' : 'No!';
       desc = this.props.representatives[0].voted === 'Yea' ? 'co-sponsored the bill to defund Planned Parenthood.' : 'support Planned Parenthood!';
       state = `from ${this.props.representatives[0].state_name} `;
@@ -33,7 +33,7 @@ const Circle = React.createClass({
       desc = this.props.numRep > 1 ? '' : this.props.desc;
     }
 
-    if (SenateConstants.CHAMBER === 'house') {
+    if (Settings.chamber === 'house') {
       title = numRep > 1 ? 'representatives' : 'representative';
       status = '';
     } else {

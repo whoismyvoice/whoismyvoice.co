@@ -1,6 +1,7 @@
 import SenateServerActions from '../actions/SenateServerActions';
 import request from 'superagent';
 import SenateConstants from '../constants/SenateConstants';
+import Settings from '../data/settings.json';
 
 module.exports = {
   getMember: function(zipCode, lng) {
@@ -8,7 +9,7 @@ module.exports = {
     if (zipCode === 'error') {
       SenateServerActions.getDetails('error');
     } else {
-      const bill = 'https://congress.api.sunlightfoundation.com/votes?bill_id=' + SenateConstants.BILL_ID + '&fields=voter_ids&apikey=' + SenateConstants.API_KEY;
+      const bill = 'https://congress.api.sunlightfoundation.com/votes?bill_id=' + Settings.bill_id + '&fields=voter_ids&apikey=' + SenateConstants.API_KEY;
       request
       .get(bill)
       .set('Accept', 'application/json')
@@ -29,8 +30,8 @@ const getMemberDetails = function(zipCode, lng, voters) {
   .end(function(err, res) {
     if (err) return console.error(err);
     const senators = res.body.results.filter(function(senator) {
-      const filter = SenateConstants.CHAMBER === 'senate' ? voters[senator.bioguide_id] === SenateConstants.VOTE_AGAINST : true;
-      if (senator.chamber === SenateConstants.CHAMBER && filter && senator.bioguide_id in voters) {
+      const filter = Settings.chamber === 'senate' ? voters[senator.bioguide_id] === Settings.vote_against : true;
+      if (senator.chamber === Settings.chamber && filter && senator.bioguide_id in voters) {
         senator.voted = voters[senator.bioguide_id];
         senator.full_name = senator.middle_name === null ? senator.first_name + ' ' + senator.last_name : senator.first_name + ' ' + senator.middle_name + ' ' + senator.last_name;
         senator.gender_full = senator.gender === 'M' ? 'man' : 'woman';

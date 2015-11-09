@@ -1,6 +1,6 @@
 import React from 'react';
 import SenateStore from '../stores/SenateStore';
-import SenateConstants from '../constants/SenateConstants';
+import Settings from '../data/settings.json';
 
 import ContainerActions from '../actions/ContainerActions';
 import cx from 'classnames';
@@ -69,13 +69,13 @@ const Home = React.createClass({
           STATE = this.state.state_full,
           SECOND_SEARCH = this.state.second_search;
 
-    let impact = `${SenateConstants.IMPACT_PRE_GENDER} these people ${SenateConstants.IMPACT_POST_GENDER}`,
+    let impact = `${Settings.senate.impact_pre_text} these people ${Settings.senate.impact_post_text}`,
         VOTE_STATUS = ` from ${STATE} co-sponsored the bill to defund Planned Parenthood`;
 
     if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1) {
       const MEMBER_THIRD = REPRESENTATIVES[0].gender_full === 'man' ? 'He' : 'She';
-      impact =`${SenateConstants.IMPACT_PRE_GENDER} this ${REPRESENTATIVES[0].gender_full} ${SenateConstants.IMPACT_POST_GENDER}`;
-      VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` voted for the ${SenateConstants.BILL_TITLE} ${MEMBER_THIRD} represents your voice!` : ` voted against the ${SenateConstants.BILL_TITLE} ${MEMBER_THIRD} represents your voice!`;
+      impact =`${Settings.senate.impact_pre_.ext} this ${REPRESENTATIVES[0].gender_full} ${Settings.senate.impact_post_text}`;
+      VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` voted for the ${Settings.bill_title} ${MEMBER_THIRD} represents your voice!` : ` voted against the ${Settings.bill_title} ${MEMBER_THIRD} represents your voice!`;
     }
 
     if (DID_SEARCH && NUMBER_REPRESENTATIVES !== 0) {
@@ -100,8 +100,8 @@ const Home = React.createClass({
       {'reveal': DID_SEARCH},
       {'green': !DID_SEARCH},
       {'orange': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0},
-      {'red': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && SenateConstants.CHAMBER === 'senate'},
-      {'visible': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && SenateConstants.CHAMBER === 'senate'},
+      {'red': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && Settings.chamber === 'senate'},
+      {'visible': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && Settings.chamber === 'senate'},
       {'purple': this.state.current_screen === 2},
       {'full': DID_SEARCH}
     );
@@ -117,7 +117,7 @@ const Home = React.createClass({
           	style="one"
           	hide={true}
           	did_search={DID_SEARCH}
-          	desc={SenateConstants.BILL_DESC + '?'}
+          	desc={Settings.bill_desc + '?'}
         	/>
         	<SearchGroup
             repNum={NUMBER_REPRESENTATIVES}
