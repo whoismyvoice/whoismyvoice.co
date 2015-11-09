@@ -12,11 +12,8 @@ const SenatorName = React.createClass({
     voted: React.PropTypes.string
   },
   render() {
-  	let name = this.props.name,
-        state = this.props.state,
-        age = this.props.age,
-        twitter = this.props.twitter,
-        voted = this.props,
+
+    let {name, state, age, twitter, voted} = this.props,
         member_age = age === undefined ? '' : `${age} years old`,
         twitterHandle = twitter === undefined ? '' : `@${twitter}`,
         member_voted = voted === undefined ? '' : `Voted ${voted}`;

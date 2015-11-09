@@ -21,23 +21,17 @@ const Results = React.createClass({
     zip_code: React.PropTypes.string
   },
 	render() {
-		const vote_status = this.props.vote_status,
-          impact = this.props.impact,
-          current_member = this.props.current_member,
-          zip_code = this.props.zip_code,
-          numRep = this.props.numRep,
-          representatives = this.props.representatives,
-          backgroundClasses = this.props.backgroundClasses;
+		const {vote_status, impact, current_member, zip_code, numRep, representatives, backgroundClasses} = this.props,
+          {chamber} = Settings,
+          {no_cosponsor_title, no_cosponsor_desc} = Settings.senate;
 
-    console.log(this.props.representatives);
-
-    if (Settings.chamber === 'senate' && numRep === 0) {
+    if (chamber === 'senate' && numRep === 0) {
       return <div className={backgroundClasses} id="fullpage">
         <FadedBG color="red" />
         <div className="section block two">
           <p className="impact">
-            {Settings.senate.no_cosponsor_title} <br />
-            {Settings.senate.no_cosponsor_desc}
+            {no_cosponsor_title} <br />
+            {no_cosponsor_desc}
           </p>
           <HFCOverview
             color="bright-red"
@@ -56,10 +50,10 @@ const Results = React.createClass({
             style="wide"
             desc={vote_status}
             numRep={numRep}
-            representatives={this.props.representatives}
+            representatives={representatives}
           />
           <CongressmanGroup
-            representatives={this.props.representatives}
+            representatives={representatives}
             zip_code={zip_code}
           />
         </div>
@@ -70,7 +64,7 @@ const Results = React.createClass({
             desc={impact}
           />
           <SupportActions
-            representatives={this.props.representatives}
+            representatives={representatives}
             currentSenator={current_member}
           />
         </div>

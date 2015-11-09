@@ -67,23 +67,25 @@ const Home = React.createClass({
           ZIP_CODE = this.state.zip_code,
           CURRENT_MEMBER = this.state.current_senator,
           SECOND_SEARCH = this.state.second_search,
-          MEMBER = Settings.chamber === 'senate' ? 'senator' : 'representative';
+          MEMBER = Settings.chamber === 'senate' ? 'senator' : 'representative',
 
-    let impact = Settings.senate.impact_text.replace('#gender_third', 'this person'),
-        VOTE_STATUS = `${Settings.senate.cosponsor_post_text}`;
+          // Destructured vars for Settings
+          {single_voted_for, single_voted_against} = Settings.house,
+          {cosponsor_post_text, impact_text, represent} = Settings.senate,
+          {chamber, bill_desc} = Settings;
 
-    // Make sure that search has been done, result yields one rep and that the set chamber is house
-    if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && Settings.chamber === 'house') {
+    let impact = impact_text.replace('#gender_third', 'this person'),
+        VOTE_STATUS = `${cosponsor_post_text}`;
 
+    if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house') {
       const MEMBER_THIRD = REPRESENTATIVES[0].gender_full === 'man' ? 'He' : 'She',
-        represent = Settings.senate.represent.replace('#gender', MEMBER_THIRD);
-
-      impact = Settings.senate.impact_text.replace('#gender_third', `this ${REPRESENTATIVES[0].gender_full}`);
-      VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` ${Settings.house.single_voted_for} ${Settings.senate.represent}` : ` ${Settings.house.single_voted_against} ${Settings.senate.represent}`;
+        represent_text = represent.replace('#gender', MEMBER_THIRD);
+      impact = impact_text.replace('#gender_third', `this ${REPRESENTATIVES[0].gender_full}`);
+      VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` ${single_voted_for} ${represent_text}` : ` ${single_voted_against} ${represent_text}`;
 
       // If chamber is senate, make sure to update VOTE_STATUS, which is then passed on to the Circle component
-    } else if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && Settings.chamber === 'senate'){
-      VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` ${Settings.senate.cosponsor_post_text}` : '';
+    } else if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'senate'){
+      VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` ${cosponsor_post_text}` : '';
     }
 
     if (DID_SEARCH && NUMBER_REPRESENTATIVES !== 0) {
@@ -108,8 +110,8 @@ const Home = React.createClass({
       {'reveal': DID_SEARCH},
       {'green': !DID_SEARCH},
       {'orange': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0},
-      {'red': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && Settings.chamber === 'senate'},
-      {'visible': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && Settings.chamber === 'senate'},
+      {'red': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
+      {'visible': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
       {'purple': this.state.current_screen === 2},
       {'full': DID_SEARCH}
     );
@@ -125,7 +127,7 @@ const Home = React.createClass({
           	style="one"
           	hide={true}
           	did_search={DID_SEARCH}
-          	desc={Settings.bill_desc.replace('#member', MEMBER)}
+          	desc={bill_desc.replace('#member', MEMBER)}
         	/>
         	<SearchGroup
             repNum={NUMBER_REPRESENTATIVES}

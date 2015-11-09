@@ -15,18 +15,20 @@ const HFCGroup = React.createClass({
     twitter: React.PropTypes.string,
   },
   render() {
-    return <a target="_blank" href={'http://twitter.com/home/?status=@' + this.props.twitter }>
+    const {bioguide, name, age, state, twitter, did_search} = this.props;
+
+    return <a target="_blank" href={`http://twitter.com/home/?status=@${twitter}`}>
       <div className="HFCMember">
         <SenatorImg
           group={'true'}
-          bioguide={this.props.bioguide}
+          bioguide={bioguide}
         />
         <SenatorName
-          name={this.props.name}
-          age={this.props.age}
-          state={this.props.state}
-          twitter={this.props.twitter}
-          did_search={this.props.did_search}
+          name={name}
+          age={age}
+          state={state}
+          twitter={twitter}
+          did_search={did_search}
         />
       </div>
     </a>;

@@ -18,23 +18,23 @@ const CongressmanGroup = React.createClass({
     let searchClasses = 'search',
         wrapperClasses = 'senatorWrapper';
 
-    const reps = this.props.representatives,
-          zip_code = this.props.zip_code;
+    const {representatives, zip_code} = this.props,
+          {chamber} = Settings;
 
-    if (reps) {
+    if (representatives) {
       searchClasses = cx(
         ['search'],
-        {'hide': reps.length < 2 || Settings.chamber === 'senate'},
+        {'hide': representatives.length < 2 || chamber === 'senate'},
       );
       wrapperClasses = cx(
         ['senatorWrapper'],
-        {'several': reps.length > 1}
+        {'several': representatives.length > 1}
       );
     } else {
       searchClasses = 'search';
     }
 
-    const members = (this.props.representatives || []).map(function(item, idx) {
+    const members = (representatives || []).map(function(item, idx) {
       return <div className="senatorContainer" key={idx}>
         <SenatorImg
           bioguide={item.bioguide_id}
