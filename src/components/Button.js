@@ -42,13 +42,13 @@ const Button = React.createClass({
   			</a>;
   	} else if (this.props.flush === true) {
   		return <Link to={this.props.link}>
-        <button className={'button nav ' + color} onClick={this._handleRestart}>
+        <button className={`button nav ${color}`} onClick={this._handleRestart}>
           {this.props.text}
         </button>
       </Link>;
   	} else {
       return <Link to={this.props.link}>
-        <button className={'button nav ' + color}>
+        <button className={`button nav ${color}`}>
           {this.props.text}
         </button>
       </Link>;

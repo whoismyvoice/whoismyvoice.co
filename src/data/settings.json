@@ -5,6 +5,7 @@
   "vote_favor": "Nay",
   "vote_against": "Yea",
   "chamber": "house",
+  "member_details": "#age year old #gender",
   "senate": {
     "impact_text": "Here are some ways you can keep #gender_third from being able to personally weigh in on safe and accurate food labeling the next time a similar vote comes up.",
     "no_cosponsor_title": "No! Your senators support Planned Parenthood! ",
@@ -14,6 +15,7 @@
   },
   "house": {
     "single_voted_for": "voted for the Safe and Accurate Food Labeling Act of 2015. ",
-    "single_voted_against": "voted against the Safe and Accurate Food Labeling Act of 2015. "
+    "single_voted_against": "voted against the Safe and Accurate Food Labeling Act of 2015. ",
+    "multiple_results": "These people represent a congressional district in your area"
   }
 }

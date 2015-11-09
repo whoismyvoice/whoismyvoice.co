@@ -15,27 +15,31 @@ const Circle = React.createClass({
     style: React.PropTypes.string
   },
   render() {
-    const numRep = this.props.numRep,
-          proposition = this.props.representatives !== null && numRep === 1 ? 'a ' : '',
-          details = this.props.representatives !== null && numRep === 1 ? `${this.props.representatives[0].age} year old ${this.props.representatives[0].gender_full} ` : '',
-          several = numRep > 1 && Settings.chamber === 'house' ? ' several': '';
-
     let title,
         status,
-        desc,
-        state;
+        desc = this.props.desc,
+        state,
+        representative;
+
+    if(this.props.representatives) {
+      representative = this.props.representatives[0];
+    }
+
+    const numRep = this.props.numRep,
+          proposition = numRep === 1 ? 'a ' : '',
+          details = numRep === 1 ? `${representative.age} year old ${representative.gender_full}` : '',
+          several = numRep > 1 && Settings.chamber === 'house' ? ' several': '';
 
     if (numRep > 0 && Settings.chamber === 'senate') {
-      status = this.props.representatives[0].voted === 'Yea' ? 'Yes!' : 'No!';
-      state = `from ${this.props.representatives[0].state_name} `;
-      desc = this.props.desc;
+      status = representative.voted === 'Yea' ? 'Yes!' : 'No!';
+      state = `from ${representative.state_name} `;
     } else {
       desc = this.props.numRep > 1 ? '' : this.props.desc;
     }
 
     if (Settings.chamber === 'house') {
       title = numRep > 1 ? 'representatives' : 'representative';
-      status = '';
+      status = numRep > 1 ? Settings.house.multiple_results: '';
     } else {
       title = numRep > 1 ? 'senators' : 'senator';
     }
@@ -45,11 +49,11 @@ const Circle = React.createClass({
       {'hide': this.props.hide}
     );
 
-    return <div className={'circle ' + this.props.style + several}>
+    return <div className={`circle ${this.props.style} ${several}`}>
   		<div className="description">
         {status}
         <div className={introductionClasses}>
-          {'Your ' + title}
+          {`Your ${title}`}
         </div>
         {proposition}
   			<span className="strike-out">
