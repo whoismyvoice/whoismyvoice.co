@@ -9,7 +9,7 @@ var nodeModulesDir = path.resolve(__dirname, 'node_modules');
 var autoprefixer = require('autoprefixer');
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'source-map',
   entry: {
     app: [
       path.join(__dirname, 'src/main.js')
