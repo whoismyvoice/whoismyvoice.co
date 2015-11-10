@@ -15,7 +15,11 @@ module.exports = {
       .set('Accept', 'application/json')
       .end(function(err, res) {
         if (err) return console.error(err);
-        getMemberDetails(zipCode, lng, res.body.results[0].voter_ids);
+        if(res.body.results.length === 0) {
+          SenateServerActions.getDetails('error');
+        } else {
+          getMemberDetails(zipCode, lng, res.body.results[0].voter_ids);
+        }
       });
     }
   }
