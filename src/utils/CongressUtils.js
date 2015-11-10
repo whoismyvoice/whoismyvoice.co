@@ -26,8 +26,9 @@ module.exports = {
 };
 
 const getMemberDetails = function(zipCode, lng, voters) {
-  const url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${zipCode}&longitude=${lng}&apikey=${SenateConstants.API_KEY}`: `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${zipCode}&apikey=${SenateConstants.API_KEY}`,
-    {bill_id, vote_favor} = Settings;
+  const {API_KEY} = SenateConstants,
+        url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${zipCode}&longitude=${lng}&apikey=${API_KEY}`: `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${zipCode}&apikey=${API_KEY}`,
+        {bill_id, vote_favor} = Settings;
 
   request
   .get(url)
