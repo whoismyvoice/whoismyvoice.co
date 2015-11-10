@@ -33,7 +33,6 @@ const Home = React.createClass({
     this.setState(SenateStore.getMember());
   },
   _initializeFullpage: function() {
-    console.log("INITIALIZED");
     $('#fullpage').fullpage({
       navigation: false,
       showActiveTooltip: false,
@@ -57,7 +56,6 @@ const Home = React.createClass({
   _destroyFullpage: function() {
     if ($.fn.fullpage.destroy !== undefined) {
       $.fn.fullpage.destroy('all');
-      console.log("DESTROYED");
     }
   },
   render() {
@@ -92,7 +90,6 @@ const Home = React.createClass({
 
     if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && NUMBER_REPRESENTATIVES > 0 && chamber === 'senate') {
       this._initializeFullpage();
-      console.log(true);
     } else {
       VOTE_STATUS = 'You have not yet searched for a member';
     }
