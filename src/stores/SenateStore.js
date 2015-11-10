@@ -48,21 +48,18 @@ AppDispatcher.register(function(payload) {
       if (action.response === 'error') {
         _store.error = true;
       } else {
+        _store.did_search = true;
+        _store.error = false;
         if (action.numRep > 1 && action.numRep < 4) {
           _store.second_search = true;
           _store.representatives = action.response || null;
-          _store.error = false;
-          _store.did_search = true;
           _store.im_first_reps = action.response;
         } else if (action.numRep === 1) {
           const details = action.response[0];
           _store.state_full = details.state_name || null;
-          _store.error = false;
-          _store.did_search = true;
           _store.representatives = action.response || null;
         } else if (Settings.chamber === 'senate' && action.numRep === 0) {
-          _store.did_search = true;
-          _store.error = false;
+          _store.second_search = false;
         }
       }
       SenateStore.emit(CHANGE_EVENT);
@@ -89,6 +86,7 @@ AppDispatcher.register(function(payload) {
       _store.did_search = false;
       _store.current_screen = 0;
       _store.current_senator = 0;
+      _store.second_search = false;
 
       SenateStore.emit(CHANGE_EVENT);
       break;

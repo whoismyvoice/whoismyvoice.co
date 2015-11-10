@@ -13,7 +13,7 @@ import CongressmanGroup from './Senator/CongressmanGroup';
 const Results = React.createClass({
   propTypes: {
     backgroundClasses: React.PropTypes.any,
-    current_member: React.PropTypes.number,
+    current_member: React.PropTypes.any,
     impact: React.PropTypes.string,
     numRep: React.PropTypes.number,
     representatives: React.PropTypes.array,
@@ -36,7 +36,7 @@ const Results = React.createClass({
           {chamber} = Settings;
 
     if (chamber === 'senate' && numRep === 0) {
-      return <div className={backgroundClasses} id="fullpage">
+      return <div className={backgroundClasses}>
         <FadedBG color="red" />
         <div className="section block two">
           <p className="impact">

@@ -20,10 +20,8 @@ const Home = React.createClass({
     return  SenateStore.getMember();
   },
   componentDidMount: function() {
-    if (this.state.did_search && !this.state.member_hfc) {
+    if (this.state.did_search) {
       this._initializeFullpage();
-    } else {
-      this._destroyFullpage();
     }
     SenateStore.addChangeListener(this._handleChange);
   },
@@ -35,6 +33,7 @@ const Home = React.createClass({
     this.setState(SenateStore.getMember());
   },
   _initializeFullpage: function() {
+    console.log("INITIALIZED");
     $('#fullpage').fullpage({
       navigation: false,
       showActiveTooltip: false,
@@ -58,6 +57,7 @@ const Home = React.createClass({
   _destroyFullpage: function() {
     if ($.fn.fullpage.destroy !== undefined) {
       $.fn.fullpage.destroy('all');
+      console.log("DESTROYED");
     }
   },
   render() {
@@ -70,6 +70,7 @@ const Home = React.createClass({
           SECOND_SEARCH = this.state.second_search,
           MEMBER = Settings.chamber === 'senate' ? 'senator' : 'representative',
           FIRST_REPS = this.state.im_first_reps,
+          FIRST_REPS_NUM = this.state.im_first_reps !== null ? this.state.im_first_reps.length : 0,
 
           {single_voted_for, single_voted_against} = Settings.house,
           {cosponsor_post_text, impact_text, represent} = Settings.senate,
@@ -89,8 +90,9 @@ const Home = React.createClass({
       VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` ${cosponsor_post_text}` : '';
     }
 
-    if (NUMBER_REPRESENTATIVES === 1) {
+    if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && NUMBER_REPRESENTATIVES > 0 && chamber === 'senate') {
       this._initializeFullpage();
+      console.log(true);
     } else {
       VOTE_STATUS = 'You have not yet searched for a member';
     }
@@ -98,8 +100,8 @@ const Home = React.createClass({
     const blockClasses = cx(
       ['block', 'one'],
       {'hide': DID_SEARCH},
-      {'hide-double': DID_SEARCH && SECOND_SEARCH && NUMBER_REPRESENTATIVES === 1},
-      {'hidden': NUMBER_REPRESENTATIVES === 1 && !SECOND_SEARCH}
+      {'hide-double': DID_SEARCH && SECOND_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house'},
+      {'hidden': NUMBER_REPRESENTATIVES === 1 && !SECOND_SEARCH || chamber == 'senate'}
     );
 
     const backgroundClasses = cx(
@@ -110,7 +112,7 @@ const Home = React.createClass({
 
     const sectionClasses = cx(
       ['section-block'],
-      {'hide': NUMBER_REPRESENTATIVES === 1 && !SECOND_SEARCH},
+      {'hide': NUMBER_REPRESENTATIVES === 1 && !SECOND_SEARCH || chamber === 'senate'},
     );
 
     const containerClasses = cx(
@@ -147,7 +149,7 @@ const Home = React.createClass({
           <Circle
             style="wide"
             desc={VOTE_STATUS}
-            numRep={2}
+            numRep={FIRST_REPS_NUM}
             representatives={FIRST_REPS}
           />
           <CongressmanGroup
