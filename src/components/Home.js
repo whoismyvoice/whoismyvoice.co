@@ -9,6 +9,7 @@ import Results from './Results';
 // Components
 import Circle from './Circle';
 import SearchGroup from './SearchGroup';
+import CongressmanGroup from './Senator/CongressmanGroup';
 import WhiteBorder from './WhiteBorder';
 
 // Styles
@@ -70,7 +71,6 @@ const Home = React.createClass({
           MEMBER = Settings.chamber === 'senate' ? 'senator' : 'representative',
           FIRST_REPS = this.state.im_first_reps,
 
-          // Destructured vars for Settings
           {single_voted_for, single_voted_against} = Settings.house,
           {cosponsor_post_text, impact_text, represent} = Settings.senate,
           {chamber, bill_desc} = Settings;
@@ -79,17 +79,17 @@ const Home = React.createClass({
         VOTE_STATUS = `${cosponsor_post_text}`;
 
     if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house') {
-      const MEMBER_THIRD = REPRESENTATIVES[0].gender_full === 'man' ? 'He' : 'She',
-        represent_text = represent.replace('#gender', MEMBER_THIRD);
+      const MEMBER_THIRD = REPRESENTATIVES[0].gender_full === 'man' ? 'He' : 'She';
+      const  represent_text = represent.replace('#gender', MEMBER_THIRD);
+
       impact = impact_text.replace('#gender_third', `this ${REPRESENTATIVES[0].gender_full}`);
       VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` ${single_voted_for} ${represent_text}` : ` ${single_voted_against} ${represent_text}`;
 
-      // If chamber is senate, make sure to update VOTE_STATUS, which is then passed on to the Circle component
     } else if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'senate'){
       VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` ${cosponsor_post_text}` : '';
     }
 
-    if (DID_SEARCH && NUMBER_REPRESENTATIVES !== 0) {
+    if (NUMBER_REPRESENTATIVES === 1) {
       this._initializeFullpage();
     } else {
       VOTE_STATUS = 'You have not yet searched for a member';
@@ -97,13 +97,20 @@ const Home = React.createClass({
 
     const blockClasses = cx(
       ['block', 'one'],
-      {'hide': DID_SEARCH}
+      {'hide': DID_SEARCH},
+      {'hide-double': DID_SEARCH && SECOND_SEARCH && NUMBER_REPRESENTATIVES === 1},
+      {'hidden': NUMBER_REPRESENTATIVES === 1 && !SECOND_SEARCH}
     );
 
     const backgroundClasses = cx(
       ['second-wrapper'],
       {'move-up': DID_SEARCH},
       {'static': !DID_SEARCH}
+    );
+
+    const sectionClasses = cx(
+      ['section-block'],
+      {'hide': NUMBER_REPRESENTATIVES === 1 && !SECOND_SEARCH},
     );
 
     const containerClasses = cx(
@@ -135,6 +142,18 @@ const Home = React.createClass({
           	error={ERROR}
             zip_code={ZIP_CODE}
         	/>
+        </div>
+        <div className={sectionClasses}>
+          <Circle
+            style="wide"
+            desc={VOTE_STATUS}
+            numRep={2}
+            representatives={FIRST_REPS}
+          />
+          <CongressmanGroup
+            representatives={FIRST_REPS}
+            zip_code={ZIP_CODE}
+          />
         </div>
         <Results
           first_reps={FIRST_REPS}

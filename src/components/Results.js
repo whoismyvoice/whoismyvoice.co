@@ -53,32 +53,6 @@ const Results = React.createClass({
           />
         </div>
       </div>;
-    } else if (chamber === 'house' && first_reps !== null) {
-      return <div className={backgroundClasses} id="fullpage">
-        <div className="section block two">
-          <Circle
-            style="wide"
-            desc={vote_status}
-            numRep={first_reps.length}
-            representatives={first_reps}
-          />
-          <CongressmanGroup
-            representatives={first_reps}
-            zip_code={zip_code}
-          />
-        </div>
-        <div className="section block three">
-          <Circle
-            style="wider"
-            hide={true}
-            desc={impact}
-          />
-          <SupportActions
-            representatives={first_reps}
-            currentSenator={current_member}
-          />
-        </div>
-      </div>;
     } else {
 		  return <div className={backgroundClasses} id="fullpage">
         <div className="section block two">
