@@ -96,7 +96,7 @@ const Home = React.createClass({
 
     const blockClasses = cx(
       ['block', 'one'],
-      {'hide': DID_SEARCH},
+      {'hide': DID_SEARCH && NUMBER_REPRESENTATIVES < 4},
       {'hide-double': DID_SEARCH && SECOND_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house'},
     );
 
@@ -108,15 +108,14 @@ const Home = React.createClass({
 
     const sectionClasses = cx(
       ['section-block'],
-      {'hide': NUMBER_REPRESENTATIVES === 1 && !SECOND_SEARCH || chamber === 'senate'},
-      {'hidden': NUMBER_REPRESENTATIVES === 1 && SECOND_SEARCH || chamber == 'senate'}
+      {'hide': NUMBER_REPRESENTATIVES === 1 && !SECOND_SEARCH || chamber === 'senate'}
     );
 
     const containerClasses = cx(
       ['container'],
       {'reveal': DID_SEARCH},
-      {'green': !DID_SEARCH},
-      {'orange': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0},
+      {'green': !DID_SEARCH || NUMBER_REPRESENTATIVES > 3},
+      {'orange': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES < 4},
       {'red': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
       {'visible': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
       {'purple': this.state.current_screen === 2},

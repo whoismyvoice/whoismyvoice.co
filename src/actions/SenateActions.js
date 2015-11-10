@@ -28,7 +28,6 @@ module.exports = {
     .end(function(err, res) {
       if (err) return console.error(err);
       if (res.body.results.length === 0) {
-        console.log('No results found');
         CongressUtils.getMember('error');
       } else {
         const lat = res.body.results[0].geometry.location.lat,
