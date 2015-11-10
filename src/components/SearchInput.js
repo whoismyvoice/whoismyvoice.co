@@ -6,7 +6,10 @@ import cx from 'classnames';
 import style from './../styles/SearchInput.scss';
 
 const SearchInput = React.createClass({
-  getInitialState(){
+  propTypes: {
+    error: React.PropTypes.bool
+  },
+  getInitialState() {
 	  return {
 		  zip_code: '',
       error: false,
@@ -17,15 +20,17 @@ const SearchInput = React.createClass({
 
   _handleFocus: function() {
     this.setState({
-      placeholder: ''
+      placeholder: '',
+      error: false
     });
   },
 
   _handleBlur: function() {
-    if (this.state.zip_code === '')
-    this.setState({
-      placeholder: 'Enter Your Zip Code'
-    });
+    if (this.state.zip_code === '') {
+      this.setState({
+        placeholder: 'Enter Your Zip Code'
+      });
+    }
   },
 
   _handleChange: function(event) {
@@ -38,8 +43,9 @@ const SearchInput = React.createClass({
   },
 
   _handleEnter: function(e) {
+    const zip_code = this.state.zip_code;
     if (e.keyCode === 13) {
-      if ((isNaN(this.state.zip_code) && this.state.zip_code.length < 2) || (!isNaN(this.state.zip_code) && this.state.zip_code.length !== 5)) {
+      if ((isNaN(zip_code)) || (!isNaN(zip_code) && zip_code.length !== 5)) {
         this.setState({
           error: true,
           fade: false,
@@ -47,7 +53,7 @@ const SearchInput = React.createClass({
           zip_code: ''
         });
       } else {
-        SenateActions.identifyMember(this.state.zip_code);
+        SenateActions.fetchDistricts(zip_code);
         this.setState({
           error: false,
           zip_code: '',
@@ -58,9 +64,10 @@ const SearchInput = React.createClass({
   },
 
   _handleClick: function(evt) {
+    const zip_code = this.state.zip_code;
     evt.preventDefault();
     evt.stopPropagation();
-    if ((isNaN(this.state.zip_code) && this.state.zip_code.length < 2) || (!isNaN(this.state.zip_code) && this.state.zip_code.length !== 5)) {
+    if ((isNaN(zip_code)) || (!isNaN(zip_code) && zip_code.length !== 5)) {
       this.setState({
         error: true,
         fade: false
@@ -68,9 +75,10 @@ const SearchInput = React.createClass({
     } else {
       this.setState({
         error: false,
-        zip_code: ''
+        zip_code: '',
+        fade: false
       });
-      SenateActions.identifyMember(this.state.zip_code);
+      SenateActions.fetchDistricts(zip_code);
     }
   },
 
@@ -82,21 +90,21 @@ const SearchInput = React.createClass({
     );
 
     return <span>
-        <input
-          className={inputClasses}
-          type="text"
-          pattern="[0-9]*"
-          value={this.state.zip_code}
-          onChange={this._handleChange}
-          onKeyDown={this._handleEnter}
-          onFocus={this._handleFocus}
-          placeholder={this.state.placeholder}
-          onBlur={this._handleBlur}
-        />
-        <button
-          className="arrowDown green-text spacing"
-          onClick={this._handleClick}>
-        </button>
+      <input
+        className={inputClasses}
+        type="text"
+        pattern="[0-9]*"
+        value={this.state.zip_code}
+        onChange={this._handleChange}
+        onKeyDown={this._handleEnter}
+        onFocus={this._handleFocus}
+        placeholder={this.state.placeholder}
+        onBlur={this._handleBlur}
+      />
+      <button
+        className="arrowDown green-text spacing"
+        onClick={this._handleClick}>
+      </button>
     </span>;
   }
 });

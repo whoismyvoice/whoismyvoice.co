@@ -1,43 +1,49 @@
 import React from 'react';
+import Settings from '../data/settings.json';
 import HFCMembers from '../data/HFCMembers';
 
 // Components
 import Circle from './Circle';
-import SenatorGroup from './Senator/SenatorGroup';
 import ArrowDown from './ArrowDown';
 import SupportActions from './Senator/SupportActions';
 import HFCOverview from './HFCOverview';
 import FadedBG from './FadedBg';
+import CongressmanGroup from './Senator/CongressmanGroup';
 
 const Results = React.createClass({
-
+  propTypes: {
+    backgroundClasses: React.PropTypes.any,
+    current_member: React.PropTypes.any,
+    impact: React.PropTypes.string,
+    numRep: React.PropTypes.number,
+    representatives: React.PropTypes.array,
+    vote_status: React.PropTypes.string,
+    zip_code: React.PropTypes.string,
+    initialize: React.PropTypes.func
+  },
 	render() {
-		const isHFC = this.props.hfc,
-				  additional_member = this.props.additional_member,
-				  age = this.props.age,
-				  did_search = this.props.did_search,
-				  gender = this.props.gender,
-				  vote_status = this.props.vote_status,
-				  bioguide = this.props.bioguide,
-				  name = this.props.name,
-				  state = this.props.state,
-				  additional_exists = this.props.additional_exists,
-				  impact = this.props.impact,
-				  current_member = this.props.current_member,
-				  email = this.props.email,
-				  tel = this.props.tel,
-				  twitter = this.props.twitter,
-				  party = this.props.party;
+		const {
+            vote_status,
+            impact,
+            current_member,
+            zip_code,
+            numRep,
+            representatives,
+            backgroundClasses,
+            first_reps,
+            initialize
+          } = this.props,
 
-		if (isHFC) {
-			return <div className={this.props.backgroundClasses} id="fullpage">
+          {no_cosponsor_title, no_cosponsor_desc} = Settings.senate,
+          {chamber} = Settings;
+
+    if (chamber === 'senate' && numRep === 0) {
+      return <div className={backgroundClasses} id="fullpage">
         <FadedBG color="red" />
         <div className="section block two">
-
           <p className="impact">
-            No! Your senators support Planned Parenthood!<br />
-            But have you heard of the House Freedom Caucus? The HFC is a group of 40+ conservative congressmen who have publicly declared they will oppose any spending bill that does not defund Planned Parenthood. 
-        Yes, these men and women are willing to shut down your government over this issue. <span className="strike-out">If you live in their district</span>, email them. If you don’t, tweet at them.
+            {no_cosponsor_title} <br />
+            {no_cosponsor_desc}
           </p>
           <HFCOverview
             color="bright-red"
@@ -49,57 +55,33 @@ const Results = React.createClass({
           />
         </div>
       </div>;
-		} else {
-			return <div className={this.props.backgroundClasses} id="fullpage">
-      	 <div className="section block two">
-            <div className="blocker"></div>
-            <Circle
-              style="wide"
-              additional={additional_member}
-              hfc={isHFC}
-              age={age}
-              did_search={did_search}
-              gender={gender}
-              desc={vote_status}
-            />
-
-            <SenatorGroup
-              additional={additional_member}
-              bioguide={bioguide}
-              hfc={isHFC}
-              name={name}
-              age={age}
-              did_search={did_search}
-              state={state}
-            />
-
-            <ArrowDown
-              additional={additional_exists}
-              color='orange-text'
-              id='0'
-            />
-          </div>
-
-          <div className="section block three">
-            <Circle
-              style="wider"
-              hide={true}
-              desc={impact}
-            />
-
-            <SupportActions
-              additional={additional_member}
-              currentSenator={current_member}
-              hfc={isHFC}
-              gender={gender}
-              email={email}
-              tel={tel}
-              twitter={twitter}
-              party={party}
-            />
-          </div>
-     	</div>;
-		}
+    } else {
+		  return <div className={backgroundClasses} id="fullpage">
+        <div className="section block two">
+          <Circle
+            style="wide"
+            desc={vote_status}
+            numRep={numRep}
+            representatives={representatives}
+          />
+          <CongressmanGroup
+            representatives={representatives}
+            zip_code={zip_code}
+          />
+        </div>
+        <div className="section block three">
+          <Circle
+            style="wider"
+            hide={true}
+            desc={impact}
+          />
+          <SupportActions
+            representatives={representatives}
+            currentSenator={current_member}
+          />
+        </div>
+      </div>;
+    }
   }
 });
 

@@ -1,7 +1,7 @@
 @import 'variables';
 
 .senatorWrapper {
-	width: 50%;
+	width: 90%;
 	margin: 0 auto;
 	position: relative;
 	background-color: $light-orange;
@@ -44,7 +44,7 @@
 }
 
 .senatorContainer {
-	width: 48%;
+	width: 32.5%;
 	display: inline-block;
 
 	&:first-of-type {
@@ -225,4 +225,11 @@
       left: 15px;
     }
 	}
+}
+
+.search {
+  margin-top: 40px;
+  &.hide {
+    display: none;
+  }
 }

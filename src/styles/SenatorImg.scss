@@ -138,6 +138,8 @@
 
 	img {
 		width: 100%;
+    filter: grayscale(1);
+    -webkit-filter: grayscale(1);
 		align-self: center;
 	}
 }

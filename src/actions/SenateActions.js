@@ -2,33 +2,41 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 import SenateConstants from '../constants/SenateConstants';
 import request from 'superagent';
 import CongressUtils from '../utils/CongressUtils';
-import {abbrState} from '../utils/StateConverter';
 
 module.exports = {
   // Pass zip_code value from SearchInput and identify latitude and longitude for zip code
   // latlng is needed in order for Sunlight Foundation to identify correct congress person
-	identifyMember: function(ZIP_CODE) {
+	fetchDistricts: function(ZIP_CODE) {
 		AppDispatcher.handleViewAction({
 			actionType: SenateConstants.FIND_MEMBER,
       zip_code: ZIP_CODE
 		});
+    CongressUtils.getMember(ZIP_CODE);
+  },
 
-    var place;
+  fetchSpecificMember: function(ADDRESS, ZIP) {
+    AppDispatcher.handleViewAction({
+      actionType: SenateConstants.FIND_SPECIFIC_MEMBER,
+      address: ADDRESS,
+      zip_code: ZIP
+    });
 
-    if (isNaN(ZIP_CODE)) {
-      // Check if the passed value is a full state name or abbr
-      place = ZIP_CODE.length > 2 ? abbrState(ZIP_CODE, 'abbr') : ZIP_CODE.toUpperCase();
-
-      if (place === undefined) {
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${ADDRESS},${ZIP},USA&key=${SenateConstants.GOOGLE_API_KEY}`;
+    request
+    .get(url)
+    .set('Accept', 'application/json')
+    .end(function(err, res) {
+      if (err) return console.error(err);
+      if (res.body.results.length === 0) {
+        console.log('No results found');
         CongressUtils.getMember('error');
       } else {
-        CongressUtils.getMember(place);
+        const lat = res.body.results[0].geometry.location.lat,
+        lng = res.body.results[0].geometry.location.lng;
+        CongressUtils.getMember(lat, lng);
       }
-    } else {
-      // Get senators based on passed zip_code
-      CongressUtils.getMember(ZIP_CODE);
-    }
-	},
+    });
+  },
   flush: function() {
     AppDispatcher.handleViewAction({
       actionType: SenateConstants.FLUSH_STORE

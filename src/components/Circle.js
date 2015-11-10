@@ -1,60 +1,68 @@
 import React from 'react';
 import cx from 'classnames';
+import Settings from '../data/settings.json';
 
 // Styles
 import style from './../styles/Circle.scss';
 
 const Circle = React.createClass({
+
+  propTypes: {
+    desc: React.PropTypes.string,
+    hide: React.PropTypes.bool,
+    numRep: React.PropTypes.number,
+    representatives: React.PropTypes.array,
+    style: React.PropTypes.string
+  },
   render() {
-  	const hfc = this.props.hfc ? 'long' : '';
-  	const status = hfc ? 'No!' : 'Yes!';
-    const additional = this.props.additional === null ? null : this.props.additional;
-    const senator = additional === null ? 'Your Senator, ' : '';
-  	let details;
-    const proposition = additional === null ? 'a ' : '';
+    let title,
+        status,
+        state,
+        representative,
+        description = this.props.desc;
 
-    details = (!hfc && additional === null) ? this.props.age + ' year old ' + this.props.gender + ' ' : '';
+    if(this.props.representatives) {
+      representative = this.props.representatives[0];
+    }
 
-    // Define classes for showing second line to allow for not displaying anything
-    // when two senators have been fetched
-    const statusClasses = cx(
-      ['status'],
-      {'hide': this.props.hide}
-    );
+    const {numRep, style, hide, desc} = this.props,
+          proposition = numRep === 1 ? 'a ' : '',
+          details = numRep === 1 ? `${representative.age} year old ${representative.gender_full}` : '',
+          several = numRep > 1 && Settings.chamber === 'house' ? ' several': '';
+
+    if (numRep > 0 && Settings.chamber === 'senate') {
+      status = representative.voted === 'Yea' ? 'Yes!' : 'No!';
+      state = `from ${representative.state_name} `;
+    } else {
+      description = numRep > 1 ? '' : desc;
+    }
+
+    if (Settings.chamber === 'house') {
+      title = numRep > 1 ? 'representatives' : 'representative';
+      status = '';
+    } else {
+      title = numRep > 1 ? 'senators' : 'senator';
+    }
 
     const introductionClasses = cx(
       ['status'],
-      {'hide': additional},
-      {'hide': this.props.hide}
+      {'hide': hide}
     );
 
-  	if (hfc !== undefined) {
-  		return <div className={'circle ' + this.props.style + ' ' + hfc}>
-
-  			<div className="description">
-          <div className={statusClasses}>
-            {status}<br />
-          </div>
-
-          <div className={introductionClasses}>
-  				  {senator} <br />
-          </div>
-
-          {proposition}
-  				<span className="strike-out">
-  				 {details}
-  				</span>
-
-  				{this.props.desc}
-  			</div>
-  		</div>;
-  	} else {
-  		return	<div className={'circle ' + ' ' + this.props.style + ' ' + hfc}>
-    		<div className="description">
-    			{this.props.desc}
-    		</div>
-    	</div>;
-  	}
+    return <div className={`circle ${style} ${several}`}>
+  		<div className="description">
+        {status}
+        <div className={introductionClasses}>
+          {`Your ${title}`}
+        </div>
+        {proposition}
+  			<span className="strike-out">
+          {details}
+  			</span>
+        {state}
+        {description}
+  		</div>
+  	</div>;
   }
 });
 

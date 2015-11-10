@@ -7,9 +7,18 @@ import style from './../styles/Button.scss';
 
 const Button = React.createClass({
 
+  propTypes: {
+    color: React.PropTypes.string,
+    flush: React.PropTypes.bool,
+    link: React.PropTypes.string,
+    secondary: React.PropTypes.string,
+    text: React.PropTypes.string,
+    type: React.PropTypes.string
+  },
+
   _destroyFullpage: function() {
     if ($.fn.fullpage.destroy !== undefined) {
-      $.fn.fullpage.destroy('all');
+      $.fn.fullpage.destroy();
     }
   },
 
@@ -18,29 +27,29 @@ const Button = React.createClass({
     this._destroyFullpage();
   },
   render() {
-    const color = this.props.color;
+    const {color, link, text, secondary, flush, type} = this.props;
 
-  	if (this.props.type === 'external') {
-  		return <a href={this.props.link} className={color} target="_blank">
+    if (type === 'external') {
+      return <a href={link} className={color} target="_blank">
   				<button className="button">
             <div className="text">
-  					   {this.props.text}
+              {text}
             </div>
             <div className="secondary">
-              {this.props.secondary}
+              {secondary}
             </div>
   				</button>
   			</a>;
-  	} else if (this.props.flush === true) {
-  		return <Link to={this.props.link}>
-          <button className={'button nav '+ color} onClick={this._handleRestart}>
-        	 {this.props.text}
+  	} else if (flush === true) {
+  		return <Link to={link}>
+        <button className={`button nav ${color}`} onClick={this._handleRestart}>
+          {text}
         </button>
-        </Link>;
+      </Link>;
   	} else {
-      return <Link to={this.props.link}>
-        <button className={'button nav '+ color}>
-          {this.props.text}
+      return <Link to={link}>
+        <button className={`button nav ${color}`}>
+          {text}
         </button>
       </Link>;
     }

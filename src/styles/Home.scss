@@ -18,7 +18,7 @@ h1 {
 
 	@media screen and (max-width: $iphone6) {
 		height: 100vh;
-		 min-height: 100%!important;
+		min-height: 100%!important;
 	}
 
 	@media screen and (max-width: $iphone6)
@@ -38,25 +38,28 @@ h1 {
 		height: 86.5vh;
 	}
 
-	@media only screen 
-    and (min-device-width : 414px) 
-    and (max-device-width : 736px) 
-    and (orientation : portrait) 
-    and (-webkit-min-device-pixel-ratio : 3) {
-      height: 89.5vh;
-    }
+	@media only screen
+  and (min-device-width : 414px)
+  and (max-device-width : 736px)
+  and (orientation : portrait)
+  and (-webkit-min-device-pixel-ratio : 3) {
+    height: 89.5vh;
+  }
 
 	&.full {
 		height: auto;
-		min-height: 99vh;
+		min-height: 98vh;
 		width: 99vw;
-		padding-bottom: 2vh;
 	}
 
 	&.reveal {
-		overflow: visible;
+		overflow: hidden;
 		z-index: 1;
 		width: 99.1vw;
 		@include transition(1s);
+	}
+
+	&.visible {
+		overflow: visible;
 	}
 }

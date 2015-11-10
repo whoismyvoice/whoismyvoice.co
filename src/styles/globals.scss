@@ -408,6 +408,10 @@ ul {
   &.hide {
     top: -98vh;
   }
+
+  &.hide-double {
+    top: -196vh;
+  }
 }
 
 .second-wrapper {
@@ -810,6 +814,14 @@ button, input {
   min-height: 100%;
   display: block;
   width: 100%;
+
+  &.hide {
+    display: none;
+  }
+
+  &.hidden {
+    visibility: hidden;
+  }
 }
 
 .overlay {

@@ -1,43 +1,49 @@
 import SenateServerActions from '../actions/SenateServerActions';
-import votedFor from '../data/votedFor';
 import request from 'superagent';
+import SenateConstants from '../constants/SenateConstants';
+import Settings from '../data/settings.json';
 
 module.exports = {
-  getMember: function(zip_code) {
+  getMember: function(zipCode, lng) {
     // Check if there was an error parsing zip code
-    if (zip_code === 'error') {
+    if (zipCode === 'error') {
       SenateServerActions.getDetails('error');
     } else {
-      const apikey = '4f501d505d514b85a01f39d4ceb9a353';
-      let api;
-      // Decipher whether user passed a State or a zip code
-      if (isNaN(zip_code)) {
-        api = 'https://congress.api.sunlightfoundation.com/legislators?state=' + zip_code + '&apikey=' + apikey;
-      } else {
-        api = 'https://congress.api.sunlightfoundation.com/legislators/locate?zip=' + zip_code + '&apikey=' + apikey;
-      }
-      // Request Sunlight Foundation API to get further details about congress person
-      // When details have been retrieved call SenateServerActions w. response body object
+      const bill = 'https://congress.api.sunlightfoundation.com/votes?bill_id=' + Settings.bill_id + '&fields=voter_ids&apikey=' + SenateConstants.API_KEY;
       request
-      .get(api)
+      .get(bill)
       .set('Accept', 'application/json')
       .end(function(err, res) {
         if (err) return console.error(err);
-
-        let senators = res.body.results.filter(function(senator) {
-          if((senator.chamber === 'senate') && (votedFor.indexOf(senator.bioguide_id)) > -1) {
-            return senator
-          }
-        });
-
-        if (res.body.results.length === 0) {
-          SenateServerActions.getDetails('error');
-        } else if (senators.length > 0) {
-          SenateServerActions.getDetails(senators);
-        } else {
-          SenateServerActions.getRandomMember();
-        }
+        getMemberDetails(zipCode, lng, res.body.results[0].voter_ids);
       });
     }
   }
+};
+
+const getMemberDetails = function(zipCode, lng, voters) {
+  const url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${zipCode}&longitude=${lng}&apikey=${SenateConstants.API_KEY}`: `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${zipCode}&apikey=${SenateConstants.API_KEY}`,
+    {bill_id, vote_favor} = Settings;
+
+  request
+  .get(url)
+  .set('Accept', 'application/json')
+  .end(function(err, res) {
+    if (err) return console.error(err);
+    const senators = res.body.results.filter(function(senator) {
+      const filter = bill_id[0] === 's' ? voters[senator.bioguide_id] === vote_favor : true;
+      if (senator.chamber[0] === bill_id[0] && filter && senator.bioguide_id in voters) {
+        senator.voted = voters[senator.bioguide_id];
+        senator.full_name = senator.middle_name === null ? `${senator.first_name} ${senator.last_name}` : `${senator.first_name} ${senator.middle_name} ${senator.last_name}`;
+        senator.gender_full = senator.gender === 'M' ? 'man' : 'woman';
+        senator.age = (new Date().getFullYear() - senator.birthday.substring(0, 4));
+        return senator;
+      }
+    });
+    if (res.body.results.length === 0) {
+      SenateServerActions.getDetails('error');
+    } else if (senators.length > -1) {
+      SenateServerActions.getDetails(senators, senators.length);
+    }
+  });
 };

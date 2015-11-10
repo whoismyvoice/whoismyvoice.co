@@ -205,6 +205,11 @@
     left: 8px;
     padding: 10% 0;
 
+    &.several {
+      border: 0;
+      padding: 4% 0;
+    }
+
     @media screen 
     and (min-width: 421px)
     and (max-width: 799px) {
