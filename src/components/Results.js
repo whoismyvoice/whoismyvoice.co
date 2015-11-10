@@ -18,7 +18,8 @@ const Results = React.createClass({
     numRep: React.PropTypes.number,
     representatives: React.PropTypes.array,
     vote_status: React.PropTypes.string,
-    zip_code: React.PropTypes.string
+    zip_code: React.PropTypes.string,
+    initialize: React.PropTypes.func
   },
 	render() {
 		const {
@@ -29,14 +30,15 @@ const Results = React.createClass({
             numRep,
             representatives,
             backgroundClasses,
-            first_reps
+            first_reps,
+            initialize
           } = this.props,
 
           {no_cosponsor_title, no_cosponsor_desc} = Settings.senate,
           {chamber} = Settings;
 
     if (chamber === 'senate' && numRep === 0) {
-      return <div className={backgroundClasses}>
+      return <div className={backgroundClasses} id="fullpage">
         <FadedBG color="red" />
         <div className="section block two">
           <p className="impact">

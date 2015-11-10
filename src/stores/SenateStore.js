@@ -87,6 +87,7 @@ AppDispatcher.register(function(payload) {
       _store.current_screen = 0;
       _store.current_senator = 0;
       _store.second_search = false;
+      _store.number_representatives = null;
 
       SenateStore.emit(CHANGE_EVENT);
       break;

@@ -69,7 +69,6 @@ const Home = React.createClass({
           MEMBER = Settings.chamber === 'senate' ? 'senator' : 'representative',
           FIRST_REPS = this.state.im_first_reps,
           FIRST_REPS_NUM = this.state.im_first_reps !== null ? this.state.im_first_reps.length : 0,
-
           {single_voted_for, single_voted_against} = Settings.house,
           {cosponsor_post_text, impact_text, represent} = Settings.senate,
           {chamber, bill_desc} = Settings;
@@ -92,13 +91,13 @@ const Home = React.createClass({
       this._initializeFullpage();
     } else {
       VOTE_STATUS = 'You have not yet searched for a member';
+      this._destroyFullpage();
     }
 
     const blockClasses = cx(
       ['block', 'one'],
       {'hide': DID_SEARCH},
       {'hide-double': DID_SEARCH && SECOND_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house'},
-      {'hidden': NUMBER_REPRESENTATIVES === 1 && !SECOND_SEARCH || chamber == 'senate'}
     );
 
     const backgroundClasses = cx(
@@ -110,6 +109,7 @@ const Home = React.createClass({
     const sectionClasses = cx(
       ['section-block'],
       {'hide': NUMBER_REPRESENTATIVES === 1 && !SECOND_SEARCH || chamber === 'senate'},
+      {'hidden': NUMBER_REPRESENTATIVES === 1 && SECOND_SEARCH || chamber == 'senate'}
     );
 
     const containerClasses = cx(
@@ -123,7 +123,7 @@ const Home = React.createClass({
       {'full': DID_SEARCH}
     );
 
-    return  <div className={containerClasses}>
+    return <div className={containerClasses}>
       <WhiteBorder />
       <div className="overlay">
         This site is only supported in portrait mode. Please turn your phone.
