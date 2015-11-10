@@ -15,7 +15,8 @@ let _store = {
   current_senator: null,
   number_representatives: null,
   representatives: null,
-  second_search: null
+  second_search: null,
+  im_first_reps: null
 };
 
 // Define the public event listeners and getters that
@@ -52,6 +53,7 @@ AppDispatcher.register(function(payload) {
           _store.representatives = action.response || null;
           _store.error = false;
           _store.did_search = true;
+          _store.im_first_reps = action.response;
         } else if (action.numRep === 1) {
           const details = action.response[0];
           _store.state_full = details.state_name || null;

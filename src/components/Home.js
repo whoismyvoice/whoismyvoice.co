@@ -68,6 +68,7 @@ const Home = React.createClass({
           CURRENT_MEMBER = this.state.current_senator,
           SECOND_SEARCH = this.state.second_search,
           MEMBER = Settings.chamber === 'senate' ? 'senator' : 'representative',
+          FIRST_REPS = this.state.im_first_reps,
 
           // Destructured vars for Settings
           {single_voted_for, single_voted_against} = Settings.house,
@@ -136,6 +137,7 @@ const Home = React.createClass({
         	/>
         </div>
         <Results
+          first_reps={FIRST_REPS}
           representatives={REPRESENTATIVES}
           numRep={NUMBER_REPRESENTATIVES}
           backgroundClasses={backgroundClasses}

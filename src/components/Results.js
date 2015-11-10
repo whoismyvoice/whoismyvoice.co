@@ -21,9 +21,19 @@ const Results = React.createClass({
     zip_code: React.PropTypes.string
   },
 	render() {
-		const {vote_status, impact, current_member, zip_code, numRep, representatives, backgroundClasses} = this.props,
-          {chamber} = Settings,
-          {no_cosponsor_title, no_cosponsor_desc} = Settings.senate;
+		const {
+            vote_status,
+            impact,
+            current_member,
+            zip_code,
+            numRep,
+            representatives,
+            backgroundClasses,
+            first_reps
+          } = this.props,
+
+          {no_cosponsor_title, no_cosponsor_desc} = Settings.senate,
+          {chamber} = Settings;
 
     if (chamber === 'senate' && numRep === 0) {
       return <div className={backgroundClasses} id="fullpage">
@@ -40,6 +50,32 @@ const Results = React.createClass({
           <ArrowDown
             color="red-text"
             scroll={"true"}
+          />
+        </div>
+      </div>;
+    } else if (chamber === 'house' && first_reps !== null) {
+      return <div className={backgroundClasses} id="fullpage">
+        <div className="section block two">
+          <Circle
+            style="wide"
+            desc={vote_status}
+            numRep={first_reps.length}
+            representatives={first_reps}
+          />
+          <CongressmanGroup
+            representatives={first_reps}
+            zip_code={zip_code}
+          />
+        </div>
+        <div className="section block three">
+          <Circle
+            style="wider"
+            hide={true}
+            desc={impact}
+          />
+          <SupportActions
+            representatives={first_reps}
+            currentSenator={current_member}
           />
         </div>
       </div>;
