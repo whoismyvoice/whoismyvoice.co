@@ -2,15 +2,15 @@
 
 body {
   margin: 0 auto;
-  font-family: 'Helvetica Neue', Helvetica;
-  background-color: $light-orange;
-  line-height: 1.5;
+  overflow-x: hidden;
   min-height: 100%!important;
   height: 100%;
-  overflow-x: hidden;
   width: 100%;
+  font-family: 'Helvetica Neue', Helvetica;
+  background-color: $light-orange;
   font-size: 100%;
   font-size: 13px;
+  line-height: 1.5;
 }
 
 a {
@@ -25,6 +25,19 @@ ul {
   li {
     line-height: 1.5;
   }
+}
+
+button, input {
+  -webkit-focus-ring-color: none;
+  outline:none;
+}
+
+::selection {
+  text-shadow: 2px 2px 1px #B43092;
+}
+
+::-moz-selection {
+  text-shadow: 1px 1px 1px #B43092;
 }
 
 // MIXINS (TRANSITIONS)
@@ -46,63 +59,63 @@ ul {
 }
 
 .black-line {
-  width: 4px;
-  margin: 0 auto;
+  @include drawIn(420px);
   z-index: 1;
-  height: 420px;
-  top: 68px;
   position: fixed;
+  margin: 0 auto;
+  top: 68px;
   left: 0;
   right: 0;
+  width: 4px;
+  height: 420px;
   background-color: $black;
-  @include drawIn(420px);
 
   @media screen
   and (min-width: 421px)
   and (max-width: 499px) {
-    height: 270px;
     @include drawIn(270px);
+    height: 270px;
   }
 
   @media screen
   and (min-width: 500px)
   and (max-width: 649px) {
-    height: 290px;
     @include drawIn(290px);
+    height: 290px;
   }
 
   @media screen
   and (min-width: 650px)
   and (max-width: 899px) {
-    height: 400px;
     @include drawIn(400px);
+    height: 400px;
   }
 
   @media screen
   and (min-width: 900px)
   and (max-width: 1000px) {
-    height: 440px;
     @include drawIn(440px);
+    height: 440px;
   }
 
   @media screen
   and (min-width: 1000px)
   and (max-width: 1199px) {
-    height: 490px;
     @include drawIn(490px);
+    height: 490px;
 
     @media screen
     and (max-height: 680px) {
-      height: 400px;
       @include drawIn(400px);
+      height: 400px;
     }
   }
 
   @media screen
   and (min-width: 1200px)
   and (max-width: 1399px) {
-    height: 500px;
     @include drawIn(500px);
+    height: 500px;
 
     @supports (overflow:-webkit-marquee)
     and (justify-content:inherit) {
@@ -113,15 +126,15 @@ ul {
   @media screen
   and (min-width: 1400px)
   and (max-width: 1550px) {
-    height: 550px;
     @include drawIn(550px);
+    height: 550px;
   }
 
   @media screen
   and (min-width: 1551px)
   and (max-width: 1700px) {
-    height: 600px;
     @include drawIn(600px);
+    height: 600px;
 
     @media screen and(min-height: 700px)
     and (max-height: 850px) {
@@ -136,8 +149,8 @@ ul {
   @media screen
   and (min-width: 1701px)
   and (max-width: 1900px) {
-    height: 570px;
     @include drawIn(570px);
+    height: 570px;
   }
 
   &.menu {
@@ -145,42 +158,42 @@ ul {
     height: 65%;
 
     &:before {
-      width: 30px;
-      height: 3px;
-      background-color: $black;
-      content:'';
       position: absolute;
       top: 0;
       left: -13px;
       right: auto;
+      width: 30px;
+      height: 3px;
+      background-color: $black;
+      content:'';
     }
 
     @media screen
     and (min-width: 600px)
     and (max-width: 699px) {
-      height: 340px;
       @include drawIn(340px);
+      height: 340px;
     }
 
     @media screen
     and (min-width: 700px)
     and (max-width: 769px) {
-      height: 380px;
       @include drawIn(380px);
+      height: 380px;
     }
 
     @media screen
     and (min-width: 770px)
     and (max-width: 999px) {
-      height: 400px;
       @include drawIn(400px);
+      height: 400px;
     }
 
     @media screen
     and (min-width: 1000px)
     and (max-width: 1099px) {
-      height: 440px;
       @include drawIn(440px);
+      height: 440px;
 
       @media screen
       and (min-height: 400px)
@@ -192,24 +205,24 @@ ul {
     @media screen
     and (min-width: 1100px)
     and (max-width: 1399px) {
-      height: 465px;
       @include drawIn(465px);
+      height: 465px;
 
       @supports (overflow:-webkit-marquee)
       and (justify-content:inherit) {
-        height: 475px;
         @include drawIn(475px);
+        height: 475px;
       }
 
       @media screen
       and (max-height: 680px) {
-        height: 390px;
         @include drawIn(390px);
+        height: 390px;
 
         @supports (overflow:-webkit-marquee)
         and (justify-content:inherit) {
-          height: 430px!important;
           @include drawIn(430px);
+          height: 430px!important;
         }
       }
     }
@@ -217,8 +230,8 @@ ul {
     @media screen
     and (min-width: 1400px)
     and (max-width: 1550px) {
-      height: 465px;
       @include drawIn(465px);
+      height: 465px;
 
       @media screen and (min-height: 850px) {
         @include drawIn(480px);
@@ -233,15 +246,15 @@ ul {
     @media screen
     and (min-width: 1551px)
     and (max-width: 1599px) {
-      height: 520px;
       @include drawIn(520px);
+      height: 520px;
     }
 
     @media screen
     and (min-width: 1599px)
     and (max-width: 1700px) {
-      height: 540px;
       @include drawIn(540px);
+      height: 540px;
 
       @media screen and (min-height: 850px) {
         @include drawIn(545px);
@@ -261,8 +274,8 @@ ul {
     and (max-device-width: 1024px)
     and (orientation: landscape)
     and (-webkit-min-device-pixel-ratio: 1) {
-      height: 500px;
       @include drawIn(500px);
+      height: 500px;
     }
 
     @media screen and (max-width: $iphone6) {
@@ -270,32 +283,32 @@ ul {
     }
 
     @media screen and (max-width: $iphone5-min) {
-      height: 280px;
       @include drawIn(280px);
+      height: 280px;
     }
   }
 
   @media screen and (max-width: $iphone6) {
-    height: 350px;
     @include drawIn(350px);
     top: 48px;
+    height: 350px;
   }
 
   @media screen and (max-width: $iphone6)
   and (-webkit-min-device-pixel-ratio: 2) {
-    height: 370px;
     @include drawIn(370px);
     top: 48px;
+    height: 370px;
   }
 
   @media screen and (max-width: 361px) {
-    height: 350px;
     @include drawIn(350px);
+    height: 350px;
   }
 
   @media screen and (max-width: $iphone5-min) {
-    height: 310px;
     @include drawIn(310px);
+    height: 310px;
   }
 
   @media only screen
@@ -303,8 +316,8 @@ ul {
   and (max-device-width: 1024px)
   and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 1) {
-    height: 60%;
     @include drawIn(60%);
+    height: 60%;
   }
 
   @media only screen
@@ -312,8 +325,8 @@ ul {
   and (max-device-width: 1024px)
   and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 1) {
-    height: 640px;
     @include drawIn(640px);
+    height: 640px;
   }
 
   @media only screen
@@ -321,24 +334,24 @@ ul {
   and (max-device-width: 1366px)
   and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 1) {
-    height: 765px;
     @include drawIn(765px);
+    height: 765px;
   }
 }
 
 .black-top-line {
-  width: 4px;
-  display: block;
-  margin: 0 auto;
-  background-color: $black;
-  height: 50px;
-  position: fixed;
+  @include fade(1s);
   z-index: 10;
+  position: fixed;
+  display: block;
   left: 0;
   top: 0;
   right: 0;
+  margin: 0 auto;
+  width: 4px;
+  height: 50px;
+  background-color: $black;
   opacity: 1;
-  @include fade(1s);
 
   &.hide-it {
     opacity: 0;
@@ -355,15 +368,15 @@ ul {
 }
 
 .block {
-  width: 99vw;
-  text-align: center;
-  margin: 0 auto;
-  display: block;
-  top: 0;
+  @include transition(1s);
   position: relative;
+  top: 0;
+  display: block;
+  margin: 0 auto;
+  width: 99vw;
   height: 88.5vh;
   min-height: 100%;
-  @include transition(1s);
+  text-align: center;
 
   &.one {
     padding-top: 20px;
@@ -405,32 +418,33 @@ ul {
       }
     }
   }
+
   &.hide {
-    top: -98vh;
     @include transition(1s);
+    top: -98vh;
   }
 
   &.hide-double {
-    top: -196vh;
     @include transition(1s);
+    top: -196vh;
   }
 }
 
 .second-wrapper {
-  top: 0;
-  opacity: 0;
-  height: 195.5vh;
-  position: relative;
   @include transition(1s);
   z-index: 1;
+  position: relative;
+  top: 0;
+  height: 195.5vh;
+  opacity: 0;
 
   &.short {
     height: 100vh;
   }
 
   &.move-up {
-    opacity: 1;
     @include transition(1s);
+    opacity: 1;
   }
 
   @media only screen
@@ -451,9 +465,9 @@ ul {
 }
 
 #top, #bottom, #left, #right {
-  background: $white;
-  position: fixed;
   z-index: 9;
+  position: fixed;
+  background: $white;
 }
 
 #left, #right {
@@ -478,27 +492,14 @@ ul {
 #top { top: 0; }
 #bottom { bottom: 0; }
 
-button, input {
-  -webkit-focus-ring-color: none;
-  outline:none;
-}
-
-::selection {
-  text-shadow: 2px 2px 1px #B43092;
-}
-
-::-moz-selection {
-  text-shadow: 1px 1px 1px #B43092;
-}
-
 .page-block {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   min-height: 88.1vh;
   width: 100%;
-  text-align: center;
   padding-top: 6%;
-  justify-content: center;
+  text-align: center;
 
   @media screen and (max-width: $iphone6) {
     min-height: 60vh;
@@ -538,13 +539,13 @@ button, input {
 }
 
 .pageIntroduction, .pageDesc {
-  font-weight: bold;
-  font-size: 1.8em;
   flex: 1;
   align-self: center;
   width: 70%;
-  line-height: 1.8;
   margin-bottom: 5%;
+  font-weight: bold;
+  font-size: 1.8em;
+  line-height: 1.8;
 
   @media screen
   and (min-width: 1000px)
@@ -565,8 +566,8 @@ button, input {
   @media screen
   and (min-width: 1100px)
   and (max-width: 1338px) {
-    font-size: 1.4em;
     margin-bottom: 1%;
+    font-size: 1.4em;
 
     @media screen and (min-width:0\0) {
       margin-bottom: 11%;
@@ -594,10 +595,10 @@ button, input {
   }
 
   @media screen and (max-width: $iphone6) {
-    font-size: 1.2em;
-    width: 85%;
     margin-bottom: 1vh;
+    width: 85%;
     padding-bottom: 10%;
+    font-size: 1.2em;
   }
 
   @media screen and (max-width: 361px) {
@@ -618,9 +619,9 @@ button, input {
   and (max-device-width: 1024px)
   and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 1) {
+    margin-bottom: -2%;
     width: 90%;
     font-size: 1.6em;
-    margin-bottom: -2%;
   }
 
   @media only screen
@@ -628,10 +629,10 @@ button, input {
   and (max-device-width: 1024px)
   and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 1) {
-    width: 90%;
-    font-size: 1.6em;
     margin-bottom: 0%;
     margin-top: 4%;
+    width: 90%;
+    font-size: 1.6em;
   }
 
   a {
@@ -640,42 +641,42 @@ button, input {
 }
 
 .impact {
-  width: 70%;
   margin: 0 auto;
-  font-size: 1.8em;
-  background-color: $bright-red;
+  width: 70%;
   padding: 2%;
   color: $black;
   font-weight: bold;
+  font-size: 1.8em;
+  background-color: $bright-red;
 
   @media screen and (max-width: $iphone6)
   and (-webkit-min-device-pixel-ratio: 2) {
-    font-size: 1.2em;
-    width: 85%;
-    padding: 2vh;
     margin-top: 0;
     height: 330px;
+    width: 85%;
+    padding: 2vh;
+    font-size: 1.2em;
   }
 
   @media screen
   and (min-width: 421px)
   and (max-width: 700px) {
-    font-size: 1.2em;
     width: 85%;
+    font-size: 1.2em;
   }
 
   @media screen
   and (min-width: 701px)
   and (max-width: 900px) {
-    font-size: 1.4em;
     width: 85%;
+    font-size: 1.4em;
   }
 
   @media screen
   and (min-width: 901px)
   and (max-width: 1000px) {
-    font-size: 1.5em;
     width: 80%;
+    font-size: 1.5em;
   }
 
   @media screen
@@ -691,35 +692,35 @@ button, input {
   @media screen
   and (min-width: 1026px)
   and (max-width: 1300px) {
-    font-size: 1.6em;
     width: 75%;
+    font-size: 1.6em;
   }
 
   @media screen
   and (min-width: 1301px)
   and (max-width: 1500px) {
-    font-size: 1.6em;
     width: 70%;
+    font-size: 1.6em;
   }
 
   @media screen
   and (min-width: 1501px)
   and (max-width: 1700px){
-    font-size: 1.8em;
     width: 75%;
+    font-size: 1.8em;
   }
 
   @media screen and (max-device-width: 362px) {
-    font-size: 15px;
     height: 305px;
+    font-size: 15px;
   }
 
   @media screen and (max-width: $iphone5-min)
   and (-webkit-min-device-pixel-ratio: 2) {
+    margin-top: 0;
+    height: 235px;
     padding: 4vh;
     font-size: 1em;
-    height: 235px;
-    margin-top: 0;
   }
 
   @media only screen
@@ -738,10 +739,10 @@ button, input {
   and (max-device-width: 1024px)
   and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 1) {
+    margin-top: 2%;
     width: 90%;
     padding-top: 2%;
     font-size: 1.6em;
-    margin-top: 2%;
   }
 }
 
@@ -750,13 +751,13 @@ button, input {
 }
 
 .green {
-  background-color: $light-green!important;
   @include transition(0.5s);
+  background-color: $light-green!important;
 }
 
 .orange {
-  background-color: $light-orange;
   @include transition(0.5s);
+  background-color: $light-orange;
 
   .black-line {
     height: 48%;
@@ -797,24 +798,24 @@ button, input {
 }
 
 .blue {
-  background-color: $light-blue;
   @include transition(0.5s);
+  background-color: $light-blue;
 }
 
 .bright-green {
-  background-color: $bright-green;
   @include transition(0.5s);
+  background-color: $bright-green;
 }
 
 .bright-red {
-  background-color: $bright-red;
   @include transition(0.5s);
+  background-color: $bright-red;
 }
 
 .section-block {
+  display: block;
   height: 100vh;
   min-height: 100%;
-  display: block;
   width: 100%;
 
   &.hide {
@@ -827,9 +828,9 @@ button, input {
 }
 
 .overlay {
+  @include transition(1s);
   display: none;
   opacity: 0;
-  @include transition(1s);
 }
 
 @media only screen
@@ -838,21 +839,21 @@ and (-webkit-min-device-pixel-ratio: 2)
 and (orientation: landscape)
 and (min-aspect-ratio: 13/9) {
   .overlay {
-    font-family: Helvetica;
-    text-align: center;
-    align-self: center;
+    @include transition(1s);
+    z-index: 99;
     position: fixed;
-    width: 100%;
-    font-size: 1.3em;
-    padding-top: 45vh;
-    height: 100%;
+    display: block;
     top: 0;
     left: 0;
-    display: block;
-    z-index: 99;
+    width: 100%;
+    padding-top: 45vh;
+    height: 100%;
+    text-align: center;
+    align-self: center;
+    font-size: 1.3em;
     color: $white;
+    font-family: Helvetica;
     background-color: $black;
     opacity: 0.95;
-    @include transition(1s);
   }
 }

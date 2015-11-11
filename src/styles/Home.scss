@@ -2,19 +2,36 @@
 @import 'globals';
 
 h1 {
-  font-size: 60px;
-  font-weight: bold;
   margin-top: 0;
   margin-bottom: 0;
+  font-size: 60px;
+  font-weight: bold;
 }
 
 .container {
+  @include transition(1s);
+  z-index: 1;
 	width: 100vw;
 	height: 98.5vh;
 	overflow: hidden;
 	-webkit-overflow-scrolling: touch;
-	@include transition(1s);
-	z-index: 1;
+
+  &.full {
+    height: auto;
+    min-height: 98vh;
+    width: 99vw;
+  }
+
+  &.reveal {
+    @include transition(1s);
+    z-index: 1;
+    overflow: hidden;
+    width: 99.1vw;
+  }
+
+  &.visible {
+    overflow: visible;
+  }
 
 	@media screen and (max-width: $iphone6) {
 		height: 100vh;
@@ -45,21 +62,4 @@ h1 {
   and (-webkit-min-device-pixel-ratio : 3) {
     height: 89.5vh;
   }
-
-	&.full {
-		height: auto;
-		min-height: 98vh;
-		width: 99vw;
-	}
-
-	&.reveal {
-		overflow: hidden;
-		z-index: 1;
-		width: 99.1vw;
-		@include transition(1s);
-	}
-
-	&.visible {
-		overflow: visible;
-	}
 }

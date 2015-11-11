@@ -1,28 +1,28 @@
 @import 'variables';
 
 input {
+  z-index: 2;
+  position: relative;
+  margin: 2vh 0 0 0;
   width: 50%;
   max-width: 260px;
-  border: 3px solid $black;
   padding: 20px;
+  border: 3px solid $black;
   font-size: 1.2em;
   background-color: inherit;
   text-transform: capitalize;
   color: $black;
   font-weight: bold;
   text-align: center;
-  z-index: 2;
   opacity: 1;
   background-color: $light-green;
-  position: relative;
-  margin: 2vh 0 0 0;
   -webkit-appearance: none;
   -webkit-border-radius: 0;
 
   @media screen and (max-width: $iphone6) {
+    margin-top: 3vh;
     padding: 15px;
     font-size: 0.9em;
-    margin-top: 3vh;
   }
 
   @media screen

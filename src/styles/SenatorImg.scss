@@ -2,27 +2,27 @@
 @import 'globals';
 
 .senatorImg {
+  @include transition(0.5s);
+  z-index: 2;
+  position: relative;
+  left: 6px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-bottom: 0.5vh;
+  margin-top: 20px;
 	width: 9%;
 	height: 0;
+  margin: 0 auto;
 	padding: 4.5% 0;
-	margin: 0 auto;
 	border-radius: 50%;
 	overflow: hidden;
-	display: flex;
-	align-content: center;
-	justify-content: center;
-	position: relative;
-	z-index: 2;
-	left: 6px;
-	margin-bottom: 0.5vh;
-	margin-top: 20px;
 	opacity: 1;
-	@include transition(0.5s);
 
 	&.single {
 		margin-top: 20px;
 
-		@media screen 
+		@media screen
   	and (min-width: 1000px)
   	and (max-width: 1100px) {
   		margin-top: 40px;
@@ -32,13 +32,13 @@
       @media screen
       and (max-height: 550px) {
        margin-top: 10px;
+       margin-bottom: -10px;
        width: 8%;
        padding: 4% 0;
-       margin-bottom: -10px;
       }
     }
 
-    @media screen 
+    @media screen
   	and (min-width: 1101px)
   	and (max-width: 1299px) {
   		margin-top: 40px;
@@ -47,9 +47,9 @@
 
       @media screen
       and (max-height: 680px) {
+        margin-top: 15px;
         width: 10%;
         padding: 5% 0;
-        margin-top: 15px;
 
         @supports (-moz-appearance:meterbar) {
           margin-top: 20px;
@@ -62,7 +62,7 @@
       }
     }
 
-    @media screen 
+    @media screen
   	and (min-width: 1300px)
   	and (max-width: 1499px){
   		margin-bottom: 0;
@@ -92,54 +92,55 @@
       padding: 15% 0;
     }
 
-    @media screen 
+    @media screen
   	and (min-width: 1500px)
   	and (max-width: 1699px) {
   		margin-bottom: 0px;
   		margin-top: 40px;
     }
 
-    @media screen 
+    @media screen
   	and (min-width: 1700px) {
   		margin-top: 40px;
     }
 	}
 
 	@media screen and (max-width: $iphone6) {
-    width: 25%;
     left: 0;
-    padding: 12.5% 0;
     margin-bottom: 5px;
+    width: 25%;
+    padding: 12.5% 0;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 1) {
     width: 20%;
     padding: 10% 0;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: landscape) 
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 1) {
     width: 12%;
     padding: 6% 0;
   }
 
 	&.hide {
+    @include transition(0.5s);
 		display: none;
 		opacity: 0;
-		@include transition(0.5s);
+
 	}
 
 	img {
 		width: 100%;
+    align-self: center;
     filter: grayscale(1);
     -webkit-filter: grayscale(1);
-		align-self: center;
 	}
 }

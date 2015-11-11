@@ -2,6 +2,7 @@
 @import 'globals';
 
 .errorMsg {
+  @include transition(0.5s);
 	color: $red;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -9,7 +10,6 @@
 	position: relative;
 	padding: 0;
 	z-index: 2;
-	@include transition(0.5s);
 
 	@media screen and (max-width: $iphone6) {
 		font-size: 1em;
@@ -17,7 +17,7 @@
 	}
 
 	&.show {
+    @include transition(0.3s);
 		padding: 10px;
-		@include transition(0.3s);
 	}
 }

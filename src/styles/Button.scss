@@ -1,20 +1,15 @@
 @import 'variables';
 
 .button {
-  border: 3px solid $black;
-  padding: 12px;
+  z-index: 3;
+  position: relative;
   width: 220px;
-  background-color: inherit;
   margin-bottom: 10px;
+  background-color: inherit;
   font-weight: bold;
   color: $black;
-  position: relative;
-  z-index: 3;
-
-  @media screen and (max-width: $iphone6) {
-    padding: 10px;
-    font-size: 0.8em;
-  }
+  border: 3px solid $black;
+  padding: 12px;
 
   .text {
     text-transform: uppercase;
@@ -27,6 +22,11 @@
 
   &.hide {
     display: none;
+  }
+
+  @media screen and (max-width: $iphone6) {
+    padding: 10px;
+    font-size: 0.8em;
   }
 
   &.nav {
