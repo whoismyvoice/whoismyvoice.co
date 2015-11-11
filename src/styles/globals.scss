@@ -3,7 +3,7 @@
 body {
   margin: 0 auto;
   font-family: 'Helvetica Neue', Helvetica;
-  background-color: $bright-red;
+  background-color: $light-orange;
   line-height: 1.5;
   min-height: 100%!important;
   height: 100%;
@@ -29,7 +29,7 @@ ul {
 
 // MIXINS (TRANSITIONS)
 @mixin transition($time) {
-  -webkit-transition:all $time ease-in;
+  -webkit-transition:all $time linear;
   -moz-transition:all $time ease-in;
   -ms-transition:all $time ease-in;
   -o-transition:all $time ease-in;
@@ -57,21 +57,21 @@ ul {
   background-color: $black;
   @include drawIn(420px);
 
-  @media screen 
+  @media screen
   and (min-width: 421px)
   and (max-width: 499px) {
     height: 270px;
     @include drawIn(270px);
   }
 
-  @media screen 
+  @media screen
   and (min-width: 500px)
   and (max-width: 649px) {
     height: 290px;
     @include drawIn(290px);
   }
 
-  @media screen 
+  @media screen
   and (min-width: 650px)
   and (max-width: 899px) {
     height: 400px;
@@ -85,7 +85,7 @@ ul {
     @include drawIn(440px);
   }
 
-  @media screen 
+  @media screen
   and (min-width: 1000px)
   and (max-width: 1199px) {
     height: 490px;
@@ -98,7 +98,7 @@ ul {
     }
   }
 
-  @media screen 
+  @media screen
   and (min-width: 1200px)
   and (max-width: 1399px) {
     height: 500px;
@@ -110,14 +110,14 @@ ul {
     }
   }
 
-  @media screen 
+  @media screen
   and (min-width: 1400px)
   and (max-width: 1550px) {
     height: 550px;
     @include drawIn(550px);
   }
 
-  @media screen 
+  @media screen
   and (min-width: 1551px)
   and (max-width: 1700px) {
     height: 600px;
@@ -133,7 +133,7 @@ ul {
     }
   }
 
-  @media screen 
+  @media screen
   and (min-width: 1701px)
   and (max-width: 1900px) {
     height: 570px;
@@ -155,14 +155,14 @@ ul {
       right: auto;
     }
 
-    @media screen 
+    @media screen
     and (min-width: 600px)
     and (max-width: 699px) {
       height: 340px;
       @include drawIn(340px);
     }
 
-    @media screen 
+    @media screen
     and (min-width: 700px)
     and (max-width: 769px) {
       height: 380px;
@@ -176,7 +176,7 @@ ul {
       @include drawIn(400px);
     }
 
-    @media screen 
+    @media screen
     and (min-width: 1000px)
     and (max-width: 1099px) {
       height: 440px;
@@ -189,7 +189,7 @@ ul {
       }
     }
 
-    @media screen 
+    @media screen
     and (min-width: 1100px)
     and (max-width: 1399px) {
       height: 465px;
@@ -214,7 +214,7 @@ ul {
       }
     }
 
-    @media screen 
+    @media screen
     and (min-width: 1400px)
     and (max-width: 1550px) {
       height: 465px;
@@ -230,14 +230,14 @@ ul {
       }
     }
 
-    @media screen 
+    @media screen
     and (min-width: 1551px)
     and (max-width: 1599px) {
       height: 520px;
       @include drawIn(520px);
     }
 
-    @media screen 
+    @media screen
     and (min-width: 1599px)
     and (max-width: 1700px) {
       height: 540px;
@@ -248,7 +248,7 @@ ul {
       }
     }
 
-    @media screen 
+    @media screen
     and (min-width: 1700px){
       @supports (overflow:-webkit-marquee)
       and (justify-content:inherit) {
@@ -256,10 +256,10 @@ ul {
       }
     }
 
-    @media only screen 
-    and (min-device-width: 768px) 
-    and (max-device-width: 1024px) 
-    and (orientation: landscape) 
+    @media only screen
+    and (min-device-width: 768px)
+    and (max-device-width: 1024px)
+    and (orientation: landscape)
     and (-webkit-min-device-pixel-ratio: 1) {
       height: 500px;
       @include drawIn(500px);
@@ -298,28 +298,28 @@ ul {
     @include drawIn(310px);
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: landscape) 
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 1) {
     height: 60%;
     @include drawIn(60%);
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 1) {
     height: 640px;
     @include drawIn(640px);
   }
 
-  @media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (orientation: portrait) 
+  @media only screen
+  and (min-device-width: 1024px)
+  and (max-device-width: 1366px)
+  and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 1) {
     height: 765px;
     @include drawIn(765px);
@@ -368,19 +368,19 @@ ul {
   &.one {
     padding-top: 20px;
 
-    @media screen 
+    @media screen
     and (min-width: 300px)
     and (max-width: 419px) {
       padding-top: 30px;
     }
 
-    @media screen 
+    @media screen
     and (min-width: 420px)
     and (max-width: 699px) {
       padding-top: 80px;
     }
 
-    @media screen 
+    @media screen
     and (min-width: 700px)
     and (max-width: 1100px) {
       padding-top: 100px;
@@ -390,13 +390,13 @@ ul {
       padding-top: 60px;
     }
 
-    @media screen 
+    @media screen
     and (min-width: 1101px)
     and (max-width: 1400px) {
       padding-top: 90px;
     }
 
-    @media screen 
+    @media screen
     and (min-width: 1401px) {
       padding-top: 80px;
 
@@ -407,10 +407,12 @@ ul {
   }
   &.hide {
     top: -98vh;
+    @include transition(1s);
   }
 
   &.hide-double {
     top: -196vh;
+    @include transition(1s);
   }
 }
 
@@ -431,18 +433,18 @@ ul {
     @include transition(1s);
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 1) {
     top: -12vh;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: landscape) 
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 1) {
     top: -3vh;
   }
@@ -507,24 +509,24 @@ button, input {
     padding-top: 18%;
   }
 
-  @media screen 
+  @media screen
   and (min-width: 421px)
   and (max-width: 799px) {
     padding-top: 15%;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 1) {
     padding-top: 10%;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: landscape) 
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 1) {
     padding-top: 8%;
   }
@@ -544,15 +546,15 @@ button, input {
   line-height: 1.8;
   margin-bottom: 5%;
 
-  @media screen 
+  @media screen
   and (min-width: 1000px)
   and (max-width: 1099px){
     margin-bottom: 2%;
     font-size: 1.4em;
-    
+
     @supports (overflow:-webkit-marquee)
     and (justify-content:inherit) {
-      margin-bottom: 1%;   
+      margin-bottom: 1%;
     }
 
     @media screen and (min-width:0\0) {
@@ -560,7 +562,7 @@ button, input {
     }
   }
 
-  @media screen 
+  @media screen
   and (min-width: 1100px)
   and (max-width: 1338px) {
     font-size: 1.4em;
@@ -571,7 +573,7 @@ button, input {
     }
   }
 
-  @media screen 
+  @media screen
   and (min-width: 1339px)
   and (max-width: 1500px) {
     margin-bottom: 2%;
@@ -582,7 +584,7 @@ button, input {
     }
   }
 
-  @media screen 
+  @media screen
   and (min-width: 1501px) {
     margin-bottom: 1%;
 
@@ -611,20 +613,20 @@ button, input {
     font-size: 1em;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: landscape) 
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 1) {
     width: 90%;
     font-size: 1.6em;
     margin-bottom: -2%;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 1) {
     width: 90%;
     font-size: 1.6em;
@@ -655,28 +657,28 @@ button, input {
     height: 330px;
   }
 
-  @media screen 
+  @media screen
   and (min-width: 421px)
   and (max-width: 700px) {
     font-size: 1.2em;
     width: 85%;
   }
 
-  @media screen 
+  @media screen
   and (min-width: 701px)
   and (max-width: 900px) {
     font-size: 1.4em;
     width: 85%;
   }
 
-  @media screen 
+  @media screen
   and (min-width: 901px)
   and (max-width: 1000px) {
     font-size: 1.5em;
     width: 80%;
   }
 
-  @media screen 
+  @media screen
   and (min-width: 1000px)
   and (max-width: 1025px) {
     width: 85%;
@@ -686,21 +688,21 @@ button, input {
     }
   }
 
-  @media screen 
+  @media screen
   and (min-width: 1026px)
   and (max-width: 1300px) {
     font-size: 1.6em;
     width: 75%;
   }
 
-  @media screen 
+  @media screen
   and (min-width: 1301px)
   and (max-width: 1500px) {
     font-size: 1.6em;
     width: 70%;
   }
 
-  @media screen 
+  @media screen
   and (min-width: 1501px)
   and (max-width: 1700px){
     font-size: 1.8em;
@@ -720,10 +722,10 @@ button, input {
     margin-top: 0;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 1) {
     width: 90%;
     padding: 2%;
@@ -731,10 +733,10 @@ button, input {
     font-size: 1.6em;
   }
 
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: landscape) 
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 1) {
     width: 90%;
     padding-top: 2%;
@@ -759,18 +761,18 @@ button, input {
   .black-line {
     height: 48%;
 
-    @media only screen 
-    and (min-device-width: 768px) 
-    and (max-device-width: 1024px) 
-    and (orientation: portrait) 
+    @media only screen
+    and (min-device-width: 768px)
+    and (max-device-width: 1024px)
+    and (orientation: portrait)
     and (-webkit-min-device-pixel-ratio: 1) {
       height: 65.5%;
     }
 
-    @media only screen 
-    and (min-device-width: 768px) 
-    and (max-device-width: 1024px) 
-    and (orientation: landscape) 
+    @media only screen
+    and (min-device-width: 768px)
+    and (max-device-width: 1024px)
+    and (orientation: landscape)
     and (-webkit-min-device-pixel-ratio: 1) {
       height: 60%;
     }
@@ -783,10 +785,10 @@ button, input {
   .black-line {
     height: 65%;
 
-    @media only screen 
-    and (min-device-width: 768px) 
-    and (max-device-width: 1024px) 
-    and (orientation: landscape) 
+    @media only screen
+    and (min-device-width: 768px)
+    and (max-device-width: 1024px)
+    and (orientation: landscape)
     and (-webkit-min-device-pixel-ratio: 1) {
       height: 57%;
     }

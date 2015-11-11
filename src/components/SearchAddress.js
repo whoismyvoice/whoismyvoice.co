@@ -14,7 +14,6 @@ const SearchAddress = React.createClass({
       placeholder: 'Enter Street Name',
 		};
 	},
-
 	_handleChange: function(event) {
     this.setState({
       address: event.target.value,
@@ -22,14 +21,12 @@ const SearchAddress = React.createClass({
       placeholder: 'Enter Street Name'
     });
   },
-
   _handleFocus: function() {
     this.setState({
       placeholder: '',
       error: false
     });
   },
-
   _handleBlur: function() {
     if (this.state.address === '') {
       this.setState({
@@ -37,7 +34,6 @@ const SearchAddress = React.createClass({
       });
     }
   },
-
   _handleEnter: function(e) {
     if (e.keyCode === 13) {
       if (this.state.address.length < 4) {
@@ -47,11 +43,12 @@ const SearchAddress = React.createClass({
           address: ''
         });
       } else {
-        SenateActions.fetchSpecificMember(this.state.address, this.props.zip_code);
         this.setState({
           error: false,
-          address: '',
+          placeholder: 'Enter Street Name',
+          address: ''
         });
+        SenateActions.fetchSpecificMember(this.state.address, this.props.zip_code);
       }
     }
   },
@@ -93,6 +90,7 @@ const SearchAddress = React.createClass({
   		<input
         className={`${inputClasses} ${this.props.color}`}
   			type="text"
+        value={this.state.address}
   			placeholder={this.state.placeholder}
   			onChange={this._handleChange}
   			onKeyDown={this._handleEnter}

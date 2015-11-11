@@ -35,7 +35,7 @@ const getMemberDetails = (zipCode, lng, voters) => {
   .set('Accept', 'application/json')
   .end((err, res) => {
     if (err) return console.error(err);
-    const senators = res.body.results.filter((senator) => {
+    const senators = res.body.results.filter(senator => {
       const filter = bill_id[0] === 's' ? voters[senator.bioguide_id] === vote_favor : true;
       if (senator.chamber[0] === bill_id[0] && filter && senator.bioguide_id in voters) {
         senator.voted = voters[senator.bioguide_id];
