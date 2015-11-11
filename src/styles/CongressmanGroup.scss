@@ -3,8 +3,13 @@
 .senatorWrapper {
 	width: 90%;
 	margin: 0 auto;
+  margin-top: 30px;
 	position: relative;
 	background-color: $light-orange;
+
+  &.several {
+    margin-top: 0;
+  }
 
 	@media screen and (max-width: $iphone6) {
 		width: 85%;
@@ -16,23 +21,23 @@
     width: 95%;
   }
 
-	@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
+	@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 1) {
     width: 100%;
   }
 
-	@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: landscape) 
+	@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 1) {
     width: 65%;
   }
 
-  @media screen 
+  @media screen
   and (min-width: 1000px)
   and (max-width: 1199px) {
 
@@ -48,8 +53,6 @@
 	display: inline-block;
 
 	&:first-of-type {
-		margin-left: 2%;
-
 		@media screen and (max-width: $iphone6) {
     	margin-left: 5%;
   	}
@@ -58,23 +61,23 @@
       margin-left: 6.5%;
     }
 
-  	@media only screen 
-    and (min-device-width: 768px) 
-    and (max-device-width: 1024px) 
-    and (orientation: portrait) 
+  	@media only screen
+    and (min-device-width: 768px)
+    and (max-device-width: 1024px)
+    and (orientation: portrait)
     and (-webkit-min-device-pixel-ratio: 1) {
       margin-left: 0%;
     }
 
-    @media only screen 
-    and (min-device-width: 768px) 
-    and (max-device-width: 1024px) 
-    and (orientation: landscape) 
+    @media only screen
+    and (min-device-width: 768px)
+    and (max-device-width: 1024px)
+    and (orientation: landscape)
     and (-webkit-min-device-pixel-ratio: 1) {
       margin-left: 0%;
     }
 
-    @media screen 
+    @media screen
   	and (min-width: 1400px)
   	and (max-width: 1500px)
   	and (-webkit-min-device-pixel-ratio: 1) {
@@ -97,19 +100,19 @@
 		width: 40%;
 		padding: 20% 0;
 
-		@media only screen 
-  		and (min-device-width: 768px) 
-  		and (max-device-width: 1024px) 
-  		and (orientation: portrait) 
+		@media only screen
+  		and (min-device-width: 768px)
+  		and (max-device-width: 1024px)
+  		and (orientation: portrait)
   		and (-webkit-min-device-pixel-ratio: 1) {
     		width: 40%;
     		padding: 20% 0;
   		}
 
-  		@media only screen 
-  		and (min-device-width: 768px) 
-  		and (max-device-width: 1024px) 
-  		and (orientation: landscape) 
+  		@media only screen
+  		and (min-device-width: 768px)
+  		and (max-device-width: 1024px)
+  		and (orientation: landscape)
   		and (-webkit-min-device-pixel-ratio: 1) {
     		width: 40%;
     		padding: 20% 0;
@@ -121,7 +124,7 @@
 			margin-bottom: 0;
 		}
 
-    @media screen 
+    @media screen
     and (min-width: 1000px)
     and (max-width: 1199px) {
 
@@ -131,6 +134,10 @@
       }
     }
 	}
+
+  .arrowDown {
+    left: 0.8%;
+  }
 
 	.senatorName {
 		width: 100%;
@@ -164,10 +171,10 @@
         font-size: 10px;
       }
 
-			@media only screen 
-  		and (min-device-width: 768px) 
-  		and (max-device-width: 1024px) 
-  		and (orientation: landscape) 
+			@media only screen
+  		and (min-device-width: 768px)
+  		and (max-device-width: 1024px)
+  		and (orientation: landscape)
   		and (-webkit-min-device-pixel-ratio: 1) {
     		font-size: 1.1em;
   		}
@@ -209,18 +216,18 @@
 		height: 115px;
 		content: '';
 
-		@media only screen 
-   	and (min-device-width: 768px) 
-    and (max-device-width: 1024px) 
-    and (orientation: portrait) 
+		@media only screen
+   	and (min-device-width: 768px)
+    and (max-device-width: 1024px)
+    and (orientation: portrait)
     and (-webkit-min-device-pixel-ratio: 1) {
       left: 13px;
     }
 
-    @media only screen 
-    and (min-device-width: 1024px) 
-    and (max-device-width: 1366px) 
-    and (orientation: portrait) 
+    @media only screen
+    and (min-device-width: 1024px)
+    and (max-device-width: 1366px)
+    and (orientation: portrait)
     and (-webkit-min-device-pixel-ratio: 1) {
       left: 15px;
     }
