@@ -29,12 +29,12 @@ const SenateStore = ObjectAssign( {}, EventEmitter.prototype, {
   removeChangeListener: function(callback) {
     this.removeListener(CHANGE_EVENT, callback);
   },
-  getMember: function() {
+  getMember: () => {
     return _store;
   }
 });
 
-AppDispatcher.register(function(payload) {
+AppDispatcher.register(payload => {
   const action = payload.action;
   switch (action.actionType) {
     case AppConstants.FIND_MEMBER:

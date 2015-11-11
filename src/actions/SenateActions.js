@@ -6,7 +6,7 @@ import CongressUtils from '../utils/CongressUtils';
 module.exports = {
   // Pass zip_code value from SearchInput and identify latitude and longitude for zip code
   // latlng is needed in order for Sunlight Foundation to identify correct congress person
-	fetchDistricts: function(ZIP_CODE) {
+	fetchDistricts: ZIP_CODE => {
 		AppDispatcher.handleViewAction({
 			actionType: SenateConstants.FIND_MEMBER,
       zip_code: ZIP_CODE
@@ -14,7 +14,7 @@ module.exports = {
     CongressUtils.getMember(ZIP_CODE);
   },
 
-  fetchSpecificMember: function(ADDRESS, ZIP) {
+  fetchSpecificMember: (ADDRESS, ZIP) => {
     AppDispatcher.handleViewAction({
       actionType: SenateConstants.FIND_SPECIFIC_MEMBER,
       address: ADDRESS,
@@ -25,7 +25,7 @@ module.exports = {
     request
     .get(url)
     .set('Accept', 'application/json')
-    .end(function(err, res) {
+    .end((err, res) => {
       if (err) return console.error(err);
       if (res.body.results.length === 0) {
         CongressUtils.getMember('error');
@@ -36,7 +36,7 @@ module.exports = {
       }
     });
   },
-  flush: function() {
+  flush: () => {
     AppDispatcher.handleViewAction({
       actionType: SenateConstants.FLUSH_STORE
     });

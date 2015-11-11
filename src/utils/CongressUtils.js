@@ -4,7 +4,7 @@ import SenateConstants from '../constants/SenateConstants';
 import Settings from '../data/settings.json';
 
 module.exports = {
-  getMember: function(zipCode, lng) {
+  getMember: (zipCode, lng) => {
     // Check if there was an error parsing zip code
     if (zipCode === 'error') {
       SenateServerActions.getDetails('error');
@@ -13,7 +13,7 @@ module.exports = {
       request
       .get(bill)
       .set('Accept', 'application/json')
-      .end(function(err, res) {
+      .end((err, res) => {
         if (err) return console.error(err);
         if(res.body.results.length === 0) {
           SenateServerActions.getDetails('error');
@@ -25,7 +25,7 @@ module.exports = {
   }
 };
 
-const getMemberDetails = function(zipCode, lng, voters) {
+const getMemberDetails = (zipCode, lng, voters) => {
   const {API_KEY} = SenateConstants,
         url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${zipCode}&longitude=${lng}&apikey=${API_KEY}`: `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${zipCode}&apikey=${API_KEY}`,
         {bill_id, vote_favor} = Settings;
@@ -33,9 +33,9 @@ const getMemberDetails = function(zipCode, lng, voters) {
   request
   .get(url)
   .set('Accept', 'application/json')
-  .end(function(err, res) {
+  .end((err, res) => {
     if (err) return console.error(err);
-    const senators = res.body.results.filter(function(senator) {
+    const senators = res.body.results.filter((senator) => {
       const filter = bill_id[0] === 's' ? voters[senator.bioguide_id] === vote_favor : true;
       if (senator.chamber[0] === bill_id[0] && filter && senator.bioguide_id in voters) {
         senator.voted = voters[senator.bioguide_id];

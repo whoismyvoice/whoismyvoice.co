@@ -16,7 +16,7 @@ import WhiteBorder from './WhiteBorder';
 import style from './../styles/Home.scss';
 
 const Home = React.createClass({
-  getInitialState: function() {
+  getInitialState: () => {
     return  SenateStore.getMember();
   },
   componentDidMount: function() {
@@ -32,7 +32,7 @@ const Home = React.createClass({
   _handleChange: function() {
     this.setState(SenateStore.getMember());
   },
-  _initializeFullpage: function() {
+  _initializeFullpage: () => {
     $('#fullpage').fullpage({
       navigation: false,
       showActiveTooltip: false,
@@ -48,12 +48,12 @@ const Home = React.createClass({
       controlArrows: false,
       verticalCentered: false,
       resize: true,
-      onLeave: function(index, nextIndex) {
+      onLeave: (index, nextIndex) => {
         ContainerActions.identifySection(nextIndex);
       }
     });
   },
-  _destroyFullpage: function() {
+  _destroyFullpage: () => {
     if ($.fn.fullpage.destroy !== undefined) {
       $.fn.fullpage.destroy('all');
     }
