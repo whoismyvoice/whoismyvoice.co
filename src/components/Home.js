@@ -104,8 +104,6 @@ class Home extends BaseComponent {
       this._destroyFullpage();
     }
 
-    console.log(STATE_FULL);
-
     const blockClasses = cx(
       ['block', 'one'],
       {'hide': DID_SEARCH && NUMBER_REPRESENTATIVES < 4},
