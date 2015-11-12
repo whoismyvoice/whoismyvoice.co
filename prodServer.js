@@ -5,15 +5,17 @@ import Settings from './models/settings';
 import defaultSettings from './defaultSettings';
 import config from './config';
 
-// Save default Settings on start up
-const defSet = new Settings(defaultSettings);
+mongoose.connect(config.database);
 
-defSet.save(function (err, defSet) {
-  if(err) return console.error(err);
-  console.info("Added default settings");
+mongoose.connection.on('open', function() {
+  mongoose.connection.db.dropDatabase();
+  const defSet = new Settings(defaultSettings);
+  defSet.save(function (err, defSet) {
+    if(err) return console.error(err);
+    console.info("Added default settings");
+  });
 });
 
-mongoose.connect(config.database);
 mongoose.connection.on('error', function() {
   console.info('Error: Could not connect to MongoDB. Did you forget to run `mongod`?');
 });
