@@ -2,6 +2,7 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 import SenateConstants from '../constants/SenateConstants';
 import request from 'superagent';
 import CongressUtils from '../utils/CongressUtils';
+import SenateStore from '../stores/SenateStore';
 
 module.exports = {
   // Pass zip_code value from SearchInput and identify latitude and longitude for zip code
@@ -12,6 +13,8 @@ module.exports = {
       zip_code: ZIP_CODE
 		});
     CongressUtils.getMember(ZIP_CODE);
+
+    console.log(SenateStore.getSettings());
   },
 
   fetchSpecificMember: (ADDRESS, ZIP, STATE) => {

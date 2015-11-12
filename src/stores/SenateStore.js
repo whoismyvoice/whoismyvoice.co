@@ -16,7 +16,8 @@ let _store = {
   number_representatives: null,
   representatives: null,
   second_search: null,
-  im_first_reps: null
+  im_first_reps: null,
+  settings: null
 };
 
 // Define the public event listeners and getters that
@@ -31,6 +32,9 @@ const SenateStore = ObjectAssign( {}, EventEmitter.prototype, {
   },
   getMember: () => {
     return _store;
+  },
+  getSettings: () => {
+    return _store.settings;
   }
 });
 
