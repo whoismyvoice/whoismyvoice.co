@@ -10,7 +10,7 @@ import HFCOverview from './HFCOverview';
 import FadedBG from './FadedBg';
 import CongressmanGroup from './Senator/CongressmanGroup';
 
-const Results = React.createClass({
+class Results extends React.Component {
 	render() {
 		const {
             vote_status,
@@ -73,7 +73,7 @@ const Results = React.createClass({
       </div>;
     }
   }
-});
+};
 
 Results.propTypes = {
   backgroundClasses: React.PropTypes.any,

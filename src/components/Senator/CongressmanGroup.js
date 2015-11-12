@@ -9,7 +9,7 @@ import cx from 'classnames';
 // Styles
 import style from './../../styles/CongressmanGroup.scss';
 
-const CongressmanGroup = React.createClass({
+class CongressmanGroup extends React.Component {
   render() {
     let searchClasses = 'search',
         wrapperClasses = 'senatorWrapper';
@@ -63,7 +63,7 @@ const CongressmanGroup = React.createClass({
       </div>
     </div>;
   }
-});
+};
 
 CongressmanGroup.propTypes = {
   representatives: React.PropTypes.array,

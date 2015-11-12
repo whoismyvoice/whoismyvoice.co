@@ -5,10 +5,11 @@ import ArrowDown from './ArrowDown';
 import WhiteBorder from './WhiteBorder';
 import FadedBG from './FadedBg';
 
-const Senators = React.createClass({
-  componentDidMount: function() {
+class Senators extends React.Component {
+  componentDidMount() {
     $(document).scrollTop(0);
-  },
+  }
+
   render() {
     return  <div className="page-block senators blue">
       <FadedBG color="blue" />
@@ -27,6 +28,6 @@ const Senators = React.createClass({
       />
     </div>;
   }
-});
+};
 
 export default Senators;

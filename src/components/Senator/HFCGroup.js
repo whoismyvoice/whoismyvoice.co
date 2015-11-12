@@ -5,7 +5,7 @@ import SenatorName from './SenatorName';
 // Styles
 import style from './../../styles/HFCGroup.scss';
 
-const HFCGroup = React.createClass({
+class HFCGroup extends React.Component {
   render() {
     const {bioguide, name, age, state, twitter, did_search} = this.props;
 
@@ -25,7 +25,7 @@ const HFCGroup = React.createClass({
       </div>
     </a>;
   }
-});
+};
 
 HFCGroup.propTypes = {
   age: React.PropTypes.number,

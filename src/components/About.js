@@ -3,10 +3,10 @@ import { Link } from 'react-router';
 import WhiteBorder from './WhiteBorder';
 import FadedBG from './FadedBg';
 
-const About = React.createClass({
-  componentDidMount: function() {
+class About extends React.Component {
+  componentDidMount() {
     $(document).scrollTop(0);
-  },
+  }
   render() {
     return <div className="page-block bright-red">
       <FadedBG color="red" />
@@ -24,6 +24,6 @@ const About = React.createClass({
       </p>
     </div>;
   }
-});
+};
 
 export default About;

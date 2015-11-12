@@ -8,19 +8,21 @@ import WhiteBorder from './WhiteBorder';
 // Styles
 import style from './../styles/Header.scss';
 
-const Header = React.createClass({
-  getInitialState() {
-    return {
+class Header extends React.Component {
+  constructor() {
+    super();
+    this._handleClick = this._handleClick.bind(this);
+    this.state = {
       didClick: false
-    };
-  },
+    }
+  }
 
-  _handleClick: function(evt) {
+  _handleClick(evt) {
     evt.preventDefault();
     evt.stopPropagation();
     this.setState({didClick: !this.state.didClick});
     $(document).scrollTop(0);
-  },
+  }
 
   render() {
     // Change classes for burger-icon and navigation based on whether onClick has been fired
@@ -67,6 +69,6 @@ const Header = React.createClass({
       </div>
     </div>;
   }
-});
+};
 
 export default Header;

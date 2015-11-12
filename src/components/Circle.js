@@ -5,7 +5,7 @@ import Settings from '../data/settings.json';
 // Styles
 import style from './../styles/Circle.scss';
 
-const Circle = React.createClass({
+class Circle extends React.Component {
   render() {
     let title,
         status,
@@ -56,7 +56,7 @@ const Circle = React.createClass({
   		</div>
   	</div>;
   }
-});
+};
 
 Circle.propTypes = {
   desc: React.PropTypes.string,

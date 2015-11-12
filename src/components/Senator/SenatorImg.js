@@ -3,7 +3,7 @@ import React from 'react';
 // Styles
 import style from './../../styles/SenatorImg.scss';
 
-const SenatorImg = React.createClass({
+class SenatorImg extends React.Component {
   render() {
   	const img = `https://raw.githubusercontent.com/unitedstates/images/gh-pages/congress/225x275/${this.props.bioguide}.jpg`,
           single = this.props.single === true ? 'single': '';
@@ -12,7 +12,7 @@ const SenatorImg = React.createClass({
     	<img src={img} />
     </div>;
   }
-});
+};
 
 SenatorImg.propTypes = {
   bioguide: React.PropTypes.string,

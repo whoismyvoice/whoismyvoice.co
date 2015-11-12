@@ -4,10 +4,11 @@ import HFCGroup from './Senator/HFCGroup';
 // Styles
 import style from './../styles/HFCGroup.scss';
 
-const HFCOverview = React.createClass({
-  componentDidMount: function() {
+class HFCOverview extends React.Component {
+  componentDidMount() {
     $(document).scrollTop(0);
-  },
+  }
+
   render() {
   	// Shuffle function to make sure that congressmen are not shown the same way each time
     function shuffle(o) {
@@ -28,7 +29,7 @@ const HFCOverview = React.createClass({
       		state={member.state}
       		did_search={true}
       		hfc={true}
-      		key ={idx}
+      		key={idx}
       	/>
 		  );
 
@@ -39,7 +40,7 @@ const HFCOverview = React.createClass({
       {members}
     </div>;
   }
-});
+};
 
 HFCOverview.propTypes = {
   color: React.PropTypes.string,

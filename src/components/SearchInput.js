@@ -5,41 +5,47 @@ import cx from 'classnames';
 // Styles
 import style from './../styles/SearchInput.scss';
 
-const SearchInput = React.createClass({
-  getInitialState() {
-	  return {
-		  zip_code: '',
+class SearchInput extends React.Component {
+  constructor() {
+    super();
+    this._handleChange = this._handleChange.bind(this);
+    this._handleFocus = this._handleFocus.bind(this);
+    this._handleBlur = this._handleBlur.bind(this);
+    this._handleEnter = this._handleEnter.bind(this);
+    this._handleClick = this._handleClick.bind(this);
+    this.state = {
+      zip_code: '',
       error: false,
       fade: true,
       placeholder: 'Enter Your Zip Code'
-		};
-	},
+    }
+  }
 
-  _handleFocus: function() {
+  _handleFocus() {
     this.setState({
       placeholder: '',
       error: false
     });
-  },
+  }
 
-  _handleBlur: function() {
+  _handleBlur() {
     if (this.state.zip_code === '') {
       this.setState({
         placeholder: 'Enter Your Zip Code'
       });
     }
-  },
+  }
 
-  _handleChange: function(event) {
+  _handleChange(event) {
     this.setState({
       zip_code: event.target.value,
       error: false,
       fade: false,
       placeholder: 'Enter Your Zip Code'
     });
-  },
+  }
 
-  _handleEnter: function(e) {
+  _handleEnter(e) {
     const zip_code = this.state.zip_code;
     if (e.keyCode === 13) {
       if ((isNaN(zip_code)) || (!isNaN(zip_code) && zip_code.length !== 5)) {
@@ -58,9 +64,9 @@ const SearchInput = React.createClass({
         });
       }
     }
-  },
+  }
 
-  _handleClick: function(evt) {
+  _handleClick(evt) {
     const zip_code = this.state.zip_code;
     evt.preventDefault();
     evt.stopPropagation();
@@ -77,7 +83,7 @@ const SearchInput = React.createClass({
       });
       SenateActions.fetchDistricts(zip_code);
     }
-  },
+  }
 
   render() {
     const inputClasses = cx(
@@ -104,7 +110,7 @@ const SearchInput = React.createClass({
       </button>
     </span>;
   }
-});
+};
 
 SearchInput.propTypes = {
   error: React.PropTypes.bool

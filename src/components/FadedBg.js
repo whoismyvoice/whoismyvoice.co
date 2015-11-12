@@ -1,39 +1,43 @@
 import React from 'react';
 import cx from 'classnames';
 
-const FadedBG = React.createClass({
-  getInitialState() {
-    return {
-		  did_scroll: false
-		};
-	},
-	componentDidMount: function() {
+class FadedBG extends React.Component {
+
+  constructor() {
+    super();
+    this._handleScroll = this._handleScroll.bind(this);
+    this.state = {
+      did_scroll: false
+    };
+  }
+
+	componentDidMount() {
     window.addEventListener('scroll', this._handleScroll);
-  },
+  }
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
   	window.removeEventListener('scroll', this._handleScroll);
-  },
+  }
 
-  _handleScroll: function() {
+  _handleScroll() {
   	if ($(document).scrollTop() > 50) {
   		this._addScrollState();
   	} else {
   		this._disruptScroll();
   	}
-  },
+  }
 
-  _disruptScroll: function() {
+  _disruptScroll() {
   	this.setState({
   		did_scroll: false
   	});
-  },
+  }
 
-  _addScrollState: function() {
+  _addScrollState() {
   	this.setState({
   		did_scroll: true
   	});
-  },
+  }
 
   render() {
   	const fadedClasses = cx(
@@ -45,7 +49,7 @@ const FadedBG = React.createClass({
     );
   	return <div className={fadedClasses}></div>;
   }
-});
+};
 
 FadedBG.propTypes = {
   color: React.PropTypes.string

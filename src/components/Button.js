@@ -5,17 +5,24 @@ import SenateActions from '../actions/SenateActions';
 // Styles
 import style from './../styles/Button.scss';
 
-const Button = React.createClass({
-  _destroyFullpage: function() {
+class Button extends React.Component {
+  constructor() {
+    super();
+    this._destroyFullpage = this._destroyFullpage.bind(this);
+    this._handleRestart = this._handleRestart.bind(this);
+  }
+
+  _destroyFullpage() {
     if ($.fn.fullpage.destroy !== undefined) {
       $.fn.fullpage.destroy();
     }
-  },
+  }
 
-  _handleRestart: function() {
+  _handleRestart() {
     SenateActions.flush();
     this._destroyFullpage();
-  },
+  }
+
   render() {
     const {color, link, text, secondary, flush, type} = this.props;
 
@@ -44,7 +51,7 @@ const Button = React.createClass({
       </Link>;
     }
   }
-});
+};
 
 Button.propTypes = {
   color: React.PropTypes.string,

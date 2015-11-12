@@ -3,7 +3,7 @@ import React from 'react';
 import SearchInput from './SearchInput';
 import SearchAddress from './SearchAddress';
 
-const SearchGroup = React.createClass({
+class SearchGroup extends React.Component {
   render() {
     const {zip_code, error, repNum} = this.props;
 
@@ -23,7 +23,7 @@ const SearchGroup = React.createClass({
     	</div>;
     }
   }
-});
+};
 
 SearchGroup.propTypes = {
   repNum: React.PropTypes.number,

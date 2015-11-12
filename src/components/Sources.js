@@ -3,11 +3,11 @@ import { Link } from 'react-router';
 import WhiteBorder from './WhiteBorder';
 import FadedBG from './FadedBg';
 
-const Sources = React.createClass({
+class Sources extends React.Component {
 
-  componentDidMount: function() {
+  componentDidMount() {
     $(document).scrollTop(0);
-  },
+  }
 
   render() {
     return  <div className="page-block bright-green">
@@ -29,6 +29,6 @@ const Sources = React.createClass({
       </p>
     </div>;
   }
-});
+};
 
 export default Sources;

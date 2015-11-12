@@ -6,7 +6,7 @@ import style from './../../styles/SupportActions.scss';
 // Component
 import Button from './../Button';
 
-const SupportActions = React.createClass({
+class SupportActions extends React.Component {
   render() {
     let representative,
       gender,
@@ -55,7 +55,7 @@ const SupportActions = React.createClass({
       />
     </div>;
   }
-});
+};
 
 SupportActions.propTypes = {
   currentSenator: React.PropTypes.any,

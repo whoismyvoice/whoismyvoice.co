@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WhiteBorder = React.createClass({
+class WhiteBorder extends React.Component {
   render() {
   	return  <div>
   		<div id="left"></div>
@@ -9,6 +9,6 @@ const WhiteBorder = React.createClass({
       <div id="bottom"></div>
     </div>;
   }
-});
+};
 
 export default WhiteBorder;

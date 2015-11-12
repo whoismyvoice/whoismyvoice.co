@@ -15,24 +15,32 @@ import WhiteBorder from './WhiteBorder';
 // Styles
 import style from './../styles/Home.scss';
 
-const Home = React.createClass({
-  getInitialState: () => {
-    return  SenateStore.getMember();
-  },
-  componentDidMount: function() {
+class Home extends React.Component {
+  constructor() {
+    super();
+    this._handleChange = this._handleChange.bind(this);
+    this._initializeFullpage = this._initializeFullpage.bind(this);
+    this._destroyFullpage = this._destroyFullpage.bind(this);
+    this.state = SenateStore.getMember();
+  }
+
+  componentDidMount() {
     if (this.state.did_search) {
       this._initializeFullpage();
     }
     SenateStore.addChangeListener(this._handleChange);
-  },
-  componentWillUnmount: function() {
+  }
+
+  componentWillUnmount() {
     SenateStore.removeChangeListener(this._handleChange);
     this._destroyFullpage();
-  },
-  _handleChange: function() {
+  }
+
+  _handleChange() {
     this.setState(SenateStore.getMember());
-  },
-  _initializeFullpage: () => {
+  }
+
+  _initializeFullpage () {
     $('#fullpage').fullpage({
       navigation: false,
       showActiveTooltip: false,
@@ -52,12 +60,14 @@ const Home = React.createClass({
         ContainerActions.identifySection(nextIndex);
       }
     });
-  },
-  _destroyFullpage: () => {
+  }
+
+  _destroyFullpage() {
     if ($.fn.fullpage.destroy !== undefined) {
       $.fn.fullpage.destroy('all');
     }
-  },
+  }
+
   render() {
     const NUMBER_REPRESENTATIVES = this.state.number_representatives,
           REPRESENTATIVES = this.state.representatives,
@@ -166,6 +176,6 @@ const Home = React.createClass({
       </div>
     </div>;
   }
-});
+};
 
 export default Home;

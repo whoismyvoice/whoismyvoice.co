@@ -3,7 +3,7 @@ import React from 'react';
 // Styles
 import style from './../../styles/SenatorName.scss';
 
-const SenatorName = React.createClass({
+class SenatorName extends React.createClass {
   render() {
 
     let {name, state, age, twitter, voted} = this.props,
@@ -20,7 +20,7 @@ const SenatorName = React.createClass({
       </h2>
     </div>;
   }
-});
+};
 
 SenatorName.propTypes = {
   age: React.PropTypes.number,
