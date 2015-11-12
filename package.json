@@ -6,10 +6,10 @@
   "author": "Thomas Carlson",
   "license": "MIT",
   "eslintConfig": {
-  	"env": {
-  		"browser": true,
-  		"node": true
-  	}
+    "env": {
+      "browser": true,
+      "node": true
+    }
   },
   "bugs": {
     "url": "https://github.com/oursiberia/senate-project/issues"
@@ -28,6 +28,7 @@
     "classnames": "^2.1.5",
     "flux": "^2.1.1",
     "history": "^1.12.6",
+    "mongoose": "^4.2.5",
     "normalize.css": "^3.0.3",
     "object-assign": "^4.0.1",
     "react": "0.14.2",
