@@ -73,6 +73,7 @@ class Home extends BaseComponent {
           DID_SEARCH = this.state.did_search,
           ERROR = this.state.error,
           ZIP_CODE = this.state.zip_code,
+          STATE_FULL = this.state.state_full,
           CURRENT_MEMBER = this.state.current_senator,
           SECOND_SEARCH = this.state.second_search,
           MEMBER = Settings.chamber === 'senate' ? 'senator' : 'representative',
@@ -103,6 +104,8 @@ class Home extends BaseComponent {
       this._destroyFullpage();
     }
 
+    console.log(STATE_FULL);
+
     const blockClasses = cx(
       ['block', 'one'],
       {'hide': DID_SEARCH && NUMBER_REPRESENTATIVES < 4},
@@ -123,8 +126,8 @@ class Home extends BaseComponent {
     const containerClasses = cx(
       ['container'],
       {'reveal': DID_SEARCH},
-      {'green': !DID_SEARCH || NUMBER_REPRESENTATIVES > 3},
-      {'orange': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES < 4},
+      {'green': !DID_SEARCH || NUMBER_REPRESENTATIVES > 3 || NUMBER_REPRESENTATIVES === undefined},
+      {'orange': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES < 4 && NUMBER_REPRESENTATIVES !== undefined},
       {'red': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
       {'visible': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
       {'purple': this.state.current_screen === 2},
@@ -147,7 +150,9 @@ class Home extends BaseComponent {
         	<SearchGroup
             repNum={NUMBER_REPRESENTATIVES}
           	error={ERROR}
+            did_search={DID_SEARCH}
             zip_code={ZIP_CODE}
+            state_full={STATE_FULL}
         	/>
         </div>
         <div className={sectionClasses}>
@@ -160,6 +165,7 @@ class Home extends BaseComponent {
           <CongressmanGroup
             representatives={FIRST_REPS}
             zip_code={ZIP_CODE}
+            state_full={STATE_FULL}
           />
         </div>
         <Results

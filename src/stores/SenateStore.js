@@ -48,6 +48,8 @@ AppDispatcher.register(payload => {
       if (action.response === 'error') {
         _store.error = true;
       } else {
+        const details = action.response[0];
+        _store.state_full = details.state_name || null;
         _store.did_search = true;
         _store.error = false;
         if (action.numRep > 1 && action.numRep < 4) {
@@ -56,7 +58,6 @@ AppDispatcher.register(payload => {
           _store.im_first_reps = action.response;
         } else if (action.numRep === 1) {
           const details = action.response[0];
-          _store.state_full = details.state_name || null;
           _store.representatives = action.response || null;
         } else if (Settings.chamber === 'senate' && action.numRep === 0) {
           _store.second_search = false;

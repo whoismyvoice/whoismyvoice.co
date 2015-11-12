@@ -14,14 +14,16 @@ module.exports = {
     CongressUtils.getMember(ZIP_CODE);
   },
 
-  fetchSpecificMember: (ADDRESS, ZIP) => {
+  fetchSpecificMember: (ADDRESS, ZIP, STATE) => {
     AppDispatcher.handleViewAction({
       actionType: SenateConstants.FIND_SPECIFIC_MEMBER,
       address: ADDRESS,
-      zip_code: ZIP
+      zip_code: ZIP,
+      state: STATE
     });
 
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${ADDRESS},${ZIP},USA&key=${SenateConstants.GOOGLE_API_KEY}`;
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${ADDRESS},${ZIP} ${STATE}&components=country:US&key=${SenateConstants.GOOGLE_API_KEY}`;
+
     request
     .get(url)
     .set('Accept', 'application/json')
@@ -29,6 +31,7 @@ module.exports = {
       if (err) return console.error(err);
       if (res.body.results.length === 0) {
         CongressUtils.getMember('error');
+        console.log('Error');
       } else {
         const lat = res.body.results[0].geometry.location.lat,
         lng = res.body.results[0].geometry.location.lng;

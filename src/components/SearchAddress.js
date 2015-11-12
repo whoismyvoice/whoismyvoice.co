@@ -15,7 +15,6 @@ class SearchAddress extends BaseComponent {
       placeholder: 'Enter Street Name'
     }
   }
-
 	_handleChange(event) {
     this.setState({
       address: event.target.value,
@@ -23,14 +22,12 @@ class SearchAddress extends BaseComponent {
       placeholder: 'Enter Street Name'
     });
   }
-
   _handleFocus() {
     this.setState({
       placeholder: '',
       error: false
     });
   }
-
   _handleBlur() {
     if (this.state.address === '') {
       this.setState({
@@ -38,7 +35,6 @@ class SearchAddress extends BaseComponent {
       });
     }
   }
-
   _handleEnter(e) {
     if (e.keyCode === 13) {
       if (this.state.address.length < 4) {
@@ -53,11 +49,10 @@ class SearchAddress extends BaseComponent {
           placeholder: 'Enter Street Name',
           address: ''
         });
-        SenateActions.fetchSpecificMember(this.state.address, this.props.zip_code);
+        SenateActions.fetchSpecificMember(this.state.address, this.props.zip_code, this.props.state_full);
       }
     }
   }
-
   _handleClick(evt) {
     evt.preventDefault();
     evt.stopPropagation();
@@ -70,9 +65,9 @@ class SearchAddress extends BaseComponent {
     } else {
       this.setState({
         error: false,
-        address: ''
+        address: '',
       });
-      SenateActions.fetchSpecificMember(this.state.address, this.props.zip_code);
+      SenateActions.fetchSpecificMember(this.state.address, this.props.zip_code, this.props.state_full);
     }
   }
 
@@ -80,7 +75,6 @@ class SearchAddress extends BaseComponent {
     const inputClasses = cx(
       ['input'],
       {'error': this.state.error || this.props.error},
-      {'fade': this.state.fade}
     );
 
     let color;

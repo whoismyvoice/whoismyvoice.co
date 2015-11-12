@@ -18,15 +18,15 @@ h1 {
 
   &.full {
     height: auto;
-    min-height: 98vh;
-    width: 99vw;
+    min-height: 99vh;
+    width: 100vw;
   }
 
   &.reveal {
     @include transition(1s);
     z-index: 1;
     overflow: hidden;
-    width: 99.1vw;
+    width: 100vw;
   }
 
   &.visible {

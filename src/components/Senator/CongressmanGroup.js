@@ -17,7 +17,7 @@ class CongressmanGroup extends BaseComponent {
     let searchClasses = 'search',
         wrapperClasses = 'senatorWrapper';
 
-    const {representatives, zip_code} = this.props,
+    const {representatives, zip_code, state_full} = this.props,
           {chamber} = Settings;
 
     if (representatives) {
@@ -62,6 +62,7 @@ class CongressmanGroup extends BaseComponent {
         <SearchAddress
           color="orange"
           zip_code={zip_code}
+          state_full={state_full}
         />
       </div>
     </div>;
