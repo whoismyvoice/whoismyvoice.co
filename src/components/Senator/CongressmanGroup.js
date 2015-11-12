@@ -10,10 +10,6 @@ import cx from 'classnames';
 import style from './../../styles/CongressmanGroup.scss';
 
 const CongressmanGroup = React.createClass({
-  propTypes: {
-    representatives: React.PropTypes.array,
-    zip_code: React.PropTypes.string
-  },
   render() {
     let searchClasses = 'search',
         wrapperClasses = 'senatorWrapper';
@@ -68,4 +64,10 @@ const CongressmanGroup = React.createClass({
     </div>;
   }
 });
+
+CongressmanGroup.propTypes = {
+  representatives: React.PropTypes.array,
+  zip_code: React.PropTypes.string
+};
+
 export default CongressmanGroup;

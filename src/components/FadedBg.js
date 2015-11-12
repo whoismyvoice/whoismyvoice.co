@@ -2,9 +2,6 @@ import React from 'react';
 import cx from 'classnames';
 
 const FadedBG = React.createClass({
-  propTypes: {
-    color: React.PropTypes.string
-  },
   getInitialState() {
     return {
 		  did_scroll: false
@@ -49,5 +46,9 @@ const FadedBG = React.createClass({
   	return <div className={fadedClasses}></div>;
   }
 });
+
+FadedBG.propTypes = {
+  color: React.PropTypes.string
+}
 
 export default FadedBG;

@@ -5,9 +5,6 @@ import cx from 'classnames';
 import style from './../styles/errorMsg.scss';
 
 const ErrorMsg = React.createClass({
-  propTypes: {
-    error: React.PropTypes.string
-  },
   render() {
     const isError = this.props.error;
     const errorClasses = cx(
@@ -20,5 +17,9 @@ const ErrorMsg = React.createClass({
     </div>;
   }
 });
+
+ErrorMsg.propTypes = {
+  error: React.PropTypes.string
+};
 
 export default ErrorMsg;

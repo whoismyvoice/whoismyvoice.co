@@ -6,14 +6,6 @@ import Settings from '../data/settings.json';
 import style from './../styles/Circle.scss';
 
 const Circle = React.createClass({
-
-  propTypes: {
-    desc: React.PropTypes.string,
-    hide: React.PropTypes.bool,
-    numRep: React.PropTypes.number,
-    representatives: React.PropTypes.array,
-    style: React.PropTypes.string
-  },
   render() {
     let title,
         status,
@@ -65,5 +57,13 @@ const Circle = React.createClass({
   	</div>;
   }
 });
+
+Circle.propTypes = {
+  desc: React.PropTypes.string,
+  hide: React.PropTypes.bool,
+  numRep: React.PropTypes.number,
+  representatives: React.PropTypes.array,
+  style: React.PropTypes.string
+};
 
 export default Circle;

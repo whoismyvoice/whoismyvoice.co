@@ -6,9 +6,6 @@ import cx from 'classnames';
 import style from './../styles/SearchInput.scss';
 
 const SearchInput = React.createClass({
-  propTypes: {
-    error: React.PropTypes.bool
-  },
   getInitialState() {
 	  return {
 		  zip_code: '',
@@ -108,5 +105,9 @@ const SearchInput = React.createClass({
     </span>;
   }
 });
+
+SearchInput.propTypes = {
+  error: React.PropTypes.bool
+};
 
 export default SearchInput;

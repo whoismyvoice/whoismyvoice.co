@@ -6,16 +6,6 @@ import SenateActions from '../actions/SenateActions';
 import style from './../styles/Button.scss';
 
 const Button = React.createClass({
-
-  propTypes: {
-    color: React.PropTypes.string,
-    flush: React.PropTypes.bool,
-    link: React.PropTypes.string,
-    secondary: React.PropTypes.string,
-    text: React.PropTypes.string,
-    type: React.PropTypes.string
-  },
-
   _destroyFullpage: function() {
     if ($.fn.fullpage.destroy !== undefined) {
       $.fn.fullpage.destroy();
@@ -55,5 +45,14 @@ const Button = React.createClass({
     }
   }
 });
+
+Button.propTypes = {
+  color: React.PropTypes.string,
+  flush: React.PropTypes.bool,
+  link: React.PropTypes.string,
+  secondary: React.PropTypes.string,
+  text: React.PropTypes.string,
+  type: React.PropTypes.string
+};
 
 export default Button;

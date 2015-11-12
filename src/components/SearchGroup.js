@@ -4,11 +4,6 @@ import SearchInput from './SearchInput';
 import SearchAddress from './SearchAddress';
 
 const SearchGroup = React.createClass({
-  propTypes: {
-    repNum: React.PropTypes.number,
-    zip_code: React.PropTypes.string,
-    error: React.PropTypes.bool
-  },
   render() {
     const {zip_code, error, repNum} = this.props;
 
@@ -29,5 +24,11 @@ const SearchGroup = React.createClass({
     }
   }
 });
+
+SearchGroup.propTypes = {
+  repNum: React.PropTypes.number,
+  zip_code: React.PropTypes.string,
+  error: React.PropTypes.bool
+};
 
 export default SearchGroup;

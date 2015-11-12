@@ -11,16 +11,6 @@ import FadedBG from './FadedBg';
 import CongressmanGroup from './Senator/CongressmanGroup';
 
 const Results = React.createClass({
-  propTypes: {
-    backgroundClasses: React.PropTypes.any,
-    current_member: React.PropTypes.any,
-    impact: React.PropTypes.string,
-    numRep: React.PropTypes.number,
-    representatives: React.PropTypes.array,
-    vote_status: React.PropTypes.string,
-    zip_code: React.PropTypes.string,
-    initialize: React.PropTypes.func
-  },
 	render() {
 		const {
             vote_status,
@@ -84,5 +74,16 @@ const Results = React.createClass({
     }
   }
 });
+
+Results.propTypes = {
+  backgroundClasses: React.PropTypes.any,
+  current_member: React.PropTypes.any,
+  impact: React.PropTypes.string,
+  numRep: React.PropTypes.number,
+  representatives: React.PropTypes.array,
+  vote_status: React.PropTypes.string,
+  zip_code: React.PropTypes.string,
+  initialize: React.PropTypes.func
+};
 
 export default Results;

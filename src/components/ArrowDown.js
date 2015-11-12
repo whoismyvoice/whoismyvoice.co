@@ -8,13 +8,6 @@ import ContainerActions from '../actions/ContainerActions.js';
 import style from './../styles/ArrowDown.scss';
 
 const ArrowDown = React.createClass({
-
-  propTypes: {
-    color: React.PropTypes.string,
-    id: React.PropTypes.number,
-    scroll: React.PropTypes.string
-  },
-
   _handleClick: function(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -48,5 +41,11 @@ const ArrowDown = React.createClass({
     }
   }
 });
+
+ArrowDown.propTypes = {
+  color: React.PropTypes.string,
+  id: React.PropTypes.number,
+  scroll: React.PropTypes.string
+}
 
 export default ArrowDown;

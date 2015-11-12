@@ -5,10 +5,6 @@ import HFCGroup from './Senator/HFCGroup';
 import style from './../styles/HFCGroup.scss';
 
 const HFCOverview = React.createClass({
-  propTypes: {
-    color: React.PropTypes.string,
-    members: React.PropTypes.array
-  },
   componentDidMount: function() {
     $(document).scrollTop(0);
   },
@@ -44,5 +40,10 @@ const HFCOverview = React.createClass({
     </div>;
   }
 });
+
+HFCOverview.propTypes = {
+  color: React.PropTypes.string,
+  members: React.PropTypes.array
+};
 
 export default HFCOverview;

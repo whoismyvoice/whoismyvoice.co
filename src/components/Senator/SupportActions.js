@@ -7,10 +7,6 @@ import style from './../../styles/SupportActions.scss';
 import Button from './../Button';
 
 const SupportActions = React.createClass({
-  propTypes: {
-    currentSenator: React.PropTypes.any,
-    representatives: React.PropTypes.array
-  },
   render() {
     let representative,
       gender,
@@ -60,5 +56,10 @@ const SupportActions = React.createClass({
     </div>;
   }
 });
+
+SupportActions.propTypes = {
+  currentSenator: React.PropTypes.any,
+  representatives: React.PropTypes.array
+};
 
 export default SupportActions;

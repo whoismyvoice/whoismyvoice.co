@@ -3,10 +3,6 @@ import SenateActions from '../actions/SenateActions';
 import cx from 'classnames';
 
 const SearchAddress = React.createClass({
-  propTypes: {
-    zip_code: React.PropTypes.string,
-    error: React.PropTypes.string
-  },
 	getInitialState() {
 	 	return {
 		  address: '',
@@ -105,5 +101,10 @@ const SearchAddress = React.createClass({
   	</div>;
   }
 });
+
+SearchAddress.propTypes = {
+  zip_code: React.PropTypes.string,
+  error: React.PropTypes.string
+}
 
 export default SearchAddress;

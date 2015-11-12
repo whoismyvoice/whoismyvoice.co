@@ -4,13 +4,6 @@ import React from 'react';
 import style from './../../styles/SenatorName.scss';
 
 const SenatorName = React.createClass({
-  propTypes: {
-    age: React.PropTypes.number,
-    name: React.PropTypes.string,
-    state: React.PropTypes.string,
-    twitter: React.PropTypes.string,
-    voted: React.PropTypes.string
-  },
   render() {
 
     let {name, state, age, twitter, voted} = this.props,
@@ -28,5 +21,13 @@ const SenatorName = React.createClass({
     </div>;
   }
 });
+
+SenatorName.propTypes = {
+  age: React.PropTypes.number,
+  name: React.PropTypes.string,
+  state: React.PropTypes.string,
+  twitter: React.PropTypes.string,
+  voted: React.PropTypes.string
+};
 
 export default SenatorName;
