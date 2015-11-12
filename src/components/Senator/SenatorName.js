@@ -3,9 +3,8 @@ import React from 'react';
 // Styles
 import style from './../../styles/SenatorName.scss';
 
-class SenatorName extends React.createClass {
+class SenatorName extends React.Component {
   render() {
-
     let {name, state, age, twitter, voted} = this.props,
         member_age = age === undefined ? '' : `${age} years old`,
         twitterHandle = twitter === undefined ? '' : `@${twitter}`,
