@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router';
+
+// Components
+import BaseComponent from './BaseComponent';
 import WhiteBorder from './WhiteBorder';
 import FadedBG from './FadedBg';
 
-class Sources extends React.Component {
-
+class Sources extends BaseComponent {
   componentDidMount() {
     $(document).scrollTop(0);
   }
-
   render() {
     return  <div className="page-block bright-green">
       <FadedBG color="green" />

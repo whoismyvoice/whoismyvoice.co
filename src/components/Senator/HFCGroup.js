@@ -1,11 +1,14 @@
 import React from 'react';
+
+// Components
+import BaseComponent from '../BaseComponent';
 import SenatorImg from './SenatorImg';
 import SenatorName from './SenatorName';
 
 // Styles
 import style from './../../styles/HFCGroup.scss';
 
-class HFCGroup extends React.Component {
+class HFCGroup extends BaseComponent {
   render() {
     const {bioguide, name, age, state, twitter, did_search} = this.props;
 

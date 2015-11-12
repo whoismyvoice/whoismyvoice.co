@@ -1,13 +1,19 @@
 import React from 'react';
 import cx from 'classnames';
 
-// Component
+// Components
 import ContainerActions from '../actions/ContainerActions.js';
+import BaseComponent from './BaseComponent';
 
 // Styles
 import style from './../styles/ArrowDown.scss';
 
-class ArrowDown extends React.Component {
+class ArrowDown extends BaseComponent {
+  constructor() {
+    super();
+    this._bind('_handleClick', '_handleScroll');
+  }
+
   _handleClick(event) {
     event.preventDefault();
     event.stopPropagation();

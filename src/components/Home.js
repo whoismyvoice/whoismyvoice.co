@@ -7,6 +7,7 @@ import cx from 'classnames';
 import Results from './Results';
 
 // Components
+import BaseComponent from './BaseComponent';
 import Circle from './Circle';
 import SearchGroup from './SearchGroup';
 import CongressmanGroup from './Senator/CongressmanGroup';
@@ -15,12 +16,10 @@ import WhiteBorder from './WhiteBorder';
 // Styles
 import style from './../styles/Home.scss';
 
-class Home extends React.Component {
+class Home extends BaseComponent {
   constructor() {
     super();
-    this._handleChange = this._handleChange.bind(this);
-    this._initializeFullpage = this._initializeFullpage.bind(this);
-    this._destroyFullpage = this._destroyFullpage.bind(this);
+    this._bind('_handleChange', '_initializeFullpage', '_destroyFullpage');
     this.state = SenateStore.getMember();
   }
 

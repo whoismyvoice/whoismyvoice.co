@@ -2,14 +2,13 @@ import React from 'react';
 import SenateActions from '../actions/SenateActions';
 import cx from 'classnames';
 
-class SearchAddress extends React.Component {
+// Component
+import BaseComponent from './BaseComponent';
+
+class SearchAddress extends BaseComponent {
   constructor() {
     super();
-    this._handleChange = this._handleChange.bind(this);
-    this._handleFocus = this._handleFocus.bind(this);
-    this._handleBlur = this._handleBlur.bind(this);
-    this._handleEnter = this._handleEnter.bind(this);
-    this._handleClick = this._handleClick.bind(this);
+    this._bind('_handleChange','_handleFocus', '_handleBlur', '_handleEnter', '_handleClick');
     this.state = {
       address: '',
       error: false,

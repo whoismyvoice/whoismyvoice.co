@@ -1,6 +1,9 @@
 import React from 'react';
 import cx from 'classnames';
 
+// Component
+import BaseComponent from './BaseComponent';
+
 // Styles
 import style from './../styles/errorMsg.scss';
 

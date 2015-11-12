@@ -2,14 +2,16 @@ import React from 'react';
 import { Link } from 'react-router';
 import SenateActions from '../actions/SenateActions';
 
+// Component
+import BaseComponent from './BaseComponent';
+
 // Styles
 import style from './../styles/Button.scss';
 
-class Button extends React.Component {
+class Button extends BaseComponent {
   constructor() {
     super();
-    this._destroyFullpage = this._destroyFullpage.bind(this);
-    this._handleRestart = this._handleRestart.bind(this);
+    this._bind('_destroyFullpage', '_handleRestart');
   }
 
   _destroyFullpage() {

@@ -1,7 +1,10 @@
 import React from 'react';
-import WhiteBorder from './WhiteBorder';
 
-class NoMatch extends React.Component {
+// Components
+import WhiteBorder from './WhiteBorder';
+import BaseComponent from './BaseComponent';
+
+class NoMatch extends BaseComponent {
   render() {
   	return <div className="error">
   		<WhiteBorder />

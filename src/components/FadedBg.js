@@ -1,11 +1,14 @@
 import React from 'react';
 import cx from 'classnames';
 
-class FadedBG extends React.Component {
+// Component
+import BaseComponent from './BaseComponent';
+
+class FadedBG extends BaseComponent {
 
   constructor() {
     super();
-    this._handleScroll = this._handleScroll.bind(this);
+    this._bind('_handleScroll');
     this.state = {
       did_scroll: false
     };

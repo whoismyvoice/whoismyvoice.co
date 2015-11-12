@@ -2,9 +2,10 @@ import React, {PropTypes} from 'react';
 import style from './../styles/globals.scss';
 
 // Components
+import BaseComponent from './BaseComponent';
 import Header from './Header';
 
-class App extends React.Component{
+class App extends BaseComponent {
   render() {
     return <div className="wrapper">
       <Header />

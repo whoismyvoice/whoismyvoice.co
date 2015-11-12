@@ -1,9 +1,12 @@
 import React from 'react';
 
+// Component
+import BaseComponent from '../BaseComponent';
+
 // Styles
 import style from './../../styles/SenatorName.scss';
 
-class SenatorName extends React.Component {
+class SenatorName extends BaseComponent {
   render() {
     let {name, state, age, twitter, voted} = this.props,
         member_age = age === undefined ? '' : `${age} years old`,

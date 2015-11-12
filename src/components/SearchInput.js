@@ -2,17 +2,16 @@ import React from 'react';
 import SenateActions from '../actions/SenateActions';
 import cx from 'classnames';
 
+// Component
+import BaseComponent from './BaseComponent';
+
 // Styles
 import style from './../styles/SearchInput.scss';
 
-class SearchInput extends React.Component {
+class SearchInput extends BaseComponent {
   constructor() {
     super();
-    this._handleChange = this._handleChange.bind(this);
-    this._handleFocus = this._handleFocus.bind(this);
-    this._handleBlur = this._handleBlur.bind(this);
-    this._handleEnter = this._handleEnter.bind(this);
-    this._handleClick = this._handleClick.bind(this);
+    this._bind('_handleChange','_handleFocus', '_handleBlur', '_handleEnter', '_handleClick');
     this.state = {
       zip_code: '',
       error: false,

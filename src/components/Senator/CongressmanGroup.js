@@ -1,15 +1,18 @@
 import React from 'react';
+import Settings from '../../data/settings.json';
+import cx from 'classnames';
+
+// Components
+import BaseComponent from '../BaseComponent';
+import SearchAddress from '../SearchAddress';
 import SenatorImg from './SenatorImg';
 import SenatorName from './SenatorName';
 import ArrowDown from '../ArrowDown';
-import SearchAddress from '../SearchAddress';
-import Settings from '../../data/settings.json';
-import cx from 'classnames';
 
 // Styles
 import style from './../../styles/CongressmanGroup.scss';
 
-class CongressmanGroup extends React.Component {
+class CongressmanGroup extends BaseComponent {
   render() {
     let searchClasses = 'search',
         wrapperClasses = 'senatorWrapper';

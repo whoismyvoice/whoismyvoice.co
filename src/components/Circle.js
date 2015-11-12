@@ -2,10 +2,13 @@ import React from 'react';
 import cx from 'classnames';
 import Settings from '../data/settings.json';
 
+// Component
+import BaseComponent from './BaseComponent';
+
 // Styles
 import style from './../styles/Circle.scss';
 
-class Circle extends React.Component {
+class Circle extends BaseComponent {
   render() {
     let title,
         status,

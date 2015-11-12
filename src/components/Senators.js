@@ -1,11 +1,14 @@
 import React from 'react';
-import HFCOverview from './HFCOverview';
 import HFCMembers from '../data/HFCMembers';
+
+// Components
+import BaseComponent from './BaseComponent';
 import ArrowDown from './ArrowDown';
 import WhiteBorder from './WhiteBorder';
 import FadedBG from './FadedBg';
+import HFCOverview from './HFCOverview';
 
-class Senators extends React.Component {
+class Senators extends BaseComponent {
   componentDidMount() {
     $(document).scrollTop(0);
   }

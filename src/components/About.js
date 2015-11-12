@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
+
+// Components
+import BaseComponent from './BaseComponent';
 import WhiteBorder from './WhiteBorder';
 import FadedBG from './FadedBg';
 
-class About extends React.Component {
+class About extends BaseComponent {
   componentDidMount() {
     $(document).scrollTop(0);
   }

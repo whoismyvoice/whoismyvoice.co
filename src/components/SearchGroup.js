@@ -1,9 +1,11 @@
 import React from 'react';
 
+// Components
+import BaseComponent from './BaseComponent';
 import SearchInput from './SearchInput';
 import SearchAddress from './SearchAddress';
 
-class SearchGroup extends React.Component {
+class SearchGroup extends BaseComponent {
   render() {
     const {zip_code, error, repNum} = this.props;
 

@@ -9,8 +9,9 @@ import SupportActions from './Senator/SupportActions';
 import HFCOverview from './HFCOverview';
 import FadedBG from './FadedBg';
 import CongressmanGroup from './Senator/CongressmanGroup';
+import BaseComponent from './BaseComponent';
 
-class Results extends React.Component {
+class Results extends BaseComponent {
 	render() {
 		const {
             vote_status,

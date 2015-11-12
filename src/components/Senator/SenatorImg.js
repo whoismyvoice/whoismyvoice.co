@@ -1,9 +1,12 @@
 import React from 'react';
 
+// Component
+import BaseComponent from '../BaseComponent';
+
 // Styles
 import style from './../../styles/SenatorImg.scss';
 
-class SenatorImg extends React.Component {
+class SenatorImg extends BaseComponent {
   render() {
   	const img = `https://raw.githubusercontent.com/unitedstates/images/gh-pages/congress/225x275/${this.props.bioguide}.jpg`,
           single = this.props.single === true ? 'single': '';

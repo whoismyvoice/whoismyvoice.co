@@ -4,14 +4,15 @@ import cx from 'classnames';
 
 // Components
 import WhiteBorder from './WhiteBorder';
+import BaseComponent from './BaseComponent';
 
 // Styles
 import style from './../styles/Header.scss';
 
-class Header extends React.Component {
+class Header extends BaseComponent {
   constructor() {
     super();
-    this._handleClick = this._handleClick.bind(this);
+    this._bind('_handleClick');
     this.state = {
       didClick: false
     }

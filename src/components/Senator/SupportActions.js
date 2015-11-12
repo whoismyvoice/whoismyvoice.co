@@ -3,10 +3,11 @@ import React from 'react';
 // Styles
 import style from './../../styles/SupportActions.scss';
 
-// Component
+// Components
+import BaseComponent from '../BaseComponent';
 import Button from './../Button';
 
-class SupportActions extends React.Component {
+class SupportActions extends BaseComponent {
   render() {
     let representative,
       gender,

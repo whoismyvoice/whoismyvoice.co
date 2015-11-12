@@ -1,6 +1,9 @@
 import React from 'react';
 
-class WhiteBorder extends React.Component {
+// Component
+import BaseComponent from './BaseComponent';
+
+class WhiteBorder extends BaseComponent {
   render() {
   	return  <div>
   		<div id="left"></div>
