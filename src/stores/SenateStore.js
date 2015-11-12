@@ -35,6 +35,7 @@ const SenateStore = ObjectAssign( {}, EventEmitter.prototype, {
   },
   getSettings: () => {
     return _store.settings;
+    console.log(_store.settings);
   }
 });
 

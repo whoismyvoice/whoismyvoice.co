@@ -11,7 +11,7 @@ const defSet = new Settings(defaultSettings);
 defSet.save(function (err, defSet) {
   if(err) return console.error(err);
   console.info("Added default settings");
-})
+});
 
 mongoose.connect(config.database);
 mongoose.connection.on('error', function() {

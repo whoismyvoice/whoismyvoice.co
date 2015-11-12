@@ -2,6 +2,7 @@ import React from 'react';
 import SenateStore from '../stores/SenateStore';
 import Settings from '../data/settings.json';
 
+import DataUtils from '../utils/DataUtils';
 import ContainerActions from '../actions/ContainerActions';
 import cx from 'classnames';
 import Results from './Results';
@@ -26,6 +27,9 @@ class Home extends BaseComponent {
   componentDidMount() {
     if (this.state.did_search) {
       this._initializeFullpage();
+    }
+    if (this.state.settings === null) {
+      DataUtils.saveFetchedData();
     }
     SenateStore.addChangeListener(this._handleChange);
   }
