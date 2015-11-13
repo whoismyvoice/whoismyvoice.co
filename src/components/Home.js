@@ -28,7 +28,7 @@ class Home extends BaseComponent {
     if (this.state.did_search) {
       this._initializeFullpage();
     }
-    if (this.state.settings === null) {
+    if (process.env.NODE_ENV === 'production' && this.state.settings === null) {
       DataUtils.saveFetchedData();
     }
     SenateStore.addChangeListener(this._handleChange);
@@ -85,8 +85,6 @@ class Home extends BaseComponent {
           {cosponsor_post_text, impact_text, represent} = SETTINGS ? SETTINGS.senate : Settings.senate,
           {chamber, bill_desc} = SETTINGS ? SETTINGS : Settings,
           MEMBER = chamber === 'senate' ? 'senator' : 'representative';
-
-    console.log(SETTINGS);
 
     let impact = impact_text.replace('#gender_third', 'this person'),
         VOTE_STATUS = `${cosponsor_post_text}`;
