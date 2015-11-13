@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 let settingsSchema = new mongoose.Schema({
+  id: Number,
   bill_id: String,
   bill_title: String,
   bill_desc: String,

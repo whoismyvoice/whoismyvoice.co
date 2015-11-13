@@ -34,6 +34,16 @@ server.get('/api/settings', function(req, res, next) {
   });
 });
 
+server.get('/api/settings/:bill_desc', function(req, res, next) {
+  Settings.findOneAndUpdate({id: 1}, {bill_desc: req.params.bill_desc}, function(err) {
+    if(err) { res.json('ERROR');
+    } else {
+      res.json('Success');
+      console.info('Updated bill_desc');
+    }
+  });
+});
+
 server.use(helmet());
 
 server.use(express.static(__dirname + '/dist'))

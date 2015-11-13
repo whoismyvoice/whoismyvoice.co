@@ -1,7 +1,8 @@
 const defaultSettings = {
+  id: 1,
   bill_id: 'hr1599-114',
   bill_title: 'Safe and Accurate Food Labeling Act of 2015',
-  bill_desc: 'Did my #member vote against the Safe and Accurate Food Labeling Act of 2015?',
+  bill_desc: 'Did my #member vote against the Safe and Accurate Food Labeling Act of 2015?2',
   vote_favor: 'Yea',
   chamber: 'house',
   senate: {

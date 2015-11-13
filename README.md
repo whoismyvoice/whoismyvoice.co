@@ -29,8 +29,9 @@ npm start
 npm run build
 ```
 
-**Run production build**
+**Run production build (after building for production)**
 ```
+mongod
 npm run build:start
 ```
 
