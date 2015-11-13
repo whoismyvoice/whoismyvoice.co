@@ -13,8 +13,6 @@ module.exports = {
       zip_code: ZIP_CODE
 		});
     CongressUtils.getMember(ZIP_CODE);
-
-    console.log(SenateStore.getSettings());
   },
 
   fetchSpecificMember: (ADDRESS, ZIP, STATE) => {

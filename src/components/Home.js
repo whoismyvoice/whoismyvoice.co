@@ -64,15 +64,14 @@ class Home extends BaseComponent {
       }
     });
   }
-
   _destroyFullpage() {
     if ($.fn.fullpage.destroy !== undefined) {
       $.fn.fullpage.destroy('all');
     }
   }
-
   render() {
     const NUMBER_REPRESENTATIVES = this.state.number_representatives,
+          SETTINGS = this.state.settings,
           REPRESENTATIVES = this.state.representatives,
           DID_SEARCH = this.state.did_search,
           ERROR = this.state.error,
@@ -80,12 +79,14 @@ class Home extends BaseComponent {
           STATE_FULL = this.state.state_full,
           CURRENT_MEMBER = this.state.current_senator,
           SECOND_SEARCH = this.state.second_search,
-          MEMBER = Settings.chamber === 'senate' ? 'senator' : 'representative',
           FIRST_REPS = this.state.im_first_reps,
           FIRST_REPS_NUM = this.state.im_first_reps !== null ? this.state.im_first_reps.length : 0,
-          {single_voted_for, single_voted_against} = Settings.house,
-          {cosponsor_post_text, impact_text, represent} = Settings.senate,
-          {chamber, bill_desc} = Settings;
+          {single_voted_for, single_voted_against} = SETTINGS ? SETTINGS.house : Settings.house,
+          {cosponsor_post_text, impact_text, represent} = SETTINGS ? SETTINGS.senate : Settings.senate,
+          {chamber, bill_desc} = SETTINGS ? SETTINGS : Settings,
+          MEMBER = chamber === 'senate' ? 'senator' : 'representative';
+
+    console.log(SETTINGS);
 
     let impact = impact_text.replace('#gender_third', 'this person'),
         VOTE_STATUS = `${cosponsor_post_text}`;

@@ -12,9 +12,9 @@ const defaultSettings = {
     represent: '#gender represents your voice!'
   },
   house: {
-    single_voted_for: 'voted for the Safe and Accurate Food Labeling Act of 2015. ',
-    single_voted_against: 'voted against the Safe and Accurate Food Labeling Act of 2015. ',
-    multiple_results: 'These people represent a congressional district in your area'
+    single_voted_for: 'voted for the Safe and Accurate Food Labeling Act of 2015.',
+    single_voted_against: 'voted against the Safe and Accurate Food Labeling Act of 2015.',
+    multiple_results: 'These people represent a congressional district in your area '
   }
 };
 

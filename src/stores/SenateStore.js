@@ -20,9 +20,6 @@ let _store = {
   settings: null
 };
 
-// Define the public event listeners and getters that
-//  the views will use to listen for changes and retrieve the store
-
 const SenateStore = ObjectAssign( {}, EventEmitter.prototype, {
   addChangeListener: function(callback) {
     this.on(CHANGE_EVENT, callback);
@@ -72,12 +69,19 @@ AppDispatcher.register(payload => {
       break;
 
     case AppConstants.FIND_SPECIFIC_MEMBER:
+
       SenateStore.emit(CHANGE_EVENT);
       break;
 
     case AppConstants.IDENTIFY_SECTION:
 
       _store.current_screen = action.index;
+
+      SenateStore.emit(CHANGE_EVENT);
+      break;
+
+    case AppConstants.FETCH_SETTINGS:
+      _store.settings = action.response;
 
       SenateStore.emit(CHANGE_EVENT);
       break;

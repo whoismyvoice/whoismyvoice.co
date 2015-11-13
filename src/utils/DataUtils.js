@@ -5,9 +5,7 @@ import Settings from '../data/settings.json';
 
 module.exports = {
   saveFetchedData: () => {
-
     const url = '/api/settings';
-
     request
     .get(url)
     .set('Accept', 'application/json')
