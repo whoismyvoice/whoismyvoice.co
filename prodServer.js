@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import Settings from './models/settings';
 import defaultSettings from './defaultSettings';
 import config from './config';
+import helmet from 'helmet';
 
 mongoose.connect(config.database);
 
@@ -32,6 +33,8 @@ server.get('/api/settings', function(req, res, next) {
     res.send({settings: settings});
   });
 });
+
+server.use(helmet());
 
 server.use(express.static(__dirname + '/dist'))
 

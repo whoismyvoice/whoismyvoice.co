@@ -19,14 +19,12 @@ class SearchInput extends BaseComponent {
       placeholder: 'Enter Your Zip Code'
     }
   }
-
   _handleFocus() {
     this.setState({
       placeholder: '',
       error: false
     });
   }
-
   _handleBlur() {
     if (this.state.zip_code === '') {
       this.setState({
@@ -34,7 +32,6 @@ class SearchInput extends BaseComponent {
       });
     }
   }
-
   _handleChange(event) {
     this.setState({
       zip_code: event.target.value,
@@ -43,7 +40,6 @@ class SearchInput extends BaseComponent {
       placeholder: 'Enter Your Zip Code'
     });
   }
-
   _handleEnter(e) {
     const zip_code = this.state.zip_code;
     if (e.keyCode === 13) {
@@ -64,7 +60,6 @@ class SearchInput extends BaseComponent {
       }
     }
   }
-
   _handleClick(evt) {
     const zip_code = this.state.zip_code;
     evt.preventDefault();
@@ -83,14 +78,12 @@ class SearchInput extends BaseComponent {
       SenateActions.fetchDistricts(zip_code);
     }
   }
-
   render() {
     const inputClasses = cx(
       ['input'],
       {'error': this.state.error || this.props.error},
       {'fade': this.state.fade}
     );
-
     return <span>
       <input
         className={inputClasses}

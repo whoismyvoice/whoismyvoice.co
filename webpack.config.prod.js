@@ -26,7 +26,6 @@ module.exports = {
 
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-      '__DEV__': JSON.stringify(process.env.NODE_ENV)
     }),
 
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -43,7 +42,7 @@ module.exports = {
 
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
-        warnings: false,
+        warnings: true,
         screw_ie8: true
       }
     }),
