@@ -72,10 +72,19 @@ class Home extends BaseComponent {
     }
   }
   _detectScroll() {
-    var current = this.state.current_screen;
-    window.addEventListener('touchmove', function(e) {
-      if(current !== 2) {
+    const current = this.state.current_screen;
+    var ts;
+
+    $(document).bind('touchstart', function (e){
+      ts = e.originalEvent.touches[0].clientY;
+    });
+
+    $(document).bind('touchend', function (e){
+      var te = e.originalEvent.changedTouches[0].clientY;
+      if(ts > te+5){
         $.fn.fullpage.moveSectionDown();
+      }else if(ts < te-5){
+        $.fn.fullpage.moveSectionUp();
       }
     });
   }
