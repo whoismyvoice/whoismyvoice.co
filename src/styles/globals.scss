@@ -423,11 +423,6 @@ button, input {
     @include transition(1s);
     top: -98vh;
   }
-
-  &.hide-double {
-    @include transition(1s);
-    top: -196vh;
-  }
 }
 
 .second-wrapper {

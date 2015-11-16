@@ -7,10 +7,6 @@
 	position: relative;
 	background-color: $light-orange;
 
-  &.several {
-    margin-top: 0;
-  }
-
 	@media screen and (max-width: $iphone6) {
 		width: 85%;
 	}
@@ -232,11 +228,4 @@
       left: 15px;
     }
 	}
-}
-
-.search {
-  margin-top: 40px;
-  &.hide {
-    display: none;
-  }
 }
