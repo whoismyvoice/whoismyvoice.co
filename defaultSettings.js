@@ -5,6 +5,7 @@ const defaultSettings = {
   bill_desc: 'Did my #member vote against the Safe and Accurate Food Labeling Act of 2015?2',
   vote_favor: 'Yea',
   chamber: 'house',
+  created_at: 1447686398,
   senate: {
     impact_text: 'Here are some ways you can keep #gender_third from being able to personally weigh in on safe and accurate food labeling the next time a similar vote comes up.',
     no_cosponsor_title: 'No! Your senators support Planned Parenthood! ',

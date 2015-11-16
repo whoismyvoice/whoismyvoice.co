@@ -7,6 +7,7 @@ let settingsSchema = new mongoose.Schema({
   bill_desc: String,
   vote_favor: String,
   chamber: String,
+  created_at: Date,
   senate: {
     impact_text: String,
     no_cosponsor_title: String,

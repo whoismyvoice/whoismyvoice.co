@@ -93,11 +93,16 @@ AppDispatcher.register(payload => {
       break;
 
     case AppConstants.FLUSH_STORE:
-      _store.did_search = false;
-      _store.current_screen = 0;
-      _store.current_senator = 0;
-      _store.second_search = false;
-      _store.number_representatives = null;
+
+      if(action.store !== 'settings') {
+        _store.did_search = false;
+        _store.current_screen = 0;
+        _store.current_senator = 0;
+        _store.second_search = false;
+        _store.number_representatives = null;
+      } else {
+        _store.settings = null
+      }
 
       SenateStore.emit(CHANGE_EVENT);
       break;

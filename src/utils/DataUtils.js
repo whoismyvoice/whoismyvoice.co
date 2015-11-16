@@ -14,7 +14,7 @@ module.exports = {
       if(res.body.settings.length === 0) {
         console.log("Could not retrieve settings")
       } else {
-        SenateServerActions.fetchSettings(res.body.settings[0]);
+        SenateServerActions.fetchSettings(res.body.settings);
       }
     });
   }

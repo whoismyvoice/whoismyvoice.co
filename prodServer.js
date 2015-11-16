@@ -5,6 +5,7 @@ import Settings from './models/settings';
 import defaultSettings from './defaultSettings';
 import config from './config';
 import helmet from 'helmet';
+import bodyParser from 'body-parser';
 
 mongoose.connect(config.database);
 
@@ -26,27 +27,27 @@ mongoose.connection.on('error', function() {
 const server = express();
 const port = 8080;
 
+server.use(bodyParser());
+server.use(helmet());
+server.use(express.static(__dirname + '/dist'))
+
 server.get('/api/settings', function(req, res, next) {
-  Settings.find({}, function(err, settings) {
+  Settings.findOne({}, {}, {sort: {'created_at': -1 }}, function(err, settings) {
     if(err) return next(err);
     console.info("Received request");
     res.send({settings: settings});
   });
 });
 
-server.get('/api/settings/:bill_desc', function(req, res, next) {
-  Settings.findOneAndUpdate({id: 1}, {bill_desc: req.params.bill_desc}, function(err) {
-    if(err) { res.json('ERROR');
-    } else {
-      res.json('Success');
-      console.info('Updated bill_desc');
-    }
-  });
+server.post('/api/settings/edit', function(req, res, next) {
+  var post = new Settings(req.body);
+  console.info(post);
+  post.save(function (err, post) {
+    if(err) { return next(err) }
+      res.status(201).json(post);
+      console.info("Posted new settings successfully");
+  })
 });
-
-server.use(helmet());
-
-server.use(express.static(__dirname + '/dist'))
 
 server.get('*', function (request, response) {
   response.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
