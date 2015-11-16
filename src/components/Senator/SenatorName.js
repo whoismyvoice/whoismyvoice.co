@@ -11,8 +11,8 @@ class SenatorName extends BaseComponent {
     let {name, state, age, twitter, voted} = this.props,
         member_age = age === undefined ? '' : `${age} years old`,
         twitterHandle = twitter === undefined ? '' : `@${twitter}`,
-        voted === 'Yea' ? 'Yes' : 'No',
-        member_voted = voted === undefined ? '' : `Voted ${voted}`;
+        voteFavor = voted === 'Yea' ? 'Yes' : 'No',
+        member_voted = voted === undefined ? '' : `Voted ${voteFavor}`;
 
     return <div className="senatorName">
     	<h2>{name} ({state})</h2>
