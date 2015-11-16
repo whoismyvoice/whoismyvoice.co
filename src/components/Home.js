@@ -58,16 +58,26 @@ class Home extends BaseComponent {
       recordHistory: true,
       controlArrows: false,
       verticalCentered: false,
+      touchSensitivity: 2,
       resize: true,
       onLeave: (index, nextIndex) => {
         ContainerActions.identifySection(nextIndex);
       }
     });
+    this._detectScroll();
   }
   _destroyFullpage() {
     if ($.fn.fullpage.destroy !== undefined) {
       $.fn.fullpage.destroy('all');
     }
+  }
+  _detectScroll() {
+    var current = this.state.current_screen;
+    window.addEventListener('touchmove', function(e) {
+      if(current !== 2) {
+        $.fn.fullpage.moveSectionDown();
+      }
+    });
   }
   render() {
     const NUMBER_REPRESENTATIVES = this.state.number_representatives,

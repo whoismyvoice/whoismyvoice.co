@@ -822,6 +822,10 @@ button, input {
   }
 }
 
+.fp-section {
+  z-index: 99!important;
+}
+
 .overlay {
   @include transition(1s);
   display: none;

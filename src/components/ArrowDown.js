@@ -26,13 +26,11 @@ class ArrowDown extends BaseComponent {
     $('html, body').animate({scrollTop: y + $(window).height()}, 600);
   }
   render() {
-    const {id, scroll} = this.props;
+    const {id, scroll, color} = this.props;
     const arrowClasses = cx(
       ['arrowDown'],
-      {'sticky': this.props.scroll}
+      {'sticky': scroll}
     );
-
-    const color = this.props.color;
 
     if (scroll) {
       return <div className={arrowClasses + ' ' + color} onClick={this._handleScroll}>
