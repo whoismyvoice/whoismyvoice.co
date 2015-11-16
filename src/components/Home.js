@@ -83,8 +83,6 @@ class Home extends BaseComponent {
       var te = e.originalEvent.changedTouches[0].clientY;
       if(ts > te+5){
         $.fn.fullpage.moveSectionDown();
-      }else if(ts < te-5){
-        $.fn.fullpage.moveSectionUp();
       }
     });
   }
