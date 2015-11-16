@@ -38,6 +38,7 @@ class CongressmanGroup extends BaseComponent {
           age={item.age}
           state={item.state}
           voted={item.voted}
+          party={item.party}
         />
 
         <ArrowDown

@@ -22,8 +22,7 @@ class Circle extends BaseComponent {
 
     const {numRep, style, hide, desc} = this.props,
           proposition = numRep === 1 ? 'a ' : '',
-          details = numRep === 1 ? `${representative.age} year old ${representative.gender_full}` : '',
-          several = numRep > 1 && Settings.chamber === 'house' ? ' several': '';
+          details = numRep === 1 ? `${representative.age} year old ${representative.gender_full}` : '';
 
     if (numRep > 0 && Settings.chamber === 'senate') {
       status = representative.voted === 'Yea' ? 'Yes!' : 'No!';
@@ -44,7 +43,7 @@ class Circle extends BaseComponent {
       {'hide': hide}
     );
 
-    return <div className={`circle ${style} ${several}`}>
+    return <div className={`circle ${style}`}>
   		<div className="description">
         {status}
         <div className={introductionClasses}>
