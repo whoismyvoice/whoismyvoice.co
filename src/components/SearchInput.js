@@ -30,6 +30,14 @@ class SearchInput extends BaseComponent {
       this.setState({
         placeholder: 'Enter Your Zip Code'
       });
+    } else if(this.state.zip_code.length === 5) {
+      this.setState({
+        error: false,
+        fade: false,
+        placeholder: 'Enter Your Zip Code',
+        zip_code: ''
+      });
+      SenateActions.fetchDistricts(this.state.zip_code);
     }
   }
   _handleChange(event) {

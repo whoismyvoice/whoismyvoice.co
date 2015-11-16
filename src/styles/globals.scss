@@ -42,7 +42,7 @@ button, input {
 
 // MIXINS (TRANSITIONS)
 @mixin transition($time) {
-  -webkit-transition:all $time linear;
+  -webkit-transition:all $time ease-in;
   -moz-transition:all $time ease-in;
   -ms-transition:all $time ease-in;
   -o-transition:all $time ease-in;
@@ -431,7 +431,7 @@ button, input {
   position: relative;
   top: 0;
   height: 195.5vh;
-  opacity: 0;
+  opacity: 0.5;
 
   &.short {
     height: 100vh;
