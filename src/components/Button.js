@@ -45,7 +45,13 @@ class Button extends BaseComponent {
           {text}
         </button>
       </Link>;
-  	} else {
+  	} else if (type === 'internal' ) {
+      return <Link to={link}>
+        <button className={`button ${color}`}>
+          {text}
+        </button>
+      </Link>;
+    } else {
       return <Link to={link}>
         <button className={`button nav ${color}`}>
           {text}

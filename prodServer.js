@@ -8,7 +8,6 @@ import helmet from 'helmet';
 import bodyParser from 'body-parser';
 
 mongoose.connect(config.database);
-
 mongoose.connection.on('open', function() {
 
   // ONLY FOR TESTING PURPOSESE - DROPS DATABASE AND INSTANTIATES NEW SETTINGS
@@ -52,6 +51,8 @@ server.post('/api/settings/edit', function(req, res, next) {
 server.get('*', function (request, response) {
   response.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
 })
+
+server.use(express.static('client/dist'));
 
 server.listen(port, function(err) {
   if (err) {
