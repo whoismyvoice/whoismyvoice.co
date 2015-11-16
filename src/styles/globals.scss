@@ -869,4 +869,9 @@ and (min-aspect-ratio: 13/9) {
   display: block;
   z-index: 10;
   bottom: 150px;
+
+  @media screen and (max-width: $iphone6)
+  and(-webkit-min-device-pixel-ratio: 2) {
+    display: none;
+  }
 }
