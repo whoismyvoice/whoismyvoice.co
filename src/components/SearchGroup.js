@@ -11,7 +11,7 @@ class SearchGroup extends BaseComponent {
   	if (repNum > 1 || did_search && repNum === undefined && error) {
   		return <div>
   			<i>Zip Code: {zip_code}</i><br />
-  			<b>Please provide street name to get more specific result</b>
+  			<b>Please provide street name to find out which congressman represents you</b>
   			<SearchAddress
   				error={error}
           zip_code={zip_code}
