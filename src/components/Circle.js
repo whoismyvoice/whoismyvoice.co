@@ -33,10 +33,10 @@ class Circle extends BaseComponent {
     }
 
     if (Settings.chamber === 'house') {
-      title = numRep > 1 ? 'representatives' : 'representative';
+      title = 'Representative';
       status = '';
     } else {
-      title = numRep > 1 ? 'senators' : 'senator';
+      title = numRep > 1 ? 'Senators' : 'Senator';
     }
 
     const introductionClasses = cx(

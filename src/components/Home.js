@@ -78,9 +78,6 @@ class Home extends BaseComponent {
           ZIP_CODE = this.state.zip_code,
           STATE_FULL = this.state.state_full,
           CURRENT_MEMBER = this.state.current_senator,
-          SECOND_SEARCH = this.state.second_search,
-          FIRST_REPS = this.state.im_first_reps,
-          FIRST_REPS_NUM = this.state.im_first_reps !== null ? this.state.im_first_reps.length : 0,
           {single_voted_for, single_voted_against} = SETTINGS ? SETTINGS.house : Settings.house,
           {cosponsor_post_text, impact_text, represent} = SETTINGS ? SETTINGS.senate : Settings.senate,
           {chamber, bill_desc} = SETTINGS ? SETTINGS : Settings,
@@ -90,8 +87,8 @@ class Home extends BaseComponent {
         VOTE_STATUS = `${cosponsor_post_text}`;
 
     if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house') {
-      const MEMBER_THIRD = REPRESENTATIVES[0].gender_full === 'man' ? 'He' : 'She';
-      const  represent_text = represent.replace('#gender', MEMBER_THIRD);
+      const MEMBER_THIRD = REPRESENTATIVES[0].gender_full === 'man' ? 'He' : 'She',
+            represent_text = represent.replace('#gender', MEMBER_THIRD);
 
       impact = impact_text.replace('#gender_third', `this ${REPRESENTATIVES[0].gender_full}`);
       VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` ${single_voted_for} ${represent_text}` : ` ${single_voted_against} ${represent_text}`;
@@ -109,8 +106,7 @@ class Home extends BaseComponent {
 
     const blockClasses = cx(
       ['block', 'one'],
-      {'hide': DID_SEARCH && NUMBER_REPRESENTATIVES < 4},
-      {'hide-double': DID_SEARCH && SECOND_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house'},
+      {'hide': DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && NUMBER_REPRESENTATIVES > 0 && chamber === 'senate'},
     );
 
     const backgroundClasses = cx(
@@ -121,14 +117,14 @@ class Home extends BaseComponent {
 
     const sectionClasses = cx(
       ['section-block'],
-      {'hide': NUMBER_REPRESENTATIVES === 1 && !SECOND_SEARCH || chamber === 'senate'}
+      {'hide': NUMBER_REPRESENTATIVES === 1 || chamber === 'senate'}
     );
 
     const containerClasses = cx(
       ['container'],
       {'reveal': DID_SEARCH},
-      {'green': !DID_SEARCH || NUMBER_REPRESENTATIVES > 3 || NUMBER_REPRESENTATIVES === undefined},
-      {'orange': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES < 4 && NUMBER_REPRESENTATIVES !== undefined},
+      {'green': !DID_SEARCH || NUMBER_REPRESENTATIVES > 1 || NUMBER_REPRESENTATIVES === undefined},
+      {'orange': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES !== undefined},
       {'red': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
       {'visible': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
       {'purple': this.state.current_screen === 2},
@@ -156,21 +152,7 @@ class Home extends BaseComponent {
             state_full={STATE_FULL}
         	/>
         </div>
-        <div className={sectionClasses}>
-          <Circle
-            style="wide"
-            desc={VOTE_STATUS}
-            numRep={FIRST_REPS_NUM}
-            representatives={FIRST_REPS}
-          />
-          <CongressmanGroup
-            representatives={FIRST_REPS}
-            zip_code={ZIP_CODE}
-            state_full={STATE_FULL}
-          />
-        </div>
         <Results
-          first_reps={FIRST_REPS}
           representatives={REPRESENTATIVES}
           numRep={NUMBER_REPRESENTATIVES}
           backgroundClasses={backgroundClasses}

@@ -21,16 +21,10 @@ class CongressmanGroup extends BaseComponent {
           {chamber} = Settings;
 
     if (representatives) {
-      searchClasses = cx(
-        ['search'],
-        {'hide': representatives.length < 2 || chamber === 'senate'},
-      );
       wrapperClasses = cx(
         ['senatorWrapper'],
         {'several': representatives.length > 1}
       );
-    } else {
-      searchClasses = 'search';
     }
 
     const members = (representatives || []).map(function(item, idx) {
@@ -56,15 +50,6 @@ class CongressmanGroup extends BaseComponent {
     });
     return <div className={wrapperClasses}>
       {members}
-
-      <div className={searchClasses}>
-        <b>Find specific congressional district and representative</b>
-        <SearchAddress
-          color="orange"
-          zip_code={zip_code}
-          state_full={state_full}
-        />
-      </div>
     </div>;
   }
 };

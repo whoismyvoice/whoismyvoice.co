@@ -15,8 +15,6 @@ let _store = {
   current_senator: null,
   number_representatives: null,
   representatives: null,
-  second_search: null,
-  im_first_reps: null,
   settings: null
 };
 
@@ -54,16 +52,7 @@ AppDispatcher.register(payload => {
         _store.state_full = details.state_name || null;
         _store.did_search = true;
         _store.error = false;
-        if (action.numRep > 1 && action.numRep < 4) {
-          _store.second_search = true;
-          _store.representatives = action.response || null;
-          _store.im_first_reps = action.response;
-        } else if (action.numRep === 1) {
-          const details = action.response[0];
-          _store.representatives = action.response || null;
-        } else if (Settings.chamber === 'senate' && action.numRep === 0) {
-          _store.second_search = false;
-        }
+        _store.representatives = action.response || null;
       }
       SenateStore.emit(CHANGE_EVENT);
       break;

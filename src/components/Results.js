@@ -14,19 +14,19 @@ import BaseComponent from './BaseComponent';
 class Results extends BaseComponent {
 	render() {
 		const {
-            vote_status,
-            impact,
-            current_member,
-            zip_code,
-            numRep,
-            representatives,
-            backgroundClasses,
-            first_reps,
-            initialize
-          } = this.props,
+      vote_status,
+      impact,
+      current_member,
+      zip_code,
+      numRep,
+      representatives,
+      backgroundClasses,
+      first_reps,
+      initialize
+    } = this.props,
 
-          {no_cosponsor_title, no_cosponsor_desc} = Settings.senate,
-          {chamber} = Settings;
+    {no_cosponsor_title, no_cosponsor_desc} = Settings.senate,
+    {chamber} = Settings;
 
     if (chamber === 'senate' && numRep === 0) {
       return <div className={backgroundClasses} id="fullpage">
