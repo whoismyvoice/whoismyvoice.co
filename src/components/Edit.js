@@ -22,7 +22,9 @@ class Edit extends BaseComponent {
       '_onChangeNoCosponsorDesc',
       '_onChangeRepresentText',
       '_onChangeVotedFor',
-      '_onChangeVotedAgainst'
+      '_onChangeVotedAgainst',
+      '_onChangeCosponsorText',
+      '_handleClick'
     );
 
     this.state = {
@@ -33,8 +35,9 @@ class Edit extends BaseComponent {
       vote_favor: '',
       chamber: '',
       impact_text: '',
-      no_cosponsor_text: '',
+      no_cosponsor_title: '',
       no_cosponsor_desc: '',
+      cosponsor_post_text: '',
       represent: '',
       single_voted_for: '',
       single_voted_against: ''
@@ -49,6 +52,7 @@ class Edit extends BaseComponent {
   }
   _onChangeID(evt) {
     this.setState({bill_id: evt.target.value});
+    console.log(this.state.bill_id);
   }
   _onChangeBillTitle(evt) {
     this.setState({bill_title: evt.target.value});
@@ -206,7 +210,6 @@ class Edit extends BaseComponent {
           placeholder="co-sponsored the bill..."
           onChange={this._onChangeCosponsorText}
         />
-
 
         <input
           type="text"
