@@ -892,6 +892,10 @@ and (min-aspect-ratio: 13/9) {
   outline: none;
   padding: 8px 52px 8px 10px;
   transition: all 200ms ease;
+
+  .placeholder {
+    margin-left: 42px;
+  }
 }
 
 .Dropdown-control:hover {

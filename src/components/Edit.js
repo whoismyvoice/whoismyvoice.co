@@ -20,7 +20,9 @@ class Edit extends BaseComponent {
       '_onChangeImpactText',
       '_onChangeNoCosponsor',
       '_onChangeNoCosponsorDesc',
-      '_onChangeRepresentText'
+      '_onChangeRepresentText',
+      '_onChangeVotedFor',
+      '_onChangeVotedAgainst'
     );
 
     this.state = {
@@ -42,41 +44,41 @@ class Edit extends BaseComponent {
   _onSelect(option) {
     this.setState({vote_favor: option.value});
   }
-
   _onSelectChamber(option) {
     this.setState({chamber: option.value});
   }
-
   _onChangeID(evt) {
     this.setState({bill_id: evt.target.value});
   }
-
   _onChangeBillTitle(evt) {
     this.setState({bill_title: evt.target.value});
   }
-
   _onChangeBillDesc(evt) {
     this.setState({bill_desc: evt.target.value});
   }
-
   _onChangeVoteFavor(evt) {
     this.setState({vote_favor: evt.target.value});
   }
-
   _onChangeImpactText(evt) {
     this.setState({impact_text: evt.target.value});
   }
-
   _onChangeNoCosponsor(evt) {
     this.setState({no_cosponsor_text: evt.target.value});
   }
-
   _onChangeNoCosponsorDesc(evt) {
     this.setState({no_cosponsor_desc: evt.target.value});
   }
-
+  _onChangeCosponsorText(evt) {
+    this.setState({cosponsor_post_text: evt.target.value});
+  }
   _onChangeRepresentText(evt) {
     this.setState({represent: evt.target.value});
+  }
+  _onChangeVotedFor(evt) {
+    this.setState({single_voted_for: evt.target.value});
+  }
+  _onChangeVotedAgainst(evt) {
+    this.setState({single_voted_against: evt.target.value});
   }
 
   _handleClick() {
@@ -177,34 +179,39 @@ class Edit extends BaseComponent {
           placeholder="Select an option"
         />
 
-        Text shown when a senator within zip-code is a co-sponsor
+        Text shown on action page enticing users to do something
         <input
           type="text"
-          placeholder="..."
+          placeholder="Here are some ways..."
+          onChange={this._onChangeImpactText}
         />
 
-        Text shown when no senator within zip-code is a co-sponsor
+        Title shown when no senator within zip-code is a co-sponsor
         <input
           type="text"
-          placeholder="..."
+          placeholder="No! Your senators support..."
+          onChange={this._onChangeNoCosponsor}
         />
 
         Text shown below title defined above
         <input
           type="text"
-          placeholder="..."
+          placeholder="But have you hard of..."
+          onChange={this._onChangeNoCosponsorDesc}
         />
 
         Text shown when more than one senator within zip-code are co-sponsors
         <input
           type="text"
-          placeholder="..."
+          placeholder="co-sponsored the bill..."
+          onChange={this._onChangeCosponsorText}
         />
 
-        Text shown on action page enticing users to do something
+
         <input
           type="text"
-          placeholder="..."
+          placeholder="#gender represents your voice!"
+          onChange={this._onChangeRepresentText}
         />
       </div>
 
@@ -212,13 +219,15 @@ class Edit extends BaseComponent {
         Text shown for representative who voted for bill
         <input
           type="text"
-          placeholder="..."
+          placeholder="#member voted for the [...] bill..."
+          onChange={this._onChangeVotedFor}
         />
 
         Text shown for representative who voted against bill
         <input
           type="text"
-          placeholder="..."
+          placeholder="#member voted aganst the [...] bill..."
+          onChange={this._onChangeVotedAgainst}
         />
       </div>
       <button className={buttonClasses} onClick={this._handleClick}>Save changes</button>
