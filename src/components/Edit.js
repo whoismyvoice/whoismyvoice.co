@@ -3,8 +3,6 @@ import request from 'superagent';
 
 // Components
 import BaseComponent from './BaseComponent';
-import EditInput from './Edit/EditInput';
-import EditTextArea from './Edit/EditTextArea';
 import SenateActions from '../actions/SenateActions';
 
 class Edit extends BaseComponent {
@@ -63,11 +61,7 @@ class Edit extends BaseComponent {
 
   render() {
   	return <div className="page-block">
-      <EditInput title="Bill ID" />
-      <EditInput title="Bill Title" />
-      <EditInput title="Bill Description" />
-      <EditInput title="Vote Favor" />
-      <EditInput title="Chamber" />
+
       <br />
       <button onClick={this._handleClick}>Save changes</button>
     </div>;
