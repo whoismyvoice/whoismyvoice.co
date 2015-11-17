@@ -971,7 +971,14 @@ and (min-aspect-ratio: 13/9) {
 }
 
 .form-fields {
+  opacity: 1;
+  height: auto;
+  visibility: visible;
+  @include transition(1s);
   &.hide {
-    display: none;
+    opacity: 0;
+    height: 0;
+    visibility: hidden;
+    @include transition(1s);
   }
 }

@@ -10,7 +10,18 @@ import Dropdown from 'react-dropdown';
 class Edit extends BaseComponent {
   constructor() {
     super();
-    this._bind('_onChangeID', '_onSelectChamber', '_onChangeBillTitle', '_onChangeBillDesc', '_onSelect');
+    this._bind(
+      '_onSelect',
+      '_onSelectChamber',
+      '_onChangeID',
+      '_onChangeBillTitle',
+      '_onChangeBillDesc',
+      '_onChangeVoteFavor',
+      '_onChangeImpactText',
+      '_onChangeNoCosponsor',
+      '_onChangeNoCosponsorDesc',
+      '_onChangeRepresentText'
+    );
 
     this.state = {
       id: 1,
@@ -21,7 +32,7 @@ class Edit extends BaseComponent {
       chamber: '',
       impact_text: '',
       no_cosponsor_text: '',
-      cosponsor_post_text: '',
+      no_cosponsor_desc: '',
       represent: '',
       single_voted_for: '',
       single_voted_against: ''
@@ -36,20 +47,36 @@ class Edit extends BaseComponent {
     this.setState({chamber: option.value});
   }
 
-  _onChangeID(event) {
-    this.setState({bill_id: event.target.value});
+  _onChangeID(evt) {
+    this.setState({bill_id: evt.target.value});
   }
 
-  _onChangeBillTitle(event) {
-    this.setState({bill_title: event.target.value});
+  _onChangeBillTitle(evt) {
+    this.setState({bill_title: evt.target.value});
   }
 
-  _onChangeBillDesc(event) {
-    this.setState({bill_desc: event.target.value});
+  _onChangeBillDesc(evt) {
+    this.setState({bill_desc: evt.target.value});
   }
 
-  _onChangeVoteFavor(event) {
-    this.setState({vote_favor: event.target.value});
+  _onChangeVoteFavor(evt) {
+    this.setState({vote_favor: evt.target.value});
+  }
+
+  _onChangeImpactText(evt) {
+    this.setState({impact_text: evt.target.value});
+  }
+
+  _onChangeNoCosponsor(evt) {
+    this.setState({no_cosponsor_text: evt.target.value});
+  }
+
+  _onChangeNoCosponsorDesc(evt) {
+    this.setState({no_cosponsor_desc: evt.target.value});
+  }
+
+  _onChangeRepresentText(evt) {
+    this.setState({represent: evt.target.value});
   }
 
   _handleClick() {
@@ -64,15 +91,14 @@ class Edit extends BaseComponent {
       chamber: this.state.chamber,
       created_at: Date.now(),
       senate: {
-        impact_text: this.state.impact_text,
-        no_cosponsor_title: this.state.no_cosponsor_title,
-        cosponsor_post_text: this.state.cosponsor_post_text,
-        represent: this.state.represent
+        impact_text: this.state.impact_text || 'Impact is not defined',
+        no_cosponsor_title: this.state.no_cosponsor_title || 'No cosponsor title is not defined',
+        no_cosponsor_desc: this.state.no_cosponsor_desc || 'No cosponsor desc is not defined',
+        represent: this.state.represent || 'Represent text is not defined'
       },
       house: {
-        single_voted_for: this.state.single_voted_for,
-        single_voted_against: this.state.single_voted_against,
-        multiple_results: 'test 252'
+        single_voted_for: this.state.single_voted_for || 'Single voted for is not defined',
+        single_voted_against: this.state.single_voted_against || 'Single voted against is not defined',
       }
     })
     .set('Accept', 'application/json')
@@ -83,13 +109,10 @@ class Edit extends BaseComponent {
   }
 
   render() {
-
     const senateFields = cx(
       ['form-fields'],
       {'hide': this.state.chamber === '' || this.state.chamber === '0'}
     );
-
-    console.log(this.state.chamber);
 
     const houseFields = cx(
       ['form-fields'],
@@ -133,13 +156,6 @@ class Edit extends BaseComponent {
         value={this.state.bill_desc}
       />
 
-      What vote to put in favor?
-      <Dropdown
-        options={VoteOptions}
-        onChange={this._onSelect}
-        placeholder="Select an option"
-      />
-
       Select chamber
       <Dropdown
         options={ChamberOptions}
@@ -148,11 +164,61 @@ class Edit extends BaseComponent {
       />
 
       <div className={senateFields}>
-        Senate fields
+        What vote to put in favor?
+        <Dropdown
+          options={VoteOptions}
+          onChange={this._onSelect}
+          placeholder="Select an option"
+        />
+
+        Text shown when a senator within zip-code is a co-sponsor <br />
+        <input
+          type="text"
+          placeholder="..."
+        />
+        <br /><br />
+
+        Text shown when no senator within zip-code is a co-sponsor <br />
+        <input
+          type="text"
+          placeholder="..."
+        />
+        <br /><br />
+
+        Text shown below title defined above <br />
+        <input
+          type="text"
+          placeholder="..."
+        />
+        <br /><br />
+
+        Text shown when more than one senator within zip-code are co-sponsors <br />
+        <input
+          type="text"
+          placeholder="..."
+        />
+        <br /><br />
+
+        Text shown on action page enticing users to do something <br />
+        <input
+          type="text"
+          placeholder="..."
+        />
+
       </div>
 
       <div className={houseFields}>
-        House fields
+        Text shown for representative who voted for bill <br />
+        <input
+          type="text"
+          placeholder="..."
+        /><br /><br />
+
+        Text shown for representative who voted against bill <br />
+        <input
+          type="text"
+          placeholder="..."
+        />
       </div>
 
       <br />

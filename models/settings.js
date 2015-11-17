@@ -18,7 +18,6 @@ let settingsSchema = new mongoose.Schema({
   house: {
     single_voted_for: String,
     single_voted_against: String,
-    multiple_results: String
   }
 });
 
