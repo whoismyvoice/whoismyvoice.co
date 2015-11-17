@@ -982,3 +982,39 @@ and (min-aspect-ratio: 13/9) {
     @include transition(1s);
   }
 }
+
+.edit {
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+
+  input {
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    display: block;
+  }
+
+  .Dropdown {
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+
+  .button {
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  .seperator {
+    width: 100%;
+    display: block;
+    height: 2px;
+    background-color: $black;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}

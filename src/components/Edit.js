@@ -119,6 +119,10 @@ class Edit extends BaseComponent {
       {'hide': this.state.chamber === '' || this.state.chamber === '1'}
     );
 
+    const buttonClasses = cx(
+      ['button'],
+      {'disabled': this.state.chamber === ''})
+
     const VoteOptions = [
       { value: '1', label: 'Yea'},
       { value: '0', label: 'Nay'}
@@ -131,7 +135,7 @@ class Edit extends BaseComponent {
 
     let defaultOption = this.state.selected;
 
-  	return <div className="page-block">
+  	return <div className="page-block edit">
     Bill ID
       <input
         type="text"
@@ -163,6 +167,8 @@ class Edit extends BaseComponent {
         placeholder="Select a chamber"
       />
 
+      <div className="seperator"></div>
+
       <div className={senateFields}>
         What vote to put in favor?
         <Dropdown
@@ -171,58 +177,51 @@ class Edit extends BaseComponent {
           placeholder="Select an option"
         />
 
-        Text shown when a senator within zip-code is a co-sponsor <br />
-        <input
-          type="text"
-          placeholder="..."
-        />
-        <br /><br />
-
-        Text shown when no senator within zip-code is a co-sponsor <br />
-        <input
-          type="text"
-          placeholder="..."
-        />
-        <br /><br />
-
-        Text shown below title defined above <br />
-        <input
-          type="text"
-          placeholder="..."
-        />
-        <br /><br />
-
-        Text shown when more than one senator within zip-code are co-sponsors <br />
-        <input
-          type="text"
-          placeholder="..."
-        />
-        <br /><br />
-
-        Text shown on action page enticing users to do something <br />
+        Text shown when a senator within zip-code is a co-sponsor
         <input
           type="text"
           placeholder="..."
         />
 
+        Text shown when no senator within zip-code is a co-sponsor
+        <input
+          type="text"
+          placeholder="..."
+        />
+
+        Text shown below title defined above
+        <input
+          type="text"
+          placeholder="..."
+        />
+
+        Text shown when more than one senator within zip-code are co-sponsors
+        <input
+          type="text"
+          placeholder="..."
+        />
+
+        Text shown on action page enticing users to do something
+        <input
+          type="text"
+          placeholder="..."
+        />
       </div>
 
       <div className={houseFields}>
-        Text shown for representative who voted for bill <br />
+        Text shown for representative who voted for bill
         <input
           type="text"
           placeholder="..."
-        /><br /><br />
+        />
 
-        Text shown for representative who voted against bill <br />
+        Text shown for representative who voted against bill
         <input
           type="text"
           placeholder="..."
         />
       </div>
-
-      <br />
-      <button onClick={this._handleClick}>Save changes</button>
+      <button className={buttonClasses} onClick={this._handleClick}>Save changes</button>
     </div>;
   }
 };
