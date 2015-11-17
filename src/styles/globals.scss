@@ -970,3 +970,8 @@ and (min-aspect-ratio: 13/9) {
   padding: 8px 10px;
 }
 
+.form-fields {
+  &.hide {
+    display: none;
+  }
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import request from 'superagent';
+import cx from 'classnames';
 
 // Components
 import BaseComponent from './BaseComponent';
@@ -83,6 +84,18 @@ class Edit extends BaseComponent {
 
   render() {
 
+    const senateFields = cx(
+      ['form-fields'],
+      {'hide': this.state.chamber === '' || this.state.chamber === '0'}
+    );
+
+    console.log(this.state.chamber);
+
+    const houseFields = cx(
+      ['form-fields'],
+      {'hide': this.state.chamber === '' || this.state.chamber === '1'}
+    );
+
     const VoteOptions = [
       { value: '1', label: 'Yea'},
       { value: '0', label: 'Nay'}
@@ -133,6 +146,14 @@ class Edit extends BaseComponent {
         onChange={this._onSelectChamber}
         placeholder="Select a chamber"
       />
+
+      <div className={senateFields}>
+        Senate fields
+      </div>
+
+      <div className={houseFields}>
+        House fields
+      </div>
 
       <br />
       <button onClick={this._handleClick}>Save changes</button>
