@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import Settings from '../data/settings.json';
+import ReactFitText from 'react-fittext';
 
 // Component
 import BaseComponent from './BaseComponent';
@@ -44,18 +45,20 @@ class Circle extends BaseComponent {
     );
 
     return <div className={`circle ${style}`}>
-  		<div className="description">
-        {status}
-        <div className={introductionClasses}>
-          {`Your ${title}`}
-        </div>
-        {proposition}
-  			<span className="strike-out">
-          {details}
-  			</span>
-        {state}
-        {description}
-  		</div>
+      <ReactFitText compressor={1.2}>
+  		  <div className="description">
+          {status}
+          <div className={introductionClasses}>
+            {`Your ${title}`}
+          </div>
+          {proposition}
+          <span className="strike-out">
+            {details}
+          </span>
+          {state}
+          {description}
+  		  </div>
+      </ReactFitText>
   	</div>;
   }
 };
