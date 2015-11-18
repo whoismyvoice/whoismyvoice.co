@@ -48,6 +48,7 @@ class FadedBG extends BaseComponent {
       {'faded-red': this.props.color === 'red'},
       {'faded-blue': this.props.color === 'blue'},
       {'faded-green': this.props.color === 'green'},
+      {'faded-orange': this.props.color === 'orange'},
       {'hide': !this.state.did_scroll}
     );
   	return <div className={fadedClasses}></div>;

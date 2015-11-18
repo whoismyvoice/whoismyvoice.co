@@ -6,6 +6,8 @@ import cx from 'classnames';
 import BaseComponent from './BaseComponent';
 import SenateActions from '../actions/SenateActions';
 import Dropdown from 'react-dropdown';
+import FadedBG from './FadedBg';
+import WhiteBorder from './WhiteBorder';
 
 class Edit extends BaseComponent {
   constructor() {
@@ -142,6 +144,8 @@ class Edit extends BaseComponent {
     let defaultOption = this.state.selected;
 
   	return <div className="page-block edit">
+      <FadedBG color="orange" />
+      <WhiteBorder />
       <div className="card">
         <b>Bill ID</b>
         <div className="example">

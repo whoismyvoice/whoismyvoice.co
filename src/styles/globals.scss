@@ -992,6 +992,7 @@ and (min-aspect-ratio: 13/9) {
   width: 50%;
   display: block;
   margin: 0 auto;
+  margin-bottom: 50px;
   text-align: center;
 
   input {
@@ -1023,7 +1024,7 @@ and (min-aspect-ratio: 13/9) {
 
   .card {
     width: 80%;
-    background-color: #EFEFEF;
+    background-color: #E0DDD8;
     border: 2px solid #999;
     border-radius: 2px;
     padding: 20px;
