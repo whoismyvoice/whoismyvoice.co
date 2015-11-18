@@ -982,6 +982,7 @@ and (min-aspect-ratio: 13/9) {
   &.hide {
     opacity: 0;
     height: 0;
+    display: none;
     visibility: hidden;
     @include transition(1s);
   }
@@ -998,12 +999,19 @@ and (min-aspect-ratio: 13/9) {
     margin-top: 10px;
     margin-bottom: 30px;
     display: block;
+    border: 2px solid #999;
+    border-radius: 2px;
+    background-color: $white;
+    text-transform: none;
   }
 
   .Dropdown {
-    width: 30%;
+    width: 40%;
     margin: 0 auto;
     margin-top: 10px;
+    border: 2px solid #999;
+    border-radius: 2px;
+    font-weight: bold;
   }
 
   .button {
@@ -1013,12 +1021,41 @@ and (min-aspect-ratio: 13/9) {
     }
   }
 
-  .seperator {
-    width: 100%;
-    display: block;
-    height: 2px;
-    background-color: $black;
-    margin-top: 30px;
+  .card {
+    width: 80%;
+    background-color: #EFEFEF;
+    border: 2px solid #999;
+    border-radius: 2px;
+    padding: 20px;
+    margin: 0 auto;
     margin-bottom: 30px;
+  }
+
+  b {
+    font-size: 14px;
+  }
+
+  input {
+    font-size: 12px;
+  }
+
+  .example {
+    position: relative;
+    margin-top: 10px;
+    text-align: center;
+    padding: 10px;
+    margin-left: 10px;
+    color: #666;
+    width: auto;
+    border-radius: 2px;
+    font-weight: bold;
+
+    &:before {
+      content: 'Example:';
+      position: relative;
+      color: #999;
+      padding-right: 5px;
+      display: inline-block;
+    }
   }
 }

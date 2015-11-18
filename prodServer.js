@@ -26,7 +26,7 @@ mongoose.connection.on('error', function() {
 const server = express();
 const port = 8080;
 
-server.use(bodyParser());
+server.use(bodyParser.json());
 server.use(helmet());
 server.use(express.static(__dirname + '/dist'))
 

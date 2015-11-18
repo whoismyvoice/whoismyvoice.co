@@ -142,96 +142,144 @@ class Edit extends BaseComponent {
     let defaultOption = this.state.selected;
 
   	return <div className="page-block edit">
-    Bill ID
-      <input
-        type="text"
-        placeholder="Enter bill id"
-        onChange={this._onChangeID}
-        value={this.state.bill_id}
-      />
-
-      Bill Title
-      <input
-        type="text"
-        placeholder="Enter bill title"
-        onChange={this._onChangeBillTitle}
-        value={this.state.bill_title}
-      />
-
-      Bill Description
-      <input
-        type="text"
-        placeholder="Enter bill description"
-        onChange={this._onChangeBillDesc}
-        value={this.state.bill_desc}
-      />
-
-      Select chamber
-      <Dropdown
-        options={ChamberOptions}
-        onChange={this._onSelectChamber}
-        placeholder="Select a chamber"
-      />
-
-      <div className="seperator"></div>
-
-      <div className={senateFields}>
-        What vote to put in favor?
-        <Dropdown
-          options={VoteOptions}
-          onChange={this._onSelect}
-          placeholder="Select an option"
-        />
-
-        Text shown on action page enticing users to do something
+      <div className="card">
+        <b>Bill ID</b>
+        <div className="example">
+          s1881-114
+        </div>
         <input
           type="text"
-          placeholder="Here are some ways..."
-          onChange={this._onChangeImpactText}
+          placeholder="Enter bill id"
+          onChange={this._onChangeID}
+          value={this.state.bill_id}
         />
 
-        Title shown when no senator within zip-code is a co-sponsor
+        <b>Bill Title</b>
+        <div className="example">
+          Accurate Food Labeling Act of 2015
+        </div>
         <input
           type="text"
-          placeholder="No! Your senators support..."
-          onChange={this._onChangeNoCosponsor}
+          placeholder="Enter bill title"
+          onChange={this._onChangeBillTitle}
+          value={this.state.bill_title}
         />
 
-        Text shown below title defined above
+        <b>Bill Question</b><br />
+        <i>Note: Use tag #member to be replaced by senator/representative</i>
+        <div className="example">
+          Did my #member vote against the Safe and Accurate Food Labeling Act of 2015?
+        </div>
         <input
           type="text"
-          placeholder="But have you hard of..."
-          onChange={this._onChangeNoCosponsorDesc}
-        />
-
-        Text shown when more than one senator within zip-code are co-sponsors
-        <input
-          type="text"
-          placeholder="co-sponsored the bill..."
-          onChange={this._onChangeCosponsorText}
-        />
-
-        <input
-          type="text"
-          placeholder="#gender represents your voice!"
-          onChange={this._onChangeRepresentText}
+          placeholder="Enter bill question"
+          onChange={this._onChangeBillDesc}
+          value={this.state.bill_desc}
         />
       </div>
 
-      <div className={houseFields}>
-        Text shown for representative who voted for bill
-        <input
-          type="text"
-          placeholder="#member voted for the [...] bill..."
-          onChange={this._onChangeVotedFor}
+      <div className="card">
+        <b>Select chamber</b>
+        <Dropdown
+          options={ChamberOptions}
+          onChange={this._onSelectChamber}
+          placeholder="Select a chamber"
         />
+      </div>
 
-        Text shown for representative who voted against bill
-        <input
-          type="text"
-          placeholder="#member voted aganst the [...] bill..."
-          onChange={this._onChangeVotedAgainst}
-        />
+      <div className={senateFields}>
+        <div className="card">
+          <b>Vote in favor?</b><br />
+          <i>Note: One vote is put in favor in order to only show senators who have voted against the vote.</i>
+          <Dropdown
+            options={VoteOptions}
+            onChange={this._onSelect}
+            placeholder="Select an option"
+          />
+        </div>
+
+        <div className="card">
+          <b>Title shown when no senator within zip-code is a co-sponsor</b>
+          <div className="example">
+            No! Your senators support Planned Parenthood!
+          </div>
+          <input
+            type="text"
+            placeholder="No co-sponsor title"
+            onChange={this._onChangeNoCosponsor}
+          />
+
+          <b>Text shown below title defined above</b>
+          <div className="example">
+            But have you heard of the House Freedom Caucus? The HFC is a group of 40+ conservative congressmen who have publicly declared they will oppose any spending bill that does not defund Planned Parenthood. Yes, these men and women are willing to shut down your government over this issue. If you live in their district, email them. If you don’t, tweet at them.
+          </div>
+          <input
+            type="text"
+            placeholder="No co-sponsor text"
+            onChange={this._onChangeNoCosponsorDesc}
+          />
+        </div>
+
+        <div className="card">
+          <b>Text shown after senator details</b><br />
+          <i>Senator details: "Yes! Your senator a [age] year old [gender]"</i>
+          <div className="example">
+            co-sponsored the bill to defund Planned Parenthood.
+          </div>
+          <input
+            type="text"
+            placeholder="Co-sponsor text"
+            onChange={this._onChangeCosponsorText}
+          />
+
+          <b>Final sentence following senator details and text</b><br />
+          <i>Note: Use tag #gender to be replaced by the senators gender.</i>
+          <div className="example">
+            #gender represents your voice!
+          </div>
+          <input
+            type="text"
+            placeholder="Final sentence"
+            onChange={this._onChangeRepresentText}
+          />
+
+          <b>Text shown on action page enticing users to do something</b><br />
+          <i>Note: Use tag #gender_third to add senators gender as him or her.</i>
+          <div className="example">
+            Here are some ways you can keep #gender_third from being able to personally weigh in on safe and accurate food labeling the next time a similar vote comes up.
+          </div>
+          <input
+            type="text"
+            placeholder="Action page text"
+            onChange={this._onChangeImpactText}
+          />
+        </div>
+      </div>
+
+      <div className={houseFields}>
+        <div className="card">
+          <b>Text shown for representative who voted for bill following representative details.</b><br />
+          <i>Representative details: "Yes! Your Representative, a [age] year old [gender]"</i>
+          <div className="example">
+            voted for the Safe and Accurate Food Labeling Act of 2015.
+          </div>
+          <input
+            type="text"
+            placeholder="Voted for bill text"
+            onChange={this._onChangeVotedFor}
+          />
+
+          <b>Text shown for representative who voted against bill following representative details.</b>
+          <i>Representative details: "No! Your Representative, a [age] year old [gender]"</i>
+          <div className="example">
+            voted against the Safe and Accurate Food Labeling Act of 2015.
+          </div>
+          <input
+            type="text"
+            placeholder="Voted against bill text"
+            onChange={this._onChangeVotedAgainst}
+          />
+        </div>
       </div>
       <button className={buttonClasses} onClick={this._handleClick}>Save changes</button>
     </div>;
