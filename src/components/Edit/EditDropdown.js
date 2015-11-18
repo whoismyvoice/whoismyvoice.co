@@ -2,8 +2,9 @@ import React from 'react';
 
 // Components
 import BaseComponent from '../BaseComponent';
+import Dropdown from 'react-dropdown';
 
-class EditInput extends BaseComponent {
+class EditDropdown extends BaseComponent {
   constructor() {
     super();
   }
@@ -12,10 +13,8 @@ class EditInput extends BaseComponent {
   	return <div>
       <b>{this.props.title}</b><br />
       <i>{this.props.note}</i>
-      <div className="example">{this.props.example}</div>
-      <input
-        type="text"
-        value={this.props.value}
+      <Dropdown
+        options={this.props.options}
         onChange={this.props.onChange}
         placeholder={this.props.placeholder}
       />
@@ -23,4 +22,4 @@ class EditInput extends BaseComponent {
   }
 };
 
-export default EditInput;
+export default EditDropdown;

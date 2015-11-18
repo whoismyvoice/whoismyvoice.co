@@ -1,14 +1,15 @@
 import React from 'react';
 import request from 'superagent';
 import cx from 'classnames';
+import SenateActions from '../actions/SenateActions';
 
 // Components
 import BaseComponent from './BaseComponent';
-import EditInput from './Edit/EditInput';
-import SenateActions from '../actions/SenateActions';
-import Dropdown from 'react-dropdown';
 import FadedBG from './FadedBg';
 import WhiteBorder from './WhiteBorder';
+import EditInput from './Edit/EditInput';
+import EditTextArea from './Edit/EditTextArea';
+import EditDropdown from './Edit/EditDropdown';
 
 class Edit extends BaseComponent {
   constructor() {
@@ -69,7 +70,7 @@ class Edit extends BaseComponent {
     this.setState({impact_text: evt.target.value});
   }
   _onChangeNoCosponsor(evt) {
-    this.setState({no_cosponsor_text: evt.target.value});
+    this.setState({no_cosponsor_title: evt.target.value});
   }
   _onChangeNoCosponsorDesc(evt) {
     this.setState({no_cosponsor_desc: evt.target.value});
@@ -146,8 +147,6 @@ class Edit extends BaseComponent {
   	return <div className="page-block edit">
       <FadedBG color="orange" />
       <WhiteBorder />
-
-
       <div className="card">
         <EditInput
           title="Bill ID"
@@ -156,7 +155,6 @@ class Edit extends BaseComponent {
           example="s1881-114"
           placeholder="Enter bill id"
         />
-
         <EditInput
           title="Bill Title"
           onChange={this._onChangeBillTitle}
@@ -164,7 +162,6 @@ class Edit extends BaseComponent {
           example="Accurate Food Labeling Act of 2015"
           placeholder="Enter bill title"
         />
-
         <EditInput
           title="Bill Question"
           onChange={this._onChangeBillDesc}
@@ -176,8 +173,8 @@ class Edit extends BaseComponent {
       </div>
 
       <div className="card">
-        <b>Select chamber</b>
-        <Dropdown
+        <EditDropdown
+          title="Select Chamber"
           options={ChamberOptions}
           onChange={this._onSelectChamber}
           placeholder="Select a chamber"
@@ -186,9 +183,9 @@ class Edit extends BaseComponent {
 
       <div className={senateFields}>
         <div className="card">
-          <b>Vote in favor?</b><br />
-          <i>Note: One vote is put in favor in order to only show senators who have voted against the vote.</i>
-          <Dropdown
+          <EditDropdown
+            title="Vote in favor?"
+            note="Note: One vote is put in favor in order to only show senators who have voted against the vote."
             options={VoteOptions}
             onChange={this._onSelect}
             placeholder="Select an option"
@@ -196,7 +193,6 @@ class Edit extends BaseComponent {
         </div>
 
         <div className="card">
-
           <EditInput
             title="Title shown when no senator within zip-code is a co-sponsor"
             onChange={this._onChangeNoCosponsor}
@@ -205,18 +201,13 @@ class Edit extends BaseComponent {
             example="No! Your senators support Planned Parenthood!"
             placeholder="No co-sponsor title"
           />
-
-          <b>Text shown below title defined above</b>
-          <div className="example">
-            But have you heard of the House Freedom Caucus? The HFC is a group of 40+ conservative congressmen who have publicly declared they will oppose any spending bill that does not defund Planned Parenthood. Yes, these men and women are willing to shut down your government over this issue. If you live in their district, email them. If you don’t, tweet at them.
-          </div>
-          <textarea
-            type="text"
+          <EditTextArea
+            title="Text shown below title defined above"
             placeholder="No co-sponsor text"
             onChange={this._onChangeNoCosponsorDesc}
+            example="But have you heard of the House Freedom Caucus? The HFC is a group of 40+ conservative congressmen who have publicly declared they will oppose any spending bill that does not defund Planned Parenthood. Yes, these men and women are willing to shut down your government over this issue. If you live in their district, email them. If you don’t, tweet at them."
           />
         </div>
-
         <div className="card">
           <EditInput
             title="Text shown after senator details"
@@ -226,7 +217,6 @@ class Edit extends BaseComponent {
             example="co-sponsored the bill to defund Planned Parenthood."
             placeholder="Co-sponsor text"
           />
-
           <EditInput
             title="Final sentence following senator details and text"
             onChange={this._onChangeRepresentText}
@@ -235,20 +225,15 @@ class Edit extends BaseComponent {
             example="#gender represents your voice!"
             placeholder="Final sentence"
           />
-
-          <b>Text shown on action page enticing users to do something</b><br />
-          <i>Note: Use tag #gender_third to add senators gender as him or her.</i>
-          <div className="example">
-            Here are some ways you can keep #gender_third from being able to personally weigh in on safe and accurate food labeling the next time a similar vote comes up.
-          </div>
-          <textarea
-            type="text"
+          <EditTextArea
+            title="Text shown on action page enticing users to do something"
             placeholder="Action page text"
+            note="Note: Use tag #gender_third to add senators gender as him or her."
             onChange={this._onChangeImpactText}
+            example="Here are some ways you can keep #gender_third from being able to personally weigh in on safe and accurate food labeling the next time a similar vote comes up."
           />
         </div>
       </div>
-
       <div className={houseFields}>
         <div className="card">
           <EditInput
@@ -259,7 +244,6 @@ class Edit extends BaseComponent {
             example="voted for the Safe and Accurate Food Labeling Act of 2015."
             placeholder="Voted-for bill text"
           />
-
           <EditInput
             title="Text shown for representative who voted against bill following representative details."
             onChange={this._onChangeVotedAgainst}
@@ -268,16 +252,12 @@ class Edit extends BaseComponent {
             example="voted against the Safe and Accurate Food Labeling Act of 2015."
             placeholder="Voted against bill text"
           />
-
-          <b>Text shown on action page enticing users to do something</b><br />
-          <i>Note: Use tag #gender_third to add senators gender as him or her.</i>
-          <div className="example">
-            Here are some ways you can keep #gender_third from being able to personally weigh in on safe and accurate food labeling the next time a similar vote comes up.
-          </div>
-          <textarea
-            type="text"
+          <EditTextArea
+            title="Text shown on action page enticing users to do something"
             placeholder="Action page text"
+            note="Note: Use tag #gender_third to add senators gender as him or her."
             onChange={this._onChangeImpactText}
+            example="Here are some ways you can keep #gender_third from being able to personally weigh in on safe and accurate food labeling the next time a similar vote comes up."
           />
         </div>
       </div>
