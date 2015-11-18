@@ -16,6 +16,7 @@ let settingsSchema = new mongoose.Schema({
     represent: String
   },
   house: {
+    impact_text: String,
     single_voted_for: String,
     single_voted_against: String,
   }

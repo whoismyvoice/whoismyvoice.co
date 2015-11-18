@@ -217,7 +217,7 @@ class Edit extends BaseComponent {
           <div className="example">
             But have you heard of the House Freedom Caucus? The HFC is a group of 40+ conservative congressmen who have publicly declared they will oppose any spending bill that does not defund Planned Parenthood. Yes, these men and women are willing to shut down your government over this issue. If you live in their district, email them. If you don’t, tweet at them.
           </div>
-          <input
+          <textarea
             type="text"
             placeholder="No co-sponsor text"
             onChange={this._onChangeNoCosponsorDesc}
@@ -252,7 +252,7 @@ class Edit extends BaseComponent {
           <div className="example">
             Here are some ways you can keep #gender_third from being able to personally weigh in on safe and accurate food labeling the next time a similar vote comes up.
           </div>
-          <input
+          <textarea
             type="text"
             placeholder="Action page text"
             onChange={this._onChangeImpactText}
@@ -283,6 +283,18 @@ class Edit extends BaseComponent {
             placeholder="Voted against bill text"
             onChange={this._onChangeVotedAgainst}
           />
+
+          <b>Text shown on action page enticing users to do something</b><br />
+          <i>Note: Use tag #gender_third to add senators gender as him or her.</i>
+          <div className="example">
+            Here are some ways you can keep #gender_third from being able to personally weigh in on safe and accurate food labeling the next time a similar vote comes up.
+          </div>
+          <textarea
+            type="text"
+            placeholder="Action page text"
+            onChange={this._onChangeImpactText}
+          />
+
         </div>
       </div>
       <button className={buttonClasses} onClick={this._handleClick}>Save changes</button>

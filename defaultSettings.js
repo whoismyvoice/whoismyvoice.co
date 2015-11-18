@@ -14,6 +14,7 @@ const defaultSettings = {
     represent: '#gender represents your voice!'
   },
   house: {
+    impact_text: 'Here are some ways you can keep #gender_third from being able to personally weigh in on safe and accurate food labeling the next time a similar vote comes up.',
     single_voted_for: 'voted for the Safe and Accurate Food Labeling Act of 2015.',
     single_voted_against: 'voted against the Safe and Accurate Food Labeling Act of 2015.',
   }
