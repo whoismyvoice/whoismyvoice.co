@@ -4,6 +4,7 @@ import cx from 'classnames';
 
 // Components
 import BaseComponent from './BaseComponent';
+import EditInput from './Edit/EditInput';
 import SenateActions from '../actions/SenateActions';
 import Dropdown from 'react-dropdown';
 import FadedBG from './FadedBg';
@@ -54,7 +55,6 @@ class Edit extends BaseComponent {
   }
   _onChangeID(evt) {
     this.setState({bill_id: evt.target.value});
-    console.log(this.state.bill_id);
   }
   _onChangeBillTitle(evt) {
     this.setState({bill_title: evt.target.value});
@@ -146,39 +146,32 @@ class Edit extends BaseComponent {
   	return <div className="page-block edit">
       <FadedBG color="orange" />
       <WhiteBorder />
+
+
       <div className="card">
-        <b>Bill ID</b>
-        <div className="example">
-          s1881-114
-        </div>
-        <input
-          type="text"
-          placeholder="Enter bill id"
+        <EditInput
+          title="Bill ID"
           onChange={this._onChangeID}
           value={this.state.bill_id}
+          example="s1881-114"
+          placeholder="Enter bill id"
         />
 
-        <b>Bill Title</b>
-        <div className="example">
-          Accurate Food Labeling Act of 2015
-        </div>
-        <input
-          type="text"
-          placeholder="Enter bill title"
+        <EditInput
+          title="Bill Title"
           onChange={this._onChangeBillTitle}
           value={this.state.bill_title}
+          example="Accurate Food Labeling Act of 2015"
+          placeholder="Enter bill title"
         />
 
-        <b>Bill Question</b><br />
-        <i>Note: Use tag #member to be replaced by senator/representative</i>
-        <div className="example">
-          Did my #member vote against the Safe and Accurate Food Labeling Act of 2015?
-        </div>
-        <input
-          type="text"
-          placeholder="Enter bill question"
+        <EditInput
+          title="Bill Question"
           onChange={this._onChangeBillDesc}
+          note="Note: Use tag #member to be replaced by senator/representative"
           value={this.state.bill_desc}
+          example="Did my #member vote against the Safe and Accurate Food Labeling Act of 2015?"
+          placeholder="Enter bill question"
         />
       </div>
 
@@ -203,14 +196,14 @@ class Edit extends BaseComponent {
         </div>
 
         <div className="card">
-          <b>Title shown when no senator within zip-code is a co-sponsor</b>
-          <div className="example">
-            No! Your senators support Planned Parenthood!
-          </div>
-          <input
-            type="text"
-            placeholder="No co-sponsor title"
+
+          <EditInput
+            title="Title shown when no senator within zip-code is a co-sponsor"
             onChange={this._onChangeNoCosponsor}
+            note="Note: Use tag #member to be replaced by senator/representative"
+            value={this.state.no_cosponsor_title}
+            example="No! Your senators support Planned Parenthood!"
+            placeholder="No co-sponsor title"
           />
 
           <b>Text shown below title defined above</b>
@@ -225,26 +218,22 @@ class Edit extends BaseComponent {
         </div>
 
         <div className="card">
-          <b>Text shown after senator details</b><br />
-          <i>Senator details: "Yes! Your senator a [age] year old [gender]"</i>
-          <div className="example">
-            co-sponsored the bill to defund Planned Parenthood.
-          </div>
-          <input
-            type="text"
-            placeholder="Co-sponsor text"
+          <EditInput
+            title="Text shown after senator details"
             onChange={this._onChangeCosponsorText}
+            note={'Senator details: "Yes! Your senator a [age] year old [gender]"'}
+            value={this.state.cosponsor_post_text}
+            example="co-sponsored the bill to defund Planned Parenthood."
+            placeholder="Co-sponsor text"
           />
 
-          <b>Final sentence following senator details and text</b><br />
-          <i>Note: Use tag #gender to be replaced by the senators gender.</i>
-          <div className="example">
-            #gender represents your voice!
-          </div>
-          <input
-            type="text"
-            placeholder="Final sentence"
+          <EditInput
+            title="Final sentence following senator details and text"
             onChange={this._onChangeRepresentText}
+            note="Note: Use tag #gender to be replaced by the senators gender."
+            value={this.state.represent}
+            example="#gender represents your voice!"
+            placeholder="Final sentence"
           />
 
           <b>Text shown on action page enticing users to do something</b><br />
@@ -262,26 +251,22 @@ class Edit extends BaseComponent {
 
       <div className={houseFields}>
         <div className="card">
-          <b>Text shown for representative who voted for bill following representative details.</b><br />
-          <i>Representative details: "Yes! Your Representative, a [age] year old [gender]"</i>
-          <div className="example">
-            voted for the Safe and Accurate Food Labeling Act of 2015.
-          </div>
-          <input
-            type="text"
-            placeholder="Voted for bill text"
+          <EditInput
+            title="Text shown for representative who voted for bill following representative details."
             onChange={this._onChangeVotedFor}
+            note={'Representative details: "Yes! Your Representative, a [age] year old [gender]"'}
+            value={this.state.single_voted_for}
+            example="voted for the Safe and Accurate Food Labeling Act of 2015."
+            placeholder="Voted-for bill text"
           />
 
-          <b>Text shown for representative who voted against bill following representative details.</b>
-          <i>Representative details: "No! Your Representative, a [age] year old [gender]"</i>
-          <div className="example">
-            voted against the Safe and Accurate Food Labeling Act of 2015.
-          </div>
-          <input
-            type="text"
-            placeholder="Voted against bill text"
+          <EditInput
+            title="Text shown for representative who voted against bill following representative details."
             onChange={this._onChangeVotedAgainst}
+            note={'Representative details: "No! Your Representative, a [age] year old [gender]"'}
+            value={this.state.single_voted_against}
+            example="voted against the Safe and Accurate Food Labeling Act of 2015."
+            placeholder="Voted against bill text"
           />
 
           <b>Text shown on action page enticing users to do something</b><br />
@@ -294,7 +279,6 @@ class Edit extends BaseComponent {
             placeholder="Action page text"
             onChange={this._onChangeImpactText}
           />
-
         </div>
       </div>
       <button className={buttonClasses} onClick={this._handleClick}>Save changes</button>
