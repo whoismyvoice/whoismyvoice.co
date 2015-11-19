@@ -5,6 +5,10 @@ $light-grey: #EFEFEF;
 $dark-grey: #666;
 $black: #000;
 $white: #FFF;
+$light-white: #FBFBFB;
+$light-peach: #FFF5F5;
+$dark-orange-light: #ECA97C;
+$dark-orange: #EDA679;
 $light-green: #DDF4E0;
 $light-orange: #FBE2C6;
 $light-purple: #EBE6F5;
@@ -16,8 +20,8 @@ $bright-green: #CDF2EA;
 $iphone5-min: 320px;
 $iphone5-max: 568px;
 
-//@media only screen 
-//and (min-device-width : 320px) 
+//@media only screen
+//and (min-device-width : 320px)
 //and (max-device-width : 568px) { /* STYLES GO HERE */}
 
 $iphone6: 420px;
@@ -29,7 +33,7 @@ $ipad-max: 1024px;
 	@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 	@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 	@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-	
+
 	-webkit-animation:fadeIn ease-in $time;
   -moz-animation:fadeIn ease-in $time;
   animation:fadeIn ease-in $time;

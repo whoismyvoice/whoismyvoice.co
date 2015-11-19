@@ -12,6 +12,7 @@ import Circle from './Circle';
 import SearchGroup from './SearchGroup';
 import CongressmanGroup from './Senator/CongressmanGroup';
 import Results from './Results';
+import FadeBorder from './FadeBorder';
 
 // Styles
 import style from './../styles/Home.scss';
@@ -148,6 +149,9 @@ class Home extends BaseComponent {
     );
 
     return <div className={containerClasses}>
+      <FadeBorder
+        darken={DID_SEARCH}
+      />
       <div className="overlay">
         This site is only supported in portrait mode. Please turn your phone.
       </div>

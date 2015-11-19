@@ -155,33 +155,34 @@ button, input {
   }
 }
 
-#top, #bottom, #left, #right {
+#left, #right {
+  @include transition(0.2s);
   z-index: 9;
+  -webkit-filter: blur(20px);
+  -moz-filter: blur(20px);
+  -o-filter: blur(20px);
+  -ms-filter: blur(20px);
+  filter: blur(20px);
   position: fixed;
-  background: $white;
+  background-color: $light-white;
+  opacity: 0.6;
+
+  &.darken {
+    @include transition(0.2s);
+    background-color: $dark-orange;
+  }
 }
 
 #left, #right {
   top: 0; bottom: 0;
-  width: 15px;
+  width: 20%;
   @media screen and (max-width: $iphone6) {
     width: 8px;
   }
 }
 
-#left { left: 0; }
-#right { right: 0; }
-
-#top, #bottom {
-  left: 0; right: 0;
-  height: 15px;
-  @media screen and (max-width: $iphone6) {
-    height: 7px;
-  }
-}
-
-#top { top: 0; }
-#bottom { bottom: 0; }
+#left { left: -10px; }
+#right { right: -10px; }
 
 .page-block {
   display: flex;
@@ -443,48 +444,20 @@ button, input {
 
 .green {
   @include transition(0.5s);
-  background-color: $light-green!important;
+  background: repeating-linear-gradient(20deg, $light-white, $light-white 50px, $light-peach 50px, $light-peach 100px)!important;
+
+  #left, #right {
+    background-color: $light-white!important;
+  }
 }
 
 .orange {
   @include transition(0.5s);
-  background-color: $light-orange;
-
-  .black-line {
-    height: 48%;
-
-    @media only screen
-    and (min-device-width: 768px)
-    and (max-device-width: 1024px)
-    and (orientation: portrait)
-    and (-webkit-min-device-pixel-ratio: 1) {
-      height: 65.5%;
-    }
-
-    @media only screen
-    and (min-device-width: 768px)
-    and (max-device-width: 1024px)
-    and (orientation: landscape)
-    and (-webkit-min-device-pixel-ratio: 1) {
-      height: 60%;
-    }
-  }
+  background: repeating-linear-gradient(20deg, $dark-orange-light, $dark-orange-light 50px, $dark-orange 50px, $dark-orange 100px);
 }
 
 .purple {
   background-color: $light-purple;
-
-  .black-line {
-    height: 65%;
-
-    @media only screen
-    and (min-device-width: 768px)
-    and (max-device-width: 1024px)
-    and (orientation: landscape)
-    and (-webkit-min-device-pixel-ratio: 1) {
-      height: 57%;
-    }
-  }
   @include transition(0.5s);
 }
 
