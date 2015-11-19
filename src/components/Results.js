@@ -3,7 +3,6 @@ import Settings from '../data/settings.json';
 import HFCMembers from '../data/HFCMembers';
 
 // Components
-import Circle from './Circle';
 import TitleComponent from './TitleComponent';
 import ArrowDown from './ArrowDown';
 import SupportActions from './Senator/SupportActions';

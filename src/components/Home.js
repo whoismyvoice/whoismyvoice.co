@@ -97,19 +97,17 @@ class Home extends BaseComponent {
       CURRENT_MEMBER = this.state.current_senator,
       {chamber, bill_desc, voted_for, voted_against, impact_text, pre_text} = SETTINGS ? SETTINGS : Settings;
 
-    let member = chamber === 'senate' ? 'Senator': 'Representative',
-        vote_status,
-        member_name,
-        impact,
+    let vote_status,
+        member_name = '',
+        impact = impact_text.replace('#gender_third', 'this person'),
+        member = chamber === 'senate' ? 'Senator': 'Representative',
         action = chamber === 'senate' ? 'co-sponsored' : 'voted to';
 
     if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1) {
       impact = impact_text.replace('#gender_third', `this ${REPRESENTATIVES[0].gender_full}`);
       member_name = REPRESENTATIVES[0].full_name;
     } else if (DID_SEARCH && NUMBER_REPRESENTATIVES > 1) {
-      impact = impact_text.replace('#gender_third', 'this person');
       member = chamber === 'senate' ? 'Senators' : 'Representatives';
-      member_name = '';
     }
 
     if(DID_SEARCH && NUMBER_REPRESENTATIVES > 0) {
@@ -146,7 +144,6 @@ class Home extends BaseComponent {
       {'reveal': DID_SEARCH},
       {'light': !DID_SEARCH || NUMBER_REPRESENTATIVES > 1 || NUMBER_REPRESENTATIVES === undefined},
       {'peach': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES !== undefined},
-      {'red': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
       {'visible': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
       {'purple': this.state.current_screen === 2},
       {'full': DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && chamber === 'senate'}
