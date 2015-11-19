@@ -5,14 +5,13 @@ import Settings from '../data/settings.json';
 import DataUtils from '../utils/DataUtils';
 import ContainerActions from '../actions/ContainerActions';
 import cx from 'classnames';
-import Results from './Results';
 
 // Components
 import BaseComponent from './BaseComponent';
 import Circle from './Circle';
 import SearchGroup from './SearchGroup';
 import CongressmanGroup from './Senator/CongressmanGroup';
-import WhiteBorder from './WhiteBorder';
+import Results from './Results';
 
 // Styles
 import style from './../styles/Home.scss';
@@ -149,7 +148,6 @@ class Home extends BaseComponent {
     );
 
     return <div className={containerClasses}>
-      <WhiteBorder />
       <div className="overlay">
         This site is only supported in portrait mode. Please turn your phone.
       </div>

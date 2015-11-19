@@ -3,7 +3,6 @@ import Button from './Button';
 import cx from 'classnames';
 
 // Components
-import WhiteBorder from './WhiteBorder';
 import BaseComponent from './BaseComponent';
 
 // Styles
@@ -43,7 +42,6 @@ class Header extends BaseComponent {
           <div className={iconClasses}></div>
         </div>
         <nav className={menuClasses} onClick={this._handleClick}>
-          <WhiteBorder />
           <Button
             color={'yellow-text'}
             link="/sources"

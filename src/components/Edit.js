@@ -6,7 +6,6 @@ import SenateActions from '../actions/SenateActions';
 // Components
 import BaseComponent from './BaseComponent';
 import FadedBG from './FadedBg';
-import WhiteBorder from './WhiteBorder';
 import EditInput from './Edit/EditInput';
 import EditTextArea from './Edit/EditTextArea';
 import EditDropdown from './Edit/EditDropdown';
@@ -146,7 +145,6 @@ class Edit extends BaseComponent {
 
   	return <div className="page-block edit">
       <FadedBG color="orange" />
-      <WhiteBorder />
       <div className="card">
         <EditInput
           title="Bill ID"
