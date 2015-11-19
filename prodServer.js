@@ -6,10 +6,10 @@ import defaultSettings from './defaultSettings';
 import config from './config';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
+import serveStatic from 'serve-static';
 
 mongoose.connect(config.database);
 mongoose.connection.on('open', function() {
-
   // ONLY FOR TESTING PURPOSESE - DROPS DATABASE AND INSTANTIATES NEW SETTINGS
   mongoose.connection.db.dropDatabase();
   const defSet = new Settings(defaultSettings);
@@ -27,8 +27,8 @@ const server = express();
 const port = 8080;
 
 server.use(bodyParser.json());
+server.use(serveStatic(__dirname + '/dist', {'index': ['index.html']}));
 server.use(helmet());
-server.use(express.static(__dirname + '/dist'))
 
 server.get('/api/settings', function(req, res, next) {
   Settings.findOne({}, {}, {sort: {'created_at': -1 }}, function(err, settings) {
@@ -47,12 +47,6 @@ server.post('/api/settings/edit', function(req, res, next) {
       console.info("Posted new settings successfully");
   })
 });
-
-server.get('*', function (request, response) {
-  response.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
-})
-
-server.use(express.static('client/dist'));
 
 server.listen(port, function(err) {
   if (err) {
