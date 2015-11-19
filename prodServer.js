@@ -32,7 +32,9 @@ server.use(helmet());
 
 server.get('/api/settings', function(req, res, next) {
   Settings.findOne({}, {}, {sort: {'created_at': -1 }}, function(err, settings) {
-    if(err) return next(err);
+    if(err) {
+      res.status(400).send('Invalid request');
+    }
     console.info("Received request");
     res.send({settings: settings});
   });
@@ -42,9 +44,11 @@ server.post('/api/settings/edit', function(req, res, next) {
   var post = new Settings(req.body);
   console.info(post);
   post.save(function (err, post) {
-    if(err) { return next(err) }
-      res.status(201).json(post);
-      console.info("Posted new settings successfully");
+    if(err) {
+      res.status(400).send('Invalid request');
+    }
+    res.status(201).json(post);
+    console.info("Posted new settings successfully");
   })
 });
 
