@@ -8,11 +8,11 @@ import cx from 'classnames';
 
 // Components
 import BaseComponent from './BaseComponent';
-import Circle from './Circle';
 import SearchGroup from './SearchGroup';
 import CongressmanGroup from './Senator/CongressmanGroup';
 import Results from './Results';
 import FadeBorder from './FadeBorder';
+import TitleComponent from './TitleComponent';
 
 // Styles
 import style from './../styles/Home.scss';
@@ -88,36 +88,40 @@ class Home extends BaseComponent {
   }
   render() {
     const NUMBER_REPRESENTATIVES = this.state.number_representatives,
-          SETTINGS = this.state.settings,
-          REPRESENTATIVES = this.state.representatives,
-          DID_SEARCH = this.state.did_search,
-          ERROR = this.state.error,
-          ZIP_CODE = this.state.zip_code,
-          STATE_FULL = this.state.state_full,
-          CURRENT_MEMBER = this.state.current_senator,
-          {single_voted_for, single_voted_against} = SETTINGS ? SETTINGS.house : Settings.house,
-          {cosponsor_post_text, impact_text, represent} = SETTINGS ? SETTINGS.senate : Settings.senate,
-          {chamber, bill_desc} = SETTINGS ? SETTINGS : Settings,
-          MEMBER = chamber === 'senate' ? 'senator' : 'representative';
+      SETTINGS = this.state.settings,
+      REPRESENTATIVES = this.state.representatives,
+      DID_SEARCH = this.state.did_search,
+      ERROR = this.state.error,
+      ZIP_CODE = this.state.zip_code,
+      STATE_FULL = this.state.state_full,
+      CURRENT_MEMBER = this.state.current_senator,
+      {chamber, bill_desc, voted_for, voted_against, impact_text, pre_text} = SETTINGS ? SETTINGS : Settings;
 
-    let impact = impact_text.replace('#gender_third', 'this person'),
-        VOTE_STATUS = `${cosponsor_post_text}`;
+    let member = chamber === 'senate' ? 'Senator': 'Representative',
+        vote_status,
+        member_name,
+        impact,
+        action = chamber === 'senate' ? 'co-sponsored' : 'voted to';
 
-    if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house') {
-      const MEMBER_THIRD = REPRESENTATIVES[0].gender_full === 'man' ? 'He' : 'She',
-            represent_text = represent.replace('#gender', MEMBER_THIRD);
-
+    if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1) {
       impact = impact_text.replace('#gender_third', `this ${REPRESENTATIVES[0].gender_full}`);
-      VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` ${single_voted_for} ${represent_text}` : ` ${single_voted_against} ${represent_text}`;
-
-    } else if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'senate'){
-      VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` ${cosponsor_post_text}` : '';
+      member_name = REPRESENTATIVES[0].full_name;
+    } else if (DID_SEARCH && NUMBER_REPRESENTATIVES > 1) {
+      impact = impact_text.replace('#gender_third', 'this person');
+      member = chamber === 'senate' ? 'Senators' : 'Representatives';
+      member_name = '';
     }
+
+    if(DID_SEARCH && NUMBER_REPRESENTATIVES > 0) {
+      vote_status = REPRESENTATIVES[0].voted === 'Yea' ? ` ${voted_for}` : ` ${voted_against}`;
+    }
+
+    const RESULT = pre_text.replace('#member_type', member).replace('#member_name', member_name).replace('#action', action);
 
     if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && NUMBER_REPRESENTATIVES > 0 && chamber === 'senate') {
       this._initializeFullpage();
     } else {
-      VOTE_STATUS = 'You have not yet searched for a member';
+      vote_status = 'You have not yet searched for a member';
       this._destroyFullpage();
     }
 
@@ -140,8 +144,8 @@ class Home extends BaseComponent {
     const containerClasses = cx(
       ['container'],
       {'reveal': DID_SEARCH},
-      {'green': !DID_SEARCH || NUMBER_REPRESENTATIVES > 1 || NUMBER_REPRESENTATIVES === undefined},
-      {'orange': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES !== undefined},
+      {'light': !DID_SEARCH || NUMBER_REPRESENTATIVES > 1 || NUMBER_REPRESENTATIVES === undefined},
+      {'peach': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES !== undefined},
       {'red': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
       {'visible': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
       {'purple': this.state.current_screen === 2},
@@ -157,12 +161,13 @@ class Home extends BaseComponent {
       </div>
       <div className={blockClasses} onScroll={this._handleScroll}>
       	<div className="section-block">
-        	<Circle
-          	style="one"
-          	hide={true}
-          	did_search={DID_SEARCH}
-          	desc={bill_desc.replace('#member', MEMBER)}
-        	/>
+          <TitleComponent
+            did_search={DID_SEARCH}
+            number_representatives={NUMBER_REPRESENTATIVES}
+            vote_status={vote_status}
+            pre_text={RESULT}
+            desc={bill_desc.replace('#member', member)}
+          />
         	<SearchGroup
             repNum={NUMBER_REPRESENTATIVES}
           	error={ERROR}
@@ -175,8 +180,11 @@ class Home extends BaseComponent {
           representatives={REPRESENTATIVES}
           numRep={NUMBER_REPRESENTATIVES}
           backgroundClasses={backgroundClasses}
-          vote_status={VOTE_STATUS}
+          pre_text={RESULT}
+          vote_status={vote_status}
           impact={impact}
+          chamber={chamber}
+          did_search={DID_SEARCH}
           current_member={CURRENT_MEMBER}
           zip_code={ZIP_CODE}
         />

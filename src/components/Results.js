@@ -4,6 +4,7 @@ import HFCMembers from '../data/HFCMembers';
 
 // Components
 import Circle from './Circle';
+import TitleComponent from './TitleComponent';
 import ArrowDown from './ArrowDown';
 import SupportActions from './Senator/SupportActions';
 import HFCOverview from './HFCOverview';
@@ -20,67 +21,42 @@ class Results extends BaseComponent {
       current_member,
       zip_code,
       numRep,
+      did_search,
       representatives,
       backgroundClasses,
-      first_reps,
-      initialize
-    } = this.props,
+      pre_text,
+      chamber
+    } = this.props;
 
-    {no_cosponsor_title, no_cosponsor_desc} = Settings.senate,
-    {chamber} = Settings;
-
-    if (chamber === 'senate' && numRep === 0) {
-      return <div className={backgroundClasses} id="fullpage">
-        <FadedBG color="red" />
-        <div className="section block two">
-          <p className="impact">
-            {no_cosponsor_title} <br />
-            {no_cosponsor_desc}
-          </p>
-          <HFCOverview
-            color="bright-red"
-            members={HFCMembers}
-          />
-          <ArrowDown
-            color="red-text"
-            scroll={"true"}
-          />
-        </div>
-      </div>;
-    } else {
-		  return <div className={backgroundClasses} id="fullpage">
-        <div className="section block two">
-          <Circle
-            style="wide"
-            desc={vote_status}
-            numRep={numRep}
-            representatives={representatives}
-          />
-          <CongressmanGroup
-            representatives={representatives}
-            zip_code={zip_code}
-          />
-        </div>
-        <div className="section block three">
-          <Circle
-            style="wider"
-            hide={true}
-            desc={impact}
-          />
-          <SupportActions
-            representatives={representatives}
-            currentSenator={current_member}
-          />
-          <a
-            className="internal-link"
-            href="/about">
-            About this project
-          </a>
-
-        </div>
-      </div>;
+    return <div className={backgroundClasses} id="fullpage">
+      <div className="section block two">
+        <TitleComponent
+          number_representatives={numRep}
+          did_search={did_search}
+          vote_status={vote_status}
+          pre_text={pre_text}
+        />
+        <CongressmanGroup
+          representatives={representatives}
+          zip_code={zip_code}
+        />
+      </div>
+      <div className="section block three">
+        <TitleComponent
+          desc={impact}
+        />
+        <SupportActions
+          representatives={representatives}
+          currentSenator={current_member}
+        />
+        <a
+          className="internal-link"
+          href="/about">
+          About this project
+        </a>
+      </div>
+    </div>;
     }
-  }
 };
 
 Results.propTypes = {
@@ -91,7 +67,6 @@ Results.propTypes = {
   representatives: React.PropTypes.array,
   vote_status: React.PropTypes.string,
   zip_code: React.PropTypes.string,
-  initialize: React.PropTypes.func
 };
 
 export default Results;

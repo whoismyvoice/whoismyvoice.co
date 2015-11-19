@@ -32,14 +32,6 @@ button, input {
   outline:none;
 }
 
-::selection {
-  text-shadow: 2px 2px 1px #B43092;
-}
-
-::-moz-selection {
-  text-shadow: 1px 1px 1px #B43092;
-}
-
 // MIXINS (TRANSITIONS)
 @mixin transition($time) {
   -webkit-transition:all $time ease-in;
@@ -157,7 +149,7 @@ button, input {
 
 #left, #right {
   @include transition(0.2s);
-  z-index: 9;
+  z-index: 1;
   -webkit-filter: blur(20px);
   -moz-filter: blur(20px);
   -o-filter: blur(20px);
@@ -442,7 +434,7 @@ button, input {
   flex: 1;
 }
 
-.green {
+.light {
   @include transition(0.5s);
   background: repeating-linear-gradient(20deg, $light-white, $light-white 50px, $light-peach 50px, $light-peach 100px)!important;
 
@@ -451,7 +443,7 @@ button, input {
   }
 }
 
-.orange {
+.peach {
   @include transition(0.5s);
   background: repeating-linear-gradient(20deg, $dark-orange-light, $dark-orange-light 50px, $dark-orange 50px, $dark-orange 100px);
 }
