@@ -15,7 +15,6 @@ class SearchInput extends BaseComponent {
     this.state = {
       zip_code: '',
       error: false,
-      fade: true,
       placeholder: 'Enter Your Zip Code'
     }
   }
@@ -33,7 +32,6 @@ class SearchInput extends BaseComponent {
     } else if(this.state.zip_code.length === 5) {
       this.setState({
         error: false,
-        fade: false,
         placeholder: 'Enter Your Zip Code',
         zip_code: ''
       });
@@ -44,7 +42,6 @@ class SearchInput extends BaseComponent {
     this.setState({
       zip_code: event.target.value,
       error: false,
-      fade: false,
       placeholder: 'Enter Your Zip Code'
     });
   }
@@ -54,7 +51,6 @@ class SearchInput extends BaseComponent {
       if ((isNaN(zip_code)) || (!isNaN(zip_code) && zip_code.length !== 5)) {
         this.setState({
           error: true,
-          fade: false,
           placeholder: 'Enter Your Zip Code',
           zip_code: ''
         });
@@ -62,8 +58,7 @@ class SearchInput extends BaseComponent {
         SenateActions.fetchDistricts(zip_code);
         this.setState({
           error: false,
-          zip_code: '',
-          fade: false
+          zip_code: ''
         });
       }
     }
@@ -74,14 +69,12 @@ class SearchInput extends BaseComponent {
     evt.stopPropagation();
     if ((isNaN(zip_code)) || (!isNaN(zip_code) && zip_code.length !== 5)) {
       this.setState({
-        error: true,
-        fade: false
+        error: true
       });
     } else {
       this.setState({
         error: false,
-        zip_code: '',
-        fade: false
+        zip_code: ''
       });
       SenateActions.fetchDistricts(zip_code);
     }
@@ -90,7 +83,6 @@ class SearchInput extends BaseComponent {
     const inputClasses = cx(
       ['input'],
       {'error': this.state.error || this.props.error},
-      {'fade': this.state.fade}
     );
     return <span>
       <input

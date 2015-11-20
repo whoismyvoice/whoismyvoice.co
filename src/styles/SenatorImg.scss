@@ -2,7 +2,6 @@
 @import 'globals';
 
 .senatorImg {
-  @include transition(0.5s);
   z-index: 2;
   position: relative;
   left: 6px;
@@ -18,6 +17,7 @@
 	border-radius: 50%;
 	overflow: hidden;
 	opacity: 1;
+  border: 8px solid $dark-red;
 
 	&.single {
 		margin-top: 20px;

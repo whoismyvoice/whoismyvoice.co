@@ -29,15 +29,15 @@ class Results extends BaseComponent {
 
     return <div className={backgroundClasses} id="fullpage">
       <div className="section block two">
+      <CongressmanGroup
+          representatives={representatives}
+          zip_code={zip_code}
+        />
         <TitleComponent
           number_representatives={numRep}
           did_search={did_search}
           vote_status={vote_status}
           pre_text={pre_text}
-        />
-        <CongressmanGroup
-          representatives={representatives}
-          zip_code={zip_code}
         />
       </div>
       <div className="section block three">

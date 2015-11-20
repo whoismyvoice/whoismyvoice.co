@@ -35,11 +35,6 @@ input {
     }
   }
 
-  &.fade {
-    @include fadeIn(0.5s, 1s);
-    opacity: 0;
-  }
-
   @media screen
   and (max-width: 361px) {
     font-size: 14px;

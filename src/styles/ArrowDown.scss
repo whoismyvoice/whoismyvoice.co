@@ -336,11 +336,9 @@
   }
 
 	&.spacing {
-    @include fadeIn(0.5s,1.5s);
     margin-top: 2%;
     width: 48px;
     padding-bottom: 40px;
-    opacity: 0;
 
 		@media screen and (max-width: $iphone6) {
 			margin-top: 8%;
