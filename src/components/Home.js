@@ -164,6 +164,7 @@ class Home extends BaseComponent {
             number_representatives={NUMBER_REPRESENTATIVES}
             vote_status={vote_status}
             pre_text={RESULT}
+            front={true}
             desc={bill_desc.replace('#member', member_single)}
           />
         	<SearchGroup

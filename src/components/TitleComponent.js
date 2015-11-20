@@ -1,6 +1,5 @@
 import React from 'react';
 import cx from 'classnames';
-import ReactFitText from 'react-fittext';
 
 // Component
 import BaseComponent from './BaseComponent';
@@ -23,15 +22,17 @@ class TitleComponent extends BaseComponent {
       pre_text = pre_text;
     }
 
-    return <div className="title-component">
-      <ReactFitText compressor={1.2}>
+    const titleClasses = cx(
+      ['title-component'],
+      {'uppercase': this.props.front})
+
+    return <div className={titleClasses}>
   		  <div className="description">
           {pre_text}
           <span className="strike-out">
           {vote_status}
           </span>
   		  </div>
-      </ReactFitText>
   	</div>;
   }
 };
