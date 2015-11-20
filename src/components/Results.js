@@ -48,11 +48,6 @@ class Results extends BaseComponent {
           representatives={representatives}
           currentSenator={current_member}
         />
-        <a
-          className="internal-link"
-          href="/about">
-          About this project
-        </a>
       </div>
     </div>;
     }

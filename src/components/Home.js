@@ -101,6 +101,7 @@ class Home extends BaseComponent {
         member_name = '',
         impact = impact_text.replace('#gender_third', 'this person'),
         member = chamber === 'senate' ? 'Senator': 'Representative',
+        member_single = chamber === 'senate' ? 'Senator': 'Representative',
         action = chamber === 'senate' ? 'co-sponsored' : 'voted to';
 
     if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1) {
@@ -163,7 +164,7 @@ class Home extends BaseComponent {
             number_representatives={NUMBER_REPRESENTATIVES}
             vote_status={vote_status}
             pre_text={RESULT}
-            desc={bill_desc.replace('#member', member)}
+            desc={bill_desc.replace('#member', member_single)}
           />
         	<SearchGroup
             repNum={NUMBER_REPRESENTATIVES}

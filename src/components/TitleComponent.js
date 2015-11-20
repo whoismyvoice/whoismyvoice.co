@@ -6,7 +6,7 @@ import ReactFitText from 'react-fittext';
 import BaseComponent from './BaseComponent';
 
 // Styles
-import style from './../styles/Circle.scss';
+import style from './../styles/TitleComponent.scss';
 
 class TitleComponent extends BaseComponent {
   render() {
@@ -19,11 +19,11 @@ class TitleComponent extends BaseComponent {
     if(!did_search || desc) {
       vote_status = '';
       pre_text = desc;
-    } else if(did_search && !desc) {
+    } else if(did_search && !desc || !desc) {
       pre_text = pre_text;
     }
 
-    return <div className="circle">
+    return <div className="title-component">
       <ReactFitText compressor={1.2}>
   		  <div className="description">
           {pre_text}
