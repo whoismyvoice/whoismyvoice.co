@@ -149,11 +149,6 @@ button, input {
 
 #left, #right {
   z-index: 1;
-  -webkit-filter: blur(20px);
-  -moz-filter: blur(20px);
-  -o-filter: blur(20px);
-  -ms-filter: blur(20px);
-  filter: blur(20px);
   position: fixed;
   background-color: $light-white;
   opacity: 0.6;

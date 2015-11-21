@@ -4,6 +4,7 @@ import cx from 'classnames';
 
 // Component
 import BaseComponent from './BaseComponent';
+import TextButton from './TextButton';
 
 // Styles
 import style from './../styles/SearchInput.scss';
@@ -96,10 +97,10 @@ class SearchInput extends BaseComponent {
         placeholder={this.state.placeholder}
         onBlur={this._handleBlur}
       />
-      <button
-        className="arrowDown green-text spacing"
-        onClick={this._handleClick}>
-      </button>
+      <TextButton
+        text="Continue"
+        onClick={this._handleClick}
+      />
     </span>;
   }
 };
