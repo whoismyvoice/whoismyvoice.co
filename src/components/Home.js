@@ -86,6 +86,7 @@ class Home extends BaseComponent {
       }
     });
   }
+
   render() {
     const NUMBER_REPRESENTATIVES = this.state.number_representatives,
       SETTINGS = this.state.settings,
@@ -101,8 +102,8 @@ class Home extends BaseComponent {
         member_name = '',
         represent_gender,
         impact = impact_text.replace('#gender_third', 'this person'),
-        member = chamber === 'senate' ? 'Senator': 'Representative',
-        member_single = chamber === 'senate' ? 'Senator': 'Representative',
+        member = chamber === 'senate' ? 'Senator': 'Congressman',
+        member_single = chamber === 'senate' ? 'Senator': 'Congressman',
         action = chamber === 'senate' ? 'co-sponsored' : 'voted to';
 
     if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1) {
@@ -114,7 +115,7 @@ class Home extends BaseComponent {
     }
 
     if(DID_SEARCH && NUMBER_REPRESENTATIVES > 0) {
-      vote_status = REPRESENTATIVES[0].voted === 'Yea' ? ` ${voted_for}` : ` ${voted_against}`;
+      vote_status = REPRESENTATIVES[0].voted === 'Yea' ? `${voted_for}` : `${voted_against}`;
     }
 
     const RESULT = pre_text.replace('#member_type', member).replace('#member_name', member_name).replace('#action', action);
@@ -164,6 +165,7 @@ class Home extends BaseComponent {
           <TitleComponent
             did_search={DID_SEARCH}
             number_representatives={NUMBER_REPRESENTATIVES}
+            vote_for={voted_for}
             vote_status={vote_status}
             pre_text={RESULT}
             front={true}

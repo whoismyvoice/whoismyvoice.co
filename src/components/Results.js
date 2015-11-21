@@ -1,6 +1,7 @@
 import React from 'react';
 import Settings from '../data/settings.json';
 import HFCMembers from '../data/HFCMembers';
+import SenateActions from '../actions/SenateActions';
 
 // Components
 import TitleComponent from './TitleComponent';
@@ -15,7 +16,18 @@ import Button from './Button';
 class Results extends BaseComponent {
   constructor() {
     super();
-    this._bind('_handleClick');
+    this._bind('_handleClick', '_destroyFullpage', '_handleRestart');
+  }
+
+  _destroyFullpage() {
+    if ($.fn.fullpage.destroy !== undefined) {
+      $.fn.fullpage.destroy();
+    }
+  }
+
+  _handleRestart() {
+    SenateActions.flush();
+    this._destroyFullpage();
   }
 
   _handleClick(event) {
@@ -42,6 +54,10 @@ class Results extends BaseComponent {
 
     return <div className={backgroundClasses} id="fullpage">
       <div className="section block two">
+        <TextButton
+          text="Back"
+          onClick={this._handleRestart}
+        />
         <CongressmanGroup
           representatives={representatives}
           zip_code={zip_code}
@@ -62,6 +78,7 @@ class Results extends BaseComponent {
       <div className="section block three">
         <TitleComponent
           desc={impact}
+          actions={true}
         />
         <SupportActions
           representatives={representatives}

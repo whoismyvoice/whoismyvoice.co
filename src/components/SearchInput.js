@@ -68,18 +68,22 @@ class SearchInput extends BaseComponent {
     const zip_code = this.state.zip_code;
     evt.preventDefault();
     evt.stopPropagation();
+    console.log(zip_code);
     if ((isNaN(zip_code)) || (!isNaN(zip_code) && zip_code.length !== 5)) {
       this.setState({
-        error: true
+        error: true,
+        placeholder: 'Enter Your Zip Code',
+        zip_code: ''
       });
     } else {
+      SenateActions.fetchDistricts(zip_code);
       this.setState({
         error: false,
         zip_code: ''
       });
-      SenateActions.fetchDistricts(zip_code);
     }
   }
+
   render() {
     const inputClasses = cx(
       ['input'],
@@ -97,6 +101,7 @@ class SearchInput extends BaseComponent {
         placeholder={this.state.placeholder}
         onBlur={this._handleBlur}
       />
+
       <TextButton
         text="Continue"
         onClick={this._handleClick}

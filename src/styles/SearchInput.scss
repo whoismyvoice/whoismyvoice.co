@@ -48,11 +48,6 @@ input {
     width: 60%;
   }
 
-  &.input {
-    color: $black;
-    border: 3px solid $black;
-  }
-
   &.error {
     @include shakeError(0.4s);
   }
@@ -71,29 +66,5 @@ input {
 
   &:-ms-input-placeholder {
     color: $black;
-  }
-}
-
-.text-button {
-  color: $black;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding-bottom: 5px;
-  margin: 0 auto;
-  margin-top: 30px;
-  display: block;
-  cursor: pointer;
-  padding: 5px;
-  width: 120px;
-  font-weight: bold;
-  position: relative;
-
-  .border {
-    width: 50%;
-    height: 2px;
-    margin: 0 auto;
-    margin-top: 5px;
-    background-color: $black;
-    display: block;
   }
 }

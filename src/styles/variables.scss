@@ -1,17 +1,19 @@
 $blue: #0074d9;
 $green: #2ecc40;
 $red: #E20000;
-$light-grey: #EFEFEF;
 $dark-grey: #666;
 $black: #000;
 $white: #FFF;
 $light-white: #FBFBFB;
 $dark-red: #B03734;
 $light-red: #E2403D;
+$dark-blue: #193770;
 $light-peach: #FFF5F5;
 $light-grey: #F3F3F3;
 $dark-orange-light: #ECA97C;
 $dark-orange: #E8A377;
+
+// OLD COLORS - NEED TO BE REPLACED/REMOVED
 $light-green: #DDF4E0;
 $light-orange: #FBE2C6;
 $light-purple: #EBE6F5;
@@ -22,10 +24,6 @@ $bright-green: #CDF2EA;
 
 $iphone5-min: 320px;
 $iphone5-max: 568px;
-
-//@media only screen
-//and (min-device-width : 320px)
-//and (max-device-width : 568px) { /* STYLES GO HERE */}
 
 $iphone6: 420px;
 
@@ -49,20 +47,6 @@ $ipad-max: 1024px;
   animation-delay: $delay;
   -webkit-animation-delay: $delay;
   -moz-animation-delay: $delay;
-}
-
-@mixin drawIn($height) {
-	@-webkit-keyframes drawIn { from { height:0; } to { height:$height; } }
-	@-moz-keyframes drawIn { from { height:0; } to { height:$height; } }
-	@keyframes drawIn { from { height:0; } to { height:$height; } }
-	-webkit-animation:drawIn ease-in 1;
-  -moz-animation:drawIn ease-in 1;
-  animation:drawIn ease-in 1;
-  -moz-animation-fill-mode:forwards;
-  animation-fill-mode:forwards;
-  -webkit-animation-duration:1.5s;
-  -moz-animation-duration:1.5s;
-  animation-duration:1.5s;
 }
 
 @mixin shakeError($time) {
