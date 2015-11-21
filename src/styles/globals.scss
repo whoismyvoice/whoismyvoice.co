@@ -29,7 +29,7 @@ ul {
 
 button, input {
   -webkit-focus-ring-color: none;
-  outline:none;
+  outline: none;
 }
 
 // MIXINS (TRANSITIONS)
@@ -658,17 +658,6 @@ and (min-aspect-ratio: 13/9) {
     height: 100px;
   }
 
-  input {
-    margin: 0 auto;
-    margin-top: 10px;
-    margin-bottom: 30px;
-    display: block;
-    border: 2px solid #999;
-    border-radius: 2px;
-    background-color: $white;
-    text-transform: none;
-  }
-
   .Dropdown {
     width: 40%;
     margin: 0 auto;
@@ -697,10 +686,6 @@ and (min-aspect-ratio: 13/9) {
 
   b {
     font-size: 14px;
-  }
-
-  input {
-    font-size: 12px;
   }
 
   .example {

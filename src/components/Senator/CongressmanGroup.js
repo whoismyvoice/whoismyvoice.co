@@ -6,7 +6,7 @@ import cx from 'classnames';
 import BaseComponent from '../BaseComponent';
 import SearchAddress from '../SearchAddress';
 import SenatorImg from './SenatorImg';
-import SenatorName from './SenatorName';
+import MemberRibbon from './MemberRibbon';
 import ArrowDown from '../ArrowDown';
 
 // Styles
@@ -28,24 +28,15 @@ class CongressmanGroup extends BaseComponent {
     }
 
     const members = (representatives || []).map(function(item, idx) {
-      return <div className="senatorContainer" key={idx}>
+      return <div className="member-container" key={idx}>
         <SenatorImg
           bioguide={item.bioguide_id}
         />
 
-        <SenatorName
+        <MemberRibbon
           name={item.full_name}
-          age={item.age}
           state={item.state}
-          voted={item.voted}
           party={item.party}
-        />
-
-        <ArrowDown
-          id={idx}
-          additional={item.additional}
-          double={"true"}
-          color="orange-text"
         />
       </div>;
     });
