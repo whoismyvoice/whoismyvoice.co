@@ -4,7 +4,6 @@
 .senatorImg {
   z-index: 2;
   position: relative;
-  left: 6px;
   display: flex;
   align-content: center;
   justify-content: center;
@@ -43,12 +42,6 @@
     width: 12%;
     padding: 6% 0;
   }
-
-	&.hide {
-    @include transition(0.5s);
-		display: none;
-		opacity: 0;
-	}
 
 	img {
 		width: 100%;

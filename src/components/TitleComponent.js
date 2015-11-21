@@ -13,7 +13,7 @@ class TitleComponent extends BaseComponent {
       representative = this.props.representatives[0];
     }
 
-    let {did_search, vote_status, pre_text, number_representatives, desc} = this.props;
+    let {did_search, vote_status, pre_text, number_representatives, desc, represent_gender} = this.props;
 
     if(!did_search || desc) {
       vote_status = '';
@@ -24,7 +24,18 @@ class TitleComponent extends BaseComponent {
 
     const titleClasses = cx(
       ['title-component'],
-      {'uppercase': this.props.front})
+      {'uppercase': this.props.front}
+    )
+
+    const representClasses = cx(
+      ['represent'],
+      {'hide': !this.props.represent}
+    )
+
+    const starClasses = cx(
+      ['star-divider'],
+      {'hide': !this.props.represent}
+    )
 
     return <div className={titleClasses}>
   		  <div className="description">
@@ -34,6 +45,12 @@ class TitleComponent extends BaseComponent {
           </span>
           .
   		  </div>
+        <div className={starClasses}>
+          <i className="fa fa-star"></i>
+        </div>
+        <span className={representClasses}>
+          {`${represent_gender} represents your voice!`}
+        </span>
   	</div>;
   }
 };

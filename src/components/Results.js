@@ -4,7 +4,7 @@ import HFCMembers from '../data/HFCMembers';
 
 // Components
 import TitleComponent from './TitleComponent';
-import ArrowDown from './ArrowDown';
+import TextButton from './TextButton';
 import SupportActions from './Senator/SupportActions';
 import HFCOverview from './HFCOverview';
 import FadedBG from './FadedBg';
@@ -13,6 +13,19 @@ import BaseComponent from './BaseComponent';
 import Button from './Button';
 
 class Results extends BaseComponent {
+  constructor() {
+    super();
+    this._bind('_handleClick');
+  }
+
+  _handleClick(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    // Listen for event.target.id in order to decipher which of the arrows was tapped
+    //ContainerActions.setCurrentMember(event.target.id);
+    $.fn.fullpage.moveSectionDown();
+  }
+
 	render() {
 		const {
       vote_status,
@@ -29,7 +42,7 @@ class Results extends BaseComponent {
 
     return <div className={backgroundClasses} id="fullpage">
       <div className="section block two">
-      <CongressmanGroup
+        <CongressmanGroup
           representatives={representatives}
           zip_code={zip_code}
         />
@@ -38,6 +51,12 @@ class Results extends BaseComponent {
           did_search={did_search}
           vote_status={vote_status}
           pre_text={pre_text}
+          represent={true}
+          represent_gender={this.props.represent_gender}
+        />
+        <TextButton
+          text="What can I do?"
+          onClick={this._handleClick}
         />
       </div>
       <div className="section block three">

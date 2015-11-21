@@ -99,6 +99,7 @@ class Home extends BaseComponent {
 
     let vote_status,
         member_name = '',
+        represent_gender,
         impact = impact_text.replace('#gender_third', 'this person'),
         member = chamber === 'senate' ? 'Senator': 'Representative',
         member_single = chamber === 'senate' ? 'Senator': 'Representative',
@@ -107,6 +108,7 @@ class Home extends BaseComponent {
     if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1) {
       impact = impact_text.replace('#gender_third', `this ${REPRESENTATIVES[0].gender_full}`);
       member_name = REPRESENTATIVES[0].full_name;
+      represent_gender = REPRESENTATIVES[0].gender_full === 'man' ? 'He' : 'She';
     } else if (DID_SEARCH && NUMBER_REPRESENTATIVES > 1) {
       member = chamber === 'senate' ? 'Senators' : 'Representatives';
     }
@@ -176,6 +178,7 @@ class Home extends BaseComponent {
         	/>
         </div>
         <Results
+          represent_gender={represent_gender}
           representatives={REPRESENTATIVES}
           numRep={NUMBER_REPRESENTATIVES}
           backgroundClasses={backgroundClasses}
