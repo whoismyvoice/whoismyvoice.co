@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 
 // Component
 import BaseComponent from '../BaseComponent';
@@ -10,7 +11,15 @@ class SenatorImg extends BaseComponent {
   render() {
   	const img = `https://raw.githubusercontent.com/unitedstates/images/gh-pages/congress/225x275/${this.props.bioguide}.jpg`;
 
-  	return <div className="senatorImg">
+    const {chamber, repNumber} = this.props;
+
+    const imgClasses = cx(
+      ['senatorImg'],
+      {'animated': chamber === 'house' && repNumber === 1 || chamber === 'senate' && repNumber > 0},
+      {'bounceInDown': chamber === 'house' && repNumber === 1 || chamber === 'senate' && repNumber > 0})
+
+    console.log(repNumber);
+  	return <div className={imgClasses}>
       <div className="img-border">
       </div>
     	<img src={img} />

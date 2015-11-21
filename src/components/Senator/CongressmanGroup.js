@@ -1,5 +1,4 @@
 import React from 'react';
-import Settings from '../../data/settings.json';
 import cx from 'classnames';
 
 // Components
@@ -17,8 +16,7 @@ class CongressmanGroup extends BaseComponent {
     let searchClasses = 'search',
         wrapperClasses = 'senatorWrapper';
 
-    const {representatives, zip_code, state_full} = this.props,
-          {chamber} = Settings;
+    const {representatives, zip_code, state_full, chamber, numRep} = this.props;
 
     if (representatives) {
       wrapperClasses = cx(
@@ -31,6 +29,8 @@ class CongressmanGroup extends BaseComponent {
       return <div className="member-container" key={idx}>
         <SenatorImg
           bioguide={item.bioguide_id}
+          chamber={chamber}
+          repNumber={numRep}
         />
 
         <MemberRibbon

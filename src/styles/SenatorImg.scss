@@ -18,6 +18,10 @@
 	opacity: 1;
   border: 8px solid $dark-red;
 
+  &.animated {
+    animation-delay: 1s;
+  }
+
 	@media screen and (max-width: $iphone6) {
     left: 0;
     margin-bottom: 5px;

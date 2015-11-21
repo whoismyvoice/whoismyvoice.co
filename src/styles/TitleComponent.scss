@@ -72,6 +72,8 @@
 .three-stars {
   color: $light-red;
   margin-bottom: 20px;
+  animation-delay: 0.5s;
+  -webkit-animation-delay: 0.5s;
 
   span {
     font-size: 15px;

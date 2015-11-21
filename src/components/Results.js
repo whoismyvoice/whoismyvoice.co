@@ -1,5 +1,4 @@
 import React from 'react';
-import Settings from '../data/settings.json';
 import HFCMembers from '../data/HFCMembers';
 import SenateActions from '../actions/SenateActions';
 
@@ -60,7 +59,9 @@ class Results extends BaseComponent {
         />
         <CongressmanGroup
           representatives={representatives}
+          numRep={numRep}
           zip_code={zip_code}
+          chamber={chamber}
         />
         <TitleComponent
           number_representatives={numRep}

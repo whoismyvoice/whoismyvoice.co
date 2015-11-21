@@ -29,10 +29,6 @@
   text-align: center;
   color: #ecf0f1;
   padding: 0.6em 0.5em 0.8em 0.5em;
-  -webkit-animation: main 0.5s;
-  -moz-animation: main 0.5s;
-  -ms-animation: main 0.5s;
-  animation: main 0.5s;
 }
 
 .ribbon:before, .ribbon:after {
@@ -42,10 +38,6 @@
   bottom: -0.8em;
   border: 1.5em solid darken(#B03532, 0%);
   z-index: -1;
-   -webkit-animation: edge 0.85s;
-  -moz-animation: edge 0.85s;
-  -ms-animation: edge 0.85s;
-  animation: edge 0.85s;
 }
 
 .ribbon:before {
@@ -84,44 +76,4 @@
 .ribbon .ribbon-content:after {
   right: 0;
   border-width: 0.8em 1.5em 0 0;
-}
-
-@keyframes main {
-  0% {
-    transform: scaleX(0);
-  }
-  100% {
-    transform: scaleX(1);
-  }
-}
-
-@-webkit-keyframes main {
-  0% {
-    -webkit-transform: scaleX(0);
-    transform: scaleX(0);
-  }
-  100% {
-    -webkit-transform: scaleX(1);
-    transform: scaleX(1);
-  }
-}
-
-@-webkit-keyframes edge {
-  0%, 50% { opacity: 0;
-    -webkit-transform: scaleX(0);
-  }
-  100% { opacity: 1;
-    -webkit-transform: scaleX(1);
-  }
-}
-
-@keyframes edge {
-  0%, 50% { opacity: 0;
-    transform: scaleY(0);
-    -webkit-transform: scaleX(0);
-  }
-  100% { opacity: 1;
-    transform: scaleY(1);
-    -webkit-transform: scaleX(1);
-  }
 }

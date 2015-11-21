@@ -42,7 +42,7 @@ class TitleComponent extends BaseComponent {
     )
 
     const threeStars = cx(
-      ['three-stars'],
+      ['three-stars', 'animated', 'zoomIn'],
       {'hide': this.props.represent || this.props.actions}
     )
 
