@@ -27,6 +27,14 @@ ul {
   }
 }
 
+.hide {
+  display: none!important;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
 button, input {
   -webkit-focus-ring-color: none;
   outline: none;
@@ -107,7 +115,7 @@ button, input {
     }
   }
 
-  &.hide {
+  &.disappear {
     @include transition(1s);
     top: -98vh;
   }
@@ -467,10 +475,6 @@ button, input {
   min-height: 100%;
   width: 100%;
 
-  &.hide {
-    display: none;
-  }
-
   &.hidden {
     visibility: hidden;
   }
@@ -633,11 +637,9 @@ and (min-aspect-ratio: 13/9) {
   height: auto;
   visibility: visible;
   @include transition(1s);
+
   &.hide {
     opacity: 0;
-    height: 0;
-    display: none;
-    visibility: hidden;
     @include transition(1s);
   }
 }

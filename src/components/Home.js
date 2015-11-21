@@ -129,7 +129,7 @@ class Home extends BaseComponent {
 
     const blockClasses = cx(
       ['block', 'one'],
-      {'hide': DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && NUMBER_REPRESENTATIVES > 0 && chamber === 'senate'},
+      {'disappear': DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && NUMBER_REPRESENTATIVES > 0 && chamber === 'senate'},
     );
 
     const backgroundClasses = cx(

@@ -40,11 +40,6 @@
     top: 6px;
   }
 
-  &.hide {
-    @include transition(0.5s);
-    height: 0;
-  }
-
   &.faded-blue {
     background-color: $light-blue;
   }
