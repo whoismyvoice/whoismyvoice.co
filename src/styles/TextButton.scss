@@ -13,13 +13,13 @@
   width: 140px;
   font-weight: bold;
   position: relative;
+}
 
-  .border {
-    width: 50%;
-    height: 2px;
-    margin: 0 auto;
-    margin-top: 5px;
-    background-color: $black;
-    display: block;
-  }
+.text-button-border {
+  width: 50%;
+  height: 2px;
+  margin: 0 auto;
+  margin-top: 5px;
+  background-color: $black;
+  display: block;
 }

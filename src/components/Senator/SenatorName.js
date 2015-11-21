@@ -14,10 +14,10 @@ class SenatorName extends BaseComponent {
         voteFavor = voted === 'Yea' ? 'Yes' : 'No',
         member_voted = voted === undefined ? '' : `Voted ${voteFavor}`;
 
-    return <div className="senatorName">
+    return <div className="member-name">
     	<h2>{name} ({party} - {state})</h2>
-    	<h2 className="age">{member_age}</h2>
-      <h2 className="twitterHandle">
+    	<h2 className="member-age">{member_age}</h2>
+      <h2 className="member-twitter">
         {member_voted}
         {twitterHandle}
       </h2>

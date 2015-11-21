@@ -20,7 +20,7 @@ class CongressmanGroup extends BaseComponent {
 
     if (representatives) {
       wrapperClasses = cx(
-        ['senatorWrapper'],
+        ['member-wrapper'],
         {'several': representatives.length > 1}
       );
     }

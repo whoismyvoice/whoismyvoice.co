@@ -11,10 +11,8 @@ class TextButton extends BaseComponent {
   render() {
     const {link, flush, text} = this.props;
     return <a href={link} className="text-button" onClick={this.props.onClick}>
-      <div className="text">
-        {text}
-      </div>
-      <div className="border">
+      {text}
+      <div className="text-button-border">
       </div>
   	</a>;
   }

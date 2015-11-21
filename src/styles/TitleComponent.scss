@@ -10,52 +10,56 @@
   width: 45%;
   display: block;
   color: $dark-blue;
+}
 
-  &.actions {
-    width: 50%;
-    height: 180px;
-    margin-bottom: 50px;
+.title-component--padding {
+  padding-top: 100px;
+}
+
+.title-component--actions {
+  width: 50%;
+  height: 180px;
+  margin-bottom: 50px;
+}
+
+.title-component__description {
+  position: relative;
+  align-self: center;
+  width: 100%;
+  text-align: center;
+  line-height: 1.4;
+
+  @media screen
+  and (-ms-high-contrast: active)
+  and (-ms-high-contrast: none) {
+    margin-top: 0%;
   }
 
-  .represent {
-    display: block;
-    width: 100%;
-    height: 45px;
-    position: relative;
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    width: 80%;
   }
 
-  .star-divider {
-    width: 100%;
-    height: 25px;
-    font-size: 20px;
-    color: $light-red;
+  @media screen and (max-width: $iphone6) {
+    width: 60%;
   }
+}
 
-	.description {
-		position: relative;
-    align-self: center;
-    width: 100%;
-		text-align: center;
-    line-height: 1.4;
+.title-component__star-divider {
+  width: 100%;
+  height: 25px;
+  font-size: 20px;
+  color: $light-red;
+}
 
-    @media screen
-    and (-ms-high-contrast: active)
-    and (-ms-high-contrast: none) {
-      margin-top: 0%;
-    }
-
-    @media only screen
-    and (min-device-width: 768px)
-    and (max-device-width: 1024px)
-    and (orientation: portrait)
-    and (-webkit-min-device-pixel-ratio: 1) {
-      width: 80%;
-    }
-
-    @media screen and (max-width: $iphone6) {
-      width: 60%;
-    }
-	}
+.title-component__represent {
+  display: block;
+  width: 100%;
+  height: 45px;
+  position: relative;
 }
 
 .three-stars {

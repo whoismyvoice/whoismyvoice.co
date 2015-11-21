@@ -137,14 +137,14 @@ class Edit extends BaseComponent {
     ];
 
     const ChamberOptions = [
-      { value: '1', label: 'Senate'},
+      {value: '1', label: 'Senate'},
       {value: '0', label: 'House'}
     ];
 
     let defaultOption = this.state.selected;
 
   	return <div className="page-block edit">
-      <FadedBG color="orange" />
+      <FadedBG color="orange-color" />
       <div className="card">
         <EditInput
           title="Bill ID"

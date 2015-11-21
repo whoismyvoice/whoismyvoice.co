@@ -128,7 +128,7 @@ class Home extends BaseComponent {
     }
 
     const blockClasses = cx(
-      ['block', 'one'],
+      ['block', 'block--margin'],
       {'disappear': DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && NUMBER_REPRESENTATIVES > 0 && chamber === 'senate'},
     );
 
@@ -146,10 +146,10 @@ class Home extends BaseComponent {
     const containerClasses = cx(
       ['container'],
       {'reveal': DID_SEARCH},
-      {'light': !DID_SEARCH || NUMBER_REPRESENTATIVES > 1 || NUMBER_REPRESENTATIVES === undefined},
-      {'peach': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES !== undefined},
+      {'light-color': !DID_SEARCH || NUMBER_REPRESENTATIVES > 1 || NUMBER_REPRESENTATIVES === undefined},
+      {'peach-color': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES !== undefined},
       {'visible': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
-      {'purple': this.state.current_screen === 2},
+      {'purple-color': this.state.current_screen === 2},
       {'full': DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && chamber === 'senate'}
     );
 
@@ -169,6 +169,7 @@ class Home extends BaseComponent {
             vote_status={vote_status}
             pre_text={RESULT}
             front={true}
+            classes="title-component--padding"
             desc={bill_desc.replace('#member', member_single)}
           />
         	<SearchGroup

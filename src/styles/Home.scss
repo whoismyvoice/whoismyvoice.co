@@ -16,19 +16,6 @@ h1 {
 	overflow: hidden;
 	-webkit-overflow-scrolling: touch;
 
-  &.full {
-    height: auto;
-    min-height: 99vh;
-    width: 100vw;
-  }
-
-  &.reveal {
-    @include transition(1s);
-    z-index: 1;
-    overflow: hidden;
-    width: 100vw;
-  }
-
   &.visible {
     overflow: visible;
   }
@@ -62,4 +49,17 @@ h1 {
   and (-webkit-min-device-pixel-ratio : 3) {
     height: 89.5vh;
   }
+}
+
+.full {
+  height: auto;
+  min-height: 99vh;
+  width: 100vw;
+}
+
+.reveal {
+  @include transition(1s);
+  z-index: 1;
+  overflow: hidden;
+  width: 100vw;
 }

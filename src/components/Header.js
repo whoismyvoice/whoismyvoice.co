@@ -28,16 +28,16 @@ class Header extends BaseComponent {
     // Change classes for burger-icon and navigation based on whether onClick has been fired
     const iconClasses = cx(
       ['burger-icon'],
-      {'is-active': this.state.didClick}
+      {'burger--is-active': this.state.didClick}
     );
 
     const menuClasses = cx(
       ['navigation'],
-      {'is-active': this.state.didClick}
+      {'navigation--is-active': this.state.didClick}
     );
 
     return <div className="header">
-      <div className="menu">
+      <div className="navigation-menu">
         <div className="burger-wrapper" onClick={this._handleClick}>
           <div className={iconClasses}></div>
         </div>

@@ -13,8 +13,8 @@ class FadeBorder extends BaseComponent {
     );
 
   	return  <div>
-  		<div id="left" className={leftClasses}></div>
-      <div id="right" className={leftClasses}></div>
+  		<div id="left-blur" className={leftClasses}></div>
+      <div id="right-blur" className={leftClasses}></div>
     </div>;
   }
 };

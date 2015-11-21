@@ -39,22 +39,22 @@
     height: 60px;
     top: 6px;
   }
+}
 
-  &.faded-blue {
-    background-color: $light-blue;
-  }
+.faded-blue {
+  background-color: $light-blue;
+}
 
-  &.faded-red {
-    background-color: $bright-red;
-  }
+.faded-red {
+  background-color: $bright-red;
+}
 
-  &.faded-orange {
-    background-color: $light-orange;
-  }
+.faded-orange {
+  background-color: $light-orange;
+}
 
-  &.faded-green {
-   background-color: $light-green;
-  }
+.faded-green {
+  background-color: $light-green;
 }
 
 .navigation {
@@ -68,20 +68,20 @@
   background-color: $light-yellow;
   opacity: 0;
 
-  &.is-active {
-    @include transition(0.3s);
-    height: 100%;
-    width: 100%;
-    visibility: visible;
-    opacity: 1;
-  }
-
   a {
     width: 300px;
   }
 }
 
-.menu {
+.navigation--is-active {
+  @include transition(0.3s);
+  height: 100%;
+  width: 100%;
+  visibility: visible;
+  opacity: 1;
+}
+
+.navigation-menu {
   z-index: 3;
   position: fixed;
   right: 0;
@@ -167,7 +167,7 @@
     }
 
     &:hover {
-      .nav {
+      .button--nav {
         background-color: $black;
 
         &.yellow-text {
@@ -179,24 +179,24 @@
       }
     }
 	}
+}
 
-  .burger-wrapper {
-    z-index: 4;
-    position: relative;
-    display: block;
-    margin: 0 auto;
-    width: 30px;
-    height: 25px;
-    cursor: pointer;
+.burger-icon {
+  @include burger(30px, 3px, 5px, #222);
+  top: 10px;
+  pointer-events: none;
+
+  &.burger--is-active {
+    @include burger-to-cross;
   }
+}
 
-  .burger-icon {
-    @include burger(30px, 3px, 5px, #222);
-    top: 10px;
-    pointer-events: none;
-
-    &.is-active {
-      @include burger-to-cross;
-    }
-  }
+.burger-wrapper {
+  z-index: 4;
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
 }

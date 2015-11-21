@@ -1,5 +1,6 @@
 @import 'variables';
 
+// BEM & OOCSS
 body {
   margin: 0 auto;
   overflow-x: hidden;
@@ -27,8 +28,13 @@ ul {
   }
 }
 
+// General classes / elements
 .hide {
   display: none!important;
+}
+
+.hidden {
+  visibility: hidden!important;
 }
 
 .uppercase {
@@ -40,7 +46,6 @@ button, input {
   outline: none;
 }
 
-// MIXINS (TRANSITIONS)
 @mixin transition($time) {
   -webkit-transition:all $time ease-in;
   -moz-transition:all $time ease-in;
@@ -49,7 +54,6 @@ button, input {
   transition:all $time ease-in;
 }
 
-// MIXINS (TRANSITIONS)
 @mixin fade($time) {
   -webkit-transition:opacity $time ease-in;
   -moz-transition:opacity $time ease-in;
@@ -57,6 +61,22 @@ button, input {
   -o-transition:opacity $time ease-in;
   transition:opacity $time ease-in;
 }
+
+#left-blur, #right-blur {
+  z-index: 1;
+  position: fixed;
+  background-color: $light-white;
+  opacity: 0.6;
+  top: 0; bottom: 0;
+  width: 20%;
+
+  &.darken {
+    background-color: $dark-orange;
+  }
+}
+
+#left-blur { left: -10px; }
+#right-blur { right: -10px; }
 
 .wrapper {
   height: auto;
@@ -73,52 +93,15 @@ button, input {
   height: 90vh;
   min-height: 100%;
   text-align: center;
+}
 
-  &.one {
-    padding-top: 20px;
+.block--margin {
+  margin-top: 100px;
+}
 
-    @media screen
-    and (min-width: 300px)
-    and (max-width: 419px) {
-      padding-top: 30px;
-    }
-
-    @media screen
-    and (min-width: 420px)
-    and (max-width: 699px) {
-      padding-top: 80px;
-    }
-
-    @media screen
-    and (min-width: 700px)
-    and (max-width: 1100px) {
-      padding-top: 100px;
-    }
-
-    @media screen and (max-width: $iphone5-min) {
-      padding-top: 60px;
-    }
-
-    @media screen
-    and (min-width: 1101px)
-    and (max-width: 1400px) {
-      padding-top: 90px;
-    }
-
-    @media screen
-    and (min-width: 1401px) {
-      padding-top: 80px;
-
-      @supports (-moz-appearance:meterbar) {
-        padding-top: 35px;
-      }
-    }
-  }
-
-  &.disappear {
-    @include transition(1s);
-    top: -98vh;
-  }
+.disappear {
+  @include transition(1s);
+  top: -98vh;
 }
 
 .second-wrapper {
@@ -128,10 +111,6 @@ button, input {
   top: 0;
   height: 195.5vh;
   opacity: 0.5;
-
-  &.short {
-    height: 100vh;
-  }
 
   &.move-up {
     @include transition(1s);
@@ -154,28 +133,6 @@ button, input {
     top: -3vh;
   }
 }
-
-#left, #right {
-  z-index: 1;
-  position: fixed;
-  background-color: $light-white;
-  opacity: 0.6;
-
-  &.darken {
-    background-color: $dark-orange;
-  }
-}
-
-#left, #right {
-  top: 0; bottom: 0;
-  width: 20%;
-  @media screen and (max-width: $iphone6) {
-    width: 8px;
-  }
-}
-
-#left { left: -10px; }
-#right { right: -10px; }
 
 .page-block {
   display: flex;
@@ -216,14 +173,14 @@ button, input {
   and (-webkit-min-device-pixel-ratio: 1) {
     padding-top: 8%;
   }
-
-  &.senators {
-    height: auto;
-    padding-bottom: 50px;
-  }
 }
 
-.pageIntroduction, .pageDesc {
+.senator-block {
+  height: auto;
+  padding-bottom: 50px;
+}
+
+.page-introduction {
   flex: 1;
   align-self: center;
   width: 70%;
@@ -431,40 +388,36 @@ button, input {
   }
 }
 
-.pageDesc {
-  flex: 1;
-}
-
-.light {
+.light-color {
   @include transition(0.5s);
   background: repeating-linear-gradient(20deg, $light-white, $light-white 50px, $light-peach 50px, $light-peach 100px)!important;
 
-  #left, #right {
+  #left-blur, #right-blur {
     background-color: $light-white!important;
   }
 }
 
-.peach {
+.peach-color{
   @include transition(0.5s);
   background: repeating-linear-gradient(20deg, $dark-orange-light, $dark-orange-light 50px, $dark-orange 50px, $dark-orange 100px);
 }
 
-.purple {
-  background-color: $light-purple;
+.purple-color {
   @include transition(0.5s);
+  background-color: $light-purple;
 }
 
-.blue {
+.blue-color {
   @include transition(0.5s);
   background-color: $light-blue;
 }
 
-.bright-green {
+.bright-green-color {
   @include transition(0.5s);
   background-color: $bright-green;
 }
 
-.bright-red {
+.bright-red-color {
   @include transition(0.5s);
   background-color: $bright-red;
 }
@@ -474,14 +427,6 @@ button, input {
   height: 100vh;
   min-height: 100%;
   width: 100%;
-
-  &.hidden {
-    visibility: hidden;
-  }
-}
-
-.fp-section {
-  z-index: 99!important;
 }
 
 .overlay {
@@ -676,37 +621,37 @@ and (min-aspect-ratio: 13/9) {
     }
   }
 
-  .card {
-    width: 80%;
-    background-color: #E0DDD8;
-    border: 2px solid #999;
-    border-radius: 2px;
-    padding: 20px;
-    margin: 0 auto;
-    margin-bottom: 30px;
-  }
-
   b {
     font-size: 14px;
   }
+}
 
-  .example {
+.card {
+  width: 80%;
+  background-color: #E0DDD8;
+  border: 2px solid #999;
+  border-radius: 2px;
+  padding: 20px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.example {
+  position: relative;
+  margin-top: 10px;
+  text-align: center;
+  padding: 10px;
+  margin-left: 10px;
+  color: #666;
+  width: auto;
+  border-radius: 2px;
+  font-weight: bold;
+
+  &:before {
+    content: 'Example:';
     position: relative;
-    margin-top: 10px;
-    text-align: center;
-    padding: 10px;
-    margin-left: 10px;
-    color: #666;
-    width: auto;
-    border-radius: 2px;
-    font-weight: bold;
-
-    &:before {
-      content: 'Example:';
-      position: relative;
-      color: #999;
-      padding-right: 5px;
-      display: inline-block;
-    }
+    color: #999;
+    padding-right: 5px;
+    display: inline-block;
   }
 }

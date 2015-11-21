@@ -14,11 +14,10 @@ class SenatorImg extends BaseComponent {
     const {chamber, repNumber} = this.props;
 
     const imgClasses = cx(
-      ['senatorImg'],
+      ['member-img'],
       {'animated': chamber === 'house' && repNumber === 1 || chamber === 'senate' && repNumber > 0},
       {'bounceInDown': chamber === 'house' && repNumber === 1 || chamber === 'senate' && repNumber > 0})
 
-    console.log(repNumber);
   	return <div className={imgClasses}>
       <div className="img-border">
       </div>
