@@ -63,7 +63,6 @@ class Header extends BaseComponent {
             flush={true}
             text="Start Again"
           />
-          <div className="arrowDown yellow-text nav-arrow"></div>
         </nav>
       </div>
     </div>;
