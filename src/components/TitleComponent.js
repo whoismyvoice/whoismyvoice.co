@@ -32,6 +32,7 @@ class TitleComponent extends BaseComponent {
           <span className="strike-out">
           {vote_status}
           </span>
+          .
   		  </div>
   	</div>;
   }

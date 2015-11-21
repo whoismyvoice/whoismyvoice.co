@@ -8,11 +8,9 @@
   display: flex;
   justify-content: center;
   align-content: center;
-	font-size: 2vw;
+	font-size: 24px;
   width: 45%;
-  height: 200px;
-  margin-top: 1%;
-  margin-bottom: 2%;
+  height: 160px;
 
   &.uppercase {
     text-transform: uppercase;
@@ -128,10 +126,7 @@
 }
 
 .strike-out {
-  border-bottom: 3px solid $black;
-  @media screen and (max-width: $iphone6) {
-    border-bottom: 2px solid $black;
-  }
+  border-bottom: 2px solid $black;
 }
 
 .status {
