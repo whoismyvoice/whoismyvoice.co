@@ -8,14 +8,14 @@ body {
   height: 100%;
   width: 100%;
   font-family: 'Helvetica Neue', Helvetica;
-  background-color: $light-orange;
+  background-color: $light-white;
   font-size: 100%;
   font-size: 13px;
   line-height: 1.5;
 }
 
 a {
-  color: $blue;
+  color: $dark-orange;
   text-decoration: none;
 }
 
@@ -291,7 +291,6 @@ button, input {
   color: $black;
   font-weight: bold;
   font-size: 1.8em;
-  background-color: $bright-red;
 
   @media screen and (max-width: $iphone6)
   and (-webkit-min-device-pixel-ratio: 2) {
@@ -407,25 +406,15 @@ button, input {
   background-image: url('../img/peach-bg.png');
 }
 
-.purple-color {
+.dark-orange-color {
   @include transition(0.5s);
   background-color: $dark-orange-light;
   background-image: url('../img/peach-bg.png');
 }
 
-.blue-color {
+.light-white {
   @include transition(0.5s);
-  background-color: $light-blue;
-}
-
-.bright-green-color {
-  @include transition(0.5s);
-  background-color: $bright-green;
-}
-
-.bright-red-color {
-  @include transition(0.5s);
-  background-color: $bright-red;
+  background-color: $light-white;
 }
 
 .section-block {

@@ -120,7 +120,7 @@ class Home extends BaseComponent {
       {'light-color': !DID_SEARCH || NUMBER_REPRESENTATIVES > 1 || NUMBER_REPRESENTATIVES === undefined},
       {'peach-color': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES !== undefined},
       {'visible': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
-      {'purple-color': this.state.current_screen === 2},
+      {'dark-orange-color': this.state.current_screen === 2},
       {'full': DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && chamber === 'senate'}
     );
 

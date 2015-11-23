@@ -106,15 +106,6 @@
     }
   }
 
-  &.purple-text {
-    &:hover {
-      background-color: $black;
-      &:before {
-        color: $light-purple;
-      }
-    }
-  }
-
   @media screen
   and (min-width: 1100px)
   and (max-width: 1300px) {
@@ -284,48 +275,11 @@
   	}
 	}
 
-  &.green-text {
-    background-color: $light-green;
+  &.white-text {
     &:hover {
       background-color: $black;
       &:before {
-        color: $light-green;
-      }
-    }
-  }
-
-  &.orange-text {
-    &:hover {
-      background-color: $black;
-      &:before {
-        color: $light-orange;
-      }
-    }
-  }
-
-  &.yellow-text {
-    &:hover {
-      background-color: $black;
-      &:before {
-        color: $light-yellow;
-      }
-    }
-  }
-
-  &.blue-text {
-    &:hover {
-      background-color: $black;
-      &:before {
-        color: $light-blue;
-      }
-    }
-  }
-
-  &.red-text {
-    &:hover {
-      background-color: $black;
-      &:before {
-        color: $bright-red;
+        color: $light-white;
       }
     }
   }
@@ -450,7 +404,7 @@
   	}
 
     @media screen and (min-width:0\0) {
-      background-color: $light-green;
+      background-color: $light-white;
 
       &:before {
         margin-top: 150%;

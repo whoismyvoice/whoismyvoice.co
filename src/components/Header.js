@@ -43,22 +43,22 @@ class Header extends BaseComponent {
         </div>
         <nav className={menuClasses} onClick={this._handleClick}>
           <Button
-            color={'yellow-text'}
+            color={'white-text'}
             link="/sources"
             text="Data Sources"
           />
           <Button
-            color={'yellow-text'}
+            color={'white-text'}
             link="/about"
             text="About This Project"
           />
           <Button
-            color={'yellow-text'}
+            color={'white-text'}
             link="/hfc"
             text="House Freedom Caucus"
           />
           <Button
-            color={'yellow-text'}
+            color={'white-text'}
             link="/"
             flush={true}
             text="Start Again"

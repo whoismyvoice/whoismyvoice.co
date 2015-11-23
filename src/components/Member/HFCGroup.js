@@ -18,7 +18,7 @@ class HFCGroup extends BaseComponent {
           group={'true'}
           bioguide={bioguide}
         />
-        <SenatorName
+        <MemberName
           name={name}
           age={age}
           state={state}
