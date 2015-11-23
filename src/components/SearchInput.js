@@ -97,7 +97,7 @@ class SearchInput extends BaseComponent {
       ['input'],
       {'error': this.state.error || this.props.error},
     );
-    return <span>
+    return <span className="search-wrapper">
       <input
         className={inputClasses}
         type="text"

@@ -1,43 +1,42 @@
 @import 'variables';
 
 .ribbon-wrapper {
-  top: -35%;
   z-index: 2;
-  width: 70%;
-  min-width: 220px;
-  margin: 0 auto;
-  position: relative;
   left: auto;
   right: auto;
+  top: -35%;
+  position: relative;
+  margin: 0 auto;
+  width: 70%;
+  min-width: 220px;
   transform: rotate(-2deg);
-
   strong {
     font-weight: normal;
   }
 }
 
 .ribbon {
-  width: 100%;
-  margin: 0 auto;
+  position: relative;
   left: auto;
   right: auto;
+  width: 100%;
+  margin: 0 auto;
   min-width: 100%;
+  padding: 0.6em 0.5em 0.8em 0.5em;
   font-size: 16px;
   text-transform: uppercase;
-  position: relative;
   background-color: $light-red;
   text-align: center;
   color: #ecf0f1;
-  padding: 0.6em 0.5em 0.8em 0.5em;
 }
 
 .ribbon:before, .ribbon:after {
-  content: "";
+  z-index: -1;
   position: absolute;
   display: block;
+  content: "";
   bottom: -0.8em;
   border: 1.5em solid darken(#B03532, 0%);
-  z-index: -1;
 }
 
 .ribbon:before {
@@ -61,11 +60,11 @@
 }
 
 .ribbon .ribbon-content:before, .ribbon .ribbon-content:after {
-  content: "";
   position: absolute;
+  bottom: -0.8em;
+  content: "";
   border-style: solid;
   border-color: darken(#B03532, 8%) transparent transparent transparent;
-  bottom: -0.8em;
 }
 
 .ribbon .ribbon-content:before {

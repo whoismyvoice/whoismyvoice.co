@@ -1,25 +1,25 @@
 @import 'variables';
 
 .text-button {
-  color: $black;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding-bottom: 5px;
+  position: relative;
+  display: block;
   margin: 0 auto;
   margin-top: 30px;
-  display: block;
+  letter-spacing: 1px;
+  padding-bottom: 5px;
   cursor: pointer;
   padding: 5px;
   width: 140px;
+  color: $black;
+  text-transform: uppercase;
   font-weight: bold;
-  position: relative;
 }
 
 .text-button-border {
-  width: 50%;
-  height: 2px;
+  display: block;
   margin: 0 auto;
   margin-top: 5px;
+  width: 50%;
+  height: 2px;
   background-color: $black;
-  display: block;
 }
