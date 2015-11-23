@@ -6,7 +6,6 @@ import SenateStore from '../stores/SenateStore';
 
 module.exports = {
 	fetchDistricts: ZIP_CODE => {
-    console.log("Reached SenateActions");
 		AppDispatcher.handleViewAction({
 			actionType: SenateConstants.FIND_MEMBER,
       zip_code: ZIP_CODE
