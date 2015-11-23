@@ -1,7 +1,6 @@
 import React from 'react';
 import SenateStore from '../stores/SenateStore';
 import Settings from '../data/settings.json';
-
 import DataUtils from '../utils/DataUtils';
 import ContainerActions from '../actions/ContainerActions';
 import cx from 'classnames';
@@ -9,7 +8,6 @@ import cx from 'classnames';
 // Components
 import BaseComponent from './BaseComponent';
 import SearchGroup from './SearchGroup';
-import CongressmanGroup from './Senator/CongressmanGroup';
 import Results from './Results';
 import FadeBorder from './FadeBorder';
 import TitleComponent from './TitleComponent';
@@ -92,32 +90,11 @@ class Home extends BaseComponent {
       SETTINGS = this.state.settings,
       REPRESENTATIVES = this.state.representatives,
       DID_SEARCH = this.state.did_search,
-      {chamber, bill_desc, voted_for, voted_against, impact_text, pre_text} = SETTINGS ? SETTINGS : Settings;
-
-    let vote_status,
-        member_name = '',
-        impact = impact_text.replace('#gender_third', 'this person'),
-        member = chamber === 'senate' ? 'Senator': 'Congressman',
-        member_single = chamber === 'senate' ? 'Senator': 'Congressman',
-        action = chamber === 'senate' ? 'co-sponsored' : 'voted to';
-
-    if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1) {
-      impact = impact_text.replace('#gender_third', `this ${REPRESENTATIVES[0].gender_full}`);
-      member_name = REPRESENTATIVES[0].full_name;
-    } else if (DID_SEARCH && NUMBER_REPRESENTATIVES > 1) {
-      member = chamber === 'senate' ? 'Senators' : 'Representatives';
-    }
-
-    if(DID_SEARCH && NUMBER_REPRESENTATIVES > 0) {
-      vote_status = REPRESENTATIVES[0].voted === 'Yea' ? `${voted_for}` : `${voted_against}`;
-    }
-
-    const RESULT = pre_text.replace('#member_type', member).replace('#member_name', member_name).replace('#action', action);
+      {chamber} = SETTINGS ? SETTINGS : Settings;
 
     if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && NUMBER_REPRESENTATIVES > 0 && chamber === 'senate') {
       this._initializeFullpage();
     } else {
-      vote_status = 'You have not yet searched for a member';
       this._destroyFullpage();
     }
 
@@ -157,21 +134,14 @@ class Home extends BaseComponent {
       <div className={blockClasses} onScroll={this._handleScroll}>
       	<div className="section-block">
           <TitleComponent
-            vote_for={voted_for}
-            vote_status={vote_status}
-            pre_text={RESULT}
             front={true}
             classes="title-component--padding"
-            desc={bill_desc.replace('#member', member_single)}
+            desc={true}
           />
         	<SearchGroup />
         </div>
         <Results
           backgroundClasses={backgroundClasses}
-          pre_text={RESULT}
-          vote_status={vote_status}
-          impact={impact}
-          chamber={chamber}
         />
       </div>
     </div>;

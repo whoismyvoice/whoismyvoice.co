@@ -5,10 +5,10 @@ import SenateActions from '../actions/SenateActions';
 // Components
 import TitleComponent from './TitleComponent';
 import TextButton from './TextButton';
-import SupportActions from './Senator/SupportActions';
+import SupportActions from './Member/SupportActions';
 import HFCOverview from './HFCOverview';
 import FadedBG from './FadedBg';
-import CongressmanGroup from './Senator/CongressmanGroup';
+import CongressmanGroup from './Member/CongressmanGroup';
 import BaseComponent from './BaseComponent';
 import Button from './Button';
 
@@ -39,12 +39,7 @@ class Results extends BaseComponent {
 
 	render() {
 		const {
-      vote_status,
-      impact,
-      backgroundClasses,
-      pre_text,
-      chamber,
-      represent_gender
+      backgroundClasses
     } = this.props;
 
     return <div className={backgroundClasses} id="fullpage">
@@ -53,12 +48,8 @@ class Results extends BaseComponent {
           text="Back"
           onClick={this._handleRestart}
         />
-        <CongressmanGroup
-          chamber={chamber}
-        />
+        <CongressmanGroup />
         <TitleComponent
-          vote_status={vote_status}
-          pre_text={pre_text}
           represent={true}
         />
         <TextButton
@@ -68,7 +59,7 @@ class Results extends BaseComponent {
       </div>
       <div className="section block three">
         <TitleComponent
-          desc={impact}
+          desc={true}
           actions={true}
         />
         <SupportActions />
@@ -79,9 +70,6 @@ class Results extends BaseComponent {
 
 Results.propTypes = {
   backgroundClasses: React.PropTypes.any,
-  impact: React.PropTypes.string,
-  vote_status: React.PropTypes.string,
-  zip_code: React.PropTypes.string,
 };
 
 export default Results;

@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import SenateStore from '../stores/SenateStore';
+import Settings from '../data/settings.json';
 
 // Component
 import BaseComponent from './BaseComponent';
@@ -14,71 +15,84 @@ class TitleComponent extends BaseComponent {
     this.state = SenateStore.getMember();
   }
   render() {
-
-    let representative,
-        final_char,
-        represent_gender;
-
-    if (this.state.representatives) {
-      representative = this.state.representatives[0];
-
-      if (this.state.representatives.length === 1) {
-        represent_gender = representative.gender_full === 'man' ? 'He' : 'She';
-      } else if(this.state.representatives.length > 1) {
-        represent_gender = 'These people';
-      }
-    }
-
-    let {
-      vote_status,
-      pre_text,
+    const {
       desc,
-      vote_for,
       actions,
-      classes
+      classes,
+      front,
+      represent
     } = this.props;
 
     const {
       did_search,
-      number_representatives
+      number_representatives,
+      settings
     } = this.state
 
+    let representative,
+        final_char,
+        represent_gender,
+        member_name = '',
+        vote_status = '',
+        impact,
+        {chamber, bill_desc, voted_for, voted_against, impact_text, pre_text} = settings ? settings : Settings,
+        action_text = impact_text.replace('#gender_third', 'this person'),
+        member = chamber === 'senate' ? 'Senator': 'Congressman',
+        member_single = chamber === 'senate' ? 'Senator': 'Congressman',
+        action = chamber === 'senate' ? 'co-sponsored' : 'voted to';
+
+    if (this.state.representatives) {
+      representative = this.state.representatives[0];
+      vote_status = representative.voted === 'Yea' ? `${voted_for}` : `${voted_against}`;
+
+      if (this.state.representatives.length === 1) {
+        impact = impact_text.replace('#gender_third', `this ${representative.gender_full}`);
+        represent_gender = representative.gender_full === 'man' ? 'He' : 'She';
+        member_name = representative.full_name;
+      } else if(this.state.representatives.length > 1) {
+        represent_gender = 'These people';
+        member = chamber === 'senate' ? 'Senators' : 'Representatives';
+      }
+    }
+
+    const preliminary_text = pre_text.replace('#member_type', member).replace('#member_name', member_name).replace('#action', action);
+
     if(!did_search || desc && did_search && !actions) {
-      vote_status = `${vote_for}`;
+      vote_status = `${voted_for}`;
       final_char = '?';
-      pre_text = desc;
+      pre_text = bill_desc.replace('#member', member_single);
     } else if(did_search && !desc || !desc) {
-      pre_text = pre_text;
+      pre_text = preliminary_text;
       final_char = '.';
     } else if(actions) {
-      pre_text = desc;
+      pre_text = action_text;
       final_char = '';
     }
 
     const titleClasses = cx(
       ['title-component', classes],
-      {'uppercase': this.props.front},
+      {'uppercase': front},
       {'title-component--actions': actions}
     );
 
     const representClasses = cx(
       ['title-component__represent'],
-      {'hide': !this.props.represent}
+      {'hide': !represent}
     );
 
     const starClasses = cx(
       ['title-component__star-divider'],
-      {'hide': !this.props.represent || this.props.actions}
+      {'hide': !represent || actions}
     );
 
     const strikeClasses = cx(
       ['strike-out'],
-      {'hide': this.props.actions}
+      {'hide': actions}
     );
 
     const threeStars = cx(
       ['three-stars', 'animated', 'zoomIn'],
-      {'hide': this.props.represent || this.props.actions}
+      {'hide': represent || actions}
     )
 
     return <div className={titleClasses}>
@@ -105,7 +119,11 @@ class TitleComponent extends BaseComponent {
 };
 
 TitleComponent.propTypes = {
-  desc: React.PropTypes.string,
+  desc: React.PropTypes.bool,
+  actions: React.PropTypes.bool,
+  classes: React.PropTypes.string,
+  front: React.PropTypes.bool,
+  represent: React.PropTypes.bool
 };
 
 export default TitleComponent;
