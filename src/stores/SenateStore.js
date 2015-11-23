@@ -30,7 +30,6 @@ const SenateStore = ObjectAssign( {}, EventEmitter.prototype, {
   },
   getSettings: () => {
     return _store.settings;
-    console.log(_store.settings);
   }
 });
 
@@ -46,6 +45,7 @@ AppDispatcher.register(payload => {
     case AppConstants.GET_DETAILS:
       _store.number_representatives = action.numRep;
       if (action.response === 'error') {
+        console.log("error");
         _store.error = true;
       } else {
         const details = action.response[0];

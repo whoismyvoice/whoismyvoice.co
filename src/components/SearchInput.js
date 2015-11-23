@@ -12,12 +12,12 @@ import style from './../styles/SearchInput.scss';
 class SearchInput extends BaseComponent {
   constructor() {
     super();
-    this._bind('_handleChange','_handleFocus', '_handleBlur', '_handleEnter', '_handleClick');
     this.state = {
       zip_code: '',
       error: false,
       placeholder: 'Enter Your Zip Code'
     }
+    this._bind('_handleChange','_handleFocus', '_handleBlur', '_handleEnter', '_handleClick');
   }
   _handleFocus() {
     this.setState({
@@ -26,11 +26,13 @@ class SearchInput extends BaseComponent {
     });
   }
   _handleBlur() {
-    if (this.state.zip_code === '') {
+    const zip_code = this.state.zip_code;
+    if (isNaN(zip_code) || !isNaN(zip_code) && zip_code.length === 5) {
       this.setState({
-        placeholder: 'Enter Your Zip Code'
+        placeholder: 'Enter Your Zip Code',
+        error: false
       });
-    } else if(this.state.zip_code.length === 5) {
+    } else if(!isNaN(zip_code) && zip_code.length === 5) {
       this.setState({
         error: false,
         placeholder: 'Enter Your Zip Code',
@@ -55,7 +57,7 @@ class SearchInput extends BaseComponent {
           placeholder: 'Enter Your Zip Code',
           zip_code: ''
         });
-      } else {
+      } else if(!isNaN(zip_code) && zip_code.length === 5) {
         SenateActions.fetchDistricts(zip_code);
         this.setState({
           error: false,
@@ -64,23 +66,23 @@ class SearchInput extends BaseComponent {
       }
     }
   }
+
   _handleClick(evt) {
-    const zip_code = this.state.zip_code;
     evt.preventDefault();
     evt.stopPropagation();
-    console.log(zip_code);
+    const zip_code = this.state.zip_code;
     if ((isNaN(zip_code)) || (!isNaN(zip_code) && zip_code.length !== 5)) {
       this.setState({
         error: true,
         placeholder: 'Enter Your Zip Code',
         zip_code: ''
       });
-    } else {
-      SenateActions.fetchDistricts(zip_code);
+    } else if(!isNaN(zip_code) && zip_code.length === 5) {
       this.setState({
         error: false,
         zip_code: ''
       });
+      SenateActions.fetchDistricts(zip_code);
     }
   }
 
