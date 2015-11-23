@@ -19,8 +19,6 @@ class SenatorImg extends BaseComponent {
       {'bounceInDown': chamber === 'house' && repNumber === 1 || chamber === 'senate' && repNumber > 0})
 
   	return <div className={imgClasses}>
-      <div className="img-border">
-      </div>
     	<img src={img} />
     </div>;
   }

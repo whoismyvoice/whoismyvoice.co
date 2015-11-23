@@ -84,6 +84,10 @@ button, input {
   }
 }
 
+.line-seperator--small {
+  height: 15vh;
+}
+
 @mixin transition($time) {
   -webkit-transition:all $time ease-in;
   -moz-transition:all $time ease-in;

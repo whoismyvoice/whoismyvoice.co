@@ -53,6 +53,7 @@ class Results extends BaseComponent {
           represent={true}
           classes="title-component--results"
         />
+        <div className="line-seperator line-seperator--small"></div>
         <TextButton
           text="What can I do?"
           onClick={this._handleClick}
