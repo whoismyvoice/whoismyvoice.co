@@ -7,18 +7,18 @@ class EditInput extends BaseComponent {
   constructor() {
     super();
   }
-
   render() {
+    const {value, onChange, placeholder, className, note, example} = this.props;
   	return <div>
-      <b>{this.props.title}</b><br />
-      <i>{this.props.note}</i>
-      <div className="example">{this.props.example}</div>
       <input
         type="text"
-        value={this.props.value}
-        onChange={this.props.onChange}
-        placeholder={this.props.placeholder}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        className={className}
       />
+      <i>{note}</i>
+      <div className="example">{example}</div>
     </div>;
   }
 };

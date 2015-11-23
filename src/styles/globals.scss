@@ -600,11 +600,35 @@ and (min-aspect-ratio: 13/9) {
 }
 
 .edit {
-  width: 50%;
+  width: 70%;
   display: block;
   margin: 0 auto;
   margin-bottom: 50px;
   text-align: center;
+
+  input {
+    width: auto;
+    text-transform: inherit;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 12px;
+    border: 2px solid $dark-grey;
+    background-color: $white;
+    text-align: left;
+  }
+
+  .long {
+    width: 100%!important;
+    font-size: 11px;
+  }
+
+  i {
+    margin-top: 15px;
+    display: block;
+    font-style: normal;
+    color: $dark-grey;
+    margin-bottom: 0;
+  }
 
   textarea {
     border-radius: 2px;
@@ -648,13 +672,15 @@ and (min-aspect-ratio: 13/9) {
 
 .example {
   position: relative;
-  margin-top: 10px;
   text-align: center;
-  padding: 10px;
-  margin-left: 10px;
+  width: 70%;
+  margin: 0 auto;
+  padding: 8px;
   color: #666;
-  width: auto;
-  border-radius: 2px;
+  display: block;
+  border-bottom: 2px solid $light-grey;
+  padding-bottom: 15px;
+  margin-bottom: 10px;
   font-weight: bold;
 
   &:before {
