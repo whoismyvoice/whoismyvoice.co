@@ -27,10 +27,16 @@ class SearchInput extends BaseComponent {
   }
   _handleBlur() {
     const zip_code = this.state.zip_code;
+    if(zip_code === '') {
+      this.setState({
+        placeholder: 'Enter Your Zip Code'
+      })
+    }
+
     if (isNaN(zip_code) || !isNaN(zip_code) && zip_code.length === 5) {
       this.setState({
         placeholder: 'Enter Your Zip Code',
-        error: false
+        error: false,
       });
     } else if(!isNaN(zip_code) && zip_code.length === 5) {
       this.setState({
