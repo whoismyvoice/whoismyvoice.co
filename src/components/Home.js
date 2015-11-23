@@ -92,15 +92,10 @@ class Home extends BaseComponent {
       SETTINGS = this.state.settings,
       REPRESENTATIVES = this.state.representatives,
       DID_SEARCH = this.state.did_search,
-      ERROR = this.state.error,
-      ZIP_CODE = this.state.zip_code,
-      STATE_FULL = this.state.state_full,
-      CURRENT_MEMBER = this.state.current_senator,
       {chamber, bill_desc, voted_for, voted_against, impact_text, pre_text} = SETTINGS ? SETTINGS : Settings;
 
     let vote_status,
         member_name = '',
-        represent_gender,
         impact = impact_text.replace('#gender_third', 'this person'),
         member = chamber === 'senate' ? 'Senator': 'Congressman',
         member_single = chamber === 'senate' ? 'Senator': 'Congressman',
@@ -109,7 +104,6 @@ class Home extends BaseComponent {
     if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1) {
       impact = impact_text.replace('#gender_third', `this ${REPRESENTATIVES[0].gender_full}`);
       member_name = REPRESENTATIVES[0].full_name;
-      represent_gender = REPRESENTATIVES[0].gender_full === 'man' ? 'He' : 'She';
     } else if (DID_SEARCH && NUMBER_REPRESENTATIVES > 1) {
       member = chamber === 'senate' ? 'Senators' : 'Representatives';
     }
@@ -163,8 +157,6 @@ class Home extends BaseComponent {
       <div className={blockClasses} onScroll={this._handleScroll}>
       	<div className="section-block">
           <TitleComponent
-            did_search={DID_SEARCH}
-            number_representatives={NUMBER_REPRESENTATIVES}
             vote_for={voted_for}
             vote_status={vote_status}
             pre_text={RESULT}
@@ -172,26 +164,14 @@ class Home extends BaseComponent {
             classes="title-component--padding"
             desc={bill_desc.replace('#member', member_single)}
           />
-        	<SearchGroup
-            repNum={NUMBER_REPRESENTATIVES}
-          	error={ERROR}
-            did_search={DID_SEARCH}
-            zip_code={ZIP_CODE}
-            state_full={STATE_FULL}
-        	/>
+        	<SearchGroup />
         </div>
         <Results
-          represent_gender={represent_gender}
-          representatives={REPRESENTATIVES}
-          numRep={NUMBER_REPRESENTATIVES}
           backgroundClasses={backgroundClasses}
           pre_text={RESULT}
           vote_status={vote_status}
           impact={impact}
           chamber={chamber}
-          did_search={DID_SEARCH}
-          current_member={CURRENT_MEMBER}
-          zip_code={ZIP_CODE}
         />
       </div>
     </div>;

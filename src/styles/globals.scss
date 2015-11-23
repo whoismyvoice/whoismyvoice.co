@@ -73,7 +73,7 @@ button, input {
 
   &.darken {
     @include transition(1s);
-    background-color: $dark-orange;
+    background-color: $dark-orange-light;
   }
 }
 
@@ -392,8 +392,8 @@ button, input {
 
 .light-color {
   @include transition(0.5s);
-  background-color: $light-white;
-  background-image: url('../img/white-bg.png');
+  background-color: $light-white!important;
+  background-image: url('../img/white-bg.png')!important;
 
   #left-blur, #right-blur {
     @include transition(1s);
@@ -409,7 +409,8 @@ button, input {
 
 .purple-color {
   @include transition(0.5s);
-  background-color: $light-purple;
+  background-color: $dark-orange-light;
+  background-image: url('../img/peach-bg.png');
 }
 
 .blue-color {

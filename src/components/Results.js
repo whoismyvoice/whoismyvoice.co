@@ -41,14 +41,10 @@ class Results extends BaseComponent {
 		const {
       vote_status,
       impact,
-      current_member,
-      zip_code,
-      numRep,
-      did_search,
-      representatives,
       backgroundClasses,
       pre_text,
-      chamber
+      chamber,
+      represent_gender
     } = this.props;
 
     return <div className={backgroundClasses} id="fullpage">
@@ -58,18 +54,12 @@ class Results extends BaseComponent {
           onClick={this._handleRestart}
         />
         <CongressmanGroup
-          representatives={representatives}
-          numRep={numRep}
-          zip_code={zip_code}
           chamber={chamber}
         />
         <TitleComponent
-          number_representatives={numRep}
-          did_search={did_search}
           vote_status={vote_status}
           pre_text={pre_text}
           represent={true}
-          represent_gender={this.props.represent_gender}
         />
         <TextButton
           text="What can I do?"
@@ -81,10 +71,7 @@ class Results extends BaseComponent {
           desc={impact}
           actions={true}
         />
-        <SupportActions
-          representatives={representatives}
-          currentSenator={current_member}
-        />
+        <SupportActions />
       </div>
     </div>;
     }
@@ -92,10 +79,7 @@ class Results extends BaseComponent {
 
 Results.propTypes = {
   backgroundClasses: React.PropTypes.any,
-  current_member: React.PropTypes.any,
   impact: React.PropTypes.string,
-  numRep: React.PropTypes.number,
-  representatives: React.PropTypes.array,
   vote_status: React.PropTypes.string,
   zip_code: React.PropTypes.string,
 };

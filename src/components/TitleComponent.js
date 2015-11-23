@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import SenateStore from '../stores/SenateStore';
 
 // Component
 import BaseComponent from './BaseComponent';
@@ -8,24 +9,39 @@ import BaseComponent from './BaseComponent';
 import style from './../styles/TitleComponent.scss';
 
 class TitleComponent extends BaseComponent {
+  constructor() {
+    super();
+    this.state = SenateStore.getMember();
+  }
   render() {
-    if(this.props.representatives) {
-      representative = this.props.representatives[0];
+
+    let representative,
+        final_char,
+        represent_gender;
+
+    if (this.state.representatives) {
+      representative = this.state.representatives[0];
+
+      if (this.state.representatives.length === 1) {
+        represent_gender = representative.gender_full === 'man' ? 'He' : 'She';
+      } else if(this.state.representatives.length > 1) {
+        represent_gender = 'These people';
+      }
     }
 
     let {
-      did_search,
       vote_status,
       pre_text,
-      number_representatives,
       desc,
-      represent_gender,
       vote_for,
       actions,
       classes
     } = this.props;
 
-    let final_char;
+    const {
+      did_search,
+      number_representatives
+    } = this.state
 
     if(!did_search || desc && did_search && !actions) {
       vote_status = `${vote_for}`;
@@ -35,6 +51,7 @@ class TitleComponent extends BaseComponent {
       pre_text = pre_text;
       final_char = '.';
     } else if(actions) {
+      pre_text = desc;
       final_char = '';
     }
 
@@ -89,8 +106,6 @@ class TitleComponent extends BaseComponent {
 
 TitleComponent.propTypes = {
   desc: React.PropTypes.string,
-  numRep: React.PropTypes.number,
-  representatives: React.PropTypes.array,
 };
 
 export default TitleComponent;

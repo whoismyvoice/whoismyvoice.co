@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import SenateStore from '../../stores/SenateStore';
 
 // Components
 import BaseComponent from '../BaseComponent';
@@ -12,11 +13,16 @@ import ArrowDown from '../ArrowDown';
 import style from './../../styles/CongressmanGroup.scss';
 
 class CongressmanGroup extends BaseComponent {
+  constructor() {
+    super();
+    this.state = SenateStore.getMember();
+  }
   render() {
     let searchClasses = 'search',
         wrapperClasses = 'senatorWrapper';
 
-    const {representatives, zip_code, state_full, chamber, numRep} = this.props;
+    const {chamber} = this.props;
+    const {representatives, zip_code, state_full, settings, number_representatives} = this.state;
 
     if (representatives) {
       wrapperClasses = cx(
@@ -30,9 +36,8 @@ class CongressmanGroup extends BaseComponent {
         <SenatorImg
           bioguide={item.bioguide_id}
           chamber={chamber}
-          repNumber={numRep}
+          repNumber={number_representatives}
         />
-
         <MemberRibbon
           name={item.full_name}
           state={item.state}
@@ -47,8 +52,7 @@ class CongressmanGroup extends BaseComponent {
 };
 
 CongressmanGroup.propTypes = {
-  representatives: React.PropTypes.array,
-  zip_code: React.PropTypes.string
+  chamber: React.PropTypes.string
 };
 
 export default CongressmanGroup;

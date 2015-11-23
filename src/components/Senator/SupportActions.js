@@ -1,4 +1,5 @@
 import React from 'react';
+import SenateStore from '../../stores/SenateStore';
 
 // Styles
 import style from './../../styles/SupportActions.scss';
@@ -10,6 +11,7 @@ import Button from './../Button';
 class SupportActions extends BaseComponent {
   constructor() {
     super();
+    this.state = SenateStore.getMember();
   }
 
   render() {
@@ -18,11 +20,11 @@ class SupportActions extends BaseComponent {
       email,
       twitter,
       tel,
-      current = this.props.currentSenator || 0,
+      current = this.state.current_senator || 0,
       twitterLink;
 
-    if (this.props.representatives !== null) {
-      representative = this.props.representatives[current];
+    if (this.state.representatives !== null) {
+      representative = this.state.representatives[current];
       gender = representative.gender === 'M' ? 'him' : 'her';
       email = representative.oc_email;
       twitter = representative.twitter_id;
