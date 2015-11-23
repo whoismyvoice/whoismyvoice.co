@@ -56,12 +56,13 @@
 }
 
 .img-border {
-  width: 96.5%;
-  height: 96.5%;
+  width: 96.3%;
+  height: 96.3%;
   border: 5px solid #FFF;
   background-color: none;
   border-radius: 50%;
   position: absolute;
   z-index: 10;
-  top: 0;
+  top: -1px;
+  left: -1px;
 }

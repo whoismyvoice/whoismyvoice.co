@@ -104,6 +104,8 @@ class SearchInput extends BaseComponent {
         onBlur={this._handleBlur}
       />
 
+      <div className="line-seperator"></div>
+
       <TextButton
         text="Continue"
         onClick={this._handleClick}

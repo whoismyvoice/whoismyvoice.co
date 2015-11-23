@@ -71,8 +71,7 @@ class TitleComponent extends BaseComponent {
 
     const titleClasses = cx(
       ['title-component', classes],
-      {'uppercase': front},
-      {'title-component--actions': actions}
+      {'uppercase': front}
     );
 
     const representClasses = cx(

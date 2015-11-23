@@ -46,6 +46,44 @@ button, input {
   outline: none;
 }
 
+.line-seperator {
+  width: 20px;
+  left: auto;
+  right: auto;
+  margin: 0 auto;
+  margin-top: 30px;
+  height: 20vh;
+  max-height: 230px;
+  display: block;
+
+  &:before {
+    content: '';
+    width: 2px;
+    height: 100%;
+    background-color: $black;
+    position: relative;
+    left: auto;
+    right: auto;
+    margin: 0 auto;
+    top: 0;
+    display: block;
+  }
+
+  &:after {
+    content: '\0276E';
+    transform: rotate(-90deg);
+    display: block;
+    margin: 0 auto;
+    left: auto;
+    right: auto;
+    font-weight: normal;
+    font-family: 'Helvetica';
+    font-size: 16px;
+    text-align: center;
+    position: relative;
+  }
+}
+
 @mixin transition($time) {
   -webkit-transition:all $time ease-in;
   -moz-transition:all $time ease-in;
@@ -91,14 +129,17 @@ button, input {
   top: 0;
   display: block;
   margin: 0 auto;
-  width: 99vw;
-  height: 90vh;
-  min-height: 100%;
+  width: 100vw;
+  height: 100vh;
   text-align: center;
 }
 
+.three {
+  margin-top: 10%;
+}
+
 .block--margin {
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
 .disappear {

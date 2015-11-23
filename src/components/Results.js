@@ -51,6 +51,7 @@ class Results extends BaseComponent {
         <CongressmanGroup />
         <TitleComponent
           represent={true}
+          classes="title-component--results"
         />
         <TextButton
           text="What can I do?"
@@ -60,6 +61,7 @@ class Results extends BaseComponent {
       <div className="section block three">
         <TitleComponent
           desc={true}
+          classes="title-component--actions"
           actions={true}
         />
         <SupportActions />
