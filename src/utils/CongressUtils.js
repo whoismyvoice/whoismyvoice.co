@@ -56,7 +56,7 @@ const getMemberDetails = (zipCode, lng, voters) => {
       const voteFilter = vote_favor === 'Yea' ? 'Nay' : 'Yea';
 
       const newSenators = res.body.results.filter(senator => {
-        if(voters[senator.bioguide_id] === voteFilter) {
+        if(senator.chamber[0] === bill_id[0] && voters[senator.bioguide_id] === voteFilter) {
           senator.voted = voters[senator.bioguide_id];
           senator.full_name = senator.middle_name === null ? `${senator.first_name} ${senator.last_name}` : `${senator.first_name} ${senator.middle_name} ${senator.last_name}`;
           senator.gender_full = senator.gender === 'M' ? 'man' : 'woman';
