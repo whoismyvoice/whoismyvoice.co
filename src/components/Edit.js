@@ -212,95 +212,101 @@ class Edit extends BaseComponent {
   	return <div className="page-block edit">
       <FadedBG color="orange-color" />
       <form id="editform" onSubmit={this._onSubmit}>
-      <div className="card">
-        <h2>Bill details</h2>
-        <EditInput
-          onChange={this._onChangeID}
-          onBlur={this._onBlurID}
-          value={this.state.bill_id}
-          example="s1881-114"
-          placeholder="Enter bill id"
-        />
-        <EditInput
-          onChange={this._onChangeBillTitle}
-          onBlur={this._onBlurBillTitle}
-          value={this.state.bill_title}
-          example="Accurate Food Labeling Act of 2015"
-          placeholder="Enter bill title"
-        />
-        <EditInput
-          onChange={this._onChangeBillDesc}
-          onBlur={this._onBlurBillDesc}
-          note="Note: Use tag #member to be replaced by senator/congressman"
-          value={this.state.bill_desc}
-          example="Did my #member vote against the Safe and Accurate Food Labeling Act of 2015?"
-          placeholder="Question of the bill (shown on the front page)"
-          className="long"
-        />
-      </div>
-
-      <div className="card">
-        <EditDropdown
-          title="Select Chamber"
-          options={ChamberOptions}
-          onChange={this._onSelectChamber}
-          placeholder="Select a chamber"
-        />
-      </div>
-      <div className="card">
-        <h2>Result texts</h2>
-        The text shown on the result page is a combination of: "<b>[pre-text] [vote]</b>".
-        <br />E.g. [Your Congressman, Name Nameson voted to] [reverse Obamacare]
-        <br /><br />
-        <EditInput
-          onChange={this._onChangePretext}
-          onBlur={this._onBlurPretext}
-          note={'Note: You can use tags: #member_type, #member_name #action'}
-          value={this.state.cosponsor_post_text}
-          example="Your Congressman/Senator, Name Nameson voted to/co-sponsored"
-          placeholder="Pre-text "
-          className="long"
-        />
-        <EditInput
-          onChange={this._onChangeVotedFor}
-          onBlur={this._onBlurVotedFor}
-          value={this.state.voted_for}
-          example="reverse Obamacare"
-          placeholder="Voted for text shown after pre-text"
-          className="long"
-        />
-        <EditInput
-          onChange={this._onChangeVotedAgainst}
-          onBlur={this._onBlurVotedAgainst}
-          value={this.state.voted_against}
-          example="not reverse Obamacare"
-          placeholder="Voted against text shown after pre-text"
-          className="long"
-        />
-        <EditTextArea
-          onChange={this._onChangeImpactText}
-          onBlur={this._onBlurImpactText}
-          placeholder="Text shown on the third (action) page enticing users to tweet, call and email"
-          note="Note: Use tag #gender_third to add senators gender as him or her."
-          example="Here are some ways you can keep #gender_third from being able to personally weigh in on safe and accurate food labeling the next time a similar vote comes up."
-        />
-      </div>
-
-      <div className={senateFields}>
         <div className="card">
-          <EditDropdown
-            title="Vote in favor?"
-            note="Note: One vote is put in favor in order to only show senators who have voted against the vote."
-            options={VoteOptions}
-            onChange={this._onSelect}
-            placeholder="Select an option"
+          <h2>Bill details</h2>
+          <EditInput
+            onChange={this._onChangeID}
+            onBlur={this._onBlurID}
+            value={this.state.bill_id}
+            example="s1881-114"
+            placeholder="Enter bill id"
+          />
+          <EditInput
+            onChange={this._onChangeBillTitle}
+            onBlur={this._onBlurBillTitle}
+            value={this.state.bill_title}
+            example="Accurate Food Labeling Act of 2015"
+            placeholder="Enter bill title"
+          />
+          <EditInput
+            onChange={this._onChangeBillDesc}
+            onBlur={this._onBlurBillDesc}
+            note="Note: Use tag #member to be replaced by senator/congressman"
+            value={this.state.bill_desc}
+            example="Did my #member vote against the Safe and Accurate Food Labeling Act of 2015?"
+            placeholder="Question of the bill (shown on the front page)"
+            className="long"
           />
         </div>
-      </div>
-      <div className={errorClasses}>
-        An error occurred.<br /> {errorsSplit}
-      </div>
-      <button className={buttonClasses} form="editform" type="submit">Save changes</button>
+
+        <div className="card">
+          <EditDropdown
+            title="Select Chamber"
+            options={ChamberOptions}
+            onChange={this._onSelectChamber}
+            placeholder="Select a chamber"
+          />
+        </div>
+        <div className="card">
+          <h2>Result texts</h2>
+          The text shown on the result page is a combination of: "<b>[pre-text] [vote]</b>".
+          <br />E.g. [Your Congressman, Name Nameson voted to] [reverse Obamacare]
+          <br /><br />
+          <EditInput
+            onChange={this._onChangePretext}
+            onBlur={this._onBlurPretext}
+            note={'Note: You can use tags: #member_type, #member_name #action'}
+            value={this.state.cosponsor_post_text}
+            example="Your Congressman/Senator, Name Nameson voted to/co-sponsored"
+            placeholder="Pre-text "
+            className="long"
+          />
+          <EditInput
+            onChange={this._onChangeVotedFor}
+            onBlur={this._onBlurVotedFor}
+            value={this.state.voted_for}
+            example="reverse Obamacare"
+            placeholder="Voted for text shown after pre-text"
+            className="long"
+          />
+          <EditInput
+            onChange={this._onChangeVotedAgainst}
+            onBlur={this._onBlurVotedAgainst}
+            value={this.state.voted_against}
+            example="not reverse Obamacare"
+            placeholder="Voted against text shown after pre-text"
+            className="long"
+          />
+          <EditTextArea
+            onChange={this._onChangeImpactText}
+            onBlur={this._onBlurImpactText}
+            placeholder="Text shown on the third (action) page enticing users to tweet, call and email"
+            note="Note: Use tag #gender_third to add senators gender as him or her."
+            example="Here are some ways you can keep #gender_third from being able to personally weigh in on safe and accurate food labeling the next time a similar vote comes up."
+          />
+        </div>
+
+        <div className={senateFields}>
+          <div className="card">
+            <EditDropdown
+              title="Vote in favor?"
+              note="Note: One vote is put in favor in order to only show senators who have voted against the vote."
+              options={VoteOptions}
+              onChange={this._onSelect}
+              placeholder="Select an option"
+            />
+          </div>
+        </div>
+        <div className="card">
+          <h2>Preview</h2>
+          <b>Question:</b> {bill_desc}<br />
+          <b>Voted for:</b> {`${pre_text} ${voted_for}`}<br />
+          <b>Voted against:</b> {`${pre_text} ${voted_against}`}
+        </div>
+        <div className={errorClasses}>
+          An error occurred.<br /> {errorsSplit}
+        </div>
+        <button className={buttonClasses} form="editform" type="submit">Save changes</button>
       </form>
     </div>;
   }
