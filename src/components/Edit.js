@@ -114,7 +114,7 @@ class Edit extends BaseComponent {
       } else {
         return false;
       }
-    }
+    };
 
     const senateFields = cx(
       ['form-fields'],
@@ -123,7 +123,8 @@ class Edit extends BaseComponent {
 
     const buttonClasses = cx(
       ['button'],
-      {'disabled': isEmpty()})
+      {'disabled': isEmpty()}
+    );
 
     const VoteOptions = [
       { value: '1', label: 'Yea'},
@@ -137,12 +138,12 @@ class Edit extends BaseComponent {
 
     function notEmpty(state) {
       return state.length > 0;
-    }
+    };
 
-    const errorClasses = [
-      'edit__error',
-      {'edit__error--show': true}
-    ];
+    const errorClasses = cx(
+      ['edit__error'],
+      {'edit__error--show': isEmpty()}
+    );
 
   	return <div className="page-block edit">
       <FadedBG color="orange-color" />

@@ -100,10 +100,10 @@
 }
 
 .form-fields {
+  @include transition(1s);
   opacity: 1;
   height: auto;
   visibility: visible;
-  @include transition(1s);
 
   &.hide {
     opacity: 0;
@@ -203,4 +203,22 @@
     padding-right: 5px;
     display: inline-block;
   }
+}
+
+.edit__error {
+  @include transition(1s);
+  margin: 0 auto;
+  opacity: 0;
+  width: 40%;
+  background-color: $dark-red;
+  text-align: center;
+  margin-bottom: 0;
+  color: $white;
+  font-weight: bold;
+}
+.edit__error--show {
+  @include transition(1s);
+  opacity: 1;
+  margin-bottom: 10px;
+  padding: 15px;
 }
