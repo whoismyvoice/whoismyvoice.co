@@ -2,7 +2,6 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 import AppConstants from '../constants/SenateConstants';
 import ObjectAssign from 'object-assign';
 import { EventEmitter } from 'events';
-import Settings from '../data/settings.json'
 
 const CHANGE_EVENT = 'change';
 

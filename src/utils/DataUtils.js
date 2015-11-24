@@ -1,7 +1,6 @@
 import SenateServerActions from '../actions/SenateServerActions';
 import request from 'superagent';
 import SenateConstants from '../constants/SenateConstants';
-import Settings from '../data/settings.json';
 
 module.exports = {
   saveFetchedData: () => {

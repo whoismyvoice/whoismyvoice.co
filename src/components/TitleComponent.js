@@ -39,7 +39,8 @@ class TitleComponent extends BaseComponent {
         action_text = impact_text.replace('#gender_third', 'this person'),
         member = chamber === 'senate' ? 'Senator': 'Congressman',
         member_single = chamber === 'senate' ? 'Senator': 'Congressman',
-        action = chamber === 'senate' ? 'co-sponsored' : 'voted to';
+        action = chamber === 'senate' ? 'co-sponsored the bill to' : 'voted to',
+        represent_text = 'represents';
 
     if (this.state.representatives) {
       representative = this.state.representatives[0];
@@ -51,6 +52,7 @@ class TitleComponent extends BaseComponent {
         member_name = representative.full_name;
       } else if(this.state.representatives.length > 1) {
         represent_gender = 'These people';
+        represent_text = 'represent';
         member = chamber === 'senate' ? 'Senators' : 'Representatives';
       }
     }
@@ -111,7 +113,7 @@ class TitleComponent extends BaseComponent {
         <span>&#9733;</span>
       </div>
       <span className={representClasses}>
-        {`${represent_gender} represents your voice!`}
+        {`${represent_gender}  ${represent_text} your voice!`}
       </span>
   	</div>;
   }

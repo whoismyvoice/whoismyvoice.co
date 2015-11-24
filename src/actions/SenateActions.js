@@ -2,7 +2,6 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 import SenateConstants from '../constants/SenateConstants';
 import request from 'superagent';
 import CongressUtils from '../utils/CongressUtils';
-import SenateStore from '../stores/SenateStore';
 
 module.exports = {
 	fetchDistricts: ZIP_CODE => {
