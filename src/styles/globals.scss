@@ -95,7 +95,7 @@ button, input {
 }
 
 #left-blur, #right-blur {
-  @include transition(1);
+  @include transition(0.5s);
   z-index: 1;
   position: fixed;
   background-color: $light-white;
@@ -104,7 +104,7 @@ button, input {
   width: 20%;
 
   &.darken {
-    @include transition(1s);
+    @include transition(0.5s);
     background-color: $dark-orange-light;
   }
 }
@@ -430,7 +430,7 @@ button, input {
   background-image: url('../img/white-bg.png')!important;
 
   #left-blur, #right-blur {
-    @include transition(1s);
+    @include transition(0.5s);
     background-color: $light-white!important;
   }
 }
