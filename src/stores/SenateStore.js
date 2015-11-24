@@ -97,7 +97,7 @@ AppDispatcher.register(payload => {
       break;
 
     default:
-        return true;
+      return true;
   }
 });
 

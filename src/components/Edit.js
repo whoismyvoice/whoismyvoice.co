@@ -95,14 +95,35 @@ class Edit extends BaseComponent {
   };
 
   render() {
+
+    const {
+      bill_id,
+      bill_title,
+      bill_desc,
+      vote_favor,
+      chamber,
+      pre_text,
+      impact_text,
+      voted_for,
+      voted_against
+    } = this.state;
+
+    const isEmpty = () => {
+      if(bill_id === '' || bill_title === '' || bill_desc === '' || chamber === 'Senate' && vote_favor === '' || chamber === '' || pre_text === '' || impact_text === '' || voted_for === '' || voted_against === '') {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     const senateFields = cx(
       ['form-fields'],
-      {'hide': this.state.chamber === '' || this.state.chamber === '0'}
+      {'hide': chamber === '' || chamber === '0'}
     );
 
     const buttonClasses = cx(
       ['button'],
-      {'disabled': this.state.chamber === ''})
+      {'disabled': isEmpty()})
 
     const VoteOptions = [
       { value: '1', label: 'Yea'},
@@ -122,8 +143,6 @@ class Edit extends BaseComponent {
       'edit__error',
       {'edit__error--show': true}
     ];
-
-    let defaultOption = this.state.selected;
 
   	return <div className="page-block edit">
       <FadedBG color="orange-color" />
