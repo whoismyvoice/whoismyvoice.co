@@ -10,6 +10,9 @@ import EditInput from './Edit/EditInput';
 import EditTextArea from './Edit/EditTextArea';
 import EditDropdown from './Edit/EditDropdown';
 
+// Styles
+import style from './../styles/Edit.scss';
+
 class Edit extends BaseComponent {
   constructor() {
     super();
@@ -23,7 +26,7 @@ class Edit extends BaseComponent {
       '_onChangePretext',
       '_onChangeVotedFor',
       '_onChangeVotedAgainst',
-      '_handleClick'
+      '_onSubmit'
     );
 
     this.state = {
@@ -68,7 +71,7 @@ class Edit extends BaseComponent {
     this.setState({voted_against: evt.target.value});
   }
 
-  _handleClick() {
+  _onSubmit() {
     request
     .post('api/settings/edit')
     .send({
@@ -111,10 +114,20 @@ class Edit extends BaseComponent {
       {value: '0', label: 'House'}
     ];
 
+    function notEmpty(state) {
+      return state.length > 0;
+    }
+
+    const errorClasses = [
+      'edit__error',
+      {'edit__error--show': true}
+    ];
+
     let defaultOption = this.state.selected;
 
   	return <div className="page-block edit">
       <FadedBG color="orange-color" />
+      <form id="editform" onSubmit={this._onSubmit}>
       <div className="card">
         <h2>Bill details</h2>
         <EditInput
@@ -193,7 +206,11 @@ class Edit extends BaseComponent {
           />
         </div>
       </div>
-      <button className={buttonClasses} onClick={this._handleClick}>Save changes</button>
+      <div className={errorClasses}>
+        An error occurred.
+      </div>
+      <button className={buttonClasses} form="editform" type="submit">Save changes</button>
+      </form>
     </div>;
   }
 };
