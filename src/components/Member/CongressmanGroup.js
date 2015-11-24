@@ -8,7 +8,6 @@ import BaseComponent from '../BaseComponent';
 import SearchAddress from '../SearchAddress';
 import MemberImg from './MemberImg';
 import MemberRibbon from './MemberRibbon';
-import ArrowDown from '../ArrowDown';
 
 // Styles
 import style from './../../styles/CongressmanGroup.scss';

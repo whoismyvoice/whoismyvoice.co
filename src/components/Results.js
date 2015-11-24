@@ -7,7 +7,6 @@ import TitleComponent from './TitleComponent';
 import TextButton from './TextButton';
 import SupportActions from './Member/SupportActions';
 import HFCOverview from './HFCOverview';
-import FadedBG from './FadedBg';
 import CongressmanGroup from './Member/CongressmanGroup';
 import BaseComponent from './BaseComponent';
 import Button from './Button';
