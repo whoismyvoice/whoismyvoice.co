@@ -40,9 +40,6 @@ const getMemberDetails = (zipCode, lng, voters) => {
     if (err) return console.error(err);
     const senators = res.body.results.filter(senator => {
       const filter = bill_id[0] === 's' ? voters[senator.bioguide_id] === vote_favor : true;
-      console.log(filter);
-      console.log(voters[senator.bioguide_id]);
-      console.log(voters);
       if (senator.chamber[0] === bill_id[0] && filter && senator.bioguide_id in voters) {
         senator.voted = voters[senator.bioguide_id];
         senator.full_name = senator.middle_name === null ? `${senator.first_name} ${senator.last_name}` : `${senator.first_name} ${senator.middle_name} ${senator.last_name}`;
@@ -51,12 +48,23 @@ const getMemberDetails = (zipCode, lng, voters) => {
         return senator;
       }
     });
-
-    console.log(res.body.results);
-    console.log(senators);
-    console.log(senators.length);
-    if (res.body.results.length === 0 || senators.length === 0) {
+    if (res.body.results.length === 0) {
       SenateServerActions.getDetails('error');
+    } else if (senators.length === 0 && bill_id[0] === 's') {
+      // If senators = 0, none voted against the vote_favor
+      // Instead the 1-2 senators who voted as the vote_favor should be passed to the store
+      const voteFilter = vote_favor === 'Yea' ? 'Nay' : 'Yea';
+
+      const newSenators = res.body.results.filter(senator => {
+        if(voters[senator.bioguide_id] === voteFilter) {
+          senator.voted = voters[senator.bioguide_id];
+          senator.full_name = senator.middle_name === null ? `${senator.first_name} ${senator.last_name}` : `${senator.first_name} ${senator.middle_name} ${senator.last_name}`;
+          senator.gender_full = senator.gender === 'M' ? 'man' : 'woman';
+          senator.age = (new Date().getFullYear() - senator.birthday.substring(0, 4));
+          return senator;
+        }
+      })
+      SenateServerActions.getDetails(newSenators, newSenators.length);
     } else if (senators.length > 0) {
       SenateServerActions.getDetails(senators, senators.length);
     }
