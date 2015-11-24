@@ -20,13 +20,21 @@ class Edit extends BaseComponent {
       '_onSelect',
       '_onSelectChamber',
       '_onChangeID',
+      '_onBlurID',
       '_onChangeBillTitle',
+      '_onBlurBillTitle',
       '_onChangeBillDesc',
+      '_onBlurBillDesc',
       '_onChangeImpactText',
+      '_onBlurImpactText',
       '_onChangePretext',
+      '_onBlurPretext',
       '_onChangeVotedFor',
+      '_onBlurVotedFor',
       '_onChangeVotedAgainst',
-      '_onSubmit'
+      '_onBlurVotedAgainst',
+      '_onSubmit',
+      '_checkForErrors'
     );
 
     this.state = {
@@ -39,36 +47,90 @@ class Edit extends BaseComponent {
       impact_text: '',
       pre_text: '',
       voted_for: '',
-      voted_against: ''
+      voted_against: '',
+      errors: []
     }
   }
 
+  _checkForErrors(field, min, max, length) {
+    if(length > min && length < max) {
+      if(this.state.errors.indexOf(field) === -1) {
+        this.setState((state) => {
+          errors: state.errors.push(field);
+        });
+      }
+    } else if(length > max) {
+      if(this.state.errors.indexOf(field) !== -1) {
+        const index = this.state.errors.indexOf('field');
+        this.setState((state) => {
+          errors: state.errors.splice(index, 1);
+        })
+      }
+    }
+  }
+
+  // Handle select options
   _onSelect(option) {
     this.setState({vote_favor: option.value});
   }
   _onSelectChamber(option) {
     this.setState({chamber: option.value});
   }
+
+  // Handle ID input field
   _onChangeID(evt) {
     this.setState({bill_id: evt.target.value});
   }
+  _onBlurID(evt) {
+    this._checkForErrors('Bill id', 0, 4, evt.target.value.length);
+  }
+
+  // Handle Bill title input field
   _onChangeBillTitle(evt) {
     this.setState({bill_title: evt.target.value});
   }
+  _onBlurBillTitle(evt) {
+    this._checkForErrors('Bill title', 0, 5, evt.target.value.length);
+  }
+
+  // Handle Bill desc input field
   _onChangeBillDesc(evt) {
     this.setState({bill_desc: evt.target.value});
   }
+  _onBlurBillDesc(evt) {
+    this._checkForErrors('Bill question', 0, 10, evt.target.value.length);
+  }
+
+  // Handle impact text input field
   _onChangeImpactText(evt) {
     this.setState({impact_text: evt.target.value});
   }
+  _onBlurImpactText(evt) {
+    this._checkForErrors('Text on action page', 0, 10, evt.target.value.length);
+  }
+
+  // Handle pre-text input field
   _onChangePretext(evt) {
     this.setState({pre_text: evt.target.value});
   }
+  _onBlurPretext(evt) {
+    this._checkForErrors('Pre-text', 0, 10, evt.target.value.length);
+  }
+
+  // Handle voted for input field
   _onChangeVotedFor(evt) {
     this.setState({voted_for: evt.target.value});
   }
+  _onBlurVotedFor(evt) {
+    this._checkForErrors('Voted for text', 0, 5, evt.target.value.length);
+  }
+
+  // Handle voted against input field
   _onChangeVotedAgainst(evt) {
     this.setState({voted_against: evt.target.value});
+  }
+  _onBlurVotedAgainst(evt) {
+    this._checkForErrors('Voted against text', 0, 5, evt.target.value.length);
   }
 
   _onSubmit() {
@@ -95,7 +157,6 @@ class Edit extends BaseComponent {
   };
 
   render() {
-
     const {
       bill_id,
       bill_title,
@@ -105,7 +166,8 @@ class Edit extends BaseComponent {
       pre_text,
       impact_text,
       voted_for,
-      voted_against
+      voted_against,
+      errors
     } = this.state;
 
     const isEmpty = () => {
@@ -142,8 +204,10 @@ class Edit extends BaseComponent {
 
     const errorClasses = cx(
       ['edit__error'],
-      {'edit__error--show': isEmpty()}
+      {'edit__error--show': this.state.errors.length !== 0}
     );
+
+    const errorsSplit = `The following fields were not populated: ${errors.join(", ")}`
 
   	return <div className="page-block edit">
       <FadedBG color="orange-color" />
@@ -152,18 +216,21 @@ class Edit extends BaseComponent {
         <h2>Bill details</h2>
         <EditInput
           onChange={this._onChangeID}
+          onBlur={this._onBlurID}
           value={this.state.bill_id}
           example="s1881-114"
           placeholder="Enter bill id"
         />
         <EditInput
           onChange={this._onChangeBillTitle}
+          onBlur={this._onBlurBillTitle}
           value={this.state.bill_title}
           example="Accurate Food Labeling Act of 2015"
           placeholder="Enter bill title"
         />
         <EditInput
           onChange={this._onChangeBillDesc}
+          onBlur={this._onBlurBillDesc}
           note="Note: Use tag #member to be replaced by senator/congressman"
           value={this.state.bill_desc}
           example="Did my #member vote against the Safe and Accurate Food Labeling Act of 2015?"
@@ -187,6 +254,7 @@ class Edit extends BaseComponent {
         <br /><br />
         <EditInput
           onChange={this._onChangePretext}
+          onBlur={this._onBlurPretext}
           note={'Note: You can use tags: #member_type, #member_name #action'}
           value={this.state.cosponsor_post_text}
           example="Your Congressman/Senator, Name Nameson voted to/co-sponsored"
@@ -195,6 +263,7 @@ class Edit extends BaseComponent {
         />
         <EditInput
           onChange={this._onChangeVotedFor}
+          onBlur={this._onBlurVotedFor}
           value={this.state.voted_for}
           example="reverse Obamacare"
           placeholder="Voted for text shown after pre-text"
@@ -202,15 +271,17 @@ class Edit extends BaseComponent {
         />
         <EditInput
           onChange={this._onChangeVotedAgainst}
+          onBlur={this._onBlurVotedAgainst}
           value={this.state.voted_against}
           example="not reverse Obamacare"
           placeholder="Voted against text shown after pre-text"
           className="long"
         />
         <EditTextArea
+          onChange={this._onChangeImpactText}
+          onBlur={this._onBlurImpactText}
           placeholder="Text shown on the third (action) page enticing users to tweet, call and email"
           note="Note: Use tag #gender_third to add senators gender as him or her."
-          onChange={this._onChangeImpactText}
           example="Here are some ways you can keep #gender_third from being able to personally weigh in on safe and accurate food labeling the next time a similar vote comes up."
         />
       </div>
@@ -227,7 +298,7 @@ class Edit extends BaseComponent {
         </div>
       </div>
       <div className={errorClasses}>
-        An error occurred.
+        An error occurred.<br /> {errorsSplit}
       </div>
       <button className={buttonClasses} form="editform" type="submit">Save changes</button>
       </form>

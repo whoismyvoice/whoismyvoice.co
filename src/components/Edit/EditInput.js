@@ -8,7 +8,7 @@ class EditInput extends BaseComponent {
     super();
   }
   render() {
-    const {value, onChange, placeholder, className, note, example} = this.props;
+    const {value, onChange, placeholder, className, note, example, onBlur} = this.props;
   	return <div>
       <input
         type="text"
@@ -16,6 +16,7 @@ class EditInput extends BaseComponent {
         onChange={onChange}
         placeholder={placeholder}
         className={className}
+        onBlur={onBlur}
       />
       <i>{note}</i>
       <div className="example">{example}</div>

@@ -9,12 +9,13 @@ class EditTextArea extends BaseComponent {
   }
 
   render() {
-    const {placeholder, onChange, note, example} = this.props;
+    const {placeholder, onChange, note, example, onBlur} = this.props;
   	return <div>
       <textarea
         type="text"
         placeholder={placeholder}
         onChange={onChange}
+        onBlur={onBlur}
       /><br />
       <i>{note}</i><br />
       <div className="example">
