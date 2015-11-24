@@ -1,5 +1,5 @@
 import React from 'react';
-import HFCGroup from './Senator/HFCGroup';
+import HFCGroup from './Member/HFCGroup';
 
 // Component
 import BaseComponent from './BaseComponent';

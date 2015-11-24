@@ -1,11 +1,9 @@
 @import 'variables';
 @import 'globals';
 
-.senatorImg {
-  @include transition(0.5s);
+.member-img {
   z-index: 2;
   position: relative;
-  left: 6px;
   display: flex;
   align-content: center;
   justify-content: center;
@@ -18,92 +16,23 @@
 	border-radius: 50%;
 	overflow: hidden;
 	opacity: 1;
+  border: 8px solid $dark-red;
 
-	&.single {
-		margin-top: 20px;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border: 5px solid $white;
+    z-index: 12;
+    border-radius: 50%;
+  }
 
-		@media screen
-  	and (min-width: 1000px)
-  	and (max-width: 1100px) {
-  		margin-top: 40px;
-      width: 12%;
-		  padding: 6% 0;
-
-      @media screen
-      and (max-height: 550px) {
-       margin-top: 10px;
-       margin-bottom: -10px;
-       width: 8%;
-       padding: 4% 0;
-      }
-    }
-
-    @media screen
-  	and (min-width: 1101px)
-  	and (max-width: 1299px) {
-  		margin-top: 40px;
-  		width: 12%;
-			padding: 6% 0;
-
-      @media screen
-      and (max-height: 680px) {
-        margin-top: 15px;
-        width: 10%;
-        padding: 5% 0;
-
-        @supports (-moz-appearance:meterbar) {
-          margin-top: 20px;
-        }
-      }
-
-		@supports (overflow:-webkit-marquee)
-    and (justify-content:inherit) {
-      margin-top: 50px;
-      }
-    }
-
-    @media screen
-  	and (min-width: 1300px)
-  	and (max-width: 1499px){
-  		margin-bottom: 0;
-  		margin-top: 40px;
-  		width: 10%;
-  		padding: 5% 0;
-
-  		@supports (overflow:-webkit-marquee)
-      and (justify-content:inherit) {
-      	margin-top: 50px;
-      }
-    }
-
-    @media screen and (max-width: $iphone6)
-    and (-webkit-min-device-pixel-ratio:2) {
-    	margin-top: 28px;
-  	}
-
-  	@media screen and (max-device-width: 362px) {
-      margin-top: 10px;
-    }
-
-    @media screen and (max-width: $iphone5-min)
-    and (-webkit-min-device-pixel-ratio:2) {
-      margin-top: 15px;
-      width: 30%;
-      padding: 15% 0;
-    }
-
-    @media screen
-  	and (min-width: 1500px)
-  	and (max-width: 1699px) {
-  		margin-bottom: 0px;
-  		margin-top: 40px;
-    }
-
-    @media screen
-  	and (min-width: 1700px) {
-  		margin-top: 40px;
-    }
-	}
+  &.animated {
+    animation-delay: 1s;
+  }
 
 	@media screen and (max-width: $iphone6) {
     left: 0;
@@ -129,13 +58,6 @@
     width: 12%;
     padding: 6% 0;
   }
-
-	&.hide {
-    @include transition(0.5s);
-		display: none;
-		opacity: 0;
-
-	}
 
 	img {
 		width: 100%;

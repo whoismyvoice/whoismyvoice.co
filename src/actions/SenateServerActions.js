@@ -8,5 +8,11 @@ module.exports = {
       response: response,
       numRep: numRep
     });
+  },
+  fetchSettings: response => {
+    AppDispatcher.handleServerAction({
+      actionType: SenateConstants.FETCH_SETTINGS,
+      response: response
+    });
   }
 };

@@ -1,90 +1,77 @@
 import React from 'react';
-import Settings from '../data/settings.json';
 import HFCMembers from '../data/HFCMembers';
+import SenateActions from '../actions/SenateActions';
 
 // Components
-import Circle from './Circle';
-import ArrowDown from './ArrowDown';
-import SupportActions from './Senator/SupportActions';
+import TitleComponent from './TitleComponent';
+import TextButton from './TextButton';
+import SupportActions from './Member/SupportActions';
 import HFCOverview from './HFCOverview';
-import FadedBG from './FadedBg';
-import CongressmanGroup from './Senator/CongressmanGroup';
+import CongressmanGroup from './Member/CongressmanGroup';
 import BaseComponent from './BaseComponent';
+import Button from './Button';
 
 class Results extends BaseComponent {
-	render() {
-		const {
-            vote_status,
-            impact,
-            current_member,
-            zip_code,
-            numRep,
-            representatives,
-            backgroundClasses,
-            first_reps,
-            initialize
-          } = this.props,
+  constructor() {
+    super();
+    this._bind('_handleClick', '_destroyFullpage', '_handleRestart');
+  }
 
-          {no_cosponsor_title, no_cosponsor_desc} = Settings.senate,
-          {chamber} = Settings;
-
-    if (chamber === 'senate' && numRep === 0) {
-      return <div className={backgroundClasses} id="fullpage">
-        <FadedBG color="red" />
-        <div className="section block two">
-          <p className="impact">
-            {no_cosponsor_title} <br />
-            {no_cosponsor_desc}
-          </p>
-          <HFCOverview
-            color="bright-red"
-            members={HFCMembers}
-          />
-          <ArrowDown
-            color="red-text"
-            scroll={"true"}
-          />
-        </div>
-      </div>;
-    } else {
-		  return <div className={backgroundClasses} id="fullpage">
-        <div className="section block two">
-          <Circle
-            style="wide"
-            desc={vote_status}
-            numRep={numRep}
-            representatives={representatives}
-          />
-          <CongressmanGroup
-            representatives={representatives}
-            zip_code={zip_code}
-          />
-        </div>
-        <div className="section block three">
-          <Circle
-            style="wider"
-            hide={true}
-            desc={impact}
-          />
-          <SupportActions
-            representatives={representatives}
-            currentSenator={current_member}
-          />
-        </div>
-      </div>;
+  _destroyFullpage() {
+    if ($.fn.fullpage.destroy !== undefined) {
+      $.fn.fullpage.destroy();
     }
   }
+
+  _handleRestart() {
+    SenateActions.flush();
+    this._destroyFullpage();
+  }
+
+  _handleClick(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    // Listen for event.target.id in order to decipher which of the arrows was tapped
+    //ContainerActions.setCurrentMember(event.target.id);
+    $.fn.fullpage.moveSectionDown();
+  }
+
+	render() {
+		const {
+      backgroundClasses
+    } = this.props;
+
+    return <div className={backgroundClasses} id="fullpage">
+      <div className="section block two">
+        <TextButton
+          text="Back"
+          onClick={this._handleRestart}
+        />
+        <CongressmanGroup />
+        <TitleComponent
+          represent={true}
+          classes="title-component--results"
+        />
+        <div className="line-seperator line-seperator--small"></div>
+        <TextButton
+          text="What can I do?"
+          onClick={this._handleClick}
+        />
+      </div>
+      <div className="section block three">
+        <TitleComponent
+          desc={true}
+          classes="title-component--actions"
+          actions={true}
+        />
+        <SupportActions />
+      </div>
+    </div>;
+    }
 };
 
 Results.propTypes = {
   backgroundClasses: React.PropTypes.any,
-  current_member: React.PropTypes.any,
-  impact: React.PropTypes.string,
-  numRep: React.PropTypes.number,
-  representatives: React.PropTypes.array,
-  vote_status: React.PropTypes.string,
-  zip_code: React.PropTypes.string,
-  initialize: React.PropTypes.func
 };
 
 export default Results;

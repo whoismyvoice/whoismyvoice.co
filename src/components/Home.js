@@ -1,17 +1,16 @@
 import React from 'react';
 import SenateStore from '../stores/SenateStore';
 import Settings from '../data/settings.json';
-
+import DataUtils from '../utils/DataUtils';
 import ContainerActions from '../actions/ContainerActions';
 import cx from 'classnames';
-import Results from './Results';
 
 // Components
 import BaseComponent from './BaseComponent';
-import Circle from './Circle';
 import SearchGroup from './SearchGroup';
-import CongressmanGroup from './Senator/CongressmanGroup';
-import WhiteBorder from './WhiteBorder';
+import Results from './Results';
+import FadeBorder from './FadeBorder';
+import TitleComponent from './TitleComponent';
 
 // Styles
 import style from './../styles/Home.scss';
@@ -26,6 +25,9 @@ class Home extends BaseComponent {
   componentDidMount() {
     if (this.state.did_search) {
       this._initializeFullpage();
+    }
+    if (process.env.NODE_ENV === 'production' && this.state.settings === null) {
+      DataUtils.saveFetchedData();
     }
     SenateStore.addChangeListener(this._handleChange);
   }
@@ -54,62 +56,51 @@ class Home extends BaseComponent {
       recordHistory: true,
       controlArrows: false,
       verticalCentered: false,
+      touchSensitivity: 2,
       resize: true,
       onLeave: (index, nextIndex) => {
         ContainerActions.identifySection(nextIndex);
       }
     });
+    this._detectScroll();
   }
-
   _destroyFullpage() {
     if ($.fn.fullpage.destroy !== undefined) {
       $.fn.fullpage.destroy('all');
     }
   }
+  _detectScroll() {
+    const current = this.state.current_screen;
+    var ts;
+
+    $(document).bind('touchstart', function (e){
+      ts = e.originalEvent.touches[0].clientY;
+    });
+
+    $(document).bind('touchend', function (e){
+      var te = e.originalEvent.changedTouches[0].clientY;
+      if(ts > te+5){
+        $.fn.fullpage.moveSectionDown();
+      }
+    });
+  }
 
   render() {
     const NUMBER_REPRESENTATIVES = this.state.number_representatives,
-          REPRESENTATIVES = this.state.representatives,
-          DID_SEARCH = this.state.did_search,
-          ERROR = this.state.error,
-          ZIP_CODE = this.state.zip_code,
-          STATE_FULL = this.state.state_full,
-          CURRENT_MEMBER = this.state.current_senator,
-          SECOND_SEARCH = this.state.second_search,
-          MEMBER = Settings.chamber === 'senate' ? 'senator' : 'representative',
-          FIRST_REPS = this.state.im_first_reps,
-          FIRST_REPS_NUM = this.state.im_first_reps !== null ? this.state.im_first_reps.length : 0,
-          {single_voted_for, single_voted_against} = Settings.house,
-          {cosponsor_post_text, impact_text, represent} = Settings.senate,
-          {chamber, bill_desc} = Settings;
-
-    let impact = impact_text.replace('#gender_third', 'this person'),
-        VOTE_STATUS = `${cosponsor_post_text}`;
-
-    if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house') {
-      const MEMBER_THIRD = REPRESENTATIVES[0].gender_full === 'man' ? 'He' : 'She';
-      const  represent_text = represent.replace('#gender', MEMBER_THIRD);
-
-      impact = impact_text.replace('#gender_third', `this ${REPRESENTATIVES[0].gender_full}`);
-      VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` ${single_voted_for} ${represent_text}` : ` ${single_voted_against} ${represent_text}`;
-
-    } else if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'senate'){
-      VOTE_STATUS = REPRESENTATIVES[0].voted === 'Yea' ? ` ${cosponsor_post_text}` : '';
-    }
+      SETTINGS = this.state.settings,
+      REPRESENTATIVES = this.state.representatives,
+      DID_SEARCH = this.state.did_search,
+      {chamber} = SETTINGS ? SETTINGS : Settings;
 
     if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && NUMBER_REPRESENTATIVES > 0 && chamber === 'senate') {
       this._initializeFullpage();
     } else {
-      VOTE_STATUS = 'You have not yet searched for a member';
       this._destroyFullpage();
     }
 
-    console.log(STATE_FULL);
-
     const blockClasses = cx(
-      ['block', 'one'],
-      {'hide': DID_SEARCH && NUMBER_REPRESENTATIVES < 4},
-      {'hide-double': DID_SEARCH && SECOND_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house'},
+      ['block', 'block--margin'],
+      {'disappear': DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && NUMBER_REPRESENTATIVES > 0 && chamber === 'senate'},
     );
 
     const backgroundClasses = cx(
@@ -120,63 +111,37 @@ class Home extends BaseComponent {
 
     const sectionClasses = cx(
       ['section-block'],
-      {'hide': NUMBER_REPRESENTATIVES === 1 && !SECOND_SEARCH || chamber === 'senate'}
+      {'hide': NUMBER_REPRESENTATIVES === 1 || chamber === 'senate'}
     );
 
     const containerClasses = cx(
       ['container'],
       {'reveal': DID_SEARCH},
-      {'green': !DID_SEARCH || NUMBER_REPRESENTATIVES > 3 || NUMBER_REPRESENTATIVES === undefined},
-      {'orange': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES < 4 && NUMBER_REPRESENTATIVES !== undefined},
-      {'red': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
+      {'light-color': !DID_SEARCH || NUMBER_REPRESENTATIVES > 1 && chamber === 'house' || NUMBER_REPRESENTATIVES === undefined},
+      {'peach-color': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES !== undefined},
       {'visible': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
-      {'purple': this.state.current_screen === 2},
-      {'full': DID_SEARCH}
+      {'dark-orange-color': this.state.current_screen === 2},
+      {'full': DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && chamber === 'senate'}
     );
 
     return <div className={containerClasses}>
-      <WhiteBorder />
+      <FadeBorder
+        darken={DID_SEARCH}
+      />
       <div className="overlay">
         This site is only supported in portrait mode. Please turn your phone.
       </div>
       <div className={blockClasses} onScroll={this._handleScroll}>
       	<div className="section-block">
-        	<Circle
-          	style="one"
-          	hide={true}
-          	did_search={DID_SEARCH}
-          	desc={bill_desc.replace('#member', MEMBER)}
-        	/>
-        	<SearchGroup
-            repNum={NUMBER_REPRESENTATIVES}
-          	error={ERROR}
-            did_search={DID_SEARCH}
-            zip_code={ZIP_CODE}
-            state_full={STATE_FULL}
-        	/>
-        </div>
-        <div className={sectionClasses}>
-          <Circle
-            style="wide"
-            desc={VOTE_STATUS}
-            numRep={FIRST_REPS_NUM}
-            representatives={FIRST_REPS}
+          <TitleComponent
+            front={true}
+            classes="title-component--padding"
+            desc={true}
           />
-          <CongressmanGroup
-            representatives={FIRST_REPS}
-            zip_code={ZIP_CODE}
-            state_full={STATE_FULL}
-          />
+        	<SearchGroup />
         </div>
         <Results
-          first_reps={FIRST_REPS}
-          representatives={REPRESENTATIVES}
-          numRep={NUMBER_REPRESENTATIVES}
           backgroundClasses={backgroundClasses}
-          vote_status={VOTE_STATUS}
-          impact={impact}
-          current_member={CURRENT_MEMBER}
-          zip_code={ZIP_CODE}
         />
       </div>
     </div>;

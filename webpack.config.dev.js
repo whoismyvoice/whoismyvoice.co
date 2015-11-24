@@ -4,7 +4,8 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var nodeModulesDir = path.resolve(__dirname, 'node_modules');
-var testDir = path.resolve(__dirname, 'test');
+var modelDir = path.resolve(__dirname, 'models');
+var distDir = path.resolve(__dirname, 'dist');
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -34,8 +35,7 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'),
-      '__DEV__': JSON.stringify(process.env.NODE_ENV)
+      'process.env.NODE_ENV': JSON.stringify('development')
     })
   ],
 
@@ -48,7 +48,7 @@ module.exports = {
       loader: 'style!css!postcss!sass?sourceMap'
     }, {
       test: /\.js?$/,
-      exclude: [nodeModulesDir, testDir],
+      exclude: [nodeModulesDir, modelDir, distDir],
       loader: 'babel'
     }, {
       test: /\.json?$/,

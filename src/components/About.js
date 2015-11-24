@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 
 // Components
 import BaseComponent from './BaseComponent';
-import WhiteBorder from './WhiteBorder';
 import FadedBG from './FadedBg';
 
 class About extends BaseComponent {
@@ -11,10 +10,9 @@ class About extends BaseComponent {
     $(document).scrollTop(0);
   }
   render() {
-    return <div className="page-block bright-red">
-      <FadedBG color="red" />
-      <WhiteBorder />
-      <p className="pageIntroduction">
+    return <div className="page-block light-white">
+      <FadedBG color="white" />
+      <p className="page-introduction">
       	This website is unaffiliated with any government party or entity, nor are we a media outlet. Its objective is to provide comprehensive,
         actionable data to constituents who have a desire to better understand and contact the decision makers representing them.
       	<br /><br />

@@ -1,20 +1,21 @@
 @import 'variables';
 
+// BEM & OOCSS
 body {
   margin: 0 auto;
   overflow-x: hidden;
   min-height: 100%!important;
   height: 100%;
   width: 100%;
-  font-family: 'Helvetica Neue', Helvetica;
-  background-color: $light-orange;
+  font-family: 'Dosis', 'Helvetica Neue';
+  background-color: $light-white;
   font-size: 100%;
   font-size: 13px;
   line-height: 1.5;
 }
 
 a {
-  color: $blue;
+  color: $dark-orange;
   text-decoration: none;
 }
 
@@ -27,29 +28,64 @@ ul {
   }
 }
 
+// General classes / elements
+.hide {
+  display: none!important;
+}
+
+.hidden {
+  visibility: hidden!important;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
 button, input {
   -webkit-focus-ring-color: none;
-  outline:none;
+  outline: none;
 }
 
-::selection {
-  text-shadow: 2px 2px 1px #B43092;
+.line-seperator {
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 2px;
+  height: 20vh;
+  max-height: 230px;
+
+  &:before {
+    content: '';
+    width: 2px;
+    height: 100%;
+    background-color: $black;
+    position: relative;
+    top: 0;
+    display: inline-block;
+  }
+
+  &:after {
+    position: relative;
+    content: '\0276E';
+    display: block;
+    transform: rotate(-90deg);
+    font-weight: normal;
+    font-family: 'Helvetica';
+    font-size: 16px;
+  }
 }
 
-::-moz-selection {
-  text-shadow: 1px 1px 1px #B43092;
+.line-seperator--small {
+  height: 15vh;
 }
 
-// MIXINS (TRANSITIONS)
 @mixin transition($time) {
-  -webkit-transition:all $time linear;
+  -webkit-transition:all $time ease-in;
   -moz-transition:all $time ease-in;
   -ms-transition:all $time ease-in;
   -o-transition:all $time ease-in;
   transition:all $time ease-in;
 }
 
-// MIXINS (TRANSITIONS)
 @mixin fade($time) {
   -webkit-transition:opacity $time ease-in;
   -moz-transition:opacity $time ease-in;
@@ -58,309 +94,23 @@ button, input {
   transition:opacity $time ease-in;
 }
 
-.black-line {
-  @include drawIn(420px);
+#left-blur, #right-blur {
+  @include transition(0.5s);
   z-index: 1;
   position: fixed;
-  margin: 0 auto;
-  top: 68px;
-  left: 0;
-  right: 0;
-  width: 4px;
-  height: 420px;
-  background-color: $black;
+  background-color: $light-white;
+  opacity: 0.6;
+  top: 0; bottom: 0;
+  width: 20%;
 
-  @media screen
-  and (min-width: 421px)
-  and (max-width: 499px) {
-    @include drawIn(270px);
-    height: 270px;
-  }
-
-  @media screen
-  and (min-width: 500px)
-  and (max-width: 649px) {
-    @include drawIn(290px);
-    height: 290px;
-  }
-
-  @media screen
-  and (min-width: 650px)
-  and (max-width: 899px) {
-    @include drawIn(400px);
-    height: 400px;
-  }
-
-  @media screen
-  and (min-width: 900px)
-  and (max-width: 1000px) {
-    @include drawIn(440px);
-    height: 440px;
-  }
-
-  @media screen
-  and (min-width: 1000px)
-  and (max-width: 1199px) {
-    @include drawIn(490px);
-    height: 490px;
-
-    @media screen
-    and (max-height: 680px) {
-      @include drawIn(400px);
-      height: 400px;
-    }
-  }
-
-  @media screen
-  and (min-width: 1200px)
-  and (max-width: 1399px) {
-    @include drawIn(500px);
-    height: 500px;
-
-    @supports (overflow:-webkit-marquee)
-    and (justify-content:inherit) {
-      @include drawIn(490px);
-    }
-  }
-
-  @media screen
-  and (min-width: 1400px)
-  and (max-width: 1550px) {
-    @include drawIn(550px);
-    height: 550px;
-  }
-
-  @media screen
-  and (min-width: 1551px)
-  and (max-width: 1700px) {
-    @include drawIn(600px);
-    height: 600px;
-
-    @media screen and(min-height: 700px)
-    and (max-height: 850px) {
-      @include drawIn(750px);
-    }
-
-    @media screen and(min-height: 851px){
-      @include drawIn(800px);
-    }
-  }
-
-  @media screen
-  and (min-width: 1701px)
-  and (max-width: 1900px) {
-    @include drawIn(570px);
-    height: 570px;
-  }
-
-  &.menu {
-    top: 74px;
-    height: 65%;
-
-    &:before {
-      position: absolute;
-      top: 0;
-      left: -13px;
-      right: auto;
-      width: 30px;
-      height: 3px;
-      background-color: $black;
-      content:'';
-    }
-
-    @media screen
-    and (min-width: 600px)
-    and (max-width: 699px) {
-      @include drawIn(340px);
-      height: 340px;
-    }
-
-    @media screen
-    and (min-width: 700px)
-    and (max-width: 769px) {
-      @include drawIn(380px);
-      height: 380px;
-    }
-
-    @media screen
-    and (min-width: 770px)
-    and (max-width: 999px) {
-      @include drawIn(400px);
-      height: 400px;
-    }
-
-    @media screen
-    and (min-width: 1000px)
-    and (max-width: 1099px) {
-      @include drawIn(440px);
-      height: 440px;
-
-      @media screen
-      and (min-height: 400px)
-      and (max-height: 649px) {
-        @include drawIn(340px);
-      }
-    }
-
-    @media screen
-    and (min-width: 1100px)
-    and (max-width: 1399px) {
-      @include drawIn(465px);
-      height: 465px;
-
-      @supports (overflow:-webkit-marquee)
-      and (justify-content:inherit) {
-        @include drawIn(475px);
-        height: 475px;
-      }
-
-      @media screen
-      and (max-height: 680px) {
-        @include drawIn(390px);
-        height: 390px;
-
-        @supports (overflow:-webkit-marquee)
-        and (justify-content:inherit) {
-          @include drawIn(430px);
-          height: 430px!important;
-        }
-      }
-    }
-
-    @media screen
-    and (min-width: 1400px)
-    and (max-width: 1550px) {
-      @include drawIn(465px);
-      height: 465px;
-
-      @media screen and (min-height: 850px) {
-        @include drawIn(480px);
-
-        @supports (overflow:-webkit-marquee)
-        and (justify-content:inherit) {
-          @include drawIn(600px);
-        }
-      }
-    }
-
-    @media screen
-    and (min-width: 1551px)
-    and (max-width: 1599px) {
-      @include drawIn(520px);
-      height: 520px;
-    }
-
-    @media screen
-    and (min-width: 1599px)
-    and (max-width: 1700px) {
-      @include drawIn(540px);
-      height: 540px;
-
-      @media screen and (min-height: 850px) {
-        @include drawIn(545px);
-      }
-    }
-
-    @media screen
-    and (min-width: 1700px){
-      @supports (overflow:-webkit-marquee)
-      and (justify-content:inherit) {
-        @include drawIn(600px);
-      }
-    }
-
-    @media only screen
-    and (min-device-width: 768px)
-    and (max-device-width: 1024px)
-    and (orientation: landscape)
-    and (-webkit-min-device-pixel-ratio: 1) {
-      @include drawIn(500px);
-      height: 500px;
-    }
-
-    @media screen and (max-width: $iphone6) {
-      top: 58px;
-    }
-
-    @media screen and (max-width: $iphone5-min) {
-      @include drawIn(280px);
-      height: 280px;
-    }
-  }
-
-  @media screen and (max-width: $iphone6) {
-    @include drawIn(350px);
-    top: 48px;
-    height: 350px;
-  }
-
-  @media screen and (max-width: $iphone6)
-  and (-webkit-min-device-pixel-ratio: 2) {
-    @include drawIn(370px);
-    top: 48px;
-    height: 370px;
-  }
-
-  @media screen and (max-width: 361px) {
-    @include drawIn(350px);
-    height: 350px;
-  }
-
-  @media screen and (max-width: $iphone5-min) {
-    @include drawIn(310px);
-    height: 310px;
-  }
-
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: landscape)
-  and (-webkit-min-device-pixel-ratio: 1) {
-    @include drawIn(60%);
-    height: 60%;
-  }
-
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 1) {
-    @include drawIn(640px);
-    height: 640px;
-  }
-
-  @media only screen
-  and (min-device-width: 1024px)
-  and (max-device-width: 1366px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 1) {
-    @include drawIn(765px);
-    height: 765px;
+  &.darken {
+    @include transition(0.5s);
+    background-color: $dark-orange-light;
   }
 }
 
-.black-top-line {
-  @include fade(1s);
-  z-index: 10;
-  position: fixed;
-  display: block;
-  left: 0;
-  top: 0;
-  right: 0;
-  margin: 0 auto;
-  width: 4px;
-  height: 50px;
-  background-color: $black;
-  opacity: 1;
-
-  &.hide-it {
-    opacity: 0;
-  }
-
-  @media screen and (max-width: $iphone6) {
-    height: 30px;
-  }
-}
+#left-blur { left: -10px; }
+#right-blur { right: -10px; }
 
 .wrapper {
   height: auto;
@@ -371,63 +121,24 @@ button, input {
   @include transition(1s);
   position: relative;
   top: 0;
-  display: block;
+  display: inline-block;
   margin: 0 auto;
-  width: 99vw;
-  height: 88.5vh;
-  min-height: 100%;
+  width: 100vw;
+  height: 100vh;
   text-align: center;
+}
 
-  &.one {
-    padding-top: 20px;
+.three {
+  margin-top: 10%;
+}
 
-    @media screen
-    and (min-width: 300px)
-    and (max-width: 419px) {
-      padding-top: 30px;
-    }
+.block--margin {
+  margin-top: 20px;
+}
 
-    @media screen
-    and (min-width: 420px)
-    and (max-width: 699px) {
-      padding-top: 80px;
-    }
-
-    @media screen
-    and (min-width: 700px)
-    and (max-width: 1100px) {
-      padding-top: 100px;
-    }
-
-    @media screen and (max-width: $iphone5-min) {
-      padding-top: 60px;
-    }
-
-    @media screen
-    and (min-width: 1101px)
-    and (max-width: 1400px) {
-      padding-top: 90px;
-    }
-
-    @media screen
-    and (min-width: 1401px) {
-      padding-top: 80px;
-
-      @supports (-moz-appearance:meterbar) {
-        padding-top: 35px;
-      }
-    }
-  }
-
-  &.hide {
-    @include transition(1s);
-    top: -98vh;
-  }
-
-  &.hide-double {
-    @include transition(1s);
-    top: -196vh;
-  }
+.disappear {
+  @include transition(1s);
+  top: -98vh;
 }
 
 .second-wrapper {
@@ -436,11 +147,7 @@ button, input {
   position: relative;
   top: 0;
   height: 195.5vh;
-  opacity: 0;
-
-  &.short {
-    height: 100vh;
-  }
+  opacity: 0.5;
 
   &.move-up {
     @include transition(1s);
@@ -463,34 +170,6 @@ button, input {
     top: -3vh;
   }
 }
-
-#top, #bottom, #left, #right {
-  z-index: 9;
-  position: fixed;
-  background: $white;
-}
-
-#left, #right {
-  top: 0; bottom: 0;
-  width: 15px;
-  @media screen and (max-width: $iphone6) {
-    width: 8px;
-  }
-}
-
-#left { left: 0; }
-#right { right: 0; }
-
-#top, #bottom {
-  left: 0; right: 0;
-  height: 15px;
-  @media screen and (max-width: $iphone6) {
-    height: 7px;
-  }
-}
-
-#top { top: 0; }
-#bottom { bottom: 0; }
 
 .page-block {
   display: flex;
@@ -531,14 +210,14 @@ button, input {
   and (-webkit-min-device-pixel-ratio: 1) {
     padding-top: 8%;
   }
-
-  &.senators {
-    height: auto;
-    padding-bottom: 50px;
-  }
 }
 
-.pageIntroduction, .pageDesc {
+.senator-block {
+  height: auto;
+  padding-bottom: 50px;
+}
+
+.page-introduction {
   flex: 1;
   align-self: center;
   width: 70%;
@@ -647,7 +326,6 @@ button, input {
   color: $black;
   font-weight: bold;
   font-size: 1.8em;
-  background-color: $bright-red;
 
   @media screen and (max-width: $iphone6)
   and (-webkit-min-device-pixel-ratio: 2) {
@@ -746,85 +424,38 @@ button, input {
   }
 }
 
-.pageDesc {
-  flex: 1;
-}
-
-.green {
+.light-color {
   @include transition(0.5s);
-  background-color: $light-green!important;
-}
+  background-color: $light-white!important;
+  background-image: url('../img/white-bg.png')!important;
 
-.orange {
-  @include transition(0.5s);
-  background-color: $light-orange;
-
-  .black-line {
-    height: 48%;
-
-    @media only screen
-    and (min-device-width: 768px)
-    and (max-device-width: 1024px)
-    and (orientation: portrait)
-    and (-webkit-min-device-pixel-ratio: 1) {
-      height: 65.5%;
-    }
-
-    @media only screen
-    and (min-device-width: 768px)
-    and (max-device-width: 1024px)
-    and (orientation: landscape)
-    and (-webkit-min-device-pixel-ratio: 1) {
-      height: 60%;
-    }
+  #left-blur, #right-blur {
+    @include transition(0.5s);
+    background-color: $light-white!important;
   }
 }
 
-.purple {
-  background-color: $light-purple;
-
-  .black-line {
-    height: 65%;
-
-    @media only screen
-    and (min-device-width: 768px)
-    and (max-device-width: 1024px)
-    and (orientation: landscape)
-    and (-webkit-min-device-pixel-ratio: 1) {
-      height: 57%;
-    }
-  }
+.peach-color{
   @include transition(0.5s);
+  background-color: $dark-orange-light;
+  background-image: url('../img/peach-bg.png');
 }
 
-.blue {
+.dark-orange-color {
   @include transition(0.5s);
-  background-color: $light-blue;
+  background-color: $dark-orange-light;
+  background-image: url('../img/peach-bg.png');
 }
 
-.bright-green {
+.light-white {
   @include transition(0.5s);
-  background-color: $bright-green;
-}
-
-.bright-red {
-  @include transition(0.5s);
-  background-color: $bright-red;
+  background-color: $light-white;
 }
 
 .section-block {
-  display: block;
   height: 100vh;
   min-height: 100%;
   width: 100%;
-
-  &.hide {
-    display: none;
-  }
-
-  &.hidden {
-    visibility: hidden;
-  }
 }
 
 .overlay {

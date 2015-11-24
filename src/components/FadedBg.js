@@ -5,7 +5,6 @@ import cx from 'classnames';
 import BaseComponent from './BaseComponent';
 
 class FadedBG extends BaseComponent {
-
   constructor() {
     super();
     this._bind('_handleScroll');
@@ -45,9 +44,7 @@ class FadedBG extends BaseComponent {
   render() {
   	const fadedClasses = cx(
       ['faded-bg'],
-      {'faded-red': this.props.color === 'red'},
-      {'faded-blue': this.props.color === 'blue'},
-      {'faded-green': this.props.color === 'green'},
+      {'faded-white': this.props.color === 'white'},
       {'hide': !this.state.did_scroll}
     );
   	return <div className={fadedClasses}></div>;

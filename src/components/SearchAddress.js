@@ -4,6 +4,7 @@ import cx from 'classnames';
 
 // Component
 import BaseComponent from './BaseComponent';
+import TextButton from './TextButton';
 
 class SearchAddress extends BaseComponent {
   constructor() {
@@ -70,24 +71,15 @@ class SearchAddress extends BaseComponent {
       SenateActions.fetchSpecificMember(this.state.address, this.props.zip_code, this.props.state_full);
     }
   }
-
   render() {
     const inputClasses = cx(
       ['input'],
       {'error': this.state.error || this.props.error},
     );
 
-    let color;
-
-    if(this.props.color) {
-      color = 'orange-text';
-    } else {
-      color = 'green-text';
-    }
-
   	return <div>
   		<input
-        className={`${inputClasses} ${this.props.color}`}
+        className={inputClasses}
   			type="text"
         value={this.state.address}
   			placeholder={this.state.placeholder}
@@ -96,11 +88,11 @@ class SearchAddress extends BaseComponent {
   			onFocus={this._handleFocus}
   			onBlur={this._handleBlur}
   		/>
-
-      <button
-        className={`arrowDown ${color} spacing`}
-        onClick={this._handleClick}>
-      </button>
+      <div className="line-seperator"></div>
+      <TextButton
+        text="Continue"
+        onClick={this._handleClick}
+      />
   	</div>;
   }
 };

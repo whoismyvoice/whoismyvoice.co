@@ -1,6 +1,6 @@
 @import 'variables';
 
-.senatorName {
+.member-name {
   z-index: 2;
   position: relative;
 	margin: 0 auto;
@@ -23,57 +23,6 @@
   and (max-width: 1499px) {
     margin-bottom: 0vh;
   }
-
-	.twitterHandle {
-		font-size: 1vw;
-    color: $dark-grey;
-
-		@media only screen
-  	and (min-device-width: 768px)
-  	and (max-device-width: 1024px)
-  	and (orientation: portrait)
-  	and (-webkit-min-device-pixel-ratio: 1) {
-  		font-size: 0.9em!important;
-  	}
-
-  	@media only screen
-  	and (min-device-width: 768px)
-  	and (max-device-width: 1024px)
-  	and (orientation: landscape)
-  	and (-webkit-min-device-pixel-ratio: 1) {
-    	font-size: 1.2em;
-  	}
-
-		@media screen and (max-width: $iphone6) {
-    	font-size: 0.8em;
-  	}
-
-    @media screen
-    and (min-width: 1500px) {
-      font-size: 0.8vw;
-    }
-	}
-
-	.age {
-		font-size: 1em;
-
-		@media screen and (max-width: $iphone6) {
-    		font-size: 0.9em;
-  		}
-
-       @media screen and (max-width: 361px) {
-        font-size: 11px;
-      }
-
-      @media screen and (max-device-width: 413px) {
-        font-size: 11px;
-      }
-
-  		@media screen and (max-width: $iphone5-min)
-      and (-webkit-min-device-pixel-ratio:2) {
-    		font-size: 0.8em;
-  		}
-	}
 
 	h2 {
 		margin: 0;
@@ -123,4 +72,54 @@
       font-size: 1.1em!important;
     }
 	}
+}
+
+.member-twitter {
+  font-size: 1vw;
+  color: $dark-grey;
+
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    font-size: 0.9em!important;
+  }
+
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: landscape)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    font-size: 1.2em;
+  }
+
+  @media screen and (max-width: $iphone6) {
+    font-size: 0.8em;
+  }
+
+  @media screen
+  and (min-width: 1500px) {
+    font-size: 0.8vw;
+  }
+}
+
+.member-age {
+  font-size: 1em;
+  @media screen and (max-width: $iphone6) {
+    font-size: 0.9em;
+  }
+
+  @media screen and (max-width: 361px) {
+    font-size: 11px;
+  }
+
+  @media screen and (max-device-width: 413px) {
+    font-size: 11px;
+  }
+
+  @media screen and (max-width: $iphone5-min)
+  and (-webkit-min-device-pixel-ratio:2) {
+    font-size: 0.8em;
+  }
 }

@@ -2,8 +2,8 @@ import React from 'react';
 
 // Components
 import BaseComponent from '../BaseComponent';
-import SenatorImg from './SenatorImg';
-import SenatorName from './SenatorName';
+import MemberImg from './MemberImg';
+import MemberName from './MemberName';
 
 // Styles
 import style from './../../styles/HFCGroup.scss';
@@ -14,11 +14,11 @@ class HFCGroup extends BaseComponent {
 
     return <a target="_blank" href={`http://twitter.com/home/?status=@${twitter}`}>
       <div className="HFCMember">
-        <SenatorImg
+        <MemberImg
           group={'true'}
           bioguide={bioguide}
         />
-        <SenatorName
+        <MemberName
           name={name}
           age={age}
           state={state}

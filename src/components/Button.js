@@ -31,7 +31,7 @@ class Button extends BaseComponent {
     if (type === 'external') {
       return <a href={link} className={color} target="_blank">
   				<button className="button">
-            <div className="text">
+            <div className="button-text">
               {text}
             </div>
             <div className="secondary">
@@ -41,13 +41,19 @@ class Button extends BaseComponent {
   			</a>;
   	} else if (flush === true) {
   		return <Link to={link}>
-        <button className={`button nav ${color}`} onClick={this._handleRestart}>
+        <button className={`button button--nav ${color}`} onClick={this._handleRestart}>
           {text}
         </button>
       </Link>;
-  	} else {
+  	} else if (type === 'internal' ) {
       return <Link to={link}>
-        <button className={`button nav ${color}`}>
+        <button className={`button ${color}`}>
+          {text}
+        </button>
+      </Link>;
+    } else {
+      return <Link to={link}>
+        <button className={`button button--nav ${color}`}>
           {text}
         </button>
       </Link>;

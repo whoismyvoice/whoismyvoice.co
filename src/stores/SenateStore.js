@@ -2,7 +2,6 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 import AppConstants from '../constants/SenateConstants';
 import ObjectAssign from 'object-assign';
 import { EventEmitter } from 'events';
-import Settings from '../data/settings.json'
 
 const CHANGE_EVENT = 'change';
 
@@ -15,12 +14,8 @@ let _store = {
   current_senator: null,
   number_representatives: null,
   representatives: null,
-  second_search: null,
-  im_first_reps: null
+  settings: null
 };
-
-// Define the public event listeners and getters that
-//  the views will use to listen for changes and retrieve the store
 
 const SenateStore = ObjectAssign( {}, EventEmitter.prototype, {
   addChangeListener: function(callback) {
@@ -31,6 +26,9 @@ const SenateStore = ObjectAssign( {}, EventEmitter.prototype, {
   },
   getMember: () => {
     return _store;
+  },
+  getSettings: () => {
+    return _store.settings;
   }
 });
 
@@ -46,33 +44,32 @@ AppDispatcher.register(payload => {
     case AppConstants.GET_DETAILS:
       _store.number_representatives = action.numRep;
       if (action.response === 'error') {
+        console.log("error");
         _store.error = true;
       } else {
         const details = action.response[0];
         _store.state_full = details.state_name || null;
         _store.did_search = true;
         _store.error = false;
-        if (action.numRep > 1 && action.numRep < 4) {
-          _store.second_search = true;
-          _store.representatives = action.response || null;
-          _store.im_first_reps = action.response;
-        } else if (action.numRep === 1) {
-          const details = action.response[0];
-          _store.representatives = action.response || null;
-        } else if (Settings.chamber === 'senate' && action.numRep === 0) {
-          _store.second_search = false;
-        }
+        _store.representatives = action.response || null;
       }
       SenateStore.emit(CHANGE_EVENT);
       break;
 
     case AppConstants.FIND_SPECIFIC_MEMBER:
+
       SenateStore.emit(CHANGE_EVENT);
       break;
 
     case AppConstants.IDENTIFY_SECTION:
 
       _store.current_screen = action.index;
+
+      SenateStore.emit(CHANGE_EVENT);
+      break;
+
+    case AppConstants.FETCH_SETTINGS:
+      _store.settings = action.response;
 
       SenateStore.emit(CHANGE_EVENT);
       break;
@@ -84,17 +81,22 @@ AppDispatcher.register(payload => {
       break;
 
     case AppConstants.FLUSH_STORE:
-      _store.did_search = false;
-      _store.current_screen = 0;
-      _store.current_senator = 0;
-      _store.second_search = false;
-      _store.number_representatives = null;
+
+      if(action.store !== 'settings') {
+        _store.did_search = false;
+        _store.current_screen = 0;
+        _store.current_senator = 0;
+        _store.second_search = false;
+        _store.number_representatives = null;
+      } else {
+        _store.settings = null
+      }
 
       SenateStore.emit(CHANGE_EVENT);
       break;
 
     default:
-        return true;
+      return true;
   }
 });
 

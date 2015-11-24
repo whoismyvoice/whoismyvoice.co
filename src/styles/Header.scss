@@ -39,23 +39,10 @@
     height: 60px;
     top: 6px;
   }
+}
 
-  &.hide {
-    @include transition(0.5s);
-    height: 0;
-  }
-
-  &.faded-blue {
-    background-color: $light-blue;
-  }
-
-  &.faded-red {
-    background-color: $bright-red;
-  }
-
-  &.faded-green {
-   background-color: $light-green;
-  }
+.faded-white {
+  background-color: $light-white;
 }
 
 .navigation {
@@ -66,23 +53,23 @@
   height: 100%;
   width: 100%;
   visibility: hidden;
-  background-color: $light-yellow;
+  background-color: $light-white;
   opacity: 0;
-
-  &.is-active {
-    @include transition(0.3s);
-    height: 100%;
-    width: 100%;
-    visibility: visible;
-    opacity: 1;
-  }
 
   a {
     width: 300px;
   }
 }
 
-.menu {
+.navigation--is-active {
+  @include transition(0.3s);
+  height: 100%;
+  width: 100%;
+  visibility: visible;
+  opacity: 1;
+}
+
+.navigation-menu {
   z-index: 3;
   position: fixed;
   right: 0;
@@ -91,7 +78,7 @@
 	width: 30px;
   width: 20%;
 	height: 50px;
-	padding-top: 40px;
+	padding-top: 20px;
 	font-weight: bold;
 
   @media screen and (max-width: $iphone6) {
@@ -168,36 +155,33 @@
     }
 
     &:hover {
-      .nav {
+      .button--nav {
         background-color: $black;
 
-        &.yellow-text {
-          color: $light-yellow;
-        }
-        &.purple-text {
-          color: $light-purple!important;
+        &.white-text {
+          color: $light-white;
         }
       }
     }
 	}
+}
 
-  .burger-wrapper {
-    z-index: 4;
-    position: relative;
-    display: block;
-    margin: 0 auto;
-    width: 30px;
-    height: 25px;
-    cursor: pointer;
+.burger-icon {
+  @include burger(30px, 3px, 5px, #222);
+  top: 10px;
+  pointer-events: none;
+
+  &.burger--is-active {
+    @include burger-to-cross;
   }
+}
 
-  .burger-icon {
-    @include burger(30px, 3px, 5px, #222);
-    top: 10px;
-    pointer-events: none;
-
-    &.is-active {
-      @include burger-to-cross;
-    }
-  }
+.burger-wrapper {
+  z-index: 4;
+  position: relative;
+  display: inline-block;
+  margin: 0 auto;
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
 }

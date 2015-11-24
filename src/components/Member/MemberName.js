@@ -8,15 +8,16 @@ import style from './../../styles/SenatorName.scss';
 
 class SenatorName extends BaseComponent {
   render() {
-    let {name, state, age, twitter, voted} = this.props,
+    let {name, state, age, twitter, voted, party} = this.props,
         member_age = age === undefined ? '' : `${age} years old`,
         twitterHandle = twitter === undefined ? '' : `@${twitter}`,
-        member_voted = voted === undefined ? '' : `Voted ${voted}`;
+        voteFavor = voted === 'Yea' ? 'Yes' : 'No',
+        member_voted = voted === undefined ? '' : `Voted ${voteFavor}`;
 
-    return <div className="senatorName">
-    	<h2>{name} ({state})</h2>
-    	<h2 className="age">{member_age}</h2>
-      <h2 className="twitterHandle">
+    return <div className="member-name">
+    	<h2>{name} ({party} - {state})</h2>
+    	<h2 className="member-age">{member_age}</h2>
+      <h2 className="member-twitter">
         {member_voted}
         {twitterHandle}
       </h2>
