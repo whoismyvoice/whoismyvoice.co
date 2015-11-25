@@ -249,7 +249,7 @@ class Edit extends BaseComponent {
         <div className="card">
           <h2>Result texts</h2>
           <div className={previewClasses}>
-            {`${pre_text.replace('#member_type', 'Congressman,').replace('#member_name', 'Name Nameson').replace('#action', 'voted to')} ${voted_for}`}
+            {`${pre_text.replace('#member_type', 'Congressman, ').replace('#member_name', 'Name Nameson').replace('#action', 'voted to')} ${voted_for}`}
           </div>
           The text shown on the result page is a combination of: "<b>[pre-text] [vote]</b>".
           <br />E.g. [Your Congressman, Name Nameson voted to] [reverse Obamacare]
@@ -259,7 +259,7 @@ class Edit extends BaseComponent {
             onBlur={this._onBlurPretext}
             note={'Note: You can use tags: #member_type, #member_name #action'}
             value={this.state.cosponsor_post_text}
-            example="Your Congressman/Senator, Name Nameson voted to/co-sponsored"
+            example="Your #member_type, #name #action"
             placeholder="Pre-text "
             className="long"
           />

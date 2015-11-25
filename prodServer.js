@@ -2,8 +2,8 @@ import path from 'path';
 import express from 'express';
 import mongoose from 'mongoose';
 import Settings from './models/settings';
-import defaultSettings from './defaultSettings';
-import config from './config';
+import defaultSettings from './config/db/defaultSettings';
+import config from './config/db/config';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 
