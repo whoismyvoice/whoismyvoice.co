@@ -14,7 +14,7 @@ class App extends BaseComponent {
   }
 };
 
-App.propTypes = {
+App.PropTypes = {
   children: PropTypes.object.isRequired
 };
 

@@ -4,8 +4,9 @@ Senate Project responsive website
 ##Stack
 * React
 * Webpack as build system
-* Sass as CSS extension
+* Sass as CSS extension language
 * Babel as compiler & for [react-transform](https://github.com/gaearon/babel-plugin-react-transform)
+* Karma, Mocha and Chai for unit testing and coverage
 
 ##Setup
 
@@ -33,6 +34,11 @@ npm run build
 ```
 mongod
 npm run build:start
+```
+
+**Run component tests and coverage report `test/coverage/index.html`
+```
+npm run test
 ```
 
 **Run JSCS and ESLint**
