@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import style from './../styles/globals.scss';
+import style from '../styles/globals.scss';
 
 // Components
 import BaseComponent from './BaseComponent';

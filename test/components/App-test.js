@@ -1,9 +1,10 @@
-var assert = require('assert');
-describe('Array', function() {
-  describe('#indexOf()', function () {
-    it('should return -1 when the value is not present', function () {
-      assert.equal(-1, [1,2,3].indexOf(5));
-      assert.equal(-1, [1,2,3].indexOf(0));
-    });
+var React = require('react');
+var TestUtils = require('react/lib/ReactTestUtils');
+var MemberList = require('../../src/components/App.js');
+
+describe('MemberList', () => {
+  it('renders', () => {
+    var element = TestUtils.renderIntoDocument(<MemberList />);
+    expect(element).toBeTruthy();
   });
 });
