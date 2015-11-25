@@ -44,7 +44,6 @@ AppDispatcher.register(payload => {
     case AppConstants.GET_DETAILS:
       _store.number_representatives = action.numRep;
       if (action.response === 'error') {
-        console.log("error");
         _store.error = true;
       } else {
         const details = action.response[0];
@@ -74,7 +73,7 @@ AppDispatcher.register(payload => {
       SenateStore.emit(CHANGE_EVENT);
       break;
 
-    case AppConstants.SET_CURRENT_MEMBER:
+      case AppConstants.SET_CURRENT_MEMBER:
         _store.current_senator = action.index;
 
       SenateStore.emit(CHANGE_EVENT);
@@ -82,7 +81,7 @@ AppDispatcher.register(payload => {
 
     case AppConstants.FLUSH_STORE:
 
-      if(action.store !== 'settings') {
+      if (action.store !== 'settings') {
         _store.did_search = false;
         _store.current_screen = 0;
         _store.current_senator = 0;

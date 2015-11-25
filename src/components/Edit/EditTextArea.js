@@ -23,6 +23,6 @@ class EditTextArea extends BaseComponent {
       </div>
     </div>;
   }
-};
+}
 
 export default EditTextArea;

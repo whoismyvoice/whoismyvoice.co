@@ -22,6 +22,6 @@ class EditInput extends BaseComponent {
       <div className="example">{example}</div>
     </div>;
   }
-};
+}
 
 export default EditInput;

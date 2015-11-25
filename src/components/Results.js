@@ -1,15 +1,12 @@
 import React from 'react';
-import HFCMembers from '../data/HFCMembers';
 import SenateActions from '../actions/SenateActions';
 
 // Components
 import TitleComponent from './TitleComponent';
 import TextButton from './TextButton';
 import SupportActions from './Member/SupportActions';
-import HFCOverview from './HFCOverview';
 import CongressmanGroup from './Member/CongressmanGroup';
 import BaseComponent from './BaseComponent';
-import Button from './Button';
 
 class Results extends BaseComponent {
   constructor() {
@@ -32,7 +29,8 @@ class Results extends BaseComponent {
     event.preventDefault();
     event.stopPropagation();
     // Listen for event.target.id in order to decipher which of the arrows was tapped
-    //ContainerActions.setCurrentMember(event.target.id);
+    // ContainerActions.setCurrentMember(event.target.id);
+
     $.fn.fullpage.moveSectionDown();
   }
 
@@ -67,11 +65,11 @@ class Results extends BaseComponent {
         <SupportActions />
       </div>
     </div>;
-    }
-};
+  }
+}
 
 Results.propTypes = {
-  backgroundClasses: React.PropTypes.any,
+  backgroundClasses: React.PropTypes.any
 };
 
 export default Results;

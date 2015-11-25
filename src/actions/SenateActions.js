@@ -4,11 +4,11 @@ import request from 'superagent';
 import CongressUtils from '../utils/CongressUtils';
 
 module.exports = {
-	fetchDistricts: ZIP_CODE => {
-		AppDispatcher.handleViewAction({
-			actionType: SenateConstants.FIND_MEMBER,
+  fetchDistricts: ZIP_CODE => {
+    AppDispatcher.handleViewAction({
+      actionType: SenateConstants.FIND_MEMBER,
       zip_code: ZIP_CODE
-		});
+    });
     CongressUtils.getMember(ZIP_CODE);
   },
 
@@ -27,12 +27,12 @@ module.exports = {
     .set('Accept', 'application/json')
     .end((err, res) => {
       if (err) return console.error(err);
+
       if (res.body.results.length === 0) {
         CongressUtils.getMember('error');
-        console.log('Error retrieving street name from Google Maps');
       } else {
         const lat = res.body.results[0].geometry.location.lat,
-        lng = res.body.results[0].geometry.location.lng;
+          lng = res.body.results[0].geometry.location.lng;
         CongressUtils.getMember(lat, lng);
       }
     });

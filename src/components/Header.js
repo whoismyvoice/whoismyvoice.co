@@ -15,7 +15,7 @@ class Header extends BaseComponent {
     this.state = {
       didClick: false
     }
-  }
+  };
 
   _handleClick(evt) {
     evt.preventDefault();
@@ -67,6 +67,6 @@ class Header extends BaseComponent {
       </div>
     </div>;
   }
-};
+}
 
 export default Header;

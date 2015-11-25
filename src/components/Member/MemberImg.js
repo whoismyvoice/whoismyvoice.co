@@ -16,13 +16,14 @@ class SenatorImg extends BaseComponent {
     const imgClasses = cx(
       ['member-img'],
       {'animated': chamber === 'house' && repNumber === 1 || chamber === 'senate' && repNumber > 0},
-      {'bounceInDown': chamber === 'house' && repNumber === 1 || chamber === 'senate' && repNumber > 0})
+      {'bounceInDown': chamber === 'house' && repNumber === 1 || chamber === 'senate' && repNumber > 0}
+    );
 
   	return <div className={imgClasses}>
     	<img src={img} />
     </div>;
   }
-};
+}
 
 SenatorImg.propTypes = {
   bioguide: React.PropTypes.string,

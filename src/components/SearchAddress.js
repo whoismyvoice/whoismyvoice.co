@@ -9,12 +9,12 @@ import TextButton from './TextButton';
 class SearchAddress extends BaseComponent {
   constructor() {
     super();
-    this._bind('_handleChange','_handleFocus', '_handleBlur', '_handleEnter', '_handleClick');
+    this._bind('_handleChange', '_handleFocus', '_handleBlur', '_handleEnter', '_handleClick');
     this.state = {
       address: '',
       error: false,
       placeholder: 'Enter Street Name'
-    }
+    };
   }
 	_handleChange(event) {
     this.setState({
@@ -57,6 +57,7 @@ class SearchAddress extends BaseComponent {
   _handleClick(evt) {
     evt.preventDefault();
     evt.stopPropagation();
+
     if (this.state.address < 4) {
       this.setState({
         error: true,
@@ -66,7 +67,7 @@ class SearchAddress extends BaseComponent {
     } else {
       this.setState({
         error: false,
-        address: '',
+        address: ''
       });
       SenateActions.fetchSpecificMember(this.state.address, this.props.zip_code, this.props.state_full);
     }
@@ -74,7 +75,7 @@ class SearchAddress extends BaseComponent {
   render() {
     const inputClasses = cx(
       ['input'],
-      {'error': this.state.error || this.props.error},
+      {'error': this.state.error || this.props.error}
     );
 
   	return <div>
@@ -95,11 +96,11 @@ class SearchAddress extends BaseComponent {
       />
   	</div>;
   }
-};
+}
 
 SearchAddress.propTypes = {
-  zip_code: React.PropTypes.string,
-  error: React.PropTypes.bool
-}
+  error: React.PropTypes.bool,
+  zip_code: React.PropTypes.string
+};
 
 export default SearchAddress;

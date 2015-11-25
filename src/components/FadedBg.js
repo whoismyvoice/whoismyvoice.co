@@ -13,46 +13,46 @@ class FadedBG extends BaseComponent {
     };
   }
 
-	componentDidMount() {
+  componentDidMount() {
     window.addEventListener('scroll', this._handleScroll);
   }
 
   componentWillUnmount() {
-  	window.removeEventListener('scroll', this._handleScroll);
+    window.removeEventListener('scroll', this._handleScroll);
   }
 
   _handleScroll() {
-  	if ($(document).scrollTop() > 50) {
-  		this._addScrollState();
-  	} else {
-  		this._disruptScroll();
-  	}
+    if ($(document).scrollTop() > 50) {
+      this._addScrollState();
+    } else {
+      this._disruptScroll();
+    }
   }
 
   _disruptScroll() {
-  	this.setState({
-  		did_scroll: false
-  	});
+    this.setState({
+      did_scroll: false
+    });
   }
 
   _addScrollState() {
-  	this.setState({
-  		did_scroll: true
-  	});
+    this.setState({
+      did_scroll: true
+    });
   }
 
   render() {
-  	const fadedClasses = cx(
+    const fadedClasses = cx(
       ['faded-bg'],
       {'faded-white': this.props.color === 'white'},
       {'hide': !this.state.did_scroll}
     );
-  	return <div className={fadedClasses}></div>;
+    return <div className={fadedClasses}></div>;
   }
-};
-
-FadedBG.propTypes = {
-  color: React.PropTypes.string
 }
+
+FadedBG.PropTypes = {
+  color: React.PropTypes.string
+};
 
 export default FadedBG;

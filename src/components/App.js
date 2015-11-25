@@ -12,7 +12,7 @@ class App extends BaseComponent {
       {this.props.children}
     </div>;
   }
-};
+}
 
 App.PropTypes = {
   children: PropTypes.object.isRequired

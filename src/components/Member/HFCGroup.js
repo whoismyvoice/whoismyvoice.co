@@ -28,7 +28,7 @@ class HFCGroup extends BaseComponent {
       </div>
     </a>;
   }
-};
+}
 
 HFCGroup.propTypes = {
   age: React.PropTypes.number,

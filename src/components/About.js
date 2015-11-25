@@ -25,6 +25,6 @@ class About extends BaseComponent {
       </p>
     </div>;
   }
-};
+}
 
 export default About;

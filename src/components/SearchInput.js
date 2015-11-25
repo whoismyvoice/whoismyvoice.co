@@ -16,8 +16,8 @@ class SearchInput extends BaseComponent {
       zip_code: '',
       error: false,
       placeholder: 'Enter Your Zip Code'
-    }
-    this._bind('_handleChange','_handleFocus', '_handleBlur', '_handleEnter', '_handleClick');
+    };
+    this._bind('_handleChange', '_handleFocus', '_handleBlur', '_handleEnter', '_handleClick');
   }
   _handleFocus() {
     this.setState({
@@ -27,7 +27,7 @@ class SearchInput extends BaseComponent {
   }
   _handleBlur() {
     const zip_code = this.state.zip_code;
-    if(zip_code === '') {
+    if (zip_code === '') {
       this.setState({
         placeholder: 'Enter Your Zip Code'
       })
@@ -38,7 +38,7 @@ class SearchInput extends BaseComponent {
         placeholder: 'Enter Your Zip Code',
         error: false,
       });
-    } else if(!isNaN(zip_code) && zip_code.length === 5) {
+    } else if (!isNaN(zip_code) && zip_code.length === 5) {
       this.setState({
         error: false,
         placeholder: 'Enter Your Zip Code',
@@ -63,7 +63,7 @@ class SearchInput extends BaseComponent {
           placeholder: 'Enter Your Zip Code',
           zip_code: ''
         });
-      } else if(!isNaN(zip_code) && zip_code.length === 5) {
+      } else if (!isNaN(zip_code) && zip_code.length === 5) {
         SenateActions.fetchDistricts(zip_code);
         this.setState({
           error: false,
@@ -83,7 +83,7 @@ class SearchInput extends BaseComponent {
         placeholder: 'Enter Your Zip Code',
         zip_code: ''
       });
-    } else if(!isNaN(zip_code) && zip_code.length === 5) {
+    } else if (!isNaN(zip_code) && zip_code.length === 5) {
       this.setState({
         error: false,
         zip_code: ''
@@ -118,7 +118,7 @@ class SearchInput extends BaseComponent {
       />
     </span>;
   }
-};
+}
 
 SearchInput.propTypes = {
   error: React.PropTypes.bool

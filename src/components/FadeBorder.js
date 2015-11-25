@@ -6,17 +6,16 @@ import BaseComponent from './BaseComponent';
 
 class FadeBorder extends BaseComponent {
   render() {
-
     const leftClasses = cx(
       [''],
       {'darken': this.props.darken}
     );
 
-  	return  <div>
+    return <div>
   		<div id="left-blur" className={leftClasses}></div>
       <div id="right-blur" className={leftClasses}></div>
     </div>;
   }
-};
+}
 
 export default FadeBorder;

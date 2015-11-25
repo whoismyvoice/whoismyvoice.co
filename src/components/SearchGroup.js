@@ -35,6 +35,6 @@ class SearchGroup extends BaseComponent {
     	</div>;
     }
   }
-};
+}
 
 export default SearchGroup;

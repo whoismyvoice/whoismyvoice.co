@@ -30,22 +30,22 @@ class Button extends BaseComponent {
 
     if (type === 'external') {
       return <a href={link} className={color} target="_blank">
-  				<button className="button">
-            <div className="button-text">
-              {text}
-            </div>
-            <div className="secondary">
-              {secondary}
-            </div>
-  				</button>
-  			</a>;
-  	} else if (flush === true) {
-  		return <Link to={link}>
+        <button className="button">
+          <div className="button-text">
+            {text}
+          </div>
+          <div className="secondary">
+            {secondary}
+          </div>
+        </button>
+      </a>;
+    } else if (flush === true) {
+      return <Link to={link}>
         <button className={`button button--nav ${color}`} onClick={this._handleRestart}>
           {text}
         </button>
       </Link>;
-  	} else if (type === 'internal' ) {
+    } else if (type === 'internal') {
       return <Link to={link}>
         <button className={`button ${color}`}>
           {text}
@@ -59,7 +59,7 @@ class Button extends BaseComponent {
       </Link>;
     }
   }
-};
+}
 
 Button.propTypes = {
   color: React.PropTypes.string,

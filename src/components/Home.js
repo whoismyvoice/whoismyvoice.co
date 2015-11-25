@@ -23,6 +23,7 @@ class Home extends BaseComponent {
   }
 
   componentDidMount() {
+
     if (this.state.did_search) {
       this._initializeFullpage();
     }
@@ -41,7 +42,7 @@ class Home extends BaseComponent {
     this.setState(SenateStore.getMember());
   }
 
-  _initializeFullpage () {
+  _initializeFullpage() {
     $('#fullpage').fullpage({
       navigation: false,
       showActiveTooltip: false,
@@ -70,16 +71,16 @@ class Home extends BaseComponent {
     }
   }
   _detectScroll() {
-    const current = this.state.current_screen;
-    var ts;
+    let ts;
 
-    $(document).bind('touchstart', function (e){
+    $(document).bind('touchstart', function(e) {
       ts = e.originalEvent.touches[0].clientY;
     });
 
-    $(document).bind('touchend', function (e){
-      var te = e.originalEvent.changedTouches[0].clientY;
-      if(ts > te+5){
+    $(document).bind('touchend', function(e) {
+      let te = e.originalEvent.changedTouches[0].clientY;
+
+      if (ts > te + 5){
         $.fn.fullpage.moveSectionDown();
       }
     });
@@ -88,7 +89,6 @@ class Home extends BaseComponent {
   render() {
     const NUMBER_REPRESENTATIVES = this.state.number_representatives,
       SETTINGS = this.state.settings,
-      REPRESENTATIVES = this.state.representatives,
       DID_SEARCH = this.state.did_search,
       {chamber} = SETTINGS ? SETTINGS : Settings;
 
@@ -107,11 +107,6 @@ class Home extends BaseComponent {
       ['second-wrapper'],
       {'move-up': DID_SEARCH},
       {'static': !DID_SEARCH}
-    );
-
-    const sectionClasses = cx(
-      ['section-block'],
-      {'hide': NUMBER_REPRESENTATIVES === 1 || chamber === 'senate'}
     );
 
     const containerClasses = cx(
@@ -146,6 +141,6 @@ class Home extends BaseComponent {
       </div>
     </div>;
   }
-};
+}
 
 export default Home;

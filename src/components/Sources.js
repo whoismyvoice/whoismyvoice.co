@@ -28,6 +28,6 @@ class Sources extends BaseComponent {
       </p>
     </div>;
   }
-};
+}
 
 export default Sources;

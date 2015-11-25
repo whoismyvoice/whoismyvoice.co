@@ -25,22 +25,21 @@ class TitleComponent extends BaseComponent {
 
     const {
       did_search,
-      number_representatives,
       settings
-    } = this.state
+    } = this.state;
+
+    const {chamber, bill_desc, voted_for, voted_against, impact_text, pre_text} = settings ? settings : Settings,
+      member_single = chamber === 'senate' ? 'Senator': 'Congressman',
+      action = chamber === 'senate' ? 'co-sponsored the bill to' : 'voted to';
 
     let representative,
-        final_char,
-        represent_gender,
-        member_name = '',
-        vote_status = '',
-        impact,
-        {chamber, bill_desc, voted_for, voted_against, impact_text, pre_text} = settings ? settings : Settings,
-        action_text = impact_text.replace('#gender_third', 'this person'),
-        member = chamber === 'senate' ? 'Senator': 'Congressman',
-        member_single = chamber === 'senate' ? 'Senator': 'Congressman',
-        action = chamber === 'senate' ? 'co-sponsored the bill to' : 'voted to',
-        represent_text = 'represents';
+      final_char,
+      represent_gender,
+      member_name = '',
+      vote_status = '',
+      impact,
+      member = chamber === 'senate' ? 'Senator': 'Congressman',
+      represent_text = 'represents';
 
     if (this.state.representatives) {
       representative = this.state.representatives[0];
@@ -50,7 +49,8 @@ class TitleComponent extends BaseComponent {
         impact = impact_text.replace('#gender_third', `this ${representative.gender_full}`);
         represent_gender = representative.gender_full === 'man' ? 'He' : 'She';
         member_name = representative.full_name;
-      } else if(this.state.representatives.length > 1) {
+      } else if (this.state.representatives.length > 1) {
+        impact_text.replace('#gender_third', `this person`);
         represent_gender = 'These people';
         represent_text = 'represent';
         member = chamber === 'senate' ? 'Senators' : 'Representatives';
@@ -59,15 +59,15 @@ class TitleComponent extends BaseComponent {
 
     const preliminary_text = pre_text.replace('#member_type', member).replace('#member_name', member_name).replace('#action', action);
 
-    if(!did_search || desc && did_search && !actions) {
+    if (!did_search || desc && did_search && !actions) {
       vote_status = `${voted_for}`;
       final_char = '?';
       pre_text = bill_desc.replace('#member', member_single);
-    } else if(did_search && !desc || !desc) {
+    } else if (did_search && !desc || !desc) {
       pre_text = preliminary_text;
       final_char = '.';
-    } else if(actions) {
-      pre_text = action_text;
+    } else if (actions) {
+      pre_text = impact;
       final_char = '';
     }
 
@@ -94,7 +94,7 @@ class TitleComponent extends BaseComponent {
     const threeStars = cx(
       ['three-stars', 'animated', 'zoomIn'],
       {'hide': represent || actions}
-    )
+    );
 
     return <div className={titleClasses}>
       <div className={threeStars}>
@@ -117,12 +117,12 @@ class TitleComponent extends BaseComponent {
       </span>
   	</div>;
   }
-};
+}
 
 TitleComponent.propTypes = {
-  desc: React.PropTypes.bool,
   actions: React.PropTypes.bool,
   classes: React.PropTypes.string,
+  desc: React.PropTypes.bool,
   front: React.PropTypes.bool,
   represent: React.PropTypes.bool
 };

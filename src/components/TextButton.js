@@ -16,7 +16,7 @@ class TextButton extends BaseComponent {
       </div>
   	</a>;
   }
-};
+}
 
 TextButton.propTypes = {
   flush: React.PropTypes.bool,

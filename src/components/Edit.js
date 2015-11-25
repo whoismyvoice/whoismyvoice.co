@@ -46,22 +46,22 @@ class Edit extends BaseComponent {
       voted_for: '',
       voted_against: '',
       errors: []
-    }
+    };
   }
 
   _checkForErrors(field, min, max, length) {
-    if(length > min && length < max) {
-      if(this.state.errors.indexOf(field) === -1) {
+    if (length > min && length < max) {
+      if (this.state.errors.indexOf(field) === -1) {
         this.setState((state) => {
           errors: state.errors.push(field);
         });
       }
-    } else if(length > max) {
-      if(this.state.errors.indexOf(field) !== -1) {
+    } else if (length > max) {
+      if (this.state.errors.indexOf(field) !== -1) {
         const index = this.state.errors.indexOf('field');
         this.setState((state) => {
           errors: state.errors.splice(index, 1);
-        })
+        });
       }
     }
   }
@@ -139,15 +139,14 @@ class Edit extends BaseComponent {
     })
     .set('Accept', 'application/json')
     .end((err, res) => {
-      if(err) return console.error(err);
+      if (err) return console.error(err);
       SenateActions.flush('settings');
     });
-  };
+  }
 
   render() {
     const {
       bill_id,
-      bill_title,
       bill_desc,
       vote_favor,
       chamber,
@@ -159,7 +158,7 @@ class Edit extends BaseComponent {
     } = this.state;
 
     const isEmpty = () => {
-      if(bill_id === '' || bill_desc === '' || chamber === 'Senate' && vote_favor === '' || chamber === '' || pre_text === '' || impact_text === '' || voted_for === '' || voted_against === '') {
+      if (bill_id === '' || bill_desc === '' || chamber === 'Senate' && vote_favor === '' || chamber === '' || pre_text === '' || impact_text === '' || voted_for === '' || voted_against === '') {
         return true;
       } else {
         return false;
@@ -167,18 +166,14 @@ class Edit extends BaseComponent {
     };
 
     const VoteOptions = [
-      { value: '1', label: 'Yea'},
-      { value: '0', label: 'Nay'}
+      {value: '1', label: 'Yea'},
+      {value: '0', label: 'Nay'}
     ];
 
     const ChamberOptions = [
       {value: '1', label: 'Senate'},
       {value: '0', label: 'House'}
     ];
-
-    function notEmpty(state) {
-      return state.length > 0;
-    };
 
     const senateFields = cx(
       ['form-fields'],
@@ -210,7 +205,7 @@ class Edit extends BaseComponent {
       {'edit--hide': !bill_desc}
     );
 
-    const errorsSplit = `The following fields were not populated: ${errors.join(", ")}`
+    const errorsSplit = `The following fields were not populated: ${errors.join(", ")}`;
 
   	return <div className="page-block edit">
       <FadedBG color="orange-color" />
@@ -257,7 +252,7 @@ class Edit extends BaseComponent {
           <EditInput
             onChange={this._onChangePretext}
             onBlur={this._onBlurPretext}
-            note={'Note: You can use tags: #member_type, #member_name #action'}
+            note="Note: You can use tags: #member_type, #member_name #action"
             value={this.state.cosponsor_post_text}
             example="Your #member_type, #name #action"
             placeholder="Pre-text "
@@ -315,6 +310,6 @@ class Edit extends BaseComponent {
       </form>
     </div>;
   }
-};
+}
 
 export default Edit;

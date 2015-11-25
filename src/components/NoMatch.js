@@ -9,6 +9,6 @@ class NoMatch extends BaseComponent {
     	Page does not exist
     </div>;
   }
-};
+}
 
 export default NoMatch;

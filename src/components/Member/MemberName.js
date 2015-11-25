@@ -8,11 +8,11 @@ import style from './../../styles/SenatorName.scss';
 
 class SenatorName extends BaseComponent {
   render() {
-    let {name, state, age, twitter, voted, party} = this.props,
-        member_age = age === undefined ? '' : `${age} years old`,
-        twitterHandle = twitter === undefined ? '' : `@${twitter}`,
-        voteFavor = voted === 'Yea' ? 'Yes' : 'No',
-        member_voted = voted === undefined ? '' : `Voted ${voteFavor}`;
+    const {name, state, age, twitter, voted, party} = this.props,
+      twitterHandle = twitter === undefined ? '' : `@${twitter}`,
+      member_age = age === undefined ? '' : `${age} years old`,
+      voteFavor = voted === 'Yea' ? 'Yes' : 'No',
+      member_voted = voted === undefined ? '' : `Voted ${voteFavor}`;
 
     return <div className="member-name">
     	<h2>{name} ({party} - {state})</h2>
@@ -23,7 +23,7 @@ class SenatorName extends BaseComponent {
       </h2>
     </div>;
   }
-};
+}
 
 SenatorName.propTypes = {
   age: React.PropTypes.number,

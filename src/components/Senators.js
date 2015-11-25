@@ -24,6 +24,6 @@ class Senators extends BaseComponent {
     	/>
     </div>;
   }
-};
+}
 
 export default Senators;

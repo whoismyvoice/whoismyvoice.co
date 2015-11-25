@@ -5,11 +5,11 @@ module.exports = function(config) {
   config.set({
     browsers: ['PhantomJS'],
     files: [
-      { pattern: 'tests.webpack.js', watched: false },
+      {pattern: 'tests.webpack.js', watched: false}
     ],
     frameworks: ['mocha', 'chai'],
     preprocessors: {
-      'tests.webpack.js': ['webpack'],
+      'tests.webpack.js': ['webpack']
     },
     reporters: ['mocha', 'coverage'],
     singleRun: true,
@@ -17,9 +17,9 @@ module.exports = function(config) {
       devtool: 'inline source-map',
       module: {
         loaders: [
-          { test: /\.js$/, loader: 'babel', exclude: moduleDir },
-          { test: /\.json?$/, loader: 'json', exclude: moduleDir },
-          { test: /\.scss?$/, loader: 'null' }
+          {test: /\.js$/, loader: 'babel', exclude: moduleDir},
+          {test: /\.json?$/, loader: 'json', exclude: moduleDir},
+          {test: /\.scss?$/, loader: 'null'}
         ],
         postLoaders: [{
           test: /\.js$/,
@@ -27,14 +27,14 @@ module.exports = function(config) {
           loader: 'istanbul-instrumenter'
         }]
       },
-      watch: true,
+      watch: true
     },
     webpackServer: {
-      noInfo: true,
+      noInfo: true
     },
     coverageReporter: {
-      type: 'html', //produces a html document after code is run
-      dir: 'coverage/' //path to created html doc
+      type: 'html', // produces a html document after code is run
+      dir: 'coverage/' // path to created html doc
     }
   });
 };

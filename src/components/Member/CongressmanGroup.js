@@ -5,7 +5,6 @@ import Settings from '../../data/settings.json';
 
 // Components
 import BaseComponent from '../BaseComponent';
-import SearchAddress from '../SearchAddress';
 import MemberImg from './MemberImg';
 import MemberRibbon from './MemberRibbon';
 
@@ -18,10 +17,10 @@ class CongressmanGroup extends BaseComponent {
     this.state = SenateStore.getMember();
   }
   render() {
-    let wrapperClasses = 'senatorWrapper',
-          {chamber} = settings ? settings : Settings;
+    const {representatives, settings, number_representatives} = this.state;
 
-    const {representatives, zip_code, state_full, settings, number_representatives} = this.state;
+    let wrapperClasses = 'senatorWrapper',
+      {chamber} = settings ? settings : Settings;
 
     if (representatives) {
       wrapperClasses = cx(
@@ -48,7 +47,7 @@ class CongressmanGroup extends BaseComponent {
       {members}
     </div>;
   }
-};
+}
 
 CongressmanGroup.propTypes = {
   chamber: React.PropTypes.string

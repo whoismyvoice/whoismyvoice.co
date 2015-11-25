@@ -8,7 +8,7 @@ import style from './../../styles/MemberRibbon.scss';
 
 class MemberRibbon extends BaseComponent {
   render() {
-    let {name, state, party} = this.props;
+    const {name, state, party} = this.props;
 
     return <div className="ribbon-wrapper">
       <h1 className="ribbon">
@@ -18,12 +18,12 @@ class MemberRibbon extends BaseComponent {
       </h1>
     </div>;
   }
-};
+}
 
 MemberRibbon.propTypes = {
   name: React.PropTypes.string,
-  state: React.PropTypes.string,
   party: React.PropTypes.string
+  state: React.PropTypes.string,
 };
 
 export default MemberRibbon;

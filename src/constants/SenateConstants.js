@@ -8,5 +8,5 @@ module.exports = Object.freeze({
   FLUSH_STORE: 'FLUSH_STORE',
   FIND_SPECIFIC_MEMBER: 'FIND_SPECIFIC_MEMBER',
   API_KEY: '4f501d505d514b85a01f39d4ceb9a353',
-  GOOGLE_API_KEY: 'AIzaSyBszQnBTm_2qjgMd57K0CLfE0i3zuveKhE',
+  GOOGLE_API_KEY: 'AIzaSyBszQnBTm_2qjgMd57K0CLfE0i3zuveKhE'
 });

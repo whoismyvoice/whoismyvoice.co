@@ -20,6 +20,6 @@ class EditDropdown extends BaseComponent {
       />
     </div>;
   }
-};
+}
 
 export default EditDropdown;

@@ -14,12 +14,13 @@ class ErrorMsg extends React.Component {
       ['errorMsg'],
       {'show': !isError}
     );
-  	// Check if bioguide is defined (i.e. if user has searched for any members yet)
-  	return <div className={errorClasses}>
+    // Check if bioguide is defined (i.e. if user has searched for any members yet)
+
+    return <div className={errorClasses}>
       {this.props.error}
     </div>;
   }
-};
+}
 
 ErrorMsg.propTypes = {
   error: React.PropTypes.string
