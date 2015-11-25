@@ -21,8 +21,6 @@ class Edit extends BaseComponent {
       '_onSelectChamber',
       '_onChangeID',
       '_onBlurID',
-      '_onChangeBillTitle',
-      '_onBlurBillTitle',
       '_onChangeBillDesc',
       '_onBlurBillDesc',
       '_onChangeImpactText',
@@ -40,7 +38,6 @@ class Edit extends BaseComponent {
     this.state = {
       id: 1,
       bill_id: '',
-      bill_title: '',
       bill_desc: '',
       vote_favor: '',
       chamber: '',
@@ -83,14 +80,6 @@ class Edit extends BaseComponent {
   }
   _onBlurID(evt) {
     this._checkForErrors('Bill id', 0, 4, evt.target.value.length);
-  }
-
-  // Handle Bill title input field
-  _onChangeBillTitle(evt) {
-    this.setState({bill_title: evt.target.value});
-  }
-  _onBlurBillTitle(evt) {
-    this._checkForErrors('Bill title', 0, 5, evt.target.value.length);
   }
 
   // Handle Bill desc input field
@@ -139,7 +128,6 @@ class Edit extends BaseComponent {
     .send({
       id: 1,
       bill_id: this.state.bill_id,
-      bill_title: this.state.bill_title,
       bill_desc: this.state.bill_desc,
       vote_favor: this.state.vote_favor,
       chamber: this.state.chamber,
@@ -171,22 +159,12 @@ class Edit extends BaseComponent {
     } = this.state;
 
     const isEmpty = () => {
-      if(bill_id === '' || bill_title === '' || bill_desc === '' || chamber === 'Senate' && vote_favor === '' || chamber === '' || pre_text === '' || impact_text === '' || voted_for === '' || voted_against === '') {
+      if(bill_id === '' || bill_desc === '' || chamber === 'Senate' && vote_favor === '' || chamber === '' || pre_text === '' || impact_text === '' || voted_for === '' || voted_against === '') {
         return true;
       } else {
         return false;
       }
     };
-
-    const senateFields = cx(
-      ['form-fields'],
-      {'hide': chamber === '' || chamber === '0'}
-    );
-
-    const buttonClasses = cx(
-      ['button'],
-      {'disabled': isEmpty()}
-    );
 
     const VoteOptions = [
       { value: '1', label: 'Yea'},
@@ -202,9 +180,34 @@ class Edit extends BaseComponent {
       return state.length > 0;
     };
 
+    const senateFields = cx(
+      ['form-fields'],
+      {'hide': chamber === '' || chamber === '0'}
+    );
+
+    const buttonClasses = cx(
+      ['button'],
+      {'disabled': isEmpty()}
+    );
+
     const errorClasses = cx(
       ['edit__error'],
-      {'edit__error--show': this.state.errors.length !== 0}
+      {'edit__error--show': errors.length !== 0}
+    );
+
+    const previewClasses = cx(
+      ['edit__preview'],
+      {'edit--hide': !pre_text}
+    );
+
+    const previewClassesImpact = cx (
+      ['edit__preview'],
+      {'edit--hide': !impact_text}
+    );
+
+    const previewClassesBillDesc = cx (
+      ['edit__preview'],
+      {'edit--hide': !bill_desc}
     );
 
     const errorsSplit = `The following fields were not populated: ${errors.join(", ")}`
@@ -214,19 +217,15 @@ class Edit extends BaseComponent {
       <form id="editform" onSubmit={this._onSubmit}>
         <div className="card">
           <h2>Bill details</h2>
+          <div className={previewClassesBillDesc}>
+            {`${bill_desc.replace('#member', 'Congressman')}`}
+          </div>
           <EditInput
             onChange={this._onChangeID}
             onBlur={this._onBlurID}
             value={this.state.bill_id}
             example="s1881-114"
             placeholder="Enter bill id"
-          />
-          <EditInput
-            onChange={this._onChangeBillTitle}
-            onBlur={this._onBlurBillTitle}
-            value={this.state.bill_title}
-            example="Accurate Food Labeling Act of 2015"
-            placeholder="Enter bill title"
           />
           <EditInput
             onChange={this._onChangeBillDesc}
@@ -249,6 +248,9 @@ class Edit extends BaseComponent {
         </div>
         <div className="card">
           <h2>Result texts</h2>
+          <div className={previewClasses}>
+            {`${pre_text.replace('#member_type', 'Congressman,').replace('#member_name', 'Name Nameson').replace('#action', 'voted to')} ${voted_for}`}
+          </div>
           The text shown on the result page is a combination of: "<b>[pre-text] [vote]</b>".
           <br />E.g. [Your Congressman, Name Nameson voted to] [reverse Obamacare]
           <br /><br />
@@ -277,6 +279,14 @@ class Edit extends BaseComponent {
             placeholder="Voted against text shown after pre-text"
             className="long"
           />
+        </div>
+
+        <div className="card">
+          <h2>Action text</h2>
+          <div className={previewClassesImpact}>
+            {`${impact_text.replace('#gender_third', 'this person')}`}
+          </div>
+          Text shown on the third (action) page enticing users to call/tweet at or email.
           <EditTextArea
             onChange={this._onChangeImpactText}
             onBlur={this._onBlurImpactText}
@@ -297,12 +307,7 @@ class Edit extends BaseComponent {
             />
           </div>
         </div>
-        <div className="card">
-          <h2>Preview</h2>
-          <b>Question:</b> {bill_desc}<br />
-          <b>Voted for:</b> {`${pre_text} ${voted_for}`}<br />
-          <b>Voted against:</b> {`${pre_text} ${voted_against}`}
-        </div>
+
         <div className={errorClasses}>
           An error occurred.<br /> {errorsSplit}
         </div>
