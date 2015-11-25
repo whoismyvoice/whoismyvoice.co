@@ -1,10 +1,13 @@
-var React = require('react');
-var TestUtils = require('react/lib/ReactTestUtils');
-var MemberList = require('../../src/components/App.js');
+import React from 'react';
+import MemberList from '../../src/components/App.js';
+import * as utils from '../utils';
 
 describe('MemberList', () => {
-  it('renders', () => {
-    var element = TestUtils.renderIntoDocument(<MemberList />);
-    expect(element).toBeTruthy();
+  describe('App', () => {
+    const component = utils.shallowlyRenderedOutput(<MemberList />);
+
+    it('should have a div as container', () => {
+      expect(component.type).to.equal('div');
+    });
   });
 });

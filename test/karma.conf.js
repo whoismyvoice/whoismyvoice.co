@@ -1,6 +1,5 @@
 var path = require('path');
-var styleDir = path.resolve(__dirname, 'src/styles');
-var moduleDir = path.resolve(__dirname, 'node_modules');
+var moduleDir = path.resolve(__dirname, '../node_modules');
 
 module.exports = function(config) {
   config.set({
@@ -8,24 +7,34 @@ module.exports = function(config) {
     files: [
       { pattern: 'tests.webpack.js', watched: false },
     ],
-    frameworks: ['jasmine'],
+    frameworks: ['mocha', 'chai'],
     preprocessors: {
       'tests.webpack.js': ['webpack'],
     },
-    reporters: ['dots'],
+    reporters: ['mocha', 'coverage'],
     singleRun: true,
     webpack: {
+      devtool: 'inline source-map',
       module: {
         loaders: [
-          { test: /\.js$/, loader: 'babel-loader', exclude: [styleDir, moduleDir] },
-          { test: /\.json?$/, loader: 'json', exclude: [styleDir, moduleDir] },
+          { test: /\.js$/, loader: 'babel', exclude: moduleDir },
+          { test: /\.json?$/, loader: 'json', exclude: moduleDir },
           { test: /\.scss?$/, loader: 'null' }
         ],
+        postLoaders: [{
+          test: /\.js$/,
+          exclude: moduleDir,
+          loader: 'istanbul-instrumenter'
+        }]
       },
       watch: true,
     },
     webpackServer: {
       noInfo: true,
     },
+    coverageReporter: {
+      type: 'html', //produces a html document after code is run
+      dir: 'coverage/' //path to created html doc
+    }
   });
 };
