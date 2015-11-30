@@ -28,11 +28,12 @@ class TitleComponent extends BaseComponent {
       settings
     } = this.state;
 
-    const {chamber, bill_desc, voted_for, voted_against, impact_text, pre_text} = settings ? settings : Settings,
+    const {chamber, bill_desc, voted_for, voted_against, impact_text} = settings ? settings : Settings,
       member_single = chamber === 'senate' ? 'Senator': 'Congressman',
       action = chamber === 'senate' ? 'co-sponsored the bill to' : 'voted to';
 
     let representative,
+      {pre_text} = settings ? settings : Settings,
       final_char,
       represent_gender,
       member_name = '',
@@ -50,7 +51,7 @@ class TitleComponent extends BaseComponent {
         represent_gender = representative.gender_full === 'man' ? 'He' : 'She';
         member_name = representative.full_name;
       } else if (this.state.representatives.length > 1) {
-        impact_text.replace('#gender_third', `this person`);
+        impact = impact_text.replace('#gender_third', `this person`);
         represent_gender = 'These people';
         represent_text = 'represent';
         member = chamber === 'senate' ? 'Senators' : 'Representatives';

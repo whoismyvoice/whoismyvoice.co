@@ -22,8 +22,8 @@ class MemberRibbon extends BaseComponent {
 
 MemberRibbon.propTypes = {
   name: React.PropTypes.string,
-  party: React.PropTypes.string
-  state: React.PropTypes.string,
+  party: React.PropTypes.string,
+  state: React.PropTypes.string
 };
 
 export default MemberRibbon;

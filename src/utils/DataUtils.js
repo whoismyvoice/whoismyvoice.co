@@ -13,5 +13,5 @@ module.exports = {
         SenateServerActions.fetchSettings(res.body.settings);
       }
     });
-  };
+  }
 };

@@ -32,7 +32,9 @@ class Edit extends BaseComponent {
       '_onChangeVotedAgainst',
       '_onBlurVotedAgainst',
       '_onSubmit',
-      '_checkForErrors'
+      '_checkForErrors',
+      '_addError',
+      '_removeError'
     );
 
     this.state = {
@@ -48,24 +50,29 @@ class Edit extends BaseComponent {
       errors: []
     };
   }
-
-  _checkForErrors(field, min, max, length) {
-    if (length > min && length < max) {
-      if (this.state.errors.indexOf(field) === -1) {
-        this.setState((state) => {
-          errors: state.errors.push(field);
-        });
-      }
-    } else if (length > max) {
-      if (this.state.errors.indexOf(field) !== -1) {
-        const index = this.state.errors.indexOf('field');
-        this.setState((state) => {
-          errors: state.errors.splice(index, 1);
-        });
-      }
+  // Error handling
+  _addError(field) {
+    if (this.state.errors.indexOf(field) === -1) {
+      this.setState((state) => {
+        errors: state.errors.push(field);
+      });
     }
   }
-
+  _removeError(field) {
+    if (this.state.errors.indexOf(field) !== -1) {
+      const index = this.state.errors.indexOf('field');
+      this.setState((state) => {
+        errors: state.errors.splice(index, 1);
+      });
+    }
+  }
+  _checkForErrors(field, min, max, length) {
+    if (length > min && length < max) {
+      this._addError(field);
+    } else if (length > max) {
+      this._removeError(field);
+    }
+  }
   // Handle select options
   _onSelect(option) {
     this.setState({vote_favor: option.value});
