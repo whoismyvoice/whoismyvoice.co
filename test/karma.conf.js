@@ -19,7 +19,8 @@ module.exports = function(config) {
         loaders: [
           {test: /\.js$/, loader: 'babel', exclude: moduleDir},
           {test: /\.json?$/, loader: 'json', exclude: moduleDir},
-          {test: /\.scss?$/, loader: 'null'}
+          {test: /\.scss?$/, loader: 'null'},
+          {test: /\.(jpe?g|png|gif|svg)$/, loader: 'url?limit=15000!image-webpack'}
         ],
         postLoaders: [{
           test: /\.js$/,
