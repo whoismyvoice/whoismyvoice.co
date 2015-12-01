@@ -54,9 +54,13 @@ button, input {
   max-height: 230px;
 
   @media screen and (max-width: $iphone6) {
-    height: 20vh;
     max-height: 180px;
     margin-top: 20px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    max-height: 80px;
+    height: 15vh;
   }
 
   &:before {
