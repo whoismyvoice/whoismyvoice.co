@@ -58,9 +58,10 @@ button, input {
     margin-top: 20px;
   }
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1280px) {
     max-height: 80px;
     height: 15vh;
+    margin-top: 20px;
   }
 
   &:before {
