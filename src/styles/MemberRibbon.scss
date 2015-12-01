@@ -26,8 +26,13 @@
 
   @media screen and (max-width: 1024px) {
     width: 85%;
-    transform: rotate(0deg);
     top: -15%;
+    left: 0;
+  }
+
+   @media screen and (max-width: 1170px) {
+    width: 75%;
+    top: -20%;
     left: 0;
   }
 }
@@ -56,6 +61,11 @@
   @media screen and (max-width: 1024px) {
     width: 80%;
     min-width: 60%;
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: 1170px) {
+    width: 80%;
     font-size: 14px;
   }
 }
@@ -95,6 +105,13 @@
     border-right-width: 30px;
     left: -1.6em;
   }
+
+  @media screen and (max-width: 1170px) {
+    border-left-width: 15px;
+    border-bottom-width: 40px;
+    border-right-width: 30px;
+    left: -1.8em;
+  }
 }
 
 .ribbon:after {
@@ -118,6 +135,13 @@
     border-bottom-width: 40px;
     border-left-width: 30px;
     right: -1.6em;
+  }
+
+  @media screen and (max-width: 1170px) {
+    border-right-width: 15px;
+    border-bottom-width: 40px;
+    border-left-width: 30px;
+    right: -1.8em;
   }
 }
 
