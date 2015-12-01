@@ -28,6 +28,10 @@
   @media screen and (max-width: 1280px) {
     margin-top: 20px;
   }
+
+  @media screen and (max-width: 1370px) {
+    margin-top: 20px;
+  }
 }
 
 .member-container {
@@ -47,6 +51,11 @@
 		margin-left: 2.25%;
     height: 160px;
 	}
+
+  @media screen and (max-width: 1370px) {
+    width: 30%;
+    height: 190px;
+  }
 }
 
 .member-name {

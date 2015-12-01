@@ -64,6 +64,12 @@ button, input {
     margin-top: 20px;
   }
 
+  @media screen and (max-width: 1370px) {
+    max-height: 60px;
+    height: 15vh;
+    margin-top: 20px;
+  }
+
   &:before {
     content: '';
     width: 2px;
