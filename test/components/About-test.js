@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 import About from '../../src/components/About.js';
 import * as utils from '../utils';
 import TestUtils from 'react-addons-test-utils';
@@ -6,7 +7,7 @@ import TestUtils from 'react-addons-test-utils';
 describe('Components', () => {
   describe('About', () => {
     const component = utils.shallowlyRenderedOutput(<About />);
-    const markup = React.renderToStaticMarkup(<About />);
+    const markup = ReactDOMServer.renderToStaticMarkup(<About />);
     const introduction = '<p class="page-introduction">';
     const fadedbg = '<div class="faded-bg faded-white hide"></div>';
 

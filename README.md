@@ -46,16 +46,14 @@ npm run test
 * JSCS `npm run jscs`
 
 ##Docker
-To set up the Docker image and container open a terminal window using `docker quickstart terminal`.
-* Navigate to senate-project folder
-* Build the image `docker build -t oursiberia/senate-project .`
-* After the image has been built, run a container w. `docker run -p 8080:8080 oursiberia/senate-project`
-* To see the running container: Get your docker-machine ip using `docker-machine ip default`
-* Visit docker-machine ip:8080
+**Build and serve Dockerfile
+```
+cd react-webpack-sass-docker-startkit
+docker build .
+docker images
+docker run <IMAGE ID>
 
-##Dependencies
-* [Superagent](https://www.npmjs.com/package/superagent)
-* [React Router](https://github.com/rackt/react-router)
+```
 
 ##Development Guidelines
 * `git fetch` and `git rebase` are preferred to `git pull`.

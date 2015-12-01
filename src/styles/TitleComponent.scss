@@ -9,23 +9,29 @@
   width: 45%;
   font-size: 32px;
   color: $dark-blue;
+
+  @media screen and (max-width: $iphone6) {
+    width: 80%;
+  }
 }
 
 .title-component--padding {
   padding-top: 10%;
   margin-bottom: 40px;
+
+  @media screen and (max-width: $iphone6) {
+    margin-bottom: 20px;
+  }
 }
 
 .title-component--results {
   width: 40%;
   font-size: 24px;
-}
 
-.title-component--actions {
-  margin-bottom: 50px;
-  width: 50%;
-  height: 180px;
-  font-size: 24px;
+  @media screen and (max-width: $iphone6) {
+    width: 100%;
+    font-size: 18px;
+  }
 }
 
 .title-component__description {
@@ -50,9 +56,51 @@
   }
 
   @media screen and (max-width: $iphone6) {
-    width: 60%;
+    width: 100%;
+    font-size: 28px;
+  }
+
+  @media screen and (max-width: $iphone5-min) {
+    width: 100%;
+    font-size: 24px;
   }
 }
+
+.title-component--actions {
+  margin-bottom: 50px;
+  width: 50%;
+  height: 180px;
+  font-size: 24px;
+
+  @media screen and (max-width: $iphone6) {
+    width: 80%;
+    margin-bottom: 0;
+  }
+
+  .title-component__description {
+    @media screen and (max-width: $iphone6) {
+      width: 100%;
+      font-size: 22px;
+    }
+
+    @media screen and (max-width: $iphone5-min) {
+      width: 100%;
+      font-size: 20px;
+    }
+  }
+}
+
+.two {
+  .title-component__description {
+    @media screen and (max-width: $iphone6) {
+      width: 90%;
+      margin: 0 auto;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+  }
+}
+
 
 .title-component__star-divider {
   margin: 2% 0 2% 0;
@@ -81,6 +129,10 @@
     &:nth-of-type(2) {
       font-size: 30px;
     }
+  }
+
+  @media screen and (max-width: $iphone6) {
+    margin-bottom: 5px;
   }
 }
 

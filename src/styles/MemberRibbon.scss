@@ -11,8 +11,17 @@
   min-width: 220px;
   transform: rotate(-2deg);
   font-family: 'Helvetica Neue';
+
   strong {
     font-weight: 600;
+  }
+
+  @media screen and (max-width: $iphone6) {
+    width: 100%;
+    transform: rotate(0deg);
+    min-width: 120px;
+    top: -15%;
+    left: 0;
   }
 }
 
@@ -29,6 +38,13 @@
   background-color: $light-red;
   text-align: center;
   color: #ecf0f1;
+
+  @media screen and (max-width: $iphone6) {
+    min-width: 80%;
+    width: 80%;
+    font-size: 10px;
+    padding: 0.3em 0.3em 0.3em 0.3em;
+  }
 }
 
 .ribbon:before, .ribbon:after {
@@ -38,6 +54,10 @@
   content: "";
   bottom: -0.8em;
   border: 1.5em solid darken(#B03532, 0%);
+
+  @media screen and (max-width: $iphone6) {
+    border: 0.8em solid darken(#B03532, 0%);
+  }
 }
 
 .ribbon:before {
@@ -48,6 +68,13 @@
   border-left-width: 25px;
   border-bottom-width: 50px;
   border-right-width: 40px;
+
+  @media screen and (max-width: $iphone6) {
+    left: -1.7em;
+    border-left-width: 12.5px;
+    border-bottom-width: 25px;
+    border-right-width: 20px;
+  }
 }
 
 .ribbon:after {
@@ -58,6 +85,13 @@
   border-right-width: 25px;
   border-bottom-width: 50px;
   border-left-width: 40px;
+
+  @media screen and (max-width: $iphone6) {
+    right: -1.7em;
+    border-right-width: 12.5px;
+    border-bottom-width: 25px;
+    border-left-width: 20px;
+  }
 }
 
 .ribbon .ribbon-content:before, .ribbon .ribbon-content:after {

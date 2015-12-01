@@ -18,6 +18,10 @@
 	opacity: 1;
   border: 8px solid $dark-red;
 
+  @media screen and (max-width: $iphone6) {
+    border: 4px solid $dark-red;
+  }
+
   &:before {
     content: '';
     position: absolute;
@@ -28,10 +32,15 @@
     border: 5px solid $white;
     z-index: 12;
     border-radius: 50%;
+
+    @media screen and (max-width: $iphone6) {
+      border: 2px solid $white;
+    }
   }
 
   &.animated {
     animation-delay: 1s;
+    -webkit-animation-delay: 1s;
   }
 
 	@media screen and (max-width: $iphone6) {

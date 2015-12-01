@@ -7,7 +7,8 @@
 	position: relative;
 
 	@media screen and (max-width: $iphone6) {
-		width: 85%;
+		width: 95%;
+    margin-top: 20px;
 	}
 
 	@media only screen
@@ -19,27 +20,9 @@
 	@media only screen
   and (min-device-width: 768px)
   and (max-device-width: 1024px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 1) {
-    width: 100%;
-  }
-
-	@media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
   and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 1) {
     width: 65%;
-  }
-
-  @media screen
-  and (min-width: 1000px)
-  and (max-width: 1199px) {
-
-    @media screen
-    and (max-height: 550px) {
-      margin-top: -35px;
-    }
   }
 }
 
@@ -50,14 +33,6 @@
   position: relative;
 
 	&:first-of-type {
-		@media screen and (max-width: $iphone6) {
-    	margin-left: 5%;
-  	}
-
-    @media screen and (max-width: $iphone5-min) {
-      margin-left: 6.5%;
-    }
-
   	@media only screen
     and (min-device-width: 768px)
     and (max-device-width: 1024px)
@@ -81,9 +56,10 @@
 
 	@media screen and (max-width: $iphone6)
 	and (-webkit-min-device-pixel-ratio: 2) {
-		width: 40%;
-		margin-right: 2%;
-		margin-left: 5%;
+		width: 44%;
+		margin-right: 2.25%;
+		margin-left: 2.25%;
+    height: 160px;
 	}
 }
 

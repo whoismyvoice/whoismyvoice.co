@@ -22,4 +22,8 @@
   width: 50%;
   height: 2px;
   background-color: $black;
+
+  @media screen and (max-width: $iphone6) {
+    width: 40%;
+  }
 }
