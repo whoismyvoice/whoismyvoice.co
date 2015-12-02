@@ -20,6 +20,10 @@ input {
   -webkit-appearance: none;
   -webkit-border-radius: 0;
 
+  &.address_search {
+    max-width: 250px;
+  }
+
   @media screen and (max-width: $iphone6) {
     margin-top: 3vh;
     padding: 15px;
@@ -67,5 +71,35 @@ input {
 
   &:-ms-input-placeholder {
     color: $black;
+  }
+}
+
+.locked__zip {
+  background-color: #333333;
+  padding: 8px;
+  padding-left: 15px;
+  padding-right: 25px;
+  color: $white;
+  width: 80px;
+  margin: 0 auto;
+  height: 20px;
+  font-size: 12px;
+  font-family: 'Open Sans';
+  font-weight: 600;
+  position: relative;
+  margin-bottom: 10px;
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    background-image: url('../img/icons/checkmark.png');
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position: center;
+    right: 8px;
+    height: 35px;
+    width: 20px;
+    top: 0;
   }
 }

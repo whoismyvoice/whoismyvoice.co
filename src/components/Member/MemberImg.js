@@ -11,11 +11,12 @@ class SenatorImg extends BaseComponent {
   render() {
   	const img = `https://raw.githubusercontent.com/unitedstates/images/gh-pages/congress/225x275/${this.props.bioguide}.jpg`;
 
-    const {chamber, repNumber} = this.props;
+    const {chamber, repNumber, party} = this.props;
 
     const imgClasses = cx(
       ['member-img'],
-      {'animated': chamber === 'house' && repNumber === 1 || chamber === 'senate' && repNumber > 0}
+      {'animated': chamber === 'house' && repNumber === 1 || chamber === 'senate' && repNumber > 0},
+      {'member--blue': party === 'D'}
     );
 
   	return <div className={imgClasses}>

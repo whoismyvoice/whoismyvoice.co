@@ -1,0 +1,73 @@
+@import 'variables';
+@import 'globals';
+
+.contact__button {
+  @include transition(0.5s);
+  width: 85%;
+  height: 70px;
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 20px;
+
+  &:hover {
+    @include transition(0.5s);
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+  }
+}
+
+.button__icon {
+  display: inline-block;
+  height: 55px;
+  width: 55px;
+  margin-left: 10px;
+  float: left;
+  margin-top: 5px;
+  margin-right: 20px;
+
+  &.twitter {
+    background-image: url('../img/icons/twitter.png');
+    background-position: center;
+    background-size: contain;
+  }
+
+  &.phone {
+    background-image: url('../img/icons/phone.png');
+    background-position: center;
+    background-size: contain;
+  }
+
+  &.email {
+    background-image: url('../img/icons/email.png');
+    background-position: center;
+    background-size: contain;
+  }
+
+  &.vote {
+    background-image: url('../img/icons/vote.png');
+    background-position: center;
+    background-size: contain;
+  }
+}
+
+.button__text {
+  display: block;
+  width: 50%;
+  margin-top: 5px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Open Sans';
+  color: $white;
+}
+
+.button__detail {
+  display: block;
+  width: 100%;
+  text-decoration: underline;
+  font-weight: bold;
+  text-align: left;
+  font-size: 14px;
+  color: $white;
+}

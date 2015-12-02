@@ -13,14 +13,14 @@ class SearchAddress extends BaseComponent {
     this.state = {
       address: '',
       error: false,
-      placeholder: 'Enter Street Name'
+      placeholder: 'Enter Your Street Address'
     };
   }
 	_handleChange(event) {
     this.setState({
       address: event.target.value,
       error: false,
-      placeholder: 'Enter Street Name'
+      placeholder: 'Enter Your Street Address'
     });
   }
   _handleFocus() {
@@ -32,7 +32,7 @@ class SearchAddress extends BaseComponent {
   _handleBlur() {
     if (this.state.address === '') {
       this.setState({
-        placeholder: 'Enter Street Name'
+        placeholder: 'Enter Your Street Address'
       });
     }
   }
@@ -41,13 +41,13 @@ class SearchAddress extends BaseComponent {
       if (this.state.address.length < 4) {
         this.setState({
           error: true,
-          placeholder: 'Enter Street Name',
+          placeholder: 'Enter Your Street Address',
           address: ''
         });
       } else {
         this.setState({
           error: false,
-          placeholder: 'Enter Street Name',
+          placeholder: 'Enter Your Street Address',
           address: ''
         });
         SenateActions.fetchSpecificMember(this.state.address, this.props.zip_code, this.props.state_full);
@@ -61,7 +61,7 @@ class SearchAddress extends BaseComponent {
     if (this.state.address < 4) {
       this.setState({
         error: true,
-        placeholder: 'Enter Street Name',
+        placeholder: 'Enter Your Street Address',
         address: ''
       });
     } else {
@@ -73,9 +73,11 @@ class SearchAddress extends BaseComponent {
     }
   }
   render() {
+
     const inputClasses = cx(
       ['input'],
-      {'error': this.state.error || this.props.error}
+      {'error': this.state.error || this.props.error},
+      {'address_search': this.props.search_address}
     );
 
   	return <div>

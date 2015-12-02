@@ -19,10 +19,10 @@ class SearchGroup extends BaseComponent {
 
   	if (number_representatives > 1 && SavedSettings.chamber === 'house' || did_search && number_representatives === undefined && error) {
   		return <div>
-  			<i>Zip Code: {zip_code}</i><br />
-  			<b>Please provide street name to find out which congressman represents you</b>
+  			<div className="locked__zip">ZIP: {zip_code}</div>
   			<SearchAddress
   				error={error}
+          search_address={true}
           zip_code={zip_code}
           state_full={state_full}
   			/>

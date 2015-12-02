@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 
 // Component
 import BaseComponent from '../BaseComponent';
@@ -10,8 +11,13 @@ class MemberRibbon extends BaseComponent {
   render() {
     const {name, state, party} = this.props;
 
+    const ribbonClasses = cx(
+      ['ribbon'],
+      {'ribbon--blue': party === 'D'}
+    );
+
     return <div className="ribbon-wrapper">
-      <h1 className="ribbon">
+      <h1 className={ribbonClasses}>
         <strong className="ribbon-content">
     	     ({party} - {state}) {name}
         </strong>

@@ -6,11 +6,11 @@ import style from './../../styles/SupportActions.scss';
 
 // Components
 import BaseComponent from '../BaseComponent';
-import Button from './../Button';
+import ContactButton from './../ContactButton';
 
 class SupportActions extends BaseComponent {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = SenateStore.getMember();
   }
 
@@ -40,35 +40,30 @@ class SupportActions extends BaseComponent {
       return check;
     }
 
-    return  <div className="supportActions">
-      <Button
-        color="purple-text"
-        type="external"
+    return  <div className="contactActions">
+      <ContactButton
+        text={`E-mail ${gender}`}
         link={ 'mailto:' + email }
-        text={ 'Email ' + gender }
-        secondary={email}
+        detail={email}
+        icon="email"
       />
-      <Button
-        color="purple-text"
-        type="external"
-        link={ 'tel:' + tel }
-        text={ 'Call ' + gender}
-        secondary={tel}
+      <ContactButton
+        text={`Call ${gender}`}
+        link={`tel:${tel}`}
+        detail={tel}
+        icon="phone"
       />
-      <Button
-        color="purple-text"
-        type="external"
+      <ContactButton
+        text={`Tweet at ${gender}`}
         link={twitterLink}
-        rel="external"
-        text={ 'Tweet at ' + gender }
-        secondary={'@' + twitter}
+        detail={`@${twitter}`}
+        icon="twitter"
       />
-      <Button
-        color="purple-text"
-        type="external"
-        link="https://registertovote.org/"
+      <ContactButton
         text="Register to vote"
-        secondary="registertovote.org"
+        link="https://registertovote.org/"
+        detail="registertovote.org"
+        icon="vote"
       />
     </div>;
   }

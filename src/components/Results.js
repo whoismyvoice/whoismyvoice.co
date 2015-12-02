@@ -62,6 +62,9 @@ class Results extends BaseComponent {
           classes="title-component--actions"
           actions={true}
         />
+        <div className="star__seperator">
+          <span>&#9733;</span>
+        </div>
         <SupportActions />
       </div>
     </div>;

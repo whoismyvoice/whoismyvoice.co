@@ -105,6 +105,7 @@ button, input {
     content: '\0276E';
     display: block;
     transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
     font-weight: normal;
     font-family: 'Helvetica';
     font-size: 16px;
@@ -136,8 +137,9 @@ button, input {
   z-index: 1;
   position: fixed;
   background-color: $light-white;
-  opacity: 0.6;
-  top: 0; bottom: 0;
+  opacity: 0.5;
+  top: 0;
+  bottom: 0;
   width: 20%;
 
   &.darken {
@@ -166,7 +168,7 @@ button, input {
 }
 
 .three {
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 .block--margin {
@@ -448,7 +450,7 @@ button, input {
 .light-color {
   @include transition(0.5s);
   background-color: $light-white!important;
-  background-image: url('../img/white-bg.png')!important;
+  background-image: url('../img/lighter_bg.png')!important;
 
   #left-blur, #right-blur {
     @include transition(0.5s);
@@ -459,13 +461,13 @@ button, input {
 .peach-color{
   @include transition(0.5s);
   background-color: $dark-orange-light;
-  background-image: url('../img/peach-bg.png');
+  background-image: url('../img/peachy_bg.png');
 }
 
 .dark-orange-color {
   @include transition(0.5s);
   background-color: $dark-orange-light;
-  background-image: url('../img/peach-bg.png');
+  background-image: url('../img/peachy_bg.png');
 }
 
 .light-white {
@@ -509,3 +511,27 @@ and (min-aspect-ratio: 13/9) {
     opacity: 0.95;
   }
 }
+
+.star__seperator {
+  width: 60%;
+  height: 2px;
+  display: block;
+  margin: 0 auto;
+  background-color: $white;
+  position: relative;
+  margin-bottom: 35px;
+
+  span {
+    width: 25px;
+    height: 25px;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    font-size: 20px;
+    position: relative;
+    top: -15px;
+    color: $white;
+    background-color: $dark-orange-light;
+  }
+}
+

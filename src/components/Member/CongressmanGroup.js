@@ -34,6 +34,7 @@ class CongressmanGroup extends BaseComponent {
         <MemberImg
           bioguide={item.bioguide_id}
           chamber={chamber}
+          party={item.party}
           repNumber={number_representatives}
         />
         <MemberRibbon

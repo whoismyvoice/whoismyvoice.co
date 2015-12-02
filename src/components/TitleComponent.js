@@ -89,6 +89,7 @@ class TitleComponent extends BaseComponent {
 
     const strikeClasses = cx(
       ['strike-out'],
+      {'white': represent || actions},
       {'hide': actions}
     );
 
