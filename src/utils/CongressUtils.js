@@ -4,7 +4,7 @@ import SenateConstants from '../constants/SenateConstants';
 import SettingsJSON from '../data/settings.json';
 import SenateStore from '../stores/SenateStore';
 
-const Settings = process.env.NODE_ENV !== 'production' ? SettingsJSON : SenateStore.getSettings();
+const Settings = process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development' ? SettingsJSON : SenateStore.getSettings();
 
 const getMemberDetails = (zipCode, lng, voters) => {
   const {API_KEY} = SenateConstants,

@@ -39,8 +39,30 @@
   }
 
   &.animated {
+    animation-name: bounceInDown;
+    -webkit-animation-name: bounceInDown;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
     animation-delay: 1s;
     -webkit-animation-delay: 1s;
+
+    @media only screen
+    and (min-device-width: 768px)
+    and (max-device-width: 1024px)
+    and (orientation: portrait)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      animation-name: fadeIn;
+      -webkit-animation-name: fadeIn;
+    }
+
+    @media only screen
+    and (min-device-width: 768px)
+    and (max-device-width: 1024px)
+    and (orientation: landscape)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      animation-name: fadeIn;
+      -webkit-animation-name: fadeIn;
+    }
   }
 
 	@media screen and (max-width: $iphone6) {
@@ -57,15 +79,6 @@
   and (-webkit-min-device-pixel-ratio: 1) {
     width: 20%;
     padding: 10% 0;
-  }
-
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: landscape)
-  and (-webkit-min-device-pixel-ratio: 1) {
-    width: 12%;
-    padding: 6% 0;
   }
 
 	img {

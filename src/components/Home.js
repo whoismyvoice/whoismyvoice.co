@@ -16,19 +16,18 @@ import TitleComponent from './TitleComponent';
 import style from './../styles/Home.scss';
 
 class Home extends BaseComponent {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this._bind('_handleChange', '_initializeFullpage', '_destroyFullpage');
     this.state = SenateStore.getMember();
   }
 
   componentDidMount() {
-
     if (this.state.did_search) {
       this._initializeFullpage();
     }
     if (process.env.NODE_ENV === 'production' && this.state.settings === null) {
-      DataUtils.saveFetchedData();
+      //DataUtils.saveFetchedData();
     }
     SenateStore.addChangeListener(this._handleChange);
   }
