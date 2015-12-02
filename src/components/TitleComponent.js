@@ -20,7 +20,8 @@ class TitleComponent extends BaseComponent {
       actions,
       classes,
       front,
-      represent
+      represent,
+      several
     } = this.props;
 
     const {
@@ -79,12 +80,12 @@ class TitleComponent extends BaseComponent {
 
     const representClasses = cx(
       ['title-component__represent'],
-      {'hide': !represent}
+      {'hide': !represent || several}
     );
 
     const starClasses = cx(
       ['title-component__star-divider'],
-      {'hide': !represent || actions}
+      {'hide': !represent || actions || several}
     );
 
     const strikeClasses = cx(

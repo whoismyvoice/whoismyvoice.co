@@ -1,9 +1,9 @@
 import React from 'react';
-import SenateStore from '../stores/SenateStore';
-import SettingsJSON from './../data/settings.json';
+import SenateStore from '../../stores/SenateStore';
+import SettingsJSON from '../../data/settings.json';
 
 // Components
-import BaseComponent from './BaseComponent';
+import BaseComponent from '../BaseComponent';
 import SearchInput from './SearchInput';
 import SearchAddress from './SearchAddress';
 

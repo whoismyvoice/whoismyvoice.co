@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router';
 
 // Component
-import BaseComponent from './BaseComponent';
+import BaseComponent from '../BaseComponent';
 
 // Styles
-import style from './../styles/ContactButton.scss';
+import style from '../../styles/ContactButton.scss';
 
 class ContactButton extends BaseComponent {
   render() {

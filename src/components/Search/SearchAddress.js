@@ -1,10 +1,10 @@
 import React from 'react';
-import SenateActions from '../actions/SenateActions';
+import SenateActions from '../../actions/SenateActions';
 import cx from 'classnames';
 
 // Component
-import BaseComponent from './BaseComponent';
-import TextButton from './TextButton';
+import BaseComponent from '../BaseComponent';
+import TextButton from '../Buttons/TextButton';
 
 class SearchAddress extends BaseComponent {
   constructor() {

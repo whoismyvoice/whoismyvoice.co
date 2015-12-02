@@ -1,13 +1,13 @@
 import React from 'react';
-import SenateActions from '../actions/SenateActions';
+import SenateActions from '../../actions/SenateActions';
 import cx from 'classnames';
 
 // Component
-import BaseComponent from './BaseComponent';
-import TextButton from './TextButton';
+import BaseComponent from '../BaseComponent';
+import TextButton from '../Buttons/TextButton';
 
 // Styles
-import style from './../styles/SearchInput.scss';
+import style from '../../styles/SearchInput.scss';
 
 class SearchInput extends BaseComponent {
   constructor() {

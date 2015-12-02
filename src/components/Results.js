@@ -1,11 +1,12 @@
 import React from 'react';
 import SenateActions from '../actions/SenateActions';
+import ContainerActions from '../actions/ContainerActions';
 
 // Components
 import TitleComponent from './TitleComponent';
-import TextButton from './TextButton';
+import TextButton from './Buttons/TextButton';
 import SupportActions from './Member/SupportActions';
-import CongressmanGroup from './Member/CongressmanGroup';
+import MemberResults from './MemberResults';
 import BaseComponent from './BaseComponent';
 
 class Results extends BaseComponent {
@@ -29,14 +30,14 @@ class Results extends BaseComponent {
     event.preventDefault();
     event.stopPropagation();
     // Listen for event.target.id in order to decipher which of the arrows was tapped
-    // ContainerActions.setCurrentMember(event.target.id);
-
+    ContainerActions.setCurrentMember(event.target.id);
     $.fn.fullpage.moveSectionDown();
   }
 
 	render() {
 		const {
-      backgroundClasses
+      backgroundClasses,
+      numRep
     } = this.props;
 
     return <div className={backgroundClasses} id="fullpage">
@@ -45,15 +46,8 @@ class Results extends BaseComponent {
           text="Back"
           onClick={this._handleRestart}
         />
-        <CongressmanGroup />
-        <TitleComponent
-          represent={true}
-          classes="title-component--results"
-        />
-        <div className="line-seperator line-seperator--small"></div>
-        <TextButton
-          text="What can I do?"
-          onClick={this._handleClick}
+        <MemberResults
+          numRep={numRep}
         />
       </div>
       <div className="section block three">

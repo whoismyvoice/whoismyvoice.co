@@ -7,25 +7,33 @@ import Settings from '../../data/settings.json';
 import BaseComponent from '../BaseComponent';
 import MemberImg from './MemberImg';
 import MemberRibbon from './MemberRibbon';
+import NavButton from '../Buttons/NavButton';
 
 // Styles
 import style from './../../styles/CongressmanGroup.scss';
 
 class CongressmanGroup extends BaseComponent {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = SenateStore.getMember();
   }
+
   render() {
     const {representatives, settings, number_representatives} = this.state;
 
     let wrapperClasses = 'senatorWrapper',
-      {chamber} = settings ? settings : Settings;
+        arrowClasses = 'arrow',
+        {chamber} = settings ? settings : Settings;
 
     if (representatives) {
       wrapperClasses = cx(
         ['member-wrapper'],
         {'several': representatives.length > 1}
+      );
+
+      arrowClasses = cx(
+        ['arrow'],
+        {'hide': representatives.length === 1}
       );
     }
 
@@ -42,8 +50,16 @@ class CongressmanGroup extends BaseComponent {
           state={item.state}
           party={item.party}
         />
+        <span className={arrowClasses} id={idx}>
+          <div className="line-seperator line-seperator--small"></div>
+          <NavButton
+            text="What can I do?"
+            id={idx}
+          />
+        </span>
       </div>;
     });
+
     return <div className={wrapperClasses}>
       {members}
     </div>;

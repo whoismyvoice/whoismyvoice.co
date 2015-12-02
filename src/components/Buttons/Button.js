@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
-import SenateActions from '../actions/SenateActions';
+import SenateActions from '../../actions/SenateActions';
 
 // Component
-import BaseComponent from './BaseComponent';
+import BaseComponent from '../BaseComponent';
 
 // Styles
-import style from './../styles/Button.scss';
+import style from '../../styles/Button.scss';
 
 class Button extends BaseComponent {
   constructor() {

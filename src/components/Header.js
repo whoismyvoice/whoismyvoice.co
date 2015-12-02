@@ -1,9 +1,9 @@
 import React from 'react';
-import Button from './Button';
 import cx from 'classnames';
 
 // Components
 import BaseComponent from './BaseComponent';
+import Button from './Buttons/Button';
 
 // Styles
 import style from './../styles/Header.scss';
@@ -51,11 +51,6 @@ class Header extends BaseComponent {
             color={'white-text'}
             link="/about"
             text="About This Project"
-          />
-          <Button
-            color={'white-text'}
-            link="/hfc"
-            text="House Freedom Caucus"
           />
           <Button
             color={'white-text'}

@@ -7,7 +7,7 @@ import cx from 'classnames';
 
 // Components
 import BaseComponent from './BaseComponent';
-import SearchGroup from './SearchGroup';
+import SearchGroup from './Search/SearchGroup';
 import Results from './Results';
 import FadeBorder from './FadeBorder';
 import TitleComponent from './TitleComponent';
@@ -136,6 +136,7 @@ class Home extends BaseComponent {
         </div>
         <Results
           backgroundClasses={backgroundClasses}
+          numRep={NUMBER_REPRESENTATIVES}
         />
       </div>
     </div>;

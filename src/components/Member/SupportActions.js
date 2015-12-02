@@ -6,7 +6,7 @@ import style from './../../styles/SupportActions.scss';
 
 // Components
 import BaseComponent from '../BaseComponent';
-import ContactButton from './../ContactButton';
+import ContactButton from './../Buttons/ContactButton';
 
 class SupportActions extends BaseComponent {
   constructor(props) {
