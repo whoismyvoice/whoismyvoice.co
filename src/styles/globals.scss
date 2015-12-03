@@ -56,7 +56,7 @@ button, input {
 
   @media screen and (max-width: $iphone6) {
     max-height: 180px;
-    margin-top: 20px;
+    margin-top: 00px;
   }
 
   @media screen and (max-width: 1280px) {
@@ -115,11 +115,36 @@ button, input {
     font-weight: normal;
     font-family: 'Helvetica';
     font-size: 16px;
+
+    @media screen and (max-width: $iphone6) {
+      font-size: 14px;
+      left: -1px;
+    }
+
+    @media only screen
+    and (min-device-width: 768px)
+    and (max-device-width: 1024px)
+    and (orientation: portrait)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      left: -1px;
+    }
+
+    @media only screen
+    and (min-device-width: 768px)
+    and (max-device-width: 1024px)
+    and (orientation: landscape)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      left: -1px;
+    }
   }
 }
 
 .line-seperator--small {
   height: 15vh;
+
+  @media screen and (max-width: $iphone5-min) {
+    height: 10vh;
+  }
 }
 
 #left-blur, #right-blur {

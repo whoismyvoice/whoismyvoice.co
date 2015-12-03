@@ -39,8 +39,8 @@
   }
 
   @media screen and (max-width: $iphone6) {
-    width: 95%;
-    margin-top: 20px;
+    width: 100%;
+    margin-top: 30px;
   }
 }
 
@@ -55,7 +55,7 @@
   }
 
   @media screen and (max-width: 1370px) {
-    width: 30%;
+    width: 35%;
     height: 190px;
     margin-top: -10px;
   }
@@ -83,16 +83,16 @@
 
   @media screen and (max-width: $iphone6)
   and (-webkit-min-device-pixel-ratio: 2) {
-    width: 44%;
-    margin-right: 2.25%;
-    margin-left: 2.25%;
-    height: 160px;
+    width: 40%;
+    margin-right: 5%;
+    margin-left: 5%;
+    height: 130px;
   }
 
   @media screen and (max-width: $iphone5-min) {
-    width: 45%;
-    margin-right: 1%;
-    margin-left: 1%;
+    width: 44%;
+    margin-right: 3%;
+    margin-left: 3%;
     height: 130px;
   }
 }

@@ -19,6 +19,18 @@
     font-size: 12px;
     margin-top: 30px;
   }
+
+  @media screen and (max-width: $iphone6) {
+    font-size: 12px;
+    margin-top: 30px;
+    width: 100px;
+  }
+
+  @media screen and (max-width: $iphone5-min) {
+    font-size: 10px;
+    margin-top: 20px;
+    width: 100px;
+  }
 }
 
 .text-button--back {
