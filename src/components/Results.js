@@ -26,12 +26,20 @@ class Results extends BaseComponent {
     this._destroyFullpage();
   }
 
+  _goBack() {
+    if($.fn.fullpage) {
+      $.fn.fullpage.moveSectionUp();
+    }
+  }
+
   _handleClick(event) {
     event.preventDefault();
     event.stopPropagation();
     // Listen for event.target.id in order to decipher which of the arrows was tapped
     ContainerActions.setCurrentMember(event.target.id);
-    $.fn.fullpage.moveSectionDown();
+    if($.fn.fullpage) {
+      $.fn.fullpage.moveSectionDown();
+    }
   }
 
 	render() {
@@ -51,6 +59,10 @@ class Results extends BaseComponent {
         />
       </div>
       <div className="section block three">
+        <TextButton
+          text="Back"
+          onClick={this._goBack}
+        />
         <TitleComponent
           desc={true}
           classes="title-component--actions"

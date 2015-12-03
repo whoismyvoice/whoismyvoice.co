@@ -29,9 +29,8 @@ class TitleComponent extends BaseComponent {
       settings
     } = this.state;
 
-    const {chamber, bill_desc, voted_for, voted_against, impact_text} = settings ? settings : Settings,
-      member_single = chamber === 'senate' ? 'Senator': 'Congressman',
-      action = chamber === 'senate' ? 'co-sponsored the bill to' : 'voted to';
+    const {chamber, bill_desc, vote_focus, impact_text, vote_favor, voted_for, voted_against} = settings ? settings : Settings,
+      member_single = chamber === 'senate' ? 'Senator': 'Congressman';
 
     let representative,
       {pre_text} = settings ? settings : Settings,
@@ -40,12 +39,14 @@ class TitleComponent extends BaseComponent {
       member_name = '',
       vote_status = '',
       impact,
+      action,
       member = chamber === 'senate' ? 'Senator': 'Congressman',
       represent_text = 'represents';
 
     if (this.state.representatives) {
       representative = this.state.representatives[0];
-      vote_status = representative.voted === 'Yea' ? `${voted_for}` : `${voted_against}`;
+      vote_status = `${vote_focus}`;
+      action = representative.voted === 'Nay' ? voted_against : voted_for;
 
       if (this.state.representatives.length === 1) {
         impact = impact_text.replace('#gender_third', `this ${representative.gender_full}`);
@@ -60,9 +61,8 @@ class TitleComponent extends BaseComponent {
     }
 
     const preliminary_text = pre_text.replace('#member_type', member).replace('#member_name', member_name).replace('#action', action);
-
     if (!did_search || desc && did_search && !actions) {
-      vote_status = `${voted_for}`;
+      vote_status = `${vote_focus}`;
       final_char = '?';
       pre_text = bill_desc.replace('#member', member_single);
     } else if (did_search && !desc || !desc) {

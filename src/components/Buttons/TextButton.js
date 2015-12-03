@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import cx from 'classnames';
 
 // Component
 import BaseComponent from '../BaseComponent';
@@ -9,8 +10,12 @@ import style from '../../styles/TextButton.scss';
 
 class TextButton extends BaseComponent {
   render() {
-    const {link, flush, text} = this.props;
-    return <a href={link} className="text-button" onClick={this.props.onClick}>
+    const {link, flush, text} = this.props,
+    buttonClasses = cx(
+      ['text-button'],
+      {'text-button--back': text === 'Back'}
+    );
+    return <a href={link} className={buttonClasses} onClick={this.props.onClick}>
       {text}
       <div className="text-button-border">
       </div>
