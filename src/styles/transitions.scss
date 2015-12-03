@@ -1,7 +1,7 @@
 // TRANSITIONS
 
 @mixin transition($time) {
-  -webkit-transition:all $time ease-in;
+  -webkit-transition:all $time linear;
   -moz-transition:all $time ease-in;
   -ms-transition:all $time ease-in;
   -o-transition:all $time ease-in;
@@ -9,7 +9,7 @@
 }
 
 @mixin fade($time) {
-  -webkit-transition:opacity $time ease-in;
+  -webkit-transition:opacity $time linear;
   -moz-transition:opacity $time ease-in;
   -ms-transition:opacity $time ease-in;
   -o-transition:opacity $time ease-in;

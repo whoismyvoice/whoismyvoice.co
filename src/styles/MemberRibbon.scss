@@ -8,12 +8,24 @@
   position: relative;
   margin: 0 auto;
   width: 65%;
-  min-width: 200px;
+  min-width: 220px;
   transform: rotate(-2deg);
   font-family: 'Open Sans';
 
   strong {
     font-weight: 600;
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 85%;
+    top: -15%;
+    left: 0;
+  }
+
+   @media screen and (max-width: 1170px) {
+    width: auto;
+    top: -28%;
+    left: 0;
   }
 
   @media screen and (max-width: $iphone6) {
@@ -24,16 +36,9 @@
     left: 0;
   }
 
-  @media screen and (max-width: 1024px) {
-    width: 85%;
-    top: -15%;
-    left: 0;
-  }
-
-   @media screen and (max-width: 1170px) {
-    width: 75%;
+  @media screen and (max-width: $iphone5-min) {
+    width: 100%;
     top: -20%;
-    left: 0;
   }
 }
 
@@ -50,13 +55,6 @@
   background-color: $light-red;
   text-align: center;
   color: #ecf0f1;
-
-  @media screen and (max-width: $iphone6) {
-    min-width: 80%;
-    width: 80%;
-    font-size: 10px;
-    padding: 0.3em 0.3em 0.3em 0.3em;
-  }
 
   @media screen and (max-width: 1024px) {
     width: 80%;
@@ -83,6 +81,27 @@
   and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 1) {
     font-size: 13px;
+    width: 60%;
+  }
+
+  @media screen and (max-height: 650px) {
+    width: 70%;
+    min-width: 220px;
+  }
+
+  @media screen and (max-width: $iphone6) {
+    min-width: 100%;
+    width: 100%;
+    font-size: 10px;
+    padding: 0.3em 0.3em 0.3em 0.3em;
+  }
+
+   @media screen and (max-width: $iphone5-min) {
+    min-width: 100%;
+    width: auto;
+    font-size: 10px;
+    font-size: 9px;
+    padding: 0.3em 0.3em 0.3em 0.3em;
   }
 }
 
@@ -116,13 +135,6 @@
   border-bottom-width: 40px;
   border-right-width: 30px;
 
-  @media screen and (max-width: $iphone6) {
-    left: -1.7em;
-    border-left-width: 12.5px;
-    border-bottom-width: 25px;
-    border-right-width: 20px;
-  }
-
   @media screen and (max-width: 1024px) {
     border-left-width: 15px;
     border-bottom-width: 40px;
@@ -136,6 +148,13 @@
     border-right-width: 30px;
     left: -1.8em;
   }
+
+  @media screen and (max-width: $iphone6) {
+    left: -1.7em;
+    border-left-width: 12.5px;
+    border-bottom-width: 25px;
+    border-right-width: 20px;
+  }
 }
 
 .ribbon:after {
@@ -146,13 +165,6 @@
   border-right-width: 25px;
   border-bottom-width: 40px;
   border-left-width: 30px;
-
-  @media screen and (max-width: $iphone6) {
-    right: -1.7em;
-    border-right-width: 12.5px;
-    border-bottom-width: 25px;
-    border-left-width: 20px;
-  }
 
   @media screen and (max-width: 1024px) {
     border-right-width: 15px;
@@ -166,6 +178,13 @@
     border-bottom-width: 40px;
     border-left-width: 30px;
     right: -1.8em;
+  }
+
+  @media screen and (max-width: $iphone6) {
+    right: -1.7em;
+    border-right-width: 12.5px;
+    border-bottom-width: 25px;
+    border-left-width: 20px;
   }
 }
 
