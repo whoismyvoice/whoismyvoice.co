@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'transitions';
 
 // BEM & OOCSS
 body {
@@ -114,22 +115,6 @@ button, input {
 
 .line-seperator--small {
   height: 15vh;
-}
-
-@mixin transition($time) {
-  -webkit-transition:all $time ease-in;
-  -moz-transition:all $time ease-in;
-  -ms-transition:all $time ease-in;
-  -o-transition:all $time ease-in;
-  transition:all $time ease-in;
-}
-
-@mixin fade($time) {
-  -webkit-transition:opacity $time ease-in;
-  -moz-transition:opacity $time ease-in;
-  -ms-transition:opacity $time ease-in;
-  -o-transition:opacity $time ease-in;
-  transition:opacity $time ease-in;
 }
 
 #left-blur, #right-blur {

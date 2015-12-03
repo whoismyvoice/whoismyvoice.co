@@ -1,5 +1,5 @@
 @import 'variables';
-@import 'globals';
+@import 'transitions';
 
 .errorMsg {
   @include transition(0.5s);
