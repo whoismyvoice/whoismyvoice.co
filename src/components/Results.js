@@ -14,24 +14,20 @@ class Results extends BaseComponent {
     super();
     this._bind('_handleClick', '_destroyFullpage', '_handleRestart');
   }
-
   _destroyFullpage() {
     if ($.fn.fullpage.destroy !== undefined) {
       $.fn.fullpage.destroy();
     }
   }
-
   _handleRestart() {
     SenateActions.flush();
     this._destroyFullpage();
   }
-
   _goBack() {
     if($.fn.fullpage) {
       $.fn.fullpage.moveSectionUp();
     }
   }
-
   _handleClick(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -41,7 +37,6 @@ class Results extends BaseComponent {
       $.fn.fullpage.moveSectionDown();
     }
   }
-
 	render() {
 		const {
       backgroundClasses,

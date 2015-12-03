@@ -212,6 +212,8 @@
   height: 20px;
   font-size: 20px;
   color: #E04242;
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
 
   @media only screen
   and (min-device-width: 768px)
