@@ -29,4 +29,8 @@ class NavButton extends BaseComponent {
   }
 }
 
+NavButton.propTypes = {
+  text: React.PropTypes.string
+};
+
 export default NavButton;

@@ -10,7 +10,6 @@ class FadeBorder extends BaseComponent {
       [''],
       {'darken': this.props.darken}
     );
-
     return <div>
   		<div id="left-blur" className={leftClasses}></div>
       <div id="right-blur" className={leftClasses}></div>

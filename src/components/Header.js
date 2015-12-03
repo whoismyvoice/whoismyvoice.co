@@ -15,8 +15,7 @@ class Header extends BaseComponent {
     this.state = {
       didClick: false
     }
-  };
-
+  }
   _handleClick(evt) {
     evt.preventDefault();
     evt.stopPropagation();
@@ -30,12 +29,10 @@ class Header extends BaseComponent {
       ['burger-icon'],
       {'burger--is-active': this.state.didClick}
     );
-
     const menuClasses = cx(
       ['navigation'],
       {'navigation--is-active': this.state.didClick}
     );
-
     return <div className="header">
       <div className="navigation-menu">
         <div className="burger-wrapper" onClick={this._handleClick}>

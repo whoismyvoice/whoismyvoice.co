@@ -30,7 +30,6 @@ class CongressmanGroup extends BaseComponent {
         ['member-wrapper'],
         {'several': representatives.length > 1}
       );
-
       arrowClasses = cx(
         ['arrow'],
         {'hide': representatives.length === 1}

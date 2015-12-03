@@ -71,14 +71,11 @@ class Home extends BaseComponent {
   }
   _detectScroll() {
     let ts;
-
     $(document).bind('touchstart', function(e) {
       ts = e.originalEvent.touches[0].clientY;
     });
-
     $(document).bind('touchend', function(e) {
       let te = e.originalEvent.changedTouches[0].clientY;
-
       if (ts > te + 5){
         $.fn.fullpage.moveSectionDown();
       }
@@ -114,7 +111,6 @@ class Home extends BaseComponent {
       {'light-color': !DID_SEARCH || NUMBER_REPRESENTATIVES > 1 && chamber === 'house' || NUMBER_REPRESENTATIVES === undefined},
       {'peach-color': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES !== undefined},
       {'visible': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
-      {'dark-orange-color': this.state.current_screen === 2},
       {'full': DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && chamber === 'senate'}
     );
 

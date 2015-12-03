@@ -10,8 +10,8 @@ import BaseComponent from './BaseComponent';
 import style from './../styles/TitleComponent.scss';
 
 class TitleComponent extends BaseComponent {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = SenateStore.getMember();
   }
   render() {
@@ -55,7 +55,7 @@ class TitleComponent extends BaseComponent {
         impact = impact_text.replace('#gender_third', `this person`);
         represent_gender = 'These people';
         represent_text = 'represent';
-        member = chamber === 'senate' ? 'Senators' : 'Representatives';
+        member = chamber === 'senate' ? 'Senators from '+representative.state_name : 'Representatives from '+representative.state_name;
       }
     }
 
@@ -75,7 +75,8 @@ class TitleComponent extends BaseComponent {
 
     const titleClasses = cx(
       ['title-component', classes],
-      {'uppercase': front}
+      {'uppercase': front},
+      {'title-component--wider': several}
     );
 
     const representClasses = cx(

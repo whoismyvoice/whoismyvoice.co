@@ -16,11 +16,9 @@ class FadedBG extends BaseComponent {
   componentDidMount() {
     window.addEventListener('scroll', this._handleScroll);
   }
-
   componentWillUnmount() {
     window.removeEventListener('scroll', this._handleScroll);
   }
-
   _handleScroll() {
     if ($(document).scrollTop() > 50) {
       this._addScrollState();
@@ -28,19 +26,16 @@ class FadedBG extends BaseComponent {
       this._disruptScroll();
     }
   }
-
   _disruptScroll() {
     this.setState({
       did_scroll: false
     });
   }
-
   _addScrollState() {
     this.setState({
       did_scroll: true
     });
   }
-
   render() {
     const fadedClasses = cx(
       ['faded-bg'],
