@@ -10,7 +10,6 @@ const settingsSchema = new mongoose.Schema({
   pre_text: String,
   impact_text: String,
   vote_favor: String,
-  vote_focus: String,
   voted_for: String,
   voted_against: String
 });
