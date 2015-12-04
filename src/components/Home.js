@@ -101,8 +101,7 @@ class Home extends BaseComponent {
 
     const backgroundClasses = cx(
       ['second-wrapper'],
-      {'move-up': DID_SEARCH},
-      {'static': !DID_SEARCH}
+      {'move-up': DID_SEARCH}
     );
 
     const fadingClasses = cx(
@@ -113,7 +112,6 @@ class Home extends BaseComponent {
     const containerClasses = cx(
       ['container'],
       {'reveal': DID_SEARCH},
-      {'light-color': !DID_SEARCH || NUMBER_REPRESENTATIVES > 1 && chamber === 'house' || NUMBER_REPRESENTATIVES === undefined},
       {'visible': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
       {'full': DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && chamber === 'senate'}
     );
@@ -123,7 +121,7 @@ class Home extends BaseComponent {
       <div className="overlay">
         This site is only supported in portrait mode. Please turn your phone.
       </div>
-      <div className={blockClasses} onScroll={this._handleScroll}>
+      <div className={blockClasses}>
       	<div className="section-block">
           <TitleComponent
             front={true}

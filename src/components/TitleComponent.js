@@ -87,9 +87,7 @@ class TitleComponent extends BaseComponent {
 
     const starClasses = cx(
       ['title-component__star-divider'],
-      {'hide': !represent || actions || several},
-      {'animated': did_search},
-      {'fadeIn': did_search}
+      {'hide': !represent || actions || several}
     );
 
     const strikeClasses = cx(
@@ -99,7 +97,7 @@ class TitleComponent extends BaseComponent {
     );
 
     const threeStars = cx(
-      ['three-stars', 'animated', 'zoomIn'],
+      ['three-stars'],
       {'hide': represent || actions}
     );
 

@@ -47,7 +47,7 @@ AppDispatcher.register(payload => {
         _store.error = true;
       } else {
         const details = action.response[0];
-        _store.state_full = details.state_name || null;
+        _store.state_full = details.state_full || null;
         _store.did_search = true;
         _store.error = false;
         _store.representatives = action.response || null;

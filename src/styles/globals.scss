@@ -152,13 +152,10 @@ button, input {
   position: fixed;
   z-index: 0;
   width: 100%;
-  display: block;
   height: 100%;
-  margin: 0 auto;
   background-image: url('../img/bg_mask.png');
+  background-repeat: no-repeat;
   background-color: $light-white;
-  background-position: center center;
-  background-size: cover;
   &.orange-bg {
     @include transition(1s);
     background-color: $dark-orange-light;
@@ -208,9 +205,11 @@ button, input {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 89.1vh;
+  min-height: 96.5vh;
+  height: 100%;
   width: 100%;
   padding-top: 5%;
+  background-color: $light-white;
   text-align: center;
 
   @media only screen
