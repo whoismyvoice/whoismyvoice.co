@@ -9,7 +9,7 @@
 	@media only screen
   and (min-width: 421px)
   and (max-width: 799px) {
-    width: 95%;
+    width: 100%;
   }
 
   @media screen and (max-width: 1280px) {
@@ -75,6 +75,13 @@
   and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 1) {
     width: 45%;
+  }
+
+  @media only screen
+  and (min-width: 421px)
+  and (max-width: 799px) {
+    width: 45%;
+    height: 200px;
   }
 
   @media screen and (max-height: 650px) {
