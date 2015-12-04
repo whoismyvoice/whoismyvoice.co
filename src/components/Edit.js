@@ -23,6 +23,8 @@ class Edit extends BaseComponent {
       '_onBlurID',
       '_onChangeBillDesc',
       '_onBlurBillDesc',
+      '_onBlurBillTitle',
+      '_onChangeBillTitle',
       '_onChangeImpactText',
       '_onBlurImpactText',
       '_onChangePretext',
@@ -40,6 +42,7 @@ class Edit extends BaseComponent {
     this.state = {
       id: 1,
       bill_id: '',
+      bill_title: '',
       bill_desc: '',
       vote_favor: '',
       chamber: '',
@@ -90,6 +93,14 @@ class Edit extends BaseComponent {
   }
 
   // Handle Bill desc input field
+  _onChangeBillTitle(evt) {
+    this.setState({bill_title: evt.target.value});
+  }
+  _onBlurBillTitle(evt) {
+    this._checkForErrors('Bill title', 0, 5, evt.target.value.length);
+  }
+
+  // Handle Bill desc input field
   _onChangeBillDesc(evt) {
     this.setState({bill_desc: evt.target.value});
   }
@@ -135,14 +146,15 @@ class Edit extends BaseComponent {
     .send({
       id: 1,
       bill_id: this.state.bill_id,
+      bill_title: this.state.bill_title,
       bill_desc: this.state.bill_desc,
       vote_favor: this.state.vote_favor,
       chamber: this.state.chamber,
       created_at: Date.now(),
       pre_text: this.state.pre_text || 'Pre-text is not defined',
       impact_text: this.state.impact_text || 'Impact is not defined',
-      voted_for: this.state.voted_for || 'Single voted for is not defined',
-      voted_against: this.state.voted_against || 'Single voted against is not defined'
+      voted_for: this.state.voted_for || 'Voted for is not defined',
+      voted_against: this.state.voted_against || 'Voted against is not defined'
     })
     .set('Accept', 'application/json')
     .end((err, res) => {
@@ -154,6 +166,7 @@ class Edit extends BaseComponent {
   render() {
     const {
       bill_id,
+      bill_title,
       bill_desc,
       vote_favor,
       chamber,
@@ -165,7 +178,7 @@ class Edit extends BaseComponent {
     } = this.state;
 
     const isEmpty = () => {
-      if (bill_id === '' || bill_desc === '' || chamber === 'Senate' && vote_favor === '' || chamber === '' || pre_text === '' || impact_text === '' || voted_for === '' || voted_against === '') {
+      if (bill_id === '' || bill_title === '' || bill_desc === '' || chamber === 'Senate' && vote_favor === '' || chamber === '' || pre_text === '' || impact_text === '' || voted_for === '' || voted_against === '') {
         return true;
       } else {
         return false;
@@ -220,7 +233,7 @@ class Edit extends BaseComponent {
         <div className="card">
           <h2>Bill details</h2>
           <div className={previewClassesBillDesc}>
-            {`${bill_desc.replace('#member', 'Congressman')}`}
+            {`${bill_desc.replace('#member', 'Congressman')} ${bill_title}?`}
           </div>
           <EditInput
             onChange={this._onChangeID}
@@ -230,11 +243,19 @@ class Edit extends BaseComponent {
             placeholder="Enter bill id"
           />
           <EditInput
+            onChange={this._onChangeBillTitle}
+            onBlur={this._onBlurBillTitle}
+            value={this.state.bill_title}
+            example="reverse Obamacare"
+            placeholder="Bill Title"
+            className="long"
+          />
+          <EditInput
             onChange={this._onChangeBillDesc}
             onBlur={this._onBlurBillDesc}
             note="Note: Use tag #member to be replaced by senator/congressman"
             value={this.state.bill_desc}
-            example="Did my #member vote against the Safe and Accurate Food Labeling Act of 2015?"
+            example="Did my #member vote to #bill_title"
             placeholder="Question of the bill (shown on the front page)"
             className="long"
           />
@@ -251,17 +272,17 @@ class Edit extends BaseComponent {
         <div className="card">
           <h2>Result texts</h2>
           <div className={previewClasses}>
-            {`${pre_text.replace('#member_type', 'Congressman, ').replace('#member_name', 'Name Nameson').replace('#action', 'voted to')} ${voted_for}`}
+            {`${pre_text.replace('#member_type', 'Congressman, ').replace('#member_name', 'Name Nameson').replace('#action', 'voted to')} ${voted_for}${bill_title}`}
           </div>
-          The text shown on the result page is a combination of: "<b>[pre-text] [vote]</b>".
-          <br />E.g. [Your Congressman, Name Nameson voted to] [reverse Obamacare]
+          The text shown on the result page is a combination of: "<b>[pre-text] [voted-for/voted-against] [bill title]</b>".
+          <br />E.g. [Your Congressman, Name Nameson] [voted to] [reverse Obamacare]
           <br /><br />
           <EditInput
             onChange={this._onChangePretext}
             onBlur={this._onBlurPretext}
             note="Note: You can use tags: #member_type, #member_name #action"
             value={this.state.cosponsor_post_text}
-            example="Your #member_type, #name #action"
+            example="Your #member_type, #member_name #action"
             placeholder="Pre-text "
             className="long"
           />
@@ -269,16 +290,16 @@ class Edit extends BaseComponent {
             onChange={this._onChangeVotedFor}
             onBlur={this._onBlurVotedFor}
             value={this.state.voted_for}
-            example="reverse Obamacare"
-            placeholder="Voted for text shown after pre-text"
+            example="House: voted to. Senate: co-sponsored the bill to"
+            placeholder="Voted for text shown before bill focus"
             className="long"
           />
           <EditInput
             onChange={this._onChangeVotedAgainst}
             onBlur={this._onBlurVotedAgainst}
             value={this.state.voted_against}
-            example="not reverse Obamacare"
-            placeholder="Voted against text shown after pre-text"
+            example="House: voted against. Senate: did not co-sponsor the bill to"
+            placeholder="Voted against text shown before bill focus"
             className="long"
           />
         </div>

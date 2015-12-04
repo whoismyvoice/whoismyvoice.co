@@ -29,7 +29,7 @@ class TitleComponent extends BaseComponent {
       settings
     } = this.state;
 
-    const {chamber, bill_desc, vote_focus, impact_text, vote_favor, voted_for, voted_against} = settings ? settings : Settings,
+    const {chamber, bill_desc, bill_title, impact_text, vote_favor, voted_for, voted_against} = settings ? settings : Settings,
       member_single = chamber === 'senate' ? 'Senator': 'Congressman';
 
     let representative,
@@ -45,7 +45,7 @@ class TitleComponent extends BaseComponent {
 
     if (this.state.representatives) {
       representative = this.state.representatives[0];
-      vote_status = `${vote_focus}`;
+      vote_status = `${bill_title}`;
       action = representative.voted === 'Yea' ? voted_for : voted_against;
 
       if (this.state.representatives.length === 1) {
@@ -61,8 +61,9 @@ class TitleComponent extends BaseComponent {
     }
 
     const preliminary_text = pre_text.replace('#member_type', member).replace('#member_name', member_name).replace('#action', action);
+
     if (!did_search || desc && did_search && !actions) {
-      vote_status = `${vote_focus}`;
+      vote_status = `${bill_title}`;
       final_char = '?';
       pre_text = bill_desc.replace('#member', member_single);
     } else if (did_search && !desc || !desc) {

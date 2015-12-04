@@ -159,7 +159,6 @@ button, input {
   background-color: $light-white;
   background-position: center center;
   background-size: cover;
-
   &.orange-bg {
     @include transition(1s);
     background-color: $dark-orange-light;

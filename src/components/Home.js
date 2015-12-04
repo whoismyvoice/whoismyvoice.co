@@ -107,7 +107,7 @@ class Home extends BaseComponent {
 
     const fadingClasses = cx(
       ['fading-circle'],
-      {'orange-bg': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES !== undefined}
+      {'orange-bg': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES !== undefined && chamber === 'senate' || NUMBER_REPRESENTATIVES === 1 && chamber === 'house'}
     );
 
     const containerClasses = cx(
