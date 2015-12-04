@@ -173,7 +173,8 @@
   width: 55%;
   color: $white;
   height: auto;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  margin-top: 30px;
   font-size: 28px;
 
   .title-component__description {
@@ -181,12 +182,14 @@
       width: 100%;
       font-size: 20px;
       line-height: 1.3;
+      margin-bottom: 10px;
     }
 
     @media screen and (max-width: $iphone5-min) {
       width: 100%;
       line-height: 1.2;
       font-size: 16px;
+      margin-bottom: 10px;
     }
 
     @media only screen

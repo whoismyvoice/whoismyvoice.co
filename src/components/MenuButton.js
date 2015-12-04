@@ -5,6 +5,7 @@ import SenateStore from '../stores/SenateStore';
 
 // Components
 import BaseComponent from './BaseComponent';
+import TextButton from './Buttons/TextButton';
 
 // Styles
 import style from '../styles/MenuButton.scss';

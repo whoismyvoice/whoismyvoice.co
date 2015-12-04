@@ -157,10 +157,27 @@ button, input {
   bottom: 0;
   width: 20%;
 
+  &:after {
+    @include transition(1s);
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 20px;
+    background-color: $light-white;
+    content:'';
+    opacity: 0.1;
+  }
+
   &.darken {
     @include transition(1s);
     background-color: $dark-orange-light;
+
+    &:after {
+      @include transition(1s);
+      background-color: $dark-orange-light;
+    }
   }
+
 }
 
 #left-blur { left: -10px; }
