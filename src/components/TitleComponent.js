@@ -46,7 +46,7 @@ class TitleComponent extends BaseComponent {
     if (this.state.representatives) {
       representative = this.state.representatives[0];
       vote_status = `${vote_focus}`;
-      action = representative.voted === 'Nay' ? voted_against : voted_for;
+      action = representative.voted === 'Yea' ? voted_for : voted_against;
 
       if (this.state.representatives.length === 1) {
         impact = impact_text.replace('#gender_third', `this ${representative.gender_full}`);
