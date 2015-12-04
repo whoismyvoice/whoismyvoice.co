@@ -41,7 +41,7 @@
 
   @media screen and (max-width: $iphone6) {
     width: 100%;
-    margin-top: 30px;
+    margin-top: 20px;
   }
 }
 
@@ -92,9 +92,9 @@
 
   @media screen and (max-width: $iphone6)
   and (-webkit-min-device-pixel-ratio: 2) {
-    width: 40%;
-    margin-right: 5%;
-    margin-left: 5%;
+    width: 46%;
+    margin-right: 2%;
+    margin-left: 1%;
     height: 130px;
   }
 

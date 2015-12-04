@@ -35,10 +35,17 @@ class SearchInput extends BaseComponent {
 
     if(window.mobilecheck()) {
       console.log(window.mobilecheck());
-      if (isNaN(zip_code) || zip_code.length !== 5) {
+      if (isNaN(zip_code)) {
         this.setState({
           placeholder: 'Enter Your Zip Code',
-          error: true,
+          error: false,
+          zip_code: ''
+        });
+      } else if (zip_code.length !== 5) {
+        this.setState({
+          placeholder: 'Enter Your Zip Code',
+          error: false,
+          zip_code: ''
         });
       } else if (!isNaN(zip_code) && zip_code.length === 5) {
         this.setState({

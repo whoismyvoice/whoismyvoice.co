@@ -99,6 +99,7 @@
   position: fixed;
   right: 35px;
   bottom: 115px;
+  width: 200px;
   z-index: 5;
   height: 85px;
   display: inline-block;
@@ -114,7 +115,7 @@
   padding: 5px 10px 5px 10px;
   background-color: $white;
   border-radius: 4px;
-  display: inline-block;
+  display: block;
   font-family: 'Open Sans';
   font-weight: 600;
   text-align: right;

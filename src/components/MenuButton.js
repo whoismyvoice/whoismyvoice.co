@@ -58,12 +58,12 @@ class MenuButton extends BaseComponent {
             <div className={buttonClasses} onClick={this._toggleOverlay}>
               Data sources
             </div>
-          </Link><br/>
+          </Link>
           <Link to="/about">
             <div className={buttonClasses} onClick={this._toggleOverlay}>
               About this project
             </div>
-          </Link><br />
+          </Link>
           <Link to="/">
             <div className={buttonClasses} onClick={this._toggleOverlay}>
               Start Again
