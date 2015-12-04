@@ -194,6 +194,15 @@
       font-size: 16px;
     }
 
+    // Motorola Moto G 2nd Gen
+    @media only screen
+    and (device-width: 360px)
+    and (device-height: 640px)
+    and (-webkit-min-device-pixel-ratio: 2.0){
+      width: 100%;
+      font-size: 15px;
+    }
+
     @media screen and (max-width: $iphone5-min) {
       width: 100%;
       line-height: 1.2;
@@ -262,6 +271,15 @@
     and (-webkit-min-device-pixel-ratio: 3.0) {
       width: 100%;
       font-size: 16px;
+    }
+
+    // Motorola Moto G 2nd Gen
+    @media only screen
+    and (device-width: 360px)
+    and (device-height: 640px)
+    and (-webkit-min-device-pixel-ratio: 2.0){
+      width: 100%;
+      font-size: 14px;
     }
 
     @media screen and (max-width: $iphone5-min) {
