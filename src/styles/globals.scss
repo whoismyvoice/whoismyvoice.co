@@ -147,41 +147,24 @@ button, input {
   }
 }
 
-#left-blur, #right-blur {
+.fading-circle {
   @include transition(1s);
-  z-index: 1;
   position: fixed;
+  z-index: 0;
+  width: 100%;
+  display: block;
+  height: 100%;
+  margin: 0 auto;
+  background-image: url('../img/bg_mask.png');
   background-color: $light-white;
-  opacity: 0.5;
-  top: 0;
-  bottom: 0;
-  width: 20%;
+  background-position: center center;
+  background-size: cover;
 
-  &:after {
-    @include transition(1s);
-    position: absolute;
-    right: 0;
-    height: 100%;
-    width: 20px;
-    background-color: $light-white;
-    content:'';
-    opacity: 0.1;
-  }
-
-  &.darken {
+  &.orange-bg {
     @include transition(1s);
     background-color: $dark-orange-light;
-
-    &:after {
-      @include transition(1s);
-      background-color: $dark-orange-light;
-    }
   }
-
 }
-
-#left-blur { left: -10px; }
-#right-blur { right: -10px; }
 
 .wrapper {
   height: auto;
@@ -458,34 +441,6 @@ button, input {
     padding-top: 2%;
     font-size: 1.6em;
   }
-}
-
-.light-color {
-  @include transition(1s);
-  background-color: $light-white!important;
-  background-image: url('../img/lighter_bg.png')!important;
-
-  #left-blur, #right-blur {
-    @include transition(1s);
-    background-color: $light-white!important;
-  }
-}
-
-.peach-color{
-  @include transition(0.5s);
-  background-color: $dark-orange-light;
-  background-image: url('../img/peachy_bg.png');
-}
-
-.dark-orange-color {
-  @include transition(0.5s);
-  background-color: $dark-orange-light;
-  background-image: url('../img/peachy_bg.png');
-}
-
-.light-white {
-  @include transition(0.5s);
-  background-color: $light-white;
 }
 
 .section-block {

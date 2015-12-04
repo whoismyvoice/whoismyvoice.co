@@ -105,19 +105,21 @@ class Home extends BaseComponent {
       {'static': !DID_SEARCH}
     );
 
+    const fadingClasses = cx(
+      ['fading-circle'],
+      {'orange-bg': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES !== undefined}
+    );
+
     const containerClasses = cx(
       ['container'],
       {'reveal': DID_SEARCH},
       {'light-color': !DID_SEARCH || NUMBER_REPRESENTATIVES > 1 && chamber === 'house' || NUMBER_REPRESENTATIVES === undefined},
-      {'peach-color': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES !== undefined},
       {'visible': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
       {'full': DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && chamber === 'senate'}
     );
 
     return <div className={containerClasses}>
-      <FadeBorder
-        darken={DID_SEARCH}
-      />
+      <div className={fadingClasses}></div>
       <div className="overlay">
         This site is only supported in portrait mode. Please turn your phone.
       </div>
