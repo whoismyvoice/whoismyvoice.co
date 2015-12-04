@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import cx from 'classnames';
 import SenateStore from '../stores/SenateStore';
+import SenateActions from '../actions/SenateActions';
 
 // Components
 import BaseComponent from './BaseComponent';
@@ -13,10 +14,20 @@ import style from '../styles/MenuButton.scss';
 class MenuButton extends BaseComponent {
   constructor() {
     super();
-    this._bind('_toggleOverlay', '_handleChange');
+    this._bind('_toggleOverlay', '_handleChange', '_destroyFullpage', '_handleRestart');
     this.state = SenateStore.getMember();
   }
 
+  _handleRestart() {
+    this.setState({didClick: !this.state.didClick});
+    SenateActions.flush();
+    this._destroyFullpage();
+  }
+  _destroyFullpage() {
+    if ($.fn.fullpage.destroy !== undefined) {
+      $.fn.fullpage.destroy();
+    }
+  }
   componentDidMount() {
     SenateStore.addChangeListener(this._handleChange);
   }
@@ -65,7 +76,7 @@ class MenuButton extends BaseComponent {
             </div>
           </Link>
           <Link to="/">
-            <div className={buttonClasses} onClick={this._toggleOverlay}>
+            <div className={buttonClasses} onClick={this._handleRestart}>
               Start Again
             </div>
           </Link>
