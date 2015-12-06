@@ -2,12 +2,17 @@ import SenateServerActions from '../actions/SenateServerActions';
 import SenateConstants from '../constants/SenateConstants';
 import request from 'superagent';
 import SettingsJSON from '../data/settings.json';
+import SenateStore from '../stores/SenateStore';
 
 const Settings = process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development' ? SettingsJSON : SenateStore.getSettings();
-let memberData = [];
-let memberSponsors = [];
+let members = [];
 
+// Promise identifying the Committee for each member
 const identifyCommittee = (item) => {
+  // Check if did_search is false, and if so truncate it
+  if(!SenateStore.getMember.did_search) {
+    members.length = 0;
+  }
   const api = `https://api.open.fec.gov/v1/candidate/${item.fec_ids[0]}/committees/?sort_nulls_large=true&api_key=Uyo5q24jY9uV1xXywsFV7yg2tVIJ7yKEjA3OCEl9&page=1&per_page=20&designation=P&sort=name&sort_hide_null=true`;
   return new Promise(function idPromise(resolve, reject) {
     request
@@ -21,12 +26,24 @@ const identifyCommittee = (item) => {
       resolve(member);
     });
   }).then(function(member) {
-    identifyPayment(member);
+    return Promise.resolve(identifyPayment(member));
+  }).then(function(member) {
+    members.push(member);
+    return Promise.resolve(members);
+  }).then(function(members) {
+    if(members.length > 1) {
+      SenateServerActions.getDetails(members, members.length);
+      members.length = 0;
+    } else if (members.length === 1) {
+      SenateServerActions.getDetails(members, members.length);
+    }
   });
 };
 
+// Promise retrieving amount of money sponsored by NRA to commitee for cycle 2014
 const identifyPayment = (member) => {
-  const url = `https://api.open.fec.gov/v1/committee/${member.commitee_id}/schedules/schedule_a/by_contributor/?sort_nulls_large=true&api_key=Uyo5q24jY9uV1xXywsFV7yg2tVIJ7yKEjA3OCEl9&page=1&contributor_id=C00053553&per_page=20&cycle=2014`;
+  const year = 2014;
+  const url = `https://api.open.fec.gov/v1/committee/${member.commitee_id}/schedules/schedule_a/by_contributor/?sort_nulls_large=true&api_key=Uyo5q24jY9uV1xXywsFV7yg2tVIJ7yKEjA3OCEl9&page=1&contributor_id=C00053553&per_page=20&cycle=${year}`;
   return new Promise (function testPromise(resolve, reject) {
     request
     .get(url)
@@ -35,42 +52,38 @@ const identifyPayment = (member) => {
       if (err) return console.error(err);
         const payment = res.body.results[0] ? res.body.results[0].total : 'undefined';
         member.payment = payment;
-        const relevant = [member];
+        const relevant = member;
         resolve(relevant);
     });
-  }).then(function(relevant) {
-    SenateServerActions.getDetails(relevant, relevant.length);
   });
 };
 
-const testArr = (arr) => {
-  return Promise.all(arr.filter(function(item) {
-    return identifyCommittee(item);
-  }))
-}
+const memberState = (member) => {
+  if (member.chamber[0] === Settings.chamber[0]) {
+    member.voted = 'Yea';
+    member.full_name = member.middle_name === null ? `${member.first_name} ${member.last_name}` : `${member.first_name} ${member.middle_name} ${member.last_name}`;
+    member.gender_full = member.gender === 'M' ? 'man' : 'woman';
+    identifyCommittee(member);
+  }
+};
+
+const filterMembers = (arr) => {
+  return Promise.all(arr.filter(function(member) {
+    return Promise.resolve(memberState(member));
+  }));
+};
 
 module.exports = {
   getSponsorDetails: (ZIP_CODE, lng) => {
     const {API_KEY} = SenateConstants,
-          url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${ZIP_CODE}&longitude=${lng}&apikey=${API_KEY}`: `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${ZIP_CODE}&apikey=${API_KEY}`;
+      url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${ZIP_CODE}&longitude=${lng}&apikey=${API_KEY}`: `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${ZIP_CODE}&apikey=${API_KEY}`;
 
     request
     .get(url)
     .set('Accept', 'application/json')
     .end((err, res) => {
       if (err) return console.error(err);
-      const members = res.body.results.filter((member) => {
-        if (member.chamber[0] === Settings.chamber[0]) {
-          member.voted = 'yea';
-          member.full_name = member.middle_name === null ? `${member.first_name} ${member.last_name}` : `${member.first_name} ${member.middle_name} ${member.last_name}`;
-          member.gender_full = member.gender === 'M' ? 'man' : 'woman';
-          return member;
-        }
-      });
-      if(members.length !== 0) {
-        testArr(members);
-      }
+      filterMembers(res.body.results);
     });
-  },
-
+  }
 };

@@ -47,6 +47,10 @@ AppDispatcher.register(payload => {
         _store.error = true;
       } else {
         const details = action.response[0];
+        console.log(details);
+        console.log(details.payment);
+        console.log(details.commitee_id);
+        console.log(details.state_name);
         _store.state_full = details.state_name || null;
         _store.did_search = true;
         _store.error = false;
