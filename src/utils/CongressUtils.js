@@ -16,42 +16,29 @@ const getMemberDetails = (zipCode, lng, voters) => {
   .set('Accept', 'application/json')
   .end((err, res) => {
     if (err) return console.error(err);
-    console.log("CALL");
-    console.log(res.body.results);
     const senators = res.body.results.filter(senator => {
       const filter = chamber[0] === 's' ? voters[senator.bioguide_id] === vote_favor : true;
-      console.log(senator.chamber[0]);
-      console.log(chamber[0]);
-      console.log(senator.bioguide_id in voters);
       if (senator.chamber[0] === chamber[0] && filter && senator.bioguide_id in voters) {
         senator.voted = voters[senator.bioguide_id];
         senator.full_name = senator.middle_name === null ? `${senator.first_name} ${senator.last_name}` : `${senator.first_name} ${senator.middle_name} ${senator.last_name}`;
         senator.gender_full = senator.gender === 'M' ? 'man' : 'woman';
-        senator.age = (new Date().getFullYear() - senator.birthday.substring(0, 4));
         return senator;
       }
     });
-    console.log(senators);
     if (res.body.results.length === 0) {
       SenateServerActions.getDetails('error');
     } else if (senators.length === 0 && chamber[0] === 's') {
-      console.log("Senate");
-      // If senators = 0, none voted against the vote_favor
-      // Instead the 1-2 senators who voted as the vote_favor should be passed to the store
       const voteFilter = vote_favor === 'Yea' ? 'Nay' : 'Yea';
-
       const newSenators = res.body.results.filter(senator => {
         if (senator.chamber[0] === chamber[0] && voters[senator.bioguide_id] === voteFilter) {
           senator.voted = voters[senator.bioguide_id];
           senator.full_name = senator.middle_name === null ? `${senator.first_name} ${senator.last_name}` : `${senator.first_name} ${senator.middle_name} ${senator.last_name}`;
           senator.gender_full = senator.gender === 'M' ? 'man' : 'woman';
-          senator.age = (new Date().getFullYear() - senator.birthday.substring(0, 4));
           return senator;
         }
       });
       SenateServerActions.getDetails(newSenators, newSenators.length);
     } else if (senators.length > 0) {
-      console.log("House");
       SenateServerActions.getDetails(senators, senators.length);
     }
   });
@@ -70,10 +57,8 @@ module.exports = {
       .end((err, res) => {
         if (err) return console.error(err);
         if (res.body.results.length === 0) {
-          console.log(res.body.results[0]);
           SenateServerActions.getDetails('error');
-        } else {
-          console.log(res.body.results[0].voter_ids);
+        } else if(!Settings.sponsor) {
           getMemberDetails(zipCode, lng, res.body.results[0].voter_ids);
         }
       });

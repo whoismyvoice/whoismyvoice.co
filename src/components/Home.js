@@ -3,6 +3,7 @@ import SenateStore from '../stores/SenateStore';
 import Settings from '../data/settings.json';
 import DataUtils from '../utils/DataUtils';
 import ContainerActions from '../actions/ContainerActions';
+import SenateServerActions from '../actions/SenateServerActions';
 import cx from 'classnames';
 
 // Components
@@ -27,7 +28,7 @@ class Home extends BaseComponent {
       this._initializeFullpage();
     }
     if (process.env.NODE_ENV === 'production' && this.state.settings === null) {
-      //DataUtils.saveFetchedData();
+      // DataUtils.saveFetchedData();
     }
     SenateStore.addChangeListener(this._handleChange);
   }
