@@ -73,13 +73,11 @@ class SearchAddress extends BaseComponent {
     }
   }
   render() {
-
     const inputClasses = cx(
       ['input'],
       {'error': this.state.error || this.props.error},
       {'address_search': this.props.search_address}
     );
-
   	return <div>
   		<input
         className={inputClasses}

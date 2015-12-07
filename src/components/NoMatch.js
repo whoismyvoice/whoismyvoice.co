@@ -5,7 +5,7 @@ import BaseComponent from './BaseComponent';
 
 class NoMatch extends BaseComponent {
   render() {
-  	return <div className="error">
+    return <div className="error">
     	Page does not exist
     </div>;
   }

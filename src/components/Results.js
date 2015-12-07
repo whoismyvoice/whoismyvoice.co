@@ -24,7 +24,7 @@ class Results extends BaseComponent {
     this._destroyFullpage();
   }
   _goBack() {
-    if($.fn.fullpage) {
+    if ($.fn.fullpage) {
       $.fn.fullpage.moveSectionUp();
     }
   }

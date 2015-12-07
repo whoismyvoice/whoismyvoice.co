@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 import cx from 'classnames';
 
 // Component
@@ -10,7 +9,7 @@ import style from '../../styles/TextButton.scss';
 
 class TextButton extends BaseComponent {
   render() {
-    const {link, flush, text} = this.props,
+    const {link, text} = this.props,
     buttonClasses = cx(
       ['text-button'],
       {'text-button--back': text === 'Back'}

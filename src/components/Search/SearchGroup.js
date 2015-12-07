@@ -1,7 +1,6 @@
 import React from 'react';
 import SenateStore from '../../stores/SenateStore';
 import SettingsJSON from '../../data/settings.json';
-import cx from 'classnames';
 
 // Components
 import BaseComponent from '../BaseComponent';

@@ -9,7 +9,7 @@ import style from './../../styles/SenatorImg.scss';
 
 class SenatorImg extends BaseComponent {
   render() {
-  	const img = `https://raw.githubusercontent.com/unitedstates/images/gh-pages/congress/225x275/${this.props.bioguide}.jpg`;
+    const img = `https://raw.githubusercontent.com/unitedstates/images/gh-pages/congress/225x275/${this.props.bioguide}.jpg`;
 
     const {chamber, repNumber, party} = this.props;
 
@@ -19,7 +19,7 @@ class SenatorImg extends BaseComponent {
       {'member--blue': party === 'D'}
     );
 
-  	return <div className={imgClasses}>
+    return <div className={imgClasses}>
     	<img src={img} />
     </div>;
   }

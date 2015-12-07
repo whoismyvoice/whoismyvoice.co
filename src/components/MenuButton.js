@@ -6,7 +6,6 @@ import SenateActions from '../actions/SenateActions';
 
 // Components
 import BaseComponent from './BaseComponent';
-import TextButton from './Buttons/TextButton';
 
 // Styles
 import style from '../styles/MenuButton.scss';
@@ -38,31 +37,31 @@ class MenuButton extends BaseComponent {
     this.setState(SenateStore.getMember());
   }
 
-  _toggleOverlay(evt) {
+  _toggleOverlay() {
     this.setState({didClick: !this.state.didClick});
   }
 
   render() {
 
-  const menuClasses = cx(
-    ['menu-overlay'],
-    {'menu-overlay--show': this.state.didClick && this.state.did_search},
-    {'menu-overlay--white': this.state.didClick && !this.state.did_search}
-  );
+    const menuClasses = cx(
+      ['menu-overlay'],
+      {'menu-overlay--show': this.state.didClick && this.state.did_search},
+      {'menu-overlay--white': this.state.didClick && !this.state.did_search}
+    );
 
-  const buttonClasses = cx(
-    ['menu-buttons', 'animated'],
-    {'fadeIn': this.state.didClick},
-    {'fadeOut': !this.state.didClick},
-    {'menu-buttons--white': !this.state.did_search}
-  );
+    const buttonClasses = cx(
+      ['menu-buttons', 'animated'],
+      {'fadeIn': this.state.didClick},
+      {'fadeOut': !this.state.didClick},
+      {'menu-buttons--white': !this.state.did_search}
+    );
 
-  const menuButtonClasses = cx(
-    ['menu-button', 'animated'],
-    {'menu-button--clicked': this.state.didClick}
-  );
+    const menuButtonClasses = cx(
+      ['menu-button', 'animated'],
+      {'menu-button--clicked': this.state.didClick}
+    );
 
-  	return <span>
+    return <span>
       <div className={menuClasses}>
         <div className="menu-container">
           <Link to="/sources">

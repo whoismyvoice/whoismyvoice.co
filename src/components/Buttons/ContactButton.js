@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 
 // Component
 import BaseComponent from '../BaseComponent';
@@ -10,7 +9,6 @@ import style from '../../styles/ContactButton.scss';
 class ContactButton extends BaseComponent {
   render() {
     const {icon, text, detail, link} = this.props;
-    let img;
 
     return <a href={link} target="_blank">
       <button className="contact__button">

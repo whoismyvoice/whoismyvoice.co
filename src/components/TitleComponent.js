@@ -26,11 +26,22 @@ class TitleComponent extends BaseComponent {
 
     const {
       did_search,
-      settings
+      settings,
+      representatives
     } = this.state;
 
-    const {chamber, bill_desc, bill_title, impact_text, vote_favor, voted_for, voted_against} = settings ? settings : Settings,
-      member_single = chamber === 'senate' ? 'Senator': 'Congressman';
+    const {
+      chamber,
+      bill_desc,
+      bill_title,
+      impact_text,
+      voted_for,
+      voted_against,
+      sponsor,
+      sponsored_for,
+      sponsored_against
+    } = settings ? settings : Settings,
+      member_single = chamber === 'senate' ? 'Senator' : 'Congressman';
 
     let representative,
       {pre_text} = settings ? settings : Settings,
@@ -40,23 +51,27 @@ class TitleComponent extends BaseComponent {
       vote_status = '',
       impact,
       action,
-      member = chamber === 'senate' ? 'Senator': 'Congressman',
+      member = chamber === 'senate' ? 'Senator' : 'Congressman',
       represent_text = 'represents';
 
-    if (this.state.representatives) {
-      representative = this.state.representatives[0];
+    if (representatives) {
+      representative = representatives[0];
       vote_status = `${bill_title}`;
       action = representative.voted === 'Yea' ? voted_for : voted_against;
 
-      if (this.state.representatives.length === 1) {
+      if (sponsor) {
+        console.log("SPONSOR");
+      }
+
+      if (representatives.length === 1) {
         impact = impact_text.replace('#gender_third', `this ${representative.gender_full}`);
         represent_gender = representative.gender_full === 'man' ? 'He' : 'She';
         member_name = representative.full_name;
-      } else if (this.state.representatives.length > 1) {
+      } else if (representatives.length > 1 && chamber === 'senate') {
         impact = impact_text.replace('#gender_third', `this person`);
         represent_gender = 'These people';
         represent_text = 'represent';
-        member = chamber === 'senate' ? 'Senators from '+representative.state_name : 'Representatives from '+representative.state_name;
+        member = chamber === 'senate' ? 'Senators from ' + representative.state_name : 'Representatives from ' + representative.state_name;
       }
     }
 

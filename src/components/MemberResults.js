@@ -14,9 +14,9 @@ class MemberResults extends BaseComponent {
   }
 
 	render() {
-    const NUMBER_REPRESENTATIVES = this.state.number_representatives;
-    if(NUMBER_REPRESENTATIVES > 1) {
-      return <span>
+  const NUMBER_REPRESENTATIVES = this.state.number_representatives;
+  if (NUMBER_REPRESENTATIVES > 1) {
+    return <span>
         <TitleComponent
           represent={true}
           several={true}

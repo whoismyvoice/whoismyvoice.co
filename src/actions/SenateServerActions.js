@@ -1,6 +1,5 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import SenateConstants from '../constants/SenateConstants';
-import request from 'superagent-bluebird-promise';
 
 module.exports = {
   getDetails: (response, numRep) => {

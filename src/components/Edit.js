@@ -215,17 +215,17 @@ class Edit extends BaseComponent {
       {'edit--hide': !pre_text}
     );
 
-    const previewClassesImpact = cx (
+    const previewClassesImpact = cx(
       ['edit__preview'],
       {'edit--hide': !impact_text}
     );
 
-    const previewClassesBillDesc = cx (
+    const previewClassesBillDesc = cx(
       ['edit__preview'],
       {'edit--hide': !bill_desc}
     );
 
-    const errorsSplit = `The following fields were not populated: ${errors.join(", ")}`;
+    const errorsSplit = `The following fields were not populated: ${errors.join(', ')}`;
 
   	return <div className="page-block edit">
       <FadedBG color="orange-color" />

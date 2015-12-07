@@ -3,14 +3,12 @@ import SenateStore from '../stores/SenateStore';
 import Settings from '../data/settings.json';
 import DataUtils from '../utils/DataUtils';
 import ContainerActions from '../actions/ContainerActions';
-import SenateServerActions from '../actions/SenateServerActions';
 import cx from 'classnames';
 
 // Components
 import BaseComponent from './BaseComponent';
 import SearchGroup from './Search/SearchGroup';
 import Results from './Results';
-import FadeBorder from './FadeBorder';
 import TitleComponent from './TitleComponent';
 
 // Styles
