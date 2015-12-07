@@ -6,6 +6,10 @@
   height: auto;
   margin-top: 60px;
 
+  @media screen and (max-height: 650px) {
+    margin-top: 20px;
+  }
+
   @media screen and (max-width: $iphone6) {
     width: 90%;
     margin-top: 30px;
