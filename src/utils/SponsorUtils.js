@@ -32,15 +32,13 @@ const identifyCommittee = (item) => {
     members.push(member);
     return Promise.resolve(members);
   }).then(function(members) {
-    console.log(members.length);
     SenateServerActions.getDetails(members, members.length);
   });
 };
 
 // Promise retrieving amount of money sponsored by NRA to commitee for cycle 2014
 const identifyPayment = (member) => {
-  const year = 2014;
-  const url = `https://api.open.fec.gov/v1/committee/${member.commitee_id}/schedules/schedule_a/by_contributor/?sort_nulls_large=true&api_key=Uyo5q24jY9uV1xXywsFV7yg2tVIJ7yKEjA3OCEl9&page=1&contributor_id=C00053553&per_page=20&cycle=${year}`;
+  const url = `https://api.open.fec.gov/v1/committee/${member.commitee_id}/schedules/schedule_a/by_contributor/?sort_nulls_large=true&api_key=Uyo5q24jY9uV1xXywsFV7yg2tVIJ7yKEjA3OCEl9&page=1&contributor_id=C00053553&per_page=20&cycle=${Settings.sponsor_year}`;
   return new Promise (function testPromise(resolve, reject) {
     request
     .get(url)
