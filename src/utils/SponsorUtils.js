@@ -1,6 +1,6 @@
+import request from 'superagent';
 import SenateServerActions from '../actions/SenateServerActions';
 import SenateConstants from '../constants/SenateConstants';
-import request from 'superagent';
 import SettingsJSON from '../data/settings.json';
 import SenateStore from '../stores/SenateStore';
 
@@ -13,7 +13,8 @@ const identifyCommittee = (item) => {
   if(!SenateStore.getMember.did_search) {
     members.length = 0;
   }
-  const api = `https://api.open.fec.gov/v1/candidate/${item.fec_ids[0]}/committees/?sort_nulls_large=true&api_key=Uyo5q24jY9uV1xXywsFV7yg2tVIJ7yKEjA3OCEl9&page=1&per_page=20&designation=P&sort=name&sort_hide_null=true`;
+
+  const api = `https://api.open.fec.gov/v1/candidate/${item.fec_ids[0]}/committees/?sort_nulls_large=true&api_key=${SenateConstants.FEC_API_KEY}&page=1&per_page=20&designation=P&sort=name&sort_hide_null=true`;
   return new Promise(function idPromise(resolve, reject) {
     request
     .get(api)
@@ -31,12 +32,8 @@ const identifyCommittee = (item) => {
     members.push(member);
     return Promise.resolve(members);
   }).then(function(members) {
-    if(members.length > 1) {
-      SenateServerActions.getDetails(members, members.length);
-      members.length = 0;
-    } else if (members.length === 1) {
-      SenateServerActions.getDetails(members, members.length);
-    }
+    console.log(members.length);
+    SenateServerActions.getDetails(members, members.length);
   });
 };
 
