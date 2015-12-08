@@ -35,7 +35,6 @@ class TitleComponent extends BaseComponent {
 
     const {
       did_search,
-      settings,
       representatives
     } = this.state;
 
@@ -66,7 +65,7 @@ class TitleComponent extends BaseComponent {
       vote_status = `${bill_title}`;
 
       if (sponsor && representatives.length === 1) {
-        action = representative.payment > 0 ? `has received $${representative.payment}` : `has not received money`;
+        action = representative.payment > 0 ? `has received money` : `has not received money`;
       } else {
         action = representative.voted === 'Yea' ? voted_for : voted_against;
       }

@@ -15,7 +15,6 @@ const routes = (
       <Route path="about" component={About} />
       <Route path="edit" component={Edit} />
       <Route path="sources" component={Sources} />
-      <Route path=":zip" component={Home} />
       <Route path="*" component={Home}/>
     </Route>
   </Router>

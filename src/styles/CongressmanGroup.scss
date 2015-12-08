@@ -45,6 +45,18 @@
   }
 }
 
+.member--payment {
+  font-size: 20px;
+  color: $white;
+  top: -15px;
+  position: relative;
+
+  @media screen and (max-width: $iphone6) {
+    font-size: 12px;
+    top: -5px;
+  }
+}
+
 .member-container {
 	width: 33%;
 	display: inline-block;

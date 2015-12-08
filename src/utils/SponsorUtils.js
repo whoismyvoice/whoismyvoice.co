@@ -41,6 +41,7 @@ const identifyCommittee = (item) => {
       if (err) {
         reject(SenateServerActions.getDetails('error'));
       }
+      console.log(res.body.results[0])
       const com_id = res.body.results[0].committee_id;
       item.commitee_id = com_id;
       const member = item;
