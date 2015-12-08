@@ -65,8 +65,16 @@ class TitleComponent extends BaseComponent {
       vote_status = `${bill_title}`;
 
       if (sponsor && representatives.length === 1) {
-        action = representative.payment > 0 ? `has received money` : `has not received money`;
-      } else {
+        action = representative.payment > 0 ? 'has received money' : 'has not received money';
+      } else if (sponsor && representatives.length > 1) {
+        if (representative.payment > 0 && representatives[1].payment > 0) {
+          action = 'have both received money';
+        } else if (representative.payment > 0 || representatives[1].payment > 0) {
+          action = 'has received money';
+        } else if (representative.payment === 0 && representatives[1].payment === 0) {
+          action = 'have not received money';
+        }
+      } else if (!sponsor) {
         action = representative.voted === 'Yea' ? voted_for : voted_against;
       }
 
@@ -78,7 +86,7 @@ class TitleComponent extends BaseComponent {
         impact = impact_text.replace('#gender_third', `this person`);
         represent_gender = 'These people';
         represent_text = 'represent';
-        member = chamber === 'senate' ? 'Senators from ' + representative.state_name : 'Representatives from ' + representative.state_name;
+        member =  representative.payment > 0 || representatives[1].payment > 0 ? 'Senator from ' + representative.state_name : 'Senators from ' + representative.state_name;
       }
     }
 

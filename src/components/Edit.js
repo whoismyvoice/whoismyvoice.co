@@ -19,9 +19,14 @@ class Edit extends BaseComponent {
     this._bind(
       '_onSelect',
       '_onSelectChamber',
+      '_onSelectType',
       '_onChangeID',
       '_onBlurID',
       '_onChangeBillDesc',
+      '_onChangeCommittee',
+      '_onBlurCommittee',
+      '_onChangeCycleYear',
+      '_onBlurYear',
       '_onBlurBillDesc',
       '_onBlurBillTitle',
       '_onChangeBillTitle',
@@ -50,7 +55,10 @@ class Edit extends BaseComponent {
       pre_text: '',
       voted_for: '',
       voted_against: '',
-      errors: []
+      errors: [],
+      sponsor: false,
+      sponsor_year: '',
+      sponsor_id: ''
     };
   }
   // Error handling
@@ -83,6 +91,9 @@ class Edit extends BaseComponent {
   _onSelectChamber(option) {
     this.setState({chamber: option.value});
   }
+  _onSelectType(option) {
+    this.setState({type: option.value});
+  }
 
   // Handle ID input field
   _onChangeID(evt) {
@@ -90,6 +101,22 @@ class Edit extends BaseComponent {
   }
   _onBlurID(evt) {
     this._checkForErrors('Bill id', 0, 4, evt.target.value.length);
+  }
+
+  // Handle ID input field
+  _onChangeCycleYear(evt) {
+    this.setState({sponsor_year: evt.target.value});
+  }
+  _onBlurYear(evt) {
+    this._checkForErrors('Year', 0, 3, evt.target.value.length);
+  }
+
+  // Handle ID input field
+  _onChangeCommittee(evt) {
+    this.setState({sponsor_id: evt.target.value});
+  }
+  _onBlurCommittee(evt) {
+    this._checkForErrors('Year', 0, 5, evt.target.value.length);
   }
 
   // Handle Bill desc input field
@@ -174,7 +201,8 @@ class Edit extends BaseComponent {
       impact_text,
       voted_for,
       voted_against,
-      errors
+      errors,
+      type
     } = this.state;
 
     const isEmpty = () => {
@@ -190,6 +218,12 @@ class Edit extends BaseComponent {
       {value: '0', label: 'Nay'}
     ];
 
+    const VoteTypeOptions = [
+      {value: '2', label: 'Lobbying'},
+      {value: '1', label: 'House bill'},
+      {value: '0', label: 'Senate bill'}
+    ];
+
     const ChamberOptions = [
       {value: '1', label: 'Senate'},
       {value: '0', label: 'House'}
@@ -197,7 +231,12 @@ class Edit extends BaseComponent {
 
     const senateFields = cx(
       ['form-fields'],
-      {'hide': chamber === '' || chamber === '0'}
+      {'hide': chamber === '' || chamber === '1'}
+    );
+
+    const LobbyFields = cx(
+      ['form-fields'],
+      {'hide': type === '' || type !== '2'}
     );
 
     const buttonClasses = cx(
@@ -225,12 +264,48 @@ class Edit extends BaseComponent {
       {'edit--hide': !bill_desc}
     );
 
+    const BillIdFields = cx(
+      ['card'],
+      {hide: type === '2'}
+    );
+
     const errorsSplit = `The following fields were not populated: ${errors.join(', ')}`;
 
   	return <div className="page-block edit">
       <FadedBG color="orange-color" />
       <form id="editform" onSubmit={this._onSubmit}>
+
         <div className="card">
+          <EditDropdown
+            title="Select Type"
+            options={VoteTypeOptions}
+            onChange={this._onSelectType}
+            placeholder="Select type"
+          />
+        </div>
+
+        <div className={LobbyFields}>
+          <div className="card">
+          <h2>Year cycle</h2>
+          <EditInput
+            onChange={this._onChangeCycleYear}
+            onBlur={this._onBlurYear}
+            value={this.state.sponsor_year}
+            example="2014"
+            placeholder="Enter year cycle"
+          />
+          <h2>Lobby organization FEC Committee ID</h2>
+          <EditInput
+            onChange={this._onChangeCommittee}
+            onBlur={this._onBlurCommittee}
+            value={this.state.sponsor_id}
+            example="C00053553"
+            placeholder="FEC Committee ID"
+          />
+          </div>
+        </div>
+
+        <div className={BillIdFields}>
           <h2>Bill details</h2>
           <div className={previewClassesBillDesc}>
             {`${bill_desc.replace('#member', 'Congressman')} ${bill_title}?`}
@@ -242,6 +317,10 @@ class Edit extends BaseComponent {
             example="s1881-114"
             placeholder="Enter bill id"
           />
+        </div>
+
+        <div className="card">
+          <h2>Bill details</h2>
           <EditInput
             onChange={this._onChangeBillTitle}
             onBlur={this._onBlurBillTitle}
@@ -261,7 +340,7 @@ class Edit extends BaseComponent {
           />
         </div>
 
-        <div className="card">
+        <div className={BillIdFields}>
           <EditDropdown
             title="Select Chamber"
             options={ChamberOptions}

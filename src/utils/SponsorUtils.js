@@ -17,7 +17,7 @@ const identifyPayment = (member) => {
       if (err) {
         reject(SenateServerActions.getDetails('error'));
       }
-      const payment = res.body.results[0] ? res.body.results[0].total : 'undefined';
+      const payment = res.body.results[0] ? res.body.results[0].total : 0;
       member.payment = payment;
       const relevant = member;
       resolve(relevant);
