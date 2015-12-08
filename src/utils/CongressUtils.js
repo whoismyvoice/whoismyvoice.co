@@ -8,6 +8,7 @@ const getMemberDetails = (zipCode, lng, voters) => {
         url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${zipCode}&longitude=${lng}&apikey=${API_KEY}`: `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${zipCode}&apikey=${API_KEY}`,
         { bill_id, vote_favor, chamber} = Settings;
 
+  console.log(url);
   request
   .get(url)
   .set('Accept', 'application/json')

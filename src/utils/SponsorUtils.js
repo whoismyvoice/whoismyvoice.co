@@ -17,10 +17,14 @@ const identifyPayment = (member) => {
       if (err) {
         reject(SenateServerActions.getDetails('error'));
       }
-      const payment = res.body.results[0] ? res.body.results[0].total : 0;
-      member.payment = payment;
-      const relevant = member;
-      resolve(relevant);
+      if (res.body.results) {
+        const payment = res.body.results[0] ? res.body.results[0].total : 0;
+        member.payment = payment;
+        const relevant = member;
+        resolve(relevant);
+      } else {
+        reject(SenateServerActions.getDetails('error'));
+      }
     });
   });
 };
@@ -41,11 +45,14 @@ const identifyCommittee = (item) => {
       if (err) {
         reject(SenateServerActions.getDetails('error'));
       }
-      console.log(res.body.results[0])
-      const com_id = res.body.results[0].committee_id;
-      item.commitee_id = com_id;
-      const member = item;
-      resolve(member);
+      if (res.body.results) {
+        const com_id = res.body.results[0].committee_id;
+        item.commitee_id = com_id;
+        const member = item;
+        resolve(member);
+      } else {
+        reject(SenateServerActions.getDetails('error'));
+      }
     });
   }).then(function(member) {
     return Promise.resolve(identifyPayment(member));
@@ -82,7 +89,11 @@ module.exports = {
     .set('Accept', 'application/json')
     .end((err, res) => {
       if (err) return console.error(err);
-      filterMembers(res.body.results);
+      if (res.body.results.length) {
+        filterMembers(res.body.results);
+      } else {
+        SenateServerActions.getDetails('error');
+      }
     });
   }
 };
