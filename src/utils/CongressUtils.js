@@ -9,7 +9,7 @@ const Settings = process.env.NODE_ENV === 'production' || process.env.NODE_ENV 
 const getMemberDetails = (zipCode, lng, voters) => {
   const {API_KEY} = SenateConstants,
         url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${zipCode}&longitude=${lng}&apikey=${API_KEY}`: `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${zipCode}&apikey=${API_KEY}`,
-        {bill_id, vote_favor, chamber} = Settings;
+        { bill_id, vote_favor, chamber} = Settings;
 
   request
   .get(url)

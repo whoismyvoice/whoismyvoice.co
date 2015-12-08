@@ -1,10 +1,10 @@
-var path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var StatsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin;
-var nodeModulesDir = path.resolve(__dirname, 'node_modules');
-var autoprefixer = require('autoprefixer');
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin;
+const nodeModulesDir = path.resolve(__dirname, 'node_modules');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
   devtool: 'source-map',

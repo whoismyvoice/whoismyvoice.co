@@ -1,25 +1,22 @@
 'use strict';
 
-var path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var nodeModulesDir = path.resolve(__dirname, 'node_modules');
-var modelDir = path.resolve(__dirname, 'models');
-var distDir = path.resolve(__dirname, 'dist');
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const nodeModulesDir = path.resolve(__dirname, 'node_modules');
+const modelDir = path.resolve(__dirname, 'models');
+const distDir = path.resolve(__dirname, 'dist');
 
 module.exports = {
   devtool: 'eval-source-map',
-
   devServer: {
     historyApiFallback: true
   },
-
   entry: [
     'webpack-dev-server/client?http://localhost:4000',
     'webpack/hot/dev-server',
     path.join(__dirname, 'src/main.js')
   ],
-
   output: {
     path: path.join(__dirname, '/dist/'),
     filename: '[name].js',
@@ -31,7 +28,6 @@ module.exports = {
       inject: 'body',
       filename: 'index.html'
     }),
-
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({

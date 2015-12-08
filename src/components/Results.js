@@ -50,7 +50,7 @@ class Results extends BaseComponent {
     }
   }
 	render() {
-		const {
+    const {
       number_representatives
     } = this.state;
 

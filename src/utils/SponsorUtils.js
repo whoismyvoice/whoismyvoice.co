@@ -20,7 +20,9 @@ const identifyCommittee = (item) => {
     .get(api)
     .set('Accept', 'application/json')
     .end((err, res) => {
-      if (err) return console.error(err);
+      if (err) {
+        reject(SenateServerActions.getDetails('error'));
+      }
       const com_id = res.body.results[0].committee_id;
       item.commitee_id = com_id;
       const member = item;
@@ -44,7 +46,9 @@ const identifyPayment = (member) => {
     .get(url)
     .set('Accept', 'application/json')
     .end((err, res) => {
-      if (err) return console.error(err);
+      if (err) {
+        reject(SenateServerActions.getDetails('error'));
+      }
       const payment = res.body.results[0] ? res.body.results[0].total : 'undefined';
       member.payment = payment;
       const relevant = member;
