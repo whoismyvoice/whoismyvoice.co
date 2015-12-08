@@ -1,3 +1,6 @@
+import SettingsJSON from '../data/settings.json';
+import SenateStore from '../stores/SenateStore';
+
 // Senate Constants
 module.exports = Object.freeze({
   FIND_MEMBER: 'FIND_MEMBER',
@@ -10,5 +13,6 @@ module.exports = Object.freeze({
   FIND_SPECIFIC_MEMBER: 'FIND_SPECIFIC_MEMBER',
   API_KEY: '4f501d505d514b85a01f39d4ceb9a353',
   GOOGLE_API_KEY: 'AIzaSyBszQnBTm_2qjgMd57K0CLfE0i3zuveKhE',
-  FEC_API_KEY: 'Uyo5q24jY9uV1xXywsFV7yg2tVIJ7yKEjA3OCEl9'
+  FEC_API_KEY: 'Uyo5q24jY9uV1xXywsFV7yg2tVIJ7yKEjA3OCEl9',
+  Settings: process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development' ? SettingsJSON : SenateStore.getSettings()
 });

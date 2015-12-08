@@ -1,6 +1,6 @@
 import React from 'react';
 import SenateStore from '../../stores/SenateStore';
-import SettingsJSON from '../../data/settings.json';
+import {Settings} from '../../constants/SenateConstants';
 
 // Components
 import BaseComponent from '../BaseComponent';
@@ -14,10 +14,9 @@ class SearchGroup extends BaseComponent {
   }
 
   render() {
-    const {zip_code, error, did_search, number_representatives, state_full, settings} = this.state;
-    const SavedSettings = settings ? settings : SettingsJSON;
+    const {zip_code, error, did_search, number_representatives, state_full} = this.state;
 
-  	if (number_representatives > 1 && SavedSettings.chamber === 'house' || did_search && number_representatives === undefined && error) {
+  	if (number_representatives > 1 && Settings.chamber === 'house' || did_search && number_representatives === undefined && error) {
   		return <div className="animated fadeIn">
   			<div className="locked__zip">ZIP: {zip_code}</div>
   			<SearchAddress

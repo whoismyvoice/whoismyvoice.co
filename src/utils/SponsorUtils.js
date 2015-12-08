@@ -1,11 +1,29 @@
 import request from 'superagent';
 import SenateServerActions from '../actions/SenateServerActions';
 import SenateConstants from '../constants/SenateConstants';
-import SettingsJSON from '../data/settings.json';
-import SenateStore from '../stores/SenateStore';
+import {Settings} from '../constants/SenateConstants';
 
-const Settings = process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development' ? SettingsJSON : SenateStore.getSettings();
+import SenateStore from '../stores/SenateStore';
 let members = [];
+
+// Promise retrieving amount of money sponsored by NRA to commitee for cycle 2014
+const identifyPayment = (member) => {
+  const url = `https://api.open.fec.gov/v1/committee/${member.commitee_id}/schedules/schedule_a/by_contributor/?sort_nulls_large=true&api_key=Uyo5q24jY9uV1xXywsFV7yg2tVIJ7yKEjA3OCEl9&page=1&contributor_id=C00053553&per_page=20&cycle=${Settings.sponsor_year}`;
+  return new Promise(function testPromise(resolve, reject) {
+    request
+    .get(url)
+    .set('Accept', 'application/json')
+    .end((err, res) => {
+      if (err) {
+        reject(SenateServerActions.getDetails('error'));
+      }
+      const payment = res.body.results[0] ? res.body.results[0].total : 'undefined';
+      member.payment = payment;
+      const relevant = member;
+      resolve(relevant);
+    });
+  });
+};
 
 // Promise identifying the Committee for each member
 const identifyCommittee = (item) => {
@@ -35,25 +53,6 @@ const identifyCommittee = (item) => {
     return Promise.resolve(members);
   }).then(function(members) {
     SenateServerActions.getDetails(members, members.length);
-  });
-};
-
-// Promise retrieving amount of money sponsored by NRA to commitee for cycle 2014
-const identifyPayment = (member) => {
-  const url = `https://api.open.fec.gov/v1/committee/${member.commitee_id}/schedules/schedule_a/by_contributor/?sort_nulls_large=true&api_key=Uyo5q24jY9uV1xXywsFV7yg2tVIJ7yKEjA3OCEl9&page=1&contributor_id=C00053553&per_page=20&cycle=${Settings.sponsor_year}`;
-  return new Promise (function testPromise(resolve, reject) {
-    request
-    .get(url)
-    .set('Accept', 'application/json')
-    .end((err, res) => {
-      if (err) {
-        reject(SenateServerActions.getDetails('error'));
-      }
-      const payment = res.body.results[0] ? res.body.results[0].total : 'undefined';
-      member.payment = payment;
-      const relevant = member;
-      resolve(relevant);
-    });
   });
 };
 

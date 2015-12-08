@@ -1,12 +1,12 @@
 import React from 'react';
 import SenateStore from '../../stores/SenateStore';
 
-// Styles
-import style from './../../styles/SupportActions.scss';
-
 // Components
 import BaseComponent from '../BaseComponent';
 import ContactButton from './../Buttons/ContactButton';
+
+// Styles
+import style from './../../styles/SupportActions.scss';
 
 class SupportActions extends BaseComponent {
   constructor(props) {

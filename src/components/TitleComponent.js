@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import SenateStore from '../stores/SenateStore';
-import Settings from '../data/settings.json';
+import {Settings} from '../constants/SenateConstants';
 
 // Component
 import BaseComponent from './BaseComponent';
@@ -47,11 +47,11 @@ class TitleComponent extends BaseComponent {
       voted_for,
       voted_against,
       sponsor
-    } = settings ? settings : Settings,
+    } = Settings,
       member_single = chamber === 'senate' ? 'Senator' : 'Congressman';
 
     let representative,
-      {pre_text} = settings ? settings : Settings,
+      {pre_text} = Settings,
       final_char,
       represent_gender,
       member_name = '',
