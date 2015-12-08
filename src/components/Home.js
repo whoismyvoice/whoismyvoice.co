@@ -75,7 +75,7 @@ class Home extends BaseComponent {
     });
     $(document).bind('touchend', function(e) {
       let te = e.originalEvent.changedTouches[0].clientY;
-      if (ts > te + 5){
+      if (ts > te + 5) {
         $.fn.fullpage.moveSectionDown();
       }
     });
@@ -96,11 +96,6 @@ class Home extends BaseComponent {
     const blockClasses = cx(
       ['block', 'block--margin'],
       {'disappear': DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && NUMBER_REPRESENTATIVES > 0 && chamber === 'senate'},
-    );
-
-    const backgroundClasses = cx(
-      ['second-wrapper'],
-      {'move-up': DID_SEARCH}
     );
 
     const fadingClasses = cx(
@@ -129,10 +124,7 @@ class Home extends BaseComponent {
           />
         	<SearchGroup />
         </div>
-        <Results
-          backgroundClasses={backgroundClasses}
-          numRep={NUMBER_REPRESENTATIVES}
-        />
+        <Results />
       </div>
     </div>;
   }

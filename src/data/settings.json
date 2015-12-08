@@ -9,7 +9,5 @@
   "voted_for": "voted for",
   "voted_against": "voted against",
   "sponsor": true,
-  "sponsor_year": 2014,
-  "sponsored_for": "received",
-  "sponsored_against": "not received"
+  "sponsor_year": 2014
 }

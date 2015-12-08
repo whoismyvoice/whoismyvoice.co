@@ -1,5 +1,6 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import SenateConstants from '../constants/SenateConstants';
+import SenateStore from '../stores/SenateStore';
 import request from 'superagent';
 import CongressUtils from '../utils/CongressUtils';
 import SponsorUtils from '../utils/SponsorUtils';
@@ -13,7 +14,7 @@ module.exports = {
       actionType: SenateConstants.FIND_MEMBER,
       zip_code: ZIP_CODE
     });
-    if(Settings.sponsor) {
+    if (Settings.sponsor) {
       SponsorUtils.getSponsorDetails(ZIP_CODE);
     } else {
       CongressUtils.getMember(ZIP_CODE);

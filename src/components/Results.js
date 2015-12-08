@@ -1,6 +1,8 @@
 import React from 'react';
 import SenateActions from '../actions/SenateActions';
 import ContainerActions from '../actions/ContainerActions';
+import SenateStore from '../stores/SenateStore';
+import cx from 'classnames';
 
 // Components
 import TitleComponent from './TitleComponent';
@@ -12,8 +14,18 @@ import BaseComponent from './BaseComponent';
 class Results extends BaseComponent {
   constructor() {
     super();
+    this.state = SenateStore.getMember();
     this._bind('_handleClick', '_destroyFullpage', '_handleRestart');
   }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.did_search) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   _destroyFullpage() {
     if ($.fn.fullpage.destroy !== undefined) {
       $.fn.fullpage.destroy();
@@ -39,9 +51,13 @@ class Results extends BaseComponent {
   }
 	render() {
 		const {
-      backgroundClasses,
-      numRep
-    } = this.props;
+      number_representatives
+    } = this.state;
+
+    const backgroundClasses = cx(
+      ['second-wrapper'],
+      {'move-up': this.state.did_search}
+    );
 
     return <div className={backgroundClasses} id="fullpage">
       <div className="section block two">
@@ -50,7 +66,7 @@ class Results extends BaseComponent {
           onClick={this._handleRestart}
         />
         <MemberResults
-          numRep={numRep}
+          numRep={number_representatives}
         />
       </div>
       <div className="section block three">

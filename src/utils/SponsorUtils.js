@@ -10,7 +10,7 @@ let members = [];
 // Promise identifying the Committee for each member
 const identifyCommittee = (item) => {
   // Check if did_search is false, and if so truncate it
-  if(!SenateStore.getMember.did_search) {
+  if (!SenateStore.getMember.did_search) {
     members.length = 0;
   }
 
@@ -45,10 +45,10 @@ const identifyPayment = (member) => {
     .set('Accept', 'application/json')
     .end((err, res) => {
       if (err) return console.error(err);
-        const payment = res.body.results[0] ? res.body.results[0].total : 'undefined';
-        member.payment = payment;
-        const relevant = member;
-        resolve(relevant);
+      const payment = res.body.results[0] ? res.body.results[0].total : 'undefined';
+      member.payment = payment;
+      const relevant = member;
+      resolve(relevant);
     });
   });
 };
@@ -71,7 +71,7 @@ const filterMembers = (arr) => {
 module.exports = {
   getSponsorDetails: (ZIP_CODE, lng) => {
     const {API_KEY} = SenateConstants,
-      url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${ZIP_CODE}&longitude=${lng}&apikey=${API_KEY}`: `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${ZIP_CODE}&apikey=${API_KEY}`;
+      url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${ZIP_CODE}&longitude=${lng}&apikey=${API_KEY}` : `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${ZIP_CODE}&apikey=${API_KEY}`;
 
     request
     .get(url)

@@ -50,7 +50,7 @@ module.exports = {
     if (zipCode === 'error') {
       SenateServerActions.getDetails('error');
     } else {
-      const bill = 'https://congress.api.sunlightfoundation.com/votes?bill_id=' + Settings.bill_id + '&fields=voter_ids&apikey=' + SenateConstants.API_KEY;
+      const bill = 'https://congress.api.sunlightfoundation.com/votes?bill_id=' + bill_id + '&fields=voter_ids&apikey=' + SenateConstants.API_KEY;
       request
       .get(bill)
       .set('Accept', 'application/json')
@@ -58,7 +58,7 @@ module.exports = {
         if (err) return console.error(err);
         if (res.body.results.length === 0) {
           SenateServerActions.getDetails('error');
-        } else if(!Settings.sponsor) {
+        } else if (!Settings.sponsor) {
           getMemberDetails(zipCode, lng, res.body.results[0].voter_ids);
         }
       });

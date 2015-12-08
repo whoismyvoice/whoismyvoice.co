@@ -42,7 +42,7 @@ AppDispatcher.register(payload => {
       SenateStore.emit(CHANGE_EVENT);
       break;
     case AppConstants.GET_DETAILS:
-      _store.number_representatives = action.numRep;
+    _store.number_representatives = action.numRep;
       if (action.response === 'error') {
         _store.error = true;
       } else {

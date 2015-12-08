@@ -14,6 +14,15 @@ class TitleComponent extends BaseComponent {
     super(props);
     this.state = SenateStore.getMember();
   }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.did_search && Settings.chamber === 'house' && nextState.number_representatives === 1 || Settings.chamber === 'senate' && nextState.number_representatives > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   render() {
     const {
       desc,
@@ -37,9 +46,7 @@ class TitleComponent extends BaseComponent {
       impact_text,
       voted_for,
       voted_against,
-      sponsor,
-      sponsored_for,
-      sponsored_against
+      sponsor
     } = settings ? settings : Settings,
       member_single = chamber === 'senate' ? 'Senator' : 'Congressman';
 
@@ -57,10 +64,11 @@ class TitleComponent extends BaseComponent {
     if (representatives) {
       representative = representatives[0];
       vote_status = `${bill_title}`;
-      action = representative.voted === 'Yea' ? voted_for : voted_against;
 
-      if (sponsor) {
-        console.log("SPONSOR");
+      if (sponsor && representatives.length === 1) {
+        action = representative.payment > 0 ? `has received $${representative.payment}` : `has not received money`;
+      } else {
+        action = representative.voted === 'Yea' ? voted_for : voted_against;
       }
 
       if (representatives.length === 1) {

@@ -18,12 +18,21 @@ class CongressmanGroup extends BaseComponent {
     this.state = SenateStore.getMember();
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.did_search && Settings.chamber === 'house' && nextState.number_representatives === 1 || Settings.chamber === 'senate' && nextState.number_representatives > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   render() {
     const {representatives, settings, number_representatives} = this.state;
 
     let wrapperClasses = 'senatorWrapper',
-        arrowClasses = 'arrow',
-        {chamber} = settings ? settings : Settings;
+      arrowClasses = 'arrow';
+
+    const { chamber } = settings ? settings : Settings;
 
     if (representatives) {
       wrapperClasses = cx(
