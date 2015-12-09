@@ -46,13 +46,13 @@ class CongressmanGroup extends BaseComponent {
     }
 
     const members = (representatives || []).map(function(item, idx) {
-      let payment;
+      // let payment;
 
-      if (Settings.sponsor) {
-        payment = item.payment > 0 ? `Received $${item.payment} from ${Settings.bill_title}.` : `Received $0 from ${Settings.bill_title}.`;
-      } else {
-        payment = '';
-      }
+      // if (Settings.sponsor) {
+      //   payment = item.payment > 0 ? `Received $${item.payment} from ${Settings.bill_title}.` : `Received $0 from ${Settings.bill_title}.`;
+      // } else {
+      //   payment = '';
+      // }
 
       return <div className="member-container" key={idx}>
         <MemberImg
@@ -66,7 +66,6 @@ class CongressmanGroup extends BaseComponent {
           state={item.state}
           party={item.party}
         />
-        <span className="member--payment">{payment}</span>
         <span className={arrowClasses} id={idx}>
           <div className="line-seperator line-seperator--small"></div>
           <NavButton

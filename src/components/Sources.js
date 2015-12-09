@@ -23,9 +23,8 @@ class Sources extends BaseComponent {
           <span className="resources">
             Additional resource data was pulled directly from the following sources:
             <br /><br />
-            1) <Link to="http://jordan.house.gov/news/documentsingle.aspx?DocumentID=397949">Congressman Jim Jordan's Press Release</Link><br />
-            2) <Link to="https://www.congress.gov/bill/114th-congress/senate-bill/1881">Senate Bill S.1881</Link><br />
-            3) <Link to="http://sunlightfoundation.com/">Sunlight Foundation </Link>
+            1) <a href="https://api.open.fec.gov/" target="_blank">FEC.gov</a><br />
+            2) <a href="http://sunlightfoundation.com/" target="_blank">Sunlight Foundation</a>
 		      </span>
         </p>
       </div>

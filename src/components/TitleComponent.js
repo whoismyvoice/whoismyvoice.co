@@ -47,7 +47,7 @@ class TitleComponent extends BaseComponent {
       voted_against,
       sponsor
     } = Settings,
-      member_single = chamber === 'senate' ? 'Senator' : 'Congressman';
+      member_single = chamber === 'senate' ? 'Senator' : 'Representative';
 
     let representative,
       {pre_text} = Settings,
@@ -57,7 +57,7 @@ class TitleComponent extends BaseComponent {
       vote_status = '',
       impact,
       action,
-      member = chamber === 'senate' ? 'Senator' : 'Congressman',
+      member = chamber === 'senate' ? 'Senator' : 'Representative',
       represent_text = 'represents';
 
     if (representatives) {
@@ -65,7 +65,8 @@ class TitleComponent extends BaseComponent {
       vote_status = `${bill_title}`;
 
       if (sponsor && representatives.length === 1) {
-        action = representative.payment > 0 ? 'has received money' : 'has not received money';
+        action = representative.payment > 0 ? `accepted $${representative.payment} in campaign contributions from the NRA in the 2013-2014 election season` : 'has not received money';
+        vote_status = '';
       } else if (sponsor && representatives.length > 1) {
         if (representative.payment > 0 && representatives[1].payment > 0) {
           action = 'have both received money';
@@ -90,7 +91,12 @@ class TitleComponent extends BaseComponent {
       }
     }
 
-    const preliminary_text = pre_text.replace('#member_type', member).replace('#member_name', member_name).replace('#action', action);
+    let preliminary_text;
+    if (sponsor && representatives) {
+      preliminary_text = representatives.length === 1 && representative.payment !== 0 ? pre_text.replace('#member_type', member).replace('#member_name', member_name).replace('#action', action) : 'No';
+    } else if(!sponsor) {
+      preliminary_text = pre_text.replace('#member_type', member).replace('#member_name', member_name).replace('#action', action);
+    }
 
     if (!did_search || desc && did_search && !actions) {
       vote_status = `${bill_title}`;
