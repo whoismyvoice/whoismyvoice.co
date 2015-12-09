@@ -12,6 +12,7 @@ class About extends BaseComponent {
   render() {
     return <div className="page-block light-white">
       <FadedBG color="white" />
+      <h2>About</h2>
       <p className="page-introduction">
       	This website is unaffiliated with any government party or entity, nor are we a media outlet. Its objective is to provide comprehensive,
         actionable data to constituents who have a desire to better understand and contact the decision makers representing them.

@@ -202,12 +202,11 @@ button, input {
 }
 
 .page-block {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   min-height: 96.5vh;
   height: 100%;
-  width: 100%;
+  width: 92%;
+  padding-left: 4%;
+  padding-right: 4%;
   font-family: 'Open Sans';
   font-weight: 500;
   padding-top: 5%;
