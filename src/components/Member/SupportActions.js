@@ -20,14 +20,15 @@ class SupportActions extends BaseComponent {
       email,
       twitter,
       tel,
-
+      gender_alt,
       twitterLink;
 
     const current = this.state.current_senator || 0;
 
     if (this.state.representatives !== null) {
       representative = this.state.representatives[current];
-      gender = representative.gender === 'M' ? 'him' : 'her';
+      gender = representative.gender === 'M' ? 'Him' : 'Her';
+      gender_alt = representative.gender === 'M' ? 'His' : 'Her';
       email = representative.oc_email;
       twitter = representative.twitter_id;
       tel = representative.phone;
@@ -42,13 +43,13 @@ class SupportActions extends BaseComponent {
 
     return  <div className="contactActions">
       <ContactButton
-        text={`E-mail ${gender}`}
+        text={`Email ${gender}`}
         link={ 'mailto:' + email }
         detail={email}
         icon="email"
       />
       <ContactButton
-        text={`Call ${gender}`}
+        text={`Call ${gender_alt} Office`}
         link={`tel:${tel}`}
         detail={tel}
         icon="phone"
@@ -60,7 +61,7 @@ class SupportActions extends BaseComponent {
         icon="twitter"
       />
       <ContactButton
-        text="Register to vote"
+        text="Register to Vote"
         link="https://registertovote.org/"
         detail="registertovote.org"
         icon="vote"

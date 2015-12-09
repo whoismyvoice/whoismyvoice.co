@@ -248,6 +248,14 @@ button, input {
     width: 80%;
     font-size: 12px;
   }
+
+  a {
+    color: $black;
+  }
+
+  .strike-out {
+    border-bottom: 1px solid $black;
+  }
 }
 
 .senator-block {
