@@ -62,8 +62,6 @@ server.get('/sources', serender, function(req, res) {
   res.sendFile('index.html', {root: 'dist'});
 });
 
-server.use(express.static('client/dist'));
-
 server.listen(port, function(err) {
   if (err) {
     console.log(err);
