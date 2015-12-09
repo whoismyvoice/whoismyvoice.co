@@ -18,7 +18,8 @@ module.exports = {
     path: path.join(__dirname, '/dist/'),
     filename: 'js/[name]-[chunkhash].min.js',
     chunkFilename: '[name].[chunkhash].js',
-    pathinfo: true
+    pathinfo: true,
+    publicPath: '/',
   },
   plugins: [
 
