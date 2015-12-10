@@ -19,7 +19,6 @@ module.exports = {
     filename: 'js/[name]-[chunkhash].min.js',
     chunkFilename: '[name].[chunkhash].js',
     pathinfo: true,
-    publicPath: '/',
   },
   plugins: [
 
@@ -47,7 +46,7 @@ module.exports = {
     }),
 
     new StatsWriterPlugin({
-      filename: "webpack.stats.json" // Default
+      filename: 'webpack.stats.json' // Default
     }),
 
     new webpack.optimize.CommonsChunkPlugin(
@@ -81,6 +80,6 @@ module.exports = {
   postcss: [autoprefixer({browsers: ['last 2 versions']})],
 
   node: {
-    fs: "empty"
+    fs: 'empty'
   }
 };

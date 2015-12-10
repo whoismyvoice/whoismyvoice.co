@@ -118,7 +118,7 @@ class TitleComponent extends BaseComponent {
 
     const representClasses = cx(
       ['title-component__represent'],
-      {'hide': !represent || several}
+      {'hide': !represent || several || sponsor}
     );
 
     const starClasses = cx(
