@@ -16,7 +16,7 @@ class TitleComponent extends BaseComponent {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.did_search && Settings.chamber === 'house' && nextState.number_representatives === 1 || Settings.chamber === 'senate' && nextState.number_representatives > 0) {
+    if (nextState.did_search && Settings.chamber === 'house' && nextState.number_representatives === 1 || Settings.chamber === 'senate' && nextState.number_representatives > 0) {
       return true;
     } else {
       return false;
@@ -47,67 +47,61 @@ class TitleComponent extends BaseComponent {
       voted_against,
       sponsor
     } = Settings,
-      member_single = chamber === 'senate' ? 'Senator' : 'Representative';
+      member_single = chamber === 'senate' ? 'Senator' : 'Congressman';
 
     let representative,
-      {pre_text} = Settings,
-      final_char,
+      pre_text,
       represent_gender,
+      preliminary_text,
       member_name = '',
-      vote_status = '',
+      vote_question = '',
       impact,
       action,
-      member = chamber === 'senate' ? 'Senator' : 'Representative',
+      member = chamber === 'senate' ? 'Senator' : 'Congressional Representative',
       represent_text = 'represents';
 
     if (representatives) {
       representative = representatives[0];
-      vote_status = `${bill_title}`;
+      vote_question = representatives.length >= 1 ? '' : `${bill_title}`;
 
       if (sponsor && representatives.length === 1) {
         action = representative.payment > 0 ? `accepted $${representative.payment} in campaign contributions from the NRA in the 2013-2014 election season` : 'has not received money';
-        vote_status = '';
       } else if (sponsor && representatives.length > 1) {
         if (representative.payment > 0 && representatives[1].payment > 0) {
           action = 'have both received money';
-        } else if (representative.payment > 0 || representatives[1].payment > 0) {
+        } else if (representative.payment > 0 || representatives[1].payment > 0) {
           action = 'has received money';
         } else if (representative.payment === 0 && representatives[1].payment === 0) {
           action = 'have not received money';
         }
-      } else if (!sponsor) {
-        action = representative.voted === 'Yea' ? voted_for : voted_against;
       }
 
       if (representatives.length === 1) {
         impact = impact_text.replace('#gender_third', `this ${representative.gender_full}`);
         represent_gender = representative.gender_full === 'man' ? 'He' : 'She';
         member_name = representative.full_name;
-      } else if (representatives.length > 1 && chamber === 'senate') {
+      } else if (representatives.length > 1) {
+        member = chamber === 'senate' ? 'Senators' : 'Congressional Representatives';
         impact = impact_text.replace('#gender_third', `this person`);
         represent_gender = 'These people';
         represent_text = 'represent';
-        member =  representative.payment > 0 || representatives[1].payment > 0 ? 'Senator from ' + representative.state_name : 'Senators from ' + representative.state_name;
+      }
+
+      if (!sponsor && representatives.length >= 1) {
+        preliminary_text = representative.voted === 'Yea' ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', representative.age).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', representative.age).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+      } else if (sponsor && representatives.length >= 1) {
+        const member_payment = `$${representative.payment}`;
+        preliminary_text = representative.payment > 0 ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', representative.age).replace('#member_gender', representative.gender_full).replace('#action', action).replace('#member_payment', member_payment)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', representative.age).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
       }
     }
 
-    let preliminary_text;
-    if (sponsor && representatives) {
-      preliminary_text = representatives.length === 1 && representative.payment !== 0 ? `${pre_text.replace('#member_type', member).replace('#member_name', member_name).replace('#action', action)}` : 'No';
-    } else if (!sponsor) {
-      preliminary_text = `${pre_text.replace('#member_type', member).replace('#member_name', member_name).replace('#action', action)} `;
-    }
-
-    if (!did_search || desc && did_search && !actions) {
-      vote_status = `${bill_title}`;
-      final_char = '?';
+    if (!did_search || desc && did_search && !actions) {
+      vote_question = `${bill_title}`;
       pre_text = bill_desc.replace('#member', member_single);
-    } else if (did_search && !desc || !desc) {
+    } else if (did_search && !desc || !desc) {
       pre_text = preliminary_text;
-      final_char = '.';
     } else if (actions) {
       pre_text = impact;
-      final_char = '';
     }
 
     const titleClasses = cx(
@@ -118,7 +112,7 @@ class TitleComponent extends BaseComponent {
 
     const representClasses = cx(
       ['title-component__represent'],
-      {'hide': !represent || several || sponsor}
+      {'hide': !represent || several || sponsor}
     );
 
     const starClasses = cx(
@@ -128,13 +122,13 @@ class TitleComponent extends BaseComponent {
 
     const strikeClasses = cx(
       ['strike-out'],
-      {'white': represent || actions},
+      {'white': represent || actions},
       {'hide': actions}
     );
 
     const threeStars = cx(
       ['three-stars'],
-      {'hide': represent || actions}
+      {'hide': represent || actions}
     );
 
     return <div className={titleClasses}>
@@ -143,20 +137,19 @@ class TitleComponent extends BaseComponent {
         <span>&#9733;</span>
         <span>&#9733;</span>
       </div>
-  		<div className="title-component__description">
+      <div className="title-component__description">
         {pre_text}
         <span className={strikeClasses}>
-          {vote_status}
+          {vote_question}
         </span>
-        {final_char}
-  		</div>
+      </div>
       <div className={starClasses}>
         <span>&#9733;</span>
       </div>
       <span className={representClasses}>
         {`${represent_gender}  ${represent_text} your voice!`}
       </span>
-  	</div>;
+    </div>;
   }
 }
 

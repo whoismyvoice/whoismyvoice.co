@@ -1,13 +1,12 @@
 {
-  "bill_id": "",
-  "bill_title": "from the NRA",
+  "bill_id": "hr3762-114",
+  "bill_title": "from the NRA?",
   "bill_desc": "Did my #member accept campaign contributions ",
   "chamber": "house",
-  "pre_text": "Yes! Your #member_type, #member_name #action",
   "impact_text": "If you don't agree with this vote, here are some ways you can keep this #gender_third from being able to personally weigh in on the healthcare and reproductive rights of millions of underserved women the next time a similar bill comes to vote. ",
   "vote_favor": "Yea",
-  "voted_for": "voted for",
-  "voted_against": "voted against",
+  "voted_for": "Yes! Your #member_type accepted #member_payment in campaign contributions from the nRA in the 2013-2014 election season.",
+  "voted_against": "No.",
   "sponsor": true,
   "sponsor_year": 2014,
   "sponsor_id": "C00053553"
