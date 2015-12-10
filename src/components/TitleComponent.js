@@ -65,7 +65,7 @@ class TitleComponent extends BaseComponent {
       vote_question = representatives.length >= 1 ? '' : `${bill_title}`;
 
       if (sponsor && representatives.length === 1) {
-        represent_text = representative.payment > 0 ? "If you're concerned that these funds may be affecting their voting record on your behalf on gun control issues, get in touch with them and make your voice heard!" : '';
+        represent_text = representative.payment > 0 ? represent_text : '';
         action = representative.payment > 0 ? `accepted $${representative.payment} in campaign contributions from the NRA in the 2013-2014 election season` : 'has not received money';
       } else if (sponsor && representatives.length > 1) {
         if (representative.payment > 0 && representatives[1].payment > 0) {
