@@ -45,7 +45,7 @@ class TitleComponent extends BaseComponent {
       impact_text,
       voted_for,
       voted_against,
-      sponsor
+      sponsor,
     } = Settings,
       member_single = chamber === 'senate' ? 'Senator' : 'Congressman';
 
@@ -58,16 +58,18 @@ class TitleComponent extends BaseComponent {
       impact,
       action,
       member = chamber === 'senate' ? 'Senator' : 'Congressional Representative',
-      represent_text = 'represents';
+      {represent_text} = Settings;
 
     if (representatives) {
       representative = representatives[0];
       vote_question = representatives.length >= 1 ? '' : `${bill_title}`;
 
       if (sponsor && representatives.length === 1) {
+        represent_text = representative.payment > 0 ? "If you're concerned that these funds may be affecting their voting record on your behalf on gun control issues, get in touch with them and make your voice heard!" : '';
         action = representative.payment > 0 ? `accepted $${representative.payment} in campaign contributions from the NRA in the 2013-2014 election season` : 'has not received money';
       } else if (sponsor && representatives.length > 1) {
         if (representative.payment > 0 && representatives[1].payment > 0) {
+          represent_text = representative.payment > 0 ? "If you're concerned that these funds may be affecting their voting record on your behalf on gun control issues, get in touch with them and make your voice heard!" : '';
           action = 'have both received money';
         } else if (representative.payment > 0 || representatives[1].payment > 0) {
           action = 'has received money';
@@ -80,6 +82,7 @@ class TitleComponent extends BaseComponent {
         impact = impact_text.replace('#gender_third', `this ${representative.gender_full}`);
         represent_gender = representative.gender_full === 'man' ? 'He' : 'She';
       } else if (representatives.length > 1) {
+        represent_gender = 'They';
         member = chamber === 'senate' ? 'Senators' : 'Congressional Representatives';
         impact = impact_text.replace('#gender_third', `this person`);
       }
@@ -87,6 +90,7 @@ class TitleComponent extends BaseComponent {
       if (!sponsor && representatives.length === 1) {
         member_name = representative.full_name;
         preliminary_text = representative.voted === 'Yea' ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+        represent_text = `${represent_gender}  ${represent_text} your voice!`;
       } else if (sponsor && representatives.length >= 1) {
         const member_payment = `$${representative.payment}`;
         preliminary_text = representative.payment > 0 ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action).replace('#member_payment', member_payment)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
@@ -112,7 +116,7 @@ class TitleComponent extends BaseComponent {
 
     const representClasses = cx(
       ['title-component__represent'],
-      {'hide': !represent || several || sponsor}
+      {'hide': !represent || several}
     );
 
     const starClasses = cx(
@@ -147,7 +151,7 @@ class TitleComponent extends BaseComponent {
         <span>&#9733;</span>
       </div>
       <span className={representClasses}>
-        {`${represent_gender}  ${represent_text} your voice!`}
+        {represent_text}
       </span>
     </div>;
   }

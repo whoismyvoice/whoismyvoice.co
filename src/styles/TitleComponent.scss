@@ -76,13 +76,18 @@
 }
 
 .title-component--results {
-  width: 50%;
+  width: 60%;
   line-height: 1.2;
   font-size: 24px;
   color: $white;
 
   @media screen and (max-width: 1170px) {
-    width: 50%;
+    width: 70%;
+  }
+
+  @media screen and (max-height: 650px) {
+    font-size: 20px;
+    line-height: 1.3;
   }
 
   @media only screen
@@ -126,7 +131,7 @@
 
   @media screen and (max-width: 1170px) {
     line-height: 1.2;
-    font-size: 25px;
+    font-size: 22px;
   }
 
   @media only screen
@@ -134,8 +139,8 @@
   and (max-device-width: 1024px)
   and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 1) {
-    font-size: 32px;
-    line-height: 1.6;
+    font-size: 26px;
+    line-height: 1.3;
   }
 
   @media only screen
@@ -143,7 +148,7 @@
   and (max-device-width: 1024px)
   and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 1) {
-    font-size: 28px;
+    font-size: 22px;
     line-height: 1.5;
   }
 
@@ -226,7 +231,8 @@
     and (max-device-width: 1024px)
     and (orientation: landscape)
     and (-webkit-min-device-pixel-ratio: 1) {
-      font-size: 26px;
+      font-size: 24px;
+      line-height: 1.3;
     }
   }
 
@@ -259,6 +265,10 @@
 
 .two {
   .title-component__description {
+    @media screen and (max-height: 650px) {
+      font-size: 20px;
+      line-height: 1.2;
+    }
     @media only screen
     and (min-device-width : 414px)
     and (max-device-width : 736px)
@@ -273,8 +283,8 @@
     @media screen and (max-width: $iphone6) {
       width: 90%;
       margin: 0 auto;
-      font-size: 16px;
-      line-height: 1.5;
+      font-size: 18px;
+      line-height: 1.4;
     }
 
     // Google Nexus 5 Support
@@ -296,8 +306,8 @@
     }
 
     @media screen and (max-width: $iphone5-min) {
-      width: 80%;
-      font-size: 16px;
+      width: 90%;
+      font-size: 14px;
     }
   }
 }
@@ -339,13 +349,18 @@
   height: 45px;
   color: $white;
 
-  @media screen and (max-width: 1170px) {
-    line-height: 1.3;
+  @media screen and (max-width: 1366px) {
     font-size: 22px;
   }
 
   @media screen and (max-width: 1366px) {
-    font-size: 24px;
+    font-size: 22px;
+  }
+
+  @media screen and (max-width: 1170px) {
+    line-height: 1.3;
+    font-size: 21px;
+    width: 65%;
   }
 
   @media only screen
@@ -353,15 +368,21 @@
   and (max-device-width: 1024px)
   and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 1) {
-    font-size: 28px;
+    font-size: 26px;
+    line-height: 1.4;
   }
 
   @media screen and (max-height: 650px) {
-    font-size: 22px;
+    font-size: 20px;
+  }
+
+  @media screen and (max-width: $iphone6) {
+    font-size: 18px;
+    line-height: 1.4;
   }
 
   @media screen and (max-width: $iphone5-min) {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 

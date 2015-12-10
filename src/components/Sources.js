@@ -15,11 +15,10 @@ class Sources extends BaseComponent {
       <div className="page-wrapper">
         <h2>Sources</h2>
         <p className="page-introduction">
-          The data on this website has been lifted directly from the Congress.gov roll call for December 2015, with contact information provided via API's developed by the Sunlight Foundation.<br /><br />
+          The data on this website is based on the data released in March 2015 by the Federal Election Commission on donations that were made during the 2014 election cycle.<br /><br />
           <br /><br />
-          On October 23, 2015 the House voted on H.R 3762, a bill in which Republicans attempted to use the budget reconciliation process to repeal the Affordable Healthcare Act (aka Obamacare) and end federal funding for Planned Parenthood. Budget reconciliation is the one chance each year that the majority (Republican) party gets to bypass the Senate filibuster in order to get a bill to the President's desk, without needing a single vote from the minority (Democrat) party.<br /><br />
-          The Republican congressional representatives listed on this website who belong to the House Freedom Caucus (HFC) have publicly declared their willingness to shut down the U.S. government over the issue of Planned Parenthood funding. On September 10, 2015, Congressman Jim Jordan issued the following press release on behalf of the HFC:<br /><br />
-          "Given the appalling revelations surrounding Planned Parenthood, we cannot in good moral conscience vote to send taxpayer money to this organization, while still fulfilling our duty to represent our constituents. We must therefore oppose any spending measure that contains funding for Planned Parenthood."
+          On December 3, 2015, the Senate once again voted down two amendments on gun control, just one day following the San Bernadino, California attacks. Senate Amendment (S.A) 2910 was a measure to provide responsible, consistent, universal background checks for gun purchases, and to ensure individuals listed in the National Instant Criminal Background Check System cannot buy a gun. This amendment included the same language as H.R 1076 which was voted down by Senate in April of 2013. Between April 2013 and December 2015, not one Senator changed their vote. Senate Amendment (S.A) 2908 was a measure to deny people on a federal terrorism watch list (a.k.a "the no-fly" list) the ability to purchase guns.<br /><br />
+          Despite 12,472 deaths and 25,156 injuries from gun violence in 2015, 12/3/15 was the first time any gun control measures whatsoever made it to the floor for a vote. In the case of the two amendments above, they only made it to vote because they were attached as amendments to the budget bill. (Data taken from <a href="http://www.gunviolencearchive.org/" target="_blank">The Gun Violence Archive</a>).<br /><br />
         </p>
       </div>
     </div>;
