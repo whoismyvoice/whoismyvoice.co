@@ -79,19 +79,19 @@ class TitleComponent extends BaseComponent {
       if (representatives.length === 1) {
         impact = impact_text.replace('#gender_third', `this ${representative.gender_full}`);
         represent_gender = representative.gender_full === 'man' ? 'He' : 'She';
-        member_name = representative.full_name;
       } else if (representatives.length > 1) {
         member = chamber === 'senate' ? 'Senators' : 'Congressional Representatives';
         impact = impact_text.replace('#gender_third', `this person`);
-        represent_gender = 'These people';
-        represent_text = 'represent';
       }
 
-      if (!sponsor && representatives.length >= 1) {
-        preliminary_text = representative.voted === 'Yea' ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', representative.age).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', representative.age).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+      if (!sponsor && representatives.length === 1) {
+        member_name = representative.full_name;
+        preliminary_text = representative.voted === 'Yea' ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
       } else if (sponsor && representatives.length >= 1) {
         const member_payment = `$${representative.payment}`;
-        preliminary_text = representative.payment > 0 ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', representative.age).replace('#member_gender', representative.gender_full).replace('#action', action).replace('#member_payment', member_payment)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', representative.age).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+        preliminary_text = representative.payment > 0 ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action).replace('#member_payment', member_payment)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+      } else if (!sponsor && representatives.length > 1 && chamber === 'senate') {
+        preliminary_text = representative.voted === 'Yea' ? `${voted_for.replace('#member_type', member).replace('#member_name', '').replace('#member_age', '').replace('#member_gender', '').replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', ``).replace('#member_gender', '').replace('#action', action)}`;
       }
     }
 

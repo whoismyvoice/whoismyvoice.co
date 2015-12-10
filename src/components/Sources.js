@@ -15,10 +15,9 @@ class Sources extends BaseComponent {
       <div className="page-wrapper">
         <h2>Sources</h2>
         <p className="page-introduction">
-          Every senator listed on this website is a listed co-sponsor of Senate Bill 1881. Senate Bill 1881 is a "bill to prohibit the federal funding of the Planned Parenthood Federation of America". (1)<br /><br />
-          The Congressmen listed on this website are the listed members of the House Freedom Caucus, who issued a press release via Congressman Jim Jordan on September 10, 2015:
+          The data on this website has been lifted directly from the Congress.gov roll call for December 2015, with contact information provided via API's developed by the Sunlight Foundation.<br /><br />
           <br /><br />
-          "Given the appalling revelations surrounding Planned Parenthood, we cannot in good moral conscience vote to send taxpayer money to this organization while still fulfilling our duty to represent our constituents. We must therefore oppose any spendig measure that contains funding for Planned Parenthood."
+          On December 4, 2015, the Senate voted on H.R 3762, a bill in which Republicans attempted to use the budget reconciliation process to repeal the Affordable Healthcare Act (aka Obamacare) and end federal funding for Planned Parenthood. Budget reconciliation is the one chance each year that the majority (Republican) party gets to bypass the Senate filibuster in order to get a bill to the President's desk, without needing a single vote from the minority (Democrat) party.
           <br /><br />
           <span className="resources">
             Additional resource data was pulled directly from the following sources:
