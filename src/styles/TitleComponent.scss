@@ -183,6 +183,12 @@
       line-height: 1.4;
     }
 
+    @media screen and (max-width: 1300px) {
+      font-size: 22px;
+      line-height: 1.2;
+      margin-bottom: 0px;
+    }
+
     @media screen and (max-width: $iphone6) {
       width: 100%;
       font-size: 18px;
