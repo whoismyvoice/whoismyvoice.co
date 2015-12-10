@@ -93,9 +93,9 @@ class TitleComponent extends BaseComponent {
 
     let preliminary_text;
     if (sponsor && representatives) {
-      preliminary_text = representatives.length === 1 && representative.payment !== 0 ? pre_text.replace('#member_type', member).replace('#member_name', member_name).replace('#action', action) : 'No';
-    } else if(!sponsor) {
-      preliminary_text = pre_text.replace('#member_type', member).replace('#member_name', member_name).replace('#action', action);
+      preliminary_text = representatives.length === 1 && representative.payment !== 0 ? `${pre_text.replace('#member_type', member).replace('#member_name', member_name).replace('#action', action)}` : 'No';
+    } else if (!sponsor) {
+      preliminary_text = `${pre_text.replace('#member_type', member).replace('#member_name', member_name).replace('#action', action)} `;
     }
 
     if (!did_search || desc && did_search && !actions) {
@@ -144,7 +144,7 @@ class TitleComponent extends BaseComponent {
         <span>&#9733;</span>
       </div>
   		<div className="title-component__description">
-        {`${pre_text} `}
+        {pre_text}
         <span className={strikeClasses}>
           {vote_status}
         </span>
