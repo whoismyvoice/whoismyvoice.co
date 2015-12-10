@@ -15,3 +15,73 @@
   -o-transition:opacity $time ease-in;
   transition:opacity $time ease-in;
 }
+
+@-webkit-keyframes bounceInRight {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(2000px);
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: translateX(-30px);
+    }
+    80% {
+        -webkit-transform: translateX(10px);
+    }
+    100% {
+        -webkit-transform: translateX(0);
+    }
+}
+
+@-webkit-keyframes bounceOutRight {
+    0% {
+        -webkit-transform: translateX(0);
+    }
+    20% {
+        opacity: 1;
+        -webkit-transform: translateX(-20px);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translateX(2000px);
+    }
+}
+@keyframes bounceOutRight {
+    0% {
+        transform: translateX(0);
+    }
+    20% {
+        opacity: 1;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(2000px);
+    }
+}
+.bounceOutRight {
+    -webkit-animation-name: bounceOutRight;
+    animation-name: bounceOutRight;
+}
+
+@keyframes bounceInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(2000px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateX(-30px);
+    }
+    80% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.bounceInRight {
+    -webkit-animation-name: bounceInRight;
+    animation-name: bounceInRight;
+}
