@@ -178,6 +178,11 @@
   font-size: 28px;
 
   .title-component__description {
+    @media screen and (max-height: 650px) {
+      font-size: 20px;
+      line-height: 1.4;
+    }
+
     @media screen and (max-width: $iphone6) {
       width: 100%;
       font-size: 18px;
@@ -230,8 +235,8 @@
   }
 
   @media screen and (max-height: 650px) {
-    width: 62%;
-    margin-bottom: 30px;
+    width: 60%;
+    margin-bottom: 20px;
     margin-top: 0px;
   }
 
