@@ -1,13 +1,13 @@
 {
   "bill_id": "hr3762-114",
-  "bill_title": "defund Planned Parenthood?",
-  "bill_desc": "Did my #member vote to ",
+  "bill_title": "from the NRA?",
+  "bill_desc": "Did my #member accept campaign contributions ",
   "chamber": "house",
   "impact_text": "If you don't agree with this vote, here are some ways you can keep this #gender_third from being able to personally weigh in on the healthcare and reproductive rights of millions of underserved women the next time a similar bill comes to vote. ",
   "vote_favor": "Nay",
-  "voted_for": "Yes! On October 23, 2015 your #member_type, #member_name #member_age #member_gender voted on H.R. 3672, a bill to defund Planned Parenthood & terminate the Affordable Healthcare Act.",
-  "voted_against": "No. Your #member_type supports Planned Parenthood and fair access to affordable healthcare for all Americans.",
-  "sponsor": false,
+  "voted_for": "Yes! Your #member_type accepted #member_payment in campaign contributions from the NRA in the 2013-2014 election season.",
+  "voted_against": "No.",
+  "sponsor": true,
   "sponsor_year": 2014,
   "sponsor_id": "C00053553"
 }
