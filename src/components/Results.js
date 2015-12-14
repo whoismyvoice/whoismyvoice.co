@@ -51,7 +51,9 @@ class Results extends BaseComponent {
   }
 	render() {
     const {
-      number_representatives
+      number_representatives,
+      representatives,
+      number_house
     } = this.state;
 
     const backgroundClasses = cx(
@@ -59,8 +61,24 @@ class Results extends BaseComponent {
       {'move-up': this.state.did_search}
     );
 
+    let memberSections;
+
+    if (representatives && number_representatives > 2 && number_house === 1) {
+      memberSections = representatives.map((result, idx) => {
+        return (
+          <div className="section block two" key={idx}>
+            <MemberResults
+              numRep={number_representatives}
+              representative={result}
+            />
+          </div>
+        );
+      });
+    }
+
     return <div className={backgroundClasses} id="fullpage">
-      <div className="section block two">
+      {memberSections}
+      {/*<div className="section block two">
         <TextButton
           text="Back"
           onClick={this._handleRestart}
@@ -68,7 +86,7 @@ class Results extends BaseComponent {
         <MemberResults
           numRep={number_representatives}
         />
-      </div>
+      </div>*/}
       <div className="section block three">
         <TextButton
           text="Back"

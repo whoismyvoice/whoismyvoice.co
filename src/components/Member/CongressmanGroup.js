@@ -1,7 +1,5 @@
 import React from 'react';
-import cx from 'classnames';
 import SenateStore from '../../stores/SenateStore';
-import {Settings} from '../../constants/SenateConstants';
 
 // Components
 import BaseComponent from '../BaseComponent';
@@ -26,37 +24,22 @@ class CongressmanGroup extends BaseComponent {
   }
 
   render() {
-    const {representatives, settings, number_representatives} = this.state;
+    const {representative} = this.props;
+    const {number_representatives} = this.state;
 
-    let wrapperClasses = 'senatorWrapper';
-
-    const { chamber } = settings ? settings : Settings;
-
-    if (representatives) {
-      wrapperClasses = cx(
-        ['member-wrapper'],
-        {'several': representatives.length > 1}
-      );
-    }
-
-    const members = (representatives || []).map(function(item, idx) {
-      return <div className="member-container" key={idx}>
+    return <div className="senatorWrapper">
+      <div className="member-container">
         <MemberImg
-          bioguide={item.bioguide_id}
-          chamber={chamber}
-          party={item.party}
+          bioguide={representative.bioguide_id}
+          party={representative.party}
           repNumber={number_representatives}
         />
         <MemberRibbon
-          name={item.full_name}
-          state={item.state}
-          party={item.party}
+          name={representative.full_name}
+          state={representative.state}
+          party={representative.party}
         />
-      </div>;
-    });
-
-    return <div className={wrapperClasses}>
-      {members}
+      </div>
     </div>;
   }
 }

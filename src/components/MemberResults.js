@@ -14,30 +14,21 @@ class MemberResults extends BaseComponent {
   }
 
 	render() {
-  const NUMBER_REPRESENTATIVES = this.state.number_representatives;
-  if (NUMBER_REPRESENTATIVES > 1) {
+    const {representative} = this.props;
     return <span>
-        <TitleComponent
-          represent={true}
-          several={true}
-          classes="title-component--results"
-        />
-        <CongressmanGroup />
-      </span>;
-    } else {
-      return <span>
-        <CongressmanGroup />
-        <TitleComponent
-          represent={true}
-          classes="title-component--results"
-        />
-        <div className="line-seperator line-seperator--small"></div>
-        <NavButton
-          text="What can I do?"
-          id="0"
-        />
-      </span>;
-    }
+      <CongressmanGroup
+        representative={representative}
+      />
+      <TitleComponent
+        represent={true}
+        classes="title-component--results"
+      />
+      <div className="line-seperator line-seperator--small"></div>
+      <NavButton
+        text="What can I do?"
+        id="0"
+      />
+    </span>;
   }
 }
 
