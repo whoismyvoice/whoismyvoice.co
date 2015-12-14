@@ -5,9 +5,7 @@ import SenateStore from '../stores/SenateStore';
 import cx from 'classnames';
 
 // Components
-import TitleComponent from './TitleComponent';
-import TextButton from './Buttons/TextButton';
-import SupportActions from './Member/SupportActions';
+import SupportActions from './member/SupportActions';
 import MemberResults from './MemberResults';
 import BaseComponent from './BaseComponent';
 
@@ -18,6 +16,7 @@ class Results extends BaseComponent {
     this._bind('_handleClick', '_destroyFullpage', '_handleRestart');
   }
 
+  // Check if component should update, and update only if user did search
   shouldComponentUpdate(nextProps, nextState) {
     if (nextState.did_search) {
       return true;
@@ -26,20 +25,27 @@ class Results extends BaseComponent {
     }
   }
 
+  // Function to destroy fullPage if back button is tapped
   _destroyFullpage() {
     if ($.fn.fullpage.destroy !== undefined) {
       $.fn.fullpage.destroy();
     }
   }
+
+  // Function to restart application and set did_search inside SenateStore() to false
   _handleRestart() {
     SenateActions.flush();
     this._destroyFullpage();
   }
+
+  // Function to make fullPage move up one section
   _goBack() {
     if ($.fn.fullpage) {
       $.fn.fullpage.moveSectionUp();
     }
   }
+
+  // Function to select specific member based on target.id
   _handleClick(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -60,24 +66,14 @@ class Results extends BaseComponent {
       ['second-wrapper'],
       {'move-up': this.state.did_search}
     );
-    // if (representatives && number_representatives > 2 && number_house === 1) {
-    //   memberSections = representatives.map((result, idx) => {
-    //     return (
-    //       <div className="section block two" key={idx}>
-    //         <MemberResults
-    //           numRep={number_representatives}
-    //           representative={result}
-    //         />
-    //       </div>
-    //     );
-    //   });
-    // }
 
     let first_rep,
       second_rep,
       third_rep;
 
+    // Check if representatives exist and that they have the correct numer of members
     if (representatives && number_representatives > 2 && number_house === 1) {
+      // Assign member values to three diff. vars to ensure fullPage support (vs. dynamic rendering)
       first_rep = representatives[0];
       second_rep = representatives[1];
       third_rep = representatives[2];
@@ -89,10 +85,16 @@ class Results extends BaseComponent {
           numRep={number_representatives}
           representative={first_rep}
         />
+        <SupportActions
+          representative={first_rep}
+        />
       </div>
       <div className="section block two">
         <MemberResults
           numRep={number_representatives}
+          representative={second_rep}
+        />
+        <SupportActions
           representative={second_rep}
         />
       </div>
@@ -101,31 +103,10 @@ class Results extends BaseComponent {
           numRep={number_representatives}
           representative={third_rep}
         />
+        <SupportActions
+          representative={third_rep}
+        />
       </div>
-      {/* <div className="section block two">
-        <TextButton
-          text="Back"
-          onClick={this._handleRestart}
-        />
-        <MemberResults
-          numRep={number_representatives}
-        />
-      </div>*/}
-{/*      <div className="section block three">
-        <TextButton
-          text="Back"
-          onClick={this._goBack}
-        />
-        <TitleComponent
-          desc={true}
-          classes="title-component--actions"
-          actions={true}
-        />
-        <div className="star__seperator">
-          <span>&#9733;</span>
-        </div>
-        <SupportActions />
-      </div>*/}
     </div>;
   }
 }

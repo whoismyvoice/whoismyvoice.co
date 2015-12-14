@@ -40,6 +40,7 @@ class Home extends BaseComponent {
     this.setState(SenateStore.getMember());
   }
 
+  // Function to initialize fullPage
   _initializeFullpage() {
     $('#fullpage').fullpage({
       navigation: false,
@@ -63,11 +64,14 @@ class Home extends BaseComponent {
     });
     this._detectScroll();
   }
+
+  // Function to destroy fullpage
   _destroyFullpage() {
     if ($.fn.fullpage.destroy !== undefined) {
       $.fn.fullpage.destroy('all');
     }
   }
+  // Detect scroll on iPhone/mobile in order to ensure that scroll works on mobile devices
   _detectScroll() {
     let ts;
     $(document).bind('touchstart', function(e) {
@@ -86,6 +90,7 @@ class Home extends BaseComponent {
       NUMBER_HOUSE = this.state.number_house,
       DID_SEARCH = this.state.did_search;
 
+    // When search has been initiated and the right number of reps are retrieved initialize fullPage
     if (DID_SEARCH && NUMBER_HOUSE === 1 && NUMBER_REPRESENTATIVES === 3) {
       this._initializeFullpage();
     } else {

@@ -15,18 +15,17 @@ class SupportActions extends BaseComponent {
   }
 
   render() {
-    let representative,
-      gender,
+    let gender,
       email,
       twitter,
       tel,
       gender_alt,
       twitterLink;
 
-    const current = this.state.current_senator || 0;
+    const representative = this.props.representative;
 
-    if (this.state.representatives !== null) {
-      representative = this.state.representatives[current];
+    // Define each value used for every member
+    if (representative) {
       gender = representative.gender === 'M' ? 'Him' : 'Her';
       gender_alt = representative.gender === 'M' ? 'His' : 'Her';
       email = representative.oc_email;
@@ -71,8 +70,7 @@ class SupportActions extends BaseComponent {
 }
 
 SupportActions.propTypes = {
-  currentSenator: React.PropTypes.any,
-  representatives: React.PropTypes.array
+  represenative: React.PropTypes.object
 };
 
 export default SupportActions;

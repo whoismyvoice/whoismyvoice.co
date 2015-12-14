@@ -26,6 +26,7 @@ class MemberResults extends BaseComponent {
         representative={representative}
       />
       <TitleComponent
+        representative={representative}
         represent={true}
         chamber={chamber}
         classes="title-component--results"

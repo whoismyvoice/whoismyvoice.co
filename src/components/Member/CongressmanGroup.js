@@ -16,7 +16,7 @@ class CongressmanGroup extends BaseComponent {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.did_search && nextState.number_representatives > 2) {
+    if (nextState.did_search && nextState.number_representatives === 3 && nextState.number_house === 1) {
       return true;
     } else {
       return false;
