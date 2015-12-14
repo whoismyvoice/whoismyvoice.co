@@ -1,6 +1,5 @@
 import React from 'react';
 import SenateStore from '../stores/SenateStore';
-import {Settings} from '../constants/SenateConstants';
 // import DataUtils from '../utils/DataUtils';
 import ContainerActions from '../actions/ContainerActions';
 import cx from 'classnames';

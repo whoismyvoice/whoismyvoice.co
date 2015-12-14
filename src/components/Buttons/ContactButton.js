@@ -9,7 +9,6 @@ import style from '../../styles/ContactButton.scss';
 class ContactButton extends BaseComponent {
   render() {
     const {icon, text, detail, link} = this.props;
-
     return <a href={link} target="_blank">
       <button className="contact__button">
         <div className={`button__icon ${icon}`}>
@@ -17,9 +16,9 @@ class ContactButton extends BaseComponent {
         <div className="button__text">
           {text}
         </div>
-        <div className="button__detail">
+{/*        <div className="button__detail">
           {detail}
-        </div>
+        </div>*/}
       </button>
     </a>;
   }

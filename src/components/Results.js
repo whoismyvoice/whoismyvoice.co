@@ -5,7 +5,7 @@ import SenateStore from '../stores/SenateStore';
 import cx from 'classnames';
 
 // Components
-import SupportActions from './member/SupportActions';
+import TextButton from './Buttons/TextButton';
 import MemberResults from './MemberResults';
 import BaseComponent from './BaseComponent';
 
@@ -81,11 +81,12 @@ class Results extends BaseComponent {
 
     return <div className={backgroundClasses} id="fullpage">
       <div className="section block two">
+        <TextButton
+          text="Back"
+          onClick={this._handleRestart}
+        />
         <MemberResults
           numRep={number_representatives}
-          representative={first_rep}
-        />
-        <SupportActions
           representative={first_rep}
         />
       </div>
@@ -94,16 +95,10 @@ class Results extends BaseComponent {
           numRep={number_representatives}
           representative={second_rep}
         />
-        <SupportActions
-          representative={second_rep}
-        />
       </div>
       <div className="section block two">
         <MemberResults
           numRep={number_representatives}
-          representative={third_rep}
-        />
-        <SupportActions
           representative={third_rep}
         />
       </div>

@@ -3,12 +3,16 @@
 
 .contact__button {
   @include transition(0.5s);
-  width: 85%;
+  width: 23%;
   height: 70px;
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.1);
   border: 2px solid rgba(255, 255, 255, 0.2);
   margin-bottom: 20px;
+  margin: 0 1% 0 1%;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     @include transition(0.5s);
