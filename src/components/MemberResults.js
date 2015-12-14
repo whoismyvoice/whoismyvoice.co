@@ -15,12 +15,19 @@ class MemberResults extends BaseComponent {
 
 	render() {
     const {representative} = this.props;
+
+    let chamber;
+    if (representative) {
+      chamber = representative.chamber;
+    }
+
     return <span>
       <CongressmanGroup
         representative={representative}
       />
       <TitleComponent
         represent={true}
+        chamber={chamber}
         classes="title-component--results"
       />
       <div className="line-seperator line-seperator--small"></div>

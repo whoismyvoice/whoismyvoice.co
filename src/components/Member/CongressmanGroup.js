@@ -27,17 +27,29 @@ class CongressmanGroup extends BaseComponent {
     const {representative} = this.props;
     const {number_representatives} = this.state;
 
+    let bioguide_id,
+      party,
+      full_name,
+      state;
+
+    if (representative && number_representatives > 0) {
+      bioguide_id = representative.bioguide_id;
+      party = representative.party;
+      full_name = representative.full_name;
+      state = representative.state;
+    }
+
     return <div className="senatorWrapper">
       <div className="member-container">
         <MemberImg
-          bioguide={representative.bioguide_id}
-          party={representative.party}
+          bioguide={bioguide_id}
+          party={party}
           repNumber={number_representatives}
         />
         <MemberRibbon
-          name={representative.full_name}
-          state={representative.state}
-          party={representative.party}
+          name={full_name}
+          state={state}
+          party={party}
         />
       </div>
     </div>;

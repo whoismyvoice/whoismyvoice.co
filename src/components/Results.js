@@ -60,25 +60,49 @@ class Results extends BaseComponent {
       ['second-wrapper'],
       {'move-up': this.state.did_search}
     );
+    // if (representatives && number_representatives > 2 && number_house === 1) {
+    //   memberSections = representatives.map((result, idx) => {
+    //     return (
+    //       <div className="section block two" key={idx}>
+    //         <MemberResults
+    //           numRep={number_representatives}
+    //           representative={result}
+    //         />
+    //       </div>
+    //     );
+    //   });
+    // }
 
-    let memberSections;
+    let first_rep,
+      second_rep,
+      third_rep;
 
     if (representatives && number_representatives > 2 && number_house === 1) {
-      memberSections = representatives.map((result, idx) => {
-        return (
-          <div className="section block two" key={idx}>
-            <MemberResults
-              numRep={number_representatives}
-              representative={result}
-            />
-          </div>
-        );
-      });
+      first_rep = representatives[0];
+      second_rep = representatives[1];
+      third_rep = representatives[2];
     }
 
     return <div className={backgroundClasses} id="fullpage">
-      {memberSections}
-      {/*<div className="section block two">
+      <div className="section block two">
+        <MemberResults
+          numRep={number_representatives}
+          representative={first_rep}
+        />
+      </div>
+      <div className="section block two">
+        <MemberResults
+          numRep={number_representatives}
+          representative={second_rep}
+        />
+      </div>
+      <div className="section block two">
+        <MemberResults
+          numRep={number_representatives}
+          representative={third_rep}
+        />
+      </div>
+      {/* <div className="section block two">
         <TextButton
           text="Back"
           onClick={this._handleRestart}
@@ -87,7 +111,7 @@ class Results extends BaseComponent {
           numRep={number_representatives}
         />
       </div>*/}
-      <div className="section block three">
+{/*      <div className="section block three">
         <TextButton
           text="Back"
           onClick={this._goBack}
@@ -101,7 +125,7 @@ class Results extends BaseComponent {
           <span>&#9733;</span>
         </div>
         <SupportActions />
-      </div>
+      </div>*/}
     </div>;
   }
 }

@@ -16,7 +16,7 @@ class TitleComponent extends BaseComponent {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.did_search && Settings.chamber === 'house' && nextState.number_representatives === 1 || Settings.chamber === 'senate' && nextState.number_representatives > 0) {
+    if (nextState.did_search && nextState.number_representatives > 0) {
       return true;
     } else {
       return false;
@@ -26,11 +26,10 @@ class TitleComponent extends BaseComponent {
   render() {
     const {
       desc,
-      actions,
       classes,
       front,
       represent,
-      several
+      chamber
     } = this.props;
 
     const {
@@ -39,7 +38,6 @@ class TitleComponent extends BaseComponent {
     } = this.state;
 
     const {
-      chamber,
       bill_desc,
       bill_title,
       impact_text,
@@ -99,40 +97,36 @@ class TitleComponent extends BaseComponent {
       }
     }
 
-    if (!did_search || desc && did_search && !actions) {
+    if (!did_search || desc && did_search) {
       vote_question = `${bill_title}`;
       pre_text = bill_desc.replace('#member', member_single);
     } else if (did_search && !desc || !desc) {
       pre_text = preliminary_text;
-    } else if (actions) {
-      pre_text = impact;
     }
 
     const titleClasses = cx(
       ['title-component', classes],
       {'uppercase': front},
-      {'title-component--wider': several}
     );
 
     const representClasses = cx(
       ['title-component__represent'],
-      {'hide': !represent || several}
+      {'hide': !represent}
     );
 
     const starClasses = cx(
       ['title-component__star-divider'],
-      {'hide': !represent || actions || several}
+      {'hide': !represent}
     );
 
     const strikeClasses = cx(
       ['strike-out'],
-      {'white': represent || actions},
-      {'hide': actions}
+      {'white': represent}
     );
 
     const threeStars = cx(
       ['three-stars'],
-      {'hide': represent || actions}
+      {'hide': represent}
     );
 
     return <div className={titleClasses}>
@@ -158,7 +152,6 @@ class TitleComponent extends BaseComponent {
 }
 
 TitleComponent.propTypes = {
-  actions: React.PropTypes.bool,
   classes: React.PropTypes.string,
   desc: React.PropTypes.bool,
   front: React.PropTypes.bool,
