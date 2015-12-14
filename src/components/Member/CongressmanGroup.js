@@ -7,7 +7,6 @@ import {Settings} from '../../constants/SenateConstants';
 import BaseComponent from '../BaseComponent';
 import MemberImg from './MemberImg';
 import MemberRibbon from './MemberRibbon';
-import NavButton from '../Buttons/NavButton';
 
 // Styles
 import style from './../../styles/CongressmanGroup.scss';
@@ -19,7 +18,7 @@ class CongressmanGroup extends BaseComponent {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.did_search && Settings.chamber === 'house' && nextState.number_representatives === 1 || Settings.chamber === 'senate' && nextState.number_representatives > 0) {
+    if (nextState.did_search && nextState.number_representatives > 2) {
       return true;
     } else {
       return false;
@@ -29,8 +28,7 @@ class CongressmanGroup extends BaseComponent {
   render() {
     const {representatives, settings, number_representatives} = this.state;
 
-    let wrapperClasses = 'senatorWrapper',
-      arrowClasses = 'arrow';
+    let wrapperClasses = 'senatorWrapper';
 
     const { chamber } = settings ? settings : Settings;
 
@@ -39,21 +37,9 @@ class CongressmanGroup extends BaseComponent {
         ['member-wrapper'],
         {'several': representatives.length > 1}
       );
-      arrowClasses = cx(
-        ['arrow'],
-        {'hide': representatives.length === 1}
-      );
     }
 
     const members = (representatives || []).map(function(item, idx) {
-      // let payment;
-
-      // if (Settings.sponsor) {
-      //   payment = item.payment > 0 ? `Received $${item.payment} from ${Settings.bill_title}.` : `Received $0 from ${Settings.bill_title}.`;
-      // } else {
-      //   payment = '';
-      // }
-
       return <div className="member-container" key={idx}>
         <MemberImg
           bioguide={item.bioguide_id}
@@ -66,13 +52,6 @@ class CongressmanGroup extends BaseComponent {
           state={item.state}
           party={item.party}
         />
-        <span className={arrowClasses} id={idx}>
-          <div className="line-seperator line-seperator--small"></div>
-          <NavButton
-            text="What can I do?"
-            id={idx}
-          />
-        </span>
       </div>;
     });
 

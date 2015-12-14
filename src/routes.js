@@ -5,7 +5,6 @@ import Home from './components/Home';
 import About from './components/About';
 import Sources from './components/Sources';
 import NoMatch from './components/NoMatch';
-import Edit from './components/Edit';
 
 const routes = (
   <Router>
@@ -13,7 +12,6 @@ const routes = (
     	<Route path="/" component={Home} />
     	<IndexRoute component={Home} />
       <Route path="about" component={About} />
-      <Route path="edit" component={Edit} />
       <Route path="sources" component={Sources} />
       <Route path="*" component={Home}/>
     </Route>

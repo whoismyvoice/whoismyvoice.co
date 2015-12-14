@@ -25,9 +25,6 @@ class Home extends BaseComponent {
     if (this.state.did_search) {
       this._initializeFullpage();
     }
-    if (process.env.NODE_ENV === 'production' && this.state.settings === null) {
-      // DataUtils.saveFetchedData();
-    }
     SenateStore.addChangeListener(this._handleChange);
   }
 
@@ -83,11 +80,10 @@ class Home extends BaseComponent {
 
   render() {
     const NUMBER_REPRESENTATIVES = this.state.number_representatives,
-      SETTINGS = this.state.settings,
-      DID_SEARCH = this.state.did_search,
-      {chamber} = SETTINGS ? SETTINGS : Settings;
+      NUMBER_HOUSE = this.state.number_house,
+      DID_SEARCH = this.state.did_search;
 
-    if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && NUMBER_REPRESENTATIVES > 0 && chamber === 'senate') {
+    if (DID_SEARCH && NUMBER_HOUSE === 1 && NUMBER_REPRESENTATIVES > 2) {
       this._initializeFullpage();
     } else {
       this._destroyFullpage();
@@ -95,19 +91,18 @@ class Home extends BaseComponent {
 
     const blockClasses = cx(
       ['block', 'block--margin'],
-      {'disappear': DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && NUMBER_REPRESENTATIVES > 0 && chamber === 'senate'},
+      {'disappear': DID_SEARCH && NUMBER_HOUSE === 1 && NUMBER_REPRESENTATIVES > 2},
     );
 
     const fadingClasses = cx(
       ['fading-circle'],
-      {'orange-bg': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES !== undefined && chamber === 'senate' || NUMBER_REPRESENTATIVES === 1 && chamber === 'house'}
+      {'orange-bg': DID_SEARCH && NUMBER_HOUSE === 1 && NUMBER_REPRESENTATIVES > 2}
     );
 
     const containerClasses = cx(
       ['container'],
       {'reveal': DID_SEARCH},
-      {'visible': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
-      {'full': DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && chamber === 'senate'}
+      {'full': DID_SEARCH && NUMBER_HOUSE === 1 && NUMBER_REPRESENTATIVES > 2}
     );
 
     return <div className={containerClasses}>
