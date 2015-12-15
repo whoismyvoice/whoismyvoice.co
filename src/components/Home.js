@@ -63,12 +63,8 @@ class Home extends BaseComponent {
         verticalCentered: false,
         touchSensitivity: 2,
         scrollingSpeed: 900,
-        resize: true,
-        onLeave: (index, nextIndex) => {
-          ContainerActions.identifySection(nextIndex);
-        }
+        resize: true
       });
-      this._detectScroll();
     }
   }
 
@@ -82,19 +78,6 @@ class Home extends BaseComponent {
         initialized: false
       });
     }
-  }
-  // Detect scroll on iPhone/mobile in order to ensure that scroll works on mobile devices
-  _detectScroll() {
-    let ts;
-    $(document).bind('touchstart', function(e) {
-      ts = e.originalEvent.touches[0].clientY;
-    });
-    $(document).bind('touchend', function(e) {
-      let te = e.originalEvent.changedTouches[0].clientY;
-      if (ts > te + 5) {
-        $.fn.fullpage.moveSectionDown();
-      }
-    });
   }
 
   render() {

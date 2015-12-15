@@ -10,7 +10,6 @@ let _store = {
   state_full: '',
   did_search: false,
   error: false,
-  current_screen: null,
   current_member: null,
   number_representatives: null,
   number_house: null,
@@ -58,13 +57,6 @@ AppDispatcher.register(payload => {
     break;
 
   case AppConstants.FIND_SPECIFIC_MEMBER:
-
-    SenateStore.emit(CHANGE_EVENT);
-    break;
-
-  case AppConstants.IDENTIFY_SECTION:
-
-    _store.current_screen = action.index;
 
     SenateStore.emit(CHANGE_EVENT);
     break;
