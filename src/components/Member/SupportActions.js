@@ -22,7 +22,7 @@ class SupportActions extends BaseComponent {
       gender_alt,
       twitterLink;
 
-    const representative = this.props.representative;
+    const {representative} = this.props;
 
     // Define each value used for every member
     if (representative) {
@@ -64,7 +64,7 @@ class SupportActions extends BaseComponent {
 }
 
 SupportActions.propTypes = {
-  represenative: React.PropTypes.object
+  representative: React.PropTypes.any
 };
 
 export default SupportActions;

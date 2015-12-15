@@ -41,7 +41,7 @@ class MemberResults extends BaseComponent {
           text="See other representatives"
           id="0"
         />
-      </span>
+      </span>;
     } else {
       return <span>
         <CongressmanGroup
@@ -62,5 +62,9 @@ class MemberResults extends BaseComponent {
     }
   }
 }
+
+MemberResults.propTypes = {
+  representative: React.PropTypes.array
+};
 
 export default MemberResults;

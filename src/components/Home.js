@@ -62,7 +62,7 @@ class Home extends BaseComponent {
         controlArrows: false,
         verticalCentered: false,
         touchSensitivity: 2,
-        scrollingSpeed: 1000,
+        scrollingSpeed: 900,
         resize: true,
         onLeave: (index, nextIndex) => {
           ContainerActions.identifySection(nextIndex);

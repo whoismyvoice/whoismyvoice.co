@@ -139,10 +139,12 @@ class TitleComponent extends BaseComponent {
 }
 
 TitleComponent.propTypes = {
+  chamber: React.PropTypes.string,
   classes: React.PropTypes.string,
   desc: React.PropTypes.bool,
   front: React.PropTypes.bool,
-  represent: React.PropTypes.bool
+  represent: React.PropTypes.bool,
+  representative: React.PropTypes.array
 };
 
 export default TitleComponent;

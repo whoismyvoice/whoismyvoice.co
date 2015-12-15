@@ -24,4 +24,11 @@ class ContactButton extends BaseComponent {
   }
 }
 
+ContactButton.propTypes = {
+  detail: React.PropTypes.string,
+  icon: React.PropTypes.string,
+  link: React.PropTypes.string,
+  text: React.PropTypes.string
+};
+
 export default ContactButton;

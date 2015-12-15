@@ -72,7 +72,7 @@ class Results extends BaseComponent {
       second_third = representatives.slice(1, 3);
     }
 
-    return <div className={backgroundClasses} id="fullpage">
+    return (<div className={backgroundClasses} id="fullpage">
       {testMap}
       <div className="section block two">
         <TextButton
@@ -101,12 +101,13 @@ class Results extends BaseComponent {
         />
         <SupportActions />
       </div>
-    </div>;
+    </div>);
   }
 }
 
 Results.propTypes = {
-  backgroundClasses: React.PropTypes.any
+  backgroundClasses: React.PropTypes.any,
+  destroy: React.PropTypes.func
 };
 
 export default Results;
