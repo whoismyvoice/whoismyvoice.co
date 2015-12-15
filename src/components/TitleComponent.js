@@ -49,26 +49,39 @@ class TitleComponent extends BaseComponent {
       represent_gender,
       preliminary_text,
       member_name = '',
-      vote_question = '',
+      vote_question = `${bill_title}`,
       action,
       {represent_text} = Settings;
 
-    const member = chamber === 'senate' ? 'Senator' : 'Congressional Representative';
+    const member = chamber === 'senate' ? 'Senator' : 'Representative';
 
-    if (representative) {
-      vote_question = `${bill_title}`;
-      represent_gender = representative.gender_full === 'man' ? 'He' : 'She';
-      member_name = representative.full_name;
-
+    if (representative && representative.length === 1) {
+      represent_gender = representative[0].gender_full === 'man' ? 'He' : 'She';
+      member_name = representative[0].full_name;
       // Check for chamber in order to show correct verdict based on their vote since house and senate voted differently
-      if (representative.chamber === 'house') {
-        preliminary_text = representative.voted === Settings.house_vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
-      } else if (representative.chamber === 'senate') {
-        preliminary_text = representative.voted === Settings.senate_vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+      if (representative[0].chamber === 'house') {
+        preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+      } else if (representative[0].chamber === 'senate') {
+        preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
       }
-      // Grab represents text as specific in Settings.json
-      represent_text = `${represent_gender}  ${represent_text} your voice!`;
     }
+
+    if (representative && representative.length === 2) {
+      represent_gender = 'These people';
+      member_name = '';
+
+      if (representative[0].chamber === 'house' && representative[1].chamber === 'house') {
+        preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+      } else if (representative[0].chamber === 'senate' && representative[1].chamber === 'senate') {
+        preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+      } else if (representative[0].chamber === 'house' && representative[1].chamber === 'senate') {
+        preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+      } else if (representative[0].chamber === 'senate' && representative[1].chamber === 'house') {
+        preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+      }
+    }
+    // Grab represents text as specific in Settings.json
+    represent_text = `${represent_gender}  ${represent_text} your voice!`;
 
     // Make sure that vote_question is shown on frontpage and that result text is shown in follow. sections
     if (!did_search || desc && did_search) {

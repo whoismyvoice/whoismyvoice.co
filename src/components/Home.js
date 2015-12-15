@@ -41,27 +41,35 @@ class Home extends BaseComponent {
 
   // Function to initialize fullPage
   _initializeFullpage() {
-    $('#fullpage').fullpage({
-      navigation: false,
-      showActiveTooltip: false,
-      slidesNavigation: false,
-      css3: true,
-      autoScrolling: true,
-      fitToSection: true,
-      easingcss3: 'ease-in',
-      loopHorizontal: false,
-      keyboardScrolling: false,
-      animateAnchor: true,
-      recordHistory: true,
-      controlArrows: false,
-      verticalCentered: false,
-      touchSensitivity: 2,
-      resize: true,
-      onLeave: (index, nextIndex) => {
-        ContainerActions.identifySection(nextIndex);
-      }
-    });
-    this._detectScroll();
+    if (!this.state.initialized) {
+      this.setState({
+        initialized: true
+      });
+      $('#fullpage').fullpage({
+        navigation: false,
+        lockAnchors: true,
+        showActiveTooltip: false,
+        slidesNavigation: false,
+        css3: true,
+        autoScrolling: true,
+        fitToSection: true,
+        fitToSectionDelay: 1000,
+        easingcss3: 'ease-in',
+        loopHorizontal: false,
+        keyboardScrolling: false,
+        animateAnchor: false,
+        recordHistory: false,
+        controlArrows: false,
+        verticalCentered: false,
+        touchSensitivity: 2,
+        scrollingSpeed: 1000,
+        resize: true,
+        onLeave: (index, nextIndex) => {
+          ContainerActions.identifySection(nextIndex);
+        }
+      });
+      this._detectScroll();
+    }
   }
 
   // Function to destroy fullpage

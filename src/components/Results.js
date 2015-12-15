@@ -8,6 +8,7 @@ import cx from 'classnames';
 import TextButton from './Buttons/TextButton';
 import MemberResults from './MemberResults';
 import BaseComponent from './BaseComponent';
+import SupportActions from './member/SupportActions';
 
 class Results extends BaseComponent {
   constructor() {
@@ -68,18 +69,18 @@ class Results extends BaseComponent {
     );
 
     let first_rep,
-      second_rep,
-      third_rep;
+      second_third,
+      testMap;
 
     // Check if representatives exist and that they have the correct numer of members
     if (representatives && number_representatives > 2 && number_house === 1) {
       // Assign member values to three diff. vars to ensure fullPage support (vs. dynamic rendering)
-      first_rep = representatives[0];
-      second_rep = representatives[1];
-      third_rep = representatives[2];
+      first_rep = representatives.slice(0, 1);
+      second_third = representatives.slice(1, 3);
     }
 
     return <div className={backgroundClasses} id="fullpage">
+      {testMap}
       <div className="section block two">
         <TextButton
           text="Back"
@@ -91,16 +92,21 @@ class Results extends BaseComponent {
         />
       </div>
       <div className="section block two">
+        <TextButton
+          text="Back"
+          onClick={this._goBack}
+        />
         <MemberResults
           numRep={number_representatives}
-          representative={second_rep}
+          representative={second_third}
         />
       </div>
-      <div className="section block two">
-        <MemberResults
-          numRep={number_representatives}
-          representative={third_rep}
+      <div className="section block threee">
+        <TextButton
+          text="Back"
+          onClick={this._goBack}
         />
+        <SupportActions />
       </div>
     </div>;
   }

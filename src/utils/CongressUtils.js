@@ -6,7 +6,7 @@ import {Settings} from '../constants/SenateConstants';
 const getMemberDetails = (zipCode, lng, senate_votes, house_votes) => {
   const {API_KEY} = SenateConstants,
     url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${zipCode}&longitude=${lng}&apikey=${API_KEY}` : `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${zipCode}&apikey=${API_KEY}`,
-    {vote_favor} = Settings;
+    { house_vote_favor, senate_vote_favor } = Settings;
 
   request
   .get(url)
@@ -19,12 +19,14 @@ const getMemberDetails = (zipCode, lng, senate_votes, house_votes) => {
         member.age = (new Date().getFullYear() - member.birthday.substring(0, 4));
         member.full_name = member.middle_name === null ? `${member.first_name} ${member.last_name}` : `${member.first_name} ${member.middle_name} ${member.last_name}`;
         member.gender_full = member.gender === 'M' ? 'man' : 'woman';
+
+        // Check if member's bioguide_id is present within vote arrays and set voted and vote_favor accordingly
         if (senate_votes[member.bioguide_id]) {
           member.voted = senate_votes[member.bioguide_id];
-          member.vote_favor = senate_votes[member.bioguide_id] === Settings.senate_vote_favor;
+          member.vote_favor = senate_votes[member.bioguide_id] === senate_vote_favor;
         } else {
           member.voted = house_votes[member.bioguide_id];
-          member.vote_favor = house_votes[member.bioguide_id] === Settings.house_vote_favor;
+          member.vote_favor = house_votes[member.bioguide_id] === house_vote_favor;
           house_members++;
         }
         return member;

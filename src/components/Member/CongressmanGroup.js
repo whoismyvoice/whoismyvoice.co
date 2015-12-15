@@ -26,38 +26,30 @@ class CongressmanGroup extends BaseComponent {
   render() {
     const {representative} = this.props;
     const {number_representatives} = this.state;
+    let members;
 
-    let bioguide_id,
-      party,
-      full_name,
-      state;
-
-    if (representative && number_representatives > 0) {
-      bioguide_id = representative.bioguide_id;
-      party = representative.party;
-      full_name = representative.full_name;
-      state = representative.state;
+    if (representative && number_representatives > 2) {
+      members = representative.map((result, idx) => {
+      return (<div className="member-container" key={idx}>
+          <MemberImg
+            bioguide={result.bioguide_id}
+            party={result.party}
+            repNumber={number_representatives}
+          />
+          <MemberRibbon
+            name={result.full_name}
+            state={result.state}
+            party={result.party}
+          />
+        </div>);
+      });
     }
 
+
     return <div className="senatorWrapper">
-      <div className="member-container">
-        <MemberImg
-          bioguide={bioguide_id}
-          party={party}
-          repNumber={number_representatives}
-        />
-        <MemberRibbon
-          name={full_name}
-          state={state}
-          party={party}
-        />
-      </div>
+      {members}
     </div>;
   }
 }
-
-CongressmanGroup.propTypes = {
-  chamber: React.PropTypes.string
-};
 
 export default CongressmanGroup;

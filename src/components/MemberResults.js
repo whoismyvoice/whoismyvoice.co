@@ -22,25 +22,44 @@ class MemberResults extends BaseComponent {
       chamber = representative.chamber;
     }
 
-    return <span>
-      <CongressmanGroup
-        representative={representative}
-      />
-      <TitleComponent
-        representative={representative}
-        represent={true}
-        chamber={chamber}
-        classes="title-component--results"
-      />
-      <SupportActions
-        representative={representative}
-      />
-      <div className="line-seperator line-seperator--small"></div>
-      <NavButton
-        text="Next member"
-        id="0"
-      />
-    </span>;
+    if(representative && representative.length === 1) {
+      return <span>
+        <CongressmanGroup
+          representative={representative}
+        />
+        <TitleComponent
+          representative={representative}
+          represent={true}
+          chamber={chamber}
+          classes="title-component--results"
+        />
+        <SupportActions
+          representative={representative}
+        />
+        <div className="line-seperator line-seperator--small"></div>
+        <NavButton
+          text="See other representatives"
+          id="0"
+        />
+      </span>
+    } else {
+      return <span>
+        <CongressmanGroup
+          representative={representative}
+        />
+        <TitleComponent
+          representative={representative}
+          represent={true}
+          chamber={chamber}
+          classes="title-component--results"
+        />
+        <div className="line-seperator line-seperator--small"></div>
+        <NavButton
+          text="What Can I Do?"
+          id="0"
+        />
+      </span>;
+    }
   }
 }
 
