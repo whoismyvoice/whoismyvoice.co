@@ -14,7 +14,7 @@ class Results extends BaseComponent {
   constructor() {
     super();
     this.state = SenateStore.getMember();
-    this._bind('_handleClick', '_destroyFullpage', '_handleRestart');
+    this._bind('_handleClick', '_handleRestart');
   }
 
   // Check if component should update, and update only if user did search
@@ -26,17 +26,10 @@ class Results extends BaseComponent {
     }
   }
 
-  // Function to destroy fullPage if back button is tapped
-  _destroyFullpage() {
-    if ($.fn.fullpage.destroy !== undefined) {
-      $.fn.fullpage.destroy();
-    }
-  }
-
   // Function to restart application and set did_search inside SenateStore() to false
   _handleRestart() {
     SenateActions.flush();
-    this._destroyFullpage();
+    this.props.destroy();
   }
 
   // Function to make fullPage move up one section

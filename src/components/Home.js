@@ -74,8 +74,13 @@ class Home extends BaseComponent {
 
   // Function to destroy fullpage
   _destroyFullpage() {
-    if ($.fn.fullpage.destroy !== undefined) {
-      $.fn.fullpage.destroy('all');
+    if(this.state.initialized) {
+      if ($.fn.fullpage.destroy !== undefined) {
+        $.fn.fullpage.destroy('all');
+      }
+      this.setState({
+        initialized: false
+      });
     }
   }
   // Detect scroll on iPhone/mobile in order to ensure that scroll works on mobile devices
@@ -134,7 +139,7 @@ class Home extends BaseComponent {
           />
         	<SearchGroup />
         </div>
-        <Results />
+        <Results destroy={this._destroyFullpage} />
       </div>
     </div>;
   }
