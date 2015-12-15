@@ -5,6 +5,7 @@ import SenateStore from '../../stores/SenateStore';
 import BaseComponent from '../BaseComponent';
 import MemberImg from './MemberImg';
 import MemberRibbon from './MemberRibbon';
+import NavButton from '../Buttons/NavButton';
 
 // Styles
 import style from './../../styles/CongressmanGroup.scss';
@@ -24,9 +25,19 @@ class CongressmanGroup extends BaseComponent {
   }
 
   render() {
-    const {representative} = this.props;
+    const {representative, section} = this.props;
     const {number_representatives} = this.state;
     let members;
+
+    const nextButton = section === 1 ? '' : (
+      <span>
+        <div className="line-seperator line-seperator--small"></div>
+        <NavButton
+          text="What Can I Do?"
+          id="0"
+        />
+      </span>
+    );
 
     if (representative && number_representatives > 2) {
       members = representative.map((result, idx) => {
@@ -41,6 +52,7 @@ class CongressmanGroup extends BaseComponent {
             state={result.state}
             party={result.party}
           />
+        {nextButton}
         </div>);
       });
     }

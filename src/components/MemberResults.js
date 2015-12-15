@@ -14,52 +14,66 @@ class MemberResults extends BaseComponent {
     this.state = SenateStore.getMember();
   }
 
-	render() {
-    const {representative} = this.props;
+  render() {
+    const {representative, section} = this.props;
 
     let chamber;
     if (representative) {
       chamber = representative.chamber;
     }
 
-    if(representative && representative.length === 1) {
-      return <span>
-        <CongressmanGroup
-          representative={representative}
-        />
-        <TitleComponent
-          representative={representative}
-          represent={true}
-          chamber={chamber}
-          classes="title-component--results"
-        />
-        <SupportActions
-          representative={representative}
-        />
+    // Only show actionButtons on first page
+    const actionButtons = section === 2 ? '' : (
+      <SupportActions
+        representative={representative}
+      />
+    );
+
+    const nextButton = section === 2 ? '' : (
+      <span>
         <div className="line-seperator line-seperator--small"></div>
         <NavButton
           text="See other representatives"
           id="0"
         />
-      </span>;
-    } else {
-      return <span>
+      </span>
+    );
+
+    const titleSection = section === 2 ? (
+      <span>
+        <TitleComponent
+          representative={representative}
+          represent={true}
+          chamber={chamber}
+          section={section}
+          classes="title-component--results"
+        />
         <CongressmanGroup
+          section={section}
+          representative={representative}
+        />
+      </span>
+    ) : (
+      <span>
+        <CongressmanGroup
+          section={section}
           representative={representative}
         />
         <TitleComponent
           representative={representative}
           represent={true}
+          section={section}
           chamber={chamber}
           classes="title-component--results"
         />
-        <div className="line-seperator line-seperator--small"></div>
-        <NavButton
-          text="What Can I Do?"
-          id="0"
-        />
-      </span>;
-    }
+      </span>
+    );
+
+    return <span>
+      {titleSection}
+      {actionButtons}
+      {nextButton}
+    </span>;
   }
 }
 

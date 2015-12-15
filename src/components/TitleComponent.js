@@ -30,8 +30,8 @@ class TitleComponent extends BaseComponent {
       classes,
       front,
       represent,
-      chamber,
-      representative
+      representative,
+      section
     } = this.props;
 
     const {
@@ -49,15 +49,16 @@ class TitleComponent extends BaseComponent {
       represent_gender,
       preliminary_text,
       member_name = '',
+      represent_text,
       vote_question = `${bill_title}`,
       action,
-      {represent_text} = Settings;
-
-    const member = chamber === 'senate' ? 'Senator' : 'Representative';
+      member;
 
     if (representative && representative.length === 1) {
+      represent_text = 'represents';
       represent_gender = representative[0].gender_full === 'man' ? 'He' : 'She';
       member_name = representative[0].full_name;
+      member = representative[0].chamber === 'senate' ? 'Senator' : 'Representative';
       // Check for chamber in order to show correct verdict based on their vote since house and senate voted differently
       if (representative[0].chamber === 'house') {
         preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
@@ -67,7 +68,9 @@ class TitleComponent extends BaseComponent {
     }
 
     if (representative && representative.length === 2) {
+      member = representative[0].chamber === 'senate' ? 'Senators' : 'Representatives';
       represent_gender = 'These people';
+      represent_text = 'represent';
       member_name = '';
 
       if (representative[0].chamber === 'house' && representative[1].chamber === 'house') {
@@ -75,8 +78,10 @@ class TitleComponent extends BaseComponent {
       } else if (representative[0].chamber === 'senate' && representative[1].chamber === 'senate') {
         preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
       } else if (representative[0].chamber === 'house' && representative[1].chamber === 'senate') {
+        member = 'Representative & Senator';
         preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
       } else if (representative[0].chamber === 'senate' && representative[1].chamber === 'house') {
+        member = 'Representative & Senator';
         preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
       }
     }
@@ -98,12 +103,12 @@ class TitleComponent extends BaseComponent {
 
     const representClasses = cx(
       ['title-component__represent'],
-      {'hide': !represent}
+      {'hide': !represent || section === 2}
     );
 
     const starClasses = cx(
       ['title-component__star-divider'],
-      {'hide': !represent}
+      {'hide': !represent || section === 2}
     );
 
     const strikeClasses = cx(

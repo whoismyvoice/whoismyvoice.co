@@ -36,9 +36,7 @@ const getMemberDetails = (zipCode, lng, senate_votes, house_votes) => {
     // Sort array of objects based on vote_favor value in order to show members who voted as set vote_favor first
     const sort_member = function(left, right) {
       const vote_order = left.vote_favor === right.vote_favor ? 0 : (left.vote_favor < right.vote_favor ? -1 : 1);
-      if (
-        (left.vote_favor && right.vote_favor) || (!left.vote_favor && !right.vote_favor)
-      ) {
+      if ((left.vote_favor && right.vote_favor) || (!left.vote_favor && !right.vote_favor)) {
         return vote_order;
       } else if (left.vote_favor) {
         return -1;

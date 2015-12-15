@@ -45,7 +45,7 @@ class Results extends BaseComponent {
     event.stopPropagation();
     // Listen for event.target.id in order to decipher which of the arrows was tapped
     ContainerActions.setCurrentMember(event.target.id);
-    if($.fn.fullpage) {
+    if ($.fn.fullpage) {
       $.fn.fullpage.moveSectionDown();
     }
   }
@@ -62,7 +62,7 @@ class Results extends BaseComponent {
     );
 
     let first_rep,
-      second_third,
+      second_rep,
       testMap;
 
     // Check if representatives exist and that they have the correct numer of members
@@ -77,14 +77,14 @@ class Results extends BaseComponent {
       // Check whether they voted for/against vote_favor to divide them into groups
       if (count === 0 || count === 1 || count === 3) {
         first_rep = representatives.slice(0, 1);
-        second_third = representatives.slice(1, 3);
+        second_rep = representatives.slice(1, 3);
       } else if (count === 2) {
         first_rep = representatives.slice(0, 2);
-        second_third = representatives.slice(2, 3);
+        second_rep = representatives.slice(2, 3);
       }
     }
 
-    return (<div className={backgroundClasses} id="fullpage">
+    return <div className={backgroundClasses} id="fullpage">
       {testMap}
       <div className="section block two">
         <TextButton
@@ -94,6 +94,7 @@ class Results extends BaseComponent {
         <MemberResults
           numRep={number_representatives}
           representative={first_rep}
+          section={1}
         />
       </div>
       <div className="section block two">
@@ -103,7 +104,8 @@ class Results extends BaseComponent {
         />
         <MemberResults
           numRep={number_representatives}
-          representative={second_third}
+          representative={second_rep}
+          section={2}
         />
       </div>
       <div className="section block threee">
@@ -111,9 +113,11 @@ class Results extends BaseComponent {
           text="Back"
           onClick={this._goBack}
         />
-        <SupportActions />
+        <SupportActions
+          representative={second_rep}
+        />
       </div>
-    </div>);
+    </div>;
   }
 }
 

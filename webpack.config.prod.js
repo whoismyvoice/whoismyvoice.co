@@ -21,13 +21,11 @@ module.exports = {
     pathinfo: true,
   },
   plugins: [
-
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     }),
-
+    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-
     new HtmlWebpackPlugin({
       template: 'src/index.tpl.html',
       inject: 'body',
@@ -39,7 +37,16 @@ module.exports = {
     }),
 
     new webpack.optimize.UglifyJsPlugin({
-      compressor: {
+      output: { comments: false },
+      compress: {
+        dead_code: true,
+        sequences: true,
+        conditionals: true,
+        booleans: true,
+        if_return: true,
+        join_vars: true,
+        drop_console: true,
+        unused: true,
         warnings: false,
         screw_ie8: true
       }
