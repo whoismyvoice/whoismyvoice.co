@@ -37,7 +37,7 @@ class MemberResults extends BaseComponent {
       />
       <div className="line-seperator line-seperator--small"></div>
       <NavButton
-        text="What can I do?"
+        text="Next member"
         id="0"
       />
     </span>;

@@ -16,22 +16,39 @@ const getMemberDetails = (zipCode, lng, senate_votes, house_votes) => {
     let house_members = 0;
     const members = res.body.results.filter(member => {
       if (member.bioguide_id in senate_votes || member.bioguide_id in house_votes) {
-        if (senate_votes[member.bioguide_id]) {
-          member.voted = senate_votes[member.bioguide_id];
-        } else {
-          member.voted = house_votes[member.bioguide_id];
-          house_members++;
-        }
         member.age = (new Date().getFullYear() - member.birthday.substring(0, 4));
         member.full_name = member.middle_name === null ? `${member.first_name} ${member.last_name}` : `${member.first_name} ${member.middle_name} ${member.last_name}`;
         member.gender_full = member.gender === 'M' ? 'man' : 'woman';
+        if (senate_votes[member.bioguide_id]) {
+          member.voted = senate_votes[member.bioguide_id];
+          member.vote_favor = senate_votes[member.bioguide_id] === Settings.senate_vote_favor;
+        } else {
+          member.voted = house_votes[member.bioguide_id];
+          member.vote_favor = house_votes[member.bioguide_id] === Settings.house_vote_favor;
+          house_members++;
+        }
         return member;
       }
     });
+
+    // Sort array of objects based on vote_favor value in order to show members who voted as set vote_favor first
+    const sort_member = function(left, right) {
+      const vote_order = left.vote_favor === right.vote_favor ? 0 : (left.vote_favor < right.vote_favor ? -1 : 1);
+      if (
+        (left.vote_favor && right.vote_favor) || (!left.vote_favor && !right.vote_favor)
+      ) {
+        return vote_order;
+      } else if (left.vote_favor) {
+        return -1;
+      } else {
+        return 1;
+      }
+    };
+
     if (res.body.results.length === 0) {
       SenateServerActions.getDetails('error');
     } else if (members.length > 0) {
-      SenateServerActions.getDetails(members, members.length, house_members);
+      SenateServerActions.getDetails(members.sort(sort_member), members.length, house_members);
     }
   });
 };
