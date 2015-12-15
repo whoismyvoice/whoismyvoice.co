@@ -67,9 +67,21 @@ class Results extends BaseComponent {
 
     // Check if representatives exist and that they have the correct numer of members
     if (representatives && number_representatives > 2 && number_house === 1) {
-      // Assign member values to three diff. vars to ensure fullPage support (vs. dynamic rendering)
-      first_rep = representatives.slice(0, 1);
-      second_third = representatives.slice(1, 3);
+      let count = 0;
+      // Assign member values to vars to ensure fullPage support (vs. dynamic rendering)
+      for (let i = 0; i < representatives.length; i++) {
+        if (representatives[i].vote_favor) {
+          count++;
+        }
+      }
+      // Check whether they voted for/against vote_favor to divide them into groups
+      if (count === 0 || count === 1 || count === 3) {
+        first_rep = representatives.slice(0, 1);
+        second_third = representatives.slice(1, 3);
+      } else if (count === 2) {
+        first_rep = representatives.slice(0, 2);
+        second_third = representatives.slice(2, 3);
+      }
     }
 
     return (<div className={backgroundClasses} id="fullpage">

@@ -77,7 +77,6 @@ AppDispatcher.register(payload => {
 
     if (action.store !== 'settings') {
       _store.did_search = false;
-      _store.current_screen = 0;
       _store.current_member = 0;
       _store.second_search = false;
       _store.number_representatives = null;
