@@ -16,16 +16,25 @@ class MemberResults extends BaseComponent {
   render() {
     const {representative, section} = this.props;
 
-    let chamber;
+    let chamber,
+      nextText;
     if (representative) {
       chamber = representative.chamber;
+    }
+
+    if (representative) {
+      if (section === 1 && representative[0].chamber === 'house') {
+        nextText = 'Your Senators';
+      } else if (section === 1 && representative[0].chamber === 'senate') {
+        nextText = 'Your Representative';
+      }
     }
 
     const nextButton = section === 2 ? '' : (
       <span>
         <div className="line-seperator line-seperator--small"></div>
         <NavButton
-          text="See other representatives"
+          text={`See ${nextText}`}
           id="0"
         />
       </span>

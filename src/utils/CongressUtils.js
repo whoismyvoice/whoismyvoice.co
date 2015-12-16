@@ -48,6 +48,7 @@ const getMemberDetails = (zipCode, lng, senate_votes, house_votes) => {
     if (res.body.results.length === 0) {
       SenateServerActions.getDetails('error');
     } else if (members.length > 0) {
+      console.log(members.sort(sort_member));
       SenateServerActions.getDetails(members.sort(sort_member), members.length, house_members);
     }
   });
