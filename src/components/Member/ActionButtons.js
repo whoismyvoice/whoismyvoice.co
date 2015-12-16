@@ -3,10 +3,10 @@ import SenateStore from '../../stores/SenateStore';
 
 // Components
 import BaseComponent from '../BaseComponent';
-import ContactButton from './../Buttons/ContactButton';
+import ContactButtonSmall from './../Buttons/ContactButtonSmall';
 
 // Styles
-import style from './../../styles/SupportActions.scss';
+import style from './../../styles/ActionButtons.scss';
 
 class SupportActions extends BaseComponent {
   constructor(props) {
@@ -26,39 +26,37 @@ class SupportActions extends BaseComponent {
 
     // Define each value used for every member
     if (representative) {
-      gender = representative[0].gender === 'M' ? 'Him' : 'Her';
-      gender_alt = representative[0].gender === 'M' ? 'His' : 'Her';
-      email = representative[0].oc_email;
-      twitter = representative[0].twitter_id;
-      tel = representative[0].phone;
+      gender = representative.gender === 'M' ? 'Him' : 'Her';
+      gender_alt = representative.gender === 'M' ? 'His' : 'Her';
+      email = representative.oc_email;
+      twitter = representative.twitter_id;
+      tel = representative.phone;
       twitterLink = `http://twitter.com/${twitter}`;
     }
 
-    return  <div className="contactActions">
-      <ContactButton
-        text={`Email ${gender}`}
+    return  <div className="actionButtons">
+      <ContactButtonSmall
         link={ 'mailto:' + email }
-        detail={email}
         icon="email"
+        text={`Email ${gender}`}
+        add_style="smaller"
       />
-      <ContactButton
-        text={`Call ${gender_alt} Office`}
+      <ContactButtonSmall
         link={`tel:${tel}`}
-        detail={tel}
         icon="phone"
+        add_style="smaller"
+        text={`Call ${gender}`}
       />
-      <ContactButton
-        text={`Tweet at ${gender}`}
+      <ContactButtonSmall
         link={twitterLink}
-        detail={`@${twitter}`}
         icon="twitter"
+        text={`Tweet at ${gender}`}
       />
-      <ContactButton
-        text="Register to Vote"
+{/*      <ContactButtonSmall
         link="https://registertovote.org/"
-        detail="registertovote.org"
         icon="vote"
-      />
+        text="Register to vote"
+      />*/}
     </div>;
   }
 }

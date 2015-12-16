@@ -16,9 +16,9 @@ class ContactButton extends BaseComponent {
         <div className="button__text">
           {text}
         </div>
-{/*        <div className="button__detail">
+        <div className="button__detail">
           {detail}
-        </div>*/}
+        </div>
       </button>
     </a>;
   }

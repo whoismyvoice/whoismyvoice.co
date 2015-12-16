@@ -6,6 +6,7 @@ import BaseComponent from '../BaseComponent';
 import MemberImg from './MemberImg';
 import MemberRibbon from './MemberRibbon';
 import NavButton from '../Buttons/NavButton';
+import ActionButtons from './ActionButtons';
 
 // Styles
 import style from './../../styles/CongressmanGroup.scss';
@@ -41,6 +42,12 @@ class CongressmanGroup extends BaseComponent {
 
     if (representative && number_representatives > 2) {
       members = representative.map((result, idx) => {
+      const actionButton = section === 2 ? '' : (
+        <ActionButtons
+          representative={result}
+        />
+      );
+
       return (<div className="member-container" key={idx}>
           <MemberImg
             bioguide={result.bioguide_id}
@@ -52,7 +59,8 @@ class CongressmanGroup extends BaseComponent {
             state={result.state}
             party={result.party}
           />
-        {nextButton}
+          {actionButton}<br />
+          {nextButton}
         </div>);
       });
     }

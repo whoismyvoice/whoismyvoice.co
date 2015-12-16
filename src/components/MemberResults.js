@@ -5,7 +5,6 @@ import SenateStore from '../stores/SenateStore';
 import TitleComponent from './TitleComponent';
 import CongressmanGroup from './Member/CongressmanGroup';
 import NavButton from './Buttons/NavButton';
-import SupportActions from './member/SupportActions';
 import BaseComponent from './BaseComponent';
 
 class MemberResults extends BaseComponent {
@@ -21,13 +20,6 @@ class MemberResults extends BaseComponent {
     if (representative) {
       chamber = representative.chamber;
     }
-
-    // Only show actionButtons on first page
-    const actionButtons = section === 2 ? '' : (
-      <SupportActions
-        representative={representative}
-      />
-    );
 
     const nextButton = section === 2 ? '' : (
       <span>
@@ -71,7 +63,6 @@ class MemberResults extends BaseComponent {
 
     return <span>
       {titleSection}
-      {actionButtons}
       {nextButton}
     </span>;
   }
