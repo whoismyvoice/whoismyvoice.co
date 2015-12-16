@@ -30,8 +30,7 @@ class TitleComponent extends BaseComponent {
       classes,
       front,
       represent,
-      representative,
-      section
+      representative
     } = this.props;
 
     const {
@@ -55,7 +54,6 @@ class TitleComponent extends BaseComponent {
       member;
 
     if (representative && representative.length === 1) {
-      represent_text = 'represents';
       represent_gender = representative[0].gender_full === 'man' ? 'He' : 'She';
       member_name = representative[0].full_name;
       member = representative[0].chamber === 'senate' ? 'Senator' : 'Representative';
@@ -70,7 +68,6 @@ class TitleComponent extends BaseComponent {
     if (representative && representative.length === 2) {
       member = representative[0].chamber === 'senate' ? 'Senators' : 'Representatives';
       represent_gender = 'These people';
-      represent_text = 'represent';
       member_name = '';
 
       if (representative[0].chamber === 'house' && representative[1].chamber === 'house') {
@@ -85,8 +82,6 @@ class TitleComponent extends BaseComponent {
         preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
       }
     }
-    // Grab represents text as specific in Settings.json
-    represent_text = `${represent_gender}  ${represent_text} your voice!`;
 
     // Make sure that vote_question is shown on frontpage and that result text is shown in follow. sections
     if (!did_search || desc && did_search) {
@@ -99,16 +94,6 @@ class TitleComponent extends BaseComponent {
     const titleClasses = cx(
       ['title-component', classes],
       {'uppercase': front},
-    );
-
-    const representClasses = cx(
-      ['title-component__represent'],
-      {'hide': !represent || section === 2}
-    );
-
-    const starClasses = cx(
-      ['title-component__star-divider'],
-      {'hide': !represent || section === 2}
     );
 
     const strikeClasses = cx(
@@ -133,12 +118,6 @@ class TitleComponent extends BaseComponent {
           {vote_question}
         </span>
       </div>
-      <div className={starClasses}>
-        <span>&#9733;</span>
-      </div>
-      <span className={representClasses}>
-        {represent_text}
-      </span>
     </div>;
   }
 }

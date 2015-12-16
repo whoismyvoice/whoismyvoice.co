@@ -8,7 +8,6 @@ import cx from 'classnames';
 import TextButton from './Buttons/TextButton';
 import MemberResults from './MemberResults';
 import BaseComponent from './BaseComponent';
-import SupportActions from './member/SupportActions';
 
 class Results extends BaseComponent {
   constructor() {
@@ -106,15 +105,6 @@ class Results extends BaseComponent {
           numRep={number_representatives}
           representative={second_rep}
           section={2}
-        />
-      </div>
-      <div className="section block threee">
-        <TextButton
-          text="Back"
-          onClick={this._goBack}
-        />
-        <SupportActions
-          representative={second_rep}
         />
       </div>
     </div>;

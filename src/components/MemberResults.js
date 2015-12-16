@@ -31,7 +31,7 @@ class MemberResults extends BaseComponent {
       </span>
     );
 
-    const titleSection = section === 2 ? (
+    const titleSection = (
       <span>
         <TitleComponent
           representative={representative}
@@ -43,20 +43,6 @@ class MemberResults extends BaseComponent {
         <CongressmanGroup
           section={section}
           representative={representative}
-        />
-      </span>
-    ) : (
-      <span>
-        <CongressmanGroup
-          section={section}
-          representative={representative}
-        />
-        <TitleComponent
-          representative={representative}
-          represent={true}
-          section={section}
-          chamber={chamber}
-          classes="title-component--results"
         />
       </span>
     );

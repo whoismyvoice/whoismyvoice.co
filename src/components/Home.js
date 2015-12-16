@@ -24,9 +24,9 @@ class Home extends BaseComponent {
     if (this.state.did_search) {
       this._initializeFullpage();
     }
-    if (process.env.NODE_ENV === 'production' && this.state.settings === null) {
+    //if (process.env.NODE_ENV === 'production' && this.state.settings === null) {
       // DataUtils.saveFetchedData();
-    }
+    //}
     SenateStore.addChangeListener(this._handleChange);
   }
 
