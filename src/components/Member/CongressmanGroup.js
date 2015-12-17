@@ -49,7 +49,7 @@ class CongressmanGroup extends BaseComponent {
             state={result.state}
             party={result.party}
           />
-          {actionButton}<br />
+          {actionButton}
         </div>);
       });
     }

@@ -7,9 +7,9 @@
   position: relative;
   display: inline-block;
   width: 45%;
-  font-size: 40px;
+  font-size: 38px;
   height: auto;
-  padding: 2vh 2vw 2vh 2vw;
+  padding: 1vh 1vw 2vh 1vw;
   color: $dark-blue;
 
   @media screen and (max-width: $iphone6) {
@@ -78,13 +78,13 @@
 }
 
 .title-component--results {
-  width: 50%;
+  width: 65%;
   line-height: 1.2;
   font-size: 24px;
   color: $white;
 
   @media screen and (max-width: 1170px) {
-    width: 60%;
+    width: 65%;
   }
 
   @media only screen
@@ -128,7 +128,7 @@
 
   @media screen and (max-width: 1170px) {
     line-height: 1.2;
-    font-size: 25px;
+    font-size: 22px;
   }
 
   @media only screen

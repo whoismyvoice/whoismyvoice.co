@@ -51,11 +51,6 @@ class SupportActions extends BaseComponent {
         icon="twitter"
         text={`@${twitter}`}
       />
-{/*      <ContactButtonSmall
-        link="https://registertovote.org/"
-        icon="vote"
-        text="Register to vote"
-      />*/}
     </div>;
   }
 }

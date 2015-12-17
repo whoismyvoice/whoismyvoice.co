@@ -1,7 +1,7 @@
 @import 'variables';
 
 .member-wrapper {
-	width: 90%;
+	width: 95%;
 	margin: 0 auto;
   margin-top: 20px;
 	position: relative;
@@ -46,7 +46,7 @@
 }
 
 .member-container {
-	width: 35%;
+	width: 3%;
 	display: inline-block;
   height: 200px;
   position: relative;
@@ -56,9 +56,9 @@
   }
 
   @media screen and (max-width: 1370px) {
-    width: 35%;
-    height: 190px;
-    margin-top: -10px;
+    width: 33%;
+    height: 180px;
+    margin-top: 0px;
   }
 
   @media only screen
