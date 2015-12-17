@@ -52,6 +52,8 @@ class CongressmanGroup extends BaseComponent {
           />
         );
 
+        const gender = result.gender === 'M' ? 'Him' : 'Her';
+
         return (<div className="member-container" key={idx}>
           <MemberImg
             bioguide={result.bioguide_id}
@@ -67,7 +69,9 @@ class CongressmanGroup extends BaseComponent {
             className="mobile-contact-options"
             onClick={this.toggleContactOverlay}
             id={idx}
-          />
+          >
+            {`Contact ${gender}`}
+          </div>
           {actionButton}
         </div>);
       });
