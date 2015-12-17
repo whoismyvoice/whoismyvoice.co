@@ -1,5 +1,6 @@
 import React from 'react';
 import SenateStore from '../../stores/SenateStore';
+import cx from 'classnames';
 
 // Components
 import BaseComponent from '../BaseComponent';
@@ -14,6 +15,7 @@ class CongressmanGroup extends BaseComponent {
   constructor(props) {
     super(props);
     this.state = SenateStore.getMember();
+    this._bind('toggleContactOverlay');
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -24,11 +26,23 @@ class CongressmanGroup extends BaseComponent {
     }
   }
 
+  toggleContactOverlay(evt) {
+    this.setState({
+      didClickOverlay: !this.state.didClickOverlay,
+      clicked: evt.target.id
+    });
+  }
+
   render() {
     const {representative} = this.props;
     const {number_representatives} = this.state;
     let members,
       actionButton;
+
+    const mobileOverlayClass = cx(
+      ['mobile-contact-overlay'],
+      {'show': this.state.didClickOverlay}
+    );
 
     if (representative && number_representatives > 2) {
       members = representative.map((result, idx) => {
@@ -49,14 +63,26 @@ class CongressmanGroup extends BaseComponent {
             state={result.state}
             party={result.party}
           />
+          <div
+            className="mobile-contact-options"
+            onClick={this.toggleContactOverlay}
+            id={idx}
+          />
           {actionButton}
         </div>);
       });
     }
 
+    const selectedMember = this.state.clicked ? representative[this.state.clicked] : representative;
 
-    return <div className="senatorWrapper">
+    return <div className="member-wrapper">
       {members}
+      <div className={mobileOverlayClass}>
+        <ActionButtons
+          representative={selectedMember}
+        />
+        <div className="mobile-contact-close-button" onClick={this.toggleContactOverlay} />
+      </div>
     </div>;
   }
 }

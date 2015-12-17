@@ -44,12 +44,12 @@ class SupportActions extends BaseComponent {
       <ContactButtonSmall
         link={`tel:${tel}`}
         icon="phone"
-        text={`${tel}`}
+        text={`Call ${gender}`}
       />
       <ContactButtonSmall
         link={twitterLink}
         icon="twitter"
-        text={`@${twitter}`}
+        text={`Tweet at ${gender}`}
       />
     </div>;
   }

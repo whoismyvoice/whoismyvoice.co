@@ -46,7 +46,7 @@
 }
 
 .member-container {
-	width: 3%;
+	width: 35%;
 	display: inline-block;
   height: 200px;
   position: relative;
@@ -56,9 +56,9 @@
   }
 
   @media screen and (max-width: 1370px) {
-    width: 33%;
-    height: 180px;
-    margin-top: 0px;
+    width: 35%;
+    height: 190px;
+    margin-top: -10px;
   }
 
   @media only screen

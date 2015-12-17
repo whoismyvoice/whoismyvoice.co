@@ -1,8 +1,116 @@
 @import 'variables';
+@import 'transitions';
 
 .actionButtons {
   width: 100%;
   margin: 0 auto;
-  height: 50px;
-  margin-top: 0px;
+  display: inline-block;
+  margin-top: -10px;
+
+  @media screen and (min-width: 1600px) {
+    margin-top: 15px;
+  }
+
+  @media screen and (max-width: $iphone6) {
+    display: none;
+  }
+}
+
+.mobile-contact-options {
+  width: 35px;
+  height: 35px;
+  background-color: $white;
+  -moz-box-shadow: 3px 3px 5px rgba(68,68,68,0.2);
+  -webkit-box-shadow: 3px 3px 5px rgba(68,68,68,0.2);
+  box-shadow: 3px 3px 5px rgba(68,68,68,0.2);
+  display: none;
+  margin: 0 auto;
+  border-radius: 50%;
+  position: relative;
+
+  &:before {
+    content: '';
+    background-image: url('../img/icons/plus_icon.png');
+    width: 40%;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    top: 30%;
+    bottom: 0;
+    right: 0;
+    background-size: contain;
+    height: 40%;
+    background-position: center center;;
+  }
+
+  @media screen and (max-width: $iphone6) {
+    display: block;
+  }
+}
+
+.mobile-contact-overlay {
+  @include transition(0.3s);
+  position: absolute;
+  top: -30vh;
+  z-index: 999;
+  left: 0;
+  display: flex;
+  visibility: hidden;
+  display: none;
+  opacity: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255,149,73,0.7);
+
+  @media screen and (max-width: $iphone6) {
+    display: block;
+  }
+
+  .actionButtons {
+    @media screen and (max-width: $iphone6) {
+      display: block;
+      margin-top: 50%;
+      width: 100%;
+    }
+
+    .contact__button_small {
+      width: auto;
+      padding: 0 5px 0 5px;
+      margin-bottom: 20px;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  &.show {
+    @include transition(0.3s);
+    justify-content: center;
+    align-content: center;
+    opacity: 1;
+    visibility: visible;
+    justify-content: center;
+
+    .contact__button_small {
+      margin: 0 auto;
+      margin-bottom: 20px;
+      display: block;
+    }
+  }
+}
+
+.mobile-contact-close-button {
+  width: 35px;
+  height: 35px;
+  background-color: $white;
+  margin: 0 auto;
+  margin-top: 10%;
+  border-radius: 50%;
+  background-image: url('../img/icons/plus_icon.png');
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transform: rotate(45deg);
+  -moz-box-shadow: 3px 3px 5px rgba(68,68,68,0.2);
+  -webkit-box-shadow: 3px 3px 5px rgba(68,68,68,0.2);
+  box-shadow: 3px 3px 5px rgba(68,68,68,0.2);
 }
