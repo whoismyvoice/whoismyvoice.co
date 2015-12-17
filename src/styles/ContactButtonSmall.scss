@@ -4,8 +4,8 @@
 .contact__button_small {
   @include transition(0.5s);
   width: auto;
-  margin-left: 1%;
-  margin-right: 1%;
+  margin: 0 1% 0 1%;
+  padding: 2px 5px 3px 5px;
   margin-bottom: 10px;
   height: 43px;
   display: inline-block;
@@ -34,17 +34,17 @@
   display: inline-block;
   color: $white;
   z-index: 2;
-  margin-top: 6px;
+  margin-top: 5px;
   position: relative;
   font-weight: 600;
-  font-size: 1.1em;
+  font-size: 14px;
 
   @media screen and (max-height: 650px) {
     margin-top: 2px;
   }
 
   @media screen and (max-width: $iphone6) {
-    font-size: 1.3em;
+    font-size: 14px;
     margin-top: 5px;
   }
 }
