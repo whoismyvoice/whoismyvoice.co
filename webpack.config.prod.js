@@ -79,8 +79,8 @@ module.exports = {
       loader: 'json'
     }, {
       test: /\.(jpg|png|gif|svg)$/,
-      // loader: 'file?name=img/[name]-[hash].[ext]'
-      loader: 'url?limit=38000!image-webpack'
+      loader: 'file?name=img/[name]-[hash].[ext]'
+      //loader: 'url?limit=38000!image-webpack'
 
     }]
   },

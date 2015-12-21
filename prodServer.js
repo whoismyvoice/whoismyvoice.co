@@ -1,8 +1,9 @@
+// import path from 'path';
 import express from 'express';
-//import mongoose from 'mongoose';
+// import mongoose from 'mongoose';
 import Settings from './config/models/settings';
-//import defaultSettings from './config/defaultSettings';
-//import config from './config/config';
+// import defaultSettings from './config/defaultSettings';
+// import config from './config/config';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import serender from 'serender';
@@ -25,11 +26,11 @@ import serender from 'serender';
 const server = express();
 const port = 8080;
 
-//server.use(bodyParser.json());
+// server.use(bodyParser.json());
 server.use(helmet());
 server.use(express.static(__dirname + '/dist'));
 
-server.get('/api/settings', function(req, res, next) {
+/*server.get('/api/settings', function(req, res, next) {
   Settings.findOne({}, {}, {sort: {'created_at': -1}}, function(err, settings) {
     if (err) return next(err);
     console.info('Received request');
@@ -45,7 +46,7 @@ server.post('/api/settings/edit', function(req, res, next) {
     res.status(201).json(post);
     console.info('Posted new settings successfully');
   });
-});
+});*/
 
 server.set('port', process.env.PORT || 8080);
 
@@ -66,5 +67,4 @@ server.listen(port, function(err) {
     console.log(err);
   }
   console.info('🌎 🚀 Listening on port %s. Open up http://localhost:%s/ in your browser.', port, port);
-  console.info(__dirname);
 });
