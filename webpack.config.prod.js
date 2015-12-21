@@ -80,7 +80,7 @@ module.exports = {
     }, {
       test: /\.(jpg|png|gif|svg)$/,
       loader: 'file?name=img/[name]-[hash].[ext]'
-      //loader: 'url?limit=38000!image-webpack'
+      // loader: 'url?limit=38000!image-webpack'
 
     }]
   },
