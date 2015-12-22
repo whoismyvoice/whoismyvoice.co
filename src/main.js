@@ -13,7 +13,6 @@ window.React = React;
 render(
   <Router
     children={routes}
-    history={createHistory()}
    />,
   document.getElementById('root')
 );
