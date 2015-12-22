@@ -5,7 +5,7 @@
   @include transition(0.5s);
   width: auto;
   margin: 0 1% 0 1%;
-  padding: 2px 6px 3px 5px;
+  padding: 2px 7px 3px 5px;
   margin-bottom: 10px;
   height: 43px;
   display: inline-block;
@@ -34,7 +34,7 @@
   display: inline-block;
   color: $white;
   z-index: 2;
-  margin-top: 6px;
+  margin-top: 7px;
   position: relative;
   font-weight: 600;
   font-size: 14px;
@@ -50,9 +50,10 @@
 }
 
 .button__small__icon {
-  height: 40px;
-  width: 40px;
+  height: 35px;
+  width: 35px;
   float: left;
+  margin-top: 3px;
   display: inline-block;
   background-repeat: no-repeat;
 
