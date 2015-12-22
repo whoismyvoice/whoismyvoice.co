@@ -7,13 +7,15 @@ const getMemberDetails = (zipCode, lng, senate_votes, house_votes) => {
   const {API_KEY} = SenateConstants,
     url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${zipCode}&longitude=${lng}&apikey=${API_KEY}` : `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${zipCode}&apikey=${API_KEY}`,
     { house_vote_favor, senate_vote_favor } = Settings;
-
+    console.log(zipCode);
+    console.log(lng);
   request
   .get(url)
   .set('Accept', 'application/json')
   .end((err, res) => {
     if (err) return console.error(err);
     let house_members = 0;
+    console.log(res.body.results);
     const members = res.body.results.filter(member => {
       if (member.bioguide_id in senate_votes || member.bioguide_id in house_votes) {
         member.age = (new Date().getFullYear() - member.birthday.substring(0, 4));
@@ -48,7 +50,6 @@ const getMemberDetails = (zipCode, lng, senate_votes, house_votes) => {
     if (res.body.results.length === 0) {
       SenateServerActions.getDetails('error');
     } else if (members.length > 0) {
-      console.log(members.sort(sort_member));
       SenateServerActions.getDetails(members.sort(sort_member), members.length, house_members);
     }
   });
