@@ -3,3 +3,7 @@ dist
 .DS_Store
 npm-debug.log*
 test/coverage
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
