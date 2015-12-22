@@ -42,8 +42,8 @@
   }
 
   &.animated {
-    animation-name: bounceInDown;
-    -webkit-animation-name: bounceInDown;
+    animation-name: fadeIn;
+    -webkit-animation-name: fadeIn;
     animation-duration: 1.5s;
     -webkit-animation-duration: 1.5s;
     animation-delay: 1s;

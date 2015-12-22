@@ -1,0 +1,105 @@
+@import 'variables';
+@import 'transitions';
+
+.contact__button_small {
+  @include transition(0.5s);
+  width: auto;
+  margin: 0 1% 0 1%;
+  padding: 2px 7px 3px 5px;
+  margin-bottom: 10px;
+  height: 43px;
+  display: inline-block;
+  background-color: inherit;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+  }
+
+  @media screen and (max-height: 650px) {
+    height: 35px;
+  }
+
+  @media screen and (max-width: $iphone6) {
+    margin-left: 0;
+    height: 43px;
+    margin-right: 0;
+  }
+}
+
+.button__small__text {
+  display: inline-block;
+  color: $white;
+  z-index: 2;
+  margin-top: 7px;
+  position: relative;
+  font-weight: 600;
+  font-size: 14px;
+
+  @media screen and (max-height: 650px) {
+    margin-top: 2px;
+  }
+
+  @media screen and (max-width: $iphone6) {
+    font-size: 14px;
+    margin-top: 5px;
+  }
+}
+
+.button__small__icon {
+  height: 35px;
+  width: 35px;
+  float: left;
+  margin-top: 3px;
+  display: inline-block;
+  background-repeat: no-repeat;
+
+  @media screen and (max-height: 650px) {
+    height: 31px;
+    width: 31px;
+  }
+
+  @media screen and (max-width: $iphone6) {
+    height: 40px;
+    width: 40px;
+    margin-top: 1px;
+  }
+
+  &.twitter {
+    background-image: url('../img/icons/twitter.png');
+    background-position: center;
+    background-size: contain;
+  }
+
+  &.phone {
+    background-image: url('../img/icons/phone.png');
+    background-position: center;
+    background-size: contain;
+  }
+
+  &.email {
+    background-image: url('../img/icons/email.png');
+    background-position: center;
+    background-size: contain;
+  }
+
+  &.vote {
+    background-image: url('../img/icons/vote.png');
+    background-position: center;
+    background-size: contain;
+  }
+}
+
+.button__text {
+  display: block;
+  width: 100%;
+  margin-top: 11px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Open Sans';
+  color: $white;
+}

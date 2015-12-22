@@ -7,7 +7,9 @@
   position: relative;
   display: inline-block;
   width: 45%;
-  font-size: 36px;
+  font-size: 38px;
+  height: auto;
+  padding: 1vh 1vw 2vh 1vw;
   color: $dark-blue;
 
   @media screen and (max-width: $iphone6) {
@@ -19,7 +21,7 @@
   and (max-device-width: 1024px)
   and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 1) {
-    width: 70%;
+    width: 80%;
   }
 
   @media only screen
@@ -76,13 +78,18 @@
 }
 
 .title-component--results {
-  width: 50%;
+  width: 65%;
   line-height: 1.2;
   font-size: 24px;
   color: $white;
 
+  @media screen and (min-width: 1600px) {
+    width: 40%;
+    margin-bottom: 20px;
+  }
+
   @media screen and (max-width: 1170px) {
-    width: 50%;
+    width: 65%;
   }
 
   @media only screen
@@ -102,8 +109,8 @@
   }
 
   @media screen and (max-width: $iphone6) {
-    width: 100%;
-    font-size: 18px;
+    width: 80%;
+    font-size: 20px;
   }
 }
 
@@ -126,7 +133,7 @@
 
   @media screen and (max-width: 1170px) {
     line-height: 1.2;
-    font-size: 25px;
+    font-size: 22px;
   }
 
   @media only screen
@@ -134,8 +141,8 @@
   and (max-device-width: 1024px)
   and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 1) {
-    font-size: 32px;
-    line-height: 1.6;
+    font-size: 28px;
+    line-height: 1.5;
   }
 
   @media only screen
@@ -143,7 +150,7 @@
   and (max-device-width: 1024px)
   and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 1) {
-    font-size: 28px;
+    font-size: 24px;
     line-height: 1.5;
   }
 
@@ -154,12 +161,12 @@
 
   @media screen and (max-width: $iphone6) {
     width: 100%;
-    font-size: 24px;
+    font-size: 22px;
   }
 
   @media screen and (max-width: $iphone5-min) {
     width: 100%;
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 
@@ -167,83 +174,6 @@
   width: 70%;
   margin-top: 20px;
   margin-bottom: 20px;
-}
-
-.title-component--actions {
-  width: 55%;
-  color: $white;
-  height: auto;
-  margin-bottom: 40px;
-  margin-top: 30px;
-  font-size: 28px;
-
-  .title-component__description {
-    @media screen and (max-width: $iphone6) {
-      width: 100%;
-      font-size: 20px;
-      line-height: 1.3;
-      margin-bottom: 0px;
-    }
-
-    // Google Nexus 5 Support
-    @media only screen
-    and (min-width: 360px)
-    and (orientation: portrait)
-    and (-webkit-min-device-pixel-ratio: 3.0) {
-      width: 100%;
-      font-size: 16px;
-    }
-
-    // Motorola Moto G 2nd Gen
-    @media only screen
-    and (device-width: 360px)
-    and (device-height: 640px)
-    and (-webkit-min-device-pixel-ratio: 2.0){
-      width: 100%;
-      font-size: 15px;
-    }
-
-    @media screen and (max-width: $iphone5-min) {
-      width: 100%;
-      line-height: 1.2;
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-
-    @media only screen
-    and (min-device-width: 768px)
-    and (max-device-width: 1024px)
-    and (orientation: landscape)
-    and (-webkit-min-device-pixel-ratio: 1) {
-      font-size: 26px;
-    }
-  }
-
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 1) {
-    width: 80%;
-    height: auto;
-    margin-bottom: 50px;
-  }
-
-  @media screen and (max-height: 650px) {
-    width: 62%;
-    margin-bottom: 30px;
-    margin-top: 0px;
-  }
-
-  @media screen and (max-width: $iphone6) {
-    width: 95%;
-    margin-top: 0;
-    margin-bottom: 25px;
-  }
-
-  @media screen and (max-width: $iphone5-min) {
-    margin-bottom: 15px;
-  }
 }
 
 .two {
@@ -262,8 +192,8 @@
     @media screen and (max-width: $iphone6) {
       width: 90%;
       margin: 0 auto;
-      font-size: 16px;
-      line-height: 1.5;
+      font-size: 18px;
+      line-height: 1.3;
     }
 
     // Google Nexus 5 Support
@@ -272,7 +202,7 @@
     and (orientation: portrait)
     and (-webkit-min-device-pixel-ratio: 3.0) {
       width: 100%;
-      font-size: 16px;
+      font-size: 18px;
     }
 
     // Motorola Moto G 2nd Gen
@@ -285,8 +215,8 @@
     }
 
     @media screen and (max-width: $iphone5-min) {
-      width: 80%;
-      font-size: 16px;
+      width: 100%;
+      font-size: 15px;
     }
   }
 }
@@ -325,16 +255,20 @@
 .title-component__represent {
   position: relative;
   width: 100%;
-  height: 45px;
   color: $white;
-
-  @media screen and (max-width: 1170px) {
-    line-height: 1.3;
-    font-size: 22px;
-  }
 
   @media screen and (max-width: 1366px) {
     font-size: 24px;
+  }
+
+  @media screen and (max-width: 1366px) {
+    font-size: 22px;
+  }
+
+  @media screen and (max-width: 1170px) {
+    line-height: 1.3;
+    font-size: 21px;
+    width: 65%;
   }
 
   @media only screen
@@ -342,15 +276,21 @@
   and (max-device-width: 1024px)
   and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 1) {
-    font-size: 28px;
+    font-size: 26px;
+    line-height: 1.4;
   }
 
   @media screen and (max-height: 650px) {
-    font-size: 22px;
+    font-size: 20px;
+  }
+
+  @media screen and (max-width: $iphone6) {
+    font-size: 18px;
+    line-height: 1.4;
   }
 
   @media screen and (max-width: $iphone5-min) {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 

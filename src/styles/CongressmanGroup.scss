@@ -1,7 +1,7 @@
 @import 'variables';
 
 .member-wrapper {
-	width: 90%;
+	width: 95%;
 	margin: 0 auto;
   margin-top: 20px;
 	position: relative;
@@ -27,7 +27,7 @@
   and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 1) {
     width: 100%;
-    margin-top: 50px;
+    margin-top: 30px;
   }
 
   @media only screen
@@ -45,20 +45,8 @@
   }
 }
 
-.member--payment {
-  font-size: 20px;
-  color: $white;
-  top: -15px;
-  position: relative;
-
-  @media screen and (max-width: $iphone6) {
-    font-size: 12px;
-    top: -5px;
-  }
-}
-
 .member-container {
-	width: 33%;
+	width: 35%;
 	display: inline-block;
   height: 200px;
   position: relative;
@@ -76,18 +64,9 @@
   @media only screen
   and (min-device-width: 768px)
   and (max-device-width: 1024px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 1) {
-    width: 48%;
-    height: 200px;
-  }
-
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
   and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 1) {
-    width: 45%;
+    width: 50%;
   }
 
   // Google Nexus 7
@@ -96,6 +75,14 @@
   and (max-width: 799px) {
     width: 45%;
     height: 200px;
+  }
+
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    width: 50%;
   }
 
   @media screen and (max-height: 650px) {

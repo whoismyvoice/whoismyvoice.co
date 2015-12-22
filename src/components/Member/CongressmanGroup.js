@@ -1,13 +1,12 @@
 import React from 'react';
-import cx from 'classnames';
 import SenateStore from '../../stores/SenateStore';
-import {Settings} from '../../constants/SenateConstants';
+import cx from 'classnames';
 
 // Components
 import BaseComponent from '../BaseComponent';
 import MemberImg from './MemberImg';
 import MemberRibbon from './MemberRibbon';
-import NavButton from '../Buttons/NavButton';
+import ActionButtons from './ActionButtons';
 
 // Styles
 import style from './../../styles/CongressmanGroup.scss';
@@ -16,74 +15,80 @@ class CongressmanGroup extends BaseComponent {
   constructor(props) {
     super(props);
     this.state = SenateStore.getMember();
+    this._bind('toggleContactOverlay');
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.did_search && Settings.chamber === 'house' && nextState.number_representatives === 1 || Settings.chamber === 'senate' && nextState.number_representatives > 0) {
+    if (nextState.did_search && nextState.number_representatives === 3 && nextState.number_house === 1) {
       return true;
     } else {
       return false;
     }
   }
 
+  toggleContactOverlay(evt) {
+    this.setState({
+      didClickOverlay: !this.state.didClickOverlay,
+      clicked: evt.target.id
+    });
+  }
+
   render() {
-    const {representatives, settings, number_representatives} = this.state;
+    const {representative} = this.props;
+    const {number_representatives} = this.state;
+    let members,
+      actionButton;
 
-    let wrapperClasses = 'senatorWrapper',
-      arrowClasses = 'arrow';
+    const mobileOverlayClass = cx(
+      ['mobile-contact-overlay'],
+      {'show': this.state.didClickOverlay}
+    );
 
-    const { chamber } = settings ? settings : Settings;
+    if (representative && number_representatives > 2) {
+      members = representative.map((result, idx) => {
+        actionButton = (
+          <ActionButtons
+            representative={result}
+          />
+        );
 
-    if (representatives) {
-      wrapperClasses = cx(
-        ['member-wrapper'],
-        {'several': representatives.length > 1}
-      );
-      arrowClasses = cx(
-        ['arrow'],
-        {'hide': representatives.length === 1}
-      );
+        const gender = result.gender === 'M' ? 'Him' : 'Her';
+
+        return (<div className="member-container" key={idx}>
+          <MemberImg
+            bioguide={result.bioguide_id}
+            party={result.party}
+            repNumber={number_representatives}
+          />
+          <MemberRibbon
+            name={result.full_name}
+            state={result.state}
+            party={result.party}
+          />
+          <div
+            className="mobile-contact-options"
+            onClick={this.toggleContactOverlay}
+            id={idx}
+          >
+            {`Contact ${gender}`}
+          </div>
+          {actionButton}
+        </div>);
+      });
     }
 
-    const members = (representatives || []).map(function(item, idx) {
-      // let payment;
+    const selectedMember = this.state.clicked ? representative[this.state.clicked] : representative;
 
-      // if (Settings.sponsor) {
-      //   payment = item.payment > 0 ? `Received $${item.payment} from ${Settings.bill_title}.` : `Received $0 from ${Settings.bill_title}.`;
-      // } else {
-      //   payment = '';
-      // }
-
-      return <div className="member-container" key={idx}>
-        <MemberImg
-          bioguide={item.bioguide_id}
-          chamber={chamber}
-          party={item.party}
-          repNumber={number_representatives}
-        />
-        <MemberRibbon
-          name={item.full_name}
-          state={item.state}
-          party={item.party}
-        />
-        <span className={arrowClasses} id={idx}>
-          <div className="line-seperator line-seperator--small"></div>
-          <NavButton
-            text="What can I do?"
-            id={idx}
-          />
-        </span>
-      </div>;
-    });
-
-    return <div className={wrapperClasses}>
+    return <div className="member-wrapper">
       {members}
+      <div className={mobileOverlayClass}>
+        <ActionButtons
+          representative={selectedMember}
+        />
+        <div className="mobile-contact-close-button" onClick={this.toggleContactOverlay} />
+      </div>
     </div>;
   }
 }
-
-CongressmanGroup.propTypes = {
-  chamber: React.PropTypes.string
-};
 
 export default CongressmanGroup;

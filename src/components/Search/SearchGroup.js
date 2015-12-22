@@ -1,6 +1,5 @@
 import React from 'react';
 import SenateStore from '../../stores/SenateStore';
-import {Settings} from '../../constants/SenateConstants';
 
 // Components
 import BaseComponent from '../BaseComponent';
@@ -14,9 +13,8 @@ class SearchGroup extends BaseComponent {
   }
 
   render() {
-    const {zip_code, error, did_search, number_representatives, state_full} = this.state;
-
-  	if (number_representatives > 1 && Settings.chamber === 'house' || did_search && number_representatives === undefined && error) {
+    const {zip_code, error, did_search, state_full, number_house} = this.state;
+  	if (did_search && number_house > 1) {
   		return <div className="animated fadeIn">
   			<div className="locked__zip">ZIP: {zip_code}</div>
   			<SearchAddress

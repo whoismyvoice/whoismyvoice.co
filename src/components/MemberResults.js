@@ -13,32 +13,58 @@ class MemberResults extends BaseComponent {
     this.state = SenateStore.getMember();
   }
 
-	render() {
-  const NUMBER_REPRESENTATIVES = this.state.number_representatives;
-  if (NUMBER_REPRESENTATIVES > 1) {
-    return <span>
-        <TitleComponent
-          represent={true}
-          several={true}
-          classes="title-component--results"
-        />
-        <CongressmanGroup />
-      </span>;
-    } else {
-      return <span>
-        <CongressmanGroup />
-        <TitleComponent
-          represent={true}
-          classes="title-component--results"
-        />
+  render() {
+    const {representative, section} = this.props;
+
+    let chamber,
+      nextText;
+    if (representative) {
+      chamber = representative.chamber;
+    }
+
+    if (representative) {
+      if (section === 1 && representative[0].chamber === 'house') {
+        nextText = 'Your Senators';
+      } else if (section === 1 && representative[0].chamber === 'senate') {
+        nextText = 'Your Representative';
+      }
+    }
+
+    const nextButton = section === 2 ? '' : (
+      <span>
         <div className="line-seperator line-seperator--small"></div>
         <NavButton
-          text="What can I do?"
+          text={`See ${nextText}`}
           id="0"
         />
-      </span>;
-    }
+      </span>
+    );
+
+    const titleSection = (
+      <span>
+        <TitleComponent
+          representative={representative}
+          represent={true}
+          chamber={chamber}
+          section={section}
+          classes="title-component--results"
+        />
+        <CongressmanGroup
+          section={section}
+          representative={representative}
+        />
+      </span>
+    );
+
+    return <span>
+      {titleSection}
+      {nextButton}
+    </span>;
   }
 }
+
+MemberResults.propTypes = {
+  representative: React.PropTypes.array
+};
 
 export default MemberResults;

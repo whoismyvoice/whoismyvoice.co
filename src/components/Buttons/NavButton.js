@@ -29,6 +29,7 @@ class NavButton extends BaseComponent {
 }
 
 NavButton.propTypes = {
+  id: React.PropTypes.string,
   text: React.PropTypes.string
 };
 

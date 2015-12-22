@@ -1,6 +1,5 @@
 import React from 'react';
 import SenateStore from '../stores/SenateStore';
-import {Settings} from '../constants/SenateConstants';
 // import DataUtils from '../utils/DataUtils';
 import ContainerActions from '../actions/ContainerActions';
 import cx from 'classnames';
@@ -25,9 +24,9 @@ class Home extends BaseComponent {
     if (this.state.did_search) {
       this._initializeFullpage();
     }
-    if (process.env.NODE_ENV === 'production' && this.state.settings === null) {
+    //if (process.env.NODE_ENV === 'production' && this.state.settings === null) {
       // DataUtils.saveFetchedData();
-    }
+    //}
     SenateStore.addChangeListener(this._handleChange);
   }
 
@@ -40,54 +39,54 @@ class Home extends BaseComponent {
     this.setState(SenateStore.getMember());
   }
 
+  // Function to initialize fullPage
   _initializeFullpage() {
-    $('#fullpage').fullpage({
-      navigation: false,
-      showActiveTooltip: false,
-      slidesNavigation: false,
-      css3: true,
-      autoScrolling: true,
-      fitToSection: true,
-      easingcss3: 'ease-in',
-      loopHorizontal: false,
-      keyboardScrolling: false,
-      animateAnchor: true,
-      recordHistory: true,
-      controlArrows: false,
-      verticalCentered: false,
-      touchSensitivity: 2,
-      resize: true,
-      onLeave: (index, nextIndex) => {
-        ContainerActions.identifySection(nextIndex);
-      }
-    });
-    this._detectScroll();
-  }
-  _destroyFullpage() {
-    if ($.fn.fullpage.destroy !== undefined) {
-      $.fn.fullpage.destroy('all');
+    if (!this.state.initialized) {
+      this.setState({
+        initialized: true
+      });
+      $('#fullpage').fullpage({
+        navigation: false,
+        lockAnchors: true,
+        showActiveTooltip: false,
+        slidesNavigation: false,
+        css3: true,
+        autoScrolling: true,
+        fitToSection: true,
+        fitToSectionDelay: 1000,
+        easingcss3: 'ease-in',
+        loopHorizontal: false,
+        keyboardScrolling: false,
+        animateAnchor: false,
+        recordHistory: false,
+        controlArrows: false,
+        verticalCentered: false,
+        touchSensitivity: 2,
+        scrollingSpeed: 900,
+        resize: true
+      });
     }
   }
-  _detectScroll() {
-    let ts;
-    $(document).bind('touchstart', function(e) {
-      ts = e.originalEvent.touches[0].clientY;
-    });
-    $(document).bind('touchend', function(e) {
-      let te = e.originalEvent.changedTouches[0].clientY;
-      if (ts > te + 5) {
-        $.fn.fullpage.moveSectionDown();
+
+  // Function to destroy fullpage
+  _destroyFullpage() {
+    if(this.state.initialized) {
+      if ($.fn.fullpage.destroy !== undefined) {
+        $.fn.fullpage.destroy('all');
       }
-    });
+      this.setState({
+        initialized: false
+      });
+    }
   }
 
   render() {
     const NUMBER_REPRESENTATIVES = this.state.number_representatives,
-      SETTINGS = this.state.settings,
-      DID_SEARCH = this.state.did_search,
-      {chamber} = SETTINGS ? SETTINGS : Settings;
+      NUMBER_HOUSE = this.state.number_house,
+      DID_SEARCH = this.state.did_search;
 
-    if (DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && NUMBER_REPRESENTATIVES > 0 && chamber === 'senate') {
+    // When search has been initiated and the right number of reps are retrieved initialize fullPage
+    if (DID_SEARCH && NUMBER_HOUSE === 1 && NUMBER_REPRESENTATIVES === 3) {
       this._initializeFullpage();
     } else {
       this._destroyFullpage();
@@ -95,19 +94,18 @@ class Home extends BaseComponent {
 
     const blockClasses = cx(
       ['block', 'block--margin'],
-      {'disappear': DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && NUMBER_REPRESENTATIVES > 0 && chamber === 'senate'},
+      {'disappear': DID_SEARCH && NUMBER_HOUSE === 1 && NUMBER_REPRESENTATIVES > 2},
     );
 
     const fadingClasses = cx(
       ['fading-circle'],
-      {'orange-bg': DID_SEARCH && NUMBER_REPRESENTATIVES !== 0 && NUMBER_REPRESENTATIVES !== undefined && chamber === 'senate' || NUMBER_REPRESENTATIVES === 1 && chamber === 'house'}
+      {'orange-bg': DID_SEARCH && NUMBER_HOUSE === 1 && NUMBER_REPRESENTATIVES > 2}
     );
 
     const containerClasses = cx(
       ['container'],
       {'reveal': DID_SEARCH},
-      {'visible': DID_SEARCH && NUMBER_REPRESENTATIVES === 0 && chamber === 'senate'},
-      {'full': DID_SEARCH && NUMBER_REPRESENTATIVES === 1 && chamber === 'house' || DID_SEARCH && chamber === 'senate'}
+      {'full': DID_SEARCH && NUMBER_HOUSE === 1 && NUMBER_REPRESENTATIVES > 2}
     );
 
     return <div className={containerClasses}>
@@ -124,7 +122,7 @@ class Home extends BaseComponent {
           />
         	<SearchGroup />
         </div>
-        <Results />
+        <Results destroy={this._destroyFullpage} />
       </div>
     </div>;
   }

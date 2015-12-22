@@ -140,10 +140,35 @@ button, input {
 }
 
 .line-seperator--small {
-  height: 15vh;
+  height: 5vh;
+  margin-top: 6vh;
+
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: landscape)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    margin-top: 12vh;
+  }
+
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    margin-top: 15vh;
+  }
+
+  @media screen and (min-width: 1600px) {
+    margin-top: 8vh;
+  }
+
+  @media screen and (max-width: $iphone6) {
+    margin-top: 5vh;
+  }
 
   @media screen and (max-width: $iphone5-min) {
-    height: 10vh;
+    height: 8vh;
   }
 }
 
@@ -175,7 +200,7 @@ button, input {
   display: inline-block;
   margin: 0 auto;
   width: 100vw;
-  height: 100vh;
+  height: 100vh!important;
   text-align: center;
 }
 
@@ -232,9 +257,15 @@ button, input {
 }
 
 .page-wrapper {
-  width: 50%;
+  width: 65%;
+  max-width: 600px;
   margin: auto;
-  font-size: 14px;
+  font-size: 16px;
+  font-family: 'Dosis';
+
+  h2 {
+    text-transform: uppercase;
+  }
 
   @media only screen
   and (min-device-width: 768px)

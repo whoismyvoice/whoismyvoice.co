@@ -23,7 +23,6 @@ class TextButton extends BaseComponent {
 }
 
 TextButton.propTypes = {
-  flush: React.PropTypes.bool,
   link: React.PropTypes.string,
   text: React.PropTypes.string,
 };

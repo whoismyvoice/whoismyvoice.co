@@ -15,8 +15,9 @@ class TitleComponent extends BaseComponent {
     this.state = SenateStore.getMember();
   }
 
+  // Check whether user has initiated search before updating component
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.did_search && Settings.chamber === 'house' && nextState.number_representatives === 1 || Settings.chamber === 'senate' && nextState.number_representatives > 0) {
+    if (nextState.did_search && nextState.number_representatives > 0) {
       return true;
     } else {
       return false;
@@ -26,109 +27,83 @@ class TitleComponent extends BaseComponent {
   render() {
     const {
       desc,
-      actions,
       classes,
       front,
       represent,
-      several
+      representative
     } = this.props;
 
     const {
       did_search,
-      representatives
     } = this.state;
 
     const {
-      chamber,
       bill_desc,
       bill_title,
-      impact_text,
       voted_for,
       voted_against,
-      sponsor
-    } = Settings,
-      member_single = chamber === 'senate' ? 'Senator' : 'Congressman';
+    } = Settings;
 
-    let representative,
-      pre_text,
+    let pre_text,
       represent_gender,
       preliminary_text,
       member_name = '',
-      vote_question = '',
-      impact,
+      represent_text,
+      vote_question = `${bill_title}`,
       action,
-      member = chamber === 'senate' ? 'Senator' : 'Congressional Representative',
-      represent_text = 'represents';
+      member;
 
-    if (representatives) {
-      representative = representatives[0];
-      vote_question = representatives.length >= 1 ? '' : `${bill_title}`;
-
-      if (sponsor && representatives.length === 1) {
-        action = representative.payment > 0 ? `accepted $${representative.payment} in campaign contributions from the NRA in the 2013-2014 election season` : 'has not received money';
-      } else if (sponsor && representatives.length > 1) {
-        if (representative.payment > 0 && representatives[1].payment > 0) {
-          action = 'have both received money';
-        } else if (representative.payment > 0 || representatives[1].payment > 0) {
-          action = 'has received money';
-        } else if (representative.payment === 0 && representatives[1].payment === 0) {
-          action = 'have not received money';
-        }
-      }
-
-      if (representatives.length === 1) {
-        impact = impact_text.replace('#gender_third', `this ${representative.gender_full}`);
-        represent_gender = representative.gender_full === 'man' ? 'He' : 'She';
-        member_name = representative.full_name;
-      } else if (representatives.length > 1) {
-        member = chamber === 'senate' ? 'Senators' : 'Congressional Representatives';
-        impact = impact_text.replace('#gender_third', `this person`);
-        represent_gender = 'These people';
-        represent_text = 'represent';
-      }
-
-      if (!sponsor && representatives.length >= 1) {
-        preliminary_text = representative.voted === 'Yea' ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', representative.age).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', representative.age).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
-      } else if (sponsor && representatives.length >= 1) {
-        const member_payment = `$${representative.payment}`;
-        preliminary_text = representative.payment > 0 ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', representative.age).replace('#member_gender', representative.gender_full).replace('#action', action).replace('#member_payment', member_payment)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', representative.age).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+    if (representative && representative.length === 1) {
+      represent_gender = representative[0].gender_full === 'man' ? 'He' : 'She';
+      member_name = representative[0].full_name;
+      member = representative[0].chamber === 'senate' ? 'Senator' : 'Representative';
+      // Check for chamber in order to show correct verdict based on their vote since house and senate voted differently
+      if (representative[0].chamber === 'house') {
+        preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+      } else if (representative[0].chamber === 'senate') {
+        preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
       }
     }
 
-    if (!did_search || desc && did_search && !actions) {
+    if (representative && representative.length === 2) {
+      member = representative[0].chamber === 'senate' ? 'Senators' : 'Representatives';
+      represent_gender = 'These people';
+      member_name = '';
+
+      if (representative[0].chamber === 'house' && representative[1].chamber === 'house') {
+        preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+      } else if (representative[0].chamber === 'senate' && representative[1].chamber === 'senate') {
+        preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+      } else if (representative[0].chamber === 'house' && representative[1].chamber === 'senate') {
+        member = 'Representative & Senator';
+        preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+      } else if (representative[0].chamber === 'senate' && representative[1].chamber === 'house') {
+        member = 'Representative & Senator';
+        preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+      }
+    }
+
+    // Make sure that vote_question is shown on frontpage and that result text is shown in follow. sections
+    if (!did_search || desc && did_search) {
       vote_question = `${bill_title}`;
-      pre_text = bill_desc.replace('#member', member_single);
+      pre_text = bill_desc;
     } else if (did_search && !desc || !desc) {
       pre_text = preliminary_text;
-    } else if (actions) {
-      pre_text = impact;
     }
 
     const titleClasses = cx(
       ['title-component', classes],
       {'uppercase': front},
-      {'title-component--wider': several}
-    );
-
-    const representClasses = cx(
-      ['title-component__represent'],
-      {'hide': !represent || several || sponsor}
-    );
-
-    const starClasses = cx(
-      ['title-component__star-divider'],
-      {'hide': !represent || actions || several}
     );
 
     const strikeClasses = cx(
       ['strike-out'],
-      {'white': represent || actions},
-      {'hide': actions}
+      {'hide': represent}
     );
 
     const threeStars = cx(
       ['three-stars'],
-      {'hide': represent || actions}
+      {'hide': represent}
     );
 
     return <div className={titleClasses}>
@@ -143,22 +118,17 @@ class TitleComponent extends BaseComponent {
           {vote_question}
         </span>
       </div>
-      <div className={starClasses}>
-        <span>&#9733;</span>
-      </div>
-      <span className={representClasses}>
-        {`${represent_gender}  ${represent_text} your voice!`}
-      </span>
     </div>;
   }
 }
 
 TitleComponent.propTypes = {
-  actions: React.PropTypes.bool,
+  chamber: React.PropTypes.string,
   classes: React.PropTypes.string,
   desc: React.PropTypes.bool,
   front: React.PropTypes.bool,
-  represent: React.PropTypes.bool
+  represent: React.PropTypes.bool,
+  representative: React.PropTypes.array
 };
 
 export default TitleComponent;

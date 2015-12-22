@@ -42,7 +42,6 @@ class MenuButton extends BaseComponent {
   }
 
   render() {
-
     const menuClasses = cx(
       ['menu-overlay'],
       {'menu-overlay--show': this.state.didClick && this.state.did_search},
@@ -51,8 +50,8 @@ class MenuButton extends BaseComponent {
 
     const buttonClasses = cx(
       ['menu-buttons', 'animated'],
-      {'fadeIn': this.state.didClick},
-      {'fadeOut': !this.state.didClick},
+      {'bounceInRight': this.state.didClick},
+      {'bounceOutRight': !this.state.didClick},
       {'menu-buttons--white': !this.state.did_search}
     );
 
