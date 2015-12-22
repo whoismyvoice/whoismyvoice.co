@@ -1,5 +1,6 @@
-# Senate Project
-Senate Project responsive website
+# Congress / Senate Build
+Build made for house and senate bills. Based on Planned Parenthood bill.
+
 
 ##Stack
 * React
@@ -51,7 +52,7 @@ npm run test
 cd react-webpack-sass-docker-startkit
 docker build .
 docker images
-docker run <IMAGE ID>
+docker run -p 8080:8080 <IMAGE ID>
 
 ```
 

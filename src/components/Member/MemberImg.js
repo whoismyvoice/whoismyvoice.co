@@ -9,7 +9,7 @@ import style from './../../styles/SenatorImg.scss';
 
 class SenatorImg extends BaseComponent {
   render() {
-    const img = `https://raw.githubusercontent.com/unitedstates/images/gh-pages/congress/225x275/${this.props.bioguide}.jpg`;
+    const img = require(`../../img/congress/${this.props.bioguide}.jpg`);
 
     const {repNumber, party} = this.props;
 
