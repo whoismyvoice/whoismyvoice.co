@@ -1,9 +1,9 @@
-import express from 'express';
-import helmet from 'helmet';
+var express = require('express');
+var helmet = require('helmet');
 // import serender from 'serender';
 
-const server = express();
-const port = 8080;
+var server = express();
+var port = 8080;
 server.use(helmet());
 
 server.set('port', process.env.PORT || 8080);
