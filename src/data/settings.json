@@ -1,11 +1,15 @@
 {
   "bill_id": "hr3762-114",
   "bill_title": "defund Planned Parenthood?",
-  "bill_desc": "Did my representative vote to ",
+  "bill_desc": "Did my representatives vote to ",
   "impact_text": "If you're concerned that these funds may be affecting their voting record on your behalf on gun control issues, get in touch with #gender_third and make your voice heard! ",
   "senate_vote_favor": "Nay",
   "house_vote_favor": "Yea",
-  "voted_for": "Yes! On December 4, 2015 your #member_type, voted on H.R. 3672, a bill to defund Planned Parenthood & limit the Affordable Healtcare Act.",
-  "voted_against": "No! Your #member_type voted in support of Planned Parenthood and the Affordable Healthcare Act.",
+  "voted_for": "On October 23, 2015 your #member_type, ",
+  "voted_for_1": "voted for H.R. 3672, a bill to defund Planned Parenthood ",
+  "voted_for_2":  "& limit the Affordable Healtcare Act.",
+  "voted_against": "Your #member_type voted ",
+  "voted_against_1": "in support of Planned Parenthood ",
+  "voted_against_2": "and the Affordable Healthcare Act.",
   "represent_text": "represents"
 }

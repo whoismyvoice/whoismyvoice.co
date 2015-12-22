@@ -41,6 +41,10 @@ class TitleComponent extends BaseComponent {
       bill_desc,
       bill_title,
       voted_for,
+      voted_for_1,
+      voted_for_2,
+      voted_against_1,
+      voted_against_2,
       voted_against,
     } = Settings;
 
@@ -51,18 +55,17 @@ class TitleComponent extends BaseComponent {
       represent_text,
       vote_question = `${bill_title}`,
       action,
-      member;
+      member,
+      voted_bold_text,
+      voted_final_text;
 
     if (representative && representative.length === 1) {
       represent_gender = representative[0].gender_full === 'man' ? 'He' : 'She';
       member_name = representative[0].full_name;
       member = representative[0].chamber === 'senate' ? 'Senator' : 'Representative';
-      // Check for chamber in order to show correct verdict based on their vote since house and senate voted differently
-      if (representative[0].chamber === 'house') {
-        preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
-      } else if (representative[0].chamber === 'senate') {
-        preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
-      }
+      preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action).replace('#bold', '<b>').replace('#bold_end', '</b>')}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+      voted_bold_text = representative[0].vote_favor ? voted_for_1 : voted_against_1;
+      voted_final_text = representative[0].vote_favor ? voted_for_2 : voted_against_2;
     }
 
     if (representative && representative.length === 2) {
@@ -70,17 +73,14 @@ class TitleComponent extends BaseComponent {
       represent_gender = 'These people';
       member_name = '';
 
-      if (representative[0].chamber === 'house' && representative[1].chamber === 'house') {
-        preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
-      } else if (representative[0].chamber === 'senate' && representative[1].chamber === 'senate') {
-        preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
-      } else if (representative[0].chamber === 'house' && representative[1].chamber === 'senate') {
+      if (representative[0].chamber === 'house' && representative[1].chamber === 'senate') {
         member = 'Representative & Senator';
-        preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
       } else if (representative[0].chamber === 'senate' && representative[1].chamber === 'house') {
         member = 'Representative & Senator';
-        preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
       }
+      preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+      voted_bold_text = representative[0].vote_favor ? voted_for_1 : voted_against_1;
+      voted_final_text = representative[0].vote_favor ? voted_for_2 : voted_against_2;
     }
 
     // Make sure that vote_question is shown on frontpage and that result text is shown in follow. sections
@@ -94,6 +94,11 @@ class TitleComponent extends BaseComponent {
     const titleClasses = cx(
       ['title-component', classes],
       {'uppercase': front},
+    );
+
+    const boldClasses = cx(
+      ['bold'],
+      {'hide': front}
     );
 
     const strikeClasses = cx(
@@ -114,6 +119,10 @@ class TitleComponent extends BaseComponent {
       </div>
       <div className="title-component__description">
         {pre_text}
+        <span className={boldClasses}>
+          <b>{voted_bold_text}</b>
+        </span>
+        {voted_final_text}
         <span className={strikeClasses}>
           {vote_question}
         </span>
