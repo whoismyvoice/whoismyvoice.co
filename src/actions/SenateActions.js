@@ -21,7 +21,6 @@ module.exports = {
       state: STATE
     });
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${ADDRESS},${ZIP} ${STATE}&components=country:US|postal_code:${ZIP}&key=${SenateConstants.GOOGLE_API_KEY}`;
-    console.log(url);
     request
     .get(url)
     .set('Accept', 'application/json')
