@@ -32,7 +32,6 @@
     "helmet": "^0.14.0",
     "html-webpack-plugin": "^1.6.2",
     "history": "1.13.x",
-    "mongoose": "^4.2.5",
     "normalize.css": "^3.0.3",
     "react": "0.14.3",
     "react-dom": "0.14.3",
