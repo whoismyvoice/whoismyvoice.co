@@ -1,9 +1,10 @@
-var express = require('express');
-var helmet = require('helmet');
+import path from 'path';
+import express from 'express';
+import helmet from 'helmet';
 // import serender from 'serender';
 
-var server = express();
-var port = 8080;
+const server = express();
+const port = 8080;
 server.use(helmet());
 
 server.set('port', process.env.PORT || 8080);
@@ -22,6 +23,10 @@ server.get('/about', serender, function(req, res) {
 server.get('/sources', serender, function(req, res) {
   res.sendFile('index.html', {root: 'dist'});
 });*/
+
+server.get('*', function(request, response) {
+  response.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+});
 
 server.listen(port, function(err) {
   if (err) {

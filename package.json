@@ -19,16 +19,14 @@
   "scripts": {
     "start": "node es6-devServer",
     "build:start": "NODE_ENV=production node es6-prodServer",
-    "build": "rimraf dist && NODE_ENV=production webpack -p --config ./webpack.config.prod.js --progress --profile --colors --harmony",
+    "build": "NODE_ENV=production webpack -p --config ./webpack.config.prod.js --progress --profile --colors --harmony",
     "eslint": "eslint .",
     "jscs": "jscs .",
     "test": "karma start test/karma.conf.js"
   },
   "dependencies": {
-    "babel-core": "^5.8.23",
     "body-parser": "^1.14.1",
     "expect.js": "^0.3.1",
-    "express": "^4.13.3",
     "flux": "^2.1.1",
     "helmet": "^0.14.0",
     "history": "1.13.x",
@@ -39,6 +37,8 @@
     "react-router": "^1.0.1",
     "serender": "^1.0.0",
     "superagent": "^1.4.0",
+    "express": "^4.13.3",
+    "babel-core": "^5.8.23",
     "rimraf": "^2.4.3",
     "webpack": "^1.12.3"
   },
