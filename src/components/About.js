@@ -19,9 +19,9 @@ class About extends BaseComponent {
           <br /><br />
 		      This website was created as a proactive, in-house exercise by the team at Siberia.
 		      <br /><br />
-		      Please send any comments or fact checking <Link className="strike-out" to="#">here</Link>.
+		      Please send any comments or fact checking <a href="mailto:questions@whoismyvoice.com?Subject=WhoIsMyVoice.com Question" className="strike-out">here</a>.
 		      <br /><br />
-		      Please send any business or media inquiries <Link className="strike-out" to="#">here</Link>.<br /><br />
+		      Please send any business or media inquiries <a href="mailto:contact@whoismyvoice.com?Subject=WhoIsMyVoice.com Contact" className="strike-out">here</a>.<br /><br />
           <img src={require('../img/siberia_logo.png')} width="40" />
         </p>
       </div>
