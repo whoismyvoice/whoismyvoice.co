@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin;
-const nodeModulesDir = path.resolve(__dirname, 'node_modules');
+const nodeModulesDir = path.join(__dirname, 'node_modules');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
@@ -13,6 +13,9 @@ module.exports = {
       path.join(__dirname, 'src/main.js')
     ],
     vendors: ['react']
+  },
+  resolveLoader: {
+    root: nodeModulesDir
   },
   output: {
     path: path.join(__dirname, '/dist/'),
