@@ -46,9 +46,10 @@ npm run test
 * JSCS `npm run jscs`
 
 ##Docker / Elastic Beanstalk
-**Build and serve Dockerfile
+**Deploy distribution to Elastic Beanstalk**
 ```
 cd senate-project
+npm run build
 eb deploy
 
 ```
