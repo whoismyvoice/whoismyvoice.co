@@ -31,9 +31,8 @@ npm start
 npm run build
 ```
 
-**Run production build (after building for production)**
+**Run production build**
 ```
-mongod
 npm run build:start
 ```
 
@@ -46,13 +45,11 @@ npm run test
 * ESLint `npm run eslint`
 * JSCS `npm run jscs`
 
-##Docker
+##Docker / Elastic Beanstalk
 **Build and serve Dockerfile
 ```
-cd react-webpack-sass-docker-startkit
-docker build .
-docker images
-docker run -p 8080:8080 <IMAGE ID>
+cd senate-project
+eb deploy
 
 ```
 

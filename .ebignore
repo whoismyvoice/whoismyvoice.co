@@ -7,5 +7,5 @@ es6-devServer.js
 README.md
 src/
 webpack.config.dev.js
-webpack.config.prod
+webpack.config.prod.js
 
