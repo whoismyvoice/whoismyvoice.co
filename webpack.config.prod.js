@@ -7,6 +7,7 @@ const nodeModulesDir = path.join(__dirname, 'node_modules');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
+  debug: false,
   devtool: 'source-map',
   entry: {
     app: [
@@ -24,6 +25,7 @@ module.exports = {
     pathinfo: true,
   },
   plugins: [
+    new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     }),
@@ -34,42 +36,31 @@ module.exports = {
       inject: 'body',
       filename: 'index.html'
     }),
-
     new ExtractTextPlugin('[name]-[chunkhash].min.css', {
       allChunks: true
     }),
-
     new webpack.optimize.UglifyJsPlugin({
+      sourceMap: false,
       output: { comments: false },
       compress: {
         dead_code: true,
-        sequences: true,
-        conditionals: true,
-        booleans: true,
-        if_return: true,
-        join_vars: true,
-        drop_console: true,
         unused: true,
         warnings: false,
         screw_ie8: true
       }
     }),
-
     new StatsWriterPlugin({
       filename: 'webpack.stats.json' // Default
     }),
-
     new webpack.optimize.CommonsChunkPlugin(
       'vendors',
       'js/vendors-[chunkhash].min.js'
     )],
-
   module: {
     preLoaders: [{
       test: /\.scss?$/,
       loader: ExtractTextPlugin.extract('css!postcss!sass')
     }],
-
     loaders: [{
       test: /\.css?$/,
       loader: ExtractTextPlugin.extract('css!postcss')
@@ -84,11 +75,9 @@ module.exports = {
       test: /\.(jpg|png|gif|svg)$/,
       loader: 'file?name=img/[name]-[hash].[ext]'
       // loader: 'url?limit=38000!image-webpack'
-
     }]
   },
   postcss: [autoprefixer({browsers: ['last 2 versions']})],
-
   node: {
     fs: 'empty'
   }
