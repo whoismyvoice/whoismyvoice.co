@@ -1,6 +1,7 @@
 import path from 'path';
 import express from 'express';
 import helmet from 'helmet';
+import compression from 'compression';
 // import serender from 'serender';
 
 const server = express();
@@ -9,6 +10,7 @@ server.use(helmet());
 
 server.set('port', process.env.PORT || 8080);
 
+server.use(compression());
 server.use(express.static(__dirname + '/dist'));
 
 // Server render config for serender
