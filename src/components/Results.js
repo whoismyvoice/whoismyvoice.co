@@ -48,7 +48,7 @@ class Results extends BaseComponent {
       $.fn.fullpage.moveSectionDown();
     }
   }
-	render() {
+  render() {
     const {
       number_representatives,
       representatives,

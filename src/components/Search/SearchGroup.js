@@ -14,8 +14,8 @@ class SearchGroup extends BaseComponent {
 
   render() {
     const {zip_code, error, did_search, state_full, number_house} = this.state;
-  	if (did_search && number_house > 1) {
-  		return <div className="animated fadeIn">
+    if (did_search && number_house > 1) {
+      return <div className="animated fadeIn">
   			<div className="locked__zip">ZIP: {zip_code}</div>
   			<SearchAddress
   				error={error}
@@ -24,8 +24,8 @@ class SearchGroup extends BaseComponent {
           state_full={state_full}
   			/>
   		</div>;
-  	} else {
-    	return <div>
+    } else {
+      return <div>
       	<SearchInput
         	error={error}
       	/>

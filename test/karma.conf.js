@@ -20,7 +20,7 @@ module.exports = function(config) {
           {test: /\.js$/, loader: 'babel', exclude: moduleDir},
           {test: /\.json?$/, loader: 'json', exclude: moduleDir},
           {test: /\.scss?$/, loader: 'null'},
-          {test: /\.(jpe?g|png|gif|svg)$/, loader: 'url?limit=15000!image-webpack'}
+          {test: /\.(jpe?g|png|gif|svg)$/, loader: 'file?name=img/[name]-[hash].[ext]'}
         ],
         postLoaders: [{
           test: /\.js$/,

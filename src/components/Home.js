@@ -1,7 +1,6 @@
 import React from 'react';
 import SenateStore from '../stores/SenateStore';
 // import DataUtils from '../utils/DataUtils';
-import ContainerActions from '../actions/ContainerActions';
 import cx from 'classnames';
 
 // Components
@@ -24,9 +23,6 @@ class Home extends BaseComponent {
     if (this.state.did_search) {
       this._initializeFullpage();
     }
-    //if (process.env.NODE_ENV === 'production' && this.state.settings === null) {
-      // DataUtils.saveFetchedData();
-    //}
     SenateStore.addChangeListener(this._handleChange);
   }
 
@@ -70,7 +66,7 @@ class Home extends BaseComponent {
 
   // Function to destroy fullpage
   _destroyFullpage() {
-    if(this.state.initialized) {
+    if (this.state.initialized) {
       if ($.fn.fullpage.destroy !== undefined) {
         $.fn.fullpage.destroy('all');
       }
