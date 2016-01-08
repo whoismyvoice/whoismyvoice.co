@@ -34,7 +34,8 @@
     "react": "0.14.6",
     "react-dom": "0.14.6",
     "react-router": "^1.0.3",
-    "rimraf": "^2.4.3"
+    "rimraf": "^2.4.3",
+    "superagent": "^1.6.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.1.0",
@@ -78,7 +79,6 @@
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",
     "sass-loader": "^3.0.0",
-    "superagent": "^1.4.0",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.3",
     "webpack-dev-middleware": "^1.2.0",
