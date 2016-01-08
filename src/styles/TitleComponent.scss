@@ -31,6 +31,11 @@
   and (-webkit-min-device-pixel-ratio: 1) {
     width: 40%;
   }
+
+  a {
+    color: $white;
+    font-weight: bold;
+  }
 }
 
 .title-component--padding {
