@@ -15,7 +15,6 @@ class MemberResults extends BaseComponent {
 
   render() {
     const {representative, section} = this.props;
-
     let chamber,
       nextText;
     if (representative) {
@@ -24,9 +23,9 @@ class MemberResults extends BaseComponent {
 
     if (representative) {
       if (section === 1 && representative[0].chamber === 'house') {
-        nextText = 'Your Senators';
+        nextText = 'My Senators';
       } else if (section === 1 && representative[0].chamber === 'senate') {
-        nextText = 'Your Representative';
+        nextText = 'My Other Representatives';
       }
     }
 

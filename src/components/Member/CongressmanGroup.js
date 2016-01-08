@@ -7,6 +7,7 @@ import BaseComponent from '../BaseComponent';
 import MemberImg from './MemberImg';
 import MemberRibbon from './MemberRibbon';
 import ActionButtons from './ActionButtons';
+import PaymentCounter from '../paymentCounter';
 
 // Styles
 import style from './../../styles/CongressmanGroup.scss';
@@ -52,6 +53,8 @@ class CongressmanGroup extends BaseComponent {
           />
         );
 
+        const payment = result.payment.toString();
+
         const gender = result.gender === 'M' ? 'Him' : 'Her';
 
         return (<div className="member-container" key={idx}>
@@ -65,7 +68,9 @@ class CongressmanGroup extends BaseComponent {
             state={result.state}
             party={result.party}
           />
-          <span className="member__payment">Accepted ${result.payment}</span>
+          <PaymentCounter
+            payment={payment}
+          />
           <div
             className="mobile-contact-options"
             onClick={this.toggleContactOverlay}

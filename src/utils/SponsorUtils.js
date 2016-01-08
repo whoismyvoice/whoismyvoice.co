@@ -97,7 +97,6 @@ const identifyCommittee = (item) => {
   }).then(function() {
     // Check whether all members either received / didn't receive payment in order to use correct sort func
     const sort_members = membersContributedTo === 0 || membersContributedTo === 3 ? sort_member_chamber : sort_member_vote;
-    console.log(members.sort(sort_members));
     SenateServerActions.getDetails(members.sort(sort_members), members.length, house_members);
   });
 };
