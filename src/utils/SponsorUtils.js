@@ -45,7 +45,7 @@ const identifyPayment = (member) => {
 
 // Sort array of objects based on payment value in order to show members who got a contribution first
 const sort_member_vote = (left, right) => {
-  const vote_order = left.payment === right.payment ? 0 : (left.payment < right.payment ? -1 : 1);
+  const vote_order = left.payment === right.payment ? 0 : (left.payment > right.payment ? -1 : 1);
   if ((left.payment && right.payment) || (!left.payment && !right.payment)) {
     return vote_order;
   } else if (left.payment) {
@@ -61,9 +61,6 @@ const sort_member_chamber = (a, b) => {
   if (a.chamber > b.chamber) return 1;
   return 0;
 };
-
-// Check whether all members either received / didn't receive payment in order to use correct sort func
-const sort_members = membersContributedTo > 0 || membersContributedTo === 3 ? sort_member_vote : sort_member_chamber;
 
 // Promise identifying the Committee for each member
 const identifyCommittee = (item) => {
@@ -98,6 +95,9 @@ const identifyCommittee = (item) => {
     members.push(member);
     return Promise.resolve(members);
   }).then(function() {
+    // Check whether all members either received / didn't receive payment in order to use correct sort func
+    const sort_members = membersContributedTo === 0 || membersContributedTo === 3 ? sort_member_chamber : sort_member_vote;
+    console.log(members.sort(sort_members));
     SenateServerActions.getDetails(members.sort(sort_members), members.length, house_members);
   });
 };

@@ -65,6 +65,7 @@ class CongressmanGroup extends BaseComponent {
             state={result.state}
             party={result.party}
           />
+          <span className="member__payment">Accepted ${result.payment}</span>
           <div
             className="mobile-contact-options"
             onClick={this.toggleContactOverlay}

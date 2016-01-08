@@ -53,7 +53,6 @@ class TitleComponent extends BaseComponent {
     let pre_text,
       preliminary_text,
       member_name = '',
-      represent_text,
       vote_question = `${bill_title}`,
       action,
       member,
@@ -78,23 +77,23 @@ class TitleComponent extends BaseComponent {
 
       if (first_member.chamber === 'senate' && second_member.chamber === 'senate') {
         if (first_member.payment > 0 && second_member.payment === 0 || first_member.payment === 0 && second_member.payment > 0) {
-          member = 'Senator';
+          member = `Senator ${first_member.full_name}`;
         } else {
           member = 'Senators';
         }
       } else if (first_member.chamber === 'house' && second_member.chamber === 'senate') {
         if (first_member.payment > 0) {
-          member = 'Representative';
+          member = `Representative ${first_member.full_name}`;
         } else if (second_member.payment > 0) {
-          member = 'Senator';
+          member = `Senator ${second_member.full_name}`;
         } else {
           member = 'Representative & Senator';
         }
       } else if (first_member.chamber === 'senate' && second_member.chamber === 'house') {
         if (first_member.payment > 0) {
-          member = 'Senator';
+          member = `Senator ${first_member.full_name}`;
         } else if (second_member.payment > 0) {
-          member = 'Representative';
+          member = `Representative ${second_member.full_name}`;
         } else {
           member = 'Representative & Senator';
         }
