@@ -85,7 +85,7 @@ class Results extends BaseComponent {
 
     return <div className={backgroundClasses} id="fullpage">
       {testMap}
-      <div className="section block two">
+      <div className="section block section-two">
         <TextButton
           text="Back"
           onClick={this._handleRestart}
@@ -96,7 +96,7 @@ class Results extends BaseComponent {
           section={1}
         />
       </div>
-      <div className="section block two">
+      <div className="section block section-two">
         <TextButton
           text="Back"
           onClick={this._goBack}
