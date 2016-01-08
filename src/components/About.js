@@ -14,7 +14,7 @@ class About extends BaseComponent {
       <div className="page-wrapper">
         <h2>About</h2>
         <p className="page-introduction">
-          This website is unaffiliated with any government or lobbying party or entity, nor is it represented by a media outlet. Its objective is to provide easy access to comprehensive, actionable data to constituents who have a desire to better understand & reach the decision makers who represent them.
+          This website is unaffiliated with any government or lobbying party or entity, nor is it represented by a media outlet. Its objective is to provide easy access to comprehensive, actionable data to constituents who have a desire to better understand & reach the decition makers who represent them.
           <br /><br />
 		      This website was created as a proactive, in-house exercise by the team at Siberia.
 		      <br /><br />
