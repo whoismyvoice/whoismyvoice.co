@@ -7,7 +7,7 @@ dependencies:
     - npm install
     - npm rebuild node-sass
     - sudo pip install awsebcli
-    - eb init senate-project -r us-east-1
+    - eb init senate-project -p senateproject-dev -r us-east-1
 
 deployment:
     public:
