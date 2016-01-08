@@ -7,8 +7,7 @@ dependencies:
     - npm install
     - npm rebuild node-sass
     - sudo pip install awsebcli
-    - eb init senate-project -p docker -r us-east-1
-    - 1
+    - eb init senate-project -p Node.js -r us-east-1
 
 deployment:
     public:
