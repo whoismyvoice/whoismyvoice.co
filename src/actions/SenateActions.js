@@ -1,8 +1,8 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
+import SenateServerActions from '../actions/SenateServerActions';
 import SenateConstants from '../constants/SenateConstants';
 import request from 'superagent';
 import SponsorUtils from '../utils/SponsorUtils';
-import CongressUtils from '../utils/CongressUtils';
 import {Settings} from '../constants/SenateConstants';
 
 module.exports = {
@@ -28,7 +28,7 @@ module.exports = {
     .end((err, res) => {
       if (err) return console.error(err);
       if (res.body.results.length === 0) {
-        CongressUtils.getMember('error');
+        SenateServerActions.getDetails('error');
       } else {
         const lat = res.body.results[0].geometry.location.lat,
           lng = res.body.results[0].geometry.location.lng;
