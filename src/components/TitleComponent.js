@@ -86,7 +86,7 @@ class TitleComponent extends BaseComponent {
           member = `Representative ${first_member.full_name}`;
         } else if (second_member.payment > 0) {
           member = `Senator ${second_member.full_name}`;
-        } else {
+        } else if (first_member.payment > 0 && second_member.payment > 0 || first_member.payment === 0 && second_member.payment === 0) {
           member = 'Representative & Senator';
         }
       } else if (first_member.chamber === 'senate' && second_member.chamber === 'house') {
@@ -94,7 +94,7 @@ class TitleComponent extends BaseComponent {
           member = `Senator ${first_member.full_name}`;
         } else if (second_member.payment > 0) {
           member = `Representative ${second_member.full_name}`;
-        } else {
+        } else if (first_member.payment > 0 && second_member.payment > 0 || first_member.payment === 0 && second_member.payment === 0) {
           member = 'Representative & Senator';
         }
       }
