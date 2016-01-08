@@ -209,7 +209,7 @@
 }
 
 .digit__margin {
-  margin-left: 10px;
+  margin-left: 12px;
 
   @media screen and (max-width: $iphone6) {
     margin-left: 0;
@@ -217,7 +217,7 @@
 }
 
 .counter__from {
-  margin-left: 15px;
+  margin-left: 10px;
   @media screen and (max-width: $iphone6) {
     display: block;
     margin-top: 15px;
