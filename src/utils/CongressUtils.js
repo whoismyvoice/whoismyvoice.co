@@ -7,6 +7,7 @@ const getMemberDetails = (zipCode, lng, senate_votes, house_votes) => {
   const {API_KEY} = SenateConstants,
     url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${zipCode}&longitude=${lng}&apikey=${API_KEY}` : `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${zipCode}&apikey=${API_KEY}`,
     { house_vote_favor, senate_vote_favor } = Settings;
+
   request
   .get(url)
   .set('Accept', 'application/json')

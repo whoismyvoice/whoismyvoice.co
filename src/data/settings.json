@@ -11,5 +11,8 @@
   "voted_against": "Your #member_type voted ",
   "voted_against_1": "in support of Planned Parenthood ",
   "voted_against_2": "and the Affordable Healthcare Act.",
-  "represent_text": "represents"
+  "represent_text": "represents",
+  "sponsor": true,
+  "sponsor_year": 2016,
+  "sponsor_id": "C00053553"
 }

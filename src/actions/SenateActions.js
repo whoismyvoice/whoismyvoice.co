@@ -1,7 +1,7 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import SenateConstants from '../constants/SenateConstants';
-import SenateStore from '../stores/SenateStore';
 import request from 'superagent';
+import SponsorUtils from '../utils/SponsorUtils';
 import CongressUtils from '../utils/CongressUtils';
 import {Settings} from '../constants/SenateConstants';
 
@@ -11,8 +11,9 @@ module.exports = {
       actionType: SenateConstants.FIND_MEMBER,
       zip_code: ZIP_CODE
     });
-    CongressUtils.getMember(ZIP_CODE);
+    SponsorUtils.getSponsorDetails(ZIP_CODE);
   },
+
   fetchSpecificMember: (ADDRESS, ZIP, STATE) => {
     AppDispatcher.handleViewAction({
       actionType: SenateConstants.FIND_SPECIFIC_MEMBER,
@@ -31,7 +32,7 @@ module.exports = {
       } else {
         const lat = res.body.results[0].geometry.location.lat,
           lng = res.body.results[0].geometry.location.lng;
-        CongressUtils.getMember(lat, lng);
+        SponsorUtils.getSponsorDetails(lat, lng);
       }
     });
   },
