@@ -69,11 +69,11 @@ class Results extends BaseComponent {
       let count = 0;
       // Assign member values to vars to ensure fullPage support (vs. dynamic rendering)
       for (let i = 0; i < representatives.length; i++) {
-        if (representatives[i].vote_favor) {
+        if (representatives[i].payment > 0) {
           count++;
         }
       }
-      // Check whether they voted for/against vote_favor to divide them into groups
+      // Check whether representatives received any contributions to divide them into groups
       if (count === 0 || count === 1 || count === 3) {
         first_rep = representatives.slice(0, 1);
         second_rep = representatives.slice(1, 3);
