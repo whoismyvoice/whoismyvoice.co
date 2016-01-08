@@ -63,9 +63,9 @@ class TitleComponent extends BaseComponent {
       represent_gender = representative[0].gender_full === 'man' ? 'He' : 'She';
       member_name = representative[0].full_name;
       member = representative[0].chamber === 'senate' ? 'Senator' : 'Representative';
-      preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action).replace('#bold', '<b>').replace('#bold_end', '</b>')}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
-      voted_bold_text = representative[0].vote_favor ? voted_for_1 : voted_against_1;
-      voted_final_text = representative[0].vote_favor ? voted_for_2 : voted_against_2;
+      preliminary_text = representative[0].payment > 0 ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action).replace('#bold', '<b>').replace('#bold_end', '</b>')}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+      voted_bold_text = representative[0].payment > 0 ? voted_for_1 : voted_against_1;
+      voted_final_text = representative[0].payment > 0 ? voted_for_2 : voted_against_2;
     }
 
     if (representative && representative.length === 2) {
@@ -78,9 +78,9 @@ class TitleComponent extends BaseComponent {
       } else if (representative[0].chamber === 'senate' && representative[1].chamber === 'house') {
         member = 'Representative & Senator';
       }
-      preliminary_text = representative[0].vote_favor ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
-      voted_bold_text = representative[0].vote_favor ? voted_for_1 : voted_against_1;
-      voted_final_text = representative[0].vote_favor ? voted_for_2 : voted_against_2;
+      preliminary_text = representative[0].payment > 0 ? `${voted_for.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}` : `${voted_against.replace('#member_type', member).replace('#member_name', member_name).replace('#member_age', `a ${representative.age} old`).replace('#member_gender', representative.gender_full).replace('#action', action)}`;
+      voted_bold_text = representative[0].payment > 0 ? voted_for_1 : voted_against_1;
+      voted_final_text = representative[0].payment > 0 ? voted_for_2 : voted_against_2;
     }
 
     // Make sure that vote_question is shown on frontpage and that result text is shown in follow. sections
