@@ -16,7 +16,7 @@ let membersContributedTo = 0;
 
 // Promise retrieving amount of money sponsored by NRA to commitee for cycle 2014
 const identifyPayment = (member) => {
-  const url = `https://api.open.fec.gov/v1/committee/${member.commitee_id}/schedules/schedule_a/by_contributor/?sort_nulls_large=true&api_key=Uyo5q24jY9uV1xXywsFV7yg2tVIJ7yKEjA3OCEl9&page=1&contributor_id=${Settings.sponsor_id}&per_page=20&cycle=${Settings.sponsor_year}`;
+  const url = `https://api.open.fec.gov/v1/committee/${member.commitee_id}/schedules/schedule_a/by_contributor/?sort_nulls_large=true&api_key=${SenateConstants.FEC_API_KEY}&page=1&contributor_id=${Settings.sponsor_id}&per_page=20&cycle=${Settings.sponsor_year}`;
   return new Promise(function testPromise(resolve, reject) {
     request
     .get(url)
