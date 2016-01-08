@@ -1,0 +1,17 @@
+machine:
+  node:
+    version: 0.12.0
+
+dependencies:
+  override:
+    - npm install
+    - npm rebuild node-sass
+    - sudo pip install awsebcli
+    - eb init senate-project -r us-east-1
+
+deployment:
+    public:
+      branch: master
+      commands:
+        - npm run build
+        - eb deploy senateproject-dev
