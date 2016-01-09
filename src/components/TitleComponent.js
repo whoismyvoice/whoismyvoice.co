@@ -82,20 +82,20 @@ class TitleComponent extends BaseComponent {
           member = 'Senators';
         }
       } else if (first_member.chamber === 'house' && second_member.chamber === 'senate') {
-        if (first_member.payment > 0) {
-          member = `Representative ${first_member.full_name}`;
-        } else if (second_member.payment > 0) {
-          member = `Senator ${second_member.full_name}`;
-        } else if (first_member.payment > 0 && second_member.payment > 0 || first_member.payment === 0 && second_member.payment === 0) {
+        if (first_member.payment > 0 && second_member.payment > 0 || first_member.payment === 0 && second_member.payment === 0) {
           member = 'Representative & Senator';
+        } else if (first_member.payment > 0 && second_member.payment === 0) {
+          member = `Representative ${second_member.full_name}`;
+        } else if (second_member.payment > 0 && first_member.payment === 0) {
+          member = `Senator ${first_member.full_name}`;
         }
       } else if (first_member.chamber === 'senate' && second_member.chamber === 'house') {
-        if (first_member.payment > 0) {
-          member = `Senator ${first_member.full_name}`;
-        } else if (second_member.payment > 0) {
-          member = `Representative ${second_member.full_name}`;
-        } else if (first_member.payment > 0 && second_member.payment > 0 || first_member.payment === 0 && second_member.payment === 0) {
+        if (first_member.payment > 0 && second_member.payment > 0 || first_member.payment === 0 && second_member.payment === 0) {
           member = 'Representative & Senator';
+        } else if (first_member.payment > 0 && second_member.payment === 0) {
+          member = `Senator ${second_member.full_name}`;
+        } else if (second_member.payment > 0 && first_member.payment === 0) {
+          member = `Representative ${first_member.full_name}`;
         }
       }
       member_name = '';
