@@ -5,6 +5,7 @@ import Home from './components/Home';
 import About from './components/About';
 import Sources from './components/Sources';
 import NoMatch from './components/NoMatch';
+import Redirect from './components/Redirect';
 
 const routes = (
   <Router>
@@ -13,6 +14,7 @@ const routes = (
     	<IndexRoute component={Home} />
       <Route path="about" component={About} />
       <Route path="sources" component={Sources} />
+      <Route path="health" component={Redirect} />
       <Route path="*" component={Home}/>
     </Route>
   </Router>
