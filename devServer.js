@@ -8,7 +8,7 @@ new WebpackDevServer(webpack(config), {
   historyApiFallback: true,
   noInfo: true,
   stats: {colors: true}
-}).listen(config._hotPort, 'localhost', function(err, result) {
+}).listen(config._hotPort, function(err, result) {
   if (err) {
     console.log(err);
   }
