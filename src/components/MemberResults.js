@@ -25,7 +25,7 @@ class MemberResults extends BaseComponent {
       if (section === 1 && representative[0].chamber === 'house') {
         nextText = 'My Senators';
       } else if (section === 1 && representative[0].chamber === 'senate') {
-        nextText = 'My Other Representatives';
+        nextText = 'My Other Representative';
       }
     }
 
