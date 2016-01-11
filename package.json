@@ -27,7 +27,6 @@
   "dependencies": {
     "babel-core": "^5.8.23",
     "compression": "^1.6.0",
-    "cors": "^2.7.1",
     "express": "^4.13.3",
     "helmet": "^0.14.0",
     "history": "1.17.0",

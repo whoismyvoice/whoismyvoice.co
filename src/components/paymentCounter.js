@@ -3,6 +3,9 @@ import React from 'react';
 // Component
 import BaseComponent from './BaseComponent';
 
+// Style
+import style from './../styles/paymentCounter.scss';
+
 class paymentCounter extends BaseComponent {
   render() {
     const numbers = this.props.payment.split('');

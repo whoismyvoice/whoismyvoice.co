@@ -1,6 +1,5 @@
 import React from 'react';
 import SenateStore from '../stores/SenateStore';
-// import DataUtils from '../utils/DataUtils';
 import cx from 'classnames';
 
 // Components
