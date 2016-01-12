@@ -3,6 +3,7 @@ import React from 'react';
 // Components
 import BaseComponent from './BaseComponent';
 import FadedBG from './FadedBg';
+import CornerRibbon from './CornerRibbon';
 
 class Sources extends BaseComponent {
   componentDidMount() {
@@ -10,6 +11,7 @@ class Sources extends BaseComponent {
   }
   render() {
     return  <div className="page-block light-white">
+      <CornerRibbon />
       <FadedBG color="white" />
       <div className="page-wrapper">
         <h2>Sources</h2>

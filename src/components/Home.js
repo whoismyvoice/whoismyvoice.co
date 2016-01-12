@@ -105,7 +105,9 @@ class Home extends BaseComponent {
     );
 
     return <div className={containerClasses}>
-      <CornerRibbon />
+      <CornerRibbon
+        did_search={DID_SEARCH}
+       />
       <div className={fadingClasses}></div>
       <div className="overlay">
         This site is only supported in portrait mode. Please turn your phone.

@@ -1,6 +1,8 @@
 @import 'variables';
+@import 'transitions';
 
 .corner-ribbon {
+  @include transition(0.5s);
   background-color: $dark-grey;
   overflow: hidden;
   white-space: nowrap;
@@ -13,6 +15,19 @@
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
+
+  @media screen and (max-width: $iphone6) {
+    @include transition(0.5s);
+    right: -65px;
+    top: 30px;
+  }
+}
+
+.corner-ribbon__hide {
+  @media screen and (max-width: $iphone6) {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 .corner-ribbon a {
@@ -26,4 +41,9 @@
   padding: 14px 50px;
   text-align: center;
   text-decoration: none;
+
+  @media screen and (max-width: $iphone6) {
+    padding: 10px 50px;
+    font: 500 8px 'Open Sans', Helvetica, Arial, sans-serif;
+  }
 }
