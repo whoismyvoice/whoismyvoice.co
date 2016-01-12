@@ -3,10 +3,10 @@ machine:
     version: 0.12.0
 
 dependencies:
+  pre:
+    - pip install -r requirements.txt
   override:
     - npm install
-    - npm rebuild node-sass
-    - sudo pip install awsebcli
     - eb init senate-project -p Node.js -r us-east-1
 
 deployment:

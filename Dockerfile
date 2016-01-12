@@ -1,5 +1,3 @@
-FROM nodesource/node:4.0
-COPY . /app
-WORKDIR /app
+FROM siberia/casestudy:latest
+COPY dist /app/dist
 EXPOSE 8080
-CMD ["bash", "start.sh"]

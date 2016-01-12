@@ -1,4 +1,14 @@
-node_modules
+node_modules/
+test/
+src/
 .DS_Store
-npm-debug.log*
-test/coverage
+.eslintrc
+.gitignore
+circle.yml
+devServer.js
+Dockerrun.aws.json
+es6-devServer.js
+publish.sh
+README.md
+webpack.config.dev.js
+webpack.config.prod.js
