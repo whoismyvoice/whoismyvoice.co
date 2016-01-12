@@ -6,6 +6,7 @@ import cx from 'classnames';
 import BaseComponent from './BaseComponent';
 import SearchGroup from './Search/SearchGroup';
 import Results from './Results';
+import CornerRibbon from './CornerRibbon';
 import TitleComponent from './TitleComponent';
 
 // Styles
@@ -104,6 +105,7 @@ class Home extends BaseComponent {
     );
 
     return <div className={containerClasses}>
+      <CornerRibbon />
       <div className={fadingClasses}></div>
       <div className="overlay">
         This site is only supported in portrait mode. Please turn your phone.

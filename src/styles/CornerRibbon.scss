@@ -1,0 +1,28 @@
+@import 'variables';
+
+.corner-ribbon {
+  background-color: $dark-grey;
+  overflow: hidden;
+  white-space: nowrap;
+  position: absolute;
+  right: -60px;
+  top: 45px;
+  z-index: 99;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.corner-ribbon a {
+  border: 1px solid $white;
+  text-transform: uppercase;
+  color: #fff;
+  display: block;
+  font: bold 11px 'Open Sans', Helvetica, Arial, sans-serif;
+  margin: 2px 0;
+  padding: 14px 50px;
+  text-align: center;
+  text-decoration: none;
+}
