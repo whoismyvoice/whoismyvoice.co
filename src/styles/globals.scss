@@ -2,7 +2,7 @@
 @import 'transitions';
 
 // BEM & OOCSS
-body {
+body, html {
   margin: 0 auto;
   overflow-x: hidden;
   min-height: 100%!important;
