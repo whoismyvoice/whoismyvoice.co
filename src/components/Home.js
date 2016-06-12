@@ -1,3 +1,7 @@
+if (window.location.host === 'http://www.whoismyvoice.com' || window.location.host === 'www.whoismyvoice.com') {
+  window.location = 'http://whoismyvoice.com';
+}
+
 import React from 'react';
 import SenateStore from '../stores/SenateStore';
 import cx from 'classnames';
