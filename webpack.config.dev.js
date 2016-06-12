@@ -8,7 +8,7 @@ const modelDir = path.resolve(__dirname, 'models');
 const distDir = path.resolve(__dirname, 'dist');
 
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: '#eval-source-map',
   devServer: {
     historyApiFallback: true
   },

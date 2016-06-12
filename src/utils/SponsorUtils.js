@@ -16,7 +16,8 @@ let membersContributedTo = 0;
 
 // Promise retrieving amount of money sponsored by NRA to commitee for cycle 2014
 const identifyPayment = (member) => {
-  const url = `https://api.open.fec.gov/v1/committee/${member.commitee_id}/schedules/schedule_a/by_contributor/?sort_nulls_large=true&api_key=${SenateConstants.FEC_API_KEY}&page=1&contributor_id=${Settings.sponsor_id}&per_page=20&cycle=${Settings.sponsor_year}`;
+  const committee_name = encodeURIComponent(member.committee_name.trim());
+  const url = `https://api.open.fec.gov/v1/committee/${Settings.sponsor_id}/schedules/schedule_b/by_recipient/?per_page=20&page=1&recipient_name=${committee_name}&api_key=${SenateConstants.FEC_API_KEY}&cycle=${Settings.sponsor_year}`;
   return new Promise(function testPromise(resolve, reject) {
     request
     .get(url)
@@ -24,8 +25,7 @@ const identifyPayment = (member) => {
     .end((err, res) => {
       if (err) {
         reject(SenateServerActions.getDetails('error'));
-      }
-      if (res.body.results) {
+      } else if (res.body.results) {
         const payment = res.body.results[0] ? res.body.results[0].total : 0;
         member.payment = payment;
         if (member.chamber === 'house') {
@@ -36,8 +36,6 @@ const identifyPayment = (member) => {
         }
         const relevant = member;
         resolve(relevant);
-      } else {
-        reject(SenateServerActions.getDetails('error'));
       }
     });
   });
@@ -79,10 +77,9 @@ const identifyCommittee = (item) => {
     .end((err, res) => {
       if (err) {
         reject(SenateServerActions.getDetails('error'));
-      }
-      if (res.body.results) {
-        const com_id = res.body.results[0].committee_id;
-        item.commitee_id = com_id;
+      } else if (res.body.results) {
+        item.committee_id = res.body.results[0].committee_id;
+        item.committee_name = res.body.results[0].name;
         const member = item;
         resolve(member);
       } else {
