@@ -1,5 +1,5 @@
 import SenateServerActions from '../actions/SenateServerActions';
-import request from 'superagent';
+var request = require('superagent-cache')();
 
 module.exports = {
   saveFetchedData: () => {
