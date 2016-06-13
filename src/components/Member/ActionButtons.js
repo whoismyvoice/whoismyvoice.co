@@ -31,7 +31,7 @@ class SupportActions extends BaseComponent {
       email = representative.oc_email;
       twitter = representative.twitter_id;
       tel = representative.phone;
-      twitterLink = `http://twitter.com/${twitter}`;
+      twitterLink = `https://twitter.com/intent/tweet?hashtags=WhoIsMyVoice&text=@${twitter}`;
     }
 
     return  <div className="actionButtons">
