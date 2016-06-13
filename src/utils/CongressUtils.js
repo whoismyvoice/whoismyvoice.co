@@ -10,6 +10,7 @@ const getMemberDetails = (zipCode, lng, voters) => {
 
   request
   .get(url)
+  .cacheWhenEmpty(false)
   .set('Accept', 'application/json')
   .end((err, res) => {
     if (err) return console.error(err);

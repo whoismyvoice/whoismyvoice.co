@@ -21,6 +21,7 @@ const identifyPayment = (member) => {
   return new Promise(function testPromise(resolve, reject) {
     request
     .get(url)
+    .cacheWhenEmpty(false)
     .set('Accept', 'application/json')
     .end((err, res) => {
       if (err) {
