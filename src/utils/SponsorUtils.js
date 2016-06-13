@@ -1,4 +1,4 @@
-var request = require('superagent-cache')();
+const request = require('superagent-cache')();
 import SenateServerActions from '../actions/SenateServerActions';
 import SenateConstants from '../constants/SenateConstants';
 import {Settings} from '../constants/SenateConstants';

@@ -1,5 +1,5 @@
 import SenateServerActions from '../actions/SenateServerActions';
-var request = require('superagent-cache')();
+const request = require('superagent-cache')();
 import SenateConstants from '../constants/SenateConstants';
 import {Settings} from '../constants/SenateConstants';
 
