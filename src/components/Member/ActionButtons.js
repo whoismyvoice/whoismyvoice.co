@@ -19,7 +19,6 @@ class SupportActions extends BaseComponent {
       email,
       twitter,
       tel,
-      gender_alt,
       twitterLink;
 
     const {representative} = this.props;
@@ -27,7 +26,6 @@ class SupportActions extends BaseComponent {
     // Define each value used for every member
     if (representative) {
       gender = representative.gender === 'M' ? 'Him' : 'Her';
-      gender_alt = representative.gender === 'M' ? 'His' : 'Her';
       email = representative.oc_email;
       twitter = representative.twitter_id;
       tel = representative.phone;
