@@ -1,0 +1,23 @@
+@import 'variables';
+@import 'transitions';
+
+.server-notice {
+  @include transition(0.5s);
+  width: 100%;
+  height: 30px;
+  position: fixed;
+  background-color: $dark-blue;
+  left: 0;
+  display: inline-block;
+  z-index: 10;
+  color: $light-peach;
+  padding-top: 5px;
+  bottom: 0;
+  text-align: center;
+  opacity: 100%;
+}
+
+.server-notice__hide {
+  @include transition(0.5s);
+  opacity: 0;
+}

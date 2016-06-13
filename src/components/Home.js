@@ -12,6 +12,7 @@ import SearchGroup from './Search/SearchGroup';
 import Results from './Results';
 import CornerRibbon from './CornerRibbon';
 import TitleComponent from './TitleComponent';
+import ServerNotice from './ServerNotice';
 
 // Styles
 import style from './../styles/Home.scss';
@@ -83,7 +84,8 @@ class Home extends BaseComponent {
   render() {
     const NUMBER_REPRESENTATIVES = this.state.number_representatives,
       NUMBER_HOUSE = this.state.number_house,
-      DID_SEARCH = this.state.did_search;
+      DID_SEARCH = this.state.did_search,
+      ERROR = this.state.error;
 
     // When search has been initiated and the right number of reps are retrieved initialize fullPage
     if (DID_SEARCH && NUMBER_HOUSE === 1 && NUMBER_REPRESENTATIVES === 3) {
@@ -109,9 +111,13 @@ class Home extends BaseComponent {
     );
 
     return <div className={containerClasses}>
+      <ServerNotice
+        error={ERROR}
+      />
       <CornerRibbon
         did_search={DID_SEARCH}
        />
+
       <div className={fadingClasses}></div>
       <div className="overlay">
         This site is only supported in portrait mode. Please turn your phone.
