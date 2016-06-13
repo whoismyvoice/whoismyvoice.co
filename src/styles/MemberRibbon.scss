@@ -117,6 +117,10 @@
   background-color: #3569CA;
 }
 
+.ribbon--grey {
+  background-color: #BCBCBC
+}
+
 .ribbon:before, .ribbon:after {
   z-index: -1;
   position: absolute;
@@ -128,6 +132,10 @@
   @media screen and (max-width: $iphone6) {
     border: 0.8em solid darken(#B03532, 0%);
   }
+}
+
+.ribbon--grey:before, .ribbon--grey:after {
+  border: 1.5em solid darken(#9B9695, 0%);
 }
 
 .ribbon--blue:before, .ribbon--blue:after {
@@ -232,3 +240,6 @@
   border-color: darken(#203C70, 8%) transparent transparent transparent;
 }
 
+.ribbon--grey .ribbon-content:before, .ribbon--grey .ribbon-content:after {
+  border-color: darken(#9B9695, 8%) transparent transparent transparent;
+}

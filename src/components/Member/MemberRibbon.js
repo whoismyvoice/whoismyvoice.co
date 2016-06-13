@@ -13,6 +13,7 @@ class MemberRibbon extends BaseComponent {
 
     const ribbonClasses = cx(
       ['ribbon'],
+      {'ribbon--grey': party === 'I'},
       {'ribbon--blue': party === 'D'}
     );
 
