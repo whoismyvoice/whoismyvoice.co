@@ -13,6 +13,6 @@ module.exports = Object.freeze({
   FIND_SPECIFIC_MEMBER: 'FIND_SPECIFIC_MEMBER',
   API_KEY: '4f501d505d514b85a01f39d4ceb9a353',
   GOOGLE_API_KEY: 'AIzaSyBszQnBTm_2qjgMd57K0CLfE0i3zuveKhE',
-  FEC_API_KEY: process.env.NODE_ENV === 'production' ? 'Uyo5q24jY9uV1xXywsFV7yg2tVIJ7yKEjA3OCEl9' : 'innx28Lu1FThi9laPiVZNsXs4Y1egkY5a4eMl9H2',
+  FEC_API_KEY: process.env.NODE_ENV === 'production' ? 'DNox4ZCBAUvyHH67DnZRxFO0utkiEPMgk1Wpu8mo' : 'innx28Lu1FThi9laPiVZNsXs4Y1egkY5a4eMl9H2',
   Settings: process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development' ? SettingsJSON : SenateStore.getSettings()
 });
