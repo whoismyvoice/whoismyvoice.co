@@ -2,12 +2,15 @@ import path from 'path';
 import express from 'express';
 import helmet from 'helmet';
 import compression from 'compression';
+import cors from 'cors';
 
 const server = express();
 const port = 8080;
 server.use(helmet());
 
 server.set('port', process.env.PORT || 8080);
+
+server.use(cors());
 
 server.use(compression());
 server.use(express.static(__dirname + '/dist'));
