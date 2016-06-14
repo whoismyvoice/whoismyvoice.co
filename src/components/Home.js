@@ -12,7 +12,6 @@ import SearchGroup from './Search/SearchGroup';
 import Results from './Results';
 import CornerRibbon from './CornerRibbon';
 import TitleComponent from './TitleComponent';
-import ServerNotice from './ServerNotice';
 
 // Styles
 import style from './../styles/Home.scss';
@@ -111,9 +110,6 @@ class Home extends BaseComponent {
     );
 
     return <div className={containerClasses}>
-      <ServerNotice
-        error={ERROR}
-      />
       <CornerRibbon
         did_search={DID_SEARCH}
        />
