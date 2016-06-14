@@ -21,6 +21,10 @@
     border: 8px solid #203C70;
   }
 
+  &.member--grey {
+    border: 8px solid #9B9695;
+  }
+
   @media screen and (max-width: $iphone6) {
     border: 4px solid $dark-red;
   }

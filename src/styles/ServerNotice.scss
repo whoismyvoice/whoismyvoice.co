@@ -15,9 +15,11 @@
   bottom: 0;
   text-align: center;
   opacity: 100%;
+  visibility: visible;
 }
 
 .server-notice__hide {
   @include transition(0.5s);
   opacity: 0;
+  visibility: hidden;
 }

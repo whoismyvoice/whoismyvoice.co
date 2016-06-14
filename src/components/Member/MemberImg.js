@@ -16,7 +16,8 @@ class SenatorImg extends BaseComponent {
     const imgClasses = cx(
       ['member-img'],
       {'animated': repNumber > 2},
-      {'member--blue': party === 'D'}
+      {'member--blue': party === 'D'},
+      {'member--grey': party === 'I'}
     );
 
     return <div className={imgClasses}>
