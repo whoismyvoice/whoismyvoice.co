@@ -23,7 +23,9 @@ class About extends BaseComponent {
 		      Please send any comments or fact checking <a href="mailto:&#113;&#117;&#101;&#115;&#116;&#105;&#111;&#110;&#115;&#064;&#119;&#104;&#111;&#105;&#115;&#109;&#121;&#118;&#111;&#105;&#099;&#101;&#046;&#099;&#111;&#109;?Subject=WhoIsMyVoice.com Question" className="strike-out">here</a>.
 		      <br /><br />
 		      Please send any business or media inquiries <a href="mailto:&#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#119;&#104;&#111;&#105;&#115;&#109;&#121;&#118;&#111;&#105;&#099;&#101;&#046;&#099;&#111;&#109;?Subject=WhoIsMyVoice.com Contact" className="strike-out">here</a>.<br /><br />
-          <img src={require('../img/siberia_logo.png')} width="40" />
+          <a href="http://siberia.io" target="_blank">
+            <img src={require('../img/siberia_logo.png')} width="40" />
+          </a>
         </p>
       </div>
     </div>;

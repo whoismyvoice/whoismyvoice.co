@@ -113,7 +113,7 @@ const filterMembers = (arr) => {
 module.exports = {
   getSponsorDetails: (ZIP_CODE, lng) => {
     const {API_KEY} = SenateConstants,
-      url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${ZIP_CODE}&longitude=${lng}&apikey=${API_KEY}` : `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${ZIP_CODE}&apikey=${API_KEY}`;
+    url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${ZIP_CODE}&longitude=${lng}&apikey=${API_KEY}` : `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${ZIP_CODE}&apikey=${API_KEY}`;
 
     request
     .get(url)
