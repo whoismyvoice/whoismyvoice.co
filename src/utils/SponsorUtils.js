@@ -36,6 +36,8 @@ const identifyPayment = (member) => {
         }
         const relevant = member;
         resolve(relevant);
+      } else {
+        reject(SenateServerActions.getDetails('error'));
       }
     });
   });
@@ -78,8 +80,15 @@ const identifyCommittee = (item) => {
       if (err) {
         reject(SenateServerActions.getDetails('error'));
       } else if (res.body.results) {
-        item.committee_id = res.body.results[0].committee_id;
-        item.committee_name = res.body.results[0].name;
+        if (item.fec_ids[0] === 'H2TN05131') {
+          item.committee_id = 'C00376665';
+        } else if (item.fec_ids[0] === 'H8LA00017') {
+          item.committee_id = 'C00451807';
+        } else {
+          item.committee_id = res.body.results[0].committee_id;
+          item.committee_name = res.body.results[0].name;
+        }
+
         const member = item;
         resolve(member);
       } else {
