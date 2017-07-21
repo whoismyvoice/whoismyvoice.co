@@ -64,8 +64,6 @@ const sort_member_chamber = (a, b) => {
 
 // Promise identifying the Committee for each member
 const identifyCommittee = (item) => {
-  console.log('COM IDENTIFY');
-  console.log(item);
   // Check if did_search is false, and if so truncate it
   if (!SenateStore.getMember.did_search) {
     members.length = 0;
