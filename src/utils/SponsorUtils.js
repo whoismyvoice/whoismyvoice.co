@@ -85,8 +85,10 @@ const identifyCommittee = (item) => {
         } else if (item.fec_ids[0] === 'H8LA00017') {
           item.committee_id = 'C00451807';
         } else {
-          item.committee_id = res.body.results[0].committee_id;
-          item.committee_name = res.body.results[0].name;
+          if (res.body.results[0]) {
+            item.committee_id = res.body.results[0].committee_id ? res.body.results[0].committee_id : '';
+            item.committee_name = res.body.results[0].name;
+          }
         }
 
         const member = item;
