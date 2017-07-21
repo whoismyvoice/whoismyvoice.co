@@ -1,9 +1,10 @@
-const request = require('superagent-cache')();
+const request = require('superagent');
 import SenateServerActions from '../actions/SenateServerActions';
 import SenateConstants from '../constants/SenateConstants';
 import {Settings} from '../constants/SenateConstants';
 
 import SenateStore from '../stores/SenateStore';
+let jsonp = require('superagent-jsonp');
 
 // Keep track of members to be able to pass this on to SenateServerActions
 let members = [];
@@ -20,7 +21,6 @@ const identifyPayment = (member) => {
   return new Promise(function testPromise(resolve, reject) {
     request
     .get(url)
-    .cacheWhenEmpty(false)
     .set('Accept', 'application/json')
     .end((err, res) => {
       if (err) {
@@ -64,6 +64,8 @@ const sort_member_chamber = (a, b) => {
 
 // Promise identifying the Committee for each member
 const identifyCommittee = (item) => {
+  console.log('COM IDENTIFY');
+  console.log(item);
   // Check if did_search is false, and if so truncate it
   if (!SenateStore.getMember.did_search) {
     members.length = 0;
@@ -122,11 +124,12 @@ const filterMembers = (arr) => {
 module.exports = {
   getSponsorDetails: (ZIP_CODE, lng) => {
     const {API_KEY} = SenateConstants,
-    url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${ZIP_CODE}&longitude=${lng}&apikey=${API_KEY}` : `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${ZIP_CODE}&apikey=${API_KEY}`;
+    url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${ZIP_CODE}&longitude=${lng}&apikey=${API_KEY}&callback=callback` : `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${ZIP_CODE}&apikey=${API_KEY}&callback=callback`;
 
     request
     .get(url)
     .set('Accept', 'application/json')
+    .use(jsonp)
     .end((err, res) => {
       if (err) return console.error(err);
       if (res.body.results.length > 0) {

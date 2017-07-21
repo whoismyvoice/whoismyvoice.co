@@ -1,12 +1,11 @@
 import SenateServerActions from '../actions/SenateServerActions';
-const request = require('superagent-cache')();
+const request = require('superagent');
 
 module.exports = {
   saveFetchedData: () => {
     const url = '/api/settings';
     request
     .get(url)
-    .cacheWhenEmpty(false)
     .set('Accept', 'application/json')
     .end((err, res) => {
       if (err) return console.error(err);

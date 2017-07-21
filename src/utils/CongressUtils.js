@@ -1,16 +1,15 @@
 import SenateServerActions from '../actions/SenateServerActions';
-const request = require('superagent-cache')();
+const request = require('superagent');
 import SenateConstants from '../constants/SenateConstants';
 import {Settings} from '../constants/SenateConstants';
 
 const getMemberDetails = (zipCode, lng, voters) => {
   const {API_KEY} = SenateConstants,
-    url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${zipCode}&longitude=${lng}&apikey=${API_KEY}` : `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${zipCode}&apikey=${API_KEY}`,
+    url = lng !== undefined ? `https://congress.api.sunlightfoundation.com/legislators/locate?latitude=${zipCode}&longitude=${lng}&apikey=${API_KEY}&callback=myCallback` : `https://congress.api.sunlightfoundation.com/legislators/locate?zip=${zipCode}&apikey=${API_KEY}&callback=myCallback`,
     {vote_favor, chamber} = Settings;
 
   request
   .get(url)
-  .cacheWhenEmpty(false)
   .set('Accept', 'application/json')
   .end((err, res) => {
     if (err) return console.error(err);
