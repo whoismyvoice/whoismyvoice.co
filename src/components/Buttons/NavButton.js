@@ -1,26 +1,13 @@
-import React from 'react';
-import ContainerActions from '../../actions/ContainerActions';
-
-// Component
-import BaseComponent from '../BaseComponent';
+import React, { Component, } from 'react';
+import PropTypes from 'prop-types';
 
 // Styles
-import style from '../../styles/TextButton.scss';
+import '../../styles/TextButton.css';
 
-class NavButton extends BaseComponent {
-  constructor() {
-    super();
-    this._bind('_handleClick');
-  }
-
-  _handleClick(event) {
-    ContainerActions.setCurrentMember(event.target.id);
-    $.fn.fullpage.moveSectionDown();
-  }
-
+class NavButton extends Component {
   render() {
-    const {text, id} = this.props;
-    return <a className="text-button" id={id} onClick={this._handleClick}>
+    const { id, text, } = this.props;
+    return <a className="text-button" id={id}>
       <span id={id}>{text}</span>
       <div id={id} className="text-button-border">
       </div>
@@ -29,8 +16,8 @@ class NavButton extends BaseComponent {
 }
 
 NavButton.propTypes = {
-  id: React.PropTypes.string,
-  text: React.PropTypes.string
+  id: PropTypes.string,
+  text: PropTypes.string
 };
 
 export default NavButton;

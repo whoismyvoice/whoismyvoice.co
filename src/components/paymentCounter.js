@@ -1,12 +1,9 @@
-import React from 'react';
-
-// Component
-import BaseComponent from './BaseComponent';
+import React, { Component, } from 'react';
 
 // Style
-import style from './../styles/paymentCounter.scss';
+import './../styles/paymentCounter.css';
 
-class paymentCounter extends BaseComponent {
+class PaymentCounter extends Component {
   render() {
     const numbers = this.props.payment.split('');
     const digits = numbers.map((result, idx) => {
@@ -31,4 +28,4 @@ class paymentCounter extends BaseComponent {
   }
 }
 
-export default paymentCounter;
+export default PaymentCounter;

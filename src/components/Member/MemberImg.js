@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { Component, } from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-// Component
-import BaseComponent from '../BaseComponent';
+// Assets
+import './../../styles/SenatorImg.css';
 
-// Styles
-import style from './../../styles/SenatorImg.scss';
-
-class SenatorImg extends BaseComponent {
+class SenatorImg extends Component {
   render() {
     const img = require(`../../img/congress/${this.props.bioguide}.jpg`);
 
-    const {repNumber, party} = this.props;
+    const {
+      repNumber,
+      party,
+    } = this.props;
 
     const imgClasses = cx(
       ['member-img'],
@@ -20,14 +21,16 @@ class SenatorImg extends BaseComponent {
       {'member--grey': party === 'I'}
     );
 
-    return <div className={imgClasses}>
-    	<img src={img} />
-    </div>;
+    return (
+      <div className={imgClasses}>
+      	<img alt="" src={img} />
+      </div>
+    );
   }
 }
 
 SenatorImg.propTypes = {
-  bioguide: React.PropTypes.string,
+  bioguide: PropTypes.string,
 };
 
 export default SenatorImg;

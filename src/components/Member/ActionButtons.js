@@ -1,19 +1,13 @@
-import React from 'react';
-import SenateStore from '../../stores/SenateStore';
+import React, { Component, } from 'react';
+import PropTypes from 'prop-types';
 
 // Components
-import BaseComponent from '../BaseComponent';
 import ContactButtonSmall from './../Buttons/ContactButtonSmall';
 
 // Styles
-import style from './../../styles/ActionButtons.scss';
+import './../../styles/ActionButtons.css';
 
-class SupportActions extends BaseComponent {
-  constructor(props) {
-    super(props);
-    this.state = SenateStore.getMember();
-  }
-
+class SupportActions extends Component {
   render() {
     let gender,
       email,
@@ -21,7 +15,7 @@ class SupportActions extends BaseComponent {
       tel,
       twitterLink;
 
-    const {representative} = this.props;
+    const { representative, } = this.props;
 
     // Define each value used for every member
     if (representative) {
@@ -54,7 +48,7 @@ class SupportActions extends BaseComponent {
 }
 
 SupportActions.propTypes = {
-  representative: React.PropTypes.any
+  representative: PropTypes.any,
 };
 
 export default SupportActions;

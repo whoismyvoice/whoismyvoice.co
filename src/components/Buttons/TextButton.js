@@ -1,30 +1,27 @@
-import React from 'react';
-import cx from 'classnames';
-
-// Component
-import BaseComponent from '../BaseComponent';
+import React, { Component, } from 'react';
+import PropTypes from 'prop-types';
 
 // Styles
-import style from '../../styles/TextButton.scss';
+import '../../styles/TextButton.css';
 
-class TextButton extends BaseComponent {
+class TextButton extends Component {
   render() {
-    const {link, text} = this.props,
-    buttonClasses = cx(
-      ['text-button'],
-      {'text-button--back': text === 'Back'}
-    );
+    const { link, text, } = this.props;
+    let buttonClasses = 'text-button';
+    if (text === 'Back') {
+      buttonClasses = buttonClasses + 'text-button--back';
+    }
     return <a href={link} className={buttonClasses} onClick={this.props.onClick}>
       {text}
-      <div className="text-button-border">
-      </div>
+      <span className="text-button-border">
+      </span>
   	</a>;
   }
 }
 
 TextButton.propTypes = {
-  link: React.PropTypes.string,
-  text: React.PropTypes.string,
+  link: PropTypes.string,
+  text: PropTypes.string,
 };
 
 export default TextButton;

@@ -1,8 +1,9 @@
-import SettingsJSON from '../data/settings.json';
-import SenateStore from '../stores/SenateStore';
+import SettingsData from '../data/settings.json';
+
+export const Settings = SettingsData;
 
 // Senate Constants
-module.exports = Object.freeze({
+export default Object.freeze({
   FIND_MEMBER: 'FIND_MEMBER',
   GET_DETAILS: 'GET_DETAILS',
   IDENTIFY_SECTION: 'IDENTIFY_SECTION',
@@ -11,8 +12,9 @@ module.exports = Object.freeze({
   FLUSH_STORE: 'FLUSH_STORE',
   GET_SCHEDULE_A: 'GET_SCHEDULE_A',
   FIND_SPECIFIC_MEMBER: 'FIND_SPECIFIC_MEMBER',
+  FEC_API_KEY: 'tFzROuk1OWWYiSxBDLRTIOL5c3TTK3LZ8Vj1AkQE',
   API_KEY: '4f501d505d514b85a01f39d4ceb9a353',
   GOOGLE_API_KEY: 'AIzaSyAIf11r3spH2a2wrjN3GKDbZJpzU_ekUfM',
-  FEC_API_KEY: process.env.NODE_ENV === 'production' ? 'DNox4ZCBAUvyHH67DnZRxFO0utkiEPMgk1Wpu8mo' : 'innx28Lu1FThi9laPiVZNsXs4Y1egkY5a4eMl9H2',
-  Settings: process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development' ? SettingsJSON : SenateStore.getSettings()
+  GOOGLE_CI_API_KEY: 'AIzaSyBvyYNyhM4ZV1jCaVluiNqUlIh3sfwLKd0',
+  Settings: SettingsData,
 });

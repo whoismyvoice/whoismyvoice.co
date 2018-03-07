@@ -1,25 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // Styles
-import style from '../../styles/ContactButtonSmall.scss';
+import '../../styles/ContactButtonSmall.css';
 
-const ContactButtonSmall = (props) => {
-  return <a href={props.link} target="_blank">
-    <button className={`contact__button_small ${props.add_style}`}>
-      <div className={`button__small__icon ${props.icon}`} />
+const ContactButtonSmall = ({
+  add_style,
+  icon,
+  link,
+  text,
+}) => {
+  return <a href={link} target="_blank">
+    <button className={`contact__button_small ${add_style}`}>
+      <div className={`button__small__icon ${icon}`} />
       <div className="button__small__text">
-        {props.text}
+        {text}
       </div>
     </button>
   </a>;
 };
 
 ContactButtonSmall.propTypes = {
-  add_style: React.PropTypes.string,
-  detail: React.PropTypes.string,
-  icon: React.PropTypes.string,
-  link: React.PropTypes.string,
-  text: React.PropTypes.string
+  add_style: PropTypes.string,
+  icon: PropTypes.string,
+  link: PropTypes.string,
+  text: PropTypes.string,
 };
 
 export default ContactButtonSmall;

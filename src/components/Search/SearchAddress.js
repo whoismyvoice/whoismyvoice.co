@@ -1,106 +1,97 @@
-import React from 'react';
-import SenateActions from '../../actions/SenateActions';
+import React, { Component, } from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 // Component
-import BaseComponent from '../BaseComponent';
+import SearchInput from './SearchInput';
 import TextButton from '../Buttons/TextButton';
 
-class SearchAddress extends BaseComponent {
-  constructor() {
-    super();
-    this._bind('_handleChange', '_handleFocus', '_handleBlur', '_handleEnter', '_handleClick');
-    this.state = {
-      address: '',
-      error: false,
-      placeholder: 'Enter Your Street Address'
-    };
+class SearchAddress extends Component {
+  constructor(props) {
+    super(props);
+    this.onTextButtonClick = this.onTextButtonClick.bind(this);
   }
-	_handleChange(event) {
-    this.setState({
-      address: event.target.value,
-      error: false,
-      placeholder: 'Enter Your Street Address'
-    });
-  }
-  _handleFocus() {
-    this.setState({
-      placeholder: '',
-      error: false
-    });
-  }
-  _handleBlur() {
-    if (this.state.address === '') {
-      this.setState({
-        placeholder: 'Enter Your Street Address'
-      });
-    }
-  }
-  _handleEnter(e) {
-    if (e.keyCode === 13) {
-      if (this.state.address.length < 4) {
-        this.setState({
-          error: true,
-          placeholder: 'Enter Your Street Address',
-          address: ''
-        });
-      } else {
-        this.setState({
-          error: false,
-          placeholder: 'Enter Your Street Address',
-          address: ''
-        });
-        SenateActions.fetchSpecificMember(this.state.address, this.props.zip_code, this.props.state_full);
-      }
-    }
-  }
-  _handleClick(evt) {
-    evt.preventDefault();
-    evt.stopPropagation();
 
-    if (this.state.address < 4) {
-      this.setState({
-        error: true,
-        placeholder: 'Enter Your Street Address',
-        address: ''
-      });
-    } else {
-      this.setState({
-        error: false,
-        address: ''
-      });
-      SenateActions.fetchSpecificMember(this.state.address, this.props.zip_code, this.props.state_full);
-    }
+  onTextButtonClick(event) {
+    event.preventDefault();
+    this.formRef.submit();
   }
+
   render() {
+    const {
+      address,
+      error,
+      isStreetAddressNeeded,
+      onSubmit,
+      placeholder,
+      zipCode,
+    } = this.props;
     const inputClasses = cx(
-      ['input'],
-      {'error': this.state.error || this.props.error},
-      {'address_search': this.props.search_address}
+      [
+        'input',
+      ],
+      {
+        'error': error,
+        'address_search': isStreetAddressNeeded,
+      },
     );
-  	return <div>
-  		<input
-        className={inputClasses}
-  			type="text"
-        value={this.state.address}
-  			placeholder={this.state.placeholder}
-  			onChange={this._handleChange}
-  			onKeyDown={this._handleEnter}
-  			onFocus={this._handleFocus}
-  			onBlur={this._handleBlur}
-  		/>
-      <div className="line-seperator"></div>
-      <TextButton
-        text="Continue"
-        onClick={this._handleClick}
-      />
-  	</div>;
+    let formFields = [];
+    if (isStreetAddressNeeded) {
+      formFields = [
+        <div key="zipCodeDisplay" className="locked__zip">
+          ZIP: {zipCode}
+        </div>,
+        <input
+          key="zipCode"
+          type="hidden"
+          name="zipCode"
+          value={zipCode}
+        />,
+    		<input
+          key="address"
+          className={inputClasses}
+          type="text"
+          name="address"
+          defaultValue={address}
+    			placeholder={placeholder}
+    		/>
+      ];
+    } else {
+      formFields = [
+      	<SearchInput
+          key="zipCode"
+          error={error}
+          name="zipCode"
+      	/>
+      ];
+    }
+  	return (
+      <form
+        method="GET"
+        onSubmit={onSubmit}
+        ref={(form) => { this.formRef = form; }}
+      >
+        {formFields}
+        <div className="line-seperator"></div>
+        <TextButton
+          text="Continue"
+          onClick={this.onTextButtonClick}
+        />
+      </form>
+    );
   }
 }
 
+SearchAddress.defaultProps = {
+  address: '',
+  onSubmit: () => {},
+  placeholder: 'Enter Your Street Address',
+};
+
 SearchAddress.propTypes = {
-  error: React.PropTypes.bool,
-  zip_code: React.PropTypes.string
+  address: PropTypes.string,
+  onSubmit: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
 };
 
 export default SearchAddress;

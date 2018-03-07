@@ -1,71 +1,52 @@
-import React from 'react';
-import SenateActions from '../actions/SenateActions';
-import ContainerActions from '../actions/ContainerActions';
-import SenateStore from '../stores/SenateStore';
+import React, { Component, } from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 // Components
 import TextButton from './Buttons/TextButton';
 import MemberResults from './MemberResults';
-import BaseComponent from './BaseComponent';
+import { legislatorType, } from '../types';
 
-class Results extends BaseComponent {
-  constructor() {
-    super();
-    this.state = SenateStore.getMember();
-    this._bind('_handleClick', '_handleRestart');
+class Results extends Component {
+  static defaultProps = {
+    backgroundClasses: '',
+    destroy: () => {},
+    didSearch: false,
+    numberHouse: 0,
+    numberRepresentatives: 0,
+    representatives: [],
   }
 
-  // Check if component should update, and update only if user did search
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.did_search) {
-      return true;
-    } else {
-      return false;
-    }
+  static propTypes = {
+    backgroundClasses: PropTypes.any,
+    destroy: PropTypes.func,
+    didSearch: PropTypes.bool.isRequired,
+    numberHouse: PropTypes.number,
+    numberRepresentatives: PropTypes.number,
+    representatives: legislatorType,
   }
 
-  // Function to restart application and set did_search inside SenateStore() to false
-  _handleRestart() {
-    SenateActions.flush();
-    this.props.destroy();
-  }
-
-  // Function to make fullPage move up one section
-  _goBack() {
-    if ($.fn.fullpage) {
-      $.fn.fullpage.moveSectionUp();
-    }
-  }
-
-  // Function to select specific member based on target.id
-  _handleClick(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    // Listen for event.target.id in order to decipher which of the arrows was tapped
-    ContainerActions.setCurrentMember(event.target.id);
-    if ($.fn.fullpage) {
-      $.fn.fullpage.moveSectionDown();
-    }
-  }
   render() {
     const {
-      number_representatives,
+      didSearch,
+      numberHouse,
+      numberRepresentatives,
       representatives,
-      number_house
-    } = this.state;
+    } = this.props;
 
     const backgroundClasses = cx(
-      ['second-wrapper'],
-      {'move-up': this.state.did_search}
+      [
+        'second-wrapper',
+      ],
+      {
+        'move-up': didSearch,
+      },
     );
 
-    let first_rep,
-      second_rep,
-      testMap;
+    let first_rep, second_rep;
 
     // Check if representatives exist and that they have the correct numer of members
-    if (representatives && number_representatives > 2 && number_house === 1) {
+    if (representatives && numberRepresentatives > 2 && numberHouse === 1) {
       let count = 0;
       // Assign member values to vars to ensure fullPage support (vs. dynamic rendering)
       for (let i = 0; i < representatives.length; i++) {
@@ -83,37 +64,33 @@ class Results extends BaseComponent {
       }
     }
 
-    return <div className={backgroundClasses} id="fullpage">
-      {testMap}
-      <div className="section block section-two">
-        <TextButton
-          text="Back"
-          onClick={this._handleRestart}
-        />
-        <MemberResults
-          numRep={number_representatives}
-          representative={first_rep}
-          section={1}
-        />
+    return (
+      <div className={backgroundClasses} id="fullpage">
+        <div className="section block section-two">
+          <TextButton
+            text="Back"
+            onClick={this._handleRestart}
+          />
+          <MemberResults
+            numRep={numberRepresentatives}
+            representative={first_rep}
+            section={1}
+          />
+        </div>
+        <div className="section block section-two">
+          <TextButton
+            text="Back"
+            onClick={this._goBack}
+          />
+          <MemberResults
+            numRep={numberRepresentatives}
+            representative={second_rep}
+            section={2}
+          />
+        </div>
       </div>
-      <div className="section block section-two">
-        <TextButton
-          text="Back"
-          onClick={this._goBack}
-        />
-        <MemberResults
-          numRep={number_representatives}
-          representative={second_rep}
-          section={2}
-        />
-      </div>
-    </div>;
+    );
   }
 }
-
-Results.propTypes = {
-  backgroundClasses: React.PropTypes.any,
-  destroy: React.PropTypes.func
-};
 
 export default Results;

@@ -1,9 +1,24 @@
-node_modules
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled styles
+/src/**/*.css
+
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
 .DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
 npm-debug.log*
-test/coverage
-dist
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
+yarn-debug.log*
+yarn-error.log*

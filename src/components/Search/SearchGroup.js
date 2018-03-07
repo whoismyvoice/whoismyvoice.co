@@ -1,37 +1,80 @@
-import React from 'react';
-import SenateStore from '../../stores/SenateStore';
+import React, { Component, } from 'react';
+import PropTypes from 'prop-types';
+import { connect, } from 'react-redux';
 
 // Components
-import BaseComponent from '../BaseComponent';
-import SearchInput from './SearchInput';
 import SearchAddress from './SearchAddress';
+import {
+  setAddress,
+  setZipCode,
+} from '../../actions';
 
-class SearchGroup extends BaseComponent {
-  constructor() {
-    super();
-    this.state = SenateStore.getMember();
+export class SearchGroup extends Component {
+
+  static defaultProps = {
+    dispatch: () => {},
+    isStreetAddressNeeded: false,
+    onAddressSubmit: () => {},
+  }
+
+  static propTypes = {
+    address: PropTypes.string,
+    dispatch: PropTypes.func.isRequired,
+    error: PropTypes.bool,
+    isStreetAddressNeeded: PropTypes.bool.isRequired,
+    onAddressSubmit: PropTypes.func.isRequired,
+    stateName: PropTypes.string,
+    zipCode: PropTypes.string,
   }
 
   render() {
-    const {zip_code, error, did_search, state_full, number_house} = this.state;
-    if (did_search && number_house > 1) {
-      return <div className="animated fadeIn">
-  			<div className="locked__zip">ZIP: {zip_code}</div>
+    const {
+      address,
+      error,
+      isStreetAddressNeeded,
+      onAddressSubmit,
+      stateName,
+      zipCode,
+    } = this.props;
+    return (
+      <div className="animated fadeIn">
   			<SearchAddress
+          address={address}
   				error={error}
-          search_address={true}
-          zip_code={zip_code}
-          state_full={state_full}
+          isStreetAddressNeeded={isStreetAddressNeeded}
+          onSubmit={onAddressSubmit}
+          stateName={stateName}
+          zipCode={zipCode}
   			/>
-  		</div>;
-    } else {
-      return <div>
-      	<SearchInput
-        	error={error}
-      	/>
-    	</div>;
-    }
+      </div>
+    );
   }
 }
 
-export default SearchGroup;
+function mapStateToProps(state) {
+  const { address, officials, } = state;
+  return {
+    address: address.street,
+    isStreetAddressNeeded: officials.ids.length === 2,
+    zipCode: address.zipCode,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onAddressSubmit: (event) => {
+      event.preventDefault();
+      const streetAddress = event.target.elements.address && event.target.elements.address.value;
+      const zipCode = event.target.elements.zipCode.value;
+      if (streetAddress) {
+        const address = `${streetAddress}, ${zipCode}`;
+        dispatch(setAddress(address));
+      } else {
+        dispatch(setZipCode(zipCode));
+      }
+      console.log('SearchGroup#onAddressSubmit -- zipCode =', zipCode);
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchGroup);

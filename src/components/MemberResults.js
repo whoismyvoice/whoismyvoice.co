@@ -1,22 +1,21 @@
-import React from 'react';
-import SenateStore from '../stores/SenateStore';
+import React, { Component, } from 'react';
+import PropTypes from 'prop-types';
 
 // Components
 import TitleComponent from './TitleComponent';
 import CongressmanGroup from './Member/CongressmanGroup';
 import NavButton from './Buttons/NavButton';
-import BaseComponent from './BaseComponent';
 
-class MemberResults extends BaseComponent {
-  constructor(props) {
-    super(props);
-    this.state = SenateStore.getMember();
-  }
-
+class MemberResults extends Component {
   render() {
-    const {representative, section} = this.props;
+    const {
+      representative,
+      section,
+    } = this.props;
+
     let chamber,
       nextText;
+
     if (representative) {
       chamber = representative.chamber;
     }
@@ -63,7 +62,8 @@ class MemberResults extends BaseComponent {
 }
 
 MemberResults.propTypes = {
-  representative: React.PropTypes.array
+  representative: PropTypes.arrayOf(PropTypes.shape({
+  })),
 };
 
 export default MemberResults;

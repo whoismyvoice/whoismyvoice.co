@@ -1,51 +1,37 @@
-import React from 'react';
-import SenateStore from '../../stores/SenateStore';
+import React, { Component, } from 'react';
 import cx from 'classnames';
 
 // Components
-import BaseComponent from '../BaseComponent';
 import MemberImg from './MemberImg';
 import MemberRibbon from './MemberRibbon';
 import ActionButtons from './ActionButtons';
-import PaymentCounter from '../paymentCounter';
+import PaymentCounter from '../PaymentCounter';
 
 // Styles
-import style from './../../styles/CongressmanGroup.scss';
+import './../../styles/CongressmanGroup.css';
 
-class CongressmanGroup extends BaseComponent {
-  constructor(props) {
-    super(props);
-    this.state = SenateStore.getMember();
-    this._bind('toggleContactOverlay');
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.did_search && nextState.number_representatives === 3 && nextState.number_house === 1) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  toggleContactOverlay(evt) {
-    this.setState({
-      didClickOverlay: !this.state.didClickOverlay,
-      clicked: evt.target.id
-    });
-  }
-
+class CongressmanGroup extends Component {
   render() {
-    const {representative} = this.props;
-    const {number_representatives} = this.state;
+    const {
+      clicked,
+      didClickOverlay,
+      numberRepresentatives,
+      representative,
+    } = this.props;
+
     let members,
       actionButton;
 
     const mobileOverlayClass = cx(
-      ['mobile-contact-overlay'],
-      {'show': this.state.didClickOverlay}
+      [
+        'mobile-contact-overlay',
+      ],
+      {
+        'show': didClickOverlay,
+      },
     );
 
-    if (representative && number_representatives > 2) {
+    if (representative && numberRepresentatives > 2) {
       members = representative.map((result, idx) => {
         actionButton = (
           <ActionButtons
@@ -57,43 +43,47 @@ class CongressmanGroup extends BaseComponent {
 
         const gender = result.gender === 'M' ? 'Him' : 'Her';
 
-        return (<div className="member-container" key={idx}>
-          <MemberImg
-            bioguide={result.bioguide_id}
-            party={result.party}
-            repNumber={number_representatives}
-          />
-          <MemberRibbon
-            name={result.full_name}
-            state={result.state}
-            party={result.party}
-          />
-          <PaymentCounter
-            payment={payment}
-          />
-          <div
-            className="mobile-contact-options"
-            onClick={this.toggleContactOverlay}
-            id={idx}
-          >
-            {`Contact ${gender}`}
+        return (
+          <div className="member-container" key={idx}>
+            <MemberImg
+              bioguide={result.bioguide_id}
+              party={result.party}
+              repNumber={numberRepresentatives}
+            />
+            <MemberRibbon
+              name={result.full_name}
+              state={result.state}
+              party={result.party}
+            />
+            <PaymentCounter
+              payment={payment}
+            />
+            <div
+              className="mobile-contact-options"
+              onClick={this.toggleContactOverlay}
+              id={idx}
+            >
+              {`Contact ${gender}`}
+            </div>
+            {actionButton}
           </div>
-          {actionButton}
-        </div>);
+        );
       });
     }
 
-    const selectedMember = this.state.clicked ? representative[this.state.clicked] : representative;
+    const selectedMember = clicked ? representative[clicked] : representative;
 
-    return <div className="member-wrapper">
-      {members}
-      <div className={mobileOverlayClass}>
-        <ActionButtons
-          representative={selectedMember}
-        />
-        <div className="mobile-contact-close-button" onClick={this.toggleContactOverlay} />
+    return (
+      <div className="member-wrapper">
+        {members}
+        <div className={mobileOverlayClass}>
+          <ActionButtons
+            representative={selectedMember}
+          />
+          <div className="mobile-contact-close-button" onClick={this.toggleContactOverlay} />
+        </div>
       </div>
-    </div>;
+    );
   }
 }
 

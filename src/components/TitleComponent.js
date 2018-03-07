@@ -1,41 +1,23 @@
-import React from 'react';
+import React, { Component, } from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
-import SenateStore from '../stores/SenateStore';
-import {Settings} from '../constants/SenateConstants';
 
-// Component
-import BaseComponent from './BaseComponent';
+// Components
+import { Settings, } from '../constants/SenateConstants'
 
 // Styles
-import style from './../styles/TitleComponent.scss';
+import '../styles/TitleComponent.css';
 
-class TitleComponent extends BaseComponent {
-  constructor(props) {
-    super(props);
-    this.state = SenateStore.getMember();
-  }
-
-  // Check whether user has initiated search before updating component
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.did_search && nextState.number_representatives > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
+class TitleComponent extends Component {
   render() {
     const {
-      desc,
       classes,
+      desc,
+      didSearch,
       front,
       represent,
-      representative
+      representative,
     } = this.props;
-
-    const {
-      did_search,
-    } = this.state;
 
     const {
       bill_desc,
@@ -76,13 +58,13 @@ class TitleComponent extends BaseComponent {
       const second_member = representative[1];
 
       if (first_member.chamber === 'senate' && second_member.chamber === 'senate') {
-        if (first_member.payment > 0 && second_member.payment === 0 || first_member.payment === 0 && second_member.payment > 0) {
+        if ((first_member.payment > 0 && second_member.payment === 0) || (first_member.payment === 0 && second_member.payment > 0)) {
           member = `Senator ${first_member.full_name}`;
         } else {
           member = 'Senators';
         }
       } else if (first_member.chamber === 'house' && second_member.chamber === 'senate') {
-        if (first_member.payment > 0 && second_member.payment > 0 || first_member.payment === 0 && second_member.payment === 0) {
+        if ((first_member.payment > 0 && second_member.payment > 0) || (first_member.payment === 0 && second_member.payment === 0)) {
           member = 'Representative & Senator';
         } else if (first_member.payment > 0 && second_member.payment === 0) {
           member = `Representative ${second_member.full_name}`;
@@ -90,7 +72,7 @@ class TitleComponent extends BaseComponent {
           member = `Senator ${first_member.full_name}`;
         }
       } else if (first_member.chamber === 'senate' && second_member.chamber === 'house') {
-        if (first_member.payment > 0 && second_member.payment > 0 || first_member.payment === 0 && second_member.payment === 0) {
+        if ((first_member.payment > 0 && second_member.payment > 0) || (first_member.payment === 0 && second_member.payment === 0)) {
           member = 'Representative & Senator';
         } else if (first_member.payment > 0 && second_member.payment === 0) {
           member = `Senator ${second_member.full_name}`;
@@ -108,10 +90,10 @@ class TitleComponent extends BaseComponent {
     }
 
     // Make sure that vote_question is shown on frontpage and that result text is shown in follow. sections
-    if (!did_search || desc && did_search) {
+    if (!didSearch || (desc && didSearch)) {
       vote_question = `${bill_title}`;
       pre_text = bill_desc;
-    } else if (did_search && !desc || !desc) {
+    } else if (didSearch && (!desc || !desc)) {
       pre_text = preliminary_text;
     }
 
@@ -162,12 +144,12 @@ class TitleComponent extends BaseComponent {
 }
 
 TitleComponent.propTypes = {
-  chamber: React.PropTypes.string,
-  classes: React.PropTypes.string,
-  desc: React.PropTypes.bool,
-  front: React.PropTypes.bool,
-  represent: React.PropTypes.bool,
-  representative: React.PropTypes.array
+  chamber: PropTypes.string,
+  classes: PropTypes.string,
+  desc: PropTypes.bool,
+  front: PropTypes.bool,
+  represent: PropTypes.bool,
+  representative: PropTypes.array
 };
 
 export default TitleComponent;
