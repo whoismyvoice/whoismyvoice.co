@@ -226,6 +226,16 @@ export class Legislator {
   }
 
   /**
+   * Get the URL for the official bioguide photo.
+   * @returns a URL on theunitedstates.io.
+   */
+  get photoUrl() {
+    const bioguide = this.bioguide;
+    const size = 'original';
+    return `https://theunitedstates.io/images/congress/${size}/${bioguide}.jpg`;
+  }
+
+  /**
    * The US State abbreviation for the state this legislator represents.
    * @returns a US State abbreviation.
    */

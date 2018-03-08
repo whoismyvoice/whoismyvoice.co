@@ -2,17 +2,23 @@ import React, { Component, } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
+import { Legislator } from '../../models/Legislator';
+
 // Assets
 import './../../styles/SenatorImg.css';
 
 class SenatorImg extends Component {
-  render() {
-    const img = require(`../../img/congress/${this.props.bioguide}.jpg`);
+  static propTypes = {
+    repNumber: PropTypes.number.isRequired,
+    legislator: PropTypes.instanceOf(Legislator).isRequired,
+  }
 
+  render() {
     const {
+      legislator,
       repNumber,
-      party,
     } = this.props;
+    const party = legislator.party;
 
     const imgClasses = cx(
       ['member-img'],
@@ -23,7 +29,7 @@ class SenatorImg extends Component {
 
     return (
       <div className={imgClasses}>
-      	<img alt="" src={img} />
+        <img alt={legislator.fullName} src={legislator.photoUrl} />
       </div>
     );
   }

@@ -51,6 +51,7 @@ class CongressmanGroup extends Component {
         <div className="member-container" key={legislator.identifier}>
           <MemberImg
             bioguide={legislator.bioguide}
+            legislator={legislator}
             party={legislator.party}
             repNumber={numberRepresentatives}
           />
