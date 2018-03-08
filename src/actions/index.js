@@ -207,8 +207,8 @@ export function setAddress(address) {
     dispatch(receiveAddress(address));
     const allLegislators = await fetchLegislatorsAll();
     const currentOfficials = await fetchOfficialsForAddress(address);
-    dispatch(receiveOfficials(currentOfficials));
     dispatch(receiveOfficialsAll(allLegislators));
+    dispatch(receiveOfficials(currentOfficials));
     const getLegislator = getLegislatorForOfficial.bind(this, allLegislators);
     const currentLegislators = await Promise.all(currentOfficials.map(official => getLegislator(official)));
     currentLegislators.forEach(async legislator => {
