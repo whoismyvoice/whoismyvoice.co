@@ -5,7 +5,7 @@ import cx from 'classnames';
 // Components
 import TextButton from './Buttons/TextButton';
 import MemberResults from './MemberResults';
-import { legislatorType, } from '../types';
+import { Legislator, PropType as LegislatorType, } from '../models/Legislator';
 
 class Results extends Component {
   static defaultProps = {
@@ -23,7 +23,7 @@ class Results extends Component {
     didSearch: PropTypes.bool.isRequired,
     numberHouse: PropTypes.number,
     numberRepresentatives: PropTypes.number,
-    representatives: legislatorType,
+    representatives: PropTypes.arrayOf(LegislatorType),
   }
 
   render() {

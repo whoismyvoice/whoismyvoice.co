@@ -8,6 +8,7 @@ import CornerRibbon from '../../components/CornerRibbon';
 import Results from '../../components/Results';
 import SearchGroup from '../../components/Search/SearchGroup';
 import TitleComponent from '../../components/TitleComponent';
+import { PropType as LegislatorType, } from '../../models/Legislator';
 
 // Assets
 import '../../styles/Home.css';
@@ -17,6 +18,7 @@ export class Home extends Component {
     didSearch: PropTypes.bool,
     numberHouse: PropTypes.number,
     numberRepresentatives: PropTypes.number,
+    representatives: PropTypes.arrayOf(LegislatorType),
   }
 
   render() {
