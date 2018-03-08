@@ -1,4 +1,5 @@
 import React, { Component, } from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 // Components
@@ -6,22 +7,34 @@ import MemberImg from './MemberImg';
 import MemberRibbon from './MemberRibbon';
 import ActionButtons from './ActionButtons';
 import PaymentCounter from '../PaymentCounter';
+import { PropType as PaymentType, } from '../../models/Payment';
+import { Legislator, } from '../../models/Legislator';
 
 // Styles
 import './../../styles/CongressmanGroup.css';
 
 class CongressmanGroup extends Component {
+  static defaultProps = {
+    legislators: [],
+    payments: [],
+    section: 1,
+  }
+
+  static propTypes = {
+    legislators: PropTypes.arrayOf(PropTypes.instanceOf(Legislator)),
+    payments: PropTypes.arrayOf(PaymentType),
+    section: PropTypes.oneOf([ 1, 2, 3, ]),
+  }
+
   render() {
     const {
       clicked,
       didClickOverlay,
+      legislators,
       numberRepresentatives,
-      representative,
+      payments,
     } = this.props;
-
-    let members,
-      actionButton;
-
+    const getAmount = Legislator.getPaymentAmount.bind(this, payments);
     const mobileOverlayClass = cx(
       [
         'mobile-contact-overlay',
@@ -31,54 +44,46 @@ class CongressmanGroup extends Component {
       },
     );
 
-    if (representative && numberRepresentatives > 2) {
-      members = representative.map((result, idx) => {
-        actionButton = (
-          <ActionButtons
-            representative={result}
+    const members = legislators.map((legislator, idx) => {
+      const payment = getAmount(legislator);
+      const gender = legislator.genderPronoun;
+      return (
+        <div className="member-container" key={legislator.identifier}>
+          <MemberImg
+            bioguide={legislator.bioguide}
+            party={legislator.party}
+            repNumber={numberRepresentatives}
           />
-        );
-
-        const payment = result.payment.toString();
-
-        const gender = result.gender === 'M' ? 'Him' : 'Her';
-
-        return (
-          <div className="member-container" key={idx}>
-            <MemberImg
-              bioguide={result.bioguide_id}
-              party={result.party}
-              repNumber={numberRepresentatives}
-            />
-            <MemberRibbon
-              name={result.full_name}
-              state={result.state}
-              party={result.party}
-            />
-            <PaymentCounter
-              payment={payment}
-            />
-            <div
-              className="mobile-contact-options"
-              onClick={this.toggleContactOverlay}
-              id={idx}
-            >
-              {`Contact ${gender}`}
-            </div>
-            {actionButton}
+          <MemberRibbon
+            name={legislator.identifier}
+            state={legislator.state}
+            party={legislator.party}
+          />
+          <PaymentCounter
+            payment={`${payment}`}
+          />
+          <div
+            className="mobile-contact-options"
+            onClick={this.toggleContactOverlay}
+            id={`legislator-contact-${idx}`}
+          >
+            {`Contact ${gender}`}
           </div>
-        );
-      });
-    }
+          <ActionButtons
+            legislator={legislator}
+          />
+        </div>
+      );
+    });
 
-    const selectedMember = clicked ? representative[clicked] : representative;
+    const selectedMember = clicked ? legislators[clicked] : legislators[0];
 
     return (
       <div className="member-wrapper">
         {members}
         <div className={mobileOverlayClass}>
           <ActionButtons
-            representative={selectedMember}
+            legislator={selectedMember}
           />
           <div className="mobile-contact-close-button" onClick={this.toggleContactOverlay} />
         </div>
