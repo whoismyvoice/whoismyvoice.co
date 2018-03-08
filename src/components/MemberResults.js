@@ -2,33 +2,46 @@ import React, { Component, } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
-import TitleComponent from './TitleComponent';
 import CongressmanGroup from './Member/CongressmanGroup';
 import NavButton from './Buttons/NavButton';
+import { PropType as PaymentType, } from '../models/Payment';
+import { Legislator, } from '../models/Legislator';
+import { MemberResultsTitle } from './MemberResultsTitle';
 
 class MemberResults extends Component {
-  render() {
-    const {
-      representative,
-      section,
-    } = this.props;
+  static defaultProps = {
+    legislators: [],
+    payments: [],
+    section: 1,
+  }
 
-    let chamber,
-      nextText;
+  static propTypes = {
+    legislators: PropTypes.arrayOf(PropTypes.instanceOf(Legislator)),
+    payments: PropTypes.arrayOf(PaymentType),
+    section: PropTypes.oneOf([ 1, 2, 3, ]),
+  }
 
-    if (representative) {
-      chamber = representative.chamber;
+  static getNextButtonText(legislators) {
+    const houseIndex = legislators.findIndex(legislator => legislator.chamber === 'house');
+    if (legislators.length === 1 && houseIndex !== -1) {
+      // `legislators` is only the US House Rep
+      return 'My Senators';
+    } else if (legislators.length === 1) {
+      // `legislators` is only a US Senator
+      return 'My Other Representatives';
+    } else if (houseIndex === -1) {
+      // `legislators` is both US Senators
+      return 'My Representative'
+    } else {
+      // `legislators` is a US Senator and a US House Rep
+      return 'My Other Senator';
     }
+  }
 
-    if (representative) {
-      if (section === 1 && representative[0].chamber === 'house') {
-        nextText = 'My Senators';
-      } else if (section === 1 && representative[0].chamber === 'senate') {
-        nextText = 'My Other Representative';
-      }
-    }
-
-    const nextButton = section === 2 ? '' : (
+  renderNextButton() {
+    const { legislators, section, } = this.props;
+    let nextText = MemberResults.getNextButtonText(legislators);
+    const nextButton = section === 2 || legislators.length === 3 ? '' : (
       <span>
         <div className="line-seperator line-seperator--small"></div>
         <NavButton
@@ -37,33 +50,51 @@ class MemberResults extends Component {
         />
       </span>
     );
+    return nextButton;
+  }
 
-    const titleSection = (
+  renderTitleSection() {
+    const {
+      legislators,
+      payments,
+      section,
+    } = this.props;
+
+    const yayTemplateString = `Your <%= memberType %> <span class="bold"><b>accepted money</b></span> <span class="strike-out">from <%= organizationName %></span> in their recent election cycles.`;
+    const nayTemplateString = `Your <%= memberType %> <span class="bold"><b>did not</b></span> take any money <span class="strike-out">from <%= organizationName %></span> in their recent election cycles.`
+    const templateData = {
+      organizationName: 'the NRA',
+    };
+    const getAmount = Legislator.getPaymentAmount.bind(this, payments);
+    const paymentAmount = legislators.reduce((amount, legislator) => (amount + getAmount(legislator)), 0);
+    return (
       <span>
-        <TitleComponent
-          representative={representative}
-          represent={true}
-          chamber={chamber}
-          section={section}
-          classes="title-component--results"
+        <MemberResultsTitle
+          className="title-component--results"
+          templateString={paymentAmount > 0 ? yayTemplateString : nayTemplateString}
+          templateData={templateData}
+          legislators={legislators}
         />
         <CongressmanGroup
+          legislators={legislators}
+          payments={payments}
           section={section}
-          representative={representative}
         />
       </span>
     );
+  }
 
-    return <span>
-      {titleSection}
-      {nextButton}
-    </span>;
+  render() {
+    if (this.props.legislators.length === 0) {
+      return '';
+    }
+    return (
+      <span>
+        {this.renderTitleSection()}
+        {this.renderNextButton()}
+      </span>
+    );
   }
 }
-
-MemberResults.propTypes = {
-  representative: PropTypes.arrayOf(PropTypes.shape({
-  })),
-};
 
 export default MemberResults;

@@ -7,7 +7,8 @@ import cx from 'classnames';
 import CornerRibbon from '../../components/CornerRibbon';
 import Results from '../../components/Results';
 import SearchGroup from '../../components/Search/SearchGroup';
-import TitleComponent from '../../components/TitleComponent';
+import StarTitle from '../../components/StarTitle';
+import { PropType as PaymentType, } from '../../models/Payment';
 import { PropType as LegislatorType, } from '../../models/Legislator';
 
 // Assets
@@ -18,6 +19,7 @@ export class Home extends Component {
     didSearch: PropTypes.bool,
     numberHouse: PropTypes.number,
     numberRepresentatives: PropTypes.number,
+    payments: PropTypes.arrayOf(PaymentType),
     representatives: PropTypes.arrayOf(LegislatorType),
   }
 
@@ -26,6 +28,8 @@ export class Home extends Component {
       didSearch,
       numberHouse,
       numberRepresentatives,
+      payments,
+      representatives,
     } = this.props;
 
     const blockClasses = cx(
@@ -44,6 +48,8 @@ export class Home extends Component {
       {'full': didSearch && numberHouse === 1 && numberRepresentatives > 2}
     );
 
+    const templateString = `Did my representatives accept campaign contributions <span class="strike-out">from <%= organizationName %>?</span>`;
+    const templateData = { organizationName: 'the NRA', };
     return (
       <div className={containerClasses}>
         <CornerRibbon
@@ -56,14 +62,17 @@ export class Home extends Component {
         </div>
         <div className={blockClasses}>
         	<div className="section-block">
-            <TitleComponent
-              front={true}
-              classes="title-component--padding"
-              desc={true}
+            <StarTitle
+              templateData={templateData}
+              templateString={templateString}
             />
           	<SearchGroup />
           </div>
-          <Results destroy={this._destroyFullpage} />
+          <Results
+            didSearch={didSearch}
+            payments={payments}
+            representatives={representatives}
+          />
         </div>
       </div>
     );
@@ -71,11 +80,16 @@ export class Home extends Component {
 }
 
 function mapStateToProps(state) {
-  const { address, officials, } = state;
+  const { address, contributions, officials, } = state;
+  const payments = officials.ids.map(id => ({
+    id,
+    amount: contributions.byName[id] || 0,
+  }));
   return {
     didSearch: address.value !== undefined,
     numberRepresentatives: officials.ids.length,
     numberHouse: officials.ids.length - 2,
+    payments,
     representatives: officials.ids.map(id => officials.byId[id]),
   };
 }
