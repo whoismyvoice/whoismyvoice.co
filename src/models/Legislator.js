@@ -44,7 +44,7 @@ export class Legislator {
    * @returns the identifier used for legislator records for the given `record`.
    */
   static getIdentifier(record) {
-    PropTypes.checkPropTypes(PropType, record, 'record', 'Legislator#getIdentifier');
+    PropTypes.checkPropTypes({ record: PropType, }, { record, }, 'record', 'Legislator#getIdentifier');
     return record.name.official_full;
   }
 
@@ -58,7 +58,7 @@ export class Legislator {
    *    property of the payment record otherwise.
    */
   static getPaymentAmount(payments, legislator) {
-    PropTypes.checkPropTypes(PropTypes.arrayOf(PaymentType), payments, 'payments', 'Legislator#getPaymentAmount');
+    PropTypes.checkPropTypes({ payments: PropTypes.arrayOf(PaymentType) }, { payments, }, 'payments', 'Legislator#getPaymentAmount');
     const id = legislator instanceof Legislator
       ? legislator.identifier
       : Legislator.getIdentifier(legislator);
@@ -91,7 +91,7 @@ export class Legislator {
    *    distinct service terms of the legislator.
    */
   constructor(record) {
-    PropTypes.checkPropTypes(PropType, record, 'record', 'Legislator');
+    PropTypes.checkPropTypes({ record: PropType, }, { record, }, 'record', 'Legislator');
     this.record = record;
   }
 
