@@ -29,13 +29,25 @@ const initialState = {
 function handleById(state, action) {
   const { type, } = action;
   switch (type) {
+    case RECEIVE_OFFICIALS:
+      const googleCivicOfficials = action.officials;
+      return googleCivicOfficials.reduce((byId, official) => ({
+        ...byId,
+        [official.name]: {
+          ...(byId[official.name] || {}),
+          channels: official.channels,
+          photoUrl: official.photoUrl,
+        },
+      }), state);
     case RECEIVE_OFFICIALS_ALL:
       const { officials, } = action;
-      const out = officials.reduce((byId, official) => ({
+      return officials.reduce((byId, official) => ({
         ...byId,
-        [official.name.official_full]: official,
+        [official.name.official_full]: {
+          ...(byId[official.name.official_full]),
+          ...official,
+        },
       }), state);
-      return out;
     default:
       return state;
   }
