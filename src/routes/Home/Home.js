@@ -8,7 +8,7 @@ import CornerRibbon from '../../components/CornerRibbon';
 import Results from '../../components/Results';
 import SearchGroup from '../../components/Search/SearchGroup';
 import StarTitle from '../../components/StarTitle';
-import { PropType as PaymentType, } from '../../models/Payment';
+import { PropType as ContributionType, } from '../../models/Contribution';
 import { PropType as LegislatorType, } from '../../models/Legislator';
 
 // Assets
@@ -19,7 +19,7 @@ export class Home extends Component {
     didSearch: PropTypes.bool,
     numberHouse: PropTypes.number,
     numberRepresentatives: PropTypes.number,
-    payments: PropTypes.arrayOf(PaymentType),
+    payments: PropTypes.arrayOf(ContributionType),
     representatives: PropTypes.arrayOf(LegislatorType),
   }
 

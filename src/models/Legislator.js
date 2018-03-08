@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { PropType as PaymentType, } from './Payment';
+import { PropType as ContributionType, } from './Contribution';
 
 /**
  * Defines the `PropTypes` validation structure for a `Legislator` record.

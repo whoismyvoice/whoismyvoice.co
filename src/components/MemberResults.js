@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // Components
 import CongressmanGroup from './Member/CongressmanGroup';
 import NavButton from './Buttons/NavButton';
-import { PropType as PaymentType, } from '../models/Payment';
+import { PropType as ContributionType, } from '../models/Contribution';
 import { Legislator, } from '../models/Legislator';
 import { MemberResultsTitle } from './MemberResultsTitle';
 
@@ -17,7 +17,7 @@ class MemberResults extends Component {
 
   static propTypes = {
     legislators: PropTypes.arrayOf(PropTypes.instanceOf(Legislator)),
-    payments: PropTypes.arrayOf(PaymentType),
+    payments: PropTypes.arrayOf(ContributionType),
     section: PropTypes.oneOf([ 1, 2, 3, ]),
   }
 

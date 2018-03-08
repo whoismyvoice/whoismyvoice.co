@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
 /**
- * Defines the `PropTypes` validation structure for a `Legislator` record.
+ * Defines the `PropTypes` validation structure for a `Contribution` record.
  */
 export const PropType = PropTypes.shape({
-  id: PropTypes.string.isRequired,
   amount: PropTypes.number.isRequired,
+  legislatorId: PropTypes.string.isRequired,
 });

@@ -5,7 +5,7 @@ import cx from 'classnames';
 // Components
 import TextButton from './Buttons/TextButton';
 import MemberResults from './MemberResults';
-import { PropType as PaymentType, } from '../models/Payment';
+import { PropType as ContributionType, } from '../models/Contribution';
 import { Legislator, PropType as LegislatorType, } from '../models/Legislator';
 
 export class Results extends Component {
@@ -21,7 +21,7 @@ export class Results extends Component {
     backgroundClasses: PropTypes.any,
     destroy: PropTypes.func,
     didSearch: PropTypes.bool.isRequired,
-    payments: PropTypes.arrayOf(PaymentType),
+    payments: PropTypes.arrayOf(ContributionType),
     representatives: PropTypes.arrayOf(LegislatorType),
   }
 

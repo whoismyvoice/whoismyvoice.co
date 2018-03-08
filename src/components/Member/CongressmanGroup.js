@@ -7,7 +7,7 @@ import MemberImg from './MemberImg';
 import MemberRibbon from './MemberRibbon';
 import ActionButtons from './ActionButtons';
 import PaymentCounter from '../PaymentCounter';
-import { PropType as PaymentType, } from '../../models/Payment';
+import { PropType as ContributionType, } from '../../models/Contribution';
 import { Legislator, } from '../../models/Legislator';
 
 // Styles
@@ -22,7 +22,7 @@ class CongressmanGroup extends Component {
 
   static propTypes = {
     legislators: PropTypes.arrayOf(PropTypes.instanceOf(Legislator)),
-    payments: PropTypes.arrayOf(PaymentType),
+    payments: PropTypes.arrayOf(ContributionType),
     section: PropTypes.oneOf([ 1, 2, 3, ]),
   }
 
