@@ -13,6 +13,7 @@ import {
   RECEIVE_OFFICIALS_ALL,
   RECEIVE_ZIP_CODE,
   RESET_CURRENT,
+  TOGGLE_MENU,
 } from './types';
 import { Legislator, } from '../models/Legislator';
 import { PropType as MaplightResultsType, } from '../models/MaplightResults';
@@ -202,6 +203,16 @@ export function receiveZipCode(zipCode) {
 export function reset() {
   return {
     type: RESET_CURRENT,
+  };
+}
+
+/**
+ * Create a TOGGLE_MENU action instance.
+ * @returns action.
+ */
+export function toggleMenu() {
+  return {
+    type: TOGGLE_MENU,
   };
 }
 

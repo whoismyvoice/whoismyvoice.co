@@ -12,3 +12,5 @@ export const RECEIVE_OFFICIALS_ALL = 'RECEIVE_OFFICIALS_ALL';
 export const RECEIVE_ZIP_CODE = 'RECEIVE_ZIP_CODE';
 /** Action type to reset current state. */
 export const RESET_CURRENT = 'RESET_CURRENT';
+/** Action to toggle the menu. */
+export const TOGGLE_MENU = 'TOGGLE_MENU';

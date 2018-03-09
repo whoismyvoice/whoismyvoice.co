@@ -5,6 +5,7 @@ import { applyMiddleware, combineReducers, createStore, } from 'redux';
 import address from './address';
 import contributions from './contributions';
 import officials from './officials';
+import view from './view';
 
 const loggerMiddleware = createLogger();
 
@@ -13,6 +14,7 @@ export default createStore(
     address,
     contributions,
     officials,
+    view,
   }),
   {},
   applyMiddleware(
