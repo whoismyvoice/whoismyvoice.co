@@ -10,11 +10,14 @@ export const PropType = PropTypes.shape({
     fec: PropTypes.arrayOf(PropTypes.string),
   }),
   identifier: PropTypes.string,
-  name: PropTypes.shape({
-    first: PropTypes.string,
-    last: PropTypes.string,
-    official_full: PropTypes.string.isRequired,
-  }),
+  name: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+      first: PropTypes.string,
+      last: PropTypes.string,
+      official_full: PropTypes.string.isRequired,
+    }),
+  ]),
   bio: PropTypes.shape({
     birthday: PropTypes.string,
     gender: PropTypes.string,
@@ -35,6 +38,16 @@ export const PropType = PropTypes.shape({
 });
 
 /**
+ * Remove accents and diacritic marks from the given string.
+ * @param {string} str to clone without 'special' characters.
+ * @returns `str` with the accents and diacritic characters replaced with their
+ *    plain latin variants.
+ */
+function stripDiacritics(str) {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+}
+
+/**
  * Provides some convenience methods on top of the record for a legislator.
  */
 export class Legislator {
@@ -46,7 +59,15 @@ export class Legislator {
    */
   static getIdentifier(record) {
     PropTypes.checkPropTypes({ record: PropType, }, { record, }, 'record', 'Legislator#getIdentifier');
-    return record.identifier || record.name.official_full;
+    let identifier = undefined;
+    if (record.identifier !== undefined) {
+      identifier = record.identifier;
+    } else if (typeof record.name === 'string') {
+      identifier = stripDiacritics(record.name);
+    } else {
+      identifier = stripDiacritics(record.name.official_full);
+    }
+    return identifier;
   }
 
   /**

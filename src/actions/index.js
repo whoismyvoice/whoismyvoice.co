@@ -97,7 +97,7 @@ async function fetchLegislatorsAll() {
 }
 
 async function getLegislatorForOfficial(allLegislators, official) {
-  return allLegislators.find((legislator) => legislator.name.official_full === official.name);
+  return allLegislators.find((legislator) => Legislator.getIdentifier(legislator) === official.name);
 }
 
 /**

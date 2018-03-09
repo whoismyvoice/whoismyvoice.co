@@ -3,6 +3,7 @@ import {
   RESET_CURRENT,
   RECEIVE_OFFICIALS_ALL,
 } from '../actions/types';
+import { Legislator, } from '../models/Legislator';
 
 const initialState = {
   byId: {},
@@ -33,10 +34,10 @@ function handleById(state, action) {
       const googleCivicOfficials = action.officials;
       return googleCivicOfficials.reduce((byId, official) => ({
         ...byId,
-        [official.name]: {
+        [Legislator.getIdentifier(official)]: {
           ...(byId[official.name] || {}),
           channels: official.channels,
-          identifier: official.name,
+          identifier: Legislator.getIdentifier(official),
           photoUrl: official.photoUrl,
         },
       }), state);
@@ -44,10 +45,10 @@ function handleById(state, action) {
       const { officials, } = action;
       return officials.reduce((byId, official) => ({
         ...byId,
-        [official.name.official_full]: {
+        [Legislator.getIdentifier(official)]: {
           ...(byId[official.name.official_full]),
           ...official,
-          identifier: official.name.official_full,
+          identifier: Legislator.getIdentifier(official),
         },
       }), state);
     default:
