@@ -16,13 +16,13 @@ import './../../styles/CongressmanGroup.css';
 class CongressmanGroup extends Component {
   static defaultProps = {
     legislators: [],
-    payments: [],
+    contributions: [],
     section: 1,
   }
 
   static propTypes = {
     legislators: PropTypes.arrayOf(PropTypes.instanceOf(Legislator)),
-    payments: PropTypes.arrayOf(ContributionType),
+    contributions: PropTypes.arrayOf(ContributionType),
     section: PropTypes.oneOf([ 1, 2, 3, ]),
   }
 
@@ -32,9 +32,9 @@ class CongressmanGroup extends Component {
       didClickOverlay,
       legislators,
       numberRepresentatives,
-      payments,
+      contributions,
     } = this.props;
-    const getAmount = Legislator.getContributionAmount.bind(this, payments);
+    const getAmount = Legislator.getContributionAmount.bind(this, contributions);
     const mobileOverlayClass = cx(
       [
         'mobile-contact-overlay',

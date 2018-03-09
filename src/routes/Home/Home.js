@@ -23,7 +23,7 @@ export class Home extends Component {
     didSearch: PropTypes.bool,
     numberHouse: PropTypes.number,
     numberRepresentatives: PropTypes.number,
-    payments: PropTypes.arrayOf(ContributionType),
+    contributions: PropTypes.arrayOf(ContributionType),
     representatives: PropTypes.arrayOf(LegislatorType),
   }
 
@@ -32,7 +32,7 @@ export class Home extends Component {
       didSearch,
       numberHouse,
       numberRepresentatives,
-      payments,
+      contributions,
       representatives,
     } = this.props;
 
@@ -74,7 +74,7 @@ export class Home extends Component {
           </div>
           <Results
             didSearch={didSearch}
-            payments={payments}
+            contributions={contributions}
             representatives={representatives}
           />
         </div>
@@ -85,12 +85,12 @@ export class Home extends Component {
 
 function mapStateToProps(state) {
   const { address, contributions, officials, } = state;
-  const payments = contributions.byOrganization[ORGANIZATION] || [];
+  const organizationContributions = contributions.byOrganization[ORGANIZATION] || [];
   return {
     didSearch: address.value !== undefined,
     numberRepresentatives: officials.ids.length,
     numberHouse: officials.ids.length - 2,
-    payments,
+    contributions: organizationContributions,
     representatives: officials.ids.map(id => officials.byId[id]),
   };
 }

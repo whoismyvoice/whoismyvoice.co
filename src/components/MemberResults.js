@@ -15,13 +15,13 @@ import {
 class MemberResults extends Component {
   static defaultProps = {
     legislators: [],
-    payments: [],
+    contributions: [],
     section: 1,
   }
 
   static propTypes = {
     legislators: PropTypes.arrayOf(PropTypes.instanceOf(Legislator)),
-    payments: PropTypes.arrayOf(ContributionType),
+    contributions: PropTypes.arrayOf(ContributionType),
     section: PropTypes.oneOf([ 1, 2, 3, ]),
   }
 
@@ -60,7 +60,7 @@ class MemberResults extends Component {
   renderTitleSection() {
     const {
       legislators,
-      payments,
+      contributions,
       section,
     } = this.props;
 
@@ -69,7 +69,7 @@ class MemberResults extends Component {
     const templateData = {
       organizationName: ORGANIZATION_DISPLAY,
     };
-    const getAmount = Legislator.getContributionAmount.bind(this, payments);
+    const getAmount = Legislator.getContributionAmount.bind(this, contributions);
     const paymentAmount = legislators.reduce((amount, legislator) => (amount + getAmount(legislator)), 0);
     return (
       <span>
@@ -81,7 +81,7 @@ class MemberResults extends Component {
         />
         <CongressmanGroup
           legislators={legislators}
-          payments={payments}
+          contributions={contributions}
           section={section}
         />
       </span>

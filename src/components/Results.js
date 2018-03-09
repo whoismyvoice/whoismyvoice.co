@@ -13,7 +13,7 @@ export class Results extends Component {
     backgroundClasses: '',
     destroy: () => {},
     didSearch: false,
-    payments: [],
+    contributions: [],
     representatives: [],
   }
 
@@ -21,14 +21,14 @@ export class Results extends Component {
     backgroundClasses: PropTypes.any,
     destroy: PropTypes.func,
     didSearch: PropTypes.bool.isRequired,
-    payments: PropTypes.arrayOf(ContributionType),
+    contributions: PropTypes.arrayOf(ContributionType),
     representatives: PropTypes.arrayOf(LegislatorType),
   }
 
   render() {
     const {
       didSearch,
-      payments,
+      contributions,
       representatives,
     } = this.props;
 
@@ -42,7 +42,7 @@ export class Results extends Component {
     );
 
     const legislators = representatives.map(rep => new Legislator(rep));
-    const getAmount = Legislator.getContributionAmount.bind(this, payments);
+    const getAmount = Legislator.getContributionAmount.bind(this, contributions);
     const first_rep = legislators.filter(rep => getAmount(rep) > 0);
     const second_rep = legislators.filter(rep => getAmount(rep) === 0);
     const sections = [ first_rep, second_rep, ]
@@ -56,7 +56,7 @@ export class Results extends Component {
           <MemberResults
             didSearch={didSearch}
             legislators={partition}
-            payments={payments}
+            contributions={contributions}
             section={index + 1}
           />
         </div>
