@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch';
 
 import {
   ELECTION_CYCLE,
-  GOOGLE_CIVIC_API_KEY,
+  EXECUTE_PROXY,
   ORGANIZATION,
 } from '../constants';
 import {
@@ -35,7 +35,7 @@ const FEC_ID_REGEX = /[HS]\d{1,3}[A-Z]{2}\d+/;
  */
 async function fetchContributionsForCandidate(organization, legislator) {
   const candidateFecIds = legislator.id.fec.filter(fecId => FEC_ID_REGEX.test(fecId));
-  const baseUrl = 'https://v5qc8mdc1h.execute-api.us-east-1.amazonaws.com/production/maplight';
+  const baseUrl = `${EXECUTE_PROXY}/maplight`;
   const electionCycle = encodeURIComponent(ELECTION_CYCLE);
   const organizationName = encodeURIComponent(organization);
   const fecIds = encodeURIComponent(candidateFecIds.join('|'));
@@ -63,10 +63,9 @@ async function fetchContributionsForCandidate(organization, legislator) {
  * @returns array of officials.
  */
 async function fetchOfficialsForAddress(address) {
-  const baseUrl = 'https://www.googleapis.com/civicinfo/v2/representatives';
-  const configParams = 'levels=country&roles=legislatorLowerBody&roles=legislatorUpperBody&includeOffices=true'
+  const baseUrl = `${EXECUTE_PROXY}/civics`;
   const encodedAddress = encodeURIComponent(address);
-  const params = `key=${GOOGLE_CIVIC_API_KEY}&address=${encodedAddress}&${configParams}`;
+  const params = `address=${encodedAddress}`;
   const response = await fetch(`${baseUrl}?${params}`);
   if (response.ok) {
     const body = await response.json();
