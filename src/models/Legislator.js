@@ -9,6 +9,7 @@ export const PropType = PropTypes.shape({
     bioguide: PropTypes.string,
     fec: PropTypes.arrayOf(PropTypes.string),
   }),
+  identifier: PropTypes.string,
   name: PropTypes.shape({
     first: PropTypes.string,
     last: PropTypes.string,
@@ -45,7 +46,7 @@ export class Legislator {
    */
   static getIdentifier(record) {
     PropTypes.checkPropTypes({ record: PropType, }, { record, }, 'record', 'Legislator#getIdentifier');
-    return record.name.official_full;
+    return record.identifier || record.name.official_full;
   }
 
   /**

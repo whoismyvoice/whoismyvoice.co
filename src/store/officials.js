@@ -36,6 +36,7 @@ function handleById(state, action) {
         [official.name]: {
           ...(byId[official.name] || {}),
           channels: official.channels,
+          identifier: official.name,
           photoUrl: official.photoUrl,
         },
       }), state);
@@ -46,6 +47,7 @@ function handleById(state, action) {
         [official.name.official_full]: {
           ...(byId[official.name.official_full]),
           ...official,
+          identifier: official.name.official_full,
         },
       }), state);
     default:
