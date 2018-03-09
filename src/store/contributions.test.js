@@ -7,41 +7,55 @@ import contributions from './contributions';
 it('provides an initial state when given undefined', () => {
   const initialState = contributions(undefined, {});
   expect(initialState).toBeDefined();
-  expect(initialState.byName).toBeDefined();
+  expect(initialState.byOrganization).toBeDefined();
 });
 
 it('has an empty object for initial dictionary', () => {
   const initialState = contributions(undefined, {});
-  expect(Object.keys(initialState.byName).length).toBe(0);
-  expect(initialState.byName).toEqual({});
+  expect(Object.keys(initialState.byOrganization).length).toBe(0);
+  expect(initialState.byOrganization).toEqual({});
 });
 
-it('adds an official to dictionary', () => {
-  const state = contributions(undefined, receiveContributionData(
-    'John Smith',
-    1000,
-  ));
-  const { byName, } = state;
-  expect(Object.keys(byName).length).toBe(1);
-  expect(Object.keys(byName)).toContain('John Smith');
-});
-
-it('overwrites an official in dictionary with same id', () => {
-  const state = (() => {
-    let state = contributions(undefined, receiveContributionData(
+describe('byOrganization', () => {
+  it('adds an organization to dictionary', () => {
+    const state = contributions(undefined, receiveContributionData(
       'John Smith',
+      'SuperPAC',
       1000,
     ));
-    state = contributions(undefined, receiveContributionData(
-      'John Smith',
-      2000,
-    ));
-    return state;
-  })();
-  const { byName, } = state;
-  expect(Object.keys(byName).length).toBe(1);
-  expect(Object.keys(byName)).toContain('John Smith');
-  expect(byName['John Smith']).toBe(2000);
+    const { byOrganization, } = state;
+    expect(Object.keys(byOrganization).length).toBe(1);
+    expect(Object.keys(byOrganization)).toContain('SuperPAC');
+  });
+
+  it('overwrites an official in organization dictionary with same id', () => {
+    const state = (() => {
+      let state = contributions(undefined, receiveContributionData(
+        'John Smith',
+        'SuperPAC',
+        1000,
+      ));
+      state = contributions(undefined, receiveContributionData(
+        'John Smith',
+        'SuperPAC',
+        2000,
+      ));
+      return state;
+    })();
+    const { byOrganization, } = state;
+    expect(Object.keys(byOrganization).length).toBe(1);
+    expect(Object.keys(byOrganization)).toContain('SuperPAC');
+    expect(byOrganization['SuperPAC']).not.toContainEqual({
+      amount: 1000,
+      legislatorId: 'John Smith',
+      organization: 'SuperPAC',
+    });
+    expect(byOrganization['SuperPAC']).toContainEqual({
+      amount: 2000,
+      legislatorId: 'John Smith',
+      organization: 'SuperPAC',
+    });
+  });
 });
 
 describe('existing state', () => {
@@ -49,10 +63,12 @@ describe('existing state', () => {
   beforeEach(() => {
     initialState = contributions(undefined, receiveContributionData(
       'John Smith',
+      'SuperPAC',
       1000,
     ));
     initialState = contributions(undefined, receiveContributionData(
       'John Smith Jr.',
+      'SuperPAC',
       2000,
     ));
   });

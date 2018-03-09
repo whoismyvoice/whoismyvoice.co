@@ -85,10 +85,7 @@ export class Home extends Component {
 
 function mapStateToProps(state) {
   const { address, contributions, officials, } = state;
-  const payments = officials.ids.map(id => ({
-    id,
-    amount: contributions.byName[id] || 0,
-  }));
+  const payments = contributions.byOrganization[ORGANIZATION] || [];
   return {
     didSearch: address.value !== undefined,
     numberRepresentatives: officials.ids.length,

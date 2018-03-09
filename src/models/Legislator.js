@@ -62,7 +62,7 @@ export class Legislator {
     const id = legislator instanceof Legislator
       ? legislator.identifier
       : Legislator.getIdentifier(legislator);
-    const contribution = contributions.find(record => record.id === id);
+    const contribution = contributions.find(record => record.legislatorId === id);
     if (contribution !== undefined) {
       return contribution.amount;
     } else {

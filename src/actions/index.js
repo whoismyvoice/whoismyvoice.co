@@ -137,6 +137,7 @@ function receiveContributionDataForLegislator(legislator, contributionResults) {
   );
   return receiveContributionData(
     Legislator.getIdentifier(legislator),
+    contributionResults.search_terms.donor.donor_organization,
     contributionResults.data.aggregate_totals[0].total_amount,
   );
 }
@@ -145,15 +146,17 @@ function receiveContributionDataForLegislator(legislator, contributionResults) {
  * Create action to notify of contribution data received.
  * @param {string} legislatorId official full name of the legislator
  *    according to FEC records.
+ * @param {string} organization making the contribution.
  * @param {number} amount received in contributions.
  * @returns action.
  */
-export function receiveContributionData(legislatorId, amount) {
+export function receiveContributionData(legislatorId, organization, amount) {
   return {
     type: RECEIVE_CONTRIBUTION_DATA,
     amount,
     legislatorId,
-  }
+    organization,
+  };
 }
 
 /**

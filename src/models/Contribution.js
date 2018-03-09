@@ -6,4 +6,5 @@ import PropTypes from 'prop-types';
 export const PropType = PropTypes.shape({
   amount: PropTypes.number.isRequired,
   legislatorId: PropTypes.string.isRequired,
+  organization: PropTypes.string.isRequired,
 });
