@@ -75,14 +75,13 @@ it('merges data from receiveOfficials and receiveOfficialsAll', () => {
     { name: 'John Smith Jr.', photoUrl: '2', },
   ]));
   const state = officials(initialState, receiveOfficialsAll([
-    { name: { official_full: 'John Smith', }, channels: '1', },
-    { name: { official_full: 'John Smith Jr.', }, channels: '2', },
+    { name: { official_full: 'John Smith', }, photoUrl: '3', },
+    { name: { official_full: 'John Smith Jr.', }, photoUrl: '4', },
   ]));
   const { byId, } = state;
   expect(byId['John Smith']).toBeDefined();
   expect(byId['John Smith'].name).toEqual({ official_full: 'John Smith', });
-  expect(byId['John Smith'].photoUrl).toEqual('1');
-  expect(byId['John Smith'].channels).toEqual('1');
+  expect(byId['John Smith'].photoUrl).toEqual('3');
 });
 
 describe('existing state', () => {
