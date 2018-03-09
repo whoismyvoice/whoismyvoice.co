@@ -1,11 +1,26 @@
 import React, { Component, } from 'react';
+import PropTypes from 'prop-types';
 import { Link, } from 'react-router-dom';
+import { connect, } from 'react-redux';
 import cx from 'classnames';
 
+import {
+  toggleMenu,
+} from './actions';
 // Styles
 import './styles/MenuButton.css';
 
-class MenuButton extends Component {
+export class MenuButton extends Component {
+  static defaultProps = {
+    isMenuOpen: false,
+    onMenuButtonClick: () => {},
+  }
+
+  static propTypes = {
+    isMenuOpen: PropTypes.bool,
+    onMenuButtonClick: PropTypes.func,
+  }
+
   handleClick(event) {
 
   }
@@ -15,52 +30,73 @@ class MenuButton extends Component {
   }
 
   render() {
-    const { didClick, didSearch, } = this.props;
+    const {
+      didSearch,
+      isMenuOpen,
+      onMenuButtonClick,
+    } = this.props;
     const menuClasses = cx(
-      ['menu-overlay'],
-      {'menu-overlay--show': didClick && didSearch},
-      {'menu-overlay--white': didClick && !didSearch}
+      [ 'menu-overlay', ],
+      {
+        'menu-overlay--show': isMenuOpen && didSearch,
+        'menu-overlay--white': isMenuOpen && !didSearch,
+      },
     );
-
     const buttonClasses = cx(
-      ['menu-buttons', 'animated'],
-      {'bounceInRight': didClick},
-      {'bounceOutRight': !didClick},
-      {'menu-buttons--white': !didSearch}
+      [ 'menu-buttons', 'animated', ],
+      {
+        'bounceInRight': isMenuOpen,
+        'bounceOutRight': !isMenuOpen,
+        'menu-buttons--white': !didSearch,
+      },
     );
-
     const menuButtonClasses = cx(
-      ['menu-button', 'animated'],
-      {'menu-button--clicked': didClick}
+      [ 'menu-button', 'animated', ],
+      {
+        'menu-button--clicked': isMenuOpen,
+      },
     );
 
-    return <span>
+    return (
+    <React.Fragment>
       <div className={menuClasses}>
         <div className="menu-container">
-          <Link to="/sources">
-            <div className={buttonClasses} onClick={this.handleClick}>
-              Data sources
-            </div>
+          <Link to="/sources" className={buttonClasses}>
+            Data sources
           </Link>
-          <Link to="/about">
-            <div className={buttonClasses} onClick={this.handleClick}>
-              About this project
-            </div>
+          <Link to="/about" className={buttonClasses}>
+            About this project
           </Link>
-          <Link to="/">
-            <div className={buttonClasses} onClick={this.handleRestart}>
-              Start Again
-            </div>
+          <Link to="/" className={buttonClasses}>
+            Start Again
           </Link>
         </div>
       </div>
       <div
         className={menuButtonClasses}
-        onClick={this.handleClick}
+        onClick={onMenuButtonClick}
       >
       </div>
-    </span>;
+    </React.Fragment>
+    );
   }
 }
 
-export default MenuButton;
+function mapStateToProps(state) {
+  const { address, view, } = state;
+  return {
+    didSearch: address.value !== undefined,
+    ...view,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onMenuButtonClick: (event) => {
+      event.preventDefault();
+      dispatch(toggleMenu());
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MenuButton);
