@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import fetch from 'isomorphic-fetch';
 
 import {
@@ -13,6 +14,8 @@ import {
   RECEIVE_ZIP_CODE,
   RESET_CURRENT,
 } from './types';
+import { Legislator, } from '../models/Legislator';
+import { PropType as MaplightResultsType, } from '../models/MaplightResults';
 
 /**
  * Match FEC ids for house and senate races. Potentially important because some
@@ -45,8 +48,7 @@ async function fetchContributionsForCandidate(organization, legislator) {
   });
   if (response.ok) {
     const body = await response.json();
-    const contributionData = body.data;
-    return contributionData;
+    return body;
   } else {
     const error = new Error(response.statusText);
     error.response = response;
@@ -116,15 +118,26 @@ export function receiveAddress(address) {
  * @param {object} legislator.name object of name information for the `legislator`.
  * @param {array} legislator.name.official_full official full name of the legislator
  *    according to FEC records.
- * @param {object} contributionData received from Maplight API
- * @param {array} contributionData.aggregate_totals grouped by ????. Each member
+ * @param {object} contributionResults received from Maplight API
+ * @param {object} contributionData.search_terms information about what was searched.
+ * @param {object} contributionData.search_terms.donor information about the donor
+ *    search parameters
+ * @param {object} contributionData.search_terms.donor.donor_organization
+ * @param {object} contributionData.data result data.
+ * @param {array} contributionData.data.aggregate_totals grouped by ????. Each member
  *    has a `total_amount` property that is the aggregated value of contributions.
  * @returns action.
  */
-function receiveContributionDataForLegislator(legislator, contributionData) {
+function receiveContributionDataForLegislator(legislator, contributionResults) {
+  PropTypes.checkPropTypes(
+    { contributionResults: MaplightResultsType, },
+    { contributionResults, },
+    'contributionResults',
+    'actions#receiveContributionDataForLegislator',
+  );
   return receiveContributionData(
-    legislator.name.official_full,
-    contributionData.aggregate_totals[0].total_amount
+    Legislator.getIdentifier(legislator),
+    contributionResults.data.aggregate_totals[0].total_amount,
   );
 }
 
