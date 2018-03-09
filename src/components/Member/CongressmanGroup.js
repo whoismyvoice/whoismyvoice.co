@@ -56,7 +56,7 @@ class CongressmanGroup extends Component {
             repNumber={numberRepresentatives}
           />
           <MemberRibbon
-            name={legislator.identifier}
+            name={legislator.fullName}
             state={legislator.state}
             party={legislator.party}
           />
