@@ -42,7 +42,7 @@ export class Results extends Component {
     );
 
     const legislators = representatives.map(rep => new Legislator(rep));
-    const getAmount = Legislator.getPaymentAmount.bind(this, payments);
+    const getAmount = Legislator.getContributionAmount.bind(this, payments);
     const first_rep = legislators.filter(rep => getAmount(rep) > 0);
     const second_rep = legislators.filter(rep => getAmount(rep) === 0);
     const sections = [ first_rep, second_rep, ]

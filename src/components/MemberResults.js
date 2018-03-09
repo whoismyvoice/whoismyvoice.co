@@ -65,7 +65,7 @@ class MemberResults extends Component {
     const templateData = {
       organizationName: 'the NRA',
     };
-    const getAmount = Legislator.getPaymentAmount.bind(this, payments);
+    const getAmount = Legislator.getContributionAmount.bind(this, payments);
     const paymentAmount = legislators.reduce((amount, legislator) => (amount + getAmount(legislator)), 0);
     return (
       <span>

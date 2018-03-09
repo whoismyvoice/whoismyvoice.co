@@ -34,7 +34,7 @@ class CongressmanGroup extends Component {
       numberRepresentatives,
       payments,
     } = this.props;
-    const getAmount = Legislator.getPaymentAmount.bind(this, payments);
+    const getAmount = Legislator.getContributionAmount.bind(this, payments);
     const mobileOverlayClass = cx(
       [
         'mobile-contact-overlay',

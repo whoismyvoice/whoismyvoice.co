@@ -49,22 +49,22 @@ export class Legislator {
   }
 
   /**
-   * Retrieve the first payment out of `payments` that matches the identifier
+   * Retrieve the first contribution out of `contributions` that matches the identifier
    * of the given legislator.
-   * @param {array} payments records to be searched.
-   * @param {object|Legislator} legislator instance or record for which payments
+   * @param {array} contributions records to be searched.
+   * @param {object|Legislator} legislator instance or record for which contributions
    *    will be searched.
-   * @returns `-1` if no records from `payments` match `legislator`, `amount`
-   *    property of the payment record otherwise.
+   * @returns `-1` if no records from `contributions` match `legislator`, `amount`
+   *    property of the contribution record otherwise.
    */
-  static getPaymentAmount(payments, legislator) {
-    PropTypes.checkPropTypes({ payments: PropTypes.arrayOf(PaymentType) }, { payments, }, 'payments', 'Legislator#getPaymentAmount');
+  static getContributionAmount(contributions, legislator) {
+    PropTypes.checkPropTypes({ contributions: PropTypes.arrayOf(ContributionType) }, { contributions, }, 'contributions', 'Legislator#getContributionAmount');
     const id = legislator instanceof Legislator
       ? legislator.identifier
       : Legislator.getIdentifier(legislator);
-    const payment = payments.find(record => record.id === id);
-    if (payment !== undefined) {
-      return payment.amount;
+    const contribution = contributions.find(record => record.id === id);
+    if (contribution !== undefined) {
+      return contribution.amount;
     } else {
       return -1;
     }
