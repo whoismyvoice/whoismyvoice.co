@@ -91,7 +91,7 @@ function mapStateToProps(state) {
     numberRepresentatives: officials.ids.length,
     numberHouse: officials.ids.length - 2,
     contributions: organizationContributions,
-    representatives: officials.ids.map(id => officials.byId[id]),
+    representatives: officials.ids.map(id => officials.byId[id]).filter(rep => !!rep),
   };
 }
 
