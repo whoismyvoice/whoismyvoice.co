@@ -1,5 +1,9 @@
 import React, { Component, } from 'react';
 
+// Constants
+import {
+  ORGANIZATION_DISPLAY,
+} from '../constants';
 // Style
 import './../styles/paymentCounter.css';
 
@@ -22,7 +26,7 @@ class PaymentCounter extends Component {
       </span>
       {digits}
       <span className="counter__from">
-        from the NRA
+        from {ORGANIZATION_DISPLAY}
       </span>
     </span>;
   }

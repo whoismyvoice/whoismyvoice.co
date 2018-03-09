@@ -1,6 +1,11 @@
 import fetch from 'isomorphic-fetch';
 
 import {
+  ELECTION_CYCLE,
+  GOOGLE_CIVIC_API_KEY,
+  ORGANIZATION,
+} from '../constants';
+import {
   RECEIVE_ADDRESS,
   RECEIVE_CONTRIBUTION_DATA,
   RECEIVE_OFFICIALS,
@@ -8,11 +13,6 @@ import {
   RECEIVE_ZIP_CODE,
   RESET_CURRENT,
 } from './types';
-
-// TODO: Environment variables
-const GOOGLE_CIVIC_API_KEY = 'AIzaSyDE8_fr_0gztEPxpor0NFTCeRkkafpTDDA';
-const ORGANIZATION = 'National Rifle Association';
-const ELECTION_CYCLE = '2016|2018';
 
 /**
  * Match FEC ids for house and senate races. Potentially important because some

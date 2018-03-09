@@ -7,6 +7,10 @@ import NavButton from './Buttons/NavButton';
 import { PropType as ContributionType, } from '../models/Contribution';
 import { Legislator, } from '../models/Legislator';
 import { MemberResultsTitle } from './MemberResultsTitle';
+// Constants
+import {
+  ORGANIZATION_DISPLAY,
+} from '../constants';
 
 class MemberResults extends Component {
   static defaultProps = {
@@ -63,7 +67,7 @@ class MemberResults extends Component {
     const yayTemplateString = `Your <%= memberType %> <span class="bold"><b>accepted money</b></span> <span class="strike-out">from <%= organizationName %></span> in their recent election cycles.`;
     const nayTemplateString = `Your <%= memberType %> <span class="bold"><b>did not</b></span> take any money <span class="strike-out">from <%= organizationName %></span> in their recent election cycles.`
     const templateData = {
-      organizationName: 'the NRA',
+      organizationName: ORGANIZATION_DISPLAY,
     };
     const getAmount = Legislator.getContributionAmount.bind(this, payments);
     const paymentAmount = legislators.reduce((amount, legislator) => (amount + getAmount(legislator)), 0);

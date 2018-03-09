@@ -10,7 +10,11 @@ import SearchGroup from '../../components/Search/SearchGroup';
 import StarTitle from '../../components/StarTitle';
 import { PropType as ContributionType, } from '../../models/Contribution';
 import { PropType as LegislatorType, } from '../../models/Legislator';
-
+// Constants
+import {
+  ORGANIZATION,
+  ORGANIZATION_DISPLAY,
+} from '../../constants';
 // Assets
 import '../../styles/Home.css';
 
@@ -49,7 +53,7 @@ export class Home extends Component {
     );
 
     const templateString = `Did my representatives accept campaign contributions <span class="strike-out">from <%= organizationName %>?</span>`;
-    const templateData = { organizationName: 'the NRA', };
+    const templateData = { organizationName: ORGANIZATION_DISPLAY, };
     return (
       <div className={containerClasses}>
         <CornerRibbon
