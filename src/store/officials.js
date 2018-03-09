@@ -97,7 +97,12 @@ function handle(state = initialState, action) {
         ...state,
         byId: handleById(state.byId, action),
       };
-    case RECEIVE_OFFICIALS: // intentional fall-through
+    case RECEIVE_OFFICIALS:
+      return {
+        ...state,
+        byId: handleById(state.byId, action),
+        ids: handleIds(state.ids, action),
+      };
     case RESET_CURRENT:
       return {
         ...state,
