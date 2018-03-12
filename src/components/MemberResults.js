@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 // Components
 import CongressmanGroup from './Member/CongressmanGroup';
-import NavButton from './Buttons/NavButton';
+import TextButton from './Buttons/TextButton';
 import { PropType as ContributionType, } from '../models/Contribution';
 import { Legislator, } from '../models/Legislator';
 import { MemberResultsTitle } from './MemberResultsTitle';
@@ -48,9 +48,9 @@ class MemberResults extends Component {
     const nextButton = section === 2 || legislators.length === 3 ? '' : (
       <span>
         <div className="line-seperator line-seperator--small"></div>
-        <NavButton
+        <TextButton
+          link={`#section-${section + 1}`}
           text={`See ${nextText}`}
-          id="0"
         />
       </span>
     );
