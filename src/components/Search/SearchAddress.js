@@ -4,19 +4,9 @@ import cx from 'classnames';
 
 // Component
 import SearchInput from './SearchInput';
-import TextButton from '../Buttons/TextButton';
+import TextFormButton from '../Buttons/TextFormButton';
 
 class SearchAddress extends Component {
-  constructor(props) {
-    super(props);
-    this.onTextButtonClick = this.onTextButtonClick.bind(this);
-  }
-
-  onTextButtonClick(event) {
-    event.preventDefault();
-    this.formRef.submit();
-  }
-
   render() {
     const {
       address,
@@ -69,13 +59,11 @@ class SearchAddress extends Component {
       <form
         method="GET"
         onSubmit={onSubmit}
-        ref={(form) => { this.formRef = form; }}
       >
         {formFields}
         <div className="line-seperator"></div>
-        <TextButton
+        <TextFormButton
           text="Continue"
-          onClick={this.onTextButtonClick}
         />
       </form>
     );

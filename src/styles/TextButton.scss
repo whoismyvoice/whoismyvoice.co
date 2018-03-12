@@ -5,6 +5,7 @@
   display: block;
   margin: 0 auto;
   margin-top: 30px;
+  border: 0;
   letter-spacing: 1px;
   padding-bottom: 5px;
   cursor: pointer;
@@ -12,6 +13,7 @@
   color: $black;
   text-transform: uppercase;
   font-weight: 600;
+  background-color: transparent;
 
   @media screen and (max-height: 650px) {
     font-size: 12px;
