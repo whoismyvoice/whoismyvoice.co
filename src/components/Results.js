@@ -1,5 +1,6 @@
 import React, { Component, } from 'react';
 import PropTypes from 'prop-types';
+import { connect, } from 'react-redux';
 import cx from 'classnames';
 
 // Components
@@ -7,6 +8,7 @@ import TextButton from './Buttons/TextButton';
 import MemberResults from './MemberResults';
 import { PropType as ContributionType, } from '../models/Contribution';
 import { Legislator, PropType as LegislatorType, } from '../models/Legislator';
+import { reset, } from '../actions';
 
 export class Results extends Component {
   static defaultProps = {
@@ -25,6 +27,14 @@ export class Results extends Component {
     representatives: PropTypes.arrayOf(LegislatorType),
   }
 
+  getButtonProps(index) {
+    const { onBack, } = this.props;
+    return index === 0
+      ? { onClick: onBack, }
+      : { link: `#section-${index}`, }
+      ;
+  }
+
   render() {
     const {
       didSearch,
@@ -41,6 +51,7 @@ export class Results extends Component {
       },
     );
 
+    const calcButtonProps = this.getButtonProps.bind(this);
     const legislators = representatives.map(rep => new Legislator(rep));
     const getAmount = Legislator.getContributionAmount.bind(this, contributions);
     const first_rep = legislators.filter(rep => getAmount(rep) > 0);
@@ -48,10 +59,14 @@ export class Results extends Component {
     const sections = [ first_rep, second_rep, ]
       .filter(partition => partition.length > 0)
       .map((partition, index) => (
-        <div key={partition.reduce((key, legislator) => (key + legislator.identifier), '')} className="section block section-two">
+        <div
+          key={partition.reduce((key, legislator) => (key + legislator.identifier), '')}
+          className="section block"
+          id={`section-${index + 1}`}
+        >
           <TextButton
             text="Back"
-            onClick={this._handleRestart}
+            {...calcButtonProps(index)}
           />
           <MemberResults
             didSearch={didSearch}
@@ -70,4 +85,21 @@ export class Results extends Component {
   }
 }
 
-export default Results;
+function mapStateToProps(state) {
+  const { address, view, } = state;
+  return {
+    didSearch: address.value !== undefined,
+    ...view,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onBack: (event) => {
+      event.preventDefault();
+      dispatch(reset());
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Results);
