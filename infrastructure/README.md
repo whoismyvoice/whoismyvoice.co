@@ -40,6 +40,26 @@ declares a `dynamodb_table` property which references the dynamo db table from
 `global/locktable` in order to ensure a plan is only executed from one place at
 a time.
 
+### `server/production`
+
+The production plan manages the S3 Bucket(s), CloudFront Distribution(s), and
+Route53 DNS record(s) for the statically hosted site.
+
+If this is your first time running `terraform` commands for this plan on this
+computer
+
+    terraform init
+
+When ready to check the resources for changes run
+
+    terraform plan \
+        -var-file=../../config/secrets.json \
+        -out=server-production.tfplan
+
+To execute the plan identified by the previous command
+
+    terraform apply server-production.tfplan
+
 ### `lambda/gateway`
 
 The gateway plan manages the API Gateway and Lambda functions used by the front
