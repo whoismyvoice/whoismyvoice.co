@@ -6,6 +6,7 @@ import cx from 'classnames';
 
 import {
   toggleMenu,
+  reset,
 } from './actions';
 // Styles
 import './styles/MenuButton.css';
@@ -34,6 +35,7 @@ export class MenuButton extends Component {
       didSearch,
       isMenuOpen,
       onMenuButtonClick,
+      onRestartClick,
     } = this.props;
     const menuClasses = cx(
       [ 'menu-overlay', ],
@@ -67,7 +69,7 @@ export class MenuButton extends Component {
           <Link to="/about" className={buttonClasses}>
             About this project
           </Link>
-          <Link to="/" className={buttonClasses}>
+          <Link to="/" className={buttonClasses} onClick={onRestartClick}>
             Start Again
           </Link>
         </div>
@@ -96,6 +98,10 @@ function mapDispatchToProps(dispatch) {
       event.preventDefault();
       dispatch(toggleMenu());
     },
+    onRestartClick: (event) => {
+      dispatch(reset());
+      dispatch(toggleMenu());
+    }
   };
 }
 
