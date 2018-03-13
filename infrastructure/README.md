@@ -6,6 +6,26 @@ configuration.
 ## Install Tools
 
 * Install [terraform][tf]
+* Install [awscli][awscli]
+
+## AWS Profile
+
+The Terraform plans used to manage infrastructure expect a specific AWS profile
+to exist.  The `profile` indicates which AWS credentials to use when remotely
+storing and locking Terraform state. In order to create the `whoismyvoice`
+profile required for the Terraform plans run use the AWS CLI. The `aws
+configure` command will show four interactive prompts asking for AWS Access
+Key, AWS Secret Key, AWS Region, and output format; as shown below:
+
+    $ aws configure --profile=whoismyvoice
+    > AWS Access Key ID [None]:
+    > AWS Secret Access Key [None]:
+    > Default region name [None]:
+    > Default output format [None]:
+
+Where `whoismyvoice` is the profile being configured. The line beginning with
+`$` is a terminal prompt, lines beginning with `>` are interactive prompts from
+the command.
 
 ## Setup Variables in `secrets.json`
 
@@ -134,9 +154,6 @@ deploy the update with Terraform. Changes made directly in the AWS console will
 be overwritten the next time the `lambda/gateway` Terraform plan is executed.
 
 
+[awscli]: https://aws.amazon.com/cli/
 [gcvi]: https://developers.google.com/civic-information/docs/v2/representatives/representativeInfoByAddress
 [tf]: https://www.terraform.io
-[p]: https://www.packer.io
-[sp]: https://standup.siberia.io
-[ss]: https://standup.staging.siberia.io
-[st]: https://standup.testing.siberia.io
