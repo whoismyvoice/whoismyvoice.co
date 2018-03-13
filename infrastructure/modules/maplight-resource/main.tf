@@ -1,7 +1,3 @@
-data "aws_iam_role" "gateway_lambda_exec_role" {
-  name = "APIGatewayLambdaExecRole"
-}
-
 data "archive_file" "lambda_zip" {
   type = "zip"
   source_file = "${path.module}/index.js"
@@ -12,7 +8,7 @@ resource "aws_lambda_function" "maplight_proxy" {
   function_name = "whoismyvoice_maplight_proxy"
   filename = "${data.archive_file.lambda_zip.output_path}"
   handler = "index.handler"
-  role = "${data.aws_iam_role.gateway_lambda_exec_role.arn}"
+  role = "${var.gateway_lambda_exec_role}"
   runtime = "nodejs6.10"
   source_code_hash = "${data.archive_file.lambda_zip.output_base64sha256}"
 }
