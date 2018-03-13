@@ -1,7 +1,3 @@
-data "aws_route53_zone" "zone" {
-  name = "whoismyvoice.com"
-}
-
 // Use the AWS Certificate Manager to create an SSL cert for our domain.
 // This resource won't be created until you receive the email verifying you
 // own the domain and you click on the confirmation link.
@@ -17,7 +13,7 @@ resource "aws_acm_certificate" "wimv_cert" {
 resource "aws_route53_record" "wimv_cert_validation" {
   name = "${aws_acm_certificate.wimv_cert.domain_validation_options.0.resource_record_name}"
   type = "${aws_acm_certificate.wimv_cert.domain_validation_options.0.resource_record_type}"
-  zone_id = "${data.aws_route53_zone.zone.id}"
+  zone_id = "${data.terraform_remote_state.route53.zone_id}"
   records = [
     "${aws_acm_certificate.wimv_cert.domain_validation_options.0.resource_record_value}",
   ]
@@ -33,7 +29,7 @@ resource "aws_route53_record" "wimv_cert_validation" {
   count = "${length(aws_acm_certificate.wimv_cert.domain_validation_options)}"
   name = "${lookup(element(aws_acm_certificate.wimv_cert.domain_validation_options, count.index), "resource_record_name")}"
   type = "${lookup(element(aws_acm_certificate.wimv_cert.domain_validation_options, count.index), "resource_record_type")}"
-  zone_id = "${data.aws_route53_zone.zone.id}"
+  zone_id = "${data.terraform_remote_state.route53.zone_id}"
   records = [
     "${lookup(element(aws_acm_certificate.wimv_cert.domain_validation_options, count.index), "resource_record_value")}",
   ]

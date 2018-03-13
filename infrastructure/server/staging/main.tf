@@ -1,7 +1,17 @@
 locals {
   bucket_name = "${var.root_bucket_name}-${local.subdomain}"
   domain = "${local.subdomain}.${var.root_domain_name}"
-  subdomain = "www"
+  subdomain = "stage"
+}
+
+data "terraform_remote_state" "route53" {
+  backend = "s3"
+  config {
+    profile        = "whoismyvoice"
+    bucket         = "whoismyvoice-terraform"
+    key            = "whoismyvoice/aws/route53/terraform.tfstate"
+    region         = "us-east-1"
+  }
 }
 
 data "aws_iam_policy" "s3_read_only" {
@@ -119,7 +129,7 @@ resource "aws_cloudfront_distribution" "wimv_distribution" {
 
 // This Route53 record will point at our CloudFront distribution.
 resource "aws_route53_record" "wimv_dns" {
-  zone_id = "${data.aws_route53_zone.zone.zone_id}"
+  zone_id = "${data.terraform_remote_state.route53.zone_id}"
   name    = "${local.domain}"
   type    = "A"
 
