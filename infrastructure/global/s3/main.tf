@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "wimv_state" {
-  bucket = "siberia-tf"
+  bucket = "whoismyvoice-terraform"
 
   versioning {
     enabled = true

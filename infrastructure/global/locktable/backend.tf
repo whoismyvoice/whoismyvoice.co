@@ -1,8 +1,9 @@
 terraform {
   backend "s3" {
-    profile = "siberia-dev"
-    bucket = "siberia-tf"
-    key    = "whoismyvoice/global/locktable/terraform.tfstate"
+    profile = "whoismyvoice"
+    bucket = "whoismyvoice-terraform"
+    key    = "whoismyvoice/wimv/global/locktable/terraform.tfstate"
     region = "us-east-1"
+    dynamodb_table = "WhoismyvoiceTerraformLocks"
   }
 }
