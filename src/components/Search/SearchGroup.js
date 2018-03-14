@@ -63,7 +63,6 @@ function mapDispatchToProps(dispatch) {
       } else {
         dispatch(setZipCode(zipCode));
       }
-      console.log('SearchGroup#onAddressSubmit -- zipCode =', zipCode);
     },
   }
 }
