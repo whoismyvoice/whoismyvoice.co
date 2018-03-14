@@ -23,6 +23,7 @@ exports.handler = (event, context, callback) => {
     body: JSON.stringify({ event: event, context: context })
   };
   const req = http.get(url, (res) => {
+    const statusCode = res.statusCode;
     const contentType = res.headers['content-type'];
 
     let error;
@@ -33,6 +34,10 @@ exports.handler = (event, context, callback) => {
       console.log(error.message);
       // consume response data to free up memory
       res.resume();
+      response.statusCode = 500;
+      response.body = JSON.stringify({
+        error: error.message,
+      });
       return;
     }
     res.setEncoding('utf8');
@@ -40,22 +45,25 @@ exports.handler = (event, context, callback) => {
     res.on('data', (chunk) => rawData += chunk);
     res.on('end', () => {
       try {
+        response.statusCode = statusCode;
         response.body = rawData;
         callback(null, response);
       } catch (e) {
         console.log(`Got error: ${e.message}`);
-        response.body = {
+        response.statusCode = 500;
+        response.body = JSON.stringify({
           error: e.message,
-        };
+        });
         callback(null, response);
       }
     })
   });
   req.on('error', (e) => {
     console.log(`Got error: ${e.message}`);
-    response.body = {
+    response.statusCode = 500;
+    response.body = JSON.stringify({
       error: e.message,
-    };
+    });
     callback(null, response);
   });
 };
