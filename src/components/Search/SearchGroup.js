@@ -10,40 +10,31 @@ import {
 } from '../../actions';
 
 export class SearchGroup extends Component {
-
   static defaultProps = {
-    dispatch: () => {},
     isStreetAddressNeeded: false,
     onAddressSubmit: () => {},
   }
 
   static propTypes = {
     address: PropTypes.string,
-    dispatch: PropTypes.func.isRequired,
-    error: PropTypes.bool,
     isStreetAddressNeeded: PropTypes.bool.isRequired,
     onAddressSubmit: PropTypes.func.isRequired,
-    stateName: PropTypes.string,
     zipCode: PropTypes.string,
   }
 
   render() {
     const {
       address,
-      error,
       isStreetAddressNeeded,
       onAddressSubmit,
-      stateName,
       zipCode,
     } = this.props;
     return (
       <div className="animated fadeIn">
   			<SearchAddress
           address={address}
-  				error={error}
           isStreetAddressNeeded={isStreetAddressNeeded}
           onSubmit={onAddressSubmit}
-          stateName={stateName}
           zipCode={zipCode}
   			/>
       </div>

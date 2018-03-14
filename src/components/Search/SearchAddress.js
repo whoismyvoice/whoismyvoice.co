@@ -10,21 +10,14 @@ class SearchAddress extends Component {
   render() {
     const {
       address,
-      error,
       isStreetAddressNeeded,
       onSubmit,
       placeholder,
       zipCode,
     } = this.props;
-    const inputClasses = cx(
-      [
-        'input',
-      ],
-      {
-        'error': error,
-        'address_search': isStreetAddressNeeded,
-      },
-    );
+    const inputClasses = cx('input', {
+      'address_search': isStreetAddressNeeded,
+    });
     let formFields = [];
     if (isStreetAddressNeeded) {
       formFields = (
@@ -53,7 +46,6 @@ class SearchAddress extends Component {
         <React.Fragment>
           <SearchInput
             key="zipCode"
-            error={error}
             name="zipCode"
           />
         </React.Fragment>
