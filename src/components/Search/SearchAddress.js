@@ -10,6 +10,7 @@ class SearchAddress extends Component {
   render() {
     const {
       address,
+      addressErrorMessage,
       isStreetAddressNeeded,
       onSubmit,
       placeholder,
@@ -46,6 +47,7 @@ class SearchAddress extends Component {
         <React.Fragment>
           <SearchInput
             key="zipCode"
+            errorMessage={addressErrorMessage}
             name="zipCode"
           />
         </React.Fragment>
@@ -68,11 +70,13 @@ class SearchAddress extends Component {
 
 SearchAddress.defaultProps = {
   address: '',
+  addressErrorMessage: undefined,
   placeholder: 'Enter Your Street Address',
 };
 
 SearchAddress.propTypes = {
   address: PropTypes.string,
+  addressErrorMessage: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   zipCode: PropTypes.string,

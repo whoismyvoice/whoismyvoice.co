@@ -11,12 +11,14 @@ import {
 
 export class SearchGroup extends Component {
   static defaultProps = {
+    addressErrorMessage: undefined,
     isStreetAddressNeeded: false,
     onAddressSubmit: () => {},
   }
 
   static propTypes = {
     address: PropTypes.string,
+    addressErrorMessage: PropTypes.string,
     isStreetAddressNeeded: PropTypes.bool.isRequired,
     onAddressSubmit: PropTypes.func.isRequired,
     zipCode: PropTypes.string,
@@ -25,6 +27,7 @@ export class SearchGroup extends Component {
   render() {
     const {
       address,
+      addressErrorMessage,
       isStreetAddressNeeded,
       onAddressSubmit,
       zipCode,
@@ -33,6 +36,7 @@ export class SearchGroup extends Component {
       <div className="animated fadeIn">
   			<SearchAddress
           address={address}
+          addressErrorMessage={addressErrorMessage}
           isStreetAddressNeeded={isStreetAddressNeeded}
           onSubmit={onAddressSubmit}
           zipCode={zipCode}
@@ -43,9 +47,11 @@ export class SearchGroup extends Component {
 }
 
 function mapStateToProps(state) {
-  const { address, officials, } = state;
+  const { address, officials, view, } = state;
+  const { addressErrorMessage, } = view;
   return {
     address: address.street,
+    addressErrorMessage,
     isStreetAddressNeeded: officials.ids.length === 2,
     zipCode: address.zipCode,
   };
