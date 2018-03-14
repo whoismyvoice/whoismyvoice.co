@@ -56,16 +56,27 @@ module "civics-resource" {
 resource "aws_api_gateway_stage" "wimv_api_production" {
   stage_name = "production"
   rest_api_id = "${aws_api_gateway_rest_api.wimv_api.id}"
-  deployment_id = "${aws_api_gateway_deployment.wimv_api_testing_deployment.id}"
+  deployment_id = "${aws_api_gateway_deployment.wimv_api_production_deployment.id}"
   cache_cluster_enabled = true
   cache_cluster_size = "1.6"
+}
+
+# We can deploy the API now! (i.e. make it publicly available)
+resource "aws_api_gateway_deployment" "wimv_api_production_deployment" {
+  rest_api_id = "${aws_api_gateway_rest_api.wimv_api.id}"
+  stage_name  = "production"
+  description = "${module.civics-resource.get_resource} (${module.civics-resource.get_resource_hash}) ${module.civics-resource.option_resource} ${module.maplight-resource.get_resource} (${module.maplight-resource.get_resource_hash}) ${module.maplight-resource.option_resource}"
+  depends_on = [
+    "module.civics-resource",
+    "module.maplight-resource",
+  ]
 }
 
 # We can deploy the API now! (i.e. make it publicly available)
 resource "aws_api_gateway_deployment" "wimv_api_testing_deployment" {
   rest_api_id = "${aws_api_gateway_rest_api.wimv_api.id}"
   stage_name  = "testing"
-  description = "Deploy methods: ${module.civics-resource.get_resource} ${module.civics-resource.option_resource} ${module.maplight-resource.get_resource} ${module.maplight-resource.option_resource}"
+  description = "${module.civics-resource.get_resource} (${module.civics-resource.get_resource_hash}) ${module.civics-resource.option_resource} ${module.maplight-resource.get_resource} (${module.maplight-resource.get_resource_hash}) ${module.maplight-resource.option_resource}"
   depends_on = [
     "module.civics-resource",
     "module.maplight-resource",
