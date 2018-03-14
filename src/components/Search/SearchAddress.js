@@ -68,7 +68,6 @@ class SearchAddress extends Component {
 
 SearchAddress.defaultProps = {
   address: '',
-  onSubmit: () => {},
   placeholder: 'Enter Your Street Address',
 };
 
@@ -76,6 +75,7 @@ SearchAddress.propTypes = {
   address: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  zipCode: PropTypes.string,
 };
 
 export default SearchAddress;
