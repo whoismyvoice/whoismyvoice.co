@@ -44,10 +44,3 @@ module "maplight_options" {
   aws_region_id = "${var.aws_region_id}"
   aws_account_id = "${var.aws_account_id}"
 }
-
-# We can deploy the API now! (i.e. make it publicly available)
-resource "aws_api_gateway_deployment" "maplight_deployment" {
-  rest_api_id = "${var.aws_api_gateway_id}"
-  stage_name  = "production"
-  description = "Deploy methods: ${module.maplight_get.http_method} ${module.maplight_options.http_method}"
-}

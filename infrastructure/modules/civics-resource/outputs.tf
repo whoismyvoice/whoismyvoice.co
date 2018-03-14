@@ -1,14 +1,7 @@
-output "deployment_id" {
-  value = "${aws_api_gateway_deployment.civics_deployment.id}"
-  description = "The id of the deployment."
+output "get_resource" {
+  value = "${module.civics_get.resource}"
 }
 
-output "execute_arn" {
-  value = "${aws_api_gateway_deployment.civics_deployment.execution_arn}"
-  description = "The id of the deployment."
-}
-
-output "invoke_url" {
-  value = "${aws_api_gateway_deployment.civics_deployment.invoke_url}"
-  description = "The invokation URL of the API."
+output "option_resource" {
+  value = "${module.civics_options.resource}"
 }
