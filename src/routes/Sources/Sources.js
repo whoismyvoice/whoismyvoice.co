@@ -2,13 +2,11 @@ import React, { Component, } from 'react';
 
 // Components
 import FadedBG from '../../components/FadedBg';
-import CornerRibbon from '../../components/CornerRibbon';
 
 class Sources extends Component {
   render() {
     return (
       <div className="page-block light-white">
-        <CornerRibbon />
         <FadedBG color="white" />
         <div className="page-wrapper">
           <h2>Sources</h2>

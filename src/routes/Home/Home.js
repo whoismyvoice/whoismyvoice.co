@@ -4,7 +4,6 @@ import { connect, } from 'react-redux';
 import cx from 'classnames';
 
 // Components
-import CornerRibbon from '../../components/CornerRibbon';
 import Results from '../../components/Results';
 import SearchGroup from '../../components/Search/SearchGroup';
 import StarTitle from '../../components/StarTitle';
@@ -56,10 +55,6 @@ export class Home extends Component {
     const templateData = { organizationName: ORGANIZATION_DISPLAY, };
     return (
       <div className={containerClasses}>
-        <CornerRibbon
-          didSearch={didSearch}
-         />
-
         <div className={fadingClasses}></div>
         <div className="overlay">
           This site is only supported in portrait mode. Please turn your phone.

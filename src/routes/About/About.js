@@ -2,7 +2,6 @@ import React, { Component, } from 'react';
 
 // Components
 import FadedBG from '../../components/FadedBg';
-import CornerRibbon from '../../components/CornerRibbon';
 
 // Assets
 import '../../styles/About.css';
@@ -12,7 +11,6 @@ class About extends Component {
   render() {
     return (
       <div className="page-block light-white">
-        <CornerRibbon />
         <FadedBG color="white" />
         <div className="page-wrapper">
           <h2>About</h2>
