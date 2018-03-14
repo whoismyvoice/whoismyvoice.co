@@ -27,35 +27,39 @@ class SearchAddress extends Component {
     );
     let formFields = [];
     if (isStreetAddressNeeded) {
-      formFields = [
-        <div key="zipCodeDisplay" className="locked__zip">
-          ZIP: {zipCode}
-        </div>,
-        <input
-          key="zipCode"
-          type="hidden"
-          name="zipCode"
-          value={zipCode}
-        />,
-    		<input
-          key="address"
-          className={inputClasses}
-          type="text"
-          name="address"
-          defaultValue={address}
-    			placeholder={placeholder}
-    		/>
-      ];
+      formFields = (
+        <React.Fragment>
+          <div key="zipCodeDisplay" className="locked__zip">
+            ZIP: {zipCode}
+          </div>
+          <input
+            key="zipCode"
+            type="hidden"
+            name="zipCode"
+            value={zipCode}
+          />
+          <input
+            key="address"
+            className={inputClasses}
+            type="text"
+            name="address"
+            defaultValue={address}
+            placeholder={placeholder}
+          />
+        </React.Fragment>
+      );
     } else {
-      formFields = [
-      	<SearchInput
-          key="zipCode"
-          error={error}
-          name="zipCode"
-      	/>
-      ];
+      formFields = (
+        <React.Fragment>
+          <SearchInput
+            key="zipCode"
+            error={error}
+            name="zipCode"
+          />
+        </React.Fragment>
+      );
     }
-  	return (
+    return (
       <form
         method="GET"
         onSubmit={onSubmit}
