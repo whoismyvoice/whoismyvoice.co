@@ -8,6 +8,8 @@ export const RECEIVE_GPS = 'RECEIVE_GPS';
 export const RECEIVE_OFFICIALS = 'RECEIVE_OFFICIALS';
 /** Action type used when receiving full list of legislators. */
 export const RECEIVE_OFFICIALS_ALL = 'RECEIVE_OFFICIALS_ALL';
+/** Action type used when receiving an error after requesting officials for address. */
+export const RECEIVE_OFFICIALS_ERROR = 'RECEIVE_OFFICIALS_ERROR';
 /** Action type used when address is provided. */
 export const RECEIVE_ZIP_CODE = 'RECEIVE_ZIP_CODE';
 /** Action type to reset current state. */

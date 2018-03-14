@@ -11,6 +11,7 @@ import {
   RECEIVE_CONTRIBUTION_DATA,
   RECEIVE_OFFICIALS,
   RECEIVE_OFFICIALS_ALL,
+  RECEIVE_OFFICIALS_ERROR,
   RECEIVE_ZIP_CODE,
   RESET_CURRENT,
   TOGGLE_MENU,
@@ -74,7 +75,7 @@ async function fetchOfficialsForAddress(address) {
   } else {
     const error = new Error(response.statusText);
     error.response = response;
-    throw error;
+    return error;
   }
 }
 
@@ -184,6 +185,21 @@ export function receiveOfficialsAll(officials) {
 }
 
 /**
+ * Create action to notify officials retrieved an error.
+ * @param {error} error received.
+ * @returns action.
+ */
+export async function receiveOfficialsError(error) {
+  const response = error.response;
+  // If this throws no error will be received.
+  const body = await response.json();
+  return {
+    type: RECEIVE_OFFICIALS_ERROR,
+    error: body.error,
+  };
+}
+
+/**
  * Create action to notify address has been set.
  * @param {array} address received.
  * @returns action.
@@ -234,6 +250,11 @@ export function setAddress(address) {
     const allLegislators = await fetchLegislatorsAll();
     const currentOfficials = await fetchOfficialsForAddress(address);
     dispatch(receiveOfficialsAll(allLegislators));
+    if (currentOfficials instanceof Error) {
+      // response is error; abort
+      dispatch(receiveOfficialsError(currentOfficials));
+      return
+    }
     dispatch(receiveOfficials(currentOfficials));
     const getLegislator = getLegislatorForOfficial.bind(this, allLegislators);
     const currentLegislators = await Promise.all(currentOfficials.map(official => getLegislator(official)));
