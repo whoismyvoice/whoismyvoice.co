@@ -4,10 +4,6 @@ locals {
   subdomain = "${var.subdomain}"
 }
 
-data "aws_iam_policy" "s3_read_only" {
-  arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
-}
-
 data "aws_iam_policy_document" "s3_get_policy" {
   statement {
     sid = "AllowGet"
