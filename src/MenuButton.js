@@ -22,19 +22,12 @@ export class MenuButton extends Component {
     onMenuButtonClick: PropTypes.func,
   }
 
-  handleClick(event) {
-
-  }
-
-  handleRestart(event) {
-
-  }
-
   render() {
     const {
       didSearch,
       isMenuOpen,
       onMenuButtonClick,
+      onMenuLinkClick,
       onRestartClick,
     } = this.props;
     const menuClasses = cx(
@@ -63,10 +56,10 @@ export class MenuButton extends Component {
     <React.Fragment>
       <div className={menuClasses}>
         <div className="menu-container">
-          <Link to="/sources" className={buttonClasses}>
+          <Link to="/sources" className={buttonClasses} onClick={onMenuLinkClick}>
             Data sources
           </Link>
-          <Link to="/about" className={buttonClasses}>
+          <Link to="/about" className={buttonClasses} onClick={onMenuLinkClick}>
             About this project
           </Link>
           <Link to="/" className={buttonClasses} onClick={onRestartClick}>
@@ -96,6 +89,9 @@ function mapDispatchToProps(dispatch) {
   return {
     onMenuButtonClick: (event) => {
       event.preventDefault();
+      dispatch(toggleMenu());
+    },
+    onMenuLinkClick: (event) => {
       dispatch(toggleMenu());
     },
     onRestartClick: (event) => {
