@@ -51,7 +51,7 @@ input {
   }
 
   &.error {
-    @include shakeError(0.4s);
+    border-color: $dark-red;
   }
 
   &::-webkit-input-placeholder {
