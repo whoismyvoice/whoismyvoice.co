@@ -14,6 +14,17 @@ class SearchInput extends Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
+    this.state = {
+      isError: props.errorMessage !== undefined,
+    };
+  }
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    if (nextProps.errorMessage !== undefined) {
+      this.setState({
+        isError: true,
+      });
+    }
   }
 
   onChange(event) {
@@ -24,10 +35,20 @@ class SearchInput extends Component {
     });
   }
 
+  renderError() {
+    const { errorMessage, } = this.props;
+    return errorMessage === undefined
+      ? null
+      : (<p className="search-input-message--error">{errorMessage}</p>)
+      ;
+  }
+
   render() {
     const { name, pattern, placeholder, } = this.props;
     const { isError, } = this.state;
     return (
+      <React.Fragment>
+        {this.renderError()}
       <input
         type="text"
         name={name}
@@ -36,16 +57,19 @@ class SearchInput extends Component {
         placeholder={placeholder}
         onChange={this.onChange}
       />
+      </React.Fragment>
     );
   }
 }
 
 SearchInput.defaultProps = {
+  errorMessage: undefined,
   pattern: '[0-9]*',
   placeholder: 'Enter Your Zip Code',
 };
 
 SearchInput.propTypes = {
+  errorMessage: PropTypes.string,
   name: PropTypes.string.isRequired,
   pattern: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,

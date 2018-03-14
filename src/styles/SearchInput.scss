@@ -80,6 +80,12 @@ input {
   opacity: 1;
 }
 
+.search-input-message--error {
+  margin: 1rem auto 0;
+  color: $dark-red;
+  font-size: 1.2rem;
+}
+
 .locked__zip {
   background-color: #333333;
   padding: 8px;
