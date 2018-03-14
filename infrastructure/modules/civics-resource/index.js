@@ -23,13 +23,10 @@ exports.handler = (event, context, callback) => {
     body: JSON.stringify({ event: event, context: context })
   };
   const req = http.get(url, (res) => {
-    const statusCode = res.statusCode;
     const contentType = res.headers['content-type'];
 
     let error;
-    if (statusCode !== 200) {
-      error = new Error(`Request Failed.\nStatus Code: ${statusCode}`);
-    } else if (!/^application\/json/.test(contentType)) {
+    if (!/^application\/json/.test(contentType)) {
       error = new Error(`Invalid content-type.\nExpected application/json but received ${contentType}`);
     }
     if (error) {
