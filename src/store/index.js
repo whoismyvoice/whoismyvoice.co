@@ -1,5 +1,6 @@
 import thunkMiddleware from 'redux-thunk';
 import { createLogger, } from 'redux-logger';
+import promiseMiddleware from 'redux-promise';
 import { applyMiddleware, combineReducers, createStore, } from 'redux';
 
 import address from './address';
@@ -19,6 +20,7 @@ export default createStore(
   {},
   applyMiddleware(
     thunkMiddleware,
+    promiseMiddleware,
     loggerMiddleware,
   )
 );
