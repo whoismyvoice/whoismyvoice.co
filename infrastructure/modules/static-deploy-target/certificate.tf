@@ -7,13 +7,16 @@ resource "aws_acm_certificate" "wimv_cert" {
   validation_method = "DNS"
   tags {
     Name = "Cert for ${local.domain}"
+    Client = "siberia"
+    Environment = "${var.subdomain}"
+    Terraform = "true"
   }
 }
 
 resource "aws_route53_record" "wimv_cert_validation" {
   name = "${aws_acm_certificate.wimv_cert.domain_validation_options.0.resource_record_name}"
   type = "${aws_acm_certificate.wimv_cert.domain_validation_options.0.resource_record_type}"
-  zone_id = "${data.terraform_remote_state.route53.zone_id}"
+  zone_id = "${var.dns_zone_id}"
   records = [
     "${aws_acm_certificate.wimv_cert.domain_validation_options.0.resource_record_value}",
   ]
@@ -29,7 +32,7 @@ resource "aws_route53_record" "wimv_cert_validation" {
   count = "${length(aws_acm_certificate.wimv_cert.domain_validation_options)}"
   name = "${lookup(element(aws_acm_certificate.wimv_cert.domain_validation_options, count.index), "resource_record_name")}"
   type = "${lookup(element(aws_acm_certificate.wimv_cert.domain_validation_options, count.index), "resource_record_type")}"
-  zone_id = "${data.terraform_remote_state.route53.zone_id}"
+  zone_id = "${var.dns_zone_id}"
   records = [
     "${lookup(element(aws_acm_certificate.wimv_cert.domain_validation_options, count.index), "resource_record_value")}",
   ]

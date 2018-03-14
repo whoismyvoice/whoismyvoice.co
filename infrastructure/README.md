@@ -40,13 +40,14 @@ Copy `infrastructure/config/secrets.sample.json` to
 * `aws_instance_key_location` is the location on the local filesystem of the
   `.pem` key file corresponding to the keypair for connecting to instances
 * `aws_region_id` is the region the builder instance will be launched in
-* `google_civic_api_key` is the API key used to [Google Civic Information
-  API][gcvi].
+* `google_civic_api_key` is the API key used to access [Google Civic
+  Information API][gcvi].
 
 ## Terraform
 
 There are several Terraform "plan" folders. Each plan has a distinct purpose:
 
+* `server/staging` manages the static deployment target for the staging site.
 * `global/s3` sets up the S3 bucket where the plans store their `.tfstate`
   files.
 * `global/locktable` sets up the dynamo db table used for locking `.tfstate`
@@ -60,10 +61,11 @@ declares a `dynamodb_table` property which references the dynamo db table from
 `global/locktable` in order to ensure a plan is only executed from one place at
 a time.
 
-### `server/production`
+### `server/staging`
 
-The production plan manages the S3 Bucket(s), CloudFront Distribution(s), and
-Route53 DNS record(s) for the statically hosted site.
+The `server/staging` plan manages the S3 Bucket(s), CloudFront Distribution(s),
+and Route53 DNS record(s) for the statically hosted site associated with
+staging.
 
 If this is your first time running `terraform` commands for this plan on this
 computer
@@ -74,11 +76,11 @@ When ready to check the resources for changes run
 
     terraform plan \
         -var-file=../../config/secrets.json \
-        -out=server-production.tfplan
+        -out=server-staging.tfplan
 
 To execute the plan identified by the previous command
 
-    terraform apply server-production.tfplan
+    terraform apply server-staging.tfplan
 
 ### `lambda/gateway`
 
