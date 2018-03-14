@@ -47,6 +47,7 @@ Copy `infrastructure/config/secrets.sample.json` to
 
 There are several Terraform "plan" folders. Each plan has a distinct purpose:
 
+* `server/testing` manages the static deployment target for the testing site.
 * `server/staging` manages the static deployment target for the staging site.
 * `global/s3` sets up the S3 bucket where the plans store their `.tfstate`
   files.
@@ -60,6 +61,27 @@ key in the S3 bucket created by the `global/s3` plan. `backend.tf` also
 declares a `dynamodb_table` property which references the dynamo db table from
 `global/locktable` in order to ensure a plan is only executed from one place at
 a time.
+
+### `server/testing`
+
+The `server/testing` plan manages the S3 Bucket(s), CloudFront Distribution(s),
+and Route53 DNS record(s) for the statically hosted site associated with
+testing.
+
+If this is your first time running `terraform` commands for this plan on this
+computer
+
+    terraform init
+
+When ready to check the resources for changes run
+
+    terraform plan \
+        -var-file=../../config/secrets.json \
+        -out=server-testing.tfplan
+
+To execute the plan identified by the previous command
+
+    terraform apply server-production.tfplan
 
 ### `server/staging`
 
