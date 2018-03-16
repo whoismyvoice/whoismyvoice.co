@@ -1,6 +1,8 @@
 import { receiveContributionData, reset } from '../actions';
 import contributions from './contributions';
 
+jest.mock('mixpanel-browser');
+
 it('provides an initial state when given undefined', () => {
   const initialState = contributions(undefined, {});
   expect(initialState).toBeDefined();

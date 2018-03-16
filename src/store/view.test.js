@@ -5,6 +5,8 @@ import {
 } from '../actions';
 import view from './view';
 
+jest.mock('mixpanel-browser');
+
 describe('initial state', () => {
   const initialState = view(undefined, {});
   it('provides an initial state when given undefined', () => {
