@@ -11,8 +11,8 @@ resource "aws_api_gateway_integration" "request_method_integration" {
   rest_api_id = "${var.api_gateway_rest_api_id}"
   resource_id = "${var.api_gateway_resource_id}"
   http_method = "${aws_api_gateway_method.request_method.http_method}"
-  type = "AWS_PROXY"
-  uri = "arn:aws:apigateway:${var.aws_region_id}:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.aws_region_id}:${var.aws_account_id}:function:${var.lambda}/invocations"
+  type        = "AWS_PROXY"
+  uri         = "arn:aws:apigateway:${var.aws_region_id}:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.aws_region_id}:${var.aws_account_id}:function:${var.lambda}/invocations"
 
   # AWS lambdas can only be invoked with the POST method
   integration_http_method = "POST"

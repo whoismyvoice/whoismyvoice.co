@@ -1,18 +1,21 @@
 locals {
   bucket_name = "${var.root_bucket_name}-${local.subdomain}"
-  domain = "${local.subdomain}.${var.root_domain_name}"
-  subdomain = "${var.subdomain}"
+  domain      = "${local.subdomain}.${var.root_domain_name}"
+  subdomain   = "${var.subdomain}"
 }
 
 data "aws_iam_policy_document" "s3_get_policy" {
   statement {
     sid = "AllowGet"
-    actions   = [
+
+    actions = [
       "s3:GetObject",
     ]
+
     resources = [
-      "arn:aws:s3:::${local.bucket_name}/*"
+      "arn:aws:s3:::${local.bucket_name}/*",
     ]
+
     principals {
       type        = "AWS"
       identifiers = ["*"]
@@ -22,7 +25,7 @@ data "aws_iam_policy_document" "s3_get_policy" {
 
 resource "aws_s3_bucket" "wimv_bucket" {
   bucket = "${local.bucket_name}"
-  acl = "public-read"
+  acl    = "public-read"
   policy = "${data.aws_iam_policy_document.s3_get_policy.json}"
 
   // If it has any contents it can not be destroyed anyway.
@@ -40,9 +43,9 @@ resource "aws_s3_bucket" "wimv_bucket" {
   }
 
   tags {
-    Client = "siberia"
+    Client      = "siberia"
     Environment = "${var.subdomain}"
-    Terraform = "true"
+    Terraform   = "true"
   }
 }
 
@@ -53,28 +56,33 @@ resource "aws_cloudfront_distribution" "wimv_distribution" {
     origin_id   = "whoismyvoice_s3"
   }
 
-  enabled = true
+  enabled         = true
   is_ipv6_enabled = true
+
   aliases = [
     "${local.domain}",
   ]
-  comment = "Terraform managed. Serves content for ${local.domain} w/ SSL."
+
+  comment             = "Terraform managed. Serves content for ${local.domain} w/ SSL."
   default_root_object = "index.html"
 
   default_cache_behavior {
-    allowed_methods  = [
+    allowed_methods = [
       "GET",
       "HEAD",
       "OPTIONS",
     ]
-    cached_methods   = [
+
+    cached_methods = [
       "GET",
       "HEAD",
     ]
+
     target_origin_id = "whoismyvoice_s3"
 
     forwarded_values {
       query_string = false
+
       cookies {
         forward = "none"
       }
@@ -87,16 +95,18 @@ resource "aws_cloudfront_distribution" "wimv_distribution" {
   }
 
   custom_error_response {
-    error_code = 404
-    response_code = 200
+    error_code         = 404
+    response_code      = 200
     response_page_path = "/index.html"
   }
 
   price_class = "PriceClass_100"
+
   restrictions {
     geo_restriction {
       restriction_type = "whitelist"
-      locations        = [
+
+      locations = [
         "US",
         "CA",
         "GB",
@@ -106,17 +116,18 @@ resource "aws_cloudfront_distribution" "wimv_distribution" {
   }
 
   tags {
-    Client = "siberia"
+    Client      = "siberia"
     Environment = "${var.subdomain}"
-    Terraform = "true"
+    Terraform   = "true"
   }
 
   viewer_certificate {
     acm_certificate_arn = "${aws_acm_certificate.wimv_cert.arn}"
-    ssl_support_method = "sni-only"
+    ssl_support_method  = "sni-only"
   }
+
   depends_on = [
-    "aws_acm_certificate_validation.wimv"
+    "aws_acm_certificate_validation.wimv",
   ]
 }
 

@@ -1,19 +1,22 @@
 locals {
-  domain = "${var.root_domain_name}"
+  domain      = "${var.root_domain_name}"
   environment = "${var.subdomain}-bare"
   bucket_name = "${var.root_bucket_name}-${local.environment}"
-  subdomain = "${var.subdomain}"
+  subdomain   = "${var.subdomain}"
 }
 
 data "aws_iam_policy_document" "s3_get_policy" {
   statement {
     sid = "AllowGet"
-    actions   = [
+
+    actions = [
       "s3:GetObject",
     ]
+
     resources = [
-      "arn:aws:s3:::${local.bucket_name}/*"
+      "arn:aws:s3:::${local.bucket_name}/*",
     ]
+
     principals {
       type        = "AWS"
       identifiers = ["*"]
@@ -23,7 +26,7 @@ data "aws_iam_policy_document" "s3_get_policy" {
 
 resource "aws_s3_bucket" "redirect_bucket" {
   bucket = "${local.bucket_name}"
-  acl = "public-read"
+  acl    = "public-read"
   policy = "${data.aws_iam_policy_document.s3_get_policy.json}"
 
   website {
@@ -31,9 +34,9 @@ resource "aws_s3_bucket" "redirect_bucket" {
   }
 
   tags {
-    Client = "siberia"
+    Client      = "siberia"
     Environment = "${local.environment}"
-    Terraform = "true"
+    Terraform   = "true"
   }
 }
 
@@ -44,27 +47,32 @@ resource "aws_cloudfront_distribution" "redirect_distribution" {
     origin_id   = "s3_redirect"
   }
 
-  enabled = true
+  enabled         = true
   is_ipv6_enabled = true
+
   aliases = [
     "${local.domain}",
   ]
+
   comment = "Terraform managed. Serves content for ${local.domain} w/ SSL."
 
   default_cache_behavior {
-    allowed_methods  = [
+    allowed_methods = [
       "GET",
       "HEAD",
       "OPTIONS",
     ]
-    cached_methods   = [
+
+    cached_methods = [
       "GET",
       "HEAD",
     ]
+
     target_origin_id = "s3_redirect"
 
     forwarded_values {
       query_string = false
+
       cookies {
         forward = "none"
       }
@@ -77,10 +85,12 @@ resource "aws_cloudfront_distribution" "redirect_distribution" {
   }
 
   price_class = "PriceClass_100"
+
   restrictions {
     geo_restriction {
       restriction_type = "whitelist"
-      locations        = [
+
+      locations = [
         "US",
         "CA",
         "GB",
@@ -90,17 +100,18 @@ resource "aws_cloudfront_distribution" "redirect_distribution" {
   }
 
   tags {
-    Client = "siberia"
+    Client      = "siberia"
     Environment = "${local.environment}"
-    Terraform = "true"
+    Terraform   = "true"
   }
 
   viewer_certificate {
     acm_certificate_arn = "${aws_acm_certificate.redirect_cert.arn}"
-    ssl_support_method = "sni-only"
+    ssl_support_method  = "sni-only"
   }
+
   depends_on = [
-    "aws_acm_certificate_validation.redirect"
+    "aws_acm_certificate_validation.redirect",
   ]
 }
 
