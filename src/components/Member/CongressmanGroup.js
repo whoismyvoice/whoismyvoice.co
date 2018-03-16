@@ -1,99 +1,90 @@
-import React from 'react';
-import SenateStore from '../../stores/SenateStore';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 // Components
-import BaseComponent from '../BaseComponent';
 import MemberImg from './MemberImg';
 import MemberRibbon from './MemberRibbon';
 import ActionButtons from './ActionButtons';
-import PaymentCounter from '../paymentCounter';
+import PaymentCounter from '../PaymentCounter';
+import { PropType as ContributionType } from '../../models/Contribution';
+import { Legislator } from '../../models/Legislator';
 
 // Styles
-import style from './../../styles/CongressmanGroup.scss';
+import './../../styles/CongressmanGroup.css';
 
-class CongressmanGroup extends BaseComponent {
-  constructor(props) {
-    super(props);
-    this.state = SenateStore.getMember();
-    this._bind('toggleContactOverlay');
-  }
+class CongressmanGroup extends Component {
+  static defaultProps = {
+    legislators: [],
+    contributions: [],
+    section: 1,
+  };
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.did_search && nextState.number_representatives === 3 && nextState.number_house === 1) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  toggleContactOverlay(evt) {
-    this.setState({
-      didClickOverlay: !this.state.didClickOverlay,
-      clicked: evt.target.id
-    });
-  }
+  static propTypes = {
+    legislators: PropTypes.arrayOf(PropTypes.instanceOf(Legislator)),
+    contributions: PropTypes.arrayOf(ContributionType),
+    section: PropTypes.oneOf([1, 2, 3]),
+  };
 
   render() {
-    const {representative} = this.props;
-    const {number_representatives} = this.state;
-    let members,
-      actionButton;
-
-    const mobileOverlayClass = cx(
-      ['mobile-contact-overlay'],
-      {'show': this.state.didClickOverlay}
+    const {
+      clicked,
+      didClickOverlay,
+      legislators,
+      numberRepresentatives,
+      contributions,
+    } = this.props;
+    const getAmount = Legislator.getContributionAmount.bind(
+      this,
+      contributions
     );
+    const mobileOverlayClass = cx(['mobile-contact-overlay'], {
+      show: didClickOverlay,
+    });
 
-    if (representative && number_representatives > 2) {
-      members = representative.map((result, idx) => {
-        actionButton = (
-          <ActionButtons
-            representative={result}
-          />
-        );
-
-        const payment = result.payment.toString();
-
-        const gender = result.gender === 'M' ? 'Him' : 'Her';
-
-        return (<div className="member-container" key={idx}>
+    const members = legislators.map((legislator, idx) => {
+      const payment = getAmount(legislator);
+      const gender = legislator.genderPronoun;
+      return (
+        <div className="member-container" key={legislator.identifier}>
           <MemberImg
-            bioguide={result.bioguide_id}
-            party={result.party}
-            repNumber={number_representatives}
+            bioguide={legislator.bioguide}
+            legislator={legislator}
+            party={legislator.party}
+            repNumber={numberRepresentatives}
           />
           <MemberRibbon
-            name={result.full_name}
-            state={result.state}
-            party={result.party}
+            name={legislator.fullName}
+            state={legislator.state}
+            party={legislator.party}
           />
-          <PaymentCounter
-            payment={payment}
-          />
+          <PaymentCounter payment={`${payment}`} />
           <div
             className="mobile-contact-options"
             onClick={this.toggleContactOverlay}
-            id={idx}
+            id={`legislator-contact-${idx}`}
           >
             {`Contact ${gender}`}
           </div>
-          {actionButton}
-        </div>);
-      });
-    }
+          <ActionButtons legislator={legislator} />
+        </div>
+      );
+    });
 
-    const selectedMember = this.state.clicked ? representative[this.state.clicked] : representative;
+    const selectedMember = clicked ? legislators[clicked] : legislators[0];
 
-    return <div className="member-wrapper">
-      {members}
-      <div className={mobileOverlayClass}>
-        <ActionButtons
-          representative={selectedMember}
-        />
-        <div className="mobile-contact-close-button" onClick={this.toggleContactOverlay} />
+    return (
+      <div className="member-wrapper">
+        {members}
+        <div className={mobileOverlayClass}>
+          <ActionButtons legislator={selectedMember} />
+          <div
+            className="mobile-contact-close-button"
+            onClick={this.toggleContactOverlay}
+          />
+        </div>
       </div>
-    </div>;
+    );
   }
 }
 

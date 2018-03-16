@@ -1,11 +1,11 @@
-@import 'variables';
-@import 'transitions';
+@import '_variables';
+@import '_transitions';
 
 .about {
   color: $white;
   background-color: $light-white;
 
   &:hover {
-  	color: $blue;
+    color: $blue;
   }
 }

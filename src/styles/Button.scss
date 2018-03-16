@@ -1,4 +1,4 @@
-@import 'variables';
+@import '_variables';
 
 .button {
   z-index: 3;
@@ -12,8 +12,8 @@
   padding: 12px;
 
   &:hover {
-  	background-color: $black;
-  	color: $white;
+    background-color: $black;
+    color: $white;
   }
 
   @media screen and (max-width: $iphone6) {
@@ -51,11 +51,8 @@
     font-size: 11px;
   }
 
-  @media screen
-  and (min-width: 1051px)
-  and (max-width: 1399px) {
-    @media screen
-    and (max-height: 650px) {
+  @media screen and (min-width: 1051px) and (max-width: 1399px) {
+    @media screen and (max-height: 650px) {
       margin-bottom: 20px;
     }
   }
@@ -72,4 +69,3 @@
     font-size: 0.8em;
   }
 }
-

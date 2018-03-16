@@ -1,38 +1,36 @@
-@import 'variables';
+@import '_variables';
 
 .member-name {
   z-index: 2;
   position: relative;
-	margin: 0 auto;
+  margin: 0 auto;
   margin-bottom: 1vh;
-	padding: 15px;
+  padding: 15px;
   text-transform: uppercase;
 
-	@media screen and (max-width: $iphone6) {
+  @media screen and (max-width: $iphone6) {
     width: 90%;
-		padding: 10px;
-	}
+    padding: 10px;
+  }
 
-	a {
-		color: $black;
-		text-transform: capitalize;
-	}
+  a {
+    color: $black;
+    text-transform: capitalize;
+  }
 
-  @media screen
-  and (min-width: 1100px)
-  and (max-width: 1499px) {
+  @media screen and (min-width: 1100px) and (max-width: 1499px) {
     margin-bottom: 0vh;
   }
 
-	h2 {
-		margin: 0;
-		font-size: 1.2em;
-		font-size: 1.2vw;
+  h2 {
+    margin: 0;
+    font-size: 1.2em;
+    font-size: 1.2vw;
 
-		@media screen and (max-width: $iphone6) {
+    @media screen and (max-width: $iphone6) {
       margin-top: 0;
-    	font-size: 1em;
-  	}
+      font-size: 1em;
+    }
 
     @media screen and (max-width: 361px) {
       margin-bottom: 3px;
@@ -44,53 +42,36 @@
       font-size: 12px;
     }
 
-  	@media screen and (max-width: $iphone5-min)
-    and (-webkit-min-device-pixel-ratio: 2) {
+    @media screen and (max-width: $iphone5-min) and (-webkit-min-device-pixel-ratio: 2) {
       margin-top: 0;
       margin-bottom: 0;
-    	font-size: 0.85em;
-  	}
+      font-size: 0.85em;
+    }
 
     @media screen and (min-width: 1600px) {
       margin-bottom: 5px;
       font-size: 1.5em;
     }
 
-  	@media only screen
-  	and (min-device-width: 768px)
-  	and (max-device-width: 1024px)
-  	and (orientation: landscape)
-  	and (-webkit-min-device-pixel-ratio: 1) {
-    	font-size: 1.4em;
-  	}
-
-  	@media only screen
-    and (min-device-width: 768px)
-    and (max-device-width: 1024px)
-    and (orientation: portrait)
-    and (-webkit-min-device-pixel-ratio: 1) {
-      font-size: 1.1em!important;
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+      font-size: 1.4em;
     }
-	}
+
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+      font-size: 1.1em !important;
+    }
+  }
 }
 
 .member-twitter {
   font-size: 1vw;
   color: $dark-grey;
 
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 1) {
-    font-size: 0.9em!important;
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+    font-size: 0.9em !important;
   }
 
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: landscape)
-  and (-webkit-min-device-pixel-ratio: 1) {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
     font-size: 1.2em;
   }
 
@@ -98,8 +79,7 @@
     font-size: 0.8em;
   }
 
-  @media screen
-  and (min-width: 1500px) {
+  @media screen and (min-width: 1500px) {
     font-size: 0.8vw;
   }
 }
@@ -118,8 +98,7 @@
     font-size: 11px;
   }
 
-  @media screen and (max-width: $iphone5-min)
-  and (-webkit-min-device-pixel-ratio:2) {
+  @media screen and (max-width: $iphone5-min) and (-webkit-min-device-pixel-ratio: 2) {
     font-size: 0.8em;
   }
 }

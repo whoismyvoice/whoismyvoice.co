@@ -1,4 +1,4 @@
-@import 'variables';
+@import '_variables';
 
 .ribbon-wrapper {
   z-index: 2;
@@ -22,7 +22,7 @@
     left: 0;
   }
 
-   @media screen and (max-width: 1170px) {
+  @media screen and (max-width: 1170px) {
     width: auto;
     top: -28%;
     left: 0;
@@ -73,27 +73,18 @@
     font-size: 1.1em;
   }
 
-  @media screen and (max-height: 649px)
-  and (max-width: 700px) {
+  @media screen and (max-height: 649px) and (max-width: 700px) {
     width: 75%;
     min-width: 120px;
     font-size: 1.6em;
   }
 
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 1) {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
     font-size: 13px;
     width: 65%;
   }
 
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: landscape)
-  and (-webkit-min-device-pixel-ratio: 1) {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
     font-size: 13px;
     width: 60%;
   }
@@ -105,7 +96,7 @@
     padding: 0.5em 0.5em 0.5em 0.5em;
   }
 
-   @media screen and (max-width: $iphone5-min) {
+  @media screen and (max-width: $iphone5-min) {
     width: 80%;
     min-width: 90%;
     font-size: 9px;
@@ -114,32 +105,35 @@
 }
 
 .ribbon--blue {
-  background-color: #3569CA;
+  background-color: #3569ca;
 }
 
 .ribbon--grey {
-  background-color: #BCBCBC
+  background-color: #bcbcbc;
 }
 
-.ribbon:before, .ribbon:after {
+.ribbon:before,
+.ribbon:after {
   z-index: -1;
   position: absolute;
   display: block;
-  content: "";
+  content: '';
   bottom: -0.8em;
-  border: 1.5em solid darken(#B03532, 0%);
+  border: 1.5em solid darken(#b03532, 0%);
 
   @media screen and (max-width: $iphone6) {
-    border: 0.8em solid darken(#B03532, 0%);
+    border: 0.8em solid darken(#b03532, 0%);
   }
 }
 
-.ribbon--grey:before, .ribbon--grey:after {
-  border: 1.5em solid darken(#9B9695, 0%);
+.ribbon--grey:before,
+.ribbon--grey:after {
+  border: 1.5em solid darken(#9b9695, 0%);
 }
 
-.ribbon--blue:before, .ribbon--blue:after {
-  border: 1.5em solid darken(#203C70, 0%);
+.ribbon--blue:before,
+.ribbon--blue:after {
+  border: 1.5em solid darken(#203c70, 0%);
 }
 
 .ribbon:before {
@@ -210,7 +204,7 @@
     border-left-width: 18px;
   }
 
-   @media screen and (max-width: $iphone5-min) {
+  @media screen and (max-width: $iphone5-min) {
     right: -1.2em;
     border-right-width: 12px;
     border-bottom-width: 20px;
@@ -218,12 +212,13 @@
   }
 }
 
-.ribbon .ribbon-content:before, .ribbon .ribbon-content:after {
+.ribbon .ribbon-content:before,
+.ribbon .ribbon-content:after {
   position: absolute;
   bottom: -0.8em;
-  content: "";
+  content: '';
   border-style: solid;
-  border-color: darken(#B03532, 8%) transparent transparent transparent;
+  border-color: darken(#b03532, 8%) transparent transparent transparent;
 }
 
 .ribbon .ribbon-content:before {
@@ -236,10 +231,12 @@
   border-width: 0.8em 1.5em 0 0;
 }
 
-.ribbon--blue .ribbon-content:before, .ribbon--blue .ribbon-content:after {
-  border-color: darken(#203C70, 8%) transparent transparent transparent;
+.ribbon--blue .ribbon-content:before,
+.ribbon--blue .ribbon-content:after {
+  border-color: darken(#203c70, 8%) transparent transparent transparent;
 }
 
-.ribbon--grey .ribbon-content:before, .ribbon--grey .ribbon-content:after {
-  border-color: darken(#9B9695, 8%) transparent transparent transparent;
+.ribbon--grey .ribbon-content:before,
+.ribbon--grey .ribbon-content:after {
+  border-color: darken(#9b9695, 8%) transparent transparent transparent;
 }

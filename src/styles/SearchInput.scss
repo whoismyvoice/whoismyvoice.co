@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'transitions';
+@import '_variables';
+@import '_transitions';
 
 input {
   z-index: 2;
@@ -25,8 +25,7 @@ input {
     max-width: 250px;
   }
 
-  @media screen
-  and (max-width: 361px) {
+  @media screen and (max-width: 361px) {
     font-size: 14px;
   }
 
@@ -51,7 +50,7 @@ input {
   }
 
   &.error {
-    @include shakeError(0.4s);
+    border-color: $dark-red;
   }
 
   &::-webkit-input-placeholder {
@@ -78,6 +77,12 @@ input {
 .search-group--show {
   @include transition(1s);
   opacity: 1;
+}
+
+.search-input-message--error {
+  margin: 1rem auto 0;
+  color: $dark-red;
+  font-size: 1.2rem;
 }
 
 .locked__zip {

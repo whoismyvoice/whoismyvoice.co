@@ -1,32 +1,22 @@
-@import 'variables';
+@import '_variables';
 
 .member-wrapper {
-	width: 95%;
-	margin: 0 auto;
+  width: 95%;
+  margin: 0 auto;
   margin-top: 1vh;
-	position: relative;
+  position: relative;
 
   // Google Nexus 7
-	@media only screen
-  and (min-width: 421px)
-  and (max-width: 799px) {
+  @media only screen and (min-width: 421px) and (max-width: 799px) {
     width: 100%;
   }
 
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 1) {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
     width: 100%;
     margin-top: 30px;
   }
 
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: landscape)
-  and (-webkit-min-device-pixel-ratio: 1) {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
     width: 90%;
     margin-top: 20px;
   }
@@ -38,12 +28,12 @@
 }
 
 .member-container {
-	width: 35%;
-	display: inline-block;
+  width: 35%;
+  display: inline-block;
   height: 200px;
   position: relative;
 
-	@media screen and (max-device-width: 362px) {
+  @media screen and (max-device-width: 362px) {
     margin-top: -10px;
   }
 
@@ -53,27 +43,17 @@
     margin-top: -10px;
   }
 
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: landscape)
-  and (-webkit-min-device-pixel-ratio: 1) {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
     width: 50%;
   }
 
   // Google Nexus 7
-  @media only screen
-  and (min-width: 421px)
-  and (max-width: 799px) {
+  @media only screen and (min-width: 421px) and (max-width: 799px) {
     width: 45%;
     height: 200px;
   }
 
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 1) {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
     width: 50%;
   }
 
@@ -81,8 +61,7 @@
     height: 110px;
   }
 
-  @media screen and (max-width: $iphone6)
-  and (-webkit-min-device-pixel-ratio: 2) {
+  @media screen and (max-width: $iphone6) and (-webkit-min-device-pixel-ratio: 2) {
     width: 46%;
     margin-right: 2%;
     margin-left: 1%;
@@ -101,20 +80,12 @@
   width: 65%;
   padding: 32.5% 0;
 
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 1) {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
     width: 50%;
     padding: 25% 0;
   }
 
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: landscape)
-  and (-webkit-min-device-pixel-ratio: 1) {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
     width: 40%;
     padding: 20% 0;
   }

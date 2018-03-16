@@ -1,119 +1,96 @@
-import React from 'react';
-import SenateActions from '../actions/SenateActions';
-import ContainerActions from '../actions/ContainerActions';
-import SenateStore from '../stores/SenateStore';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import cx from 'classnames';
 
 // Components
 import TextButton from './Buttons/TextButton';
 import MemberResults from './MemberResults';
-import BaseComponent from './BaseComponent';
+import { PropType as ContributionType } from '../models/Contribution';
+import { Legislator, PropType as LegislatorType } from '../models/Legislator';
+import { reset } from '../actions';
 
-class Results extends BaseComponent {
-  constructor() {
-    super();
-    this.state = SenateStore.getMember();
-    this._bind('_handleClick', '_handleRestart');
+export class Results extends Component {
+  static defaultProps = {
+    backgroundClasses: '',
+    destroy: () => {},
+    didSearch: false,
+    contributions: [],
+    representatives: [],
+  };
+
+  static propTypes = {
+    backgroundClasses: PropTypes.any,
+    destroy: PropTypes.func,
+    didSearch: PropTypes.bool.isRequired,
+    contributions: PropTypes.arrayOf(ContributionType),
+    representatives: PropTypes.arrayOf(LegislatorType),
+  };
+
+  getButtonProps(index) {
+    const { onBack } = this.props;
+    return index === 0 ? { onClick: onBack } : { link: `#section-${index}` };
   }
 
-  // Check if component should update, and update only if user did search
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.did_search) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  // Function to restart application and set did_search inside SenateStore() to false
-  _handleRestart() {
-    SenateActions.flush();
-    this.props.destroy();
-  }
-
-  // Function to make fullPage move up one section
-  _goBack() {
-    if ($.fn.fullpage) {
-      $.fn.fullpage.moveSectionUp();
-    }
-  }
-
-  // Function to select specific member based on target.id
-  _handleClick(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    // Listen for event.target.id in order to decipher which of the arrows was tapped
-    ContainerActions.setCurrentMember(event.target.id);
-    if ($.fn.fullpage) {
-      $.fn.fullpage.moveSectionDown();
-    }
-  }
   render() {
-    const {
-      number_representatives,
-      representatives,
-      number_house
-    } = this.state;
+    const { didSearch, contributions, representatives } = this.props;
 
-    const backgroundClasses = cx(
-      ['second-wrapper'],
-      {'move-up': this.state.did_search}
+    const backgroundClasses = cx(['second-wrapper'], {
+      'move-up': didSearch,
+    });
+
+    const calcButtonProps = this.getButtonProps.bind(this);
+    const legislators = representatives.map(rep => new Legislator(rep));
+    const getAmount = Legislator.getContributionAmount.bind(
+      this,
+      contributions
     );
+    const first_rep = legislators.filter(rep => getAmount(rep) > 0);
+    const second_rep = legislators.filter(rep => getAmount(rep) === 0);
+    const sections = [first_rep, second_rep]
+      .filter(partition => partition.length > 0)
+      .map((partition, index) => (
+        <div
+          key={partition.reduce(
+            (key, legislator) => key + legislator.identifier,
+            ''
+          )}
+          className="section block"
+          id={`section-${index + 1}`}
+        >
+          <TextButton text="Back" {...calcButtonProps(index)} />
+          <MemberResults
+            didSearch={didSearch}
+            legislators={partition}
+            contributions={contributions}
+            section={index + 1}
+          />
+        </div>
+      ));
 
-    let first_rep,
-      second_rep,
-      testMap;
-
-    // Check if representatives exist and that they have the correct numer of members
-    if (representatives && number_representatives > 2 && number_house === 1) {
-      let count = 0;
-      // Assign member values to vars to ensure fullPage support (vs. dynamic rendering)
-      for (let i = 0; i < representatives.length; i++) {
-        if (representatives[i].payment > 0) {
-          count++;
-        }
-      }
-      // Check whether representatives received any contributions to divide them into groups
-      if (count === 0 || count === 1 || count === 3) {
-        first_rep = representatives.slice(0, 1);
-        second_rep = representatives.slice(1, 3);
-      } else if (count === 2) {
-        first_rep = representatives.slice(0, 2);
-        second_rep = representatives.slice(2, 3);
-      }
-    }
-
-    return <div className={backgroundClasses} id="fullpage">
-      {testMap}
-      <div className="section block section-two">
-        <TextButton
-          text="Back"
-          onClick={this._handleRestart}
-        />
-        <MemberResults
-          numRep={number_representatives}
-          representative={first_rep}
-          section={1}
-        />
+    return (
+      <div className={backgroundClasses} id="fullpage">
+        {sections}
       </div>
-      <div className="section block section-two">
-        <TextButton
-          text="Back"
-          onClick={this._goBack}
-        />
-        <MemberResults
-          numRep={number_representatives}
-          representative={second_rep}
-          section={2}
-        />
-      </div>
-    </div>;
+    );
   }
 }
 
-Results.propTypes = {
-  backgroundClasses: React.PropTypes.any,
-  destroy: React.PropTypes.func
-};
+function mapStateToProps(state) {
+  const { address, view } = state;
+  return {
+    didSearch: address.value !== undefined,
+    ...view,
+  };
+}
 
-export default Results;
+function mapDispatchToProps(dispatch) {
+  return {
+    onBack: event => {
+      event.preventDefault();
+      dispatch(reset());
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Results);

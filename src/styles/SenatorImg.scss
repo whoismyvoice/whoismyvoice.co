@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'transitions';
+@import '_variables';
+@import '_transitions';
 
 .member-img {
   z-index: 2;
@@ -7,22 +7,22 @@
   display: flex;
   align-content: center;
   justify-content: center;
-	width: 9%;
-	height: 0;
+  width: 9%;
+  height: 0;
   margin: 0 auto;
   top: 0;
-	padding: 4.5% 0;
-	border-radius: 50%;
-	overflow: hidden;
-	opacity: 1;
+  padding: 4.5% 0;
+  border-radius: 50%;
+  overflow: hidden;
+  opacity: 1;
   border: 8px solid $dark-red;
 
   &.member--blue {
-    border: 8px solid #203C70;
+    border: 8px solid #203c70;
   }
 
   &.member--grey {
-    border: 8px solid #9B9695;
+    border: 8px solid #9b9695;
   }
 
   @media screen and (max-width: $iphone6) {
@@ -53,20 +53,12 @@
     animation-delay: 1s;
     -webkit-animation-delay: 1s;
 
-    @media only screen
-    and (min-device-width: 768px)
-    and (max-device-width: 1024px)
-    and (orientation: portrait)
-    and (-webkit-min-device-pixel-ratio: 1) {
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
       animation-name: fadeIn;
       -webkit-animation-name: fadeIn;
     }
 
-    @media only screen
-    and (min-device-width: 768px)
-    and (max-device-width: 1024px)
-    and (orientation: landscape)
-    and (-webkit-min-device-pixel-ratio: 1) {
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
       animation-name: fadeIn;
       -webkit-animation-name: fadeIn;
     }
@@ -77,11 +69,7 @@
     }
   }
 
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 1) {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
     width: 20%;
     padding: 10% 0;
   }
@@ -93,8 +81,8 @@
     padding: 12.5% 0;
   }
 
-	img {
-		width: 100%;
+  img {
+    width: 100%;
     align-self: center;
     top: 0;
     position: relative;
@@ -105,5 +93,5 @@
     @media screen and (min-width: 640px), screen\9 {
       //margin-top: -140px;
     }
-	}
+  }
 }

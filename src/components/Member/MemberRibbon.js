@@ -1,36 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-// Component
-import BaseComponent from '../BaseComponent';
-
 // Styles
-import style from './../../styles/MemberRibbon.scss';
+import './../../styles/MemberRibbon.css';
 
-class MemberRibbon extends BaseComponent {
+class MemberRibbon extends Component {
   render() {
-    const {name, state, party} = this.props;
+    const { name, state, party } = this.props;
 
     const ribbonClasses = cx(
       ['ribbon'],
-      {'ribbon--grey': party === 'I'},
-      {'ribbon--blue': party === 'D'}
+      { 'ribbon--grey': party === 'I' },
+      { 'ribbon--blue': party === 'D' }
     );
 
-    return <div className="ribbon-wrapper">
-      <h1 className={ribbonClasses}>
-        <strong className="ribbon-content">
-    	     ({party} - {state}) {name}
-        </strong>
-      </h1>
-    </div>;
+    return (
+      <div className="ribbon-wrapper">
+        <h1 className={ribbonClasses}>
+          <strong className="ribbon-content">
+            ({party} - {state}) {name}
+          </strong>
+        </h1>
+      </div>
+    );
   }
 }
 
 MemberRibbon.propTypes = {
-  name: React.PropTypes.string,
-  party: React.PropTypes.string,
-  state: React.PropTypes.string
+  name: PropTypes.string,
+  party: PropTypes.string,
+  state: PropTypes.string,
 };
 
 export default MemberRibbon;

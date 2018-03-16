@@ -1,11 +1,12 @@
-@import 'variables';
-@import 'transitions';
+@import '_variables';
+@import '_transitions';
 
 // BEM & OOCSS
-body, html {
+body,
+html {
   margin: 0 auto;
   overflow-x: hidden;
-  min-height: 100%!important;
+  min-height: 100% !important;
   height: 100%;
   width: 100%;
   font-family: 'Dosis', 'Helvetica Neue';
@@ -31,18 +32,19 @@ ul {
 
 // General classes / elements
 .hide {
-  display: none!important;
+  display: none !important;
 }
 
 .hidden {
-  visibility: hidden!important;
+  visibility: hidden !important;
 }
 
 .uppercase {
   text-transform: uppercase;
 }
 
-button, input {
+button,
+input {
   -webkit-focus-ring-color: none;
   outline: none;
 }
@@ -71,21 +73,13 @@ button, input {
     margin-top: 20px;
   }
 
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 1) {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
     max-height: 300px;
     height: 18vh;
     margin-top: 50px;
   }
 
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: landscape)
-  and (-webkit-min-device-pixel-ratio: 1) {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
     max-height: 300px;
     height: 18vh;
     margin-top: 30px;
@@ -121,19 +115,11 @@ button, input {
       left: -1px;
     }
 
-    @media only screen
-    and (min-device-width: 768px)
-    and (max-device-width: 1024px)
-    and (orientation: portrait)
-    and (-webkit-min-device-pixel-ratio: 1) {
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
       left: -1px;
     }
 
-    @media only screen
-    and (min-device-width: 768px)
-    and (max-device-width: 1024px)
-    and (orientation: landscape)
-    and (-webkit-min-device-pixel-ratio: 1) {
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
       left: -1px;
     }
   }
@@ -143,19 +129,11 @@ button, input {
   height: 5vh;
   margin-top: 5vh;
 
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: landscape)
-  and (-webkit-min-device-pixel-ratio: 1) {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
     margin-top: 12vh;
   }
 
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 1) {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
     margin-top: 15vh;
   }
 
@@ -200,7 +178,7 @@ button, input {
   display: inline-block;
   margin: 0 auto;
   width: 100vw;
-  height: 100vh!important;
+  height: 100vh !important;
   text-align: center;
 }
 
@@ -239,19 +217,11 @@ button, input {
   background-color: $light-white;
   text-align: center;
 
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 1) {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
     padding-top: 10%;
   }
 
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: landscape)
-  and (-webkit-min-device-pixel-ratio: 1) {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
     padding-top: 8%;
   }
 }
@@ -267,11 +237,7 @@ button, input {
     text-transform: uppercase;
   }
 
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: portrait)
-  and (-webkit-min-device-pixel-ratio: 1) {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
     width: 80%;
   }
 
@@ -306,11 +272,7 @@ button, input {
   opacity: 0;
 }
 
-@media only screen
-and (max-width: 736px)
-and (-webkit-min-device-pixel-ratio: 2)
-and (orientation: landscape)
-and (min-aspect-ratio: 13/9) {
+@media only screen and (max-width: 736px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) and (min-aspect-ratio: 13/9) {
   .overlay {
     @include transition(1s);
     z-index: 99;

@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'transitions';
+@import '_variables';
+@import '_transitions';
 
 h1 {
   margin-top: 0;
@@ -11,42 +11,34 @@ h1 {
 .container {
   @include transition(1s);
   z-index: 1;
-	width: 100vw;
-	height: 100vh;
-	overflow: hidden;
-	-webkit-overflow-scrolling: touch;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
 
   &.visible {
     overflow: visible;
   }
 
-	@media screen and (max-width: $iphone6) {
-		height: 100vh;
-		min-height: 100%!important;
-	}
+  @media screen and (max-width: $iphone6) {
+    height: 100vh;
+    min-height: 100% !important;
+  }
 
-	@media screen and (max-width: $iphone6)
-	and (-webkit-min-device-pixel-ratio: 2)
-	and (device-aspect-ratio: 375/667) {
-		height: 89.5vh;
-	}
+  @media screen and (max-width: $iphone6) and (-webkit-min-device-pixel-ratio: 2) and (device-aspect-ratio: 375/667) {
+    height: 89.5vh;
+  }
 
-	@media screen and (max-width: $iphone5-min) {
-		height: 99vh;
-		min-height: 100%!important;
-	}
+  @media screen and (max-width: $iphone5-min) {
+    height: 99vh;
+    min-height: 100% !important;
+  }
 
-	@media screen and (max-width: $iphone5-min)
-	and (-webkit-min-device-pixel-ratio: 2)
-	and (device-aspect-ratio: 40/71) {
-		height: 87vh;
-	}
+  @media screen and (max-width: $iphone5-min) and (-webkit-min-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71) {
+    height: 87vh;
+  }
 
-	@media only screen
-  and (min-device-width : 414px)
-  and (max-device-width : 736px)
-  and (orientation : portrait)
-  and (-webkit-min-device-pixel-ratio : 3) {
+  @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 3) {
     height: 89.5vh;
   }
 }

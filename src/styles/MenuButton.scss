@@ -1,13 +1,13 @@
-@import 'variables';
-@import 'transitions';
+@import '_variables';
+@import '_transitions';
 
 .menu-button {
   z-index: 10;
   position: fixed;
   display: block;
-  -moz-box-shadow: 3px 3px 5px rgba(68,68,68,0.2);
-  -webkit-box-shadow: 3px 3px 5px rgba(68,68,68,0.2);
-  box-shadow: 3px 3px 5px rgba(68,68,68,0.2);
+  -moz-box-shadow: 3px 3px 5px rgba(68, 68, 68, 0.2);
+  -webkit-box-shadow: 3px 3px 5px rgba(68, 68, 68, 0.2);
+  box-shadow: 3px 3px 5px rgba(68, 68, 68, 0.2);
   width: 35px;
   height: 35px;
   right: 35px;
@@ -18,7 +18,8 @@
   line-height: 2.2;
   cursor: pointer;
 
-  &:before, &:after {
+  &:before,
+  &:after {
     @include transition(0.2s);
     content: '?';
     font-weight: bold;
@@ -42,7 +43,8 @@
   }
 
   &:hover {
-    &:before, &:after {
+    &:before,
+    &:after {
       color: $dark-orange;
     }
   }
@@ -72,7 +74,7 @@
   width: 100vw;
   display: block;
   z-index: 4;
-  background-color: rgba(255,149,73,0);
+  background-color: rgba(255, 149, 73, 0);
 
   a {
     color: $black;
@@ -82,16 +84,16 @@
 .menu-overlay--show {
   @include transition(0.5s);
   visibility: visible;
-  background-color: rgba(255,149,73,0.9);
+  background-color: rgba(255, 149, 73, 0.9);
 }
 
 .menu-overlay--white {
   @include transition(0.5s);
   visibility: visible;
-  background-color: rgba(255,255,255, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
 
   @media screen and (max-width: $iphone6) {
-    background-color: rgba(255,255,255, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
   }
 }
 
@@ -137,7 +139,7 @@
 }
 
 .menu-buttons--white {
-  -moz-box-shadow: 2px 2px 2px rgba(68,68,68,0.2);
-  -webkit-box-shadow: 2px 2px 2px rgba(68,68,68,0.2);
-  box-shadow: 2px 2px 2px rgba(68,68,68,0.2);
+  -moz-box-shadow: 2px 2px 2px rgba(68, 68, 68, 0.2);
+  -webkit-box-shadow: 2px 2px 2px rgba(68, 68, 68, 0.2);
+  box-shadow: 2px 2px 2px rgba(68, 68, 68, 0.2);
 }

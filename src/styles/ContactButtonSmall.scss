@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'transitions';
+@import '_variables';
+@import '_transitions';
 
 .contact__button_small {
   @include transition(0.5s);
@@ -54,7 +54,6 @@
   width: 35px;
   float: left;
   margin-top: 3px;
-  display: inline-block;
   background-repeat: no-repeat;
 
   @media screen and (max-height: 650px) {
