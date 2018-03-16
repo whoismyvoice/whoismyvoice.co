@@ -1,32 +1,32 @@
-import React, { Component, } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
 import CongressmanGroup from './Member/CongressmanGroup';
 import TextButton from './Buttons/TextButton';
-import { PropType as ContributionType, } from '../models/Contribution';
-import { Legislator, } from '../models/Legislator';
+import { PropType as ContributionType } from '../models/Contribution';
+import { Legislator } from '../models/Legislator';
 import { MemberResultsTitle } from './MemberResultsTitle';
 // Constants
-import {
-  ORGANIZATION_DISPLAY,
-} from '../constants';
+import { ORGANIZATION_DISPLAY } from '../constants';
 
 class MemberResults extends Component {
   static defaultProps = {
     legislators: [],
     contributions: [],
     section: 1,
-  }
+  };
 
   static propTypes = {
     legislators: PropTypes.arrayOf(PropTypes.instanceOf(Legislator)),
     contributions: PropTypes.arrayOf(ContributionType),
-    section: PropTypes.oneOf([ 1, 2, 3, ]),
-  }
+    section: PropTypes.oneOf([1, 2, 3]),
+  };
 
   static getNextButtonText(legislators) {
-    const houseIndex = legislators.findIndex(legislator => legislator.chamber === 'house');
+    const houseIndex = legislators.findIndex(
+      legislator => legislator.chamber === 'house'
+    );
     if (legislators.length === 1 && houseIndex !== -1) {
       // `legislators` is only the US House Rep
       return 'My Senators';
@@ -35,7 +35,7 @@ class MemberResults extends Component {
       return 'My Other Representatives';
     } else if (houseIndex === -1) {
       // `legislators` is both US Senators
-      return 'My Representative'
+      return 'My Representative';
     } else {
       // `legislators` is a US Senator and a US House Rep
       return 'My Other Senator';
@@ -43,39 +43,46 @@ class MemberResults extends Component {
   }
 
   renderNextButton() {
-    const { legislators, section, } = this.props;
+    const { legislators, section } = this.props;
     let nextText = MemberResults.getNextButtonText(legislators);
-    const nextButton = section === 2 || legislators.length === 3 ? '' : (
-      <span>
-        <div className="line-seperator line-seperator--small"></div>
-        <TextButton
-          link={`#section-${section + 1}`}
-          text={`See ${nextText}`}
-        />
-      </span>
-    );
+    const nextButton =
+      section === 2 || legislators.length === 3 ? (
+        ''
+      ) : (
+        <span>
+          <div className="line-seperator line-seperator--small" />
+          <TextButton
+            link={`#section-${section + 1}`}
+            text={`See ${nextText}`}
+          />
+        </span>
+      );
     return nextButton;
   }
 
   renderTitleSection() {
-    const {
-      legislators,
-      contributions,
-      section,
-    } = this.props;
+    const { legislators, contributions, section } = this.props;
 
     const yayTemplateString = `Your <%= memberType %> <span class="bold"><b>accepted money</b></span> <span class="strike-out">from <%= organizationName %></span> in their recent election cycles.`;
-    const nayTemplateString = `Your <%= memberType %> <span class="bold"><b>did not</b></span> take any money <span class="strike-out">from <%= organizationName %></span> in their recent election cycles.`
+    const nayTemplateString = `Your <%= memberType %> <span class="bold"><b>did not</b></span> take any money <span class="strike-out">from <%= organizationName %></span> in their recent election cycles.`;
     const templateData = {
       organizationName: ORGANIZATION_DISPLAY,
     };
-    const getAmount = Legislator.getContributionAmount.bind(this, contributions);
-    const paymentAmount = legislators.reduce((amount, legislator) => (amount + getAmount(legislator)), 0);
+    const getAmount = Legislator.getContributionAmount.bind(
+      this,
+      contributions
+    );
+    const paymentAmount = legislators.reduce(
+      (amount, legislator) => amount + getAmount(legislator),
+      0
+    );
     return (
       <span>
         <MemberResultsTitle
           className="title-component--results"
-          templateString={paymentAmount > 0 ? yayTemplateString : nayTemplateString}
+          templateString={
+            paymentAmount > 0 ? yayTemplateString : nayTemplateString
+          }
           templateData={templateData}
           legislators={legislators}
         />

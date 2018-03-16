@@ -1,11 +1,7 @@
 import PropTypes from 'prop-types';
 import fetch from 'isomorphic-fetch';
 
-import {
-  ELECTION_CYCLE,
-  EXECUTE_PROXY,
-  ORGANIZATION,
-} from '../constants';
+import { ELECTION_CYCLE, EXECUTE_PROXY, ORGANIZATION } from '../constants';
 import {
   RECEIVE_ADDRESS,
   RECEIVE_CONTRIBUTION_DATA,
@@ -16,8 +12,8 @@ import {
   RESET_CURRENT,
   TOGGLE_MENU,
 } from './types';
-import { Legislator, } from '../models/Legislator';
-import { PropType as MaplightResultsType, } from '../models/MaplightResults';
+import { Legislator } from '../models/Legislator';
+import { PropType as MaplightResultsType } from '../models/MaplightResults';
 
 /**
  * Match FEC ids for house and senate races. Potentially important because some
@@ -35,7 +31,9 @@ const FEC_ID_REGEX = /[HS]\d{1,3}[A-Z]{2}\d+/;
  * @returns contribution data.
  */
 async function fetchContributionsForCandidate(organization, legislator) {
-  const candidateFecIds = legislator.id.fec.filter(fecId => FEC_ID_REGEX.test(fecId));
+  const candidateFecIds = legislator.id.fec.filter(fecId =>
+    FEC_ID_REGEX.test(fecId)
+  );
   const baseUrl = `${EXECUTE_PROXY}/maplight`;
   const electionCycle = encodeURIComponent(ELECTION_CYCLE);
   const organizationName = encodeURIComponent(organization);
@@ -84,7 +82,8 @@ async function fetchOfficialsForAddress(address) {
  * @returns array of officials.
  */
 async function fetchLegislatorsAll() {
-  const url = 'https://theunitedstates.io/congress-legislators/legislators-current.json';
+  const url =
+    'https://theunitedstates.io/congress-legislators/legislators-current.json';
   const response = await fetch(url);
   if (response.ok) {
     const body = await response.json();
@@ -98,7 +97,9 @@ async function fetchLegislatorsAll() {
 }
 
 async function getLegislatorForOfficial(allLegislators, official) {
-  return allLegislators.find((legislator) => Legislator.getIdentifier(legislator) === official.name);
+  return allLegislators.find(
+    legislator => Legislator.getIdentifier(legislator) === official.name
+  );
 }
 
 /**
@@ -131,15 +132,15 @@ export function receiveAddress(address) {
  */
 function receiveContributionDataForLegislator(legislator, contributionResults) {
   PropTypes.checkPropTypes(
-    { contributionResults: MaplightResultsType, },
-    { contributionResults, },
+    { contributionResults: MaplightResultsType },
+    { contributionResults },
     'contributionResults',
-    'actions#receiveContributionDataForLegislator',
+    'actions#receiveContributionDataForLegislator'
   );
   return receiveContributionData(
     Legislator.getIdentifier(legislator),
     contributionResults.search_terms.donor.donor_organization,
-    contributionResults.data.aggregate_totals[0].total_amount,
+    contributionResults.data.aggregate_totals[0].total_amount
   );
 }
 
@@ -253,14 +254,21 @@ export function setAddress(address) {
     if (currentOfficials instanceof Error) {
       // response is error; abort
       dispatch(receiveOfficialsError(currentOfficials));
-      return
+      return;
     }
     dispatch(receiveOfficials(currentOfficials));
     const getLegislator = getLegislatorForOfficial.bind(this, allLegislators);
-    const currentLegislators = await Promise.all(currentOfficials.map(official => getLegislator(official)));
+    const currentLegislators = await Promise.all(
+      currentOfficials.map(official => getLegislator(official))
+    );
     currentLegislators.forEach(async legislator => {
-      const contributionData = await fetchContributionsForCandidate(ORGANIZATION, legislator);
-      dispatch(receiveContributionDataForLegislator(legislator, contributionData));
+      const contributionData = await fetchContributionsForCandidate(
+        ORGANIZATION,
+        legislator
+      );
+      dispatch(
+        receiveContributionDataForLegislator(legislator, contributionData)
+      );
     });
   };
 }

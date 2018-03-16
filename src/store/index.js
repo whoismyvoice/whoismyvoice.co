@@ -1,7 +1,7 @@
 import thunkMiddleware from 'redux-thunk';
-import { createLogger, } from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import promiseMiddleware from 'redux-promise';
-import { applyMiddleware, combineReducers, createStore, } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 
 import address from './address';
 import contributions from './contributions';
@@ -18,9 +18,5 @@ export default createStore(
     view,
   }),
   {},
-  applyMiddleware(
-    thunkMiddleware,
-    promiseMiddleware,
-    loggerMiddleware,
-  )
+  applyMiddleware(thunkMiddleware, promiseMiddleware, loggerMiddleware)
 );

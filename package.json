@@ -21,8 +21,14 @@
   },
   "homepage": "http://whoismyvoice.com",
   "devDependencies": {
+    "@types/react": "^16.0.40",
+    "@types/react-dom": "^16.0.4",
+    "eslint-plugin-prettier": "^2.6.0",
+    "husky": "^0.14.3",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.2",
+    "prettier": "^1.11.1",
+    "pretty-quick": "^1.4.1",
     "react-scripts": "1.1.1"
   },
   "dependencies": {
@@ -44,6 +50,7 @@
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
+    "precommit": "pretty-quick --staged",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

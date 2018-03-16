@@ -1,9 +1,9 @@
-import React, { Component, } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
 import ContactButtonSmall from './../Buttons/ContactButtonSmall';
-import { Legislator, } from '../../models/Legislator';
+import { Legislator } from '../../models/Legislator';
 
 // Styles
 import './../../styles/ActionButtons.css';
@@ -11,10 +11,10 @@ import './../../styles/ActionButtons.css';
 class SupportActions extends Component {
   static propTypes = {
     legislator: PropTypes.instanceOf(Legislator).isRequired,
-  }
+  };
 
   render() {
-    const { legislator, } = this.props;
+    const { legislator } = this.props;
     // Define each value used for every member
     const gender = legislator.genderPronoun;
     const twitter = legislator.twitter;

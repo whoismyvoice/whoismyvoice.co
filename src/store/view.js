@@ -10,7 +10,7 @@ const initialState = {
 };
 
 function handle(state = initialState, action) {
-  const { type, } = action;
+  const { type } = action;
   switch (type) {
     case RECEIVE_OFFICIALS:
       return {

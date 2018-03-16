@@ -31,15 +31,15 @@ describe('initial state', () => {
       response: {
         json: () => {
           return Promise.resolve({
-            error: { message: 'foo', },
+            error: { message: 'foo' },
           });
         },
       },
     };
     beforeEach(async () => {
       receiveOfficialsErrorAction = await receiveOfficialsError(error);
-      state = view(initialState, receiveOfficialsErrorAction)
-    })
+      state = view(initialState, receiveOfficialsErrorAction);
+    });
     it('has an error', async () => {
       expect(state.addressErrorMessage).toBe('foo');
     });

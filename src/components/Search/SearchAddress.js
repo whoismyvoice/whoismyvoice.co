@@ -1,4 +1,4 @@
-import React, { Component, } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
@@ -17,7 +17,7 @@ class SearchAddress extends Component {
       zipCode,
     } = this.props;
     const inputClasses = cx('input', {
-      'address_search': isStreetAddressNeeded,
+      address_search: isStreetAddressNeeded,
     });
     let formFields = [];
     if (isStreetAddressNeeded) {
@@ -26,12 +26,7 @@ class SearchAddress extends Component {
           <div key="zipCodeDisplay" className="locked__zip">
             ZIP: {zipCode}
           </div>
-          <input
-            key="zipCode"
-            type="hidden"
-            name="zipCode"
-            value={zipCode}
-          />
+          <input key="zipCode" type="hidden" name="zipCode" value={zipCode} />
           <input
             key="address"
             className={inputClasses}
@@ -54,15 +49,10 @@ class SearchAddress extends Component {
       );
     }
     return (
-      <form
-        method="GET"
-        onSubmit={onSubmit}
-      >
+      <form method="GET" onSubmit={onSubmit}>
         {formFields}
-        <div className="line-seperator"></div>
-        <TextFormButton
-          text="Continue"
-        />
+        <div className="line-seperator" />
+        <TextFormButton text="Continue" />
       </form>
     );
   }

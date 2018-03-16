@@ -13,10 +13,11 @@ export const PropType = PropTypes.shape({
     election_cycle: PropTypes.string.isRequired,
   }),
   data: PropTypes.shape({
-    aggregate_totals: PropTypes.arrayOf(PropTypes.shape({
-      contributions: PropTypes.number.isRequired,
-      total_amount: PropTypes.number.isRequired,
-    })),
+    aggregate_totals: PropTypes.arrayOf(
+      PropTypes.shape({
+        contributions: PropTypes.number.isRequired,
+        total_amount: PropTypes.number.isRequired,
+      })
+    ),
   }),
 });
-

@@ -1,7 +1,4 @@
-import {
-  receiveContributionData,
-  reset,
-} from '../actions';
+import { receiveContributionData, reset } from '../actions';
 import contributions from './contributions';
 
 it('provides an initial state when given undefined', () => {
@@ -18,31 +15,28 @@ it('has an empty object for initial dictionary', () => {
 
 describe('byOrganization', () => {
   it('adds an organization to dictionary', () => {
-    const state = contributions(undefined, receiveContributionData(
-      'John Smith',
-      'SuperPAC',
-      1000,
-    ));
-    const { byOrganization, } = state;
+    const state = contributions(
+      undefined,
+      receiveContributionData('John Smith', 'SuperPAC', 1000)
+    );
+    const { byOrganization } = state;
     expect(Object.keys(byOrganization).length).toBe(1);
     expect(Object.keys(byOrganization)).toContain('SuperPAC');
   });
 
   it('overwrites an official in organization dictionary with same id', () => {
     const state = (() => {
-      let state = contributions(undefined, receiveContributionData(
-        'John Smith',
-        'SuperPAC',
-        1000,
-      ));
-      state = contributions(undefined, receiveContributionData(
-        'John Smith',
-        'SuperPAC',
-        2000,
-      ));
+      let state = contributions(
+        undefined,
+        receiveContributionData('John Smith', 'SuperPAC', 1000)
+      );
+      state = contributions(
+        undefined,
+        receiveContributionData('John Smith', 'SuperPAC', 2000)
+      );
       return state;
     })();
-    const { byOrganization, } = state;
+    const { byOrganization } = state;
     expect(Object.keys(byOrganization).length).toBe(1);
     expect(Object.keys(byOrganization)).toContain('SuperPAC');
     expect(byOrganization['SuperPAC']).not.toContainEqual({
@@ -61,16 +55,14 @@ describe('byOrganization', () => {
 describe('existing state', () => {
   let initialState = contributions(undefined, {});
   beforeEach(() => {
-    initialState = contributions(undefined, receiveContributionData(
-      'John Smith',
-      'SuperPAC',
-      1000,
-    ));
-    initialState = contributions(undefined, receiveContributionData(
-      'John Smith Jr.',
-      'SuperPAC',
-      2000,
-    ));
+    initialState = contributions(
+      undefined,
+      receiveContributionData('John Smith', 'SuperPAC', 1000)
+    );
+    initialState = contributions(
+      undefined,
+      receiveContributionData('John Smith Jr.', 'SuperPAC', 2000)
+    );
   });
 
   it('will not be reset', () => {

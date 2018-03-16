@@ -1,4 +1,4 @@
-import React, { Component, } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
@@ -7,12 +7,12 @@ import '../styles/TitleComponent.css';
 export class StarTitle extends Component {
   static defaultProps = {
     templateData: {},
-  }
+  };
 
   static propTypes = {
     templateData: PropTypes.shape({}),
     templateString: PropTypes.string.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -36,16 +36,15 @@ export class StarTitle extends Component {
   }
 
   render() {
-    const { templateData, } = this.props;
-    const content = { __html: this.template(templateData), };
+    const { templateData } = this.props;
+    const content = { __html: this.template(templateData) };
     return (
       <div className="title-component uppercase">
         {this.renderStars()}
         <div
           className="title-component__description"
           dangerouslySetInnerHTML={content}
-          >
-        </div>
+        />
       </div>
     );
   }

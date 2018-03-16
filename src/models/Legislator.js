@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { PropType as ContributionType, } from './Contribution';
+import { PropType as ContributionType } from './Contribution';
 
 /**
  * Defines the `PropTypes` validation structure for a `Legislator` record.
@@ -22,19 +22,23 @@ export const PropType = PropTypes.shape({
     birthday: PropTypes.string,
     gender: PropTypes.string,
   }),
-  channels: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string,
-    type: PropTypes.string,
-  })),
+  channels: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      type: PropTypes.string,
+    })
+  ),
   photoUrl: PropTypes.string,
-  terms: PropTypes.arrayOf(PropTypes.shape({
-    type: PropTypes.string.isRequired,
-    start: PropTypes.string.isRequired,
-    end: PropTypes.string.isRequired,
-    state: PropTypes.string,
-    district: PropTypes.number,
-    party: PropTypes.string,
-  })),
+  terms: PropTypes.arrayOf(
+    PropTypes.shape({
+      type: PropTypes.string.isRequired,
+      start: PropTypes.string.isRequired,
+      end: PropTypes.string.isRequired,
+      state: PropTypes.string,
+      district: PropTypes.number,
+      party: PropTypes.string,
+    })
+  ),
 });
 
 /**
@@ -44,7 +48,7 @@ export const PropType = PropTypes.shape({
  *    plain latin variants.
  */
 function stripDiacritics(str) {
-  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
 /**
@@ -58,7 +62,12 @@ export class Legislator {
    * @returns the identifier used for legislator records for the given `record`.
    */
   static getIdentifier(record) {
-    PropTypes.checkPropTypes({ record: PropType, }, { record, }, 'record', 'Legislator#getIdentifier');
+    PropTypes.checkPropTypes(
+      { record: PropType },
+      { record },
+      'record',
+      'Legislator#getIdentifier'
+    );
     let identifier = undefined;
     if (record.identifier !== undefined) {
       identifier = record.identifier;
@@ -80,11 +89,19 @@ export class Legislator {
    *    property of the contribution record otherwise.
    */
   static getContributionAmount(contributions, legislator) {
-    PropTypes.checkPropTypes({ contributions: PropTypes.arrayOf(ContributionType) }, { contributions, }, 'contributions', 'Legislator#getContributionAmount');
-    const id = legislator instanceof Legislator
-      ? legislator.identifier
-      : Legislator.getIdentifier(legislator);
-    const contribution = contributions.find(record => record.legislatorId === id);
+    PropTypes.checkPropTypes(
+      { contributions: PropTypes.arrayOf(ContributionType) },
+      { contributions },
+      'contributions',
+      'Legislator#getContributionAmount'
+    );
+    const id =
+      legislator instanceof Legislator
+        ? legislator.identifier
+        : Legislator.getIdentifier(legislator);
+    const contribution = contributions.find(
+      record => record.legislatorId === id
+    );
     if (contribution !== undefined) {
       return contribution.amount;
     } else {
@@ -113,7 +130,12 @@ export class Legislator {
    *    distinct service terms of the legislator.
    */
   constructor(record) {
-    PropTypes.checkPropTypes({ record: PropType, }, { record, }, 'record', 'Legislator');
+    PropTypes.checkPropTypes(
+      { record: PropType },
+      { record },
+      'record',
+      'Legislator'
+    );
     this.record = record;
   }
 
@@ -154,8 +176,8 @@ export class Legislator {
    * @returns a term record for the most recent (current) term.
    */
   get currentTerm() {
-    const { terms, } = this;
-    const [ currentTerm, ] = terms.slice(-1);
+    const { terms } = this;
+    const [currentTerm] = terms.slice(-1);
     return currentTerm;
   }
 
@@ -181,9 +203,12 @@ export class Legislator {
    */
   get genderPronoun() {
     switch (this.gender) {
-      case 'M': return 'Him';
-      case 'F': return 'Her';
-      default: return 'Them';
+      case 'M':
+        return 'Him';
+      case 'F':
+        return 'Her';
+      default:
+        return 'Them';
     }
   }
 

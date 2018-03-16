@@ -13,21 +13,23 @@ exports.handler = (event, context, callback) => {
       'Access-Control-Allow-Headers': 'Accept-Encoding',
       'Access-Control-Allow-Methods': 'GET,OPTIONS',
     },
-    body: JSON.stringify({ event: event, context: context })
+    body: JSON.stringify({ event: event, context: context }),
   };
-  const { fecIds, cycle, organization, } = event.queryStringParameters;
+  const { fecIds, cycle, organization } = event.queryStringParameters;
   const donor_organization = encodeURIComponent(organization);
   const candidate_fecid = encodeURIComponent(fecIds);
   const election_cycle = encodeURIComponent(cycle);
   const params = `election_cycle=${election_cycle}&candidate_fecid=${candidate_fecid}&donor_organization=${donor_organization}&donor_text=${donor_organization}`;
   const url = `${baseUrl}?${params}`;
-  const req = http.get(url, (res) => {
+  const req = http.get(url, res => {
     const statusCode = res.statusCode;
     const contentType = res.headers['content-type'];
 
     let error;
     if (!/^application\/json/.test(contentType)) {
-      error = new Error(`Invalid content-type.\nExpected application/json but received ${contentType}`);
+      error = new Error(
+        `Invalid content-type.\nExpected application/json but received ${contentType}`
+      );
     }
     if (error) {
       console.log(error.message);
@@ -42,7 +44,7 @@ exports.handler = (event, context, callback) => {
     }
     res.setEncoding('utf8');
     let rawData = '';
-    res.on('data', (chunk) => rawData += chunk);
+    res.on('data', chunk => (rawData += chunk));
     res.on('end', () => {
       try {
         response.statusCode = statusCode;
@@ -56,9 +58,9 @@ exports.handler = (event, context, callback) => {
         });
         callback(null, response);
       }
-    })
+    });
   });
-  req.on('error', (e) => {
+  req.on('error', e => {
     console.log(`Got error: ${e.message}`);
     response.statusCode = 500;
     response.body = JSON.stringify({

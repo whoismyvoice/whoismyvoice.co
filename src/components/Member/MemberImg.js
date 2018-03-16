@@ -1,4 +1,4 @@
-import React, { Component, } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
@@ -11,20 +11,17 @@ class SenatorImg extends Component {
   static propTypes = {
     repNumber: PropTypes.number.isRequired,
     legislator: PropTypes.instanceOf(Legislator).isRequired,
-  }
+  };
 
   render() {
-    const {
-      legislator,
-      repNumber,
-    } = this.props;
+    const { legislator, repNumber } = this.props;
     const party = legislator.party;
 
     const imgClasses = cx(
       ['member-img'],
-      {'animated': repNumber > 2},
-      {'member--blue': party === 'D'},
-      {'member--grey': party === 'I'}
+      { animated: repNumber > 2 },
+      { 'member--blue': party === 'D' },
+      { 'member--grey': party === 'I' }
     );
 
     return (

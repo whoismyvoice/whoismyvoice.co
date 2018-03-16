@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { Legislator, } from '../models/Legislator';
+import { Legislator } from '../models/Legislator';
 import { Title } from './Title';
 
 import '../styles/TitleComponent.css';
@@ -8,28 +8,28 @@ import '../styles/TitleComponent.css';
 export class MemberResultsTitle extends Title {
   static defaultProps = {
     legislators: [],
-  }
+  };
 
   static propTypes = {
     legislators: PropTypes.arrayOf(PropTypes.instanceOf(Legislator)),
-  }
+  };
 
   constructor(props) {
     super(props);
     this.state = {
       templateData: {
-        ...(props.templateData),
+        ...props.templateData,
         memberType: MemberResultsTitle.getMemberType(props.legislators),
       },
     };
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
-    const { legislators, } = nextProps;
+    const { legislators } = nextProps;
     this.setState({
       templateData: {
-        ...(this.state.templateData),
-        ...(nextProps.templateData),
+        ...this.state.templateData,
+        ...nextProps.templateData,
         memberType: MemberResultsTitle.getMemberType(legislators),
       },
     });
@@ -38,7 +38,7 @@ export class MemberResultsTitle extends Title {
   static getMemberType(legislators) {
     let memberType;
     if (legislators.length === 1) {
-      const [ rep, ] = legislators;
+      const [rep] = legislators;
       memberType = rep.chamber === 'senate' ? 'Senator' : 'Representative';
     } else if (legislators.length === 2) {
       const chambers = legislators.map(legislator => legislator.chamber);

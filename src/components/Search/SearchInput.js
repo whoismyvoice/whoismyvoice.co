@@ -1,4 +1,4 @@
-import React, { Component, } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // Assets
@@ -9,7 +9,7 @@ const isUsZip = /^(\d{5})(-\d{4})?$/;
 class SearchInput extends Component {
   state = {
     isError: false,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -36,27 +36,26 @@ class SearchInput extends Component {
   }
 
   renderError() {
-    const { errorMessage, } = this.props;
-    return errorMessage === undefined
-      ? null
-      : (<p className="search-input-message--error">{errorMessage}</p>)
-      ;
+    const { errorMessage } = this.props;
+    return errorMessage === undefined ? null : (
+      <p className="search-input-message--error">{errorMessage}</p>
+    );
   }
 
   render() {
-    const { name, pattern, placeholder, } = this.props;
-    const { isError, } = this.state;
+    const { name, pattern, placeholder } = this.props;
+    const { isError } = this.state;
     return (
       <React.Fragment>
         {this.renderError()}
-      <input
-        type="text"
-        name={name}
-        className={isError ? 'error' : ''}
-        pattern={pattern}
-        placeholder={placeholder}
-        onChange={this.onChange}
-      />
+        <input
+          type="text"
+          name={name}
+          className={isError ? 'error' : ''}
+          pattern={pattern}
+          placeholder={placeholder}
+          onChange={this.onChange}
+        />
       </React.Fragment>
     );
   }

@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
-import {
-  RECEIVE_CONTRIBUTION_DATA,
-} from '../actions/types';
-import { PropType as ContributionType, } from '../models/Contribution';
+import { RECEIVE_CONTRIBUTION_DATA } from '../actions/types';
+import { PropType as ContributionType } from '../models/Contribution';
 
 const initialState = {
   byOrganization: {},
@@ -16,14 +14,14 @@ const initialState = {
  */
 function isContributionMatch(c1, c2) {
   PropTypes.checkPropTypes(
-    { contributions: PropTypes.arrayOf(ContributionType), },
-    { contributions: [ c1, c2, ], },
+    { contributions: PropTypes.arrayOf(ContributionType) },
+    { contributions: [c1, c2] },
     'c1, c2',
-    'store/contributions#isContributionMatch',
+    'store/contributions#isContributionMatch'
   );
-  return c1.legislatorId === c2.legislatorId
-    && c1.organization === c2.organization
-    ;
+  return (
+    c1.legislatorId === c2.legislatorId && c1.organization === c2.organization
+  );
 }
 
 /**
@@ -36,23 +34,22 @@ function isContributionMatch(c1, c2) {
  */
 function addContribution(contributions, contribution) {
   PropTypes.checkPropTypes(
-    { contributions: PropTypes.arrayOf(ContributionType), },
-    { contributions, },
+    { contributions: PropTypes.arrayOf(ContributionType) },
+    { contributions },
     'contributions',
-    'store/contributions#addContribution',
+    'store/contributions#addContribution'
   );
   PropTypes.checkPropTypes(
-    { contribution: ContributionType, },
-    { contribution, },
+    { contribution: ContributionType },
+    { contribution },
     'contribution',
-    'store/contributions#addContribution',
+    'store/contributions#addContribution'
   );
-  const recipientIndex = contributions.findIndex(contrib => isContributionMatch(contrib, contribution));
+  const recipientIndex = contributions.findIndex(contrib =>
+    isContributionMatch(contrib, contribution)
+  );
   if (recipientIndex === -1) {
-    return [
-      ...contributions,
-      contribution,
-    ];
+    return [...contributions, contribution];
   } else {
     return [
       ...contributions.slice(0, recipientIndex),
@@ -77,10 +74,10 @@ function handleByOrganization(state, action) {
   const { type, ...payload } = action;
   switch (type) {
     case RECEIVE_CONTRIBUTION_DATA:
-      const { organization, } = payload;
+      const { organization } = payload;
       return {
         ...state,
-        [organization]: addContribution((state[organization] || []), payload),
+        [organization]: addContribution(state[organization] || [], payload),
       };
     default:
       return state;
@@ -96,7 +93,7 @@ function handleByOrganization(state, action) {
  * @returns an updated `contributions` state.
  */
 function handle(state = initialState, action) {
-  const { type, } = action;
+  const { type } = action;
   switch (type) {
     case RECEIVE_CONTRIBUTION_DATA:
       return {

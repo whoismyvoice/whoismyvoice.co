@@ -1,4 +1,4 @@
-import React, { Component, } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class ControlledTextInput extends Component {
@@ -17,14 +17,8 @@ class ControlledTextInput extends Component {
   }
 
   render() {
-    const { value, } = this.state;
-    return (
-      <input
-        type="text"
-        {...this.props}
-        value={value}
-      />
-    );
+    const { value } = this.state;
+    return <input type="text" {...this.props} value={value} />;
   }
 }
 

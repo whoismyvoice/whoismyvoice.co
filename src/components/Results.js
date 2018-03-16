@@ -1,14 +1,14 @@
-import React, { Component, } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect, } from 'react-redux';
+import { connect } from 'react-redux';
 import cx from 'classnames';
 
 // Components
 import TextButton from './Buttons/TextButton';
 import MemberResults from './MemberResults';
-import { PropType as ContributionType, } from '../models/Contribution';
-import { Legislator, PropType as LegislatorType, } from '../models/Legislator';
-import { reset, } from '../actions';
+import { PropType as ContributionType } from '../models/Contribution';
+import { Legislator, PropType as LegislatorType } from '../models/Legislator';
+import { reset } from '../actions';
 
 export class Results extends Component {
   static defaultProps = {
@@ -17,7 +17,7 @@ export class Results extends Component {
     didSearch: false,
     contributions: [],
     representatives: [],
-  }
+  };
 
   static propTypes = {
     backgroundClasses: PropTypes.any,
@@ -25,49 +25,40 @@ export class Results extends Component {
     didSearch: PropTypes.bool.isRequired,
     contributions: PropTypes.arrayOf(ContributionType),
     representatives: PropTypes.arrayOf(LegislatorType),
-  }
+  };
 
   getButtonProps(index) {
-    const { onBack, } = this.props;
-    return index === 0
-      ? { onClick: onBack, }
-      : { link: `#section-${index}`, }
-      ;
+    const { onBack } = this.props;
+    return index === 0 ? { onClick: onBack } : { link: `#section-${index}` };
   }
 
   render() {
-    const {
-      didSearch,
-      contributions,
-      representatives,
-    } = this.props;
+    const { didSearch, contributions, representatives } = this.props;
 
-    const backgroundClasses = cx(
-      [
-        'second-wrapper',
-      ],
-      {
-        'move-up': didSearch,
-      },
-    );
+    const backgroundClasses = cx(['second-wrapper'], {
+      'move-up': didSearch,
+    });
 
     const calcButtonProps = this.getButtonProps.bind(this);
     const legislators = representatives.map(rep => new Legislator(rep));
-    const getAmount = Legislator.getContributionAmount.bind(this, contributions);
+    const getAmount = Legislator.getContributionAmount.bind(
+      this,
+      contributions
+    );
     const first_rep = legislators.filter(rep => getAmount(rep) > 0);
     const second_rep = legislators.filter(rep => getAmount(rep) === 0);
-    const sections = [ first_rep, second_rep, ]
+    const sections = [first_rep, second_rep]
       .filter(partition => partition.length > 0)
       .map((partition, index) => (
         <div
-          key={partition.reduce((key, legislator) => (key + legislator.identifier), '')}
+          key={partition.reduce(
+            (key, legislator) => key + legislator.identifier,
+            ''
+          )}
           className="section block"
           id={`section-${index + 1}`}
         >
-          <TextButton
-            text="Back"
-            {...calcButtonProps(index)}
-          />
+          <TextButton text="Back" {...calcButtonProps(index)} />
           <MemberResults
             didSearch={didSearch}
             legislators={partition}
@@ -86,7 +77,7 @@ export class Results extends Component {
 }
 
 function mapStateToProps(state) {
-  const { address, view, } = state;
+  const { address, view } = state;
   return {
     didSearch: address.value !== undefined,
     ...view,
@@ -95,11 +86,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onBack: (event) => {
+    onBack: event => {
       event.preventDefault();
       dispatch(reset());
     },
-  }
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);
