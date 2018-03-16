@@ -43,8 +43,23 @@ resource "aws_s3_bucket" "redirect_bucket" {
 resource "aws_cloudfront_distribution" "redirect_distribution" {
   // origin is where CloudFront gets its content from.
   origin {
-    domain_name = "${aws_s3_bucket.redirect_bucket.bucket_domain_name}"
+    domain_name = "${aws_s3_bucket.redirect_bucket.website_endpoint}"
     origin_id   = "s3_redirect"
+
+    custom_origin_config {
+      http_port  = 80
+      https_port = 443
+
+      // S3 website endpoints don't support SSL
+      origin_protocol_policy = "http-only"
+
+      origin_ssl_protocols = [
+        "SSLv3",
+        "TLSv1",
+        "TLSv1.1",
+        "TLSv1.2",
+      ]
+    }
   }
 
   enabled         = true
