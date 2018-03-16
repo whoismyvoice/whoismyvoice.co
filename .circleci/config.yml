@@ -50,6 +50,9 @@ jobs:
         name: Restore node_modules cache
         key: dependency-cache-{{ checksum "yarn.lock" }}
       - run:
+          name: Build CSS Files
+          command: yarn run build-css
+      - run:
           name: Execute Tests
           command: yarn run test
 
@@ -67,7 +70,7 @@ jobs:
           name: Build Deployment
           command: yarn run build
       - type: cache-save
-        name: Save node_modules cache
+        name: Save build cache
         key: build-{{ .Revision }}
         paths:
             - build
@@ -80,7 +83,7 @@ jobs:
     steps:
       - checkout
       - type: cache-restore
-        name: Restore node_modules cache
+        name: Restore build cache
         key: build-{{ .Revision }}
       - run:
           name: Install AWS CLI
