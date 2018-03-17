@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import cx from 'classnames';
+import mixpanel from 'mixpanel-browser';
+
+import { HOME_ROUTE } from '../../constants/mixpanel-events';
 
 // Components
 import Results from '../../components/Results';
@@ -22,6 +25,10 @@ export class Home extends Component {
     contributions: PropTypes.arrayOf(ContributionType),
     representatives: PropTypes.arrayOf(LegislatorType),
   };
+
+  componentDidMount() {
+    mixpanel.track.apply(mixpanel, HOME_ROUTE);
+  }
 
   render() {
     const {

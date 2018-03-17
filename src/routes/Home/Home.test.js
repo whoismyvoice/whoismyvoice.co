@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import { Home } from './Home';
 import store from '../../store';
 
+jest.mock('mixpanel-browser');
+
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(

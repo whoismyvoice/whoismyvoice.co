@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import fetch from 'isomorphic-fetch';
+import mixpanel from 'mixpanel-browser';
 
 import { ELECTION_CYCLE, EXECUTE_PROXY, ORGANIZATION } from '../constants';
 import {
@@ -108,6 +109,7 @@ async function getLegislatorForOfficial(allLegislators, official) {
  * @returns action.
  */
 export function receiveAddress(address) {
+  mixpanel.track(RECEIVE_ADDRESS);
   return {
     type: RECEIVE_ADDRESS,
     address,
@@ -153,6 +155,7 @@ function receiveContributionDataForLegislator(legislator, contributionResults) {
  * @returns action.
  */
 export function receiveContributionData(legislatorId, organization, amount) {
+  mixpanel.track(RECEIVE_CONTRIBUTION_DATA, { legislatorId, organization });
   return {
     type: RECEIVE_CONTRIBUTION_DATA,
     amount,
@@ -167,6 +170,7 @@ export function receiveContributionData(legislatorId, organization, amount) {
  * @returns action.
  */
 export function receiveOfficials(officials) {
+  mixpanel.track(RECEIVE_OFFICIALS);
   return {
     type: RECEIVE_OFFICIALS,
     officials,
@@ -179,6 +183,7 @@ export function receiveOfficials(officials) {
  * @returns action.
  */
 export function receiveOfficialsAll(officials) {
+  mixpanel.track(RECEIVE_OFFICIALS_ALL);
   return {
     type: RECEIVE_OFFICIALS_ALL,
     officials,
@@ -191,6 +196,7 @@ export function receiveOfficialsAll(officials) {
  * @returns action.
  */
 export async function receiveOfficialsError(error) {
+  mixpanel.track(RECEIVE_OFFICIALS_ERROR);
   const response = error.response;
   // If this throws no error will be received.
   const body = await response.json();
@@ -217,6 +223,7 @@ export function receiveZipCode(zipCode) {
  * @returns action.
  */
 export function reset() {
+  mixpanel.track(RESET_CURRENT);
   return {
     type: RESET_CURRENT,
   };
@@ -227,6 +234,7 @@ export function reset() {
  * @returns action.
  */
 export function toggleMenu() {
+  mixpanel.track(TOGGLE_MENU);
   return {
     type: TOGGLE_MENU,
   };

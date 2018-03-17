@@ -1,6 +1,8 @@
 import { receiveOfficials, receiveOfficialsAll, reset } from '../actions';
 import officials from './officials';
 
+jest.mock('mixpanel-browser');
+
 it('provides an initial state when given undefined', () => {
   const initialState = officials(undefined, {});
   expect(initialState).toBeDefined();

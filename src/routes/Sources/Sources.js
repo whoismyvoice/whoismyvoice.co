@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import mixpanel from 'mixpanel-browser';
 
-// Components
+import { SOURCES_ROUTE } from '../../constants/mixpanel-events';
 import FadedBG from '../../components/FadedBg';
 
 class Sources extends Component {
+  componentDidMount() {
+    mixpanel.track.apply(mixpanel, SOURCES_ROUTE);
+  }
+
   render() {
     return (
       <div className="page-block light-white">
