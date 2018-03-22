@@ -25,22 +25,21 @@ resource "aws_api_gateway_resource" "wimv_api_res_maplight" {
 # a HTTP method (or verb) for that!
 # This is the code for method GET /hello, that will talk to the first lambda
 module "maplight_get" {
-  source                    = "../lambda-api-method"
+  source                    = "git@github.com:oursiberia/terraform-lambda-gateway.git//lambda-api-method"
   api_gateway_rest_api_id   = "${var.aws_api_gateway_id}"
   api_gateway_resource_id   = "${aws_api_gateway_resource.wimv_api_res_maplight.id}"
   method                    = "GET"
   api_gateway_resource_path = "${aws_api_gateway_resource.wimv_api_res_maplight.path}"
   lambda                    = "${aws_lambda_function.maplight_proxy.function_name}"
+  lambda_invoke_arn         = "${aws_lambda_function.maplight_proxy.invoke_arn}"
   aws_region_id             = "${var.aws_region_id}"
   aws_account_id            = "${var.aws_account_id}"
 }
 
 module "maplight_options" {
-  source                    = "../cors-api-method"
+  source                    = "git@github.com:oursiberia/terraform-lambda-gateway.git//cors-api-method"
   api_gateway_rest_api_id   = "${var.aws_api_gateway_id}"
   api_gateway_resource_id   = "${aws_api_gateway_resource.wimv_api_res_maplight.id}"
   method                    = "OPTIONS"
   api_gateway_resource_path = "${aws_api_gateway_resource.wimv_api_res_maplight.path}"
-  aws_region_id             = "${var.aws_region_id}"
-  aws_account_id            = "${var.aws_account_id}"
 }
