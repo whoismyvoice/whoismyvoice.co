@@ -31,7 +31,7 @@ resource "aws_api_gateway_resource" "wimv_api_res_civics" {
 # a HTTP method (or verb) for that!
 # This is the code for method GET /hello, that will talk to the first lambda
 module "civics_get" {
-  source                    = "git@github.com:oursiberia/terraform-lambda-gateway.git//lambda-api-method"
+  source                    = "git@github.com:oursiberia/terraform-lambda-gateway.git?ref=v0.0.1//lambda-api-method"
   api_gateway_rest_api_id   = "${var.aws_api_gateway_id}"
   api_gateway_resource_id   = "${aws_api_gateway_resource.wimv_api_res_civics.id}"
   method                    = "GET"
@@ -43,7 +43,7 @@ module "civics_get" {
 }
 
 module "civics_options" {
-  source                    = "git@github.com:oursiberia/terraform-lambda-gateway.git//cors-api-method"
+  source                    = "git@github.com:oursiberia/terraform-lambda-gateway.git?ref=v0.0.1//cors-api-method"
   api_gateway_rest_api_id   = "${var.aws_api_gateway_id}"
   api_gateway_resource_id   = "${aws_api_gateway_resource.wimv_api_res_civics.id}"
   method                    = "OPTIONS"
