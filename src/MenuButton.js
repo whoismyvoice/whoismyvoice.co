@@ -10,6 +10,9 @@ import { toggleMenu, reset } from './actions';
 // Styles
 import './styles/MenuButton.css';
 
+import type { Dispatch } from './actions';
+import type { State } from './store';
+
 type Props = {
   didSearch: boolean,
   isMenuOpen: boolean,
@@ -82,7 +85,7 @@ export class MenuButton extends Component<Props> {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: State) {
   const { address, view } = state;
   return {
     didSearch: address.value !== undefined,
@@ -90,7 +93,7 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch) {
   return {
     onMenuButtonClick: event => {
       event.preventDefault();
