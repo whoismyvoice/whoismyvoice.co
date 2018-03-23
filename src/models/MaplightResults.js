@@ -1,4 +1,30 @@
+// @flow
+
 import PropTypes from 'prop-types';
+
+/**
+ * The type for an aggregate total record in `MaplightResults` record.
+ */
+type MaplightAggregateTotal = {
+  contributions: number,
+  total_amount: number,
+};
+
+/**
+ * Defines the type alias for a `MaplightResults` record.
+ */
+export type MaplightResultsRecord = {
+  search_terms: {
+    candidate_fec_id: string,
+    donor: {
+      donor_organization: string,
+    },
+    election_cycle: string,
+  },
+  data: {
+    aggregate_totals: Array<MaplightAggregateTotal>,
+  },
+};
 
 /**
  * Defines the `PropTypes` validation structure for API results from Maplight

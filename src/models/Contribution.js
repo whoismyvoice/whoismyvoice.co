@@ -1,4 +1,15 @@
+// @flow
+
 import PropTypes from 'prop-types';
+
+/**
+ * Defines the type alias for a `Contribution` record.
+ */
+export type ContributionRecord = {
+  amount: number,
+  legislatorId: string,
+  organization: string,
+};
 
 /**
  * Defines the `PropTypes` validation structure for a `Contribution` record.

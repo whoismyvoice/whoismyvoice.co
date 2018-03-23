@@ -1,5 +1,56 @@
+// @flow
+
 import PropTypes from 'prop-types';
 import { PropType as ContributionType } from './Contribution';
+
+// Types
+import type { ContributionRecord } from './Contribution';
+
+export type BioguideId = string;
+export type FecId = string;
+opaque type LegislatorChamber = 'senate' | 'house' | 'unknown';
+export type LegislatorIdentifier = string;
+
+type LegislatorBioRecord = {
+  birthday: string,
+  gender: string,
+};
+
+export type LegislatorChannelRecord = {
+  id: string,
+  type: string,
+};
+
+type LegislatorIdRecord = {
+  bioguide: BioguideId,
+  fec: Array<FecId>,
+};
+
+type LegislatorNameRecord = {
+  first?: string,
+  last?: string,
+  official_full: string,
+};
+
+type LegislatorTermRecord = {
+  type: string,
+  start: string,
+  end: string,
+  state: string,
+  district?: string,
+  party: string,
+  phone: string,
+};
+
+export type LegislatorRecord = {
+  id: LegislatorIdRecord,
+  identifier?: string,
+  name: string | LegislatorNameRecord,
+  bio: LegislatorBioRecord,
+  channels: Array<LegislatorChannelRecord>,
+  photoUrl?: string,
+  terms: Array<LegislatorTermRecord>,
+};
 
 /**
  * Defines the `PropTypes` validation structure for a `Legislator` record.
@@ -57,11 +108,11 @@ function stripDiacritics(str) {
 export class Legislator {
   /**
    * Get the legislator's identifier from the given `record`.
-   * @param {object} record that matches the `PropType` defined for
+   * @param {LegislatorRecord} record that matches the `PropType` defined for
    *    `Legislator` instances.
    * @returns the identifier used for legislator records for the given `record`.
    */
-  static getIdentifier(record) {
+  static getIdentifier(record: LegislatorRecord): LegislatorIdentifier {
     PropTypes.checkPropTypes(
       { record: PropType },
       { record },
@@ -82,13 +133,16 @@ export class Legislator {
   /**
    * Retrieve the first contribution out of `contributions` that matches the identifier
    * of the given legislator.
-   * @param {array} contributions records to be searched.
-   * @param {object|Legislator} legislator instance or record for which contributions
+   * @param {Array<ContributionRecord>} contributions records to be searched.
+   * @param {LegislatorRecord|Legislator} legislator instance or record for which contributions
    *    will be searched.
    * @returns `-1` if no records from `contributions` match `legislator`, `amount`
    *    property of the contribution record otherwise.
    */
-  static getContributionAmount(contributions, legislator) {
+  static getContributionAmount(
+    contributions: Array<ContributionRecord>,
+    legislator: LegislatorRecord | Legislator
+  ): number {
     PropTypes.checkPropTypes(
       { contributions: PropTypes.arrayOf(ContributionType) },
       { contributions },
@@ -109,6 +163,8 @@ export class Legislator {
     }
   }
 
+  record: LegislatorRecord;
+
   /**
    * Create a new Legislator instance from the data provided in the given
    * `record`.
@@ -125,11 +181,9 @@ export class Legislator {
    *        ]
    *      }
    *
-   * @param {object} record containing data about the legislator.
-   * @param {array} record.terms a list of term records representing the
-   *    distinct service terms of the legislator.
+   * @param {LegislatorRecord} record containing data about the legislator.
    */
-  constructor(record) {
+  constructor(record: LegislatorRecord) {
     PropTypes.checkPropTypes(
       { record: PropType },
       { record },
@@ -143,7 +197,7 @@ export class Legislator {
    * Gets the biographical object for the instance.
    * @returns an object containing (at least) `birthday` and `gender` properties.
    */
-  get bio() {
+  get bio(): LegislatorBioRecord {
     return this.record.bio;
   }
 
@@ -151,7 +205,7 @@ export class Legislator {
    * Retrieve the bioguide property out of `record.id`.
    * @returns the bioguide id assigned to this legislator.
    */
-  get bioguide() {
+  get bioguide(): BioguideId {
     return this.id.bioguide;
   }
 
@@ -161,7 +215,7 @@ export class Legislator {
    *    Representatives; 'senate' if the legislator's current term is in the
    *    US Senate; 'unknown' otherwise.
    */
-  get chamber() {
+  get chamber(): LegislatorChamber {
     if (this.isSenator) {
       return 'senate';
     } else if (this.isRepresentative) {
@@ -175,7 +229,7 @@ export class Legislator {
    * Retrieve the most recent term object from the given record.
    * @returns a term record for the most recent (current) term.
    */
-  get currentTerm() {
+  get currentTerm(): LegislatorTermRecord {
     const { terms } = this;
     const [currentTerm] = terms.slice(-1);
     return currentTerm;
@@ -185,7 +239,7 @@ export class Legislator {
    * Retrieve the full, official name of the Legislator.
    * @returns full, official name.
    */
-  get fullName() {
+  get fullName(): string {
     return this.name.official_full;
   }
 
@@ -193,7 +247,7 @@ export class Legislator {
    * Retrieve the abbreviated gender of this legislator.
    * @returns the `gender` recorded for the legislator.
    */
-  get gender() {
+  get gender(): string {
     return this.bio.gender;
   }
 
@@ -201,7 +255,7 @@ export class Legislator {
    * Retrieve a pronoun appropriate to the `gender` property.
    * @returns 'Them' if `gender` is anything other than 'M' or 'F'.
    */
-  get genderPronoun() {
+  get genderPronoun(): string {
     switch (this.gender) {
       case 'M':
         return 'Him';
@@ -216,7 +270,7 @@ export class Legislator {
    * Gets the id object for the instance.
    * @returns an object containing (at least) `fec` and `bioguide` properties.
    */
-  get id() {
+  get id(): LegislatorIdRecord {
     return this.record.id;
   }
 
@@ -225,7 +279,7 @@ export class Legislator {
    * instance creation time.
    * @returns the identifier used for legislator records for the given `record`.
    */
-  get identifier() {
+  get identifier(): LegislatorIdentifier {
     return Legislator.getIdentifier(this.record);
   }
 
@@ -233,7 +287,7 @@ export class Legislator {
    * Whether or not the `currentTerm` reflects a US Senate term.
    * @returns `true` if the `currentTerm` exists and has a Senate type.
    */
-  get isSenator() {
+  get isSenator(): boolean {
     return this.currentTerm !== undefined && this.currentTerm.type === 'sen';
   }
 
@@ -243,7 +297,7 @@ export class Legislator {
    * @returns `true` if the `currentTerm` exists and has a US House of
    *    Representatives type.
    */
-  get isRepresentative() {
+  get isRepresentative(): boolean {
     return this.currentTerm !== undefined && this.currentTerm.type === 'rep';
   }
 
@@ -251,8 +305,12 @@ export class Legislator {
    * Gets the name object for the instance.
    * @returns an object containing (at least) the `official_full` property.
    */
-  get name() {
-    return this.record.name;
+  get name(): LegislatorNameRecord {
+    if (typeof this.record.name === 'string') {
+      return { official_full: this.record.name };
+    } else {
+      return this.record.name;
+    }
   }
 
   /**
@@ -260,7 +318,7 @@ export class Legislator {
    * for their current term.
    * @returns current US Political Party.
    */
-  get party() {
+  get party(): string {
     return this.currentTerm.party;
   }
 
@@ -268,7 +326,7 @@ export class Legislator {
    * Get the phone number associated with the current term.
    * @returns The phone number associated with the current term.
    */
-  get phone() {
+  get phone(): string {
     return this.currentTerm.phone;
   }
 
@@ -276,7 +334,7 @@ export class Legislator {
    * Get the URL for the official bioguide photo.
    * @returns a URL on theunitedstates.io.
    */
-  get photoUrl() {
+  get photoUrl(): string {
     const bioguide = this.bioguide;
     const size = 'original';
     return `https://theunitedstates.io/images/congress/${size}/${bioguide}.jpg`;
@@ -286,7 +344,7 @@ export class Legislator {
    * The US State abbreviation for the state this legislator represents.
    * @returns a US State abbreviation.
    */
-  get state() {
+  get state(): string {
     return this.currentTerm.state;
   }
 
@@ -294,7 +352,7 @@ export class Legislator {
    * Gets the array of terms for the instance.
    * @returns an array of term records containing (at least) one record.
    */
-  get terms() {
+  get terms(): Array<LegislatorTermRecord> {
     return this.record.terms;
   }
 
@@ -303,7 +361,7 @@ export class Legislator {
    * @returns `undefined` if it isn't provided in `record`; the Twitter handle
    *    if it can be found in `record`.
    */
-  get twitter() {
+  get twitter(): ?string {
     const channels = this.record.channels || [];
     const channel = channels.find(channel => channel.type === 'Twitter');
     return channel === undefined ? undefined : channel.id;
