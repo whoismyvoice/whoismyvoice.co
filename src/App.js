@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -12,7 +14,9 @@ import Sources from './routes/Sources';
 
 import store from './store';
 
-class App extends Component {
+type Props = {};
+
+class App extends Component<Props> {
   render() {
     return (
       <Provider store={store}>
@@ -24,7 +28,7 @@ class App extends Component {
   }
 }
 
-class Routes extends Component {
+class Routes extends Component<Props> {
   render() {
     return (
       <div className="wrapper">
