@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import mixpanel from 'mixpanel-browser';
@@ -13,5 +15,8 @@ if (process.env.NODE_ENV === 'production') {
   mixpanel.init('50ebae8c5fa7e5222b2271df8b73e91d');
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const root = document.getElementById('root');
+if (root !== undefined && root !== null) {
+  ReactDOM.render(<App />, root);
+}
 registerServiceWorker();
