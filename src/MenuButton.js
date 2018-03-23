@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+// @flow
+
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -8,15 +10,26 @@ import { toggleMenu, reset } from './actions';
 // Styles
 import './styles/MenuButton.css';
 
-export class MenuButton extends Component {
+type Props = {
+  didSearch: boolean,
+  isMenuOpen: boolean,
+  onMenuButtonClick: Function,
+  onMenuLinkClick: Function,
+  onRestartClick: Function,
+};
+
+export class MenuButton extends Component<Props> {
   static defaultProps = {
     isMenuOpen: false,
     onMenuButtonClick: () => {},
   };
 
   static propTypes = {
+    didSearch: PropTypes.bool,
     isMenuOpen: PropTypes.bool,
     onMenuButtonClick: PropTypes.func,
+    onMenuLinkClick: PropTypes.func,
+    onRestartClick: PropTypes.func,
   };
 
   render() {
@@ -41,7 +54,7 @@ export class MenuButton extends Component {
     });
 
     return (
-      <React.Fragment>
+      <Fragment>
         <div className={menuClasses}>
           <div className="menu-container">
             <Link
@@ -64,7 +77,7 @@ export class MenuButton extends Component {
           </div>
         </div>
         <div className={menuButtonClasses} onClick={onMenuButtonClick} />
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
