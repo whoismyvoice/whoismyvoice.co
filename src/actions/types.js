@@ -1,3 +1,5 @@
+// @flow
+
 /** Action type used when address is provided. */
 export const RECEIVE_ADDRESS = 'RECEIVE_ADDRESS';
 /** Action type used when new contribution data is received. */
@@ -16,3 +18,11 @@ export const RECEIVE_ZIP_CODE = 'RECEIVE_ZIP_CODE';
 export const RESET_CURRENT = 'RESET_CURRENT';
 /** Action to toggle the menu. */
 export const TOGGLE_MENU = 'TOGGLE_MENU';
+
+/**
+ * Record type for an Action.
+ */
+export type Action = {
+  type: string,
+  [key: string]: any,
+};

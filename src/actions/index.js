@@ -1,3 +1,5 @@
+// @flow
+
 import PropTypes from 'prop-types';
 import fetch from 'isomorphic-fetch';
 import mixpanel from 'mixpanel-browser';
@@ -15,6 +17,35 @@ import {
 } from './types';
 import { Legislator } from '../models/Legislator';
 import { PropType as MaplightResultsType } from '../models/MaplightResults';
+import { ResponseError } from '../models/ResponseError';
+
+import type { Action } from './types';
+import type {
+  LegislatorIdentifier,
+  LegislatorChannelRecord,
+  LegislatorRecord,
+} from '../models/Legislator';
+import type { MaplightResultsRecord } from '../models/MaplightResults';
+
+export type Dispatch = (Action | Promise<Action>) => void;
+
+type OfficialAddressRecord = {
+  line1: string,
+  line2?: string,
+  city: string,
+  state: string,
+  zip: string,
+};
+
+export type OfficialRecord = {
+  name: string,
+  address: Array<OfficialAddressRecord>,
+  party: string,
+  phones: Array<string>,
+  urls: Array<string>,
+  photoUrl: string,
+  channels: Array<LegislatorChannelRecord>,
+};
 
 /**
  * Match FEC ids for house and senate races. Potentially important because some
@@ -31,7 +62,10 @@ const FEC_ID_REGEX = /[HS]\d{1,3}[A-Z]{2}\d+/;
  * @param {array} legislator.id.fec string identifiers for FEC filings.
  * @returns contribution data.
  */
-async function fetchContributionsForCandidate(organization, legislator) {
+async function fetchContributionsForCandidate(
+  organization: string,
+  legislator: LegislatorRecord
+): Promise<MaplightResultsRecord> {
   const candidateFecIds = legislator.id.fec.filter(fecId =>
     FEC_ID_REGEX.test(fecId)
   );
@@ -51,9 +85,7 @@ async function fetchContributionsForCandidate(organization, legislator) {
     const body = await response.json();
     return body;
   } else {
-    const error = new Error(response.statusText);
-    error.response = response;
-    throw error;
+    throw new ResponseError(response, response.statusText);
   }
 }
 
@@ -62,7 +94,9 @@ async function fetchContributionsForCandidate(organization, legislator) {
  * @param {string} address to use in lookup.
  * @returns array of officials.
  */
-async function fetchOfficialsForAddress(address) {
+async function fetchOfficialsForAddress(
+  address: string
+): Promise<Array<OfficialRecord>> {
   const baseUrl = `${EXECUTE_PROXY}/civics`;
   const encodedAddress = encodeURIComponent(address);
   const params = `address=${encodedAddress}`;
@@ -72,9 +106,7 @@ async function fetchOfficialsForAddress(address) {
     const officials = body.officials;
     return officials;
   } else {
-    const error = new Error(response.statusText);
-    error.response = response;
-    return error;
+    throw new ResponseError(response, response.statusText);
   }
 }
 
@@ -82,22 +114,21 @@ async function fetchOfficialsForAddress(address) {
  * Retreive data about officials/legislators for the current legislative session.
  * @returns array of officials.
  */
-async function fetchLegislatorsAll() {
+async function fetchLegislatorsAll(): Promise<Array<LegislatorRecord>> {
   const url =
     'https://theunitedstates.io/congress-legislators/legislators-current.json';
   const response = await fetch(url);
   if (response.ok) {
-    const body = await response.json();
-    const officials = body;
-    return officials;
+    return await response.json();
   } else {
-    const error = new Error(response.statusText);
-    error.response = response;
-    throw error;
+    throw new ResponseError(response, response.statusText);
   }
 }
 
-async function getLegislatorForOfficial(allLegislators, official) {
+async function getLegislatorForOfficial(
+  allLegislators: Array<LegislatorRecord>,
+  official: OfficialRecord
+): Promise<LegislatorRecord | void> {
   return allLegislators.find(
     legislator => Legislator.getIdentifier(legislator) === official.name
   );
@@ -108,7 +139,7 @@ async function getLegislatorForOfficial(allLegislators, official) {
  * @param {array} address received.
  * @returns action.
  */
-export function receiveAddress(address) {
+export function receiveAddress(address: string): Action {
   mixpanel.track(RECEIVE_ADDRESS);
   return {
     type: RECEIVE_ADDRESS,
@@ -123,16 +154,19 @@ export function receiveAddress(address) {
  * @param {array} legislator.name.official_full official full name of the legislator
  *    according to FEC records.
  * @param {object} contributionResults received from Maplight API
- * @param {object} contributionData.search_terms information about what was searched.
- * @param {object} contributionData.search_terms.donor information about the donor
+ * @param {object} contributionResults.search_terms information about what was searched.
+ * @param {object} contributionResults.search_terms.donor information about the donor
  *    search parameters
- * @param {object} contributionData.search_terms.donor.donor_organization
- * @param {object} contributionData.data result data.
- * @param {array} contributionData.data.aggregate_totals grouped by ????. Each member
+ * @param {object} contributionResults.search_terms.donor.donor_organization
+ * @param {object} contributionResults.data result data.
+ * @param {array} contributionResults.data.aggregate_totals grouped by ????. Each member
  *    has a `total_amount` property that is the aggregated value of contributions.
  * @returns action.
  */
-function receiveContributionDataForLegislator(legislator, contributionResults) {
+function receiveContributionDataForLegislator(
+  legislator: LegislatorRecord,
+  contributionResults: MaplightResultsRecord
+): Action {
   PropTypes.checkPropTypes(
     { contributionResults: MaplightResultsType },
     { contributionResults },
@@ -154,7 +188,11 @@ function receiveContributionDataForLegislator(legislator, contributionResults) {
  * @param {number} amount received in contributions.
  * @returns action.
  */
-export function receiveContributionData(legislatorId, organization, amount) {
+export function receiveContributionData(
+  legislatorId: LegislatorIdentifier,
+  organization: string,
+  amount: number
+): Action {
   mixpanel.track(RECEIVE_CONTRIBUTION_DATA, { legislatorId, organization });
   return {
     type: RECEIVE_CONTRIBUTION_DATA,
@@ -169,7 +207,7 @@ export function receiveContributionData(legislatorId, organization, amount) {
  * @param {array} officials received.
  * @returns action.
  */
-export function receiveOfficials(officials) {
+export function receiveOfficials(officials: Array<OfficialRecord>): Action {
   mixpanel.track(RECEIVE_OFFICIALS);
   return {
     type: RECEIVE_OFFICIALS,
@@ -182,7 +220,9 @@ export function receiveOfficials(officials) {
  * @param {array} officials received.
  * @returns action.
  */
-export function receiveOfficialsAll(officials) {
+export function receiveOfficialsAll(
+  officials: Array<LegislatorRecord>
+): Action {
   mixpanel.track(RECEIVE_OFFICIALS_ALL);
   return {
     type: RECEIVE_OFFICIALS_ALL,
@@ -195,7 +235,9 @@ export function receiveOfficialsAll(officials) {
  * @param {error} error received.
  * @returns action.
  */
-export async function receiveOfficialsError(error) {
+export async function receiveOfficialsError(
+  error: ResponseError
+): Promise<Action> {
   mixpanel.track(RECEIVE_OFFICIALS_ERROR);
   const response = error.response;
   // If this throws no error will be received.
@@ -211,7 +253,7 @@ export async function receiveOfficialsError(error) {
  * @param {array} address received.
  * @returns action.
  */
-export function receiveZipCode(zipCode) {
+export function receiveZipCode(zipCode: string): Action {
   return {
     type: RECEIVE_ZIP_CODE,
     zipCode,
@@ -222,7 +264,7 @@ export function receiveZipCode(zipCode) {
  * Create action to reset current state.
  * @returns action.
  */
-export function reset() {
+export function reset(): Action {
   mixpanel.track(RESET_CURRENT);
   return {
     type: RESET_CURRENT,
@@ -233,7 +275,7 @@ export function reset() {
  * Create a TOGGLE_MENU action instance.
  * @returns action.
  */
-export function toggleMenu() {
+export function toggleMenu(): Action {
   mixpanel.track(TOGGLE_MENU);
   return {
     type: TOGGLE_MENU,
@@ -243,8 +285,8 @@ export function toggleMenu() {
 /**
  * Asynchronously dispatch updates to zip code and address.
  */
-export function setZipCode(zipCode) {
-  return async dispatch => {
+export function setZipCode(zipCode: string) {
+  return async (dispatch: Dispatch) => {
     dispatch(receiveZipCode(zipCode));
     setAddress(zipCode)(dispatch);
   };
@@ -253,30 +295,40 @@ export function setZipCode(zipCode) {
 /**
  * Asynchronously dispatch updates to address.
  */
-export function setAddress(address) {
-  return async dispatch => {
-    dispatch(receiveAddress(address));
-    const allLegislators = await fetchLegislatorsAll();
-    const currentOfficials = await fetchOfficialsForAddress(address);
-    dispatch(receiveOfficialsAll(allLegislators));
-    if (currentOfficials instanceof Error) {
-      // response is error; abort
-      dispatch(receiveOfficialsError(currentOfficials));
-      return;
+export function setAddress(address: string) {
+  return async (dispatch: Dispatch) => {
+    try {
+      dispatch(receiveAddress(address));
+      const allLegislators = await fetchLegislatorsAll();
+      const currentOfficials = await fetchOfficialsForAddress(address);
+      dispatch(receiveOfficialsAll(allLegislators));
+      dispatch(receiveOfficials(currentOfficials));
+      const getLegislator = getLegislatorForOfficial.bind(this, allLegislators);
+      const currentLegislators = await Promise.all(
+        currentOfficials.map(official => getLegislator(official))
+      );
+      currentLegislators
+        .filter(legislator => legislator !== undefined)
+        .forEach(async legislator => {
+          // Flow isn't recognizing `filter` as changing the type of the array
+          // to eliminate undefined values so using $FlowIssue tag to ignore the
+          // complaints about `legislator` type.
+          const contributionData = await fetchContributionsForCandidate(
+            ORGANIZATION,
+            // $FlowIssue
+            legislator
+          );
+          dispatch(
+            // $FlowIssue
+            receiveContributionDataForLegislator(legislator, contributionData)
+          );
+        });
+    } catch (error) {
+      if (error instanceof ResponseError) {
+        // response is error; abort
+        dispatch(receiveOfficialsError(error));
+        return;
+      }
     }
-    dispatch(receiveOfficials(currentOfficials));
-    const getLegislator = getLegislatorForOfficial.bind(this, allLegislators);
-    const currentLegislators = await Promise.all(
-      currentOfficials.map(official => getLegislator(official))
-    );
-    currentLegislators.forEach(async legislator => {
-      const contributionData = await fetchContributionsForCandidate(
-        ORGANIZATION,
-        legislator
-      );
-      dispatch(
-        receiveContributionDataForLegislator(legislator, contributionData)
-      );
-    });
   };
 }
