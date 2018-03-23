@@ -1,7 +1,8 @@
 {
   "name": "whoismyvoice",
   "version": "1.0.0",
-  "description": "Find your legislators and their positions quickly and easily.",
+  "description":
+    "Find your legislators and their positions quickly and easily.",
   "main": "src/index.js",
   "repository": "https://github.com/oursiberia/whoismyvoice",
   "author": "Siberia <dev@siberia.io>",
@@ -11,9 +12,7 @@
     "Derek Kinsman <derek@siberia.io",
     "Kelly Donahue"
   ],
-  "maintainers": [
-    "Bryan Swift <bryan@siberia.io>"
-  ],
+  "maintainers": ["Bryan Swift <bryan@siberia.io>"],
   "license": "MIT",
   "private": false,
   "bugs": {
@@ -24,6 +23,7 @@
     "@types/react": "^16.0.40",
     "@types/react-dom": "^16.0.4",
     "eslint-plugin-prettier": "^2.6.0",
+    "flow-bin": "^0.68.0",
     "husky": "^0.14.3",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.2",
@@ -52,6 +52,7 @@
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
     "precommit": "pretty-quick --staged",
+    "flow": "flow",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
