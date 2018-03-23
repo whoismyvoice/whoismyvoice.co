@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -10,13 +12,28 @@ import { PropType as ContributionType } from '../models/Contribution';
 import { Legislator, PropType as LegislatorType } from '../models/Legislator';
 import { reset } from '../actions';
 
-export class Results extends Component {
+import type { Dispatch } from '../actions';
+import type { ContributionRecord } from '../models/Contribution';
+import type { LegislatorRecord } from '../models/Legislator';
+import type { State } from '../store';
+
+type Props = {
+  backgroundClasses: any,
+  destroy: Function,
+  didSearch: boolean,
+  contributions: Array<ContributionRecord>,
+  representatives: Array<LegislatorRecord>,
+  onBack: Function,
+};
+
+export class Results extends Component<Props> {
   static defaultProps = {
     backgroundClasses: '',
     destroy: () => {},
     didSearch: false,
     contributions: [],
     representatives: [],
+    onBack: () => {},
   };
 
   static propTypes = {
@@ -27,7 +44,7 @@ export class Results extends Component {
     representatives: PropTypes.arrayOf(LegislatorType),
   };
 
-  getButtonProps(index) {
+  getButtonProps(index: number) {
     const { onBack } = this.props;
     return index === 0 ? { onClick: onBack } : { link: `#section-${index}` };
   }
@@ -76,7 +93,7 @@ export class Results extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: State) {
   const { address, view } = state;
   return {
     didSearch: address.value !== undefined,
@@ -84,7 +101,7 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch) {
   return {
     onBack: event => {
       event.preventDefault();
