@@ -8,6 +8,18 @@ import contributions from './contributions';
 import officials from './officials';
 import view from './view';
 
+import type { AddressState } from './address';
+import type { ContributionsState } from './contributions';
+import type { OfficialsState } from './officials';
+import type { ViewState } from './view';
+
+export type State = $Exact<{
+  address: AddressState,
+  contributions: ContributionsState,
+  officials: OfficialsState,
+  view: ViewState,
+}>;
+
 const loggerMiddleware = createLogger();
 
 export default createStore(

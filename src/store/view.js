@@ -1,15 +1,26 @@
+// @flow
+
 import {
   RECEIVE_OFFICIALS,
   RECEIVE_OFFICIALS_ERROR,
   TOGGLE_MENU,
 } from '../actions/types';
 
+import type { Action } from '../actions/types';
+
+type UninitializedString = string | void;
+
+export type ViewState = {
+  addressErrorMessage: UninitializedString,
+  isMenuOpen: boolean,
+};
+
 const initialState = {
   addressErrorMessage: undefined,
   isMenuOpen: false,
 };
 
-function handle(state = initialState, action) {
+function handle(state: ViewState = initialState, action: Action): ViewState {
   const { type } = action;
   switch (type) {
     case RECEIVE_OFFICIALS:

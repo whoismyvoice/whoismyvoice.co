@@ -1,9 +1,26 @@
+// @flow
+
 import {
   RECEIVE_OFFICIALS,
   RESET_CURRENT,
   RECEIVE_OFFICIALS_ALL,
 } from '../actions/types';
 import { Legislator } from '../models/Legislator';
+
+import type { Action } from '../actions/types';
+import type {
+  LegislatorIdentifier,
+  LegislatorRecord,
+} from '../models/Legislator';
+
+type OfficialsById = {
+  [id: LegislatorIdentifier]: LegislatorRecord,
+};
+
+export type OfficialsState = {
+  byId: OfficialsById,
+  ids: Array<LegislatorIdentifier>,
+};
 
 const initialState = {
   byId: {},
@@ -27,7 +44,7 @@ const initialState = {
  * @param {array} action.officials received by the action.
  * @returns the `byId` object with ids as keys and official as values.
  */
-function handleById(state, action) {
+function handleById(state: OfficialsById, action: Action): OfficialsById {
   const { type } = action;
   switch (type) {
     case RECEIVE_OFFICIALS:
@@ -77,7 +94,10 @@ function handleById(state, action) {
  * @param {array} action.officials received by the action.
  * @returns the set of ids after processing `action`.
  */
-function handleIds(state, action) {
+function handleIds(
+  state: Array<LegislatorIdentifier>,
+  action: Action
+): Array<LegislatorIdentifier> {
   const { type } = action;
   switch (type) {
     case RECEIVE_OFFICIALS:
@@ -96,7 +116,10 @@ function handleIds(state, action) {
   }
 }
 
-function handle(state = initialState, action) {
+function handle(
+  state: OfficialsState = initialState,
+  action: Action
+): OfficialsState {
   const { type } = action;
   switch (type) {
     case RECEIVE_OFFICIALS_ALL:

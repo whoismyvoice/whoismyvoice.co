@@ -1,6 +1,19 @@
+// @flow
+
 import PropTypes from 'prop-types';
 import { RECEIVE_CONTRIBUTION_DATA } from '../actions/types';
 import { PropType as ContributionType } from '../models/Contribution';
+
+import type { Action } from '../actions/types';
+import type { ContributionRecord } from '../models/Contribution';
+
+type ContributionsByOrganization = {
+  [name: string]: Array<ContributionRecord>,
+};
+
+export type ContributionsState = {
+  byOrganization: ContributionsByOrganization,
+};
 
 const initialState = {
   byOrganization: {},
@@ -12,7 +25,7 @@ const initialState = {
  * @param {ContributionType} c2 a contribution for comparison.
  * @returns `true` if legislator and organization match, `false` otherwise.
  */
-function isContributionMatch(c1, c2) {
+function isContributionMatch(c1: ContributionRecord, c2: ContributionRecord) {
   PropTypes.checkPropTypes(
     { contributions: PropTypes.arrayOf(ContributionType) },
     { contributions: [c1, c2] },
@@ -32,7 +45,10 @@ function isContributionMatch(c1, c2) {
  * @param {ContributionType} contribution to be added.
  * @returns a copy of `contributions` containing `contribution`.
  */
-function addContribution(contributions, contribution) {
+function addContribution(
+  contributions: Array<ContributionRecord>,
+  contribution: ContributionRecord
+): Array<ContributionRecord> {
   PropTypes.checkPropTypes(
     { contributions: PropTypes.arrayOf(ContributionType) },
     { contributions },
@@ -70,11 +86,14 @@ function addContribution(contributions, contribution) {
  * @param {string} action.organization to be modified.
  * @returns an updated `contributions.byOrganization` state.
  */
-function handleByOrganization(state, action) {
+function handleByOrganization(
+  state: ContributionsByOrganization,
+  action: Action & ContributionRecord
+): ContributionsByOrganization {
   const { type, ...payload } = action;
   switch (type) {
     case RECEIVE_CONTRIBUTION_DATA:
-      const { organization } = payload;
+      const { organization } = action;
       return {
         ...state,
         [organization]: addContribution(state[organization] || [], payload),
@@ -92,7 +111,7 @@ function handleByOrganization(state, action) {
  * @param {object} action to be processed.
  * @returns an updated `contributions` state.
  */
-function handle(state = initialState, action) {
+function handle(state: ContributionsState = initialState, action: Action) {
   const { type } = action;
   switch (type) {
     case RECEIVE_CONTRIBUTION_DATA:
