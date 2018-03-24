@@ -1,8 +1,7 @@
 {
   "name": "whoismyvoice",
   "version": "1.0.0",
-  "description":
-    "Find your legislators and their positions quickly and easily.",
+  "description": "Find your legislators and their positions quickly and easily.",
   "main": "src/index.js",
   "repository": "https://github.com/oursiberia/whoismyvoice",
   "author": "Siberia <dev@siberia.io>",
@@ -12,7 +11,9 @@
     "Derek Kinsman <derek@siberia.io",
     "Kelly Donahue"
   ],
-  "maintainers": ["Bryan Swift <bryan@siberia.io>"],
+  "maintainers": [
+    "Bryan Swift <bryan@siberia.io>"
+  ],
   "license": "MIT",
   "private": false,
   "bugs": {
@@ -20,8 +21,18 @@
   },
   "homepage": "https://www.whoismyvoice.com",
   "devDependencies": {
+    "@types/isomorphic-fetch": "^0.0.34",
+    "@types/jest": "^22.2.2",
+    "@types/node": "^9.6.0",
+    "@types/prop-types": "^15.5.2",
     "@types/react": "^16.0.40",
     "@types/react-dom": "^16.0.4",
+    "@types/react-redux": "^5.0.15",
+    "@types/react-router": "^4.0.23",
+    "@types/react-router-dom": "^4.2.5",
+    "@types/redux": "^3.6.0",
+    "@types/redux-logger": "^3.0.5",
+    "@types/redux-promise": "^0.5.28",
     "eslint-plugin-prettier": "^2.6.0",
     "flow-bin": "^0.68.0",
     "husky": "^0.14.3",
@@ -29,7 +40,9 @@
     "npm-run-all": "^4.1.2",
     "prettier": "^1.11.1",
     "pretty-quick": "^1.4.1",
-    "react-scripts": "1.1.1"
+    "react-scripts": "1.1.1",
+    "react-scripts-ts": "^2.14.0",
+    "typescript": "^2.7.2"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -48,12 +61,16 @@
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --recursive",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --recursive --watch",
     "start-js": "react-scripts start",
+    "start-ts": "react-scripts-ts start",
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
+    "build-ts": "react-scripts-ts build",
     "build": "npm-run-all build-css build-js",
     "precommit": "pretty-quick --staged",
     "flow": "flow",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test-ts": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "eject-ts": "react-scripts-ts eject"
   }
 }

@@ -1,5 +1,3 @@
-// @flow
-
 /**
  * Extends `Error` accepting a Fetch response in addition to normal `Error`
  * arguments.
@@ -12,5 +10,3 @@ export class ResponseError extends Error {
     this.response = response;
   }
 }
-
-export default ResponseError;

@@ -1,5 +1,3 @@
-// @flow
-
 /** Action type used when address is provided. */
 export const RECEIVE_ADDRESS = 'RECEIVE_ADDRESS';
 /** Action type used when new contribution data is received. */
@@ -23,6 +21,11 @@ export const TOGGLE_MENU = 'TOGGLE_MENU';
  * Record type for an Action.
  */
 export type Action = {
-  type: string,
-  [key: string]: any,
+  type: string;
+  [key: string]: any;
 };
+
+/**
+ * Type for the redux dispatch function.
+ */
+export type Dispatch = (action: Action | Promise<Action>) => void;

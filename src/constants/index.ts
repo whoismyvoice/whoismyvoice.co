@@ -1,5 +1,3 @@
-// @flow
-
 export const ELECTION_CYCLE = '2016|2018';
 export const ORGANIZATION = 'National Rifle Association';
 export const ORGANIZATION_DISPLAY = 'the NRA';

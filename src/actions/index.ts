@@ -1,11 +1,10 @@
-// @flow
-
-import PropTypes from 'prop-types';
-import fetch from 'isomorphic-fetch';
-import mixpanel from 'mixpanel-browser';
+import * as fetch from 'isomorphic-fetch';
+import * as mixpanel from 'mixpanel-browser';
 
 import { ELECTION_CYCLE, EXECUTE_PROXY, ORGANIZATION } from '../constants';
 import {
+  Action,
+  Dispatch,
   RECEIVE_ADDRESS,
   RECEIVE_CONTRIBUTION_DATA,
   RECEIVE_OFFICIALS,
@@ -15,36 +14,31 @@ import {
   RESET_CURRENT,
   TOGGLE_MENU,
 } from './types';
-import { Legislator } from '../models/Legislator';
-import { PropType as MaplightResultsType } from '../models/MaplightResults';
+import {
+  Legislator,
+  ChannelRecord as LegislatorChannelRecord,
+  Identifier as LegislatorIdentifier,
+  Record as LegislatorRecord,
+} from '../models/LegislatorT';
+import { MaplightResultsRecord } from '../models/MaplightResultsT';
 import { ResponseError } from '../models/ResponseError';
 
-import type { Action } from './types';
-import type {
-  LegislatorIdentifier,
-  LegislatorChannelRecord,
-  LegislatorRecord,
-} from '../models/Legislator';
-import type { MaplightResultsRecord } from '../models/MaplightResults';
-
-export type Dispatch = (Action | Promise<Action>) => void;
-
 type OfficialAddressRecord = {
-  line1: string,
-  line2?: string,
-  city: string,
-  state: string,
-  zip: string,
+  line1: string;
+  line2?: string;
+  city: string;
+  state: string;
+  zip: string;
 };
 
 export type OfficialRecord = {
-  name: string,
-  address: Array<OfficialAddressRecord>,
-  party: string,
-  phones: Array<string>,
-  urls: Array<string>,
-  photoUrl: string,
-  channels: Array<LegislatorChannelRecord>,
+  name: string;
+  address: Array<OfficialAddressRecord>;
+  party: string;
+  phones: Array<string>;
+  urls: Array<string>;
+  photoUrl: string;
+  channels: Array<LegislatorChannelRecord>;
 };
 
 /**
@@ -167,12 +161,6 @@ function receiveContributionDataForLegislator(
   legislator: LegislatorRecord,
   contributionResults: MaplightResultsRecord
 ): Action {
-  PropTypes.checkPropTypes(
-    { contributionResults: MaplightResultsType },
-    { contributionResults },
-    'contributionResults',
-    'actions#receiveContributionDataForLegislator'
-  );
   return receiveContributionData(
     Legislator.getIdentifier(legislator),
     contributionResults.search_terms.donor.donor_organization,
@@ -303,7 +291,10 @@ export function setAddress(address: string) {
       const currentOfficials = await fetchOfficialsForAddress(address);
       dispatch(receiveOfficialsAll(allLegislators));
       dispatch(receiveOfficials(currentOfficials));
-      const getLegislator = getLegislatorForOfficial.bind(this, allLegislators);
+      const getLegislator = getLegislatorForOfficial.bind(
+        dispatch,
+        allLegislators
+      );
       const currentLegislators = await Promise.all(
         currentOfficials.map(official => getLegislator(official))
       );
@@ -315,11 +306,9 @@ export function setAddress(address: string) {
           // complaints about `legislator` type.
           const contributionData = await fetchContributionsForCandidate(
             ORGANIZATION,
-            // $FlowIssue
             legislator
           );
           dispatch(
-            // $FlowIssue
             receiveContributionDataForLegislator(legislator, contributionData)
           );
         });
