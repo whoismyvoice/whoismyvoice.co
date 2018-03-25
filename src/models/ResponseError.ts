@@ -1,11 +1,19 @@
+/* tslint:disable:no-any */
+interface Response {
+  // @ts-ignore
+  json(): Promise<any>;
+}
+
 /**
  * Extends `Error` accepting a Fetch response in addition to normal `Error`
  * arguments.
  */
 export class ResponseError extends Error {
+  // @ts-ignore
   response: any;
 
-  constructor(response: any, ...args: Array<any>) {
+  // @ts-ignore
+  constructor(response: Response, ...args: Array<any>) {
     super(...args);
     this.response = response;
   }

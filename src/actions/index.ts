@@ -2,44 +2,15 @@ import * as fetch from 'isomorphic-fetch';
 import * as mixpanel from 'mixpanel-browser';
 
 import { ELECTION_CYCLE, EXECUTE_PROXY, ORGANIZATION } from '../constants';
-import {
-  Action,
-  Dispatch,
-  RECEIVE_ADDRESS,
-  RECEIVE_CONTRIBUTION_DATA,
-  RECEIVE_OFFICIALS,
-  RECEIVE_OFFICIALS_ALL,
-  RECEIVE_OFFICIALS_ERROR,
-  RECEIVE_ZIP_CODE,
-  RESET_CURRENT,
-  TOGGLE_MENU,
-} from './types';
+import { Action, ActionType, Dispatch } from './types';
 import {
   Legislator,
-  ChannelRecord as LegislatorChannelRecord,
   Identifier as LegislatorIdentifier,
   Record as LegislatorRecord,
-} from '../models/LegislatorT';
-import { MaplightResultsRecord } from '../models/MaplightResultsT';
+} from '../models/Legislator';
+import { MaplightResultsRecord } from '../models/MaplightResults';
+import { Record as Official } from '../models/Official';
 import { ResponseError } from '../models/ResponseError';
-
-type OfficialAddressRecord = {
-  line1: string;
-  line2?: string;
-  city: string;
-  state: string;
-  zip: string;
-};
-
-export type OfficialRecord = {
-  name: string;
-  address: Array<OfficialAddressRecord>;
-  party: string;
-  phones: Array<string>;
-  urls: Array<string>;
-  photoUrl: string;
-  channels: Array<LegislatorChannelRecord>;
-};
 
 /**
  * Match FEC ids for house and senate races. Potentially important because some
@@ -90,7 +61,7 @@ async function fetchContributionsForCandidate(
  */
 async function fetchOfficialsForAddress(
   address: string
-): Promise<Array<OfficialRecord>> {
+): Promise<Array<Official>> {
   const baseUrl = `${EXECUTE_PROXY}/civics`;
   const encodedAddress = encodeURIComponent(address);
   const params = `address=${encodedAddress}`;
@@ -121,7 +92,7 @@ async function fetchLegislatorsAll(): Promise<Array<LegislatorRecord>> {
 
 async function getLegislatorForOfficial(
   allLegislators: Array<LegislatorRecord>,
-  official: OfficialRecord
+  official: Official
 ): Promise<LegislatorRecord | void> {
   return allLegislators.find(
     legislator => Legislator.getIdentifier(legislator) === official.name
@@ -134,9 +105,9 @@ async function getLegislatorForOfficial(
  * @returns action.
  */
 export function receiveAddress(address: string): Action {
-  mixpanel.track(RECEIVE_ADDRESS);
+  mixpanel.track(ActionType.RECEIVE_ADDRESS);
   return {
-    type: RECEIVE_ADDRESS,
+    type: ActionType.RECEIVE_ADDRESS,
     address,
   };
 }
@@ -181,9 +152,12 @@ export function receiveContributionData(
   organization: string,
   amount: number
 ): Action {
-  mixpanel.track(RECEIVE_CONTRIBUTION_DATA, { legislatorId, organization });
+  mixpanel.track(ActionType.RECEIVE_CONTRIBUTION_DATA, {
+    legislatorId,
+    organization,
+  });
   return {
-    type: RECEIVE_CONTRIBUTION_DATA,
+    type: ActionType.RECEIVE_CONTRIBUTION_DATA,
     amount,
     legislatorId,
     organization,
@@ -195,10 +169,10 @@ export function receiveContributionData(
  * @param {array} officials received.
  * @returns action.
  */
-export function receiveOfficials(officials: Array<OfficialRecord>): Action {
-  mixpanel.track(RECEIVE_OFFICIALS);
+export function receiveOfficials(officials: Array<Official>): Action {
+  mixpanel.track(ActionType.RECEIVE_OFFICIALS);
   return {
-    type: RECEIVE_OFFICIALS,
+    type: ActionType.RECEIVE_OFFICIALS,
     officials,
   };
 }
@@ -211,9 +185,9 @@ export function receiveOfficials(officials: Array<OfficialRecord>): Action {
 export function receiveOfficialsAll(
   officials: Array<LegislatorRecord>
 ): Action {
-  mixpanel.track(RECEIVE_OFFICIALS_ALL);
+  mixpanel.track(ActionType.RECEIVE_OFFICIALS_ALL);
   return {
-    type: RECEIVE_OFFICIALS_ALL,
+    type: ActionType.RECEIVE_OFFICIALS_ALL,
     officials,
   };
 }
@@ -226,12 +200,12 @@ export function receiveOfficialsAll(
 export async function receiveOfficialsError(
   error: ResponseError
 ): Promise<Action> {
-  mixpanel.track(RECEIVE_OFFICIALS_ERROR);
+  mixpanel.track(ActionType.RECEIVE_OFFICIALS_ERROR);
   const response = error.response;
   // If this throws no error will be received.
   const body = await response.json();
   return {
-    type: RECEIVE_OFFICIALS_ERROR,
+    type: ActionType.RECEIVE_OFFICIALS_ERROR,
     error: body.error,
   };
 }
@@ -243,7 +217,7 @@ export async function receiveOfficialsError(
  */
 export function receiveZipCode(zipCode: string): Action {
   return {
-    type: RECEIVE_ZIP_CODE,
+    type: ActionType.RECEIVE_ZIP_CODE,
     zipCode,
   };
 }
@@ -253,9 +227,9 @@ export function receiveZipCode(zipCode: string): Action {
  * @returns action.
  */
 export function reset(): Action {
-  mixpanel.track(RESET_CURRENT);
+  mixpanel.track(ActionType.RESET_CURRENT);
   return {
-    type: RESET_CURRENT,
+    type: ActionType.RESET_CURRENT,
   };
 }
 
@@ -264,9 +238,9 @@ export function reset(): Action {
  * @returns action.
  */
 export function toggleMenu(): Action {
-  mixpanel.track(TOGGLE_MENU);
+  mixpanel.track(ActionType.TOGGLE_MENU);
   return {
-    type: TOGGLE_MENU,
+    type: ActionType.TOGGLE_MENU,
   };
 }
 
