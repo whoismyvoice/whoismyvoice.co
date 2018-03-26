@@ -1,8 +1,10 @@
 import { Record, TermRecord, Legislator } from './Legislator';
 
-export function createTerm(): TermRecord {
+type TermType = 'sen' | 'rep';
+
+export function createTerm(type: TermType = 'sen'): TermRecord {
   return {
-    type: 'senate',
+    type,
     start: '2017-03-03',
     end: '2017-03-03',
     state: 'NY',
