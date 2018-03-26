@@ -1,3 +1,3 @@
-import Home from './Home';
+import ConnectedHome from './Home';
 
-export default Home;
+export default ConnectedHome;

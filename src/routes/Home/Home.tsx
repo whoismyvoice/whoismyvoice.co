@@ -82,7 +82,7 @@ export class Home extends React.Component<Props> {
   }
 }
 
-function mapStateToProps(state: State) {
+function mapStateToProps(state: State): Props {
   const { address, contributions, officials } = state;
   const organizationContributions =
     contributions.byOrganization[ORGANIZATION] || [];
@@ -101,6 +101,4 @@ function mapDispatchToProps(dispatch: Dispatch) {
   return {};
 }
 
-export default connect<{}, {}, Props>(mapStateToProps, mapDispatchToProps)(
-  Home
-);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

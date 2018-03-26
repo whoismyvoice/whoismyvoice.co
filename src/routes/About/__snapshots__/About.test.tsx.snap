@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="page-block light-white"
+>
+  <div
+    className="faded-bg faded-white hide"
+  />
+  <div
+    className="page-wrapper"
+  >
+    <h2>
+      About
+    </h2>
+    <p
+      className="page-introduction"
+    >
+      This website is unaffiliated with any government or lobbying party or entity, nor is it represented by a media outlet. Its objective is to provide easy access to comprehensive, actionable data to constituents who have a desire to better understand & reach the decision makers who represent them.
+      <br />
+      <br />
+      This website was created as a proactive, in-house exercise by the team at Siberia.
+      <br />
+      <br />
+      Please send any comments or fact checking
+       
+      <a
+        className="strike-out"
+        href="mailto:questions@whoismyvoice.com?Subject=WhoIsMyVoice.com Question"
+      >
+        here
+      </a>
+      .
+      <br />
+      <br />
+      Please send any business or media inquiries
+       
+      <a
+        className="strike-out"
+        href="mailto:contact@whoismyvoice.com?Subject=WhoIsMyVoice.com Contact"
+      >
+        here
+      </a>
+      .
+      <br />
+      <br />
+      <a
+        href="http://siberia.io"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <img
+          alt="Siberia"
+          src={undefined}
+          width="40"
+        />
+      </a>
+    </p>
+  </div>
+</div>
+`;
