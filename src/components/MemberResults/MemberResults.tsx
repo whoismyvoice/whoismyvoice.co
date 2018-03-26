@@ -1,13 +1,13 @@
 import * as React from 'react';
 
 // Components
-import CongressmanGroup from './Member/CongressmanGroup';
-import TextButton from './Buttons/TextButton';
-import { Contribution } from '../models/Contribution';
-import { Chamber, Legislator } from '../models/Legislator';
-import { MemberResultsTitle } from './MemberResultsTitle';
+import CongressmanGroup from '../Member/CongressmanGroup';
+import TextButton from '../Buttons/TextButton';
+import { Contribution } from '../../models/Contribution';
+import { Chamber, Legislator } from '../../models/Legislator';
+import { MemberResultsTitle } from '../MemberResultsTitle';
 // Constants
-import { ORGANIZATION_DISPLAY } from '../constants';
+import { ORGANIZATION_DISPLAY } from '../../constants';
 
 interface Props {
   contributions: Array<Contribution>;
