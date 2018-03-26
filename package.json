@@ -31,6 +31,7 @@
     "@types/react-redux": "^5.0.15",
     "@types/react-router": "^4.0.23",
     "@types/react-router-dom": "^4.2.5",
+    "@types/react-test-renderer": "^16.0.1",
     "@types/redux": "^3.6.0",
     "@types/redux-logger": "^3.0.5",
     "@types/redux-promise": "^0.5.28",
@@ -41,6 +42,7 @@
     "prettier": "^1.11.1",
     "pretty-quick": "^1.4.1",
     "react-scripts-ts": "^2.14.0",
+    "react-test-renderer": "^16.2.0",
     "typescript": "^2.7.2"
   },
   "dependencies": {
