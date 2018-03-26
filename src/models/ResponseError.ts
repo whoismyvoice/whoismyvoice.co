@@ -15,6 +15,8 @@ export class ResponseError extends Error {
   // @ts-ignore
   constructor(response: Response, ...args: Array<any>) {
     super(...args);
+    // Set the prototype explicitly.
+    Object.setPrototypeOf(this, ResponseError.prototype);
     this.response = response;
   }
 }
