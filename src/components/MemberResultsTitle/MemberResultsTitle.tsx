@@ -1,5 +1,9 @@
 import { Chamber, Legislator } from '../../models/Legislator';
-import { Props as TitleProps, State as TitleState, Title } from '../Title';
+import {
+  Props as TitleProps,
+  State as TitleState,
+  Title,
+} from '../Title/Title';
 
 import '../../styles/TitleComponent.css';
 

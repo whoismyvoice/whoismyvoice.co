@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly no props 1`] = `
+<div
+  className="title-component uppercase"
+>
+  <div
+    className="three-stars"
+  >
+    <span>
+      ★
+    </span>
+    <span>
+      ★
+    </span>
+    <span>
+      ★
+    </span>
+  </div>
+  <div
+    className="title-component__description"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "",
+      }
+    }
+  />
+</div>
+`;

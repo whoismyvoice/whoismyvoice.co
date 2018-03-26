@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as _ from 'lodash';
 
-import '../styles/TitleComponent.css';
+import '../../styles/TitleComponent.css';
 
 interface Props {
   templateData?: object;
