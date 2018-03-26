@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as cx from 'classnames';
 
-import '../styles/CornerRibbon.css';
+import '../../styles/CornerRibbon.css';
 
 interface Props {
   didSearch?: boolean;
