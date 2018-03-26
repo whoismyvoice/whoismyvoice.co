@@ -9,7 +9,7 @@ interface Props {
   address?: string;
   addressErrorMessage?: string;
   isStreetAddressNeeded: boolean;
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
   placeholder?: string;
   zipCode?: string;
 }
@@ -25,19 +25,13 @@ class SearchAddress extends React.Component<Props> {
   };
 
   render() {
-    const {
-      address,
-      addressErrorMessage,
-      isStreetAddressNeeded,
-      onSubmit,
-      placeholder,
-      zipCode,
-    } = this.props;
+    const { address, addressErrorMessage, onSubmit, placeholder } = this.props;
     const inputClasses = cx('input', {
-      address_search: isStreetAddressNeeded,
+      address_search: this.props.isStreetAddressNeeded,
     });
     let formFields: React.ReactFragment = <React.Fragment />;
-    if (isStreetAddressNeeded) {
+    if (this.props.isStreetAddressNeeded) {
+      const zipCode = this.props.zipCode;
       formFields = (
         <React.Fragment>
           <div key="zipCodeDisplay" className="locked__zip">

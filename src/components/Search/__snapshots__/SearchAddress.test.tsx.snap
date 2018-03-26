@@ -1,0 +1,210 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`street address needed renders correctly 1`] = `
+<form
+  method="GET"
+  onSubmit={[Function]}
+>
+  <div
+    className="locked__zip"
+  >
+    ZIP: 
+    12345
+  </div>
+  <input
+    name="zipCode"
+    type="hidden"
+    value="12345"
+  />
+  <input
+    className="input address_search"
+    defaultValue=""
+    name="address"
+    placeholder="Enter Your Street Address"
+    type="text"
+  />
+  <div
+    className="line-seperator"
+  />
+  <button
+    className="text-button"
+    onClick={[Function]}
+    type="submit"
+  >
+    Continue
+    <span
+      className="text-button-border"
+    />
+  </button>
+</form>
+`;
+
+exports[`street address needed renders correctly with error message 1`] = `
+<form
+  method="GET"
+  onSubmit={[Function]}
+>
+  <div
+    className="locked__zip"
+  >
+    ZIP: 
+    12345
+  </div>
+  <input
+    name="zipCode"
+    type="hidden"
+    value="12345"
+  />
+  <input
+    className="input address_search"
+    defaultValue=""
+    name="address"
+    placeholder="Enter Your Street Address"
+    type="text"
+  />
+  <div
+    className="line-seperator"
+  />
+  <button
+    className="text-button"
+    onClick={[Function]}
+    type="submit"
+  >
+    Continue
+    <span
+      className="text-button-border"
+    />
+  </button>
+</form>
+`;
+
+exports[`street address needed renders correctly with placeholder 1`] = `
+<form
+  method="GET"
+  onSubmit={[Function]}
+>
+  <div
+    className="locked__zip"
+  >
+    ZIP: 
+    12345
+  </div>
+  <input
+    name="zipCode"
+    type="hidden"
+    value="12345"
+  />
+  <input
+    className="input address_search"
+    defaultValue=""
+    name="address"
+    placeholder="fooholder"
+    type="text"
+  />
+  <div
+    className="line-seperator"
+  />
+  <button
+    className="text-button"
+    onClick={[Function]}
+    type="submit"
+  >
+    Continue
+    <span
+      className="text-button-border"
+    />
+  </button>
+</form>
+`;
+
+exports[`street address not needed renders correctly 1`] = `
+<form
+  method="GET"
+  onSubmit={[Function]}
+>
+  <input
+    className=""
+    name="zipCode"
+    onChange={[Function]}
+    pattern="[0-9]*"
+    placeholder="Enter Your Zip Code"
+    type="text"
+  />
+  <div
+    className="line-seperator"
+  />
+  <button
+    className="text-button"
+    onClick={[Function]}
+    type="submit"
+  >
+    Continue
+    <span
+      className="text-button-border"
+    />
+  </button>
+</form>
+`;
+
+exports[`street address not needed renders correctly with error message 1`] = `
+<form
+  method="GET"
+  onSubmit={[Function]}
+>
+  <p
+    className="search-input-message--error"
+  >
+    foo errors
+  </p>
+  <input
+    className="error"
+    name="zipCode"
+    onChange={[Function]}
+    pattern="[0-9]*"
+    placeholder="Enter Your Zip Code"
+    type="text"
+  />
+  <div
+    className="line-seperator"
+  />
+  <button
+    className="text-button"
+    onClick={[Function]}
+    type="submit"
+  >
+    Continue
+    <span
+      className="text-button-border"
+    />
+  </button>
+</form>
+`;
+
+exports[`street address not needed renders correctly with placeholder 1`] = `
+<form
+  method="GET"
+  onSubmit={[Function]}
+>
+  <input
+    className=""
+    name="zipCode"
+    onChange={[Function]}
+    pattern="[0-9]*"
+    placeholder="Enter Your Zip Code"
+    type="text"
+  />
+  <div
+    className="line-seperator"
+  />
+  <button
+    className="text-button"
+    onClick={[Function]}
+    type="submit"
+  >
+    Continue
+    <span
+      className="text-button-border"
+    />
+  </button>
+</form>
+`;
