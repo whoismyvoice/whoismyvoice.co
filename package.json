@@ -21,17 +21,33 @@
   },
   "homepage": "https://www.whoismyvoice.com",
   "devDependencies": {
+    "@types/classnames": "^2.2.3",
+    "@types/isomorphic-fetch": "^0.0.34",
+    "@types/jest": "^22.2.2",
+    "@types/lodash": "^4.14.106",
+    "@types/node": "^9.6.0",
     "@types/react": "^16.0.40",
     "@types/react-dom": "^16.0.4",
+    "@types/react-redux": "^5.0.15",
+    "@types/react-router": "^4.0.23",
+    "@types/react-router-dom": "^4.2.5",
+    "@types/react-test-renderer": "^16.0.1",
+    "@types/redux": "^3.6.0",
+    "@types/redux-logger": "^3.0.5",
+    "@types/redux-promise": "^0.5.28",
     "eslint-plugin-prettier": "^2.6.0",
     "husky": "^0.14.3",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.2",
     "prettier": "^1.11.1",
     "pretty-quick": "^1.4.1",
-    "react-scripts": "1.1.1"
+    "react-scripts-ts": "^2.14.0",
+    "react-test-renderer": "^16.2.0",
+    "typescript": "^2.7.2"
   },
   "dependencies": {
+    "babel-core": "6",
+    "babel-runtime": "6",
     "classnames": "^2.2.5",
     "mixpanel-browser": "^2.18.0",
     "react": "^16.2.0",
@@ -47,12 +63,12 @@
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --recursive",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --recursive --watch",
-    "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
-    "build-js": "react-scripts build",
-    "build": "npm-run-all build-css build-js",
+    "start-ts": "react-scripts-ts start",
+    "start": "npm-run-all -p watch-css start-ts",
+    "build-ts": "react-scripts-ts build",
+    "build": "npm-run-all build-css build-ts",
     "precommit": "pretty-quick --staged",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
   }
 }

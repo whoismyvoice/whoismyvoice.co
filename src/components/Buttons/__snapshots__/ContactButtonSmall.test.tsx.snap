@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<a
+  href="link"
+  target="_blank"
+>
+  <button
+    className="contact__button_small undefined"
+  >
+    <div
+      className="button__small__icon icon"
+    />
+    <div
+      className="button__small__text"
+    >
+      text
+    </div>
+  </button>
+</a>
+`;

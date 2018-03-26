@@ -1,0 +1,229 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with a legislator 1`] = `
+<div
+  className="member-wrapper"
+>
+  <div
+    className="member-container"
+  >
+    <div
+      className="member-img member--grey"
+    >
+      <img
+        alt="John Smith"
+        src="https://theunitedstates.io/images/congress/original/.jpg"
+      />
+    </div>
+    <div
+      className="ribbon-wrapper"
+    >
+      <h1
+        className="ribbon ribbon--grey"
+      >
+        <strong
+          className="ribbon-content"
+        >
+          (
+          I
+           - 
+          NY
+          ) 
+          John Smith
+        </strong>
+      </h1>
+    </div>
+    <span
+      className="member__payment"
+    >
+      <span
+        className="counter__accept"
+      >
+        Accepted
+      </span>
+      <span
+        className="counter__digit digit__margin"
+      >
+        $
+        <span
+          className="counter__gradient-top"
+        />
+      </span>
+      <span
+        className="counter__digit"
+      >
+        -
+        <span
+          className="counter__gradient-top"
+        />
+      </span>
+      <span
+        className="counter__digit"
+      >
+        1
+        <span
+          className="counter__gradient-top"
+        />
+      </span>
+      <span
+        className="counter__from"
+      >
+        from 
+        the NRA
+      </span>
+    </span>
+    <div
+      className="mobile-contact-options"
+      id="legislator-contact-0"
+    >
+      Contact Them
+    </div>
+    <div
+      className="actionButtons"
+    >
+      <a
+        href="tel:123-123-1234"
+        target="_blank"
+      >
+        <button
+          className="contact__button_small undefined"
+        >
+          <div
+            className="button__small__icon phone"
+          />
+          <div
+            className="button__small__text"
+          >
+            Call Them
+          </div>
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with a legislator and contribution 1`] = `
+<div
+  className="member-wrapper"
+>
+  <div
+    className="member-container"
+  >
+    <div
+      className="member-img member--grey"
+    >
+      <img
+        alt="John Smith"
+        src="https://theunitedstates.io/images/congress/original/.jpg"
+      />
+    </div>
+    <div
+      className="ribbon-wrapper"
+    >
+      <h1
+        className="ribbon ribbon--grey"
+      >
+        <strong
+          className="ribbon-content"
+        >
+          (
+          I
+           - 
+          NY
+          ) 
+          John Smith
+        </strong>
+      </h1>
+    </div>
+    <span
+      className="member__payment"
+    >
+      <span
+        className="counter__accept"
+      >
+        Accepted
+      </span>
+      <span
+        className="counter__digit digit__margin"
+      >
+        $
+        <span
+          className="counter__gradient-top"
+        />
+      </span>
+      <span
+        className="counter__digit"
+      >
+        1
+        <span
+          className="counter__gradient-top"
+        />
+      </span>
+      <span
+        className="counter__digit"
+      >
+        0
+        <span
+          className="counter__gradient-top"
+        />
+      </span>
+      <span
+        className="counter__digit"
+      >
+        0
+        <span
+          className="counter__gradient-top"
+        />
+      </span>
+      <span
+        className="counter__digit"
+      >
+        0
+        <span
+          className="counter__gradient-top"
+        />
+      </span>
+      <span
+        className="counter__from"
+      >
+        from 
+        the NRA
+      </span>
+    </span>
+    <div
+      className="mobile-contact-options"
+      id="legislator-contact-0"
+    >
+      Contact Them
+    </div>
+    <div
+      className="actionButtons"
+    >
+      <a
+        href="tel:123-123-1234"
+        target="_blank"
+      >
+        <button
+          className="contact__button_small undefined"
+        >
+          <div
+            className="button__small__icon phone"
+          />
+          <div
+            className="button__small__text"
+          >
+            Call Them
+          </div>
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders correctly without a legislator 1`] = `
+<div
+  className="member-wrapper"
+/>
+`;

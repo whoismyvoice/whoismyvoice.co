@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="animated fadeIn"
+>
+  <form
+    method="GET"
+    onSubmit={[Function]}
+  >
+    <input
+      className=""
+      name="zipCode"
+      onChange={[Function]}
+      pattern="[0-9]*"
+      placeholder="Enter Your Zip Code"
+      type="text"
+    />
+    <div
+      className="line-seperator"
+    />
+    <button
+      className="text-button"
+      onClick={[Function]}
+      type="submit"
+    >
+      Continue
+      <span
+        className="text-button-border"
+      />
+    </button>
+  </form>
+</div>
+`;

@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly didSearch=false 1`] = `
+<div
+  className="corner-ribbon"
+>
+  <a
+    href="http://health.whoismyvoice.com/"
+    rel="noreferrer noopener"
+    target="_blank"
+  >
+    Care about healthcare?
+  </a>
+</div>
+`;
+
+exports[`renders correctly didSearch=true 1`] = `
+<div
+  className="corner-ribbon corner-ribbon__hide"
+>
+  <a
+    href="http://health.whoismyvoice.com/"
+    rel="noreferrer noopener"
+    target="_blank"
+  >
+    Care about healthcare?
+  </a>
+</div>
+`;
+
+exports[`renders correctly no props 1`] = `
+<div
+  className="corner-ribbon"
+>
+  <a
+    href="http://health.whoismyvoice.com/"
+    rel="noreferrer noopener"
+    target="_blank"
+  >
+    Care about healthcare?
+  </a>
+</div>
+`;

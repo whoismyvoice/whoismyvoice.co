@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="member-img member--grey"
+>
+  <img
+    alt="John Smith"
+    src="https://theunitedstates.io/images/congress/original/.jpg"
+  />
+</div>
+`;
