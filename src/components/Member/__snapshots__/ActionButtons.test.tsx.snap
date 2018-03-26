@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="actionButtons"
+>
+  <a
+    href="tel:123-123-1234"
+    target="_blank"
+  >
+    <button
+      className="contact__button_small undefined"
+    >
+      <div
+        className="button__small__icon phone"
+      />
+      <div
+        className="button__small__text"
+      >
+        Call Them
+      </div>
+    </button>
+  </a>
+</div>
+`;

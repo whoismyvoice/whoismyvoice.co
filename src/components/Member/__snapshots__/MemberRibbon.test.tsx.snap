@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="ribbon-wrapper"
+>
+  <h1
+    className="ribbon ribbon--grey"
+  >
+    <strong
+      className="ribbon-content"
+    >
+      (
+      I
+       - 
+      NY
+      ) 
+      John Smith
+    </strong>
+  </h1>
+</div>
+`;
