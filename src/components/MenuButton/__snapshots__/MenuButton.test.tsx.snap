@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+Array [
+  <div
+    className="menu-overlay"
+  >
+    <div
+      className="menu-container"
+    >
+      <a
+        className="menu-buttons animated bounceOutRight menu-buttons--white"
+        href="/sources"
+        onClick={[Function]}
+      >
+        Data sources
+      </a>
+      <a
+        className="menu-buttons animated bounceOutRight menu-buttons--white"
+        href="/about"
+        onClick={[Function]}
+      >
+        About this project
+      </a>
+      <a
+        className="menu-buttons animated bounceOutRight menu-buttons--white"
+        href="/"
+        onClick={[Function]}
+      >
+        Start Again
+      </a>
+    </div>
+  </div>,
+  <div
+    className="menu-button animated"
+    onClick={[Function]}
+  />,
+]
+`;

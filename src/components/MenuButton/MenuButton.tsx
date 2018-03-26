@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as cx from 'classnames';
 
-import { toggleMenu, reset } from './actions';
-import { Dispatch } from './actions/types';
-import { State } from './store';
-import { ViewState } from './store/view';
+import { toggleMenu, reset } from '../../actions';
+import { Dispatch } from '../../actions/types';
+import { State } from '../../store';
+import { ViewState } from '../../store/view';
 // Styles
-import './styles/MenuButton.css';
+import '../../styles/MenuButton.css';
 
 type MappedProps = ViewState & StateProps & DispatchProps;
 
