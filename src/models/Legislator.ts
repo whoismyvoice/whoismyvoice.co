@@ -1,6 +1,7 @@
 import { Contribution } from './Contribution';
 import { Record as Official } from './Official';
 
+export type TermType = 'sen' | 'rep';
 export type BioguideId = string;
 export type FecId = string;
 export enum Chamber {
@@ -32,7 +33,7 @@ export interface NameRecord {
 }
 
 export interface TermRecord {
-  type: string;
+  type: TermType;
   start: string;
   end: string;
   state: string;

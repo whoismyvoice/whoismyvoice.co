@@ -1,6 +1,4 @@
-import { Record, TermRecord, Legislator } from './Legislator';
-
-type TermType = 'sen' | 'rep';
+import { Record, TermRecord, TermType, Legislator } from './Legislator';
 
 export function createTerm(type: TermType = 'sen'): TermRecord {
   return {
