@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as cx from 'classnames';
 
 // Component
-import SearchInput from './SearchInput';
+import { SearchInput } from './SearchInput';
 import TextFormButton from '../Buttons/TextFormButton';
 
 interface Props {
@@ -14,7 +14,7 @@ interface Props {
   zipCode?: string;
 }
 
-class SearchAddress extends React.Component<Props> {
+export class SearchAddress extends React.Component<Props> {
   static defaultProps = {
     address: '',
     addressErrorMessage: undefined,
@@ -64,5 +64,3 @@ class SearchAddress extends React.Component<Props> {
     );
   }
 }
-
-export default SearchAddress;

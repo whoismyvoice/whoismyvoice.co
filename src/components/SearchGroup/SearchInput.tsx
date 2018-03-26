@@ -16,7 +16,7 @@ interface State {
   isError: boolean;
 }
 
-class SearchInput extends React.Component<Props, State> {
+export class SearchInput extends React.Component<Props, State> {
   static defaultProps = {
     errorMessage: undefined,
     pattern: '[0-9]*',
@@ -76,5 +76,3 @@ class SearchInput extends React.Component<Props, State> {
     );
   }
 }
-
-export default SearchInput;

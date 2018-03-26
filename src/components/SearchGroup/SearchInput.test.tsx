@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as renderer from 'react-test-renderer';
-import SearchInput from './SearchInput';
+import { SearchInput } from './SearchInput';
 
 jest.mock('mixpanel-browser');
 
