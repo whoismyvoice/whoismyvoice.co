@@ -11,19 +11,25 @@ import { reset } from '../actions';
 import { Dispatch } from '../actions/types';
 import { State } from '../store';
 
-interface Props {
-  contributions: Array<Contribution>;
-  destroy?: Function;
-  didSearch: boolean;
-  representatives: Array<LegislatorRecord>;
-  onBack?: Function;
+interface StateProps {
+  didSearch?: boolean;
 }
 
-export class Results extends React.Component<Props, {}> {
+interface DispatchProps {
+  onBack?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+}
+
+interface Props extends StateProps, DispatchProps {
+  contributions: Array<Contribution>;
+  representatives: Array<LegislatorRecord>;
+}
+
+export class Results extends React.Component<Props> {
   static defaultProps = {
     didSearch: false,
     contributions: [],
     representatives: [],
+    onBack: () => undefined,
   };
 
   getButtonProps(index: number) {
@@ -74,21 +80,20 @@ export class Results extends React.Component<Props, {}> {
   }
 }
 
-function stateToProps(state: State) {
-  const { address, view } = state;
+function stateToProps(state: State): StateProps {
+  const { address } = state;
   return {
     didSearch: address.value !== undefined,
-    ...view,
   };
 }
 
-function dispatchToProps(dispatch: Dispatch) {
+function dispatchToProps(dispatch: Dispatch): DispatchProps {
   return {
-    onBack: (event: Event) => {
+    onBack: (event: React.MouseEvent<HTMLAnchorElement>) => {
       event.preventDefault();
       dispatch(reset());
     },
   };
 }
 
-export default connect<{}, {}, Props>(stateToProps, dispatchToProps)(Results);
+export default connect(stateToProps, dispatchToProps)(Results);
