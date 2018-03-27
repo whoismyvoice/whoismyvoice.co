@@ -1,5 +1,7 @@
 /* tslint:disable:no-any */
 export interface Response {
+  ok: boolean;
+  status: number;
   json(): Promise<any>;
 }
 

@@ -22,6 +22,8 @@ function createResponse() {
         error: { message: 'foo' },
       });
     },
+    ok: true,
+    status: 200,
   };
 }
 
