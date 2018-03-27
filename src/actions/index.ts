@@ -206,6 +206,7 @@ export async function receiveOfficialsError(
     type: ActionType.RECEIVE_OFFICIALS_ERROR,
     code: await error.code,
     isGlobal: await error.isGlobal,
+    isParseError: await error.isParseError,
     message: await error.responseMessage,
     messages: await error.errorMessages,
   };

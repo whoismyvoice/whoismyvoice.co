@@ -50,6 +50,7 @@ export interface OfficialsErrorAction {
   type: ActionType.RECEIVE_OFFICIALS_ERROR;
   code: number;
   isGlobal: boolean;
+  isParseError: boolean;
   message: string;
   messages: Array<string>;
 }

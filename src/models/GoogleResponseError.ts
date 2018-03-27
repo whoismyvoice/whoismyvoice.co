@@ -12,8 +12,9 @@ interface BodyErrorContent {
 }
 
 interface ErrorRecord {
-  type: string;
-  message?: string;
+  domain: string | undefined;
+  message: string | undefined;
+  reason: string | undefined;
 }
 
 function objectHasProp(propName: string, type: string, o: object) {
@@ -52,9 +53,19 @@ export class GoogleResponseError extends ResponseError {
 
   get isGlobal(): Promise<boolean> {
     return this.errors.then(errors => {
-      const filterFn = objectHasProp.bind(this, 'type', 'string');
-      const intermediate = errors.filter(filterFn);
-      return intermediate.reduce((r, err) => r && err.type === 'global', true);
+      const filterFn = objectHasProp.bind(this, 'domain', 'string');
+      return errors
+        .filter(filterFn)
+        .reduce((r, err) => r && err.domain! === 'global', true);
+    });
+  }
+
+  get isParseError(): Promise<boolean> {
+    return this.errors.then(errors => {
+      const filterFn = objectHasProp.bind(this, 'reason', 'string');
+      return errors
+        .filter(filterFn)
+        .reduce((r, err) => r && err.reason! === 'parseError', true);
     });
   }
 
