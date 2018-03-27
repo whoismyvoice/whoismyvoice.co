@@ -1,6 +1,7 @@
 /* tslint:disable:no-string-literal */
-import { receiveContributionData, reset } from '../actions';
+import { receiveContribution, reset, receiveContributions } from '../actions';
 import { Action, ActionType } from '../actions/types';
+import { createContribution } from '../models/Contribution.test';
 import contributions from './contributions';
 
 jest.mock('mixpanel-browser');
@@ -27,7 +28,7 @@ describe('byOrganization', () => {
   it('adds an organization to dictionary', () => {
     const state = contributions(
       undefined,
-      receiveContributionData('John Smith', 'SuperPAC', 1000)
+      receiveContribution('John Smith', 'SuperPAC', 1000)
     );
     const { byOrganization } = state;
     expect(Object.keys(byOrganization).length).toBe(1);
@@ -36,8 +37,8 @@ describe('byOrganization', () => {
 
   it('overwrites an official in organization dictionary with same id', () => {
     const actions = [
-      receiveContributionData('John Smith', 'SuperPAC', 1000),
-      receiveContributionData('John Smith', 'SuperPAC', 2000),
+      receiveContribution('John Smith', 'SuperPAC', 1000),
+      receiveContribution('John Smith', 'SuperPAC', 2000),
     ];
     const state = actions.reduce((s, a) => contributions(s, a), undefined);
     const { byOrganization } = state!;
@@ -54,6 +55,35 @@ describe('byOrganization', () => {
       organization: 'SuperPAC',
     });
   });
+
+  it('processes bulk contributions', () => {
+    const contributionsRecords = [
+      createContribution('John Smith'),
+      createContribution('John Smith Jr.'),
+      createContribution('John Smith III'),
+    ];
+    const actions = [receiveContributions(contributionsRecords)];
+    const state = actions.reduce((s, a) => contributions(s, a), undefined);
+    const { byOrganization } = state!;
+    expect(Object.keys(byOrganization).length).toBe(1);
+    expect(Object.keys(byOrganization)).toContain('SuperPAC');
+    expect(byOrganization['SuperPAC'].length).toBe(3);
+    expect(byOrganization['SuperPAC']).toContainEqual({
+      amount: 1000,
+      legislatorId: 'John Smith',
+      organization: 'SuperPAC',
+    });
+    expect(byOrganization['SuperPAC']).toContainEqual({
+      amount: 1000,
+      legislatorId: 'John Smith Jr.',
+      organization: 'SuperPAC',
+    });
+    expect(byOrganization['SuperPAC']).toContainEqual({
+      amount: 1000,
+      legislatorId: 'John Smith III',
+      organization: 'SuperPAC',
+    });
+  });
 });
 
 describe('existing state', () => {
@@ -61,11 +91,11 @@ describe('existing state', () => {
   beforeEach(() => {
     initialState = contributions(
       undefined,
-      receiveContributionData('John Smith', 'SuperPAC', 1000)
+      receiveContribution('John Smith', 'SuperPAC', 1000)
     );
     initialState = contributions(
       undefined,
-      receiveContributionData('John Smith Jr.', 'SuperPAC', 2000)
+      receiveContribution('John Smith Jr.', 'SuperPAC', 2000)
     );
   });
 

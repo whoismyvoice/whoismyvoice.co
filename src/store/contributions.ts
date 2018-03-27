@@ -52,6 +52,25 @@ function addContribution(
 }
 
 /**
+ * Modifies `ContributionsByOrganization` state by adding the given
+ * `Contribution`.
+ * @param {ContributionsByOrganization} state to be modified.
+ * @param {Contribution} contribution to be added.
+ * @returns a new copy of `ContributionsByOrganization` state.
+ */
+function handleContribution(
+  state: ContributionsByOrganization,
+  contribution: Contribution
+) {
+  const organization = contribution.organization;
+  const contributions = state[organization] || [];
+  return {
+    ...state,
+    [organization]: addContribution(contributions, contribution),
+  };
+}
+
+/**
  * Modify the current state by adding the contribution represented by `action`
  * into the appropriate organization.
  * @param {object} state with lists of contributions for each organization key.
@@ -68,12 +87,10 @@ function handleByOrganization(
 ): ContributionsByOrganization {
   switch (action.type) {
     case ActionType.RECEIVE_CONTRIBUTION_DATA:
-      const { organization } = action;
       const { type, ...payload } = action;
-      return {
-        ...state,
-        [organization]: addContribution(state[organization] || [], payload),
-      };
+      return handleContribution(state, payload);
+    case ActionType.RECEIVE_CONTRIBUTIONS_DATA:
+      return action.contributions.reduce(handleContribution, state);
     default:
       return state;
   }
@@ -91,6 +108,11 @@ function handle(state: ContributionsState = initialState, action: Action) {
   const { type } = action;
   switch (type) {
     case ActionType.RECEIVE_CONTRIBUTION_DATA:
+      return {
+        ...state,
+        byOrganization: handleByOrganization(state.byOrganization, action),
+      };
+    case ActionType.RECEIVE_CONTRIBUTIONS_DATA:
       return {
         ...state,
         byOrganization: handleByOrganization(state.byOrganization, action),
