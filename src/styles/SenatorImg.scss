@@ -18,11 +18,11 @@
   border: 8px solid $dark-red;
 
   &.member--blue {
-    border: 8px solid #203c70;
+    border-color: #203c70;
   }
 
   &.member--grey {
-    border: 8px solid #9b9695;
+    border-color: #9b9695;
   }
 
   @media screen and (max-width: $iphone6) {

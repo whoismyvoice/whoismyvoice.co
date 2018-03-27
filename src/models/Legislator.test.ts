@@ -1,4 +1,4 @@
-import { Record, TermRecord, TermType, Legislator } from './Legislator';
+import { Record, TermRecord, TermType, Legislator, Party } from './Legislator';
 
 export function createTerm(type: TermType = 'sen'): TermRecord {
   return {
@@ -6,7 +6,7 @@ export function createTerm(type: TermType = 'sen'): TermRecord {
     start: '2017-03-03',
     end: '2017-03-03',
     state: 'NY',
-    party: 'I',
+    party: Party.Independent,
     phone: '123-123-1234',
   };
 }

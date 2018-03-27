@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as cx from 'classnames';
-import { Legislator } from '../../models/Legislator';
+import { Legislator, Party } from '../../models/Legislator';
 
 // Styles
 import './../../styles/MemberRibbon.css';
@@ -16,15 +16,15 @@ class MemberRibbon extends React.Component<Props> {
 
     const ribbonClasses = cx(
       ['ribbon'],
-      { 'ribbon--grey': party === 'I' },
-      { 'ribbon--blue': party === 'D' }
+      { 'ribbon--grey': party === Party.Independent },
+      { 'ribbon--blue': party === Party.Democrat }
     );
 
     return (
       <div className="ribbon-wrapper">
         <h1 className={ribbonClasses}>
           <strong className="ribbon-content">
-            ({party} - {state}) {fullName}
+            ({party.charAt(0)} - {state}) {fullName}
           </strong>
         </h1>
       </div>

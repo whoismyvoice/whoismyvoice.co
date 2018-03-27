@@ -2,6 +2,11 @@ import { Contribution } from './Contribution';
 import { Record as Official } from './Official';
 
 export type TermType = 'sen' | 'rep';
+export enum Party {
+  Democrat = 'Democrat',
+  Republican = 'Republican',
+  Independent = 'Independent',
+}
 export type BioguideId = string;
 export type FecId = string;
 export enum Chamber {
@@ -38,7 +43,7 @@ export interface TermRecord {
   end: string;
   state: string;
   district?: string;
-  party: string;
+  party: Party;
   phone: string;
 }
 
@@ -271,7 +276,7 @@ export class Legislator implements Record {
    * for their current term.
    * @returns current US Political Party.
    */
-  get party(): string {
+  get party(): Party {
     return this.currentTerm.party;
   }
 

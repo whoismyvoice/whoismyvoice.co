@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as cx from 'classnames';
 
-import { Legislator } from '../../models/Legislator';
+import { Legislator, Party } from '../../models/Legislator';
 
 // Assets
 import './../../styles/SenatorImg.css';
@@ -23,8 +23,8 @@ class SenatorImg extends React.Component<Props> {
     const imgClasses = cx(
       ['member-img'],
       { animated: repNumber > 2 },
-      { 'member--blue': party === 'D' },
-      { 'member--grey': party === 'I' }
+      { 'member--blue': party === Party.Democrat },
+      { 'member--grey': party === Party.Independent }
     );
 
     return (
