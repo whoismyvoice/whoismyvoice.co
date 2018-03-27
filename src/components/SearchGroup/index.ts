@@ -10,7 +10,9 @@ function mapStateToProps(state: State): StateProps {
   return {
     address: address.street,
     addressErrorMessage,
-    isStreetAddressNeeded: officials.ids.length === 2,
+    isStreetAddressNeeded:
+      officials.ids.length === 2 ||
+      addressErrorMessage === 'Failed to parse address',
     zipCode: address.zipCode,
   };
 }
