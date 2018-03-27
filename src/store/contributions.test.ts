@@ -1,6 +1,7 @@
 /* tslint:disable:no-string-literal */
-import { receiveContribution, reset } from '../actions';
+import { receiveContribution, reset, receiveContributions } from '../actions';
 import { Action, ActionType } from '../actions/types';
+import { createContribution } from '../models/Contribution.test';
 import contributions from './contributions';
 
 jest.mock('mixpanel-browser');
@@ -51,6 +52,35 @@ describe('byOrganization', () => {
     expect(byOrganization['SuperPAC']).toContainEqual({
       amount: 2000,
       legislatorId: 'John Smith',
+      organization: 'SuperPAC',
+    });
+  });
+
+  it('processes bulk contributions', () => {
+    const contributionsRecords = [
+      createContribution('John Smith'),
+      createContribution('John Smith Jr.'),
+      createContribution('John Smith III'),
+    ];
+    const actions = [receiveContributions(contributionsRecords)];
+    const state = actions.reduce((s, a) => contributions(s, a), undefined);
+    const { byOrganization } = state!;
+    expect(Object.keys(byOrganization).length).toBe(1);
+    expect(Object.keys(byOrganization)).toContain('SuperPAC');
+    expect(byOrganization['SuperPAC'].length).toBe(3);
+    expect(byOrganization['SuperPAC']).toContainEqual({
+      amount: 1000,
+      legislatorId: 'John Smith',
+      organization: 'SuperPAC',
+    });
+    expect(byOrganization['SuperPAC']).toContainEqual({
+      amount: 1000,
+      legislatorId: 'John Smith Jr.',
+      organization: 'SuperPAC',
+    });
+    expect(byOrganization['SuperPAC']).toContainEqual({
+      amount: 1000,
+      legislatorId: 'John Smith III',
       organization: 'SuperPAC',
     });
   });

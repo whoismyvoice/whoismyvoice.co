@@ -1,11 +1,14 @@
-import { Record as Official } from '../models/Official';
+import { Contribution } from '../models/Contribution';
 import { Record as Legislator } from '../models/Legislator';
+import { Record as Official } from '../models/Official';
 
 export enum ActionType {
   /** Action type used when address is provided. */
   RECEIVE_ADDRESS = 'RECEIVE_ADDRESS',
   /** Action type used when new contribution data is received. */
   RECEIVE_CONTRIBUTION_DATA = 'RECEIVE_CONTRIBUTION_DATA',
+  /** Action type used when data for multiple contributions is received. */
+  RECEIVE_CONTRIBUTIONS_DATA = 'RECEIVE_CONTRIBUTIONS_DATA',
   /** Action type used when gps or location data is provided. */
   RECEIVE_GPS = 'RECEIVE_GPS',
   /** Action type used after officials are updated. */
@@ -34,6 +37,11 @@ export interface ContributionDataAction {
   amount: number;
   legislatorId: string;
   organization: string;
+}
+
+export interface ContributionsDataAction {
+  type: ActionType.RECEIVE_CONTRIBUTIONS_DATA;
+  contributions: Array<Contribution>;
 }
 
 export interface OfficialsAction {
@@ -84,6 +92,7 @@ export interface GpsAction {
 export type Action =
   | AddressAction
   | ContributionDataAction
+  | ContributionsDataAction
   | OfficialsAction
   | LegislatorsAction
   | OfficialsErrorAction

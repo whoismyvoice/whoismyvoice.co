@@ -3,6 +3,7 @@ import * as mixpanel from 'mixpanel-browser';
 
 import { ELECTION_CYCLE, EXECUTE_PROXY, ORGANIZATION } from '../constants';
 import { Action, ActionType, Dispatch } from './types';
+import { Contribution } from '../models/Contribution';
 import {
   Legislator,
   Identifier as LegislatorIdentifier,
@@ -19,6 +20,25 @@ import { ResponseError } from '../models/ResponseError';
  * interested in those contributions.
  */
 const FEC_ID_REGEX = /[HS]\d{1,3}[A-Z]{2}\d+/;
+
+/**
+ * Finesse the `MaplightResultsRecord` and `LegislatorRecord` data into a
+ * `Contribution`.
+ * @param {LegislatorRecord} legislator from which identifier will be retrieved.
+ * @param {MaplightResultsRecord} contributionData from which amount and
+ *    organization will be retrieved.
+ * @returns the data as a `Contribution`.
+ */
+function createContribution(
+  legislator: LegislatorRecord,
+  contributionData: MaplightResultsRecord
+) {
+  return {
+    legislatorId: Legislator.getIdentifier(legislator),
+    organization: contributionData.search_terms.donor.donor_organization,
+    amount: contributionData.data.aggregate_totals[0].total_amount,
+  };
+}
 
 /**
  * Retrieve aggregated contribution data for given `organization` and `legislator`.
@@ -114,33 +134,6 @@ export function receiveAddress(address: string): Action {
 
 /**
  * Create action to notify of contribution data received.
- * @param {object} legislator for whom data was received.
- * @param {object} legislator.name object of name information for the `legislator`.
- * @param {array} legislator.name.official_full official full name of the legislator
- *    according to FEC records.
- * @param {object} contributionResults received from Maplight API
- * @param {object} contributionResults.search_terms information about what was searched.
- * @param {object} contributionResults.search_terms.donor information about the donor
- *    search parameters
- * @param {object} contributionResults.search_terms.donor.donor_organization
- * @param {object} contributionResults.data result data.
- * @param {array} contributionResults.data.aggregate_totals grouped by ????. Each member
- *    has a `total_amount` property that is the aggregated value of contributions.
- * @returns action.
- */
-function receiveContributionData(
-  legislator: LegislatorRecord,
-  contributionResults: MaplightResultsRecord
-): Action {
-  return receiveContribution(
-    Legislator.getIdentifier(legislator),
-    contributionResults.search_terms.donor.donor_organization,
-    contributionResults.data.aggregate_totals[0].total_amount
-  );
-}
-
-/**
- * Create action to notify of contribution data received.
  * @param {string} legislatorId official full name of the legislator
  *    according to FEC records.
  * @param {string} organization making the contribution.
@@ -152,15 +145,28 @@ export function receiveContribution(
   organization: string,
   amount: number
 ): Action {
-  mixpanel.track(ActionType.RECEIVE_CONTRIBUTION_DATA, {
-    legislatorId,
-    organization,
-  });
   return {
     type: ActionType.RECEIVE_CONTRIBUTION_DATA,
     amount,
     legislatorId,
     organization,
+  };
+}
+
+/**
+ * Create action to notify of bulk contribution data received.
+ * @param {Array<Contribution>} contributions received.
+ * @returns action.
+ */
+export function receiveContributions(
+  contributions: Array<Contribution>
+): Action {
+  mixpanel.track(ActionType.RECEIVE_CONTRIBUTION_DATA, {
+    count: contributions.length,
+  });
+  return {
+    type: ActionType.RECEIVE_CONTRIBUTIONS_DATA,
+    contributions: contributions,
   };
 }
 
@@ -270,13 +276,17 @@ export function setAddress(address: string) {
       dispatch(receiveOfficials(officials));
       const getLegislator = getLegislatorForOfficial(allLegislators);
       const getContributions = fetchContributions(ORGANIZATION);
-      officials
-        .map(getLegislator)
-        .filter(legislator => legislator !== undefined)
-        .forEach(async legislator => {
-          const contributionData = await getContributions(legislator!);
-          dispatch(receiveContributionData(legislator!, contributionData));
-        });
+      const contributions = await Promise.all(
+        officials
+          .map(getLegislator)
+          .filter(legislator => legislator !== undefined)
+          .map(async record => {
+            const legislator = record!; // safe because of filter function above
+            const contributionData = await getContributions(legislator);
+            return createContribution(legislator, contributionData);
+          })
+      );
+      dispatch(receiveContributions(contributions));
     } catch (error) {
       if (error instanceof GoogleResponseError) {
         // response is error; abort
