@@ -1,6 +1,7 @@
 /* tslint:disable:no-any */
-interface Response {
-  // @ts-ignore
+export interface Response {
+  ok: boolean;
+  status: number;
   json(): Promise<any>;
 }
 
@@ -9,12 +10,12 @@ interface Response {
  * arguments.
  */
 export class ResponseError extends Error {
-  // @ts-ignore
-  response: any;
+  response: Response;
 
-  // @ts-ignore
   constructor(response: Response, ...args: Array<any>) {
     super(...args);
+    // Set the prototype explicitly.
+    Object.setPrototypeOf(this, ResponseError.prototype);
     this.response = response;
   }
 }

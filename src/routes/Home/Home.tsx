@@ -5,7 +5,7 @@ import * as mixpanel from 'mixpanel-browser';
 
 // Components
 import Results from '../../components/Results';
-import SearchGroup from '../../components/Search/SearchGroup';
+import SearchGroup from '../../components/SearchGroup';
 import { StarTitle } from '../../components/Title/StarTitle';
 import { Contribution } from '../../models/Contribution';
 import { Record as LegislatorType } from '../../models/Legislator';

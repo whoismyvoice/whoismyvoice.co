@@ -20,7 +20,7 @@ function handle(state: ViewState = initialState, action: Action): ViewState {
     case ActionType.RECEIVE_OFFICIALS_ERROR:
       return {
         ...state,
-        addressErrorMessage: action.error.message,
+        addressErrorMessage: action.message,
       };
     case ActionType.TOGGLE_MENU:
       return {
