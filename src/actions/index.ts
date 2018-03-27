@@ -170,7 +170,7 @@ export function receiveContribution(
  * @returns action.
  */
 export function receiveOfficials(officials: Array<Official>): Action {
-  mixpanel.track(ActionType.RECEIVE_OFFICIALS);
+  mixpanel.track(ActionType.RECEIVE_OFFICIALS, { count: officials.length });
   return {
     type: ActionType.RECEIVE_OFFICIALS,
     officials,
@@ -200,7 +200,9 @@ export function receiveOfficialsAll(
 export async function receiveOfficialsError(
   error: GoogleResponseError
 ): Promise<Action> {
-  mixpanel.track(ActionType.RECEIVE_OFFICIALS_ERROR);
+  mixpanel.track(ActionType.RECEIVE_OFFICIALS_ERROR, {
+    message: error.message,
+  });
   return {
     type: ActionType.RECEIVE_OFFICIALS_ERROR,
     code: await error.code,
