@@ -1,5 +1,5 @@
 /* tslint:disable:no-string-literal */
-import { receiveContributionData, reset } from '../actions';
+import { receiveContribution, reset } from '../actions';
 import { Action, ActionType } from '../actions/types';
 import contributions from './contributions';
 
@@ -27,7 +27,7 @@ describe('byOrganization', () => {
   it('adds an organization to dictionary', () => {
     const state = contributions(
       undefined,
-      receiveContributionData('John Smith', 'SuperPAC', 1000)
+      receiveContribution('John Smith', 'SuperPAC', 1000)
     );
     const { byOrganization } = state;
     expect(Object.keys(byOrganization).length).toBe(1);
@@ -36,8 +36,8 @@ describe('byOrganization', () => {
 
   it('overwrites an official in organization dictionary with same id', () => {
     const actions = [
-      receiveContributionData('John Smith', 'SuperPAC', 1000),
-      receiveContributionData('John Smith', 'SuperPAC', 2000),
+      receiveContribution('John Smith', 'SuperPAC', 1000),
+      receiveContribution('John Smith', 'SuperPAC', 2000),
     ];
     const state = actions.reduce((s, a) => contributions(s, a), undefined);
     const { byOrganization } = state!;
@@ -61,11 +61,11 @@ describe('existing state', () => {
   beforeEach(() => {
     initialState = contributions(
       undefined,
-      receiveContributionData('John Smith', 'SuperPAC', 1000)
+      receiveContribution('John Smith', 'SuperPAC', 1000)
     );
     initialState = contributions(
       undefined,
-      receiveContributionData('John Smith Jr.', 'SuperPAC', 2000)
+      receiveContribution('John Smith Jr.', 'SuperPAC', 2000)
     );
   });
 

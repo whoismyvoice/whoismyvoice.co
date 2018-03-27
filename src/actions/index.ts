@@ -128,11 +128,11 @@ export function receiveAddress(address: string): Action {
  *    has a `total_amount` property that is the aggregated value of contributions.
  * @returns action.
  */
-function receiveContributionDataForLegislator(
+function receiveContributionData(
   legislator: LegislatorRecord,
   contributionResults: MaplightResultsRecord
 ): Action {
-  return receiveContributionData(
+  return receiveContribution(
     Legislator.getIdentifier(legislator),
     contributionResults.search_terms.donor.donor_organization,
     contributionResults.data.aggregate_totals[0].total_amount
@@ -147,7 +147,7 @@ function receiveContributionDataForLegislator(
  * @param {number} amount received in contributions.
  * @returns action.
  */
-export function receiveContributionData(
+export function receiveContribution(
   legislatorId: LegislatorIdentifier,
   organization: string,
   amount: number
@@ -267,20 +267,13 @@ export function setAddress(address: string) {
       dispatch(receiveOfficialsAll(allLegislators));
       dispatch(receiveOfficials(officials));
       const getLegislator = getLegislatorForOfficial(allLegislators);
+      const getContributions = fetchContributions(ORGANIZATION);
       officials
         .map(getLegislator)
         .filter(legislator => legislator !== undefined)
         .forEach(async legislator => {
-          // Flow isn't recognizing `filter` as changing the type of the array
-          // to eliminate undefined values so using $FlowIssue tag to ignore the
-          // complaints about `legislator` type.
-          const contributionData = await fetchContributionsForCandidate(
-            ORGANIZATION,
-            legislator
-          );
-          dispatch(
-            receiveContributionDataForLegislator(legislator, contributionData)
-          );
+          const contributionData = await getContributions(legislator!);
+          dispatch(receiveContributionData(legislator!, contributionData));
         });
     } catch (error) {
       if (error instanceof GoogleResponseError) {
