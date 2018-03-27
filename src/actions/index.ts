@@ -57,9 +57,7 @@ function fetchContributions(organization: string) {
  * @param {string} address to use in lookup.
  * @returns array of officials.
  */
-async function fetchOfficialsForAddress(
-  address: string
-): Promise<Array<Official>> {
+async function fetchOfficialsForAddress(address: string) {
   const baseUrl = `${EXECUTE_PROXY}/civics`;
   const encodedAddress = encodeURIComponent(address);
   const params = `address=${encodedAddress}`;
@@ -67,7 +65,7 @@ async function fetchOfficialsForAddress(
   if (response.ok) {
     const body = await response.json();
     const officials = body.officials;
-    return officials;
+    return officials as Array<Official>;
   } else {
     throw new GoogleResponseError(response, response.statusText);
   }
@@ -77,12 +75,12 @@ async function fetchOfficialsForAddress(
  * Retreive data about officials/legislators for the current legislative session.
  * @returns array of officials.
  */
-async function fetchLegislatorsAll(): Promise<Array<LegislatorRecord>> {
+async function fetchLegislatorsAll() {
   const url =
     'https://theunitedstates.io/congress-legislators/legislators-current.json';
   const response = await fetch(url);
   if (response.ok) {
-    return await response.json();
+    return (await response.json()) as Array<LegislatorRecord>;
   } else {
     throw new ResponseError(response, response.statusText);
   }
