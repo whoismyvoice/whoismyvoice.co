@@ -23,36 +23,33 @@ const FEC_ID_REGEX = /[HS]\d{1,3}[A-Z]{2}\d+/;
 /**
  * Retrieve aggregated contribution data for given `organization` and `legislator`.
  * @param {string} organization name whose contributions will be searched.
- * @param {object} legislator for whom data will be retrieved.
- * @param {object} legislator.id object of identifiers for the `legislator`.
- * @param {array} legislator.id.fec string identifiers for FEC filings.
+ * @param {LegislatorRecord} legislator for whom data will be retrieved.
  * @returns contribution data.
  */
-async function fetchContributionsForCandidate(
-  organization: string,
-  legislator: LegislatorRecord
-): Promise<MaplightResultsRecord> {
-  const candidateFecIds = legislator.id.fec.filter(fecId =>
-    FEC_ID_REGEX.test(fecId)
-  );
-  const baseUrl = `${EXECUTE_PROXY}/maplight`;
-  const electionCycle = encodeURIComponent(ELECTION_CYCLE);
-  const organizationName = encodeURIComponent(organization);
-  const fecIds = encodeURIComponent(candidateFecIds.join('|'));
-  const params = `cycle=${electionCycle}&fecIds=${fecIds}&organization=${organizationName}`;
-  const url = `${baseUrl}?${params}`;
-  const response = await fetch(url, {
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'text/plain',
-    },
-  });
-  if (response.ok) {
-    const body = await response.json();
-    return body;
-  } else {
-    throw new ResponseError(response, response.statusText);
-  }
+function fetchContributions(organization: string) {
+  return async (legislator: LegislatorRecord) => {
+    const candidateFecIds = legislator.id.fec.filter(fecId =>
+      FEC_ID_REGEX.test(fecId)
+    );
+    const baseUrl = `${EXECUTE_PROXY}/maplight`;
+    const electionCycle = encodeURIComponent(ELECTION_CYCLE);
+    const organizationName = encodeURIComponent(organization);
+    const fecIds = encodeURIComponent(candidateFecIds.join('|'));
+    const params = `cycle=${electionCycle}&fecIds=${fecIds}&organization=${organizationName}`;
+    const url = `${baseUrl}?${params}`;
+    const response = await fetch(url, {
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'text/plain',
+      },
+    });
+    if (response.ok) {
+      const body = await response.json();
+      return body as MaplightResultsRecord;
+    } else {
+      throw new ResponseError(response, response.statusText);
+    }
+  };
 }
 
 /**
@@ -91,13 +88,17 @@ async function fetchLegislatorsAll(): Promise<Array<LegislatorRecord>> {
   }
 }
 
-async function getLegislatorForOfficial(
-  allLegislators: Array<LegislatorRecord>,
-  official: Official
-): Promise<LegislatorRecord | void> {
-  return allLegislators.find(
-    legislator => Legislator.getIdentifier(legislator) === official.name
-  );
+/**
+ * Create a function that searches `allLegislators` for `official`.
+ * @param {Array<LegislatorRecord>} allLegislators records to be searched.
+ * @returns function that tries to match given `official` to a
+ *    `LegislatorRecord`.
+ */
+function getLegislatorForOfficial(allLegislators: Array<LegislatorRecord>) {
+  return (official: Official) =>
+    allLegislators.find(
+      legislator => Legislator.getIdentifier(legislator) === official.name
+    );
 }
 
 /**
@@ -264,17 +265,12 @@ export function setAddress(address: string) {
     try {
       dispatch(receiveAddress(address));
       const allLegislators = await fetchLegislatorsAll();
-      const currentOfficials = await fetchOfficialsForAddress(address);
+      const officials = await fetchOfficialsForAddress(address);
       dispatch(receiveOfficialsAll(allLegislators));
-      dispatch(receiveOfficials(currentOfficials));
-      const getLegislator = getLegislatorForOfficial.bind(
-        dispatch,
-        allLegislators
-      );
-      const currentLegislators = await Promise.all(
-        currentOfficials.map(official => getLegislator(official))
-      );
-      currentLegislators
+      dispatch(receiveOfficials(officials));
+      const getLegislator = getLegislatorForOfficial(allLegislators);
+      officials
+        .map(getLegislator)
         .filter(legislator => legislator !== undefined)
         .forEach(async legislator => {
           // Flow isn't recognizing `filter` as changing the type of the array
