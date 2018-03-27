@@ -10,6 +10,7 @@ import {
 } from '../models/Legislator';
 import { MaplightResultsRecord } from '../models/MaplightResults';
 import { Record as Official } from '../models/Official';
+import { GoogleResponseError } from '../models/GoogleResponseError';
 import { ResponseError } from '../models/ResponseError';
 
 /**
@@ -71,7 +72,7 @@ async function fetchOfficialsForAddress(
     const officials = body.officials;
     return officials;
   } else {
-    throw new ResponseError(response, response.statusText);
+    throw new GoogleResponseError(response, response.statusText);
   }
 }
 
@@ -198,15 +199,15 @@ export function receiveOfficialsAll(
  * @returns action.
  */
 export async function receiveOfficialsError(
-  error: ResponseError
+  error: GoogleResponseError
 ): Promise<Action> {
   mixpanel.track(ActionType.RECEIVE_OFFICIALS_ERROR);
-  const response = error.response;
-  // If this throws no error will be received.
-  const body = await response.json();
   return {
     type: ActionType.RECEIVE_OFFICIALS_ERROR,
-    error: body.error,
+    code: await error.code,
+    isGlobal: await error.isGlobal,
+    message: await error.responseMessage,
+    messages: await error.errorMessages,
   };
 }
 
@@ -287,7 +288,7 @@ export function setAddress(address: string) {
           );
         });
     } catch (error) {
-      if (error instanceof ResponseError) {
+      if (error instanceof GoogleResponseError) {
         // response is error; abort
         dispatch(receiveOfficialsError(error));
         return;

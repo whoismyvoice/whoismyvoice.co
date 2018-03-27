@@ -1,6 +1,5 @@
 import { Record as Official } from '../models/Official';
 import { Record as Legislator } from '../models/Legislator';
-import { ResponseError } from '../models/ResponseError';
 
 export enum ActionType {
   /** Action type used when address is provided. */
@@ -49,7 +48,10 @@ export interface LegislatorsAction {
 
 export interface OfficialsErrorAction {
   type: ActionType.RECEIVE_OFFICIALS_ERROR;
-  error: ResponseError;
+  code: number;
+  isGlobal: boolean;
+  message: string;
+  messages: Array<string>;
 }
 
 export interface ZipCodeAction {

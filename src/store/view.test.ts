@@ -4,7 +4,7 @@ import {
   receiveOfficials,
 } from '../actions';
 import { Action, ActionType } from '../actions/types';
-import { ResponseError } from '../models/ResponseError';
+import { GoogleResponseError } from '../models/GoogleResponseError';
 import view from './view';
 
 jest.mock('mixpanel-browser');
@@ -47,7 +47,7 @@ describe('initial state', () => {
   describe('receiveOfficialsError', () => {
     let receiveOfficialsErrorAction = undefined;
     let state = initialState;
-    const error = new ResponseError(createResponse());
+    const error = new GoogleResponseError(createResponse());
     beforeEach(async () => {
       receiveOfficialsErrorAction = await receiveOfficialsError(error);
       state = view(initialState, receiveOfficialsErrorAction);
