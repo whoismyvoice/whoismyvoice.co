@@ -6,20 +6,24 @@ efforts to defund Planned Parenthood in 2015.
 ## Stack
 
 This project was (re-)bootstrapped with [Create React App
-v1.5.2](https://github.com/facebookincubator/create-react-app).
+v1.5.2][cra].
 
 * React
-* Webpack as build system
 * Sass as CSS extension language
-* Babel as compiler
-* Jest for unit testing and coverage
+* TypeScript (handled by `react-scripts-ts`)
+* Webpack as build system (managed by Create React App)
+* Babel as compiler (managed by Create React App)
+* Jest for unit testing and coverage (managed by Create React App)
+
+[cra]: https://github.com/facebookincubator/create-react-app
 
 ## Developer Setup
 
 ### Prerequisites
 
+* [Node LTS](https://nodejs.org/)
+* [Watchman](https://facebook.github.io/watchman/)
 * [Yarn](https://yarnpkg.com/en/)
-* [Docker](https://www.docker.com/)
 
 ### Steps
 
@@ -29,19 +33,24 @@ v1.5.2](https://github.com/facebookincubator/create-react-app).
 
 #### Build for development
 
+This will start a development server and open a browser window pointing at the
+localhost server.
+
     yarn run start
-
-#### Build for production
-
-    yarn run build
-
-#### Run production build
-
-    npm run build:start
 
 #### Run component tests
 
+This will execute tests and start watching for changes. As useful as the
+development server while making changes.
+
     yarn run test
+
+#### Build for production
+
+This should only be necessary if CircleCI encounters a problem executing the
+build step.
+
+    yarn run build
 
 ## Lambda Deployments
 
@@ -51,15 +60,13 @@ functions are managed with [Terraform][tf] plans located in the `infrastructure`
 directory. See the [`README`](./infrastructure/README.md) in `infrastructure`
 for more information about the editing Lambda functions.
 
-## Docker / Elastic Beanstalk
+## Deployments
 
-**TODO: This needs to be re-done**
+[CircleCI][ci] handles building and deploying. The deployment process is
+documented by [`.circle/config.yml`](./.circleci/config.yml) and the
+accompanying scripts.
 
-### Deploy
-
-    cd senate-project
-    npm run build
-    eb deploy
+[ci]: https://circleci.com/gh/oursiberia/whoismyvoice
 
 ## Development Guidelines
 
@@ -77,9 +84,10 @@ for more information about the editing Lambda functions.
 
 ## Resources
 
-A bunch of resources, which helped me get a better understanding of React,
-Webpack, SASS and how to make them play nice together when this project started
-out.
+A collection of links, which may help a new developer get a better
+understanding of React, Webpack, SASS and how to make them play nice together.
+These links were assembled when this project was initially started and so may
+be quite outdated.
 
 * [React Tutorials by Tyler McGinnis](http://tylermcginnis.com/category/react/)
 * [Webpack documentation](https://webpack.github.io/)
