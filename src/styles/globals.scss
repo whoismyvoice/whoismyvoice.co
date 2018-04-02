@@ -188,7 +188,14 @@ input {
 
 .disappear {
   @include transition(1s);
+}
+
+.disappear.page-one {
   top: -98vh;
+}
+
+.disappear.page-two {
+  top: -198vh;
 }
 
 .second-wrapper {

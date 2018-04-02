@@ -14,14 +14,12 @@ import './../../styles/CongressmanGroup.css';
 interface Props {
   contributions: Array<Contribution>;
   legislators: Array<Legislator>;
-  section: number;
 }
 
 class CongressmanGroup extends React.Component<Props> {
   static defaultProps = {
     legislators: [],
     contributions: [],
-    section: 1,
   };
 
   render() {

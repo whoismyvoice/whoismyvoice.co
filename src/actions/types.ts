@@ -17,6 +17,8 @@ export enum ActionType {
   RECEIVE_OFFICIALS_ALL = 'RECEIVE_OFFICIALS_ALL',
   /** Action type used when receiving an error after requesting officials for address. */
   RECEIVE_OFFICIALS_ERROR = 'RECEIVE_OFFICIALS_ERROR',
+  /** Action type dispatched when change pages of legislators. */
+  RECEIVE_PAGE = 'RECEIVE_PAGE',
   /** Action type used when address is provided. */
   RECEIVE_ZIP_CODE = 'RECEIVE_ZIP_CODE',
   /** Action type to reset current state. */
@@ -80,6 +82,11 @@ export interface OtherAction {
   type: ActionType.OTHER;
 }
 
+export interface PageAction {
+  type: ActionType.RECEIVE_PAGE;
+  page: 1 | 2;
+}
+
 export interface GpsAction {
   type: ActionType.RECEIVE_GPS;
   latitude: string;
@@ -100,6 +107,7 @@ export type Action =
   | ResetAction
   | ToggleMenuAction
   | GpsAction
+  | PageAction
   | OtherAction;
 
 /**

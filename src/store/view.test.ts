@@ -2,6 +2,8 @@ import {
   receiveOfficialsError,
   toggleMenu,
   receiveOfficials,
+  reset,
+  navigateLegislators,
 } from '../actions';
 import { Action, ActionType } from '../actions/types';
 import { GoogleResponseError } from '../models/GoogleResponseError';
@@ -38,6 +40,9 @@ describe('initial state', () => {
   it('has an undefined address error message', () => {
     expect(initialState.addressErrorMessage).toBe(undefined);
   });
+  it('has an undefined current page', () => {
+    expect(initialState.currentPage).toBeUndefined();
+  });
 
   describe('toggleMenu', () => {
     const state = view(initialState, toggleMenu());
@@ -67,6 +72,16 @@ describe('initial state', () => {
         expect(newState.addressErrorMessage).toBe(undefined);
       });
     });
+
+    describe('reset', () => {
+      let newState = view(state, reset());
+      beforeEach(() => {
+        newState = view(state, reset());
+      });
+      it('no longer has an error', async () => {
+        expect(newState.addressErrorMessage).toBe(undefined);
+      });
+    });
   });
 
   describe('receiveOfficials', () => {
@@ -76,6 +91,46 @@ describe('initial state', () => {
     });
     it('does not change address error message', async () => {
       expect(state.addressErrorMessage).toBe(undefined);
+    });
+  });
+
+  describe('navigateLegislators(1)', () => {
+    let state = view(initialState, navigateLegislators(1));
+    beforeEach(() => {
+      state = view(initialState, navigateLegislators(1));
+    });
+    it('changes current page', async () => {
+      expect(state.currentPage).toBe(1);
+    });
+
+    describe('reset', () => {
+      let newState = view(state, reset());
+      beforeEach(() => {
+        newState = view(state, reset());
+      });
+      it('no longer has an error', async () => {
+        expect(newState.addressErrorMessage).toBe(undefined);
+      });
+    });
+
+    describe('navigateLegislators(2)', () => {
+      let newState = view(initialState, navigateLegislators(2));
+      beforeEach(() => {
+        newState = view(initialState, navigateLegislators(2));
+      });
+      it('changes current page', async () => {
+        expect(newState.currentPage).toBe(2);
+      });
+
+      describe('reset', () => {
+        let nextState = view(newState, reset());
+        beforeEach(() => {
+          nextState = view(newState, reset());
+        });
+        it('no longer has an error', async () => {
+          expect(nextState.addressErrorMessage).toBe(undefined);
+        });
+      });
     });
   });
 });

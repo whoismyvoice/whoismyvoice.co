@@ -18,6 +18,7 @@ import { HOME_ROUTE } from '../../constants/mixpanel-events';
 import '../../styles/Home.css';
 
 interface Props {
+  currentPage?: 1 | 2;
   didSearch: boolean;
   numberHouse: number;
   numberRepresentatives: number;
@@ -32,6 +33,7 @@ export class Home extends React.Component<Props> {
 
   render() {
     const {
+      currentPage,
       didSearch,
       numberHouse,
       numberRepresentatives,
@@ -41,6 +43,8 @@ export class Home extends React.Component<Props> {
 
     const blockClasses = cx(['block', 'block--margin'], {
       disappear: didSearch && numberHouse === 1 && numberRepresentatives > 2,
+      'page-one': currentPage === undefined || currentPage === 1,
+      'page-two': currentPage === 2,
     });
 
     const fadingClasses = cx(['fading-circle'], {
@@ -72,7 +76,6 @@ export class Home extends React.Component<Props> {
             <SearchGroup />
           </div>
           <Results
-            didSearch={didSearch}
             contributions={contributions}
             representatives={representatives}
           />
@@ -83,10 +86,11 @@ export class Home extends React.Component<Props> {
 }
 
 function mapStateToProps(state: State): Props {
-  const { address, contributions, officials } = state;
+  const { address, contributions, officials, view } = state;
   const organizationContributions =
     contributions.byOrganization[ORGANIZATION] || [];
   return {
+    currentPage: view.currentPage,
     didSearch: address.value !== undefined,
     numberRepresentatives: officials.ids.length,
     numberHouse: officials.ids.length - 2,
