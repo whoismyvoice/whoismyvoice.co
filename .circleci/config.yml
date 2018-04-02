@@ -70,6 +70,9 @@ jobs:
           name: Generate Environment Variables for Build
           command: sh .circleci/scripts/build-env.sh production
       - run:
+          name: Show Environment Variables for Build
+          command: cat .env.production
+      - run:
           name: Build Deployment
           command: yarn run build
       - type: cache-save
