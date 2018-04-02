@@ -68,7 +68,7 @@ jobs:
         key: dependency-cache-{{ checksum "yarn.lock" }}
       - run:
           name: Generate Environment Variables for Build
-          command: sh .circleci/scripts/build-env.sh production default
+          command: sh .circleci/scripts/build-env.sh production NONE
       - run:
           name: Show Environment Variables for Build
           command: cat .env.production
