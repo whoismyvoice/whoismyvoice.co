@@ -5,7 +5,7 @@ jobs:
   install:
     working_directory: ~/wimv
     docker:
-      - image: circleci/node@sha256:895bd70ebcf4fd8a61a38f236fdea711859ac5d24357dc419559e53b06bac476
+      - image: bryanjswift/node_aws:8.11.0_1
     services:
       - docker
     steps:
@@ -43,7 +43,7 @@ jobs:
   test:
     working_directory: ~/wimv
     docker:
-      - image: circleci/node@sha256:895bd70ebcf4fd8a61a38f236fdea711859ac5d24357dc419559e53b06bac476
+      - image: bryanjswift/node_aws:8.11.0_1
     steps:
       - checkout
       - type: cache-restore
@@ -60,12 +60,21 @@ jobs:
   build:
     working_directory: ~/wimv
     docker:
-      - image: circleci/node@sha256:895bd70ebcf4fd8a61a38f236fdea711859ac5d24357dc419559e53b06bac476
+      - image: bryanjswift/node_aws:8.11.0_1
     steps:
       - checkout
       - type: cache-restore
         name: Restore node_modules cache
         key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: Generate AWS Profile
+          command: sh .circleci/scripts/aws-generate-profile.sh
+      - run:
+          name: Generate Environment Variables for Build
+          command: sh .circleci/scripts/build-env.sh production
+      - run:
+          name: Show Environment Variables for Build
+          command: cat .env.production
       - run:
           name: Build Deployment
           command: yarn run build
@@ -79,15 +88,12 @@ jobs:
   deploy:
     working_directory: ~/wimv
     docker:
-      - image: circleci/python
+      - image: bryanjswift/node_aws:8.11.0_1
     steps:
       - checkout
       - type: cache-restore
         name: Restore build cache
         key: build-{{ .Revision }}
-      - run:
-          name: Install AWS CLI
-          command: sh .circleci/scripts/awscli-install.sh
       - run:
           name: Deploy via deploy.sh
           command: sh .circleci/scripts/deploy.sh

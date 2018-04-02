@@ -47,6 +47,7 @@ Copy `infrastructure/config/secrets.sample.json` to
 
 There are several Terraform "plan" folders. Each plan has a distinct purpose:
 
+* `server/environment` manages the environment variables for deployments.
 * `server/testing` manages the static deployment target for the testing site.
 * `server/staging` manages the static deployment target for the staging site.
 * `global/s3` sets up the S3 bucket where the plans store their `.tfstate`
@@ -61,6 +62,27 @@ key in the S3 bucket created by the `global/s3` plan. `backend.tf` also
 declares a `dynamodb_table` property which references the dynamo db table from
 `global/locktable` in order to ensure a plan is only executed from one place at
 a time.
+
+### `server/environment`
+
+The `server/environment` plan manages the SSM parameters used to define
+environment variables used in `test`, `development` and `production`
+environments.
+
+If this is your first time running `terraform` commands for this plan on this
+computer
+
+    terraform init
+
+When ready to check the resources for changes run
+
+    terraform plan \
+        -var-file=../../config/secrets.json \
+        -out=server-environment.tfplan
+
+To execute the plan identified by the previous command
+
+    terraform apply server-environment.tfplan
 
 ### `server/testing`
 
@@ -81,7 +103,7 @@ When ready to check the resources for changes run
 
 To execute the plan identified by the previous command
 
-    terraform apply server-production.tfplan
+    terraform apply server-testing.tfplan
 
 ### `server/staging`
 
@@ -119,7 +141,7 @@ When ready to check the resources for changes run
 
     terraform plan \
         -var-file=../../config/secrets.json \
-        -out=server-testing.tfplan
+        -out=server-production.tfplan
 
 To execute the plan identified by the previous command
 

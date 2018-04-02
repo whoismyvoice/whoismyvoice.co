@@ -1,7 +1,7 @@
 {
   "name": "whoismyvoice",
   "version": "1.0.0",
-  "description": "Find your legislators and their positions quickly and easily.", "main": "src/index.js",
+  "description": "Find your legislators and their positions quickly and easily.",
   "main": "src/index.js",
   "repository": "https://github.com/oursiberia/whoismyvoice",
   "author": "Siberia <dev@siberia.io>",

@@ -24,12 +24,20 @@ v1.5.2][cra].
 * [Node LTS](https://nodejs.org/)
 * [Watchman](https://facebook.github.io/watchman/)
 * [Yarn](https://yarnpkg.com/en/)
+* [AWS CLI](https://aws.amazon.com/cli/)
+* [jq](https://stedolan.github.io/jq/)
 
 ### Steps
+
+The `build-env.sh` script needs an AWS profile called `whoismyvoice` set up
+with credentials that give access to the Who Is My Voice AWS Account,
+`690635890025`.
 
 1. `git clone https://github.com/oursiberia/senate-project.git`
 1. `cd senate-project`
 1. `yarn install`
+1. `aws configure --profile=whoismyvoice`
+1. `sh .circleci/scripts/build-env.sh`
 
 #### Build for development
 
@@ -59,6 +67,11 @@ requests to get around CORS and to hide API keys. The API Gateway and the Lambda
 functions are managed with [Terraform][tf] plans located in the `infrastructure`
 directory. See the [`README`](./infrastructure/README.md) in `infrastructure`
 for more information about the editing Lambda functions.
+
+## Environment Variables
+
+These are managed by Terraform as AWS SSM parameters. These are declared in the
+`infrastructure/server/environment` Terraform plan.
 
 ## Deployments
 
