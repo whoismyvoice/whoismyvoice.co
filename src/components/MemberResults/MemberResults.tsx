@@ -9,7 +9,13 @@ import { MemberResultsTitle } from '../MemberResultsTitle';
 // Constants
 import { ORGANIZATION_DISPLAY } from '../../constants';
 
-interface Props {
+export interface DispatchProps {
+  onNext?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+}
+
+export interface StateProps {}
+
+export interface Props extends DispatchProps, StateProps {
   contributions: Array<Contribution>;
   legislators: Array<Legislator>;
   section: number;
@@ -17,8 +23,9 @@ interface Props {
 
 class MemberResults extends React.Component<Props> {
   static defaultProps = {
-    legislators: [],
     contributions: [],
+    legislators: [],
+    onNext: () => undefined,
     section: 1,
   };
 
@@ -42,7 +49,7 @@ class MemberResults extends React.Component<Props> {
   }
 
   renderNextButton() {
-    const { legislators, section } = this.props;
+    const { legislators, onNext, section } = this.props;
     let nextText = MemberResults.getNextButtonText(legislators);
     const nextButton =
       section === 2 || legislators.length === 3 ? (
@@ -52,6 +59,7 @@ class MemberResults extends React.Component<Props> {
           <div className="line-seperator line-seperator--small" />
           <TextButton
             link={`#section-${section + 1}`}
+            onClick={onNext}
             text={`See ${nextText}`}
           />
         </React.Fragment>
