@@ -19,153 +19,150 @@ exports[`renders correctly with contribution and legislator 1`] = `
         className="text-button-border"
       />
     </a>
-    <span>
-      <span>
+    <div
+      className="title-component title-component--results"
+    >
+      <div
+        className="title-component__description"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "Your Senator <span class=\\"bold\\"><b>accepted money</b></span> <span class=\\"strike-out\\">from the NRA</span> in their recent election cycles.",
+          }
+        }
+      />
+    </div>
+    <div
+      className="member-wrapper"
+    >
+      <div
+        className="member-container"
+      >
         <div
-          className="title-component title-component--results"
+          className="member-img member--grey"
         >
-          <div
-            className="title-component__description"
-            dangerouslySetInnerHTML={
-              Object {
-                "__html": "Your Senator <span class=\\"bold\\"><b>accepted money</b></span> <span class=\\"strike-out\\">from the NRA</span> in their recent election cycles.",
-              }
-            }
+          <img
+            alt="John Smith"
+            src="https://theunitedstates.io/images/congress/original/.jpg"
           />
         </div>
         <div
-          className="member-wrapper"
+          className="ribbon-wrapper"
         >
-          <div
-            className="member-container"
+          <h1
+            className="ribbon ribbon--grey"
           >
-            <div
-              className="member-img member--grey"
+            <strong
+              className="ribbon-content"
             >
-              <img
-                alt="John Smith"
-                src="https://theunitedstates.io/images/congress/original/.jpg"
-              />
-            </div>
-            <div
-              className="ribbon-wrapper"
-            >
-              <h1
-                className="ribbon ribbon--grey"
-              >
-                <strong
-                  className="ribbon-content"
-                >
-                  (
-                  I
-                   - 
-                  NY
-                  ) 
-                  John Smith
-                </strong>
-              </h1>
-            </div>
-            <span
-              className="member__payment"
-            >
-              <span
-                className="counter__accept"
-              >
-                Accepted
-              </span>
-              <span
-                className="counter__digit digit__margin"
-              >
-                $
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                1
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                0
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                0
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                0
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__from"
-              >
-                from 
-                the NRA
-              </span>
-            </span>
-            <div
-              className="mobile-contact-options"
-              id="legislator-contact-0"
-            >
-              Contact Them
-            </div>
-            <div
-              className="actionButtons"
-            >
-              <a
-                href="tel:123-123-1234"
-                target="_blank"
-              >
-                <button
-                  className="contact__button_small undefined"
-                >
-                  <div
-                    className="button__small__icon phone"
-                  />
-                  <div
-                    className="button__small__text"
-                  >
-                    Call Them
-                  </div>
-                </button>
-              </a>
-            </div>
-          </div>
+              (
+              I
+               - 
+              NY
+              ) 
+              John Smith
+            </strong>
+          </h1>
         </div>
-      </span>
-      <span>
-        <div
-          className="line-seperator line-seperator--small"
-        />
-        <a
-          className="text-button"
-          href="#section-2"
-          onClick={[Function]}
+        <span
+          className="member__payment"
         >
-          See My Other Representatives
           <span
-            className="text-button-border"
-          />
-        </a>
-      </span>
-    </span>
+            className="counter__accept"
+          >
+            Accepted
+          </span>
+          <span
+            className="counter__digit digit__margin"
+          >
+            $
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            1
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            0
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            0
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            0
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__from"
+          >
+            from 
+            the NRA
+          </span>
+        </span>
+        <div
+          className="mobile-contact-options"
+          id="legislator-contact-0"
+        >
+          Contact Them
+        </div>
+        <div
+          className="actionButtons"
+        >
+          <a
+            href="tel:123-123-1234"
+            target="_blank"
+          >
+            <button
+              className="contact__button_small undefined"
+            >
+              <div
+                className="button__small__icon phone"
+              />
+              <div
+                className="button__small__text"
+              >
+                Call Them
+              </div>
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      className="member-wrapper"
+    />
+    <div
+      className="line-seperator line-seperator--small"
+    />
+    <a
+      className="text-button"
+      href="#section-2"
+      onClick={[Function]}
+    >
+      See My Other Representatives
+      <span
+        className="text-button-border"
+      />
+    </a>
   </div>
 </div>
 `;
@@ -196,363 +193,363 @@ exports[`renders correctly with three contributions and legislators 1`] = `
         className="text-button-border"
       />
     </a>
-    <span>
-      <span>
+    <div
+      className="title-component title-component--results"
+    >
+      <div
+        className="title-component__description"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "Your Senators & Representative <span class=\\"bold\\"><b>accepted money</b></span> <span class=\\"strike-out\\">from the NRA</span> in their recent election cycles.",
+          }
+        }
+      />
+    </div>
+    <div
+      className="member-wrapper"
+    >
+      <div
+        className="member-container"
+      >
         <div
-          className="title-component title-component--results"
+          className="member-img member--grey"
         >
-          <div
-            className="title-component__description"
-            dangerouslySetInnerHTML={
-              Object {
-                "__html": "Your Senators & Representative <span class=\\"bold\\"><b>accepted money</b></span> <span class=\\"strike-out\\">from the NRA</span> in their recent election cycles.",
-              }
-            }
+          <img
+            alt="John Smith"
+            src="https://theunitedstates.io/images/congress/original/.jpg"
           />
         </div>
         <div
-          className="member-wrapper"
+          className="ribbon-wrapper"
         >
-          <div
-            className="member-container"
+          <h1
+            className="ribbon ribbon--grey"
           >
-            <div
-              className="member-img member--grey"
+            <strong
+              className="ribbon-content"
             >
-              <img
-                alt="John Smith"
-                src="https://theunitedstates.io/images/congress/original/.jpg"
-              />
-            </div>
-            <div
-              className="ribbon-wrapper"
-            >
-              <h1
-                className="ribbon ribbon--grey"
-              >
-                <strong
-                  className="ribbon-content"
-                >
-                  (
-                  I
-                   - 
-                  NY
-                  ) 
-                  John Smith
-                </strong>
-              </h1>
-            </div>
-            <span
-              className="member__payment"
-            >
-              <span
-                className="counter__accept"
-              >
-                Accepted
-              </span>
-              <span
-                className="counter__digit digit__margin"
-              >
-                $
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                1
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                0
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                0
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                0
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__from"
-              >
-                from 
-                the NRA
-              </span>
-            </span>
-            <div
-              className="mobile-contact-options"
-              id="legislator-contact-0"
-            >
-              Contact Them
-            </div>
-            <div
-              className="actionButtons"
-            >
-              <a
-                href="tel:123-123-1234"
-                target="_blank"
-              >
-                <button
-                  className="contact__button_small undefined"
-                >
-                  <div
-                    className="button__small__icon phone"
-                  />
-                  <div
-                    className="button__small__text"
-                  >
-                    Call Them
-                  </div>
-                </button>
-              </a>
-            </div>
-          </div>
-          <div
-            className="member-container"
-          >
-            <div
-              className="member-img member--grey"
-            >
-              <img
-                alt="John Smith Jr."
-                src="https://theunitedstates.io/images/congress/original/.jpg"
-              />
-            </div>
-            <div
-              className="ribbon-wrapper"
-            >
-              <h1
-                className="ribbon ribbon--grey"
-              >
-                <strong
-                  className="ribbon-content"
-                >
-                  (
-                  I
-                   - 
-                  NY
-                  ) 
-                  John Smith Jr.
-                </strong>
-              </h1>
-            </div>
-            <span
-              className="member__payment"
-            >
-              <span
-                className="counter__accept"
-              >
-                Accepted
-              </span>
-              <span
-                className="counter__digit digit__margin"
-              >
-                $
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                1
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                0
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                0
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                0
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__from"
-              >
-                from 
-                the NRA
-              </span>
-            </span>
-            <div
-              className="mobile-contact-options"
-              id="legislator-contact-1"
-            >
-              Contact Them
-            </div>
-            <div
-              className="actionButtons"
-            >
-              <a
-                href="tel:123-123-1234"
-                target="_blank"
-              >
-                <button
-                  className="contact__button_small undefined"
-                >
-                  <div
-                    className="button__small__icon phone"
-                  />
-                  <div
-                    className="button__small__text"
-                  >
-                    Call Them
-                  </div>
-                </button>
-              </a>
-            </div>
-          </div>
-          <div
-            className="member-container"
-          >
-            <div
-              className="member-img animated member--grey"
-            >
-              <img
-                alt="John Smith III"
-                src="https://theunitedstates.io/images/congress/original/.jpg"
-              />
-            </div>
-            <div
-              className="ribbon-wrapper"
-            >
-              <h1
-                className="ribbon ribbon--grey"
-              >
-                <strong
-                  className="ribbon-content"
-                >
-                  (
-                  I
-                   - 
-                  NY
-                  ) 
-                  John Smith III
-                </strong>
-              </h1>
-            </div>
-            <span
-              className="member__payment"
-            >
-              <span
-                className="counter__accept"
-              >
-                Accepted
-              </span>
-              <span
-                className="counter__digit digit__margin"
-              >
-                $
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                1
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                0
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                0
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                0
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__from"
-              >
-                from 
-                the NRA
-              </span>
-            </span>
-            <div
-              className="mobile-contact-options"
-              id="legislator-contact-2"
-            >
-              Contact Them
-            </div>
-            <div
-              className="actionButtons"
-            >
-              <a
-                href="tel:123-123-1234"
-                target="_blank"
-              >
-                <button
-                  className="contact__button_small undefined"
-                >
-                  <div
-                    className="button__small__icon phone"
-                  />
-                  <div
-                    className="button__small__text"
-                  >
-                    Call Them
-                  </div>
-                </button>
-              </a>
-            </div>
-          </div>
+              (
+              I
+               - 
+              NY
+              ) 
+              John Smith
+            </strong>
+          </h1>
         </div>
-      </span>
-      
-    </span>
+        <span
+          className="member__payment"
+        >
+          <span
+            className="counter__accept"
+          >
+            Accepted
+          </span>
+          <span
+            className="counter__digit digit__margin"
+          >
+            $
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            1
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            0
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            0
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            0
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__from"
+          >
+            from 
+            the NRA
+          </span>
+        </span>
+        <div
+          className="mobile-contact-options"
+          id="legislator-contact-0"
+        >
+          Contact Them
+        </div>
+        <div
+          className="actionButtons"
+        >
+          <a
+            href="tel:123-123-1234"
+            target="_blank"
+          >
+            <button
+              className="contact__button_small undefined"
+            >
+              <div
+                className="button__small__icon phone"
+              />
+              <div
+                className="button__small__text"
+              >
+                Call Them
+              </div>
+            </button>
+          </a>
+        </div>
+      </div>
+      <div
+        className="member-container"
+      >
+        <div
+          className="member-img member--grey"
+        >
+          <img
+            alt="John Smith Jr."
+            src="https://theunitedstates.io/images/congress/original/.jpg"
+          />
+        </div>
+        <div
+          className="ribbon-wrapper"
+        >
+          <h1
+            className="ribbon ribbon--grey"
+          >
+            <strong
+              className="ribbon-content"
+            >
+              (
+              I
+               - 
+              NY
+              ) 
+              John Smith Jr.
+            </strong>
+          </h1>
+        </div>
+        <span
+          className="member__payment"
+        >
+          <span
+            className="counter__accept"
+          >
+            Accepted
+          </span>
+          <span
+            className="counter__digit digit__margin"
+          >
+            $
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            1
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            0
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            0
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            0
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__from"
+          >
+            from 
+            the NRA
+          </span>
+        </span>
+        <div
+          className="mobile-contact-options"
+          id="legislator-contact-1"
+        >
+          Contact Them
+        </div>
+        <div
+          className="actionButtons"
+        >
+          <a
+            href="tel:123-123-1234"
+            target="_blank"
+          >
+            <button
+              className="contact__button_small undefined"
+            >
+              <div
+                className="button__small__icon phone"
+              />
+              <div
+                className="button__small__text"
+              >
+                Call Them
+              </div>
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      className="member-wrapper"
+    >
+      <div
+        className="member-container"
+      >
+        <div
+          className="member-img member--grey"
+        >
+          <img
+            alt="John Smith III"
+            src="https://theunitedstates.io/images/congress/original/.jpg"
+          />
+        </div>
+        <div
+          className="ribbon-wrapper"
+        >
+          <h1
+            className="ribbon ribbon--grey"
+          >
+            <strong
+              className="ribbon-content"
+            >
+              (
+              I
+               - 
+              NY
+              ) 
+              John Smith III
+            </strong>
+          </h1>
+        </div>
+        <span
+          className="member__payment"
+        >
+          <span
+            className="counter__accept"
+          >
+            Accepted
+          </span>
+          <span
+            className="counter__digit digit__margin"
+          >
+            $
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            1
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            0
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            0
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            0
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__from"
+          >
+            from 
+            the NRA
+          </span>
+        </span>
+        <div
+          className="mobile-contact-options"
+          id="legislator-contact-0"
+        >
+          Contact Them
+        </div>
+        <div
+          className="actionButtons"
+        >
+          <a
+            href="tel:123-123-1234"
+            target="_blank"
+          >
+            <button
+              className="contact__button_small undefined"
+            >
+              <div
+                className="button__small__icon phone"
+              />
+              <div
+                className="button__small__text"
+              >
+                Call Them
+              </div>
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+    
   </div>
 </div>
 `;
@@ -576,265 +573,262 @@ exports[`renders correctly with two contributions and legislators 1`] = `
         className="text-button-border"
       />
     </a>
-    <span>
-      <span>
+    <div
+      className="title-component title-component--results"
+    >
+      <div
+        className="title-component__description"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "Your Senators <span class=\\"bold\\"><b>accepted money</b></span> <span class=\\"strike-out\\">from the NRA</span> in their recent election cycles.",
+          }
+        }
+      />
+    </div>
+    <div
+      className="member-wrapper"
+    >
+      <div
+        className="member-container"
+      >
         <div
-          className="title-component title-component--results"
+          className="member-img member--grey"
         >
-          <div
-            className="title-component__description"
-            dangerouslySetInnerHTML={
-              Object {
-                "__html": "Your Senators <span class=\\"bold\\"><b>accepted money</b></span> <span class=\\"strike-out\\">from the NRA</span> in their recent election cycles.",
-              }
-            }
+          <img
+            alt="John Smith"
+            src="https://theunitedstates.io/images/congress/original/.jpg"
           />
         </div>
         <div
-          className="member-wrapper"
+          className="ribbon-wrapper"
         >
-          <div
-            className="member-container"
+          <h1
+            className="ribbon ribbon--grey"
           >
-            <div
-              className="member-img member--grey"
+            <strong
+              className="ribbon-content"
             >
-              <img
-                alt="John Smith"
-                src="https://theunitedstates.io/images/congress/original/.jpg"
-              />
-            </div>
-            <div
-              className="ribbon-wrapper"
-            >
-              <h1
-                className="ribbon ribbon--grey"
-              >
-                <strong
-                  className="ribbon-content"
-                >
-                  (
-                  I
-                   - 
-                  NY
-                  ) 
-                  John Smith
-                </strong>
-              </h1>
-            </div>
-            <span
-              className="member__payment"
-            >
-              <span
-                className="counter__accept"
-              >
-                Accepted
-              </span>
-              <span
-                className="counter__digit digit__margin"
-              >
-                $
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                1
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                0
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                0
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                0
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__from"
-              >
-                from 
-                the NRA
-              </span>
-            </span>
-            <div
-              className="mobile-contact-options"
-              id="legislator-contact-0"
-            >
-              Contact Them
-            </div>
-            <div
-              className="actionButtons"
-            >
-              <a
-                href="tel:123-123-1234"
-                target="_blank"
-              >
-                <button
-                  className="contact__button_small undefined"
-                >
-                  <div
-                    className="button__small__icon phone"
-                  />
-                  <div
-                    className="button__small__text"
-                  >
-                    Call Them
-                  </div>
-                </button>
-              </a>
-            </div>
-          </div>
-          <div
-            className="member-container"
-          >
-            <div
-              className="member-img member--grey"
-            >
-              <img
-                alt="John Smith Jr."
-                src="https://theunitedstates.io/images/congress/original/.jpg"
-              />
-            </div>
-            <div
-              className="ribbon-wrapper"
-            >
-              <h1
-                className="ribbon ribbon--grey"
-              >
-                <strong
-                  className="ribbon-content"
-                >
-                  (
-                  I
-                   - 
-                  NY
-                  ) 
-                  John Smith Jr.
-                </strong>
-              </h1>
-            </div>
-            <span
-              className="member__payment"
-            >
-              <span
-                className="counter__accept"
-              >
-                Accepted
-              </span>
-              <span
-                className="counter__digit digit__margin"
-              >
-                $
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                1
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                0
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                0
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__digit"
-              >
-                0
-                <span
-                  className="counter__gradient-top"
-                />
-              </span>
-              <span
-                className="counter__from"
-              >
-                from 
-                the NRA
-              </span>
-            </span>
-            <div
-              className="mobile-contact-options"
-              id="legislator-contact-1"
-            >
-              Contact Them
-            </div>
-            <div
-              className="actionButtons"
-            >
-              <a
-                href="tel:123-123-1234"
-                target="_blank"
-              >
-                <button
-                  className="contact__button_small undefined"
-                >
-                  <div
-                    className="button__small__icon phone"
-                  />
-                  <div
-                    className="button__small__text"
-                  >
-                    Call Them
-                  </div>
-                </button>
-              </a>
-            </div>
-          </div>
+              (
+              I
+               - 
+              NY
+              ) 
+              John Smith
+            </strong>
+          </h1>
         </div>
-      </span>
-      <span>
-        <div
-          className="line-seperator line-seperator--small"
-        />
-        <a
-          className="text-button"
-          href="#section-2"
-          onClick={[Function]}
+        <span
+          className="member__payment"
         >
-          See My Representative
           <span
-            className="text-button-border"
+            className="counter__accept"
+          >
+            Accepted
+          </span>
+          <span
+            className="counter__digit digit__margin"
+          >
+            $
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            1
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            0
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            0
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            0
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__from"
+          >
+            from 
+            the NRA
+          </span>
+        </span>
+        <div
+          className="mobile-contact-options"
+          id="legislator-contact-0"
+        >
+          Contact Them
+        </div>
+        <div
+          className="actionButtons"
+        >
+          <a
+            href="tel:123-123-1234"
+            target="_blank"
+          >
+            <button
+              className="contact__button_small undefined"
+            >
+              <div
+                className="button__small__icon phone"
+              />
+              <div
+                className="button__small__text"
+              >
+                Call Them
+              </div>
+            </button>
+          </a>
+        </div>
+      </div>
+      <div
+        className="member-container"
+      >
+        <div
+          className="member-img member--grey"
+        >
+          <img
+            alt="John Smith Jr."
+            src="https://theunitedstates.io/images/congress/original/.jpg"
           />
-        </a>
-      </span>
-    </span>
+        </div>
+        <div
+          className="ribbon-wrapper"
+        >
+          <h1
+            className="ribbon ribbon--grey"
+          >
+            <strong
+              className="ribbon-content"
+            >
+              (
+              I
+               - 
+              NY
+              ) 
+              John Smith Jr.
+            </strong>
+          </h1>
+        </div>
+        <span
+          className="member__payment"
+        >
+          <span
+            className="counter__accept"
+          >
+            Accepted
+          </span>
+          <span
+            className="counter__digit digit__margin"
+          >
+            $
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            1
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            0
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            0
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__digit"
+          >
+            0
+            <span
+              className="counter__gradient-top"
+            />
+          </span>
+          <span
+            className="counter__from"
+          >
+            from 
+            the NRA
+          </span>
+        </span>
+        <div
+          className="mobile-contact-options"
+          id="legislator-contact-1"
+        >
+          Contact Them
+        </div>
+        <div
+          className="actionButtons"
+        >
+          <a
+            href="tel:123-123-1234"
+            target="_blank"
+          >
+            <button
+              className="contact__button_small undefined"
+            >
+              <div
+                className="button__small__icon phone"
+              />
+              <div
+                className="button__small__text"
+              >
+                Call Them
+              </div>
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      className="member-wrapper"
+    />
+    <div
+      className="line-seperator line-seperator--small"
+    />
+    <a
+      className="text-button"
+      href="#section-2"
+      onClick={[Function]}
+    >
+      See My Representative
+      <span
+        className="text-button-border"
+      />
+    </a>
   </div>
 </div>
 `;

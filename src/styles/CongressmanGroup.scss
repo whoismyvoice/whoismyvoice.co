@@ -5,6 +5,8 @@
   margin: 0 auto;
   margin-top: 1vh;
   position: relative;
+  display: flex;
+  justify-content: space-evenly;
 
   // Google Nexus 7
   @media only screen and (min-width: 421px) and (max-width: 799px) {
@@ -30,8 +32,8 @@
 .member-container {
   width: 35%;
   display: inline-block;
-  height: 200px;
   position: relative;
+  flex: 0 1 35%;
 
   @media screen and (max-device-width: 362px) {
     margin-top: -10px;
@@ -39,80 +41,73 @@
 
   @media screen and (max-width: 1370px) {
     width: 34%;
-    height: 190px;
+    flex-basis: 34%;
     margin-top: -10px;
   }
 
   @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
     width: 50%;
+    flex-basis: 50%;
   }
 
   // Google Nexus 7
   @media only screen and (min-width: 421px) and (max-width: 799px) {
     width: 45%;
-    height: 200px;
+    flex-basis: 45%;
   }
 
   @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
     width: 50%;
+    flex-basis: 50%;
   }
 
   @media screen and (max-height: 650px) {
-    height: 110px;
   }
 
   @media screen and (max-width: $iphone6) and (-webkit-min-device-pixel-ratio: 2) {
     width: 46%;
+    flex-basis: 46%;
     margin-right: 2%;
     margin-left: 1%;
-    height: 130px;
   }
 
   @media screen and (max-width: $iphone5-min) {
     width: 44%;
+    flex-basis: 44%;
     margin-right: 3%;
     margin-left: 3%;
-    height: 130px;
   }
 }
 
 .member-img {
   width: 65%;
-  padding: 32.5% 0;
 
   @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
     width: 50%;
-    padding: 25% 0;
   }
 
   @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
     width: 40%;
-    padding: 20% 0;
   }
 
   @media screen and (min-width: 1200px) and (max-width: 1366px) {
     width: 60%;
-    padding: 30% 0;
   }
 
   @media screen and (min-width: 1366px) and (max-width: 1440px) {
     width: 55%;
-    padding: 27.5% 0;
   }
 
   @media screen and (min-width: 1441px) and (max-width: 1600px) {
     width: 55%;
-    padding: 27.5% 0;
   }
 
   @media screen and (max-height: 650px) {
     width: 40%;
-    padding: 20% 0;
   }
 
   @media screen and (max-width: $iphone6) {
     width: 75%;
-    padding: 37.5% 0;
     margin-bottom: 0;
   }
 }

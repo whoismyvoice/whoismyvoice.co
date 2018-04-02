@@ -3,7 +3,7 @@
 .ribbon-wrapper {
   z-index: 2;
   right: auto;
-  top: -32%;
+  top: -15%;
   left: -1.5%;
   position: relative;
   margin: 0 auto;
@@ -24,7 +24,6 @@
 
   @media screen and (max-width: 1170px) {
     width: auto;
-    top: -28%;
     left: 0;
   }
 
@@ -32,13 +31,13 @@
     width: 80%;
     transform: rotate(0deg);
     min-width: 120px;
-    top: -20%;
+    top: -10%;
     left: -2.5%;
   }
 
   @media screen and (max-width: $iphone5-min) {
     width: 100%;
-    top: -20%;
+    top: -10%;
   }
 }
 

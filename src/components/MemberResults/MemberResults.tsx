@@ -48,19 +48,19 @@ class MemberResults extends React.Component<Props> {
       section === 2 || legislators.length === 3 ? (
         ''
       ) : (
-        <span>
+        <React.Fragment>
           <div className="line-seperator line-seperator--small" />
           <TextButton
             link={`#section-${section + 1}`}
             text={`See ${nextText}`}
           />
-        </span>
+        </React.Fragment>
       );
     return nextButton;
   }
 
   renderTitleSection() {
-    const { legislators, contributions, section } = this.props;
+    const { legislators, contributions } = this.props;
 
     const yayTemplateString = `Your <%= memberType %> <span class="bold"><b>accepted money</b></span> <span class="strike-out">from <%= organizationName %></span> in their recent election cycles.`;
     const nayTemplateString = `Your <%= memberType %> <span class="bold"><b>did not</b></span> take any money <span class="strike-out">from <%= organizationName %></span> in their recent election cycles.`;
@@ -75,8 +75,10 @@ class MemberResults extends React.Component<Props> {
       (amount, legislator) => amount + getAmount(legislator),
       0
     );
+    const groupOne = legislators.slice(0, 2);
+    const groupTwo = legislators.slice(2);
     return (
-      <span>
+      <React.Fragment>
         <MemberResultsTitle
           className="title-component--results"
           templateString={
@@ -86,11 +88,14 @@ class MemberResults extends React.Component<Props> {
           legislators={legislators}
         />
         <CongressmanGroup
-          legislators={legislators}
+          legislators={groupOne}
           contributions={contributions}
-          section={section}
         />
-      </span>
+        <CongressmanGroup
+          legislators={groupTwo}
+          contributions={contributions}
+        />
+      </React.Fragment>
     );
   }
 
@@ -99,10 +104,10 @@ class MemberResults extends React.Component<Props> {
       return '';
     }
     return (
-      <span>
+      <React.Fragment>
         {this.renderTitleSection()}
         {this.renderNextButton()}
-      </span>
+      </React.Fragment>
     );
   }
 }

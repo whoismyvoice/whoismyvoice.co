@@ -8,10 +8,8 @@
   align-content: center;
   justify-content: center;
   width: 9%;
-  height: 0;
   margin: 0 auto;
   top: 0;
-  padding: 4.5% 0;
   border-radius: 50%;
   overflow: hidden;
   opacity: 1;
@@ -71,14 +69,12 @@
 
   @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
     width: 20%;
-    padding: 10% 0;
   }
 
   @media screen and (max-width: $iphone6) {
     left: 0;
     margin-bottom: 5px;
     width: 25%;
-    padding: 12.5% 0;
   }
 
   img {
