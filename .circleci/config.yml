@@ -67,8 +67,11 @@ jobs:
         name: Restore node_modules cache
         key: dependency-cache-{{ checksum "yarn.lock" }}
       - run:
+          name: Generate AWS Profile
+          command: sh .circleci/scripts/aws-generate-profile.sh
+      - run:
           name: Generate Environment Variables for Build
-          command: sh .circleci/scripts/build-env.sh production NONE
+          command: sh .circleci/scripts/build-env.sh production
       - run:
           name: Show Environment Variables for Build
           command: cat .env.production
