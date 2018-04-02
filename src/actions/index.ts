@@ -120,6 +120,18 @@ function getLegislatorForOfficial(allLegislators: Array<LegislatorRecord>) {
 }
 
 /**
+ * Create action to navigate to the specified group of legislators.
+ * @param {number} page indicate group of legislators to view.
+ * @returns action.
+ */
+export function navigateLegislators(page: 1 | 2): Action {
+  return {
+    type: ActionType.RECEIVE_PAGE,
+    page,
+  };
+}
+
+/**
  * Create action to notify address has been set.
  * @param {array} address received.
  * @returns action.
