@@ -1,0 +1,17 @@
+@import '_variables';
+
+.page-wrapper--sources ul.sources {
+  list-style-type: square;
+  text-align: left;
+}
+
+.page-wrapper--sources a {
+  text-decoration: underline;
+
+  &:visited {
+    color: $dark-grey;
+  }
+  &:hover {
+    color: $dark-orange-light;
+  }
+}

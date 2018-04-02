@@ -3,6 +3,7 @@ import * as mixpanel from 'mixpanel-browser';
 
 import { SOURCES_ROUTE } from '../../constants/mixpanel-events';
 import FadedBG from '../../components/FadedBg';
+import '../../styles/Sources.css';
 
 class Sources extends React.Component {
   componentDidMount() {
@@ -13,7 +14,7 @@ class Sources extends React.Component {
     return (
       <div className="page-block light-white">
         <FadedBG color="white" />
-        <div className="page-wrapper">
+        <div className="page-wrapper page-wrapper--sources">
           <h2>Sources</h2>
           <p className="page-introduction">
             The data on this website is based on the data released by the
@@ -23,34 +24,28 @@ class Sources extends React.Component {
             (multiple) donations below $200 threshold do not need to be
             itemized. WhoIsMyVoice.com uses APIs provided by{' '}
             <a href="https://maplight.org/">MapLight</a> to search FEC data.
-            <br />
-            <br />
-            On December 3, 2015, the Senate voted down two amendments on gun
-            control, just one day following the San Bernadino, California
-            attacks. Senate Amendment (S.A) 2910 was a measure to provide
-            responsible, consistent, universal background checks for gun
-            purchases, and to ensure individuals listed in the National Instant
-            Criminal Background Check System cannot buy a gun. This amendment
-            included the same language as H.R 1076 which was voted down by
-            Senate in April of 2013. Between April 2013 and December 2015, not
-            one Senator changed their vote. Senate Amendment (S.A) 2908 was a
-            measure to deny people on a federal terrorism watch list (a.k.a "the
-            no-fly" list) the ability to purchase guns.
-            <br />
-            <br />
-            Despite 12,472 deaths and 25,156 injuries from gun violence in 2015,
-            12/3/15 was the first time any gun control measures whatsoever made
-            it to the floor for a vote. In the case of the two amendments above,
-            they only made it to vote because they were attached as amendments
-            to the budget bill. (Data taken from{' '}
-            <a
-              href="http://www.gunviolencearchive.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              The Gun Violence Archive
-            </a>).
           </p>
+          <h3>For More Information</h3>
+          <ul className="sources">
+            <li>
+              <a href="https://www.cdc.gov/nchs/pressroom/sosmap/firearm_mortality/firearm.htm">
+                CDC Statistics on Firearm Mortality By State
+              </a>
+            </li>
+            <li>
+              <a href="http://www.gunviolencearchive.org/">
+                The Gun Violence Archive
+              </a>
+            </li>
+            <li>
+              <a href="https://everytownresearch.org/">
+                Everytown for Gun Safety
+              </a>
+            </li>
+            <li>
+              <a href="https://home.nra.org/">National Rifle Association</a>
+            </li>
+          </ul>
         </div>
       </div>
     );
