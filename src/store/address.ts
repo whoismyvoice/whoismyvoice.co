@@ -1,4 +1,5 @@
 import { Action, ActionType } from '../actions/types';
+import icebox from './icebox';
 
 export type AddressState = {
   value?: string;
@@ -45,4 +46,4 @@ function handle(state: AddressState = initialState, action: Action) {
   }
 }
 
-export default handle;
+export default icebox(handle);

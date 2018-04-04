@@ -5,6 +5,7 @@ import {
   Record as LegislatorRecord,
 } from '../models/Legislator';
 import { Record as Official } from '../models/Official';
+import icebox from './icebox';
 
 type LegislatorsById = {
   [id: string]: LegislatorRecord;
@@ -133,4 +134,4 @@ function handle(
   }
 }
 
-export default handle;
+export default icebox(handle);

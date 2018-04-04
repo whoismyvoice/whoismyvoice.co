@@ -1,4 +1,5 @@
 import { Action, ActionType } from '../actions/types';
+import icebox from './icebox';
 
 export type ViewState = {
   addressErrorMessage?: string;
@@ -45,4 +46,4 @@ function handle(state: ViewState = initialState, action: Action): ViewState {
   }
 }
 
-export default handle;
+export default icebox(handle);

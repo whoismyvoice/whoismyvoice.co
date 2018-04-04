@@ -1,5 +1,6 @@
 import { Action, ActionType } from '../actions/types';
 import { Contribution } from '../models/Contribution';
+import icebox from './icebox';
 
 interface ContributionsByOrganization {
   [name: string]: Array<Contribution>;
@@ -122,4 +123,4 @@ function handle(state: ContributionsState = initialState, action: Action) {
   }
 }
 
-export default handle;
+export default icebox(handle);
