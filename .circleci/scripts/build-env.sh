@@ -2,7 +2,7 @@
 
 set -eux
 
-FILTER='.Parameters[] | ("REACT_APP_") + (.Name | sub("/[a-z]+?/"; "") | ascii_upcase) + ("=") + (.Value)'
+FILTER='.Parameters[] | (.Name | sub("/[a-z]+?/"; "")) + ("=") + (.Value)'
 ENVIRONMENT=${1:-"production development test"}
 PROFILE=${2:-"whoismyvoice"}
 
