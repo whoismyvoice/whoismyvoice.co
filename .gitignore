@@ -12,6 +12,9 @@
 # production
 /build
 
+# ssmenv
+/.ssmenv/private.json
+
 # misc
 .DS_Store
 .env
