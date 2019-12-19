@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 // Components
 import CongressmanGroup from '../Member/CongressmanGroup';
@@ -10,7 +10,7 @@ import { MemberResultsTitle } from '../MemberResultsTitle';
 import { ORGANIZATION_DISPLAY } from '../../constants';
 
 export interface DispatchProps {
-  onNext?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  onNext?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 export interface StateProps {}

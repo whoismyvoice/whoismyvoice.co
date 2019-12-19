@@ -1,4 +1,4 @@
-import * as fetch from 'isomorphic-fetch';
+import unfetch from 'isomorphic-unfetch';
 import * as mixpanel from 'mixpanel-browser';
 
 import { ELECTION_CYCLE, EXECUTE_PROXY, ORGANIZATION } from '../constants';
@@ -13,6 +13,8 @@ import { MaplightResultsRecord } from '../models/MaplightResults';
 import { Record as Official } from '../models/Official';
 import { GoogleResponseError } from '../models/GoogleResponseError';
 import { ResponseError } from '../models/ResponseError';
+
+const fetch = unfetch;
 
 /**
  * Match FEC ids for house and senate races. Potentially important because some
@@ -302,7 +304,7 @@ export function setAddress(address: string) {
     } catch (error) {
       if (error instanceof GoogleResponseError) {
         // response is error; abort
-        dispatch(receiveOfficialsError(error));
+        receiveOfficialsError(error).then(dispatch);
         return;
       }
     }

@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as cx from 'classnames';
+import { connect, ConnectedProps } from 'react-redux';
+import cx from 'classnames';
 
 import { toggleMenu, reset } from '../../actions';
 import { Dispatch } from '../../actions/types';
@@ -10,7 +10,32 @@ import { ViewState } from '../../store/view';
 // Styles
 import '../../styles/MenuButton.css';
 
-type MappedProps = ViewState & StateProps & DispatchProps;
+function mapStateToProps(state: State): StateProps & ViewState {
+  const { address, view } = state;
+  return {
+    didSearch: address.value !== undefined,
+    ...view,
+  };
+}
+
+function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
+  return {
+    onMenuButtonClick: (event: React.MouseEvent<HTMLDivElement>) => {
+      event.preventDefault();
+      dispatch(toggleMenu());
+    },
+    onMenuLinkClick: (event: React.MouseEvent<HTMLAnchorElement>) => {
+      dispatch(toggleMenu());
+    },
+    onRestartClick: (event: React.MouseEvent<HTMLAnchorElement>) => {
+      dispatch(reset());
+      dispatch(toggleMenu());
+    },
+  };
+}
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+type MappedProps = ConnectedProps<typeof connector>;
 
 interface StateProps {
   didSearch?: boolean;
@@ -81,28 +106,4 @@ export class MenuButton extends React.Component<MappedProps> {
   }
 }
 
-function mapStateToProps(state: State): StateProps & ViewState {
-  const { address, view } = state;
-  return {
-    didSearch: address.value !== undefined,
-    ...view,
-  };
-}
-
-function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
-  return {
-    onMenuButtonClick: (event: React.MouseEvent<HTMLDivElement>) => {
-      event.preventDefault();
-      dispatch(toggleMenu());
-    },
-    onMenuLinkClick: (event: React.MouseEvent<HTMLAnchorElement>) => {
-      dispatch(toggleMenu());
-    },
-    onRestartClick: (event: React.MouseEvent<HTMLAnchorElement>) => {
-      dispatch(reset());
-      dispatch(toggleMenu());
-    },
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MenuButton);
+export default connector(MenuButton);

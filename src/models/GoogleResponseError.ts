@@ -56,7 +56,7 @@ export class GoogleResponseError extends ResponseError {
       const filterFn = objectHasProp.bind(this, 'domain', 'string');
       return errors
         .filter(filterFn)
-        .reduce((r, err) => r && err.domain! === 'global', true);
+        .reduce<boolean>((r, err) => r && err.domain! === 'global', true);
     });
   }
 
@@ -65,7 +65,7 @@ export class GoogleResponseError extends ResponseError {
       const filterFn = objectHasProp.bind(this, 'reason', 'string');
       return errors
         .filter(filterFn)
-        .reduce((r, err) => r && err.reason! === 'parseError', true);
+        .reduce<boolean>((r, err) => r && err.reason! === 'parseError', true);
     });
   }
 

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { DispatchProps, Props, StateProps, SearchGroup } from './SearchGroup';
+import { DispatchProps, StateProps, SearchGroup } from './SearchGroup';
 import { Dispatch } from '../../actions/types';
 import { State } from '../../store';
 import { setAddress, setZipCode } from '../../actions';
@@ -36,7 +36,5 @@ function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
   };
 }
 
-export default connect<StateProps, DispatchProps, Props>(
-  mapStateToProps,
-  mapDispatchToProps
-)(SearchGroup);
+const connector = connect(mapStateToProps, mapDispatchToProps);
+export default connector(SearchGroup);

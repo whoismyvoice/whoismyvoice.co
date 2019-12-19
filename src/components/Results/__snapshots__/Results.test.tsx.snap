@@ -125,6 +125,7 @@ exports[`renders correctly with contribution and legislator 1`] = `
       >
         <a
           href="tel:123-123-1234"
+          rel="noopener noreferrer"
           target="_blank"
         >
           <button
@@ -289,6 +290,7 @@ exports[`renders correctly with three contributions and legislators 1`] = `
       >
         <a
           href="tel:123-123-1234"
+          rel="noopener noreferrer"
           target="_blank"
         >
           <button
@@ -401,6 +403,7 @@ exports[`renders correctly with three contributions and legislators 1`] = `
       >
         <a
           href="tel:123-123-1234"
+          rel="noopener noreferrer"
           target="_blank"
         >
           <button
@@ -517,6 +520,7 @@ exports[`renders correctly with three contributions and legislators 1`] = `
       >
         <a
           href="tel:123-123-1234"
+          rel="noopener noreferrer"
           target="_blank"
         >
           <button
@@ -664,6 +668,7 @@ exports[`renders correctly with two contributions and legislators 1`] = `
       >
         <a
           href="tel:123-123-1234"
+          rel="noopener noreferrer"
           target="_blank"
         >
           <button
@@ -776,6 +781,7 @@ exports[`renders correctly with two contributions and legislators 1`] = `
       >
         <a
           href="tel:123-123-1234"
+          rel="noopener noreferrer"
           target="_blank"
         >
           <button
