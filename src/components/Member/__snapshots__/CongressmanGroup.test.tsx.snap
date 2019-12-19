@@ -52,15 +52,7 @@ exports[`renders correctly with a legislator 1`] = `
       <span
         className="counter__digit"
       >
-        -
-        <span
-          className="counter__gradient-top"
-        />
-      </span>
-      <span
-        className="counter__digit"
-      >
-        1
+        0
         <span
           className="counter__gradient-top"
         />

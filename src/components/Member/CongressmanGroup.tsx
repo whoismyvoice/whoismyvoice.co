@@ -29,7 +29,8 @@ class CongressmanGroup extends React.Component<Props> {
       contributions
     );
     const members = legislators.map((legislator, idx) => {
-      const payment = getAmount(legislator);
+      const paymentAmount = getAmount(legislator);
+      const payment = paymentAmount >= 0 ? paymentAmount : 0;
       return (
         <div className="member-container" key={legislator.identifier}>
           <MemberImg legislator={legislator} repNumber={idx + 1} />
