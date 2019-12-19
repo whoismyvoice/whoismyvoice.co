@@ -17,6 +17,7 @@ interface AddressRecord {
 export interface Record {
   name: string;
   address?: Array<AddressRecord>;
+  identifier?: string;
   party?: string;
   phones?: Array<string>;
   urls?: Array<string>;
