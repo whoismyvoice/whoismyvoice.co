@@ -31,7 +31,7 @@ export class Title<P extends Props, S extends State> extends React.Component<
     this.template = _.template(props.templateString);
   }
 
-  componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>) {
+  UNSAFE_componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>) {
     if (
       this.state !== undefined &&
       this.state.templateString !== undefined &&

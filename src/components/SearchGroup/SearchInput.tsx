@@ -35,7 +35,7 @@ export class SearchInput extends React.Component<Props, State> {
     };
   }
 
-  componentWillReceiveProps(nextProps: Props) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
     if (nextProps.errorMessage !== undefined) {
       this.setState({
         isError: true,
