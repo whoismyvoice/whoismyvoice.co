@@ -3,24 +3,24 @@
 // own the domain and you click on the confirmation link.
 resource "aws_acm_certificate" "wimv_cert" {
   // We want a wildcard cert so we can host subdomains later.
-  domain_name       = "${local.domain}"
+  domain_name       = local.domain
   validation_method = "DNS"
 
-  tags {
+  tags = {
     Name        = "Cert for ${local.domain}"
     Client      = "siberia"
-    Environment = "${var.subdomain}"
+    Environment = var.subdomain
     Terraform   = "true"
   }
 }
 
 resource "aws_route53_record" "wimv_cert_validation" {
-  name    = "${aws_acm_certificate.wimv_cert.domain_validation_options.0.resource_record_name}"
-  type    = "${aws_acm_certificate.wimv_cert.domain_validation_options.0.resource_record_type}"
-  zone_id = "${var.dns_zone_id}"
+  name    = aws_acm_certificate.wimv_cert.domain_validation_options.0.resource_record_name
+  type    = aws_acm_certificate.wimv_cert.domain_validation_options.0.resource_record_type
+  zone_id = var.dns_zone_id
 
   records = [
-    "${aws_acm_certificate.wimv_cert.domain_validation_options.0.resource_record_value}",
+    aws_acm_certificate.wimv_cert.domain_validation_options.0.resource_record_value,
   ]
 
   ttl = 60
@@ -44,9 +44,9 @@ resource "aws_route53_record" "wimv_cert_validation" {
 */
 
 resource "aws_acm_certificate_validation" "wimv" {
-  certificate_arn = "${aws_acm_certificate.wimv_cert.arn}"
+  certificate_arn = aws_acm_certificate.wimv_cert.arn
 
   validation_record_fqdns = [
-    "${aws_route53_record.wimv_cert_validation.fqdn}",
+    aws_route53_record.wimv_cert_validation.fqdn,
   ]
 }

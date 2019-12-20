@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import * as cx from 'classnames';
+import cx from 'classnames';
 import * as mixpanel from 'mixpanel-browser';
 
 // Components

@@ -51,7 +51,7 @@ exports[`renders correctly 1`] = `
       >
         <img
           alt="Siberia"
-          src={undefined}
+          src="siberia_logo.png"
           width="40"
         />
       </a>

@@ -3,6 +3,7 @@
 exports[`renders correctly 1`] = `
 <a
   href="link"
+  rel="noopener noreferrer"
   target="_blank"
 >
   <button

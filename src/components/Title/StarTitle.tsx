@@ -20,7 +20,7 @@ export class StarTitle extends React.Component<Props> {
     this.template = _.template(props.templateString);
   }
 
-  componentWillUpdate(nextProps: Readonly<Props>) {
+  UNSAFE_componentWillUpdate(nextProps: Readonly<Props>) {
     if (this.props.templateString !== nextProps.templateString) {
       this.template = _.template(nextProps.templateString);
     }

@@ -26,7 +26,11 @@ exports.handler = (event, context, callback) => {
     const contentType = res.headers['content-type'];
 
     let error;
-    if (!/^application\/json/.test(contentType)) {
+    if (statusCode !== 200) {
+      error = new Error(
+        `Upstream request failed.\nReceived status code of ${statusCode}`
+      );
+    } else if (!/^application\/json/.test(contentType)) {
       error = new Error(
         `Invalid content-type.\nExpected application/json but received ${contentType}`
       );

@@ -14,8 +14,8 @@ export interface StateProps {
 }
 
 export interface DispatchProps {
-  onBack?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
-  onNext?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  onBack?: (event: React.MouseEvent<HTMLElement>) => void;
+  onNext?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 export interface Props extends StateProps, DispatchProps {

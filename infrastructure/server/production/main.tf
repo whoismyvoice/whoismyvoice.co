@@ -7,7 +7,7 @@ locals {
 data "terraform_remote_state" "route53" {
   backend = "s3"
 
-  config {
+  config = {
     profile = "whoismyvoice"
     bucket  = "whoismyvoice-terraform"
     key     = "whoismyvoice/aws/route53/terraform.tfstate"
@@ -17,17 +17,17 @@ data "terraform_remote_state" "route53" {
 
 module "deployment" {
   source           = "../../modules/static-deploy-target"
-  dns_zone_id      = "${data.terraform_remote_state.route53.zone_id}"
-  root_bucket_name = "${local.root_bucket_name}"
-  root_domain_name = "${local.domain}"
-  subdomain        = "${local.subdomain}"
+  dns_zone_id      = data.terraform_remote_state.route53.outputs.zone_id
+  root_bucket_name = local.root_bucket_name
+  root_domain_name = local.domain
+  subdomain        = local.subdomain
 }
 
 module "redirect" {
   source           = "../../modules/static-redirect-target"
-  dns_zone_id      = "${data.terraform_remote_state.route53.zone_id}"
+  dns_zone_id      = data.terraform_remote_state.route53.outputs.zone_id
   redirect_target  = "${local.subdomain}.${local.domain}"
-  root_bucket_name = "${local.root_bucket_name}"
-  root_domain_name = "${local.domain}"
-  subdomain        = "${local.subdomain}"
+  root_bucket_name = local.root_bucket_name
+  root_domain_name = local.domain
+  subdomain        = local.subdomain
 }

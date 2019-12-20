@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as cx from 'classnames';
+import React from 'react';
+import cx from 'classnames';
 
 // Styles
 import '../../styles/TextButton.css';
@@ -37,7 +37,7 @@ class TextButton extends React.Component<Props, State> {
     });
   }
 
-  componentWillReceiveProps(nextProps: Readonly<Props>) {
+  UNSAFE_componentWillReceiveProps(nextProps: Readonly<Props>) {
     const { text } = this.props;
     const nextText = nextProps.text;
     if (text !== nextText) {

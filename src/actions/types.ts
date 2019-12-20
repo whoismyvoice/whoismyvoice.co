@@ -1,3 +1,4 @@
+import { Dispatch as ReduxDispatch } from 'redux';
 import { Contribution } from '../models/Contribution';
 import { Record as Legislator } from '../models/Legislator';
 import { Record as Official } from '../models/Official';
@@ -113,4 +114,4 @@ export type Action =
 /**
  * Type for the redux dispatch function.
  */
-export type Dispatch = (action: Action | Promise<Action>) => void;
+export type Dispatch = ReduxDispatch<Action>;

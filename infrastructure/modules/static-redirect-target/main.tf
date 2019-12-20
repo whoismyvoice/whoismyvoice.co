@@ -1,8 +1,8 @@
 locals {
-  domain      = "${var.root_domain_name}"
+  domain      = var.root_domain_name
   environment = "${var.subdomain}-bare"
   bucket_name = "${var.root_bucket_name}-${local.environment}"
-  subdomain   = "${var.subdomain}"
+  subdomain   = var.subdomain
 }
 
 data "aws_iam_policy_document" "s3_get_policy" {
@@ -25,17 +25,17 @@ data "aws_iam_policy_document" "s3_get_policy" {
 }
 
 resource "aws_s3_bucket" "redirect_bucket" {
-  bucket = "${local.bucket_name}"
+  bucket = local.bucket_name
   acl    = "public-read"
-  policy = "${data.aws_iam_policy_document.s3_get_policy.json}"
+  policy = data.aws_iam_policy_document.s3_get_policy.json
 
   website {
-    redirect_all_requests_to = "${var.redirect_target}"
+    redirect_all_requests_to = var.redirect_target
   }
 
-  tags {
+  tags = {
     Client      = "siberia"
-    Environment = "${local.environment}"
+    Environment = local.environment
     Terraform   = "true"
   }
 }
@@ -43,7 +43,7 @@ resource "aws_s3_bucket" "redirect_bucket" {
 resource "aws_cloudfront_distribution" "redirect_distribution" {
   // origin is where CloudFront gets its content from.
   origin {
-    domain_name = "${aws_s3_bucket.redirect_bucket.website_endpoint}"
+    domain_name = aws_s3_bucket.redirect_bucket.website_endpoint
     origin_id   = "s3_redirect"
 
     custom_origin_config {
@@ -66,7 +66,7 @@ resource "aws_cloudfront_distribution" "redirect_distribution" {
   is_ipv6_enabled = true
 
   aliases = [
-    "${local.domain}",
+    local.domain,
   ]
 
   comment = "Terraform managed. Serves content for ${local.domain} w/ SSL."
@@ -114,31 +114,31 @@ resource "aws_cloudfront_distribution" "redirect_distribution" {
     }
   }
 
-  tags {
+  tags = {
     Client      = "siberia"
-    Environment = "${local.environment}"
+    Environment = local.environment
     Terraform   = "true"
   }
 
   viewer_certificate {
-    acm_certificate_arn = "${aws_acm_certificate.redirect_cert.arn}"
+    acm_certificate_arn = aws_acm_certificate.redirect_cert.arn
     ssl_support_method  = "sni-only"
   }
 
   depends_on = [
-    "aws_acm_certificate_validation.redirect",
+    aws_acm_certificate_validation.redirect,
   ]
 }
 
 // This Route53 record will point at our CloudFront distribution.
 resource "aws_route53_record" "redirect_dns" {
-  zone_id = "${var.dns_zone_id}"
-  name    = "${local.domain}"
+  zone_id = var.dns_zone_id
+  name    = local.domain
   type    = "A"
 
   alias {
-    name                   = "${aws_cloudfront_distribution.redirect_distribution.domain_name}"
-    zone_id                = "${aws_cloudfront_distribution.redirect_distribution.hosted_zone_id}"
+    name                   = aws_cloudfront_distribution.redirect_distribution.domain_name
+    zone_id                = aws_cloudfront_distribution.redirect_distribution.hosted_zone_id
     evaluate_target_health = false
   }
 }

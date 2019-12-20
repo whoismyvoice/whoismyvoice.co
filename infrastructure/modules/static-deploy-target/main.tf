@@ -1,7 +1,7 @@
 locals {
   bucket_name = "${var.root_bucket_name}-${local.subdomain}"
   domain      = "${local.subdomain}.${var.root_domain_name}"
-  subdomain   = "${var.subdomain}"
+  subdomain   = var.subdomain
 }
 
 data "aws_iam_policy_document" "s3_get_policy" {
@@ -24,9 +24,9 @@ data "aws_iam_policy_document" "s3_get_policy" {
 }
 
 resource "aws_s3_bucket" "wimv_bucket" {
-  bucket = "${local.bucket_name}"
+  bucket = local.bucket_name
   acl    = "public-read"
-  policy = "${data.aws_iam_policy_document.s3_get_policy.json}"
+  policy = data.aws_iam_policy_document.s3_get_policy.json
 
   // If it has any contents it can not be destroyed anyway.
   lifecycle {
@@ -42,9 +42,9 @@ resource "aws_s3_bucket" "wimv_bucket" {
     error_document = "index.html"
   }
 
-  tags {
+  tags = {
     Client      = "siberia"
-    Environment = "${var.subdomain}"
+    Environment = var.subdomain
     Terraform   = "true"
   }
 }
@@ -52,7 +52,7 @@ resource "aws_s3_bucket" "wimv_bucket" {
 resource "aws_cloudfront_distribution" "wimv_distribution" {
   // origin is where CloudFront gets its content from.
   origin {
-    domain_name = "${aws_s3_bucket.wimv_bucket.bucket_domain_name}"
+    domain_name = aws_s3_bucket.wimv_bucket.bucket_domain_name
     origin_id   = "whoismyvoice_s3"
   }
 
@@ -60,7 +60,7 @@ resource "aws_cloudfront_distribution" "wimv_distribution" {
   is_ipv6_enabled = true
 
   aliases = [
-    "${local.domain}",
+    local.domain,
   ]
 
   comment             = "Terraform managed. Serves content for ${local.domain} w/ SSL."
@@ -115,31 +115,31 @@ resource "aws_cloudfront_distribution" "wimv_distribution" {
     }
   }
 
-  tags {
+  tags = {
     Client      = "siberia"
-    Environment = "${var.subdomain}"
+    Environment = var.subdomain
     Terraform   = "true"
   }
 
   viewer_certificate {
-    acm_certificate_arn = "${aws_acm_certificate.wimv_cert.arn}"
+    acm_certificate_arn = aws_acm_certificate.wimv_cert.arn
     ssl_support_method  = "sni-only"
   }
 
   depends_on = [
-    "aws_acm_certificate_validation.wimv",
+    aws_acm_certificate_validation.wimv,
   ]
 }
 
 // This Route53 record will point at our CloudFront distribution.
 resource "aws_route53_record" "wimv_dns" {
-  zone_id = "${var.dns_zone_id}"
-  name    = "${local.domain}"
+  zone_id = var.dns_zone_id
+  name    = local.domain
   type    = "A"
 
   alias {
-    name                   = "${aws_cloudfront_distribution.wimv_distribution.domain_name}"
-    zone_id                = "${aws_cloudfront_distribution.wimv_distribution.hosted_zone_id}"
+    name                   = aws_cloudfront_distribution.wimv_distribution.domain_name
+    zone_id                = aws_cloudfront_distribution.wimv_distribution.hosted_zone_id
     evaluate_target_health = false
   }
 }

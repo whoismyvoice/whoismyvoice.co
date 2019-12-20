@@ -88,8 +88,10 @@ export class Legislator implements Record {
       identifier = record.identifier;
     } else if (typeof record.name === 'string') {
       identifier = stripDiacritics(record.name);
-    } else {
+    } else if (typeof record.name !== 'undefined') {
       identifier = stripDiacritics(record.name.official_full);
+    } else {
+      identifier = record.identifier || 'unknown';
     }
     return identifier;
   }

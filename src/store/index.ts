@@ -1,6 +1,5 @@
 import thunkMiddleware from 'redux-thunk';
-import { createLogger } from 'redux-logger';
-import * as promiseMiddleware from 'redux-promise';
+import loggerMiddleware from 'redux-logger';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 
 import address, { AddressState } from './address';
@@ -8,14 +7,12 @@ import contributions, { ContributionsState } from './contributions';
 import officials, { OfficialsState } from './officials';
 import view, { ViewState } from './view';
 
-export type State = {
+export interface State {
   address: AddressState;
   contributions: ContributionsState;
   officials: OfficialsState;
   view: ViewState;
 };
-
-const loggerMiddleware = createLogger();
 
 export default createStore(
   combineReducers({
@@ -25,5 +22,5 @@ export default createStore(
     view,
   }),
   {},
-  applyMiddleware(thunkMiddleware, promiseMiddleware, loggerMiddleware)
+  applyMiddleware(thunkMiddleware, loggerMiddleware)
 );

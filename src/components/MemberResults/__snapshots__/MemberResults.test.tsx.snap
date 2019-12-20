@@ -112,6 +112,7 @@ Array [
       >
         <a
           href="tel:123-123-1234"
+          rel="noopener noreferrer"
           target="_blank"
         >
           <button
@@ -263,6 +264,7 @@ Array [
       >
         <a
           href="tel:123-123-1234"
+          rel="noopener noreferrer"
           target="_blank"
         >
           <button
@@ -375,6 +377,7 @@ Array [
       >
         <a
           href="tel:123-123-1234"
+          rel="noopener noreferrer"
           target="_blank"
         >
           <button
@@ -491,6 +494,7 @@ Array [
       >
         <a
           href="tel:123-123-1234"
+          rel="noopener noreferrer"
           target="_blank"
         >
           <button
@@ -625,6 +629,7 @@ Array [
       >
         <a
           href="tel:123-123-1234"
+          rel="noopener noreferrer"
           target="_blank"
         >
           <button
@@ -737,6 +742,7 @@ Array [
       >
         <a
           href="tel:123-123-1234"
+          rel="noopener noreferrer"
           target="_blank"
         >
           <button

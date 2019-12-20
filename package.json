@@ -22,52 +22,66 @@
   "homepage": "https://www.whoismyvoice.com",
   "devDependencies": {
     "@types/classnames": "^2.2.3",
-    "@types/isomorphic-fetch": "^0.0.34",
-    "@types/jest": "^22.2.2",
+    "@types/jest": "^24.0.24",
     "@types/lodash": "^4.14.106",
-    "@types/node": "^9.6.0",
+    "@types/node": "^12.12.21",
+    "@types/node-fetch": "^2.5.4",
     "@types/react": "^16.0.40",
     "@types/react-dom": "^16.0.4",
-    "@types/react-redux": "^5.0.15",
-    "@types/react-router": "^4.0.23",
-    "@types/react-router-dom": "^4.2.5",
+    "@types/react-redux": "^7.1.5",
+    "@types/react-router": "^5.1.3",
+    "@types/react-router-dom": "^5.1.3",
     "@types/react-test-renderer": "^16.0.1",
     "@types/redux-logger": "^3.0.5",
-    "@types/redux-promise": "^0.5.28",
-    "eslint-plugin-prettier": "^2.6.0",
-    "husky": "^0.14.3",
+    "husky": "^3.1.0",
     "node-sass-chokidar": "^1.2.2",
     "npm-run-all": "^4.1.2",
     "prettier": "^1.11.1",
-    "pretty-quick": "^1.4.1",
-    "react-scripts-ts": "^2.14.0",
+    "pretty-quick": "^2.0.1",
+    "react-scripts": "^3.3.0",
     "react-test-renderer": "^16.2.0",
-    "typescript": "^2.7.2"
+    "typescript": "^3.7.3"
   },
   "dependencies": {
     "babel-core": "6",
     "babel-runtime": "6",
     "classnames": "^2.2.5",
+    "isomorphic-unfetch": "^3.0.0",
     "mixpanel-browser": "^2.18.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-redux": "^5.0.7",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
-    "redux": "^3.7.2",
+    "react-redux": "^7.1.3",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
-    "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --recursive",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --recursive --watch",
-    "start-ts": "react-scripts-ts start",
+    "start-ts": "react-scripts start",
     "start": "npm-run-all -p watch-css start-ts",
-    "build-ts": "react-scripts-ts build",
+    "build-ts": "react-scripts build",
     "build": "npm-run-all build-css build-ts",
-    "precommit": "pretty-quick --staged",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "husky": {
+    "hooks": {
+      "precommit": "pretty-quick --staged"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
