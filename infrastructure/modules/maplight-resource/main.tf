@@ -11,6 +11,7 @@ resource "aws_lambda_function" "maplight_proxy" {
   role             = var.gateway_lambda_exec_role
   runtime          = "nodejs10.x"
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
+  timeout          = 5
 }
 
 # The API requires at least one "endpoint", or "resource" in AWS terminology.
