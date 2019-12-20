@@ -83,8 +83,12 @@ function extractBioguide(photoUrl: string): string {
  * @returns `str` with the accents and diacritic characters replaced with their
  *    plain latin variants.
  */
-function stripDiacritics(str: string) {
-  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+function normalizeForIdentifier(str: string) {
+  return str
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[ .,]/g, '')
+    .toLowerCase();
 }
 
 /**
@@ -124,9 +128,9 @@ export class Legislator implements Record {
     if (record instanceof Legislator) {
       identifier = record.identifier;
     } else if (typeof record.name === 'string') {
-      identifier = stripDiacritics(record.name);
+      identifier = normalizeForIdentifier(record.name);
     } else if (typeof record.name !== 'undefined') {
-      identifier = stripDiacritics(record.name.official_full);
+      identifier = normalizeForIdentifier(record.name.official_full);
     } else {
       identifier = record.identifier || 'unknown';
     }

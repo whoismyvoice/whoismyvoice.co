@@ -72,17 +72,17 @@ describe('byOrganization', () => {
     expect(byOrganization['SuperPAC'].length).toBe(3);
     expect(byOrganization['SuperPAC']).toContainEqual({
       amount: 1000,
-      legislatorId: 'John Smith',
+      legislatorId: 'johnsmith',
       organization: 'SuperPAC',
     });
     expect(byOrganization['SuperPAC']).toContainEqual({
       amount: 1000,
-      legislatorId: 'John Smith Jr.',
+      legislatorId: 'johnsmithjr',
       organization: 'SuperPAC',
     });
     expect(byOrganization['SuperPAC']).toContainEqual({
       amount: 1000,
-      legislatorId: 'John Smith III',
+      legislatorId: 'johnsmithiii',
       organization: 'SuperPAC',
     });
   });

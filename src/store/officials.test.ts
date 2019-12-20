@@ -62,7 +62,7 @@ it('adds an official to dictionary', () => {
   );
   const { byId } = state;
   expect(Object.keys(byId).length).toBe(1);
-  expect(Object.keys(byId)).toContain('John Smith');
+  expect(Object.keys(byId)).toContain('johnsmith');
 });
 
 it('adds an id of official to list', () => {
@@ -71,7 +71,7 @@ it('adds an id of official to list', () => {
     receiveOfficials([createOfficial('John Smith')])
   );
   const { ids } = state;
-  expect(ids).toContain('John Smith');
+  expect(ids).toContain('johnsmith');
 });
 
 it('overwrites an official in dictionary with same id', () => {
@@ -84,7 +84,7 @@ it('overwrites an official in dictionary with same id', () => {
   );
   const { byId } = state;
   expect(Object.keys(byId).length).toBe(1);
-  expect(Object.keys(byId)).toContain('John Smith');
+  expect(Object.keys(byId)).toContain('johnsmith');
 });
 
 it('overwrites an official in list with same id', () => {
@@ -96,7 +96,7 @@ it('overwrites an official in list with same id', () => {
     ])
   );
   const { ids } = state;
-  expect(ids).toContain('John Smith');
+  expect(ids).toContain('johnsmith');
   expect(ids.length).toBe(1);
 });
 
@@ -109,8 +109,8 @@ it('contains all official ids in list', () => {
     ])
   );
   const { ids } = state;
-  expect(ids).toContain('John Smith');
-  expect(ids).toContain('John Smith Jr.');
+  expect(ids).toContain('johnsmith');
+  expect(ids).toContain('johnsmithjr');
   expect(ids.length).toBe(2);
 });
 
@@ -130,9 +130,9 @@ it('merges data from receiveOfficials and receiveOfficialsAll', () => {
     ])
   );
   const { byId } = state;
-  expect(byId['John Smith']).toBeDefined();
-  expect(byId['John Smith'].name).toEqual({ official_full: 'John Smith' });
-  expect(byId['John Smith'].photoUrl).toEqual('3');
+  expect(byId['johnsmith']).toBeDefined();
+  expect(byId['johnsmith'].name).toEqual({ official_full: 'John Smith' });
+  expect(byId['johnsmith'].photoUrl).toEqual('3');
 });
 
 describe('existing state', () => {
