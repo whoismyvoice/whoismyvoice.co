@@ -9,7 +9,7 @@ resource "aws_lambda_function" "civics_proxy" {
   filename         = data.archive_file.lambda_zip.output_path
   handler          = "index.handler"
   role             = var.gateway_lambda_exec_role
-  runtime          = "nodejs6.10"
+  runtime          = "nodejs10.x"
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
 
   environment {
