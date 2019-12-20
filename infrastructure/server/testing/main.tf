@@ -1,7 +1,7 @@
 data "terraform_remote_state" "route53" {
   backend = "s3"
 
-  config {
+  config = {
     profile = "whoismyvoice"
     bucket  = "whoismyvoice-terraform"
     key     = "whoismyvoice/aws/route53/terraform.tfstate"
@@ -11,7 +11,7 @@ data "terraform_remote_state" "route53" {
 
 module "deployment" {
   source           = "../../modules/static-deploy-target"
-  dns_zone_id      = "${data.terraform_remote_state.route53.zone_id}"
+  dns_zone_id      = data.terraform_remote_state.route53.outputs.zone_id
   root_bucket_name = "whoismyvoice"
   root_domain_name = "whoismyvoice.com"
   subdomain        = "test"
