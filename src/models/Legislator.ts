@@ -57,6 +57,26 @@ export interface Record {
   terms: Array<TermRecord>;
 }
 
+const BIOGUIDE_PHOTO_REGEX = /.*\/([A-Z0-9]+)\.\w+$/;
+
+/**
+ * Extracts a bioguide id from the given bioguide photo url. The URL is
+ * expected to be a url from http://bioguide.congress.gov like
+ * http://bioguide.congress.gov/bioguide/photo/K/K000384.jpg where "K000384" is
+ * the bioguide id.
+ * @param photoUrl from which the id will be extracted.
+ * @returns the extracted bioguide id.
+ * @throws Error if no ide could be extracted.
+ */
+function extractBioguide(photoUrl: string): string {
+  const result = photoUrl.match(BIOGUIDE_PHOTO_REGEX);
+  if (result !== null) {
+    return result[1];
+  } else {
+    throw new Error(`Bioguide not able to be extracted from ${photoUrl}`);
+  }
+}
+
 /**
  * Remove accents and diacritic marks from the given string.
  * @param {string} str to clone without 'special' characters.
@@ -75,6 +95,23 @@ export class Legislator implements Record {
    * Holds the Record used to retrieve data for getters.
    */
   private record: Record;
+
+  /**
+   * Get the legislator's bioguide identifier from the given `record`.
+   * @param record from which the bioguide will be extracted.
+   * @returns the bioguide identifier.
+   */
+  static getBioguideId(record: Record | Official | Legislator): Identifier {
+    if (record instanceof Legislator) {
+      return record.bioguide;
+    } else if ('id' in record) {
+      return record.id.bioguide;
+    } else if (typeof record.photoUrl !== 'undefined') {
+      return extractBioguide(record.photoUrl);
+    } else {
+      throw new Error('Unable to determine bioguide');
+    }
+  }
 
   /**
    * Get the legislator's identifier from the given `record`.
