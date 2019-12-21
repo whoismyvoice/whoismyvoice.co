@@ -62,7 +62,7 @@
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --recursive",
     "dev": "yarn run start",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --recursive --watch",
-    "start-ts": "react-scripts start",
+    "start-ts": "BROWSER=none react-scripts start",
     "start": "npm-run-all -p watch-css start-ts",
     "build-ts": "react-scripts build",
     "build": "npm-run-all build-css build-ts",
