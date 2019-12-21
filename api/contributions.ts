@@ -1,6 +1,6 @@
 import { OutgoingHttpHeaders } from 'http';
-import { get as fetch } from 'https';
 import { NowRequest, NowResponse } from '@now/node';
+import { execute } from './_utils';
 
 const DEFAULT_RESPONSE_HEADERS: OutgoingHttpHeaders = {
   'content-type': 'application/json',
@@ -21,42 +21,6 @@ const BASE_URL = 'https://api.maplight.org/maplight-api/fec/contributions';
 function encodeParameter(key: string, value: string | string[]) {
   const values = typeof value === 'string' ? [value] : value;
   return values.map(value => `${key}=${encodeURIComponent(value)}`).join('&');
-}
-
-function execute(url: string): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const req = fetch(url, res => {
-      const statusCode = res.statusCode;
-      const contentType = res.headers['content-type'];
-      let error: Error;
-      if (statusCode !== 200) {
-        error = new Error(
-          `Upstream request failed.\nReceived status code of ${statusCode}`
-        );
-      } else if (!/^application\/json/.test(contentType)) {
-        error = new Error(
-          `Invalid content-type.\nExpected application/json but received ${contentType}`
-        );
-      }
-      if (error) {
-        // consume response data to free up memory
-        res.resume();
-        reject(error);
-      } else {
-        res.setEncoding('utf8');
-        let rawData = '';
-        res.on('data', chunk => (rawData += chunk));
-        res.on('end', () => {
-          try {
-            resolve(rawData);
-          } catch (e) {
-            reject(e);
-          }
-        });
-      }
-    });
-    req.on('error', e => reject(e));
-  });
 }
 
 function isParameterMissing(param: string | string[] | undefined): boolean {
