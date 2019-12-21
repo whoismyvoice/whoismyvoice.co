@@ -43,8 +43,6 @@
   },
   "dependencies": {
     "@now/node": "^1.3.0",
-    "babel-core": "6",
-    "babel-runtime": "6",
     "classnames": "^2.2.5",
     "isomorphic-unfetch": "^3.0.0",
     "mixpanel-browser": "^2.18.0",
