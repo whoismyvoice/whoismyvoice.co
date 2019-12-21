@@ -22,12 +22,12 @@ class Sources extends React.Component {
             the 2017-2018 and 2019-2020 election cycles. Only donations
             exceeding $200 in value are required to be publicly disclosed, i.e.
             (multiple) donations below $200 threshold do not need to be
-            itemized. WhoIsMyVoice.com uses APIs provided by
+            itemized. WhoIsMyVoice.com uses APIs provided by{' '}
             <a href="https://maplight.org/">MapLight</a> to search FEC data and
-            the
+            the{' '}
             <a href="https://developers.google.com/civic-information">
               Google Civic Information API
-            </a>
+            </a>{' '}
             to lookup representatives by address.
           </p>
           <h3>For More Information</h3>
