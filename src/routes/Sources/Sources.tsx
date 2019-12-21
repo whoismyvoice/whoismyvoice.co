@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import * as mixpanel from 'mixpanel-browser';
 
 import { SOURCES_ROUTE } from '../../constants/mixpanel-events';
