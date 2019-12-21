@@ -1,4 +1,5 @@
 {
+  "version": 2,
   "build": {
     "env": {
       "REACT_APP_MIXPANEL_TOKEN": "@react_app_mixpanel_token"
