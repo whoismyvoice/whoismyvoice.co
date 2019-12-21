@@ -53,7 +53,7 @@ function fetchContributions(organization: string) {
     const candidateFecIds = legislator.id.fec.filter(fecId =>
       FEC_ID_REGEX.test(fecId)
     );
-    const baseUrl = `${EXECUTE_PROXY}/maplight`;
+    const baseUrl = '/api/contributions';
     const electionCycle = encodeURIComponent(ELECTION_CYCLE);
     const organizationName = encodeURIComponent(organization);
     const fecIds = encodeURIComponent(candidateFecIds.join('|'));
@@ -117,7 +117,9 @@ async function fetchLegislatorsAll() {
 function getLegislatorForOfficial(allLegislators: Array<LegislatorRecord>) {
   return (official: Official) =>
     allLegislators.find(
-      legislator => Legislator.getIdentifier(legislator) === Legislator.getIdentifier(official)
+      legislator =>
+        Legislator.getIdentifier(legislator) ===
+        Legislator.getIdentifier(official)
     );
 }
 
