@@ -15,7 +15,7 @@ import { Dispatch } from '../../actions/types';
 import { ORGANIZATION, ORGANIZATION_DISPLAY } from '../../constants';
 import { HOME_ROUTE } from '../../constants/mixpanel-events';
 // Assets
-import '../../styles/Home.css';
+import '../../styles/Home.scss';
 
 interface Props {
   currentPage?: 1 | 2;

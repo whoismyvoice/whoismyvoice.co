@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { Legislator, Party } from '../../models/Legislator';
 
 // Styles
-import './../../styles/MemberRibbon.css';
+import './../../styles/MemberRibbon.scss';
 
 interface Props {
   legislator: Legislator;

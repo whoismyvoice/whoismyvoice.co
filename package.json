@@ -59,12 +59,9 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "predev": "yarn run build:css",
     "dev": "BROWSER=none react-scripts start",
     "start": "npx now dev",
-    "prebuild": "yarn run build:css",
     "build": "react-scripts build",
-    "build:css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --recursive",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

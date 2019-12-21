@@ -8,7 +8,7 @@ import { Dispatch } from '../../actions/types';
 import { State } from '../../store';
 import { ViewState } from '../../store/view';
 // Styles
-import '../../styles/MenuButton.css';
+import '../../styles/MenuButton.scss';
 
 function mapStateToProps(state: State): StateProps & ViewState {
   const { address, view } = state;

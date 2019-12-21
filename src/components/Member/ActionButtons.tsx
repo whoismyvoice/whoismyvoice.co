@@ -5,7 +5,7 @@ import ContactButtonSmall from './../Buttons/ContactButtonSmall';
 import { Legislator } from '../../models/Legislator';
 
 // Styles
-import './../../styles/ActionButtons.css';
+import './../../styles/ActionButtons.scss';
 
 interface Props {
   legislator: Legislator;

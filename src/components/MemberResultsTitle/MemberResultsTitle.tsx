@@ -5,7 +5,7 @@ import {
   Title,
 } from '../Title/Title';
 
-import '../../styles/TitleComponent.css';
+import '../../styles/TitleComponent.scss';
 
 interface Props extends TitleProps {
   legislators: Array<Legislator>;

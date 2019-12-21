@@ -3,7 +3,7 @@ import * as mixpanel from 'mixpanel-browser';
 
 import { SOURCES_ROUTE } from '../../constants/mixpanel-events';
 import FadedBG from '../../components/FadedBg';
-import '../../styles/Sources.css';
+import '../../styles/Sources.scss';
 
 class Sources extends React.Component {
   componentDidMount() {

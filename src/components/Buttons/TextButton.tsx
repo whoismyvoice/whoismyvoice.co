@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 
 // Styles
-import '../../styles/TextButton.css';
+import '../../styles/TextButton.scss';
 
 interface Props {
   link?: string;
