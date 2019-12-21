@@ -9,7 +9,11 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 // Init MixPanel
-mixpanel.init(process.env.REACT_APP_MIXPANEL_TOKEN);
+if (process.env.REACT_APP_MIXPANEL_TOKEN) {
+  mixpanel.init(process.env.REACT_APP_MIXPANEL_TOKEN);
+} else {
+  mixpanel.disable();
+}
 
 const root = document.getElementById('root');
 if (root !== undefined && root !== null) {
