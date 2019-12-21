@@ -117,7 +117,7 @@ async function fetchLegislatorsAll() {
 function getLegislatorForOfficial(allLegislators: Array<LegislatorRecord>) {
   return (official: Official) =>
     allLegislators.find(
-      legislator => Legislator.getIdentifier(legislator) === official.name
+      legislator => Legislator.getIdentifier(legislator) === Legislator.getIdentifier(official)
     );
 }
 

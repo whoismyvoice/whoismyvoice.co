@@ -46,7 +46,7 @@ function handleById(state: LegislatorsById, action: Action): LegislatorsById {
         (byId: LegislatorsById, official: Official) => ({
           ...byId,
           [Legislator.getIdentifier(official)]: {
-            ...(byId[official.name] || {}),
+            ...(byId[Legislator.getIdentifier(official)] || {}),
             channels: official.channels,
             identifier: Legislator.getIdentifier(official),
             photoUrl: official.photoUrl,
@@ -95,10 +95,11 @@ function handleIds(
     case ActionType.RECEIVE_OFFICIALS:
       const { officials } = action;
       return officials.reduce((ids: Array<string>, official: Official) => {
-        if (ids.indexOf(official.name) >= 0) {
+        const identifier = Legislator.getIdentifier(official);
+        if (ids.indexOf(identifier) >= 0) {
           return ids;
         } else {
-          return [...ids, official.name];
+          return [...ids, identifier];
         }
       }, []);
     case ActionType.RESET_CURRENT:
