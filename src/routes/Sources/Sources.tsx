@@ -3,12 +3,19 @@ import * as mixpanel from 'mixpanel-browser';
 
 import { SOURCES_ROUTE } from '../../constants/mixpanel-events';
 import FadedBG from '../../components/FadedBg';
+import { ElectionCycle } from '../../models/ElectionCycle';
 import '../../styles/Sources.scss';
 
-function Sources() {
+interface Props {
+  cycles: ElectionCycle[];
+}
+
+function Sources(props: Props) {
   useEffect(() => {
     mixpanel.track.apply(mixpanel, SOURCES_ROUTE);
   }, []);
+  const { cycles } = props;
+  const cycleMessage = cycles.map(cycle => cycle.label).join(' and ');
   return (
     <div className="page-block light-white">
       <FadedBG color="white" />
@@ -16,13 +23,12 @@ function Sources() {
         <h2>Sources</h2>
         <p className="page-introduction">
           The data on this website is based on the data released by the Federal
-          Election Commission (FEC) on donations that were made during the
-          2017-2018 and 2019-2020 election cycles. Only donations exceeding $200
-          in value are required to be publicly disclosed, i.e. (multiple)
-          donations below $200 threshold do not need to be itemized.
-          WhoIsMyVoice.com uses APIs provided by{' '}
-          <a href="https://maplight.org/">MapLight</a> to search FEC data and
-          the{' '}
+          Election Commission (FEC) on donations that were made during the{' '}
+          {cycleMessage} election cycles. Only donations exceeding $200 in value
+          are required to be publicly disclosed, i.e. (multiple) donations below
+          $200 threshold do not need to be itemized. WhoIsMyVoice.com uses APIs
+          provided by <a href="https://maplight.org/">MapLight</a> to search FEC
+          data and the{' '}
           <a href="https://developers.google.com/civic-information">
             Google Civic Information API
           </a>{' '}
