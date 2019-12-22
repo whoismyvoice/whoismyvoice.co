@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 // Assets
-import '../../styles/SearchInput.css';
+import '../../styles/SearchInput.scss';
 
 const isUsZip = /^(\d{5})(-\d{4})?$/;
 

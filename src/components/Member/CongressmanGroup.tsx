@@ -9,7 +9,7 @@ import { Contribution } from '../../models/Contribution';
 import { Legislator } from '../../models/Legislator';
 
 // Styles
-import './../../styles/CongressmanGroup.css';
+import './../../styles/CongressmanGroup.scss';
 
 interface Props {
   contributions: Array<Contribution>;

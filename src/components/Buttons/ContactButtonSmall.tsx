@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 // Styles
-import '../../styles/ContactButtonSmall.css';
+import '../../styles/ContactButtonSmall.scss';
 
 interface Props {
   addStyle?: string;

@@ -1,10 +1,12 @@
 {
+  "version": 2,
   "build": {
     "env": {
       "REACT_APP_MIXPANEL_TOKEN": "@react_app_mixpanel_token"
     }
   },
   "env": {
+    "GOOGLE_CIVIC_API_KEY": "@google_civic_api_key",
     "REACT_APP_MIXPANEL_TOKEN": "@react_app_mixpanel_token"
   }
 }

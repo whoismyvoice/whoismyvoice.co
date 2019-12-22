@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as _ from 'lodash';
 
-import '../../styles/TitleComponent.css';
+import '../../styles/TitleComponent.scss';
 
 export interface Props {
   className?: string;

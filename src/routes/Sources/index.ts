@@ -1,3 +1,3 @@
-import Sources from './Sources';
+import { LoadedSources } from './LoadedSources';
 
-export default Sources;
+export default LoadedSources;

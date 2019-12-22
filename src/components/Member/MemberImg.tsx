@@ -4,7 +4,7 @@ import cx from 'classnames';
 import { Legislator, Party } from '../../models/Legislator';
 
 // Assets
-import './../../styles/SenatorImg.css';
+import './../../styles/SenatorImg.scss';
 
 interface Props {
   legislator: Legislator;

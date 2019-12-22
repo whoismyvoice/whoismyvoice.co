@@ -7,7 +7,7 @@ import { ABOUT_ROUTE } from '../../constants/mixpanel-events';
 import FadedBG from '../../components/FadedBg';
 
 // Assets
-import '../../styles/About.css';
+import '../../styles/About.scss';
 import siberiaLogo from '../../img/siberia_logo.png';
 
 class About extends React.Component {
@@ -39,7 +39,8 @@ class About extends React.Component {
               className="strike-out"
             >
               here
-            </a>.
+            </a>
+            .
             <br />
             <br />
             Please send any business or media inquiries{' '}
@@ -48,7 +49,8 @@ class About extends React.Component {
               className="strike-out"
             >
               here
-            </a>.<br />
+            </a>
+            .<br />
             <br />
             <a
               href="http://siberia.io"

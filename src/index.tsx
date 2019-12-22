@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as mixpanel from 'mixpanel-browser';
 
-import './styles/globals.css';
+import './styles/globals.scss';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 

@@ -3,7 +3,7 @@ import * as React from 'react';
 // Constants
 import { ORGANIZATION_DISPLAY } from '../../constants';
 // Style
-import '../../styles/paymentCounter.css';
+import '../../styles/paymentCounter.scss';
 
 interface Props {
   payment: string;

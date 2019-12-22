@@ -1,7 +1,7 @@
 import unfetch from 'isomorphic-unfetch';
 import * as mixpanel from 'mixpanel-browser';
 
-import { ELECTION_CYCLE, EXECUTE_PROXY, ORGANIZATION } from '../constants';
+import { ELECTION_CYCLE, ORGANIZATION } from '../constants';
 import { Action, ActionType, Dispatch } from './types';
 import { Contribution } from '../models/Contribution';
 import {
@@ -53,8 +53,8 @@ function fetchContributions(organization: string) {
     const candidateFecIds = legislator.id.fec.filter(fecId =>
       FEC_ID_REGEX.test(fecId)
     );
-    const baseUrl = `${EXECUTE_PROXY}/maplight`;
-    const electionCycle = encodeURIComponent(ELECTION_CYCLE);
+    const baseUrl = '/api/contributions';
+    const electionCycle = encodeURIComponent(await ELECTION_CYCLE);
     const organizationName = encodeURIComponent(organization);
     const fecIds = encodeURIComponent(candidateFecIds.join('|'));
     const params = `cycle=${electionCycle}&fecIds=${fecIds}&organization=${organizationName}`;
@@ -80,7 +80,7 @@ function fetchContributions(organization: string) {
  * @returns array of officials.
  */
 async function fetchOfficialsForAddress(address: string) {
-  const baseUrl = `${EXECUTE_PROXY}/civics`;
+  const baseUrl = `/api/civic-information`;
   const encodedAddress = encodeURIComponent(address);
   const params = `address=${encodedAddress}`;
   const response = await fetch(`${baseUrl}?${params}`);
@@ -117,7 +117,9 @@ async function fetchLegislatorsAll() {
 function getLegislatorForOfficial(allLegislators: Array<LegislatorRecord>) {
   return (official: Official) =>
     allLegislators.find(
-      legislator => Legislator.getIdentifier(legislator) === Legislator.getIdentifier(official)
+      legislator =>
+        Legislator.getIdentifier(legislator) ===
+        Legislator.getIdentifier(official)
     );
 }
 
