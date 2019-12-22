@@ -54,7 +54,7 @@ function fetchContributions(organization: string) {
       FEC_ID_REGEX.test(fecId)
     );
     const baseUrl = '/api/contributions';
-    const electionCycle = encodeURIComponent(ELECTION_CYCLE);
+    const electionCycle = encodeURIComponent(await ELECTION_CYCLE);
     const organizationName = encodeURIComponent(organization);
     const fecIds = encodeURIComponent(candidateFecIds.join('|'));
     const params = `cycle=${electionCycle}&fecIds=${fecIds}&organization=${organizationName}`;
