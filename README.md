@@ -68,18 +68,18 @@ build step.
 
 ## Serverless Functions
 
-The front end application uses AWS API Gateway and AWS Lambda functions to proxy
-requests to get around CORS and to hide API keys. The API Gateway and the Lambda
-functions are managed with [Terraform][tf] plans located in the `infrastructure`
-directory. See the [`README`](./infrastructure/README.md) in `infrastructure`
-for more information about the editing Lambda functions.
+The front end application uses [Zeit Now serverless functions][now-serverless]
+to proxy requests to get around CORS and to hide API keys. The serverless
+functions are defined by in the `api` directory.
 
-[tf]: https://www.terraform.io
+[now-serverless]: https://zeit.co/docs/v2/serverless-functions/introduction/
 
 ## Environment Variables
 
-These are managed by Terraform as AWS SSM parameters. These are declared in the
-`infrastructure/server/environment` Terraform plan.
+These are managed by [Zeit Now secrets][now-secrets]. These are declared in the
+`now.json` file to be injected into the environment.
+
+[now-secrets]: https://zeit.co/docs/v2/environment-variables-and-secrets/
 
 ## Deployments
 
