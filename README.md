@@ -59,6 +59,11 @@ development server while making changes.
 
     yarn run test
 
+Tests are executed by [GitHub Actions][actions] (see
+[`nodejs.yml`](./.github/workflows/nodejs.yml)) on each pull request.
+
+[actions]: https://github.com/marketplace/actions/setup-node-js-for-use-with-actions
+
 #### Build for production
 
 This should only be necessary if zeit now encounters a problem executing the
