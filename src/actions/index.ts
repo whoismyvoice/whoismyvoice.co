@@ -1,7 +1,7 @@
 import unfetch from 'isomorphic-unfetch';
 import * as mixpanel from 'mixpanel-browser';
 
-import { ELECTION_CYCLE, EXECUTE_PROXY, ORGANIZATION } from '../constants';
+import { ELECTION_CYCLE, ORGANIZATION } from '../constants';
 import { Action, ActionType, Dispatch } from './types';
 import { Contribution } from '../models/Contribution';
 import {
@@ -80,7 +80,7 @@ function fetchContributions(organization: string) {
  * @returns array of officials.
  */
 async function fetchOfficialsForAddress(address: string) {
-  const baseUrl = `${EXECUTE_PROXY}/civics`;
+  const baseUrl = `/api/civic-information`;
   const encodedAddress = encodeURIComponent(address);
   const params = `address=${encodedAddress}`;
   const response = await fetch(`${baseUrl}?${params}`);
