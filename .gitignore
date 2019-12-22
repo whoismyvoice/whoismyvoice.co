@@ -12,8 +12,8 @@
 # production
 /build
 
-# ssmenv
-/.ssmenv/private.json
+# old infrastructure
+/infrastructure
 
 # misc
 .DS_Store
