@@ -26,13 +26,19 @@ function Sources(props: Props) {
           Election Commission (FEC) on donations that were made during the{' '}
           {cycleMessage} election cycles. Only donations exceeding $200 in value
           are required to be publicly disclosed, i.e. (multiple) donations below
-          $200 threshold do not need to be itemized. WhoIsMyVoice.com uses APIs
-          provided by <a href="https://maplight.org/">MapLight</a> to search FEC
-          data and the{' '}
+          $200 threshold do not need to be itemized.
+        </p>
+        <p>
+          WhoIsMyVoice.com uses APIs provided by{' '}
+          <a href="https://maplight.org/">MapLight</a> to search FEC data and
+          the{' '}
           <a href="https://developers.google.com/civic-information">
             Google Civic Information API
           </a>{' '}
-          to lookup representatives by address.
+          to lookup representatives by address. Current legislator information
+          from the Google Civic Information API is matched up with information
+          from{' '}
+          <a href="https://theunitedstates.io">the @unitedstates project</a>.
         </p>
         <h3>For More Information</h3>
         <ul className="sources">

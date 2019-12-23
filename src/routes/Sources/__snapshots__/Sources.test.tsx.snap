@@ -19,7 +19,11 @@ exports[`renders correctly 1`] = `
       The data on this website is based on the data released by the Federal Election Commission (FEC) on donations that were made during the
        
       2017-2018 and 2019-2020
-       election cycles. Only donations exceeding $200 in value are required to be publicly disclosed, i.e. (multiple) donations below $200 threshold do not need to be itemized. WhoIsMyVoice.com uses APIs provided by 
+       election cycles. Only donations exceeding $200 in value are required to be publicly disclosed, i.e. (multiple) donations below $200 threshold do not need to be itemized.
+    </p>
+    <p>
+      WhoIsMyVoice.com uses APIs provided by
+       
       <a
         href="https://maplight.org/"
       >
@@ -33,7 +37,14 @@ exports[`renders correctly 1`] = `
         Google Civic Information API
       </a>
        
-      to lookup representatives by address.
+      to lookup representatives by address. Current legislator information from the Google Civic Information API is matched up with information from
+       
+      <a
+        href="https://theunitedstates.io"
+      >
+        the @unitedstates project
+      </a>
+      .
     </p>
     <h3>
       For More Information
