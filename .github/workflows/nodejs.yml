@@ -6,6 +6,9 @@ jobs:
     strategy:
       matrix:
         node-version: [8.x, 10.x, 12.x]
+    env:
+      CI: true
+      NODE_ENV: 'production'
     steps:
       - uses: actions/checkout@v1
       - name: Get yarn cache
@@ -28,5 +31,3 @@ jobs:
           yarn install
           yarn run build
           yarn run test
-        env:
-          CI: true
