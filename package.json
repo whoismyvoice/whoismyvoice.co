@@ -57,6 +57,7 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
+    "prebuild": "curl https://api.maplight.org/maplight-api/fec/election_cycles > src/election-cycles.json",
     "dev": "BROWSER=none react-scripts start",
     "start": "npx now dev",
     "build": "react-scripts build",

@@ -2,6 +2,7 @@
 
 # compiled styles
 /src/**/*.css
+/src/election-cycles.json
 
 # dependencies
 /node_modules

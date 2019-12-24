@@ -2,6 +2,7 @@ import { OutgoingHttpHeaders } from 'http';
 import { NowRequest, NowResponse } from '@now/node';
 import { execute } from './_utils';
 
+/** Copied from `src/models/ElectionCycle.ts` */
 interface ResponseElectionCycle {
   ElectionCycle: string;
   label: string;
@@ -22,10 +23,11 @@ const DEFAULT_RESPONSE_HEADERS: OutgoingHttpHeaders = {
 
 const BASE_URL = 'https://api.maplight.org/maplight-api/fec/election_cycles';
 
+/** Copied from `src/models/ElectionCycle.ts` */
 function compareCycles(c1: ResponseElectionCycle, c2: ResponseElectionCycle) {
-  if (c1 > c2) {
+  if (c1.ElectionCycle > c2.ElectionCycle) {
     return 1;
-  } else if (c1 < c2) {
+  } else if (c1.ElectionCycle < c2.ElectionCycle) {
     return -1;
   } else {
     return 0;
