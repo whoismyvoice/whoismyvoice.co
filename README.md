@@ -28,8 +28,10 @@ v1.5.2][cra].
 * [jq](https://stedolan.github.io/jq/)
 * [Google API Key](https://console.developers.google.com/apis/dashboard) for
   the [Google Civic Information API][civics]
+* [OpenSecrets API Key][opensecrets]
 
 [civics]: https://console.developers.google.com/apis/library/civicinfo.googleapis.com?q=civic&id=a7de1ed0-c5d0-44ca-8365-267daf15ca5b
+[opensecrets]: https://www.opensecrets.org/open-data/api-documentation
 
 ### Steps
 
@@ -41,8 +43,10 @@ with credentials that give access to the Who Is My Voice AWS Account,
 1. `cd whoismyvoice.co`
 1. `yarn install`
 1. `npx now secrets add "react_app_mixpanel_token" "<mixpanel-token-here>"`
+1. `npx now secrets add "open_secrets_api_key" "<opensecrets-api-key-here>"`
 1. `npx now secrets add "google_civic_api_key" "<google-api-key-here>"`
-1. Create `.env` file with `REACT_APP_MIXPANEL_TOKEN` and `GOOGLE_CIVIC_API_KEY` values.
+1. Create `.env` file with `REACT_APP_MIXPANEL_TOKEN`, `GOOGLE_CIVIC_API_KEY`
+   and `OPEN_SECRETS_API_KEY` values.
 1. Copy `.env` to `.env.build`.
 
 #### Build for development

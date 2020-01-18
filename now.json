@@ -7,6 +7,7 @@
   },
   "env": {
     "GOOGLE_CIVIC_API_KEY": "@google_civic_api_key",
+    "OPEN_SECRETS_API_KEY": "@open_secrets_api_key",
     "REACT_APP_MIXPANEL_TOKEN": "@react_app_mixpanel_token"
   }
 }
