@@ -10,11 +10,15 @@ import { get as fetch } from 'https';
  * @throws Error when upstream request results in a content type that does not
  * match `application/json`.
  */
-export function execute(url: string): Promise<string> {
+export function execute(
+  url: string,
+  expects = 'application/json'
+): Promise<string> {
   return new Promise((resolve, reject) => {
     const req = fetch(url, res => {
       const statusCode = res.statusCode;
       const contentType = res.headers['content-type'];
+      const contentTypeMatcher = new RegExp(expects);
       let error: Error | undefined = undefined;
       if (statusCode !== 200) {
         error = new Error(
@@ -22,7 +26,7 @@ export function execute(url: string): Promise<string> {
         );
       } else if (
         contentType !== undefined &&
-        !/^application\/json$/i.test(contentType)
+        !contentTypeMatcher.test(contentType)
       ) {
         error = new Error(
           `Invalid content-type.\nExpected application/json but received ${contentType}`
