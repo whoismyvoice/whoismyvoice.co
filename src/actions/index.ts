@@ -3,7 +3,11 @@ import * as mixpanel from 'mixpanel-browser';
 
 import { ELECTION_CYCLE, ORGANIZATION } from '../constants';
 import { Action, ActionType, Dispatch } from './types';
-import { Contribution } from '../models/Contribution';
+import {
+  Contribution,
+  SectorContribution,
+  SectorContributions,
+} from '../models/Contribution';
 import {
   Legislator,
   Identifier as LegislatorIdentifier,
@@ -53,6 +57,57 @@ function createContribution(
 }
 
 /**
+ * Create a `SectorContribution` from the given `node` by reading its properties.
+ * @param node from which sector contribution data will be parsed.
+ * @returns a record with the sector contribution information if it could be
+ * parsed, `undefined` if it could not be parsed from the attributes of `node`.
+ */
+function createSectorContribution(
+  node: Element
+): SectorContribution | undefined {
+  const sector = node.getAttribute('sector_name');
+  const sectorCode = node.getAttribute('sectorid');
+  const total = node.getAttribute('total');
+  if (sector === null || sectorCode === null || total === null) {
+    return undefined;
+  }
+  const amount = parseInt(total, 10);
+  if (isNaN(amount)) {
+    return undefined;
+  } else {
+    return {
+      amount,
+      sector,
+      sectorCode,
+    };
+  }
+}
+
+/**
+ * Finesse the `Document` from the Open Secrets API into a list of
+ * contributions.
+ * @param legislator from which identifier will be retrieved.
+ * @param document from which sector contribution data will be parsed.
+ * @returns a record with the legislator id and a list of sector contribution
+ * data.
+ */
+function createSectorContributions(
+  legislator: LegislatorRecord,
+  document: Document
+): SectorContributions {
+  const nodes = document.getElementsByTagName('sector');
+  const legislatorId = Legislator.getIdentifier(legislator);
+  const elements = Array.from(nodes);
+  const contributions = elements
+    .map(createSectorContribution)
+    .filter(isDefined);
+  return {
+    legislatorId,
+    contributions,
+  };
+}
+
+/**
  * Retrieve aggregated contribution data for given `organization` and `legislator`.
  * @param {string} organization name whose contributions will be searched.
  * @param {LegislatorRecord} legislator for whom data will be retrieved.
@@ -84,6 +139,38 @@ function fetchContributions(organization: string) {
       throw new ResponseError(response, response.statusText);
     }
   };
+}
+
+/**
+ * Retrieve contributions group by business sector.
+ * @param {LegislatorRecord} legislator for whom data will be retrieved.
+ * @returns contribution data.
+ */
+async function fetchContributionsBySector(
+  legislator: LegislatorRecord
+): Promise<SectorContributions> {
+  const opensecretsId = legislator.id.opensecrets;
+  const baseUrl = '/api/contributions/by-sector';
+  const electionCycle = await ELECTION_CYCLE;
+  const encodedCycle = encodeURIComponent(electionCycle.split('|')[0]);
+  const encodedId = encodeURIComponent(opensecretsId);
+  const params = `cycle=${encodedCycle}&id=${encodedId}`;
+  const url = `${baseUrl}?${params}`;
+  const response = await fetch(url, {
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'text/xml',
+    },
+  });
+  if (response.ok) {
+    const body = await response.text();
+    // Parse XML document
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(body, 'text/xml');
+    return createSectorContributions(legislator, doc);
+  } else {
+    throw new ResponseError(response, response.statusText);
+  }
 }
 
 /**
@@ -199,6 +286,23 @@ export function receiveContributions(
 }
 
 /**
+ * Create action to notify of bulk contribution sector data received.
+ * @param contributions received.
+ * @returns action.
+ */
+export function receiveContributionsBySector(
+  contributions: SectorContributions[]
+): Action {
+  mixpanel.track(ActionType.RECEIVE_CONTRIBUTION_DATA, {
+    count: contributions.length,
+  });
+  return {
+    type: ActionType.RECEIVE_CONTRIBUTIONS_BY_SECTOR_DATA,
+    contributions: contributions,
+  };
+}
+
+/**
  * Create action to notify officials retrieved.
  * @param {array} officials received.
  * @returns action.
@@ -305,6 +409,10 @@ export function setAddress(address: string) {
       const getLegislator = getLegislatorForOfficial(allLegislators);
       const getContributions = fetchContributions(ORGANIZATION);
       const legislators = officials.map(getLegislator).filter(isDefined);
+      const contributionsBySector = await Promise.all(
+        legislators.map(record => fetchContributionsBySector(record))
+      );
+      dispatch(receiveContributionsBySector(contributionsBySector));
       const contributions = await Promise.all(
         legislators.map(async legislator => {
           const contributionData = await getContributions(legislator);
