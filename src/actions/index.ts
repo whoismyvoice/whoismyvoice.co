@@ -24,6 +24,16 @@ const fetch = unfetch;
 const FEC_ID_REGEX = /[HS]\d{1,3}[A-Z]{2}\d+/;
 
 /**
+ * Type guard to check if the given item exists (is not `null` and not
+ * `undefined`.
+ * @param item to test.
+ * @return `true` iff `item` is neither `null` nor `undefined`.
+ */
+function isDefined<T>(item: T | undefined | null): item is T {
+  return item !== undefined && item !== null;
+}
+
+/**
  * Finesse the `MaplightResultsRecord` and `LegislatorRecord` data into a
  * `Contribution`.
  * @param {LegislatorRecord} legislator from which identifier will be retrieved.
@@ -294,18 +304,12 @@ export function setAddress(address: string) {
       dispatch(receiveOfficials(officials));
       const getLegislator = getLegislatorForOfficial(allLegislators);
       const getContributions = fetchContributions(ORGANIZATION);
+      const legislators = officials.map(getLegislator).filter(isDefined);
       const contributions = await Promise.all(
-        officials
-          .map(getLegislator)
-          .filter(
-            (legislator): legislator is LegislatorRecord =>
-              legislator !== undefined
-          )
-          .map(async record => {
-            const legislator = record;
-            const contributionData = await getContributions(legislator);
-            return createContribution(legislator, contributionData);
-          })
+        legislators.map(async legislator => {
+          const contributionData = await getContributions(legislator);
+          return createContribution(legislator, contributionData);
+        })
       );
       dispatch(receiveContributions(contributions));
     } catch (error) {
