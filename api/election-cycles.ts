@@ -29,9 +29,9 @@ function compareCycles(
   c2: ResponseElectionCycle
 ): number {
   if (c1.ElectionCycle > c2.ElectionCycle) {
-    return 1;
-  } else if (c1.ElectionCycle < c2.ElectionCycle) {
     return -1;
+  } else if (c1.ElectionCycle < c2.ElectionCycle) {
+    return 1;
   } else {
     return 0;
   }

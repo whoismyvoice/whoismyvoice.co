@@ -9,8 +9,8 @@ async function fetchElectionCycles(): Promise<ElectionCycle[]> {
     return cycles;
   } else {
     return [
-      { year: '2018', label: '2017-2018' },
       { year: '2020', label: '2019-2020' },
+      { year: '2018', label: '2017-2018' },
     ];
   }
 }
