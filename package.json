@@ -22,7 +22,7 @@
   "homepage": "https://www.whoismyvoice.com",
   "devDependencies": {
     "@types/classnames": "^2.2.3",
-    "@types/jest": "^24.0.24",
+    "@types/jest": "^25.1.2",
     "@types/lodash": "^4.14.106",
     "@types/node": "^12.12.21",
     "@types/node-fetch": "^2.5.4",
