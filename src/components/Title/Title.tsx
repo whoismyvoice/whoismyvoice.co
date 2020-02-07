@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as _ from 'lodash';
+import { TemplateExecutor, template } from 'lodash';
 
 import '../../styles/TitleComponent.scss';
 
@@ -24,11 +24,11 @@ export class Title<P extends Props, S extends State> extends React.Component<
     templateString: '',
   };
 
-  template: _.TemplateExecutor;
+  template: TemplateExecutor;
 
   constructor(props: P) {
     super(props);
-    this.template = _.template(props.templateString);
+    this.template = template(props.templateString);
   }
 
   UNSAFE_componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>) {
@@ -37,9 +37,9 @@ export class Title<P extends Props, S extends State> extends React.Component<
       this.state.templateString !== undefined &&
       this.state.templateString !== nextState.templateString
     ) {
-      this.template = _.template(nextState.templateString);
+      this.template = template(nextState.templateString);
     } else if (this.props.templateString !== nextProps.templateString) {
-      this.template = _.template(nextProps.templateString);
+      this.template = template(nextProps.templateString);
     }
   }
 
