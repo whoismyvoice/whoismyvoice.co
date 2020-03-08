@@ -308,6 +308,7 @@ export class Legislator implements Record {
    */
   get name(): NameRecord {
     if (typeof this.record.name === 'string') {
+      // eslint-disable-next-line @typescript-eslint/camelcase
       return { official_full: this.record.name };
     } else {
       return this.record.name;

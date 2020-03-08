@@ -41,8 +41,7 @@ const initialState = {
 function handleById(state: LegislatorsById, action: Action): LegislatorsById {
   switch (action.type) {
     case ActionType.RECEIVE_OFFICIALS:
-      const googleCivicOfficials = action.officials;
-      return googleCivicOfficials.reduce(
+      return action.officials.reduce(
         (byId: LegislatorsById, official: Official) => ({
           ...byId,
           [Legislator.getIdentifier(official)]: {
@@ -55,8 +54,7 @@ function handleById(state: LegislatorsById, action: Action): LegislatorsById {
         state
       );
     case ActionType.RECEIVE_OFFICIALS_ALL:
-      const { officials } = action;
-      return officials.reduce(
+      return action.officials.reduce(
         (byId: LegislatorsById, official: LegislatorRecord) => ({
           ...byId,
           [Legislator.getIdentifier(official)]: {
@@ -93,15 +91,17 @@ function handleIds(
 ): Array<LegislatorIdentifier> {
   switch (action.type) {
     case ActionType.RECEIVE_OFFICIALS:
-      const { officials } = action;
-      return officials.reduce((ids: Array<string>, official: Official) => {
-        const identifier = Legislator.getIdentifier(official);
-        if (ids.indexOf(identifier) >= 0) {
-          return ids;
-        } else {
-          return [...ids, identifier];
-        }
-      }, []);
+      return action.officials.reduce(
+        (ids: Array<string>, official: Official) => {
+          const identifier = Legislator.getIdentifier(official);
+          if (ids.indexOf(identifier) >= 0) {
+            return ids;
+          } else {
+            return [...ids, identifier];
+          }
+        },
+        []
+      );
     case ActionType.RESET_CURRENT:
       return [];
     default:
