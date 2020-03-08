@@ -297,9 +297,12 @@ export function setAddress(address: string) {
       const contributions = await Promise.all(
         officials
           .map(getLegislator)
-          .filter(legislator => legislator !== undefined)
+          .filter(
+            (legislator): legislator is LegislatorRecord =>
+              legislator !== undefined
+          )
           .map(async record => {
-            const legislator = record!; // safe because of filter function above
+            const legislator = record;
             const contributionData = await getContributions(legislator);
             return createContribution(legislator, contributionData);
           })

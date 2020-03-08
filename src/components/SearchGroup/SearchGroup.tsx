@@ -36,8 +36,8 @@ export class SearchGroup extends React.Component<Props> {
         <SearchAddress
           address={address}
           addressErrorMessage={addressErrorMessage}
-          isStreetAddressNeeded={isStreetAddressNeeded!}
-          onSubmit={onAddressSubmit!}
+          isStreetAddressNeeded={isStreetAddressNeeded}
+          onSubmit={onAddressSubmit}
           zipCode={zipCode}
         />
       </div>
