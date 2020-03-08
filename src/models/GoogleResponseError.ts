@@ -1,4 +1,4 @@
-/* tslint:disable:no-any */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Response, ResponseError } from './ResponseError';
 
 interface BodyContent {
