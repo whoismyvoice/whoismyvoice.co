@@ -61,7 +61,7 @@ describe('initial state', () => {
       receiveOfficialsErrorAction = await receiveOfficialsError(error);
       state = view(initialState, receiveOfficialsErrorAction);
     });
-    it('has an error', async () => {
+    it('has an error', () => {
       expect(state.addressErrorMessage).toBe('foo');
     });
 
@@ -70,7 +70,7 @@ describe('initial state', () => {
       beforeEach(() => {
         newState = view(state, receiveOfficials([]));
       });
-      it('no longer has an error', async () => {
+      it('no longer has an error', () => {
         expect(newState.addressErrorMessage).toBe(undefined);
       });
     });
@@ -80,7 +80,7 @@ describe('initial state', () => {
       beforeEach(() => {
         newState = view(state, reset());
       });
-      it('no longer has an error', async () => {
+      it('no longer has an error', () => {
         expect(newState.addressErrorMessage).toBe(undefined);
       });
     });
@@ -91,7 +91,7 @@ describe('initial state', () => {
     beforeEach(() => {
       state = view(initialState, receiveOfficials([]));
     });
-    it('does not change address error message', async () => {
+    it('does not change address error message', () => {
       expect(state.addressErrorMessage).toBe(undefined);
     });
   });
@@ -101,7 +101,7 @@ describe('initial state', () => {
     beforeEach(() => {
       state = view(initialState, navigateLegislators(1));
     });
-    it('changes current page', async () => {
+    it('changes current page', () => {
       expect(state.currentPage).toBe(1);
     });
 
@@ -110,7 +110,7 @@ describe('initial state', () => {
       beforeEach(() => {
         newState = view(state, reset());
       });
-      it('no longer has an error', async () => {
+      it('no longer has an error', () => {
         expect(newState.addressErrorMessage).toBe(undefined);
       });
     });
@@ -120,7 +120,7 @@ describe('initial state', () => {
       beforeEach(() => {
         newState = view(initialState, navigateLegislators(2));
       });
-      it('changes current page', async () => {
+      it('changes current page', () => {
         expect(newState.currentPage).toBe(2);
       });
 
@@ -129,7 +129,7 @@ describe('initial state', () => {
         beforeEach(() => {
           nextState = view(newState, reset());
         });
-        it('no longer has an error', async () => {
+        it('no longer has an error', () => {
           expect(nextState.addressErrorMessage).toBe(undefined);
         });
       });
