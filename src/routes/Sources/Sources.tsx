@@ -11,7 +11,9 @@ interface Props {
 }
 
 function Sources(props: Props): JSX.Element {
-  useEffect(() => mixpanel.track(...SOURCES_ROUTE), []);
+  useEffect(() => {
+    mixpanel.track(...SOURCES_ROUTE);
+  }, []);
   const { cycles } = props;
   const cycleMessage = cycles.map(cycle => cycle.label).join(' and ');
   return (
