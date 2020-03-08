@@ -7,7 +7,7 @@ import { createLegislator as createLegislatorRecord } from '../../models/Legisla
 
 jest.mock('mixpanel-browser');
 
-function createLegislator(name: string) {
+function createLegislator(name: string): Legislator {
   return new Legislator(createLegislatorRecord(name));
 }
 

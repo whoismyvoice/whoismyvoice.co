@@ -11,10 +11,17 @@ interface Props extends TitleProps {
   legislators: Array<Legislator>;
 }
 
+type MemberType =
+  | 'Representative'
+  | 'Representative & Senator'
+  | 'Senator'
+  | 'Senator & Representative'
+  | 'Senators'
+  | 'Senators & Representative';
 type State = TitleState;
 
-export function getMemberType(legislators: Array<Legislator>) {
-  let memberType;
+export function getMemberType(legislators: Array<Legislator>): MemberType {
+  let memberType: MemberType;
   const { Senate, House } = Chamber;
   if (legislators.length === 1) {
     const [rep] = legislators;
@@ -56,7 +63,7 @@ export class MemberResultsTitle extends Title<Props, State> {
     };
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps: Readonly<Props>) {
+  UNSAFE_componentWillReceiveProps(nextProps: Readonly<Props>): void {
     const { legislators } = nextProps;
     this.setState({
       templateData: {

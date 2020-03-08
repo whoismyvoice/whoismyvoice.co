@@ -22,7 +22,7 @@ class CongressmanGroup extends React.Component<Props> {
     contributions: [],
   };
 
-  render() {
+  render(): JSX.Element {
     const { legislators, contributions } = this.props;
     const getAmount = Legislator.getContributionAmount.bind(
       this,

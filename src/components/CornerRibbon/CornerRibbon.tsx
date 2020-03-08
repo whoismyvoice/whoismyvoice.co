@@ -8,7 +8,7 @@ interface Props {
 }
 
 class CornerRibbon extends React.Component<Props> {
-  render() {
+  render(): JSX.Element {
     const { didSearch } = this.props;
 
     const ribbonClasses = cx(['corner-ribbon'], {

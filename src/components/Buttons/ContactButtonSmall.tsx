@@ -10,7 +10,12 @@ interface Props {
   text: string;
 }
 
-const ContactButtonSmall = ({ addStyle, icon, link, text }: Props) => {
+const ContactButtonSmall = ({
+  addStyle,
+  icon,
+  link,
+  text,
+}: Props): JSX.Element => {
   return (
     <a href={link} target="_blank" rel="noopener noreferrer">
       <button className={`contact__button_small ${addStyle}`}>

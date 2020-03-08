@@ -11,7 +11,7 @@ class FadedBG extends React.Component<Props> {
     color: 'white',
   };
 
-  render() {
+  render(): JSX.Element {
     const fadedClasses = cx(['faded-bg'], {
       'faded-white': this.props.color === 'white',
       hide: !this.props.didScroll,

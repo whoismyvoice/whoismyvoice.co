@@ -12,11 +12,13 @@ interface Props {
 }
 
 class SupportActions extends React.Component<Props> {
-  renderTwitter() {
+  renderTwitter(): JSX.Element {
     const { legislator } = this.props;
     const { genderPronoun, twitter } = legislator;
     const twitterLink = `https://twitter.com/intent/tweet?hashtags=WhoIsMyVoice&text=@${twitter}`;
-    return twitter === undefined ? null : (
+    return twitter === undefined ? (
+      <React.Fragment />
+    ) : (
       <ContactButtonSmall
         link={twitterLink}
         icon="twitter"
@@ -25,7 +27,7 @@ class SupportActions extends React.Component<Props> {
     );
   }
 
-  render() {
+  render(): JSX.Element {
     const { legislator } = this.props;
     // Define each value used for every member
     const { genderPronoun, phone } = legislator;

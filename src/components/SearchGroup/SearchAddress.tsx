@@ -24,7 +24,7 @@ export class SearchAddress extends React.Component<Props> {
     zipCode: '',
   };
 
-  render() {
+  render(): JSX.Element {
     const { address, addressErrorMessage, onSubmit, placeholder } = this.props;
     const inputClasses = cx('input', {
       address_search: this.props.isStreetAddressNeeded,

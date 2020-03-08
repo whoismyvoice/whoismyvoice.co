@@ -6,6 +6,7 @@ import {
   navigateLegislators,
 } from '../actions';
 import { Action, ActionType } from '../actions/types';
+import { Response } from '../models/ResponseError';
 import { GoogleResponseError } from '../models/GoogleResponseError';
 import view from './view';
 
@@ -17,9 +18,10 @@ function action(): Action {
   };
 }
 
-function createResponse() {
+function createResponse(): Response {
   return {
-    json: () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    json: (): Promise<any> => {
       return Promise.resolve({
         error: { message: 'foo' },
       });

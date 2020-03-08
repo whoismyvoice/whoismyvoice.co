@@ -150,7 +150,7 @@ Array [
 ]
 `;
 
-exports[`renders correctly with empty props 1`] = `""`;
+exports[`renders correctly with empty props 1`] = `null`;
 
 exports[`renders correctly with three contributions and legislators 1`] = `
 Array [
@@ -513,7 +513,6 @@ Array [
       </div>
     </div>
   </div>,
-  "",
 ]
 `;
 

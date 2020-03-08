@@ -18,7 +18,7 @@ const BASE_URL = 'https://api.maplight.org/maplight-api/fec/contributions';
  * @param value to be encoded.
  * @returns key and value(s) as a query parameter.
  */
-function encodeParameter(key: string, value: string | string[]) {
+function encodeParameter(key: string, value: string | string[]): string {
   const values = typeof value === 'string' ? [value] : value;
   return values.map(value => `${key}=${encodeURIComponent(value)}`).join('&');
 }
@@ -27,7 +27,7 @@ function isParameterMissing(param: string | string[] | undefined): boolean {
   return param === undefined || (Array.isArray(param) && param.length === 0);
 }
 
-async function getContributions(request: NowRequest) {
+async function getContributions(request: NowRequest): Promise<string> {
   const { query } = request;
   const { fecIds, cycle, organization } = query;
   if (isParameterMissing(fecIds)) {
@@ -48,7 +48,7 @@ async function getContributions(request: NowRequest) {
   return execute(url);
 }
 
-function handler(request: NowRequest, response: NowResponse) {
+function handler(request: NowRequest, response: NowResponse): void {
   switch (request.method) {
     case 'GET':
       getContributions(request)

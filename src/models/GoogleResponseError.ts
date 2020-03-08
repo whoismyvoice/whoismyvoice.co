@@ -17,7 +17,7 @@ interface ErrorRecord {
   reason: string | undefined;
 }
 
-function objectHasProp(propName: string, type: string, o: object) {
+function objectHasProp(propName: string, type: string, o: object): boolean {
   return typeof o === 'object' && typeof o[propName] === type;
 }
 

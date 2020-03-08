@@ -20,13 +20,13 @@ export class StarTitle extends React.Component<Props> {
     this.template = template(props.templateString);
   }
 
-  UNSAFE_componentWillUpdate(nextProps: Readonly<Props>) {
+  UNSAFE_componentWillUpdate(nextProps: Readonly<Props>): void {
     if (this.props.templateString !== nextProps.templateString) {
       this.template = template(nextProps.templateString);
     }
   }
 
-  renderStars() {
+  renderStars(): JSX.Element {
     return (
       <div className="three-stars">
         <span>&#9733;</span>
@@ -36,7 +36,7 @@ export class StarTitle extends React.Component<Props> {
     );
   }
 
-  render() {
+  render(): JSX.Element {
     const { templateData } = this.props;
     const content = { __html: this.template(templateData) };
     return (

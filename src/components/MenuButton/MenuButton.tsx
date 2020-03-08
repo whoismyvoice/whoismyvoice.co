@@ -20,14 +20,14 @@ function mapStateToProps(state: State): StateProps & ViewState {
 
 function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
   return {
-    onMenuButtonClick: (event: React.MouseEvent<HTMLDivElement>) => {
+    onMenuButtonClick: (event: React.MouseEvent<HTMLDivElement>): void => {
       event.preventDefault();
       dispatch(toggleMenu());
     },
-    onMenuLinkClick: (event: React.MouseEvent<HTMLAnchorElement>) => {
+    onMenuLinkClick: (event: React.MouseEvent<HTMLAnchorElement>): void => {
       dispatch(toggleMenu());
     },
-    onRestartClick: (event: React.MouseEvent<HTMLAnchorElement>) => {
+    onRestartClick: (event: React.MouseEvent<HTMLAnchorElement>): void => {
       dispatch(reset());
       dispatch(toggleMenu());
     },
@@ -56,7 +56,7 @@ export class MenuButton extends React.Component<MappedProps> {
     onRestartClick: () => undefined,
   };
 
-  render() {
+  render(): JSX.Element {
     const {
       didSearch,
       isMenuOpen,

@@ -31,7 +31,10 @@ export class Title<P extends Props, S extends State> extends React.Component<
     this.template = template(props.templateString);
   }
 
-  UNSAFE_componentWillUpdate(nextProps: Readonly<P>, nextState: Readonly<S>) {
+  UNSAFE_componentWillUpdate(
+    nextProps: Readonly<P>,
+    nextState: Readonly<S>
+  ): void {
     if (
       this.state !== undefined &&
       this.state.templateString !== undefined &&
@@ -43,7 +46,7 @@ export class Title<P extends Props, S extends State> extends React.Component<
     }
   }
 
-  getTemplateData() {
+  getTemplateData(): object | undefined {
     if (this.state && this.state.templateData !== undefined) {
       return this.state.templateData;
     } else if (this.props.templateData !== undefined) {
@@ -53,7 +56,7 @@ export class Title<P extends Props, S extends State> extends React.Component<
     }
   }
 
-  render() {
+  render(): JSX.Element {
     const { className } = this.props;
     const content = { __html: this.template(this.getTemplateData()) };
     return (

@@ -35,7 +35,7 @@ export class SearchInput extends React.Component<Props, State> {
     };
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps: Props) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
     if (nextProps.errorMessage !== undefined) {
       this.setState({
         isError: true,
@@ -43,7 +43,7 @@ export class SearchInput extends React.Component<Props, State> {
     }
   }
 
-  onChange(event: React.ChangeEvent<HTMLInputElement>) {
+  onChange(event: React.ChangeEvent<HTMLInputElement>): void {
     const target = event.target;
     const value = target.value;
     this.setState({
@@ -51,14 +51,16 @@ export class SearchInput extends React.Component<Props, State> {
     });
   }
 
-  renderError() {
+  renderError(): JSX.Element {
     const { errorMessage } = this.props;
-    return errorMessage === undefined ? null : (
+    return errorMessage === undefined ? (
+      <React.Fragment />
+    ) : (
       <p className="search-input-message--error">{errorMessage}</p>
     );
   }
 
-  render() {
+  render(): JSX.Element {
     const { name, pattern, placeholder } = this.props;
     const { isError } = this.state;
     return (

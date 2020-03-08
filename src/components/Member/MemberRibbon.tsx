@@ -10,7 +10,7 @@ interface Props {
 }
 
 class MemberRibbon extends React.Component<Props> {
-  render() {
+  render(): JSX.Element {
     const { legislator } = this.props;
     const { fullName, party, state } = legislator;
 

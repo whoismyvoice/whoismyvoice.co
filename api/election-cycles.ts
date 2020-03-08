@@ -24,7 +24,10 @@ const DEFAULT_RESPONSE_HEADERS: OutgoingHttpHeaders = {
 const BASE_URL = 'https://api.maplight.org/maplight-api/fec/election_cycles';
 
 /** Copied from `src/models/ElectionCycle.ts` */
-function compareCycles(c1: ResponseElectionCycle, c2: ResponseElectionCycle) {
+function compareCycles(
+  c1: ResponseElectionCycle,
+  c2: ResponseElectionCycle
+): number {
   if (c1.ElectionCycle > c2.ElectionCycle) {
     return 1;
   } else if (c1.ElectionCycle < c2.ElectionCycle) {
@@ -46,7 +49,7 @@ async function getElectionCycles(): Promise<ElectionCycle[]> {
     .map(cycle => ({ year: cycle.ElectionCycle, label: cycle.label }));
 }
 
-function handler(request: NowRequest, response: NowResponse) {
+function handler(request: NowRequest, response: NowResponse): void {
   switch (request.method) {
     case 'GET':
       getElectionCycles()

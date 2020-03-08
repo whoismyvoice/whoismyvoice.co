@@ -19,7 +19,7 @@ function mapStateToProps(state: State): StateProps {
 
 function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
   return {
-    onAddressSubmit: (event: React.FormEvent<HTMLFormElement>) => {
+    onAddressSubmit: (event: React.FormEvent<HTMLFormElement>): void => {
       event.preventDefault();
       const target = event.currentTarget;
       const addressNode = target.address;

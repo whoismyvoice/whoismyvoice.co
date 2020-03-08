@@ -6,7 +6,10 @@ import { Legislator, TermRecord } from '../../models/Legislator';
 
 jest.mock('mixpanel-browser');
 
-function createLegislatorWithTerm(name: string, terms: Array<TermRecord>) {
+function createLegislatorWithTerm(
+  name: string,
+  terms: Array<TermRecord>
+): Legislator {
   const record = createLegislator(name);
   return new Legislator({
     ...record,
