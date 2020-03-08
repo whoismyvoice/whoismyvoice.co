@@ -27,6 +27,7 @@ function isParameterMissing(param: string | string[] | undefined): boolean {
   return param === undefined || (Array.isArray(param) && param.length === 0);
 }
 
+/* eslint-disable @typescript-eslint/camelcase */
 async function getContributions(request: NowRequest): Promise<string> {
   const { query } = request;
   const { fecIds, cycle, organization } = query;
@@ -47,6 +48,7 @@ async function getContributions(request: NowRequest): Promise<string> {
   const url = `${BASE_URL}?${params}`;
   return execute(url);
 }
+/* eslint-enable @typescript-eslint/camelcase */
 
 function handler(request: NowRequest, response: NowResponse): void {
   switch (request.method) {
