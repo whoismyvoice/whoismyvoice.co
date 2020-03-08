@@ -10,7 +10,7 @@ interface Props {
   cycles: ElectionCycle[];
 }
 
-function Sources(props: Props) {
+function Sources(props: Props): JSX.Element {
   useEffect(() => {
     mixpanel.track.apply(mixpanel, SOURCES_ROUTE);
   }, []);

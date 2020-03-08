@@ -83,7 +83,7 @@ function extractBioguide(photoUrl: string): string {
  * @returns `str` with the accents and diacritic characters replaced with their
  *    plain latin variants.
  */
-function normalizeForIdentifier(str: string) {
+function normalizeForIdentifier(str: string): string {
   return str
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')

@@ -4,7 +4,7 @@ import { ELECTION_CYCLES } from '../../constants';
 import { ElectionCycle } from '../../models/ElectionCycle';
 import Sources from './Sources';
 
-export function LoadedSources() {
+export function LoadedSources(): JSX.Element {
   const [cycles, setCycles] = useState<ElectionCycle[]>([]);
   useEffect(() => {
     ELECTION_CYCLES.then(cycles => setCycles([...cycles].reverse()));
