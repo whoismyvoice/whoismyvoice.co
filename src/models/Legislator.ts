@@ -69,7 +69,7 @@ const BIOGUIDE_PHOTO_REGEX = /.*\/([A-Z0-9]+)\.\w+$/;
  * @throws Error if no ide could be extracted.
  */
 function extractBioguide(photoUrl: string): string {
-  const result = photoUrl.match(BIOGUIDE_PHOTO_REGEX);
+  const result = BIOGUIDE_PHOTO_REGEX.exec(photoUrl);
   if (result !== null) {
     return result[1];
   } else {
