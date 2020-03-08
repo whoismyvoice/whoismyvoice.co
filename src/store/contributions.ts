@@ -88,6 +88,7 @@ function handleByOrganization(
 ): ContributionsByOrganization {
   switch (action.type) {
     case ActionType.RECEIVE_CONTRIBUTION_DATA:
+      // eslint-disable-next-line no-case-declarations
       const { type, ...payload } = action;
       return handleContribution(state, payload);
     case ActionType.RECEIVE_CONTRIBUTIONS_DATA:
