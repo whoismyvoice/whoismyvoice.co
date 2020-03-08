@@ -10,7 +10,7 @@ export type Handler<T> = (state: T | undefined, action: Action) => T;
  * @returns a frozen `T`.
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
  */
-export function deepFreeze<T>(obj: T) {
+export function deepFreeze<T>(obj: T): T {
   // Retrieve the property names defined on obj
   const propNames = Object.getOwnPropertyNames(obj);
   // Freeze properties before freezing self
@@ -33,7 +33,7 @@ export function deepFreeze<T>(obj: T) {
  * @returns a new `Handler<T>` that returns frozen `T`.
  */
 export function icebox<T>(handler: Handler<T>): Handler<T> {
-  return (state: T | undefined, action: Action) => {
+  return (state: T | undefined, action: Action): T => {
     const newState = handler(state, action);
     return deepFreeze(newState);
   };
