@@ -17,7 +17,10 @@ const initialState = {
   longitude: undefined,
 };
 
-function handle(state: AddressState = initialState, action: Action) {
+function handle(
+  state: AddressState = initialState,
+  action: Action
+): AddressState {
   switch (action.type) {
     case ActionType.RECEIVE_ADDRESS:
       if (state.zipCode === undefined) {

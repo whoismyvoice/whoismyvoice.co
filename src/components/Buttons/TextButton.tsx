@@ -4,7 +4,7 @@ import cx from 'classnames';
 // Styles
 import '../../styles/TextButton.scss';
 
-interface Props {
+export interface Props {
   link?: string;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   text: string;
@@ -15,7 +15,7 @@ interface State {
 }
 
 class TextButton extends React.Component<Props, State> {
-  static defaultProps = {
+  static defaultProps: Partial<Props> = {
     onClick: () => undefined,
   };
 
@@ -31,13 +31,13 @@ class TextButton extends React.Component<Props, State> {
     };
   }
 
-  getButtonClasses(text: string) {
+  getButtonClasses(text: string): string {
     return cx('text-button', {
       'text-button--back': text === 'Back',
     });
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps: Readonly<Props>) {
+  UNSAFE_componentWillReceiveProps(nextProps: Readonly<Props>): void {
     const { text } = this.props;
     const nextText = nextProps.text;
     if (text !== nextText) {
@@ -47,7 +47,7 @@ class TextButton extends React.Component<Props, State> {
     }
   }
 
-  render() {
+  render(): JSX.Element {
     const { link, onClick, text } = this.props;
     const { buttonClasses } = this.state;
     return (

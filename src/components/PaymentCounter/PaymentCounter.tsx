@@ -10,7 +10,7 @@ interface Props {
 }
 
 class PaymentCounter extends React.Component<Props> {
-  render() {
+  render(): JSX.Element {
     const numbers = this.props.payment.split('');
     const digits = numbers.map((result, idx) => {
       return (

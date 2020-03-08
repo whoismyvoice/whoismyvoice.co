@@ -19,7 +19,7 @@ const GOOGLE_CIVIC_API_KEY = process.env.GOOGLE_CIVIC_API_KEY;
  * @param value to be encoded.
  * @returns key and value(s) as a query parameter.
  */
-function encodeParameter(key: string, value: string | string[]) {
+function encodeParameter(key: string, value: string | string[]): string {
   const values = typeof value === 'string' ? [value] : value;
   return values.map(value => `${key}=${encodeURIComponent(value)}`).join('&');
 }
@@ -28,7 +28,7 @@ function isParameterMissing(param: string | string[] | undefined): boolean {
   return param === undefined || (Array.isArray(param) && param.length === 0);
 }
 
-async function getCivicInformation(request: NowRequest) {
+async function getCivicInformation(request: NowRequest): Promise<string> {
   const { query } = request;
   const { address } = query;
   if (isParameterMissing(address)) {
@@ -42,7 +42,7 @@ async function getCivicInformation(request: NowRequest) {
   return execute(url);
 }
 
-function handler(request: NowRequest, response: NowResponse) {
+function handler(request: NowRequest, response: NowResponse): void {
   switch (request.method) {
     case 'GET':
       getCivicInformation(request)

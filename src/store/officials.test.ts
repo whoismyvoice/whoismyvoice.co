@@ -18,6 +18,7 @@ function createLegislator(name: string, photoUrl?: string): LegislatorRecord {
       fec: [],
     },
     name: {
+      // eslint-disable-next-line @typescript-eslint/camelcase
       official_full: name,
     },
     photoUrl,
@@ -131,6 +132,7 @@ it('merges data from receiveOfficials and receiveOfficialsAll', () => {
   );
   const { byId } = state;
   expect(byId['johnsmith']).toBeDefined();
+  // eslint-disable-next-line @typescript-eslint/camelcase
   expect(byId['johnsmith'].name).toEqual({ official_full: 'John Smith' });
   expect(byId['johnsmith'].photoUrl).toEqual('3');
 });

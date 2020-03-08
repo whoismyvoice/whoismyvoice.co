@@ -2,7 +2,7 @@ import * as React from 'react';
 import TextButton from './TextButton';
 
 class TextFormButton extends TextButton {
-  render() {
+  render(): JSX.Element {
     const { text } = this.props;
     const { buttonClasses } = this.state;
     return (

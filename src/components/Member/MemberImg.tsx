@@ -16,7 +16,7 @@ class SenatorImg extends React.Component<Props> {
     repNumber: 0,
   };
 
-  render() {
+  render(): JSX.Element {
     const { legislator, repNumber } = this.props;
     const { party } = legislator;
 

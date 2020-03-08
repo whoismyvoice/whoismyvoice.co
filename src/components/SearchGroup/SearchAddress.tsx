@@ -15,7 +15,7 @@ interface Props {
 }
 
 export class SearchAddress extends React.Component<Props> {
-  static defaultProps = {
+  static defaultProps: Props = {
     address: '',
     addressErrorMessage: undefined,
     isStreetAddressNeeded: false,
@@ -24,9 +24,10 @@ export class SearchAddress extends React.Component<Props> {
     zipCode: '',
   };
 
-  render() {
+  render(): JSX.Element {
     const { address, addressErrorMessage, onSubmit, placeholder } = this.props;
     const inputClasses = cx('input', {
+      // eslint-disable-next-line @typescript-eslint/camelcase
       address_search: this.props.isStreetAddressNeeded,
     });
     let formFields: React.ReactFragment = <React.Fragment />;

@@ -2,7 +2,7 @@ import unfetch from 'isomorphic-unfetch';
 import { compareElectionCycles, ElectionCycle } from '../models/ElectionCycle';
 const fetch = unfetch;
 
-async function fetchElectionCycles() {
+async function fetchElectionCycles(): Promise<ElectionCycle[]> {
   const response = await fetch('/api/election-cycles');
   if (response.ok) {
     const cycles: ElectionCycle[] = await response.json();

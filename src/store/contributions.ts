@@ -20,7 +20,7 @@ const initialState = {
  * @param {Contribution} c2 a contribution for comparison.
  * @returns `true` if legislator and organization match, `false` otherwise.
  */
-function isContributionMatch(c1: Contribution, c2: Contribution) {
+function isContributionMatch(c1: Contribution, c2: Contribution): boolean {
   return (
     c1.legislatorId === c2.legislatorId && c1.organization === c2.organization
   );
@@ -62,7 +62,7 @@ function addContribution(
 function handleContribution(
   state: ContributionsByOrganization,
   contribution: Contribution
-) {
+): ContributionsByOrganization {
   const organization = contribution.organization;
   const contributions = state[organization] || [];
   return {
@@ -88,6 +88,7 @@ function handleByOrganization(
 ): ContributionsByOrganization {
   switch (action.type) {
     case ActionType.RECEIVE_CONTRIBUTION_DATA:
+      // eslint-disable-next-line no-case-declarations
       const { type, ...payload } = action;
       return handleContribution(state, payload);
     case ActionType.RECEIVE_CONTRIBUTIONS_DATA:
@@ -105,7 +106,10 @@ function handleByOrganization(
  * @param {object} action to be processed.
  * @returns an updated `contributions` state.
  */
-function handle(state: ContributionsState = initialState, action: Action) {
+function handle(
+  state: ContributionsState = initialState,
+  action: Action
+): ContributionsState {
   const { type } = action;
   switch (type) {
     case ActionType.RECEIVE_CONTRIBUTION_DATA:

@@ -10,10 +10,8 @@ interface Props {
   cycles: ElectionCycle[];
 }
 
-function Sources(props: Props) {
-  useEffect(() => {
-    mixpanel.track.apply(mixpanel, SOURCES_ROUTE);
-  }, []);
+function Sources(props: Props): JSX.Element {
+  useEffect(() => mixpanel.track(...SOURCES_ROUTE), []);
   const { cycles } = props;
   const cycleMessage = cycles.map(cycle => cycle.label).join(' and ');
   return (

@@ -3,9 +3,9 @@ import { Legislator } from './Legislator';
 import { createLegislator } from './Legislator.test';
 
 export function createContribution(
-  legislatorId: string = 'John Smith',
-  organization: string = 'SuperPAC',
-  amount: number = 1000
+  legislatorId = 'John Smith',
+  organization = 'SuperPAC',
+  amount = 1000
 ): Contribution {
   const legislator = new Legislator(createLegislator(legislatorId));
   return {

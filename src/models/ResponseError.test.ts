@@ -1,8 +1,9 @@
-import { ResponseError } from './ResponseError';
+import { Response, ResponseError } from './ResponseError';
 
-function createResponse() {
+function createResponse(): Response {
   return {
-    json: () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    json: (): Promise<any> => {
       return Promise.resolve({
         error: { message: 'foo' },
       });

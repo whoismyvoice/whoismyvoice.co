@@ -34,7 +34,7 @@ const FEC_ID_REGEX = /[HS]\d{1,3}[A-Z]{2}\d+/;
 function createContribution(
   legislator: LegislatorRecord,
   contributionData: MaplightResultsRecord
-) {
+): Contribution {
   return {
     legislatorId: Legislator.getIdentifier(legislator),
     organization: contributionData.search_terms.donor.donor_organization,
@@ -49,7 +49,9 @@ function createContribution(
  * @returns contribution data.
  */
 function fetchContributions(organization: string) {
-  return async (legislator: LegislatorRecord) => {
+  return async (
+    legislator: LegislatorRecord
+  ): Promise<MaplightResultsRecord> => {
     const candidateFecIds = legislator.id.fec.filter(fecId =>
       FEC_ID_REGEX.test(fecId)
     );
@@ -79,7 +81,7 @@ function fetchContributions(organization: string) {
  * @param {string} address to use in lookup.
  * @returns array of officials.
  */
-async function fetchOfficialsForAddress(address: string) {
+async function fetchOfficialsForAddress(address: string): Promise<Official[]> {
   const baseUrl = `/api/civic-information`;
   const encodedAddress = encodeURIComponent(address);
   const params = `address=${encodedAddress}`;
@@ -97,7 +99,7 @@ async function fetchOfficialsForAddress(address: string) {
  * Retreive data about officials/legislators for the current legislative session.
  * @returns array of officials.
  */
-async function fetchLegislatorsAll() {
+async function fetchLegislatorsAll(): Promise<LegislatorRecord[]> {
   const url =
     'https://theunitedstates.io/congress-legislators/legislators-current.json';
   const response = await fetch(url);
@@ -115,7 +117,7 @@ async function fetchLegislatorsAll() {
  *    `LegislatorRecord`.
  */
 function getLegislatorForOfficial(allLegislators: Array<LegislatorRecord>) {
-  return (official: Official) =>
+  return (official: Official): LegislatorRecord | undefined =>
     allLegislators.find(
       legislator =>
         Legislator.getIdentifier(legislator) ===
@@ -273,7 +275,7 @@ export function toggleMenu(): Action {
  * Asynchronously dispatch updates to zip code and address.
  */
 export function setZipCode(zipCode: string) {
-  return async (dispatch: Dispatch) => {
+  return (dispatch: Dispatch): void => {
     dispatch(receiveZipCode(zipCode));
     setAddress(zipCode)(dispatch);
   };
@@ -283,7 +285,7 @@ export function setZipCode(zipCode: string) {
  * Asynchronously dispatch updates to address.
  */
 export function setAddress(address: string) {
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: Dispatch): Promise<void> => {
     try {
       dispatch(receiveAddress(address));
       const allLegislators = await fetchLegislatorsAll();
@@ -295,9 +297,12 @@ export function setAddress(address: string) {
       const contributions = await Promise.all(
         officials
           .map(getLegislator)
-          .filter(legislator => legislator !== undefined)
+          .filter(
+            (legislator): legislator is LegislatorRecord =>
+              legislator !== undefined
+          )
           .map(async record => {
-            const legislator = record!; // safe because of filter function above
+            const legislator = record;
             const contributionData = await getContributions(legislator);
             return createContribution(legislator, contributionData);
           })

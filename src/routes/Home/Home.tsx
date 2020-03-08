@@ -27,11 +27,11 @@ interface Props {
 }
 
 export class Home extends React.Component<Props> {
-  componentDidMount() {
-    mixpanel.track.apply(mixpanel, HOME_ROUTE);
+  componentDidMount(): void {
+    mixpanel.track(...HOME_ROUTE);
   }
 
-  render() {
+  render(): JSX.Element {
     const {
       currentPage,
       didSearch,
@@ -101,7 +101,7 @@ function mapStateToProps(state: State): Props {
   };
 }
 
-function mapDispatchToProps(dispatch: Dispatch) {
+function mapDispatchToProps(dispatch: Dispatch): {} {
   return {};
 }
 

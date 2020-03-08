@@ -22,7 +22,7 @@ export function execute(url: string): Promise<string> {
         );
       } else if (
         contentType !== undefined &&
-        !/^application\/json/.test(contentType)
+        !/^application\/json$/i.test(contentType)
       ) {
         error = new Error(
           `Invalid content-type.\nExpected application/json but received ${contentType}`

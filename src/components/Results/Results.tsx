@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 // Components
-import TextButton from '../Buttons/TextButton';
+import TextButton, { Props as TextButtonProps } from '../Buttons/TextButton';
 import MemberResults from '../MemberResults';
 import { Contribution } from '../../models/Contribution';
 import {
@@ -14,8 +14,8 @@ export interface StateProps {
 }
 
 export interface DispatchProps {
-  onBack?: (event: React.MouseEvent<HTMLElement>) => void;
-  onNext?: (event: React.MouseEvent<HTMLElement>) => void;
+  onBack?: React.MouseEventHandler<HTMLElement>;
+  onNext?: React.MouseEventHandler<HTMLElement>;
 }
 
 export interface Props extends StateProps, DispatchProps {
@@ -24,7 +24,7 @@ export interface Props extends StateProps, DispatchProps {
 }
 
 export class Results extends React.Component<Props> {
-  static defaultProps = {
+  static defaultProps: Props = {
     didSearch: false,
     contributions: [],
     representatives: [],
@@ -32,13 +32,13 @@ export class Results extends React.Component<Props> {
     onNext: () => undefined,
   };
 
-  getButtonProps(index: number) {
+  getButtonProps(index: number): Pick<TextButtonProps, 'link' | 'onClick'> {
     const { onBack, onNext } = this.props;
     const link = `#section-${index}`;
     return index === 0 ? { link, onClick: onBack } : { link, onClick: onNext };
   }
 
-  render() {
+  render(): JSX.Element {
     const { contributions, onNext, representatives } = this.props;
     const calcButtonProps = this.getButtonProps.bind(this);
     const legislators = representatives.map(rep => new Legislator(rep));

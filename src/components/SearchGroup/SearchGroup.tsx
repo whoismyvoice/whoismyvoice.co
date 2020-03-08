@@ -17,13 +17,13 @@ export interface DispatchProps {
 export interface Props extends StateProps, DispatchProps {}
 
 export class SearchGroup extends React.Component<Props> {
-  static defaultProps = {
+  static defaultProps: Props = {
     addressErrorMessage: undefined,
     isStreetAddressNeeded: false,
     onAddressSubmit: () => undefined,
   };
 
-  render() {
+  render(): JSX.Element {
     const {
       address,
       addressErrorMessage,
@@ -36,8 +36,8 @@ export class SearchGroup extends React.Component<Props> {
         <SearchAddress
           address={address}
           addressErrorMessage={addressErrorMessage}
-          isStreetAddressNeeded={isStreetAddressNeeded!}
-          onSubmit={onAddressSubmit!}
+          isStreetAddressNeeded={isStreetAddressNeeded}
+          onSubmit={onAddressSubmit}
           zipCode={zipCode}
         />
       </div>

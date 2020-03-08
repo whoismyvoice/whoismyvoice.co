@@ -13,23 +13,21 @@ export interface DispatchProps {
   onNext?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-export interface StateProps {}
-
-export interface Props extends DispatchProps, StateProps {
+export interface Props extends DispatchProps {
   contributions: Array<Contribution>;
   legislators: Array<Legislator>;
   section: number;
 }
 
 class MemberResults extends React.Component<Props> {
-  static defaultProps = {
+  static defaultProps: Props = {
     contributions: [],
     legislators: [],
     onNext: () => undefined,
     section: 1,
   };
 
-  static getNextButtonText(legislators: Array<Legislator>) {
+  static getNextButtonText(legislators: Array<Legislator>): string {
     const houseIndex = legislators.findIndex(
       legislator => legislator.chamber === Chamber.House
     );
@@ -48,12 +46,12 @@ class MemberResults extends React.Component<Props> {
     }
   }
 
-  renderNextButton() {
+  renderNextButton(): JSX.Element {
     const { legislators, onNext, section } = this.props;
-    let nextText = MemberResults.getNextButtonText(legislators);
+    const nextText = MemberResults.getNextButtonText(legislators);
     const nextButton =
       section === 2 || legislators.length === 3 ? (
-        ''
+        <React.Fragment />
       ) : (
         <React.Fragment>
           <div className="line-seperator line-seperator--small" />
@@ -67,7 +65,7 @@ class MemberResults extends React.Component<Props> {
     return nextButton;
   }
 
-  renderTitleSection() {
+  renderTitleSection(): JSX.Element {
     const { legislators, contributions } = this.props;
 
     const yayTemplateString = `Your <%= memberType %> <span class="bold"><b>accepted money</b></span> <span class="strike-out">from <%= organizationName %></span> in their recent election cycles.`;
@@ -107,9 +105,9 @@ class MemberResults extends React.Component<Props> {
     );
   }
 
-  render() {
+  render(): JSX.Element {
     if (this.props.legislators.length === 0) {
-      return '';
+      return <React.Fragment />;
     }
     return (
       <React.Fragment>

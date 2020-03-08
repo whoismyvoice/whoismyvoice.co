@@ -647,5 +647,5 @@ declare namespace Mixpanel {
   }
 }
 
-declare var mixpanel: Mixpanel;
+declare let mixpanel: Mixpanel;
 declare module 'mixpanel-browser';

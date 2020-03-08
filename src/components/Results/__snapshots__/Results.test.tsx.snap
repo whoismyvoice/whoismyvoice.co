@@ -539,7 +539,6 @@ exports[`renders correctly with three contributions and legislators 1`] = `
       </div>
     </div>
   </div>
-  
 </div>
 `;
 

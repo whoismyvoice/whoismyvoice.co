@@ -69,7 +69,7 @@ const BIOGUIDE_PHOTO_REGEX = /.*\/([A-Z0-9]+)\.\w+$/;
  * @throws Error if no ide could be extracted.
  */
 function extractBioguide(photoUrl: string): string {
-  const result = photoUrl.match(BIOGUIDE_PHOTO_REGEX);
+  const result = BIOGUIDE_PHOTO_REGEX.exec(photoUrl);
   if (result !== null) {
     return result[1];
   } else {
@@ -83,7 +83,7 @@ function extractBioguide(photoUrl: string): string {
  * @returns `str` with the accents and diacritic characters replaced with their
  *    plain latin variants.
  */
-function normalizeForIdentifier(str: string) {
+function normalizeForIdentifier(str: string): string {
   return str
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
@@ -308,6 +308,7 @@ export class Legislator implements Record {
    */
   get name(): NameRecord {
     if (typeof this.record.name === 'string') {
+      // eslint-disable-next-line @typescript-eslint/camelcase
       return { official_full: this.record.name };
     } else {
       return this.record.name;

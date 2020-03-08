@@ -1,4 +1,4 @@
-/* tslint:disable:no-string-literal */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { receiveContribution, reset, receiveContributions } from '../actions';
 import { Action, ActionType } from '../actions/types';
 import { createContribution } from '../models/Contribution.test';
@@ -42,7 +42,10 @@ describe('byOrganization', () => {
       receiveContribution('John Smith', 'SuperPAC', 1000),
       receiveContribution('John Smith', 'SuperPAC', 2000),
     ];
-    const state = actions.reduce<State>((s, a) => contributions(s, a), undefined);
+    const state = actions.reduce<State>(
+      (s, a) => contributions(s, a),
+      undefined
+    );
     const { byOrganization } = state!;
     expect(Object.keys(byOrganization).length).toBe(1);
     expect(Object.keys(byOrganization)).toContain('SuperPAC');
@@ -65,7 +68,10 @@ describe('byOrganization', () => {
       createContribution('John Smith III'),
     ];
     const actions = [receiveContributions(contributionsRecords)];
-    const state = actions.reduce<State>((s, a) => contributions(s, a), undefined);
+    const state = actions.reduce<State>(
+      (s, a) => contributions(s, a),
+      undefined
+    );
     const { byOrganization } = state!;
     expect(Object.keys(byOrganization).length).toBe(1);
     expect(Object.keys(byOrganization)).toContain('SuperPAC');

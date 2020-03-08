@@ -12,10 +12,11 @@ import Sources from './routes/Sources';
 
 import store from './store';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface Props {}
 
 class Routes extends React.Component<Props> {
-  render() {
+  render(): JSX.Element {
     return (
       <div className="wrapper">
         <MenuButton />
@@ -30,7 +31,7 @@ class Routes extends React.Component<Props> {
 }
 
 export class App extends React.Component<Props> {
-  render() {
+  render(): JSX.Element {
     return (
       <Provider store={store}>
         <Router>

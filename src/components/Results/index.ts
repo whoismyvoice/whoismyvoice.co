@@ -1,9 +1,5 @@
 import { connect } from 'react-redux';
-import {
-  DispatchProps,
-  StateProps,
-  Results as Component,
-} from './Results';
+import { DispatchProps, StateProps, Results as Component } from './Results';
 import { reset, navigateLegislators } from '../../actions';
 import { Dispatch } from '../../actions/types';
 import { State } from '../../store';
@@ -18,7 +14,7 @@ function stateToProps(state: State): StateProps {
 }
 
 function dispatchToProps(dispatch: Dispatch): DispatchProps {
-  function handleNavigation(event: React.MouseEvent<HTMLElement>) {
+  function handleNavigation(event: React.MouseEvent<HTMLElement>): void {
     event.preventDefault();
     const target = event.currentTarget;
     if (target instanceof HTMLAnchorElement) {
@@ -34,12 +30,8 @@ function dispatchToProps(dispatch: Dispatch): DispatchProps {
   }
 
   return {
-    onBack: (event: React.MouseEvent<HTMLElement>) => {
-      handleNavigation(event);
-    },
-    onNext: (event: React.MouseEvent<HTMLElement>) => {
-      handleNavigation(event);
-    },
+    onBack: handleNavigation,
+    onNext: handleNavigation,
   };
 }
 

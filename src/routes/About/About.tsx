@@ -11,11 +11,11 @@ import '../../styles/About.scss';
 import siberiaLogo from '../../img/siberia_logo.png';
 
 class About extends React.Component {
-  componentDidMount() {
-    mixpanel.track.apply(mixpanel, ABOUT_ROUTE);
+  componentDidMount(): void {
+    mixpanel.track(...ABOUT_ROUTE);
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div className="page-block light-white">
         <FadedBG color="white" />
