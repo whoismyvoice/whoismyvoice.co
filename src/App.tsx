@@ -12,6 +12,7 @@ import Sources from './routes/Sources';
 
 import store from './store';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface Props {}
 
 class Routes extends React.Component<Props> {
