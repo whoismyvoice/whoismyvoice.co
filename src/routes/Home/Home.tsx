@@ -28,7 +28,7 @@ interface Props {
 
 export class Home extends React.Component<Props> {
   componentDidMount(): void {
-    mixpanel.track.apply(mixpanel, HOME_ROUTE);
+    mixpanel.track(...HOME_ROUTE);
   }
 
   render(): JSX.Element {

@@ -12,7 +12,7 @@ import siberiaLogo from '../../img/siberia_logo.png';
 
 class About extends React.Component {
   componentDidMount(): void {
-    mixpanel.track.apply(mixpanel, ABOUT_ROUTE);
+    mixpanel.track(...ABOUT_ROUTE);
   }
 
   render(): JSX.Element {
