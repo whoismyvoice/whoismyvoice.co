@@ -24,10 +24,10 @@ function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
       event.preventDefault();
       dispatch(toggleMenu());
     },
-    onMenuLinkClick: (event: React.MouseEvent<HTMLAnchorElement>): void => {
+    onMenuLinkClick: (): void => {
       dispatch(toggleMenu());
     },
-    onRestartClick: (event: React.MouseEvent<HTMLAnchorElement>): void => {
+    onRestartClick: (): void => {
       dispatch(reset());
       dispatch(toggleMenu());
     },
