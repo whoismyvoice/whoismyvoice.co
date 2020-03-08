@@ -94,7 +94,7 @@ function handleIds(
       return action.officials.reduce(
         (ids: Array<string>, official: Official) => {
           const identifier = Legislator.getIdentifier(official);
-          if (ids.indexOf(identifier) >= 0) {
+          if (ids.includes(identifier)) {
             return ids;
           } else {
             return [...ids, identifier];
