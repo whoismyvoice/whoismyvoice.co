@@ -15,7 +15,7 @@ interface State {
 }
 
 class TextButton extends React.Component<Props, State> {
-  static defaultProps = {
+  static defaultProps: Partial<Props> = {
     onClick: () => undefined,
   };
 

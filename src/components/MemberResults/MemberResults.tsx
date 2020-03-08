@@ -13,16 +13,14 @@ export interface DispatchProps {
   onNext?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-export interface StateProps {}
-
-export interface Props extends DispatchProps, StateProps {
+export interface Props extends DispatchProps {
   contributions: Array<Contribution>;
   legislators: Array<Legislator>;
   section: number;
 }
 
 class MemberResults extends React.Component<Props> {
-  static defaultProps = {
+  static defaultProps: Props = {
     contributions: [],
     legislators: [],
     onNext: () => undefined,

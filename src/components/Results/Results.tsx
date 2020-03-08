@@ -14,8 +14,8 @@ export interface StateProps {
 }
 
 export interface DispatchProps {
-  onBack?: (event: React.MouseEvent<HTMLElement>) => void;
-  onNext?: (event: React.MouseEvent<HTMLElement>) => void;
+  onBack?: React.MouseEventHandler<HTMLElement>;
+  onNext?: React.MouseEventHandler<HTMLElement>;
 }
 
 export interface Props extends StateProps, DispatchProps {
@@ -24,7 +24,7 @@ export interface Props extends StateProps, DispatchProps {
 }
 
 export class Results extends React.Component<Props> {
-  static defaultProps = {
+  static defaultProps: Props = {
     didSearch: false,
     contributions: [],
     representatives: [],

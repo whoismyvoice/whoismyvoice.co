@@ -42,13 +42,13 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  onMenuButtonClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
-  onMenuLinkClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
-  onRestartClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  onMenuButtonClick?: React.MouseEventHandler;
+  onMenuLinkClick?: React.MouseEventHandler;
+  onRestartClick?: React.MouseEventHandler;
 }
 
 export class MenuButton extends React.Component<MappedProps> {
-  static defaultProps = {
+  static defaultProps: MappedProps = {
     didSearch: false,
     isMenuOpen: false,
     onMenuButtonClick: () => undefined,

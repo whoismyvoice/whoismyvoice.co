@@ -15,7 +15,7 @@ interface Props {
 }
 
 export class SearchAddress extends React.Component<Props> {
-  static defaultProps = {
+  static defaultProps: Props = {
     address: '',
     addressErrorMessage: undefined,
     isStreetAddressNeeded: false,
