@@ -29,7 +29,6 @@ export class SearchInput extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    this.onChange = this.onChange.bind(this);
     this.state = {
       isError: props.errorMessage !== undefined,
     };
@@ -72,7 +71,7 @@ export class SearchInput extends React.Component<Props, State> {
           className={isError ? 'error' : ''}
           pattern={pattern}
           placeholder={placeholder}
-          onChange={this.onChange}
+          onChange={this.onChange.bind(this)}
         />
       </React.Fragment>
     );
