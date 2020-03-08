@@ -5,3 +5,7 @@ build
 dist
 # don't lint nyc coverage output
 coverage
+# don't lint definition files
+**/*.d.ts
+# don't lint service worker files
+registerServiceWorker.js
