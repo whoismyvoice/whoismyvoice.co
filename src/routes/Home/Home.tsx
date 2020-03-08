@@ -38,15 +38,14 @@ export function Home(props: Props): JSX.Element {
     contributions,
     representatives,
   } = props;
+  useEffect(() => {
+    document.body.classList[didSearch ? 'add' : 'remove']('orange-bg');
+  }, [didSearch]);
 
-  const blockClasses = cx(['block', 'block--margin'], {
+  const blockClasses = cx(['block'], {
     disappear: didSearch && numberHouse === 1 && numberRepresentatives > 2,
     'page-one': currentPage === undefined || currentPage === 1,
     'page-two': currentPage === 2,
-  });
-
-  const fadingClasses = cx(['fading-circle'], {
-    'orange-bg': didSearch && numberHouse === 1 && numberRepresentatives > 2,
   });
 
   const containerClasses = cx(
@@ -61,7 +60,6 @@ export function Home(props: Props): JSX.Element {
   const templateData = { organizationName: ORGANIZATION_DISPLAY };
   return (
     <div className={containerClasses}>
-      <div className={fadingClasses} />
       <div className="overlay">
         This site is only supported in portrait mode. Please turn your phone.
       </div>

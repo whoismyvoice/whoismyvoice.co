@@ -5,15 +5,12 @@ exports[`renders correctly 1`] = `
   className="container"
 >
   <div
-    className="fading-circle"
-  />
-  <div
     className="overlay"
   >
     This site is only supported in portrait mode. Please turn your phone.
   </div>
   <div
-    className="block block--margin page-one"
+    className="block page-one"
   >
     <div
       className="section-block"
