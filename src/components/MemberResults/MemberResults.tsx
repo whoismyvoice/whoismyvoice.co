@@ -50,7 +50,7 @@ class MemberResults extends React.Component<Props> {
 
   renderNextButton() {
     const { legislators, onNext, section } = this.props;
-    let nextText = MemberResults.getNextButtonText(legislators);
+    const nextText = MemberResults.getNextButtonText(legislators);
     const nextButton =
       section === 2 || legislators.length === 3 ? (
         ''

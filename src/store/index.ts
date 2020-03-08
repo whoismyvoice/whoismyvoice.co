@@ -12,7 +12,7 @@ export interface State {
   contributions: ContributionsState;
   officials: OfficialsState;
   view: ViewState;
-};
+}
 
 export default createStore(
   combineReducers({

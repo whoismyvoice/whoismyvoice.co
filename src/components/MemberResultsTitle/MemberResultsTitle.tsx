@@ -11,7 +11,7 @@ interface Props extends TitleProps {
   legislators: Array<Legislator>;
 }
 
-interface State extends TitleState {}
+type State = TitleState;
 
 export function getMemberType(legislators: Array<Legislator>) {
   let memberType;
