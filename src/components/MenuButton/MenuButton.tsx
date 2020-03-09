@@ -96,7 +96,7 @@ export class MenuButton extends React.Component<MappedProps> {
               About this project
             </Link>
             <Link to="/" className={buttonClasses} onClick={onRestartClick}>
-              Start Again
+              Home
             </Link>
           </div>
         </div>
