@@ -43,6 +43,7 @@ export class Results extends React.Component<Props> {
     if (representatives.length === 0) {
       return <React.Fragment />;
     }
+    const calcButtonProps = this.getButtonProps.bind(this);
     const legislators = representatives.map(rep => new Legislator(rep));
     const getAmount = Legislator.getContributionAmount.bind(
       this,
@@ -70,6 +71,11 @@ export class Results extends React.Component<Props> {
         </div>
       ));
 
-    return <React.Fragment>{sections}</React.Fragment>;
+    return (
+      <React.Fragment>
+        <TextButton text="Search Another Zip Code" {...calcButtonProps(0)} />
+        {sections}
+      </React.Fragment>
+    );
   }
 }
