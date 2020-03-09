@@ -22,10 +22,14 @@ function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
     onAddressSubmit: (event: React.FormEvent<HTMLFormElement>): void => {
       event.preventDefault();
       const target = event.currentTarget;
-      const addressNode = target.address;
-      const zipCodeNode = target.zipCode;
-      const streetAddress = addressNode && addressNode.value;
-      const zipCode = zipCodeNode && zipCodeNode.value;
+      const addressNode = target.querySelector<HTMLInputElement>(
+        'input[name="address"]'
+      );
+      const zipCodeNode = target.querySelector<HTMLInputElement>(
+        'input[name="zipCode"]'
+      );
+      const streetAddress = addressNode?.value;
+      const zipCode = zipCodeNode?.value;
       if (streetAddress) {
         const address = `${streetAddress}, ${zipCode}`;
         setAddress(address)(dispatch);
