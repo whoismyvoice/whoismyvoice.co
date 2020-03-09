@@ -40,7 +40,6 @@ export class Results extends React.Component<Props> {
 
   render(): JSX.Element {
     const { contributions, onNext, representatives } = this.props;
-    const calcButtonProps = this.getButtonProps.bind(this);
     const legislators = representatives.map(rep => new Legislator(rep));
     const getAmount = Legislator.getContributionAmount.bind(
       this,
@@ -59,7 +58,6 @@ export class Results extends React.Component<Props> {
           className="section-block"
           id={`section-${index + 1}`}
         >
-          <TextButton text="Back" {...calcButtonProps(index)} />
           <MemberResults
             contributions={contributions}
             legislators={partition}

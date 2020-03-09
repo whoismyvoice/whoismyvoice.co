@@ -5,16 +5,6 @@ exports[`renders correctly with contribution and legislator 1`] = `
   className="section-block"
   id="section-1"
 >
-  <a
-    className="text-button text-button--back"
-    href="#section-0"
-    onClick={[Function]}
-  >
-    Back
-    <span
-      className="text-button-border"
-    />
-  </a>
   <div
     className="title-component title-component--results"
   >
@@ -157,16 +147,6 @@ exports[`renders correctly with three contributions and legislators 1`] = `
   className="section-block"
   id="section-1"
 >
-  <a
-    className="text-button text-button--back"
-    href="#section-0"
-    onClick={[Function]}
-  >
-    Back
-    <span
-      className="text-button-border"
-    />
-  </a>
   <div
     className="title-component title-component--results"
   >
@@ -534,16 +514,6 @@ exports[`renders correctly with two contributions and legislators 1`] = `
   className="section-block"
   id="section-1"
 >
-  <a
-    className="text-button text-button--back"
-    href="#section-0"
-    onClick={[Function]}
-  >
-    Back
-    <span
-      className="text-button-border"
-    />
-  </a>
   <div
     className="title-component title-component--results"
   >
