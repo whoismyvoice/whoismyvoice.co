@@ -24,6 +24,8 @@ export enum ActionType {
   RECEIVE_PAGE = 'RECEIVE_PAGE',
   /** Action type used when address is provided. */
   RECEIVE_ZIP_CODE = 'RECEIVE_ZIP_CODE',
+  /** Action type used when invalid zip code is provided. */
+  RECEIVE_ZIP_CODE_INVALID = 'RECEIVE_ZIP_CODE_INVALID',
   /** Action type to reset current state. */
   RESET_CURRENT = 'RESET_CURRENT',
   /** Action to toggle the menu. */
@@ -78,6 +80,10 @@ export interface ZipCodeAction {
   zipCode: string;
 }
 
+export interface ZipCodeInvalidAction {
+  type: ActionType.RECEIVE_ZIP_CODE_INVALID;
+}
+
 export interface ResetAction {
   type: ActionType.RESET_CURRENT;
 }
@@ -113,6 +119,7 @@ export type Action =
   | LegislatorsAction
   | OfficialsErrorAction
   | ZipCodeAction
+  | ZipCodeInvalidAction
   | ResetAction
   | ToggleMenuAction
   | GpsAction
