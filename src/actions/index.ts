@@ -108,6 +108,21 @@ function createSectorContributions(
 }
 
 /**
+ * Get contributions to the given `legislator` from the `organization`.
+ * @param organization whose contributions to `legislator` should be retrieved.
+ * @param legislator for whome `organization` contributions will be retrieved.
+ * @returns a `Contribution` record for `legislator` from `organization`.
+ */
+async function fetchContributionByOrg(
+  organization: string,
+  legislator: LegislatorRecord
+): Promise<Contribution> {
+  const getContributions = fetchContributions(organization);
+  const contributionData = await getContributions(legislator);
+  return createContribution(legislator, contributionData);
+}
+
+/**
  * Retrieve aggregated contribution data for given `organization` and `legislator`.
  * @param {string} organization name whose contributions will be searched.
  * @param {LegislatorRecord} legislator for whom data will be retrieved.
@@ -406,20 +421,15 @@ export function setAddress(address: string) {
       const officials = await fetchOfficialsForAddress(address);
       dispatch(receiveOfficialsAll(allLegislators));
       dispatch(receiveOfficials(officials));
+      const fetchContribution = fetchContributionByOrg.bind(null, ORGANIZATION);
       const getLegislator = getLegislatorForOfficial(allLegislators);
-      const getContributions = fetchContributions(ORGANIZATION);
       const legislators = officials.map(getLegislator).filter(isDefined);
-      const contributionsBySector = await Promise.all(
-        legislators.map(record => fetchContributionsBySector(record))
-      );
-      dispatch(receiveContributionsBySector(contributionsBySector));
-      const contributions = await Promise.all(
-        legislators.map(async legislator => {
-          const contributionData = await getContributions(legislator);
-          return createContribution(legislator, contributionData);
-        })
-      );
-      dispatch(receiveContributions(contributions));
+      Promise.all(legislators.map(record => fetchContributionsBySector(record)))
+        .then(receiveContributionsBySector)
+        .then(dispatch);
+      Promise.all(legislators.map(fetchContribution))
+        .then(receiveContributions)
+        .then(dispatch);
     } catch (error) {
       if (error instanceof GoogleResponseError) {
         // response is error; abort
