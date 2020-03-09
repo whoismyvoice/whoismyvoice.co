@@ -2,7 +2,13 @@ import { connect } from 'react-redux';
 import { DispatchProps, StateProps, SearchGroup } from './SearchGroup';
 import { Dispatch } from '../../actions/types';
 import { State } from '../../store';
-import { setAddress, setZipCode } from '../../actions';
+import { setAddress, setZipCode, receiveZipCodeInvalid } from '../../actions';
+
+const ZIP_CODE_REGEX = /^\d{4,}.*$/;
+
+function isZipCodeValid(zipCode?: string): zipCode is string {
+  return typeof zipCode === 'string' && ZIP_CODE_REGEX.test(zipCode);
+}
 
 function mapStateToProps(state: State): StateProps {
   const { address, officials, view } = state;
@@ -33,8 +39,10 @@ function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
       if (streetAddress) {
         const address = `${streetAddress}, ${zipCode}`;
         setAddress(address)(dispatch);
-      } else {
+      } else if (isZipCodeValid(zipCode)) {
         setZipCode(zipCode)(dispatch);
+      } else {
+        dispatch(receiveZipCodeInvalid());
       }
     },
   };
