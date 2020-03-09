@@ -40,6 +40,9 @@ export class Results extends React.Component<Props> {
 
   render(): JSX.Element {
     const { contributions, onNext, representatives } = this.props;
+    if (representatives.length === 0) {
+      return <React.Fragment />;
+    }
     const legislators = representatives.map(rep => new Legislator(rep));
     const getAmount = Legislator.getContributionAmount.bind(
       this,
