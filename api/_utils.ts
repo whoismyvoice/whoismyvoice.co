@@ -13,6 +13,27 @@ export interface Response<T = string> {
 }
 
 /**
+ * Encode a parameter as a URI component. If `value` is an array then encode
+ * them all and join them together.
+ * @param key to use for the parameter the URI component.
+ * @param value to be encoded.
+ * @returns key and value(s) as a query parameter.
+ */
+export function encodeParameter(key: string, value: string | string[]): string {
+  const values = typeof value === 'string' ? [value] : value;
+  return values.map(value => `${key}=${encodeURIComponent(value)}`).join('&');
+}
+
+/**
+ * Determine if `param` constitutes a valid value for a required parameter.
+ * @param param value to test
+ * @return `true` if the parameter value is valid, `false` otherwise.
+ */
+export function isEmpty(param: string | string[] | undefined): boolean {
+  return param === undefined || (Array.isArray(param) && param.length === 0);
+}
+
+/**
  * Wrap `http.get` in a Promise, collects data chunks as a string and resolves
  * the Promise when the `IncomingMessage` indicates it is 'end'ed.
  * @param url to GET.
