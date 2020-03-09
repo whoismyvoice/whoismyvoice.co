@@ -417,8 +417,10 @@ export function setAddress(address: string) {
   return async (dispatch: Dispatch): Promise<void> => {
     try {
       dispatch(receiveAddress(address));
-      const allLegislators = await fetchLegislatorsAll();
-      const officials = await fetchOfficialsForAddress(address);
+      const [allLegislators, officials] = await Promise.all([
+        fetchLegislatorsAll(),
+        fetchOfficialsForAddress(address),
+      ]);
       dispatch(receiveOfficialsAll(allLegislators));
       dispatch(receiveOfficials(officials));
       const fetchContribution = fetchContributionByOrg.bind(null, ORGANIZATION);
