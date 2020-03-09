@@ -1,6 +1,6 @@
 import { OutgoingHttpHeaders } from 'http';
 import { NowRequest, NowResponse } from '@now/node';
-import { execute } from './_utils';
+import { encodeParameter, execute, isEmpty } from './_utils';
 
 const DEFAULT_RESPONSE_HEADERS: OutgoingHttpHeaders = {
   'content-type': 'application/json',
@@ -11,31 +11,15 @@ const DEFAULT_RESPONSE_HEADERS: OutgoingHttpHeaders = {
 
 const BASE_URL = 'https://api.maplight.org/maplight-api/fec/contributions';
 
-/**
- * Encode a parameter as a URI component. If `value` is an array then encode
- * them all and join them together.
- * @param key to use for the parameter the URI component.
- * @param value to be encoded.
- * @returns key and value(s) as a query parameter.
- */
-function encodeParameter(key: string, value: string | string[]): string {
-  const values = typeof value === 'string' ? [value] : value;
-  return values.map(value => `${key}=${encodeURIComponent(value)}`).join('&');
-}
-
-function isParameterMissing(param: string | string[] | undefined): boolean {
-  return param === undefined || (Array.isArray(param) && param.length === 0);
-}
-
 /* eslint-disable @typescript-eslint/camelcase */
 async function getContributions(request: NowRequest): Promise<string> {
   const { query } = request;
   const { fecIds, cycle, organization } = query;
-  if (isParameterMissing(fecIds)) {
+  if (isEmpty(fecIds)) {
     throw new Error('fecIds must be provided.');
-  } else if (isParameterMissing(cycle)) {
+  } else if (isEmpty(cycle)) {
     throw new Error('cycle must be provided.');
-  } else if (isParameterMissing(organization)) {
+  } else if (isEmpty(organization)) {
     throw new Error('organization must be provided.');
   }
   const donor_organization = encodeParameter(

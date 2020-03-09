@@ -13,7 +13,6 @@ h1 {
   z-index: 1;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
   -webkit-overflow-scrolling: touch;
 
   &.visible {
@@ -52,6 +51,5 @@ h1 {
 .reveal {
   @include transition(1s);
   z-index: 1;
-  overflow: hidden;
   width: 100vw;
 }

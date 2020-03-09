@@ -9,6 +9,7 @@ export enum Party {
 }
 export type BioguideId = string;
 export type FecId = string;
+export type OpenSecretsId = string;
 export enum Chamber {
   Senate,
   House,
@@ -29,6 +30,7 @@ export interface ChannelRecord {
 export interface IdRecord {
   bioguide: BioguideId;
   fec: Array<FecId>;
+  opensecrets: OpenSecretsId;
 }
 
 export interface NameRecord {

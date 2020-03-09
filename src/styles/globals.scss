@@ -10,10 +10,20 @@ html {
   height: 100%;
   width: 100%;
   font-family: 'Dosis', 'Helvetica Neue';
-  background-color: $dark-orange-light;
   font-size: 100%;
   font-size: 13px;
   line-height: 1.5;
+}
+
+body {
+  background-image: url('../img/bg_mask.png');
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-color: $light-white;
+  &.orange-bg {
+    @include transition(1s);
+    background-color: $dark-orange-light;
+  }
 }
 
 a {
@@ -150,22 +160,6 @@ input {
   }
 }
 
-.fading-circle {
-  @include transition(1s);
-  position: fixed;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('../img/bg_mask.png');
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-color: $light-white;
-  &.orange-bg {
-    @include transition(1s);
-    background-color: $dark-orange-light;
-  }
-}
-
 .wrapper {
   height: auto;
   width: 100%;
@@ -178,24 +172,7 @@ input {
   display: inline-block;
   margin: 0 auto;
   width: 100vw;
-  height: 100vh !important;
   text-align: center;
-}
-
-.block--margin {
-  margin-top: 20px;
-}
-
-.disappear {
-  @include transition(1s);
-}
-
-.disappear.page-one {
-  top: -98vh;
-}
-
-.disappear.page-two {
-  top: -198vh;
 }
 
 .second-wrapper {
@@ -268,8 +245,6 @@ input {
 }
 
 .section-block {
-  height: 100vh;
-  min-height: 100%;
   width: 100%;
 }
 

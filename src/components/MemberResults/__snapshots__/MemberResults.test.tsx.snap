@@ -134,19 +134,6 @@ Array [
   <div
     className="member-wrapper"
   />,
-  <div
-    className="line-seperator line-seperator--small"
-  />,
-  <a
-    className="text-button"
-    href="#section-2"
-    onClick={[Function]}
-  >
-    See My Other Representatives
-    <span
-      className="text-button-border"
-    />
-  </a>,
 ]
 `;
 
@@ -763,18 +750,5 @@ Array [
   <div
     className="member-wrapper"
   />,
-  <div
-    className="line-seperator line-seperator--small"
-  />,
-  <a
-    className="text-button"
-    href="#section-2"
-    onClick={[Function]}
-  >
-    See My Representative
-    <span
-      className="text-button-border"
-    />
-  </a>,
 ]
 `;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import cx from 'classnames';
 import * as mixpanel from 'mixpanel-browser';
@@ -26,63 +26,58 @@ interface Props {
   representatives: Array<LegislatorType>;
 }
 
-export class Home extends React.Component<Props> {
-  componentDidMount(): void {
+export function Home(props: Props): JSX.Element {
+  useEffect(() => {
     mixpanel.track(...HOME_ROUTE);
-  }
+  }, []);
+  const {
+    currentPage,
+    didSearch,
+    numberHouse,
+    numberRepresentatives,
+    contributions,
+    representatives,
+  } = props;
+  useEffect(() => {
+    document.body.classList[didSearch ? 'add' : 'remove']('orange-bg');
+  }, [didSearch]);
 
-  render(): JSX.Element {
-    const {
-      currentPage,
-      didSearch,
-      numberHouse,
-      numberRepresentatives,
-      contributions,
-      representatives,
-    } = this.props;
+  const blockClasses = cx(['block'], {
+    disappear: didSearch && numberHouse === 1 && numberRepresentatives > 2,
+    'page-one': currentPage === undefined || currentPage === 1,
+    'page-two': currentPage === 2,
+  });
 
-    const blockClasses = cx(['block', 'block--margin'], {
-      disappear: didSearch && numberHouse === 1 && numberRepresentatives > 2,
-      'page-one': currentPage === undefined || currentPage === 1,
-      'page-two': currentPage === 2,
-    });
+  const containerClasses = cx(
+    ['container'],
+    { reveal: didSearch },
+    { full: didSearch && numberHouse === 1 && numberRepresentatives > 2 }
+  );
 
-    const fadingClasses = cx(['fading-circle'], {
-      'orange-bg': didSearch && numberHouse === 1 && numberRepresentatives > 2,
-    });
-
-    const containerClasses = cx(
-      ['container'],
-      { reveal: didSearch },
-      { full: didSearch && numberHouse === 1 && numberRepresentatives > 2 }
-    );
-
-    // tslint:disable
-    const templateString = `Did my representatives accept campaign contributions <span class="strike-out">from <%= organizationName %>?</span>`;
-    // tslint:enable
-    const templateData = { organizationName: ORGANIZATION_DISPLAY };
-    return (
-      <div className={containerClasses}>
-        <div className={fadingClasses} />
-        <div className="overlay">
-          This site is only supported in portrait mode. Please turn your phone.
-        </div>
-        <div className={blockClasses}>
-          <div className="section-block">
-            <StarTitle
-              templateData={templateData}
-              templateString={templateString}
-            />
-            <SearchGroup />
-          </div>
-          <Results
-            contributions={contributions}
-            representatives={representatives}
-          />
-        </div>
+  // tslint:disable
+  const templateString = `Did my representatives accept campaign contributions <span class="strike-out">from <%= organizationName %>?</span>`;
+  // tslint:enable
+  const templateData = { organizationName: ORGANIZATION_DISPLAY };
+  return (
+    <div className={containerClasses}>
+      <div className="overlay">
+        This site is only supported in portrait mode. Please turn your phone.
       </div>
-    );
-  }
+      <div className={blockClasses}>
+        <div className="section-block">
+          <StarTitle
+            templateData={templateData}
+            templateString={templateString}
+          />
+          <SearchGroup />
+        </div>
+        <Results
+          contributions={contributions}
+          representatives={representatives}
+        />
+      </div>
+    </div>
+  );
 }
 
 function mapStateToProps(state: State): Props {

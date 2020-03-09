@@ -40,6 +40,9 @@ export class Results extends React.Component<Props> {
 
   render(): JSX.Element {
     const { contributions, onNext, representatives } = this.props;
+    if (representatives.length === 0) {
+      return <React.Fragment />;
+    }
     const calcButtonProps = this.getButtonProps.bind(this);
     const legislators = representatives.map(rep => new Legislator(rep));
     const getAmount = Legislator.getContributionAmount.bind(
@@ -59,7 +62,6 @@ export class Results extends React.Component<Props> {
           className="section-block"
           id={`section-${index + 1}`}
         >
-          <TextButton text="Back" {...calcButtonProps(index)} />
           <MemberResults
             contributions={contributions}
             legislators={partition}
@@ -69,6 +71,11 @@ export class Results extends React.Component<Props> {
         </div>
       ));
 
-    return <React.Fragment>{sections}</React.Fragment>;
+    return (
+      <React.Fragment>
+        <TextButton text="Search Another Zip Code" {...calcButtonProps(0)} />
+        {sections}
+      </React.Fragment>
+    );
   }
 }

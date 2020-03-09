@@ -27,7 +27,7 @@ Array [
         href="/"
         onClick={[Function]}
       >
-        Start Again
+        Home
       </a>
     </div>
   </div>,

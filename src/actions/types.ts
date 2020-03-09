@@ -1,5 +1,5 @@
 import { Dispatch as ReduxDispatch } from 'redux';
-import { Contribution } from '../models/Contribution';
+import { Contribution, SectorContributions } from '../models/Contribution';
 import { Record as Legislator } from '../models/Legislator';
 import { Record as Official } from '../models/Official';
 
@@ -8,6 +8,8 @@ export enum ActionType {
   RECEIVE_ADDRESS = 'RECEIVE_ADDRESS',
   /** Action type used when new contribution data is received. */
   RECEIVE_CONTRIBUTION_DATA = 'RECEIVE_CONTRIBUTION_DATA',
+  /** Action type used when data for multiple contributions is received. */
+  RECEIVE_CONTRIBUTIONS_BY_SECTOR_DATA = 'RECEIVE_CONTRIBUTIONS_BY_SECTOR_DATA',
   /** Action type used when data for multiple contributions is received. */
   RECEIVE_CONTRIBUTIONS_DATA = 'RECEIVE_CONTRIBUTIONS_DATA',
   /** Action type used when gps or location data is provided. */
@@ -45,6 +47,11 @@ export interface ContributionDataAction {
 export interface ContributionsDataAction {
   type: ActionType.RECEIVE_CONTRIBUTIONS_DATA;
   contributions: Array<Contribution>;
+}
+
+export interface ContributionsBySectorDataAction {
+  type: ActionType.RECEIVE_CONTRIBUTIONS_BY_SECTOR_DATA;
+  contributions: SectorContributions[];
 }
 
 export interface OfficialsAction {
@@ -101,6 +108,7 @@ export type Action =
   | AddressAction
   | ContributionDataAction
   | ContributionsDataAction
+  | ContributionsBySectorDataAction
   | OfficialsAction
   | LegislatorsAction
   | OfficialsErrorAction

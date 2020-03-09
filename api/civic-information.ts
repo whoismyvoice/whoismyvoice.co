@@ -1,6 +1,6 @@
 import { OutgoingHttpHeaders } from 'http';
 import { NowRequest, NowResponse } from '@now/node';
-import { execute } from './_utils';
+import { encodeParameter, execute, isEmpty } from './_utils';
 
 const DEFAULT_RESPONSE_HEADERS: OutgoingHttpHeaders = {
   'content-type': 'application/json',
@@ -12,26 +12,10 @@ const DEFAULT_RESPONSE_HEADERS: OutgoingHttpHeaders = {
 const BASE_URL = 'https://www.googleapis.com/civicinfo/v2/representatives';
 const GOOGLE_CIVIC_API_KEY = process.env.GOOGLE_CIVIC_API_KEY;
 
-/**
- * Encode a parameter as a URI component. If `value` is an array then encode
- * them all and join them together.
- * @param key to use for the parameter the URI component.
- * @param value to be encoded.
- * @returns key and value(s) as a query parameter.
- */
-function encodeParameter(key: string, value: string | string[]): string {
-  const values = typeof value === 'string' ? [value] : value;
-  return values.map(value => `${key}=${encodeURIComponent(value)}`).join('&');
-}
-
-function isParameterMissing(param: string | string[] | undefined): boolean {
-  return param === undefined || (Array.isArray(param) && param.length === 0);
-}
-
 async function getCivicInformation(request: NowRequest): Promise<string> {
   const { query } = request;
   const { address } = query;
-  if (isParameterMissing(address)) {
+  if (isEmpty(address)) {
     throw new Error('address must be provided.');
   }
   const configParams =
