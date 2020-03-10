@@ -379,6 +379,16 @@ export function receiveZipCode(zipCode: string): Action {
 }
 
 /**
+ * Create an invalid zip code action.
+ * @returns an action indicating zip code is not valid.
+ */
+export function receiveZipCodeInvalid(): Action {
+  return {
+    type: ActionType.RECEIVE_ZIP_CODE_INVALID,
+  };
+}
+
+/**
  * Create action to reset current state.
  * @returns action.
  */

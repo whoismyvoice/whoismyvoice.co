@@ -15,6 +15,8 @@ const initialState = {
 
 function handle(state: ViewState = initialState, action: Action): ViewState {
   switch (action.type) {
+    case ActionType.RECEIVE_ADDRESS: // Intentional fall through
+    case ActionType.RECEIVE_ZIP_CODE: // Intentional fall through
     case ActionType.RECEIVE_OFFICIALS:
       return {
         ...state,
@@ -40,6 +42,11 @@ function handle(state: ViewState = initialState, action: Action): ViewState {
       return {
         ...state,
         isMenuOpen: !state.isMenuOpen,
+      };
+    case ActionType.RECEIVE_ZIP_CODE_INVALID:
+      return {
+        ...state,
+        addressErrorMessage: 'Valid zip code is required.',
       };
     default:
       return state;

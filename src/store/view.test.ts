@@ -2,13 +2,15 @@ import {
   receiveOfficialsError,
   toggleMenu,
   receiveOfficials,
+  receiveZipCode,
   reset,
   navigateLegislators,
+  receiveZipCodeInvalid,
 } from '../actions';
 import { Action, ActionType } from '../actions/types';
 import { Response } from '../models/ResponseError';
 import { GoogleResponseError } from '../models/GoogleResponseError';
-import view from './view';
+import view, { ViewState } from './view';
 
 jest.mock('mixpanel-browser');
 
@@ -132,6 +134,27 @@ describe('initial state', () => {
         it('no longer has an error', () => {
           expect(nextState.addressErrorMessage).toBe(undefined);
         });
+      });
+    });
+  });
+
+  describe('ZipCodeInvalid', () => {
+    let state: ViewState;
+    beforeEach(() => {
+      state = view(initialState, receiveZipCodeInvalid());
+    });
+    it('has an address error message', () => {
+      expect(state.addressErrorMessage).toBeDefined();
+    });
+    it('has an address error message string', () => {
+      expect(state.addressErrorMessage).toMatchSnapshot();
+    });
+    describe('receiveZipCode', () => {
+      beforeEach(() => {
+        state = view(state, receiveZipCode('12345'));
+      });
+      it('has an address error message string', () => {
+        expect(state.addressErrorMessage).toBeUndefined();
       });
     });
   });
