@@ -21,6 +21,7 @@ export function createLegislator(name: string, photoUrl?: string): Record {
     id: {
       bioguide: '',
       fec: [],
+      opensecrets: '',
     },
     name: {
       // eslint-disable-next-line @typescript-eslint/camelcase

@@ -132,7 +132,7 @@ function fetchContributions(organization: string) {
   return async (
     legislator: LegislatorRecord
   ): Promise<MaplightResultsRecord> => {
-    const candidateFecIds = legislator.id.fec.filter(fecId =>
+    const candidateFecIds = legislator.id.fec.filter((fecId) =>
       FEC_ID_REGEX.test(fecId)
     );
     const baseUrl = '/api/contributions';
@@ -231,7 +231,7 @@ async function fetchLegislatorsAll(): Promise<LegislatorRecord[]> {
 function getLegislatorForOfficial(allLegislators: Array<LegislatorRecord>) {
   return (official: Official): LegislatorRecord | undefined =>
     allLegislators.find(
-      legislator =>
+      (legislator) =>
         Legislator.getIdentifier(legislator) ===
         Legislator.getIdentifier(official)
     );
@@ -436,7 +436,9 @@ export function setAddress(address: string) {
       const fetchContribution = fetchContributionByOrg.bind(null, ORGANIZATION);
       const getLegislator = getLegislatorForOfficial(allLegislators);
       const legislators = officials.map(getLegislator).filter(isDefined);
-      Promise.all(legislators.map(record => fetchContributionsBySector(record)))
+      Promise.all(
+        legislators.map((record) => fetchContributionsBySector(record))
+      )
         .then(receiveContributionsBySector)
         .then(dispatch);
       Promise.all(legislators.map(fetchContribution))

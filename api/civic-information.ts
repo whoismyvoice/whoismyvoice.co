@@ -30,10 +30,10 @@ function handler(request: NowRequest, response: NowResponse): void {
   switch (request.method) {
     case 'GET':
       getCivicInformation(request)
-        .then(data =>
+        .then((data) =>
           response.writeHead(200, DEFAULT_RESPONSE_HEADERS).end(data)
         )
-        .catch(err =>
+        .catch((err) =>
           response
             .writeHead(500, DEFAULT_RESPONSE_HEADERS)
             .end(JSON.stringify({ error: err.message }))
