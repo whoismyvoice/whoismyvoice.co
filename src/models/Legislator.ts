@@ -34,6 +34,16 @@ export interface IdRecord {
   opensecrets: OpenSecretsId;
 }
 
+export interface CongressPerson {
+  districtId: string;
+  bioguideId: BioguideId;
+}
+
+export interface Senator {
+  state: string;
+  bioguideId: BioguideId;
+}
+
 export interface NameRecord {
   first?: string;
   last?: string;
