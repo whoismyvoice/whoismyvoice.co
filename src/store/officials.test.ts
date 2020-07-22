@@ -1,8 +1,15 @@
-import { receiveOfficials, receiveOfficialsAll, reset } from '../actions';
-import officials from './officials';
+import {
+  receiveHouse,
+  receiveSenate,
+  receiveOffices,
+  receiveOfficialsAll,
+  reset,
+} from '../actions';
+import officials, { INITIAL_OFFICIALS, OfficialsState } from './officials';
 import { Record as LegislatorRecord } from '../models/Legislator';
-import { Record as Official } from '../models/Official';
 import { Action, ActionType } from '../actions/types';
+import { Office } from '../models/Office';
+import { createCivicOfficeRecord } from '../models/Office.test';
 
 jest.mock('mixpanel-browser');
 
@@ -14,8 +21,9 @@ function createLegislator(name: string, photoUrl?: string): LegislatorRecord {
     },
     channels: [],
     id: {
-      bioguide: '',
+      bioguide: name.toUpperCase(),
       fec: [],
+      opensecrets: '',
     },
     name: {
       // eslint-disable-next-line @typescript-eslint/camelcase
@@ -23,14 +31,6 @@ function createLegislator(name: string, photoUrl?: string): LegislatorRecord {
     },
     photoUrl,
     terms: [],
-  };
-}
-
-function createOfficial(name: string, photoUrl?: string): Official {
-  return {
-    name,
-    photoUrl: photoUrl,
-    channels: [],
   };
 }
 
@@ -42,18 +42,18 @@ function action(): Action {
 
 it('provides an initial state when given undefined', () => {
   const initialState = officials(undefined, action());
-  expect(initialState).toBeDefined();
+  expect(initialState).toEqual(INITIAL_OFFICIALS);
 });
 
 it('has an empty object for initial dictionary', () => {
   const initialState = officials(undefined, action());
-  expect(Object.keys(initialState.byId).length).toBe(0);
-  expect(initialState.byId).toEqual({});
+  expect(Object.keys(initialState.byBioguideId).length).toBe(0);
+  expect(initialState.byBioguideId).toEqual({});
 });
 
 it('has an empty array for initial ids', () => {
   const initialState = officials(undefined, action());
-  expect(initialState.ids).toEqual([]);
+  expect(initialState.legislators).toEqual([]);
 });
 
 it('adds an official to dictionary', () => {
@@ -61,18 +61,18 @@ it('adds an official to dictionary', () => {
     undefined,
     receiveOfficialsAll([createLegislator('John Smith')])
   );
-  const { byId } = state;
-  expect(Object.keys(byId).length).toBe(1);
-  expect(Object.keys(byId)).toContain('johnsmith');
+  const { byBioguideId } = state;
+  expect(Object.keys(byBioguideId).length).toBe(1);
+  expect(Object.keys(byBioguideId)).toContain('JOHN SMITH');
 });
 
-it('adds an id of official to list', () => {
+it('does not change legisltors if byBioguideId not populated', () => {
   const state = officials(
     undefined,
-    receiveOfficials([createOfficial('John Smith')])
+    receiveHouse([{ bioguideId: 'JOHN SMITH', districtId: 'NY01' }])
   );
-  const { ids } = state;
-  expect(ids).toContain('johnsmith');
+  const { legislators } = state;
+  expect(legislators).toHaveLength(0);
 });
 
 it('overwrites an official in dictionary with same id', () => {
@@ -83,75 +83,68 @@ it('overwrites an official in dictionary with same id', () => {
       createLegislator('John Smith', '2'),
     ])
   );
-  const { byId } = state;
-  expect(Object.keys(byId).length).toBe(1);
-  expect(Object.keys(byId)).toContain('johnsmith');
+  const { byBioguideId } = state;
+  expect(Object.keys(byBioguideId).length).toBe(1);
+  expect(Object.keys(byBioguideId)).toContain('JOHN SMITH');
+  expect(byBioguideId['JOHN SMITH'].photoUrl).toBe('2');
 });
 
-it('overwrites an official in list with same id', () => {
-  const state = officials(
-    undefined,
-    receiveOfficials([
-      createOfficial('John Smith', '1'),
-      createOfficial('John Smith', '2'),
-    ])
+describe('w/ officials received', () => {
+  const initialActions = [
+    receiveOfficialsAll([createLegislator('John Smith')]),
+    receiveHouse([{ bioguideId: 'JOHN SMITH', districtId: 'NY01' }]),
+    receiveSenate([{ bioguideId: 'JOHN SMITH 2', state: 'NY' }]),
+  ];
+  const initialState: OfficialsState = initialActions.reduce(
+    (state, action) => officials(state, action),
+    INITIAL_OFFICIALS
   );
-  const { ids } = state;
-  expect(ids).toContain('johnsmith');
-  expect(ids.length).toBe(1);
-});
 
-it('contains all official ids in list', () => {
-  const state = officials(
-    undefined,
-    receiveOfficials([
-      createOfficial('John Smith', '1'),
-      createOfficial('John Smith Jr.', '2'),
-    ])
-  );
-  const { ids } = state;
-  expect(ids).toContain('johnsmith');
-  expect(ids).toContain('johnsmithjr');
-  expect(ids.length).toBe(2);
-});
-
-it('merges data from receiveOfficials and receiveOfficialsAll', () => {
-  const initialState = officials(
-    undefined,
-    receiveOfficials([
-      createOfficial('John Smith', '1'),
-      createOfficial('John Smith Jr.', '2'),
-    ])
-  );
-  const state = officials(
-    initialState,
-    receiveOfficialsAll([
-      createLegislator('John Smith', '3'),
-      createLegislator('John Smith Jr.', '4'),
-    ])
-  );
-  const { byId } = state;
-  expect(byId['johnsmith']).toBeDefined();
-  // eslint-disable-next-line @typescript-eslint/camelcase
-  expect(byId['johnsmith'].name).toEqual({ official_full: 'John Smith' });
-  expect(byId['johnsmith'].photoUrl).toEqual('3');
-});
-
-describe('existing state', () => {
-  let initialState = officials(undefined, action());
-  beforeEach(() => {
-    initialState = officials(
-      undefined,
-      receiveOfficials([
-        createOfficial('John Smith', '1'),
-        createOfficial('John Smith Jr.', '2'),
+  it('populates a legislator when receiving an office', () => {
+    const state = officials(
+      initialState,
+      receiveOffices([
+        new Office(
+          createCivicOfficeRecord('ocd-division/country:us/state:ny/cd:1')
+        ),
       ])
     );
+    const { legislators } = state;
+    expect(legislators).toHaveLength(1);
   });
 
   it('can be reset', () => {
     const state = officials(initialState, reset());
-    const { ids } = state;
-    expect(ids.length).toBe(0);
+    const { legislators } = state;
+    expect(legislators).toHaveLength(0);
+  });
+});
+
+describe('w/ officials and offices received', () => {
+  const initialActions = [
+    receiveOfficialsAll([createLegislator('John Smith')]),
+    receiveHouse([{ bioguideId: 'JOHN SMITH', districtId: 'NY01' }]),
+    receiveSenate([{ bioguideId: 'JOHN SMITH 2', state: 'NY' }]),
+    receiveOffices([
+      new Office(
+        createCivicOfficeRecord('ocd-division/country:us/state:ny/cd:1')
+      ),
+    ]),
+  ];
+  const initialState: OfficialsState = initialActions.reduce(
+    (state, action) => officials(state, action),
+    INITIAL_OFFICIALS
+  );
+
+  it('has legislators', () => {
+    const state = initialState;
+    const { legislators } = state;
+    expect(legislators).toHaveLength(1);
+  });
+
+  it('can be reset', () => {
+    const state = officials(initialState, reset());
+    const { legislators } = state;
+    expect(legislators).toHaveLength(0);
   });
 });

@@ -1,7 +1,7 @@
 import {
-  receiveOfficialsError,
+  receiveOfficesError,
   toggleMenu,
-  receiveOfficials,
+  receiveOffices,
   receiveZipCode,
   reset,
   navigateLegislators,
@@ -60,17 +60,17 @@ describe('initial state', () => {
     let state = initialState;
     const error = new GoogleResponseError(createResponse());
     beforeEach(async () => {
-      receiveOfficialsErrorAction = await receiveOfficialsError(error);
+      receiveOfficialsErrorAction = await receiveOfficesError(error);
       state = view(initialState, receiveOfficialsErrorAction);
     });
     it('has an error', () => {
       expect(state.addressErrorMessage).toBe('foo');
     });
 
-    describe('receiveOfficials', () => {
-      let newState = view(state, receiveOfficials([]));
+    describe('receiveOffices', () => {
+      let newState = view(state, receiveOffices([]));
       beforeEach(() => {
-        newState = view(state, receiveOfficials([]));
+        newState = view(state, receiveOffices([]));
       });
       it('no longer has an error', () => {
         expect(newState.addressErrorMessage).toBe(undefined);
@@ -88,10 +88,10 @@ describe('initial state', () => {
     });
   });
 
-  describe('receiveOfficials', () => {
-    let state = view(initialState, receiveOfficials([]));
+  describe('receiveOffices', () => {
+    let state = view(initialState, receiveOffices([]));
     beforeEach(() => {
-      state = view(initialState, receiveOfficials([]));
+      state = view(initialState, receiveOffices([]));
     });
     it('does not change address error message', () => {
       expect(state.addressErrorMessage).toBe(undefined);

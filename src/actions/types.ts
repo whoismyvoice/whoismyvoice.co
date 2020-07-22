@@ -1,7 +1,11 @@
 import { Dispatch as ReduxDispatch } from 'redux';
 import { Contribution, SectorContributions } from '../models/Contribution';
-import { Record as Legislator } from '../models/Legislator';
-import { Record as Official } from '../models/Official';
+import {
+  CongressPerson,
+  Record as Legislator,
+  Senator,
+} from '../models/Legislator';
+import { Office } from '../models/Office';
 
 export enum ActionType {
   /** Action type used when address is provided. */
@@ -14,14 +18,18 @@ export enum ActionType {
   RECEIVE_CONTRIBUTIONS_DATA = 'RECEIVE_CONTRIBUTIONS_DATA',
   /** Action type used when gps or location data is provided. */
   RECEIVE_GPS = 'RECEIVE_GPS',
-  /** Action type used after officials are updated. */
-  RECEIVE_OFFICIALS = 'RECEIVE_OFFICIALS',
+  /** Action type dispatched when full house retrieved. */
+  RECEIVE_HOUSE = 'RECEIVE_HOUSE',
+  /** Action type dispatched when office divisions retrieved. */
+  RECEIVE_OFFICES = 'RECEIVE_OFFICES',
   /** Action type used when receiving full list of legislators. */
   RECEIVE_OFFICIALS_ALL = 'RECEIVE_OFFICIALS_ALL',
   /** Action type used when receiving an error after requesting officials for address. */
-  RECEIVE_OFFICIALS_ERROR = 'RECEIVE_OFFICIALS_ERROR',
+  RECEIVE_OFFICES_ERROR = 'RECEIVE_OFFICES_ERROR',
   /** Action type dispatched when change pages of legislators. */
   RECEIVE_PAGE = 'RECEIVE_PAGE',
+  /** Action type dispatched when full senate retrieved. */
+  RECEIVE_SENATE = 'RECEIVE_SENATE',
   /** Action type used when address is provided. */
   RECEIVE_ZIP_CODE = 'RECEIVE_ZIP_CODE',
   /** Action type used when invalid zip code is provided. */
@@ -56,9 +64,14 @@ export interface ContributionsBySectorDataAction {
   contributions: SectorContributions[];
 }
 
-export interface OfficialsAction {
-  type: ActionType.RECEIVE_OFFICIALS;
-  officials: Array<Official>;
+export interface HouseAction {
+  type: ActionType.RECEIVE_HOUSE;
+  congressPersons: CongressPerson[];
+}
+
+export interface OfficesAction {
+  type: ActionType.RECEIVE_OFFICES;
+  offices: Office[];
 }
 
 export interface LegislatorsAction {
@@ -66,13 +79,18 @@ export interface LegislatorsAction {
   officials: Array<Legislator>;
 }
 
-export interface OfficialsErrorAction {
-  type: ActionType.RECEIVE_OFFICIALS_ERROR;
+export interface OfficesErrorAction {
+  type: ActionType.RECEIVE_OFFICES_ERROR;
   code: number;
   isGlobal: boolean;
   isParseError: boolean;
   message: string;
   messages: Array<string>;
+}
+
+export interface SenateAction {
+  type: ActionType.RECEIVE_SENATE;
+  senators: Senator[];
 }
 
 export interface ZipCodeAction {
@@ -115,12 +133,14 @@ export type Action =
   | ContributionDataAction
   | ContributionsDataAction
   | ContributionsBySectorDataAction
-  | OfficialsAction
+  | HouseAction
   | LegislatorsAction
-  | OfficialsErrorAction
+  | OfficesAction
+  | OfficesErrorAction
   | ZipCodeAction
   | ZipCodeInvalidAction
   | ResetAction
+  | SenateAction
   | ToggleMenuAction
   | GpsAction
   | PageAction
