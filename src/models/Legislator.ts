@@ -177,8 +177,8 @@ export class Legislator implements Record {
   ): number {
     const id =
       legislator instanceof Legislator
-        ? legislator.identifier
-        : Legislator.getIdentifier(legislator);
+        ? legislator.bioguide
+        : Legislator.getBioguideId(legislator);
     const contribution = contributions.find(
       (record) => record.legislatorId === id
     );

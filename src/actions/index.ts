@@ -9,9 +9,9 @@ import {
   SectorContributions,
 } from '../models/Contribution';
 import {
+  BioguideId,
   CongressPerson,
   Legislator,
-  Identifier as LegislatorIdentifier,
   Record as LegislatorRecord,
   Senator,
 } from '../models/Legislator';
@@ -58,7 +58,7 @@ function createContribution(
   contributionData: MaplightResultsRecord
 ): Contribution {
   return {
-    legislatorId: Legislator.getIdentifier(legislator),
+    legislatorId: Legislator.getBioguideId(legislator),
     organization: contributionData.search_terms.donor.donor_organization,
     amount: contributionData.data.aggregate_totals[0].total_amount,
   };
@@ -104,7 +104,7 @@ function createSectorContributions(
   document: Document
 ): SectorContributions {
   const nodes = document.getElementsByTagName('sector');
-  const legislatorId = Legislator.getIdentifier(legislator);
+  const legislatorId = Legislator.getBioguideId(legislator);
   const elements = Array.from(nodes);
   const contributions = elements
     .map(createSectorContribution)
@@ -326,7 +326,7 @@ export function receiveAddress(address: string): Action {
  * @returns action.
  */
 export function receiveContribution(
-  legislatorId: LegislatorIdentifier,
+  legislatorId: BioguideId,
   organization: string,
   amount: number
 ): Action {

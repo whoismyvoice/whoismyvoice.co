@@ -19,7 +19,7 @@ export function createLegislator(name: string, photoUrl?: string): Record {
     },
     channels: [],
     id: {
-      bioguide: '',
+      bioguide: name.toUpperCase(),
       fec: [],
       opensecrets: '',
     },
