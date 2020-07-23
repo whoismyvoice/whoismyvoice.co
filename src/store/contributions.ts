@@ -8,10 +8,12 @@ interface ContributionsByOrganization {
 
 export interface ContributionsState {
   byOrganization: ContributionsByOrganization;
+  sectors: string[];
 }
 
-const initialState = {
+export const INITIAL_CONTRIBUTIONS: ContributionsState = {
   byOrganization: {},
+  sectors: [],
 };
 
 /**
@@ -38,7 +40,7 @@ function addContribution(
   contributions: Array<Contribution>,
   contribution: Contribution
 ): Array<Contribution> {
-  const recipientIndex = contributions.findIndex(contrib =>
+  const recipientIndex = contributions.findIndex((contrib) =>
     isContributionMatch(contrib, contribution)
   );
   if (recipientIndex === -1) {
@@ -99,6 +101,28 @@ function handleByOrganization(
 }
 
 /**
+ * Determine the list of sectors with contributions for a given `action`.
+ * @param state the current list of sectors.
+ * @param action to be processed.
+ * @returns the list of sectors as changed by `action`.
+ */
+function handleSectors(state: string[], action: Action): string[] {
+  switch (action.type) {
+    case ActionType.RESET_CURRENT:
+      return [];
+    case ActionType.RECEIVE_CONTRIBUTIONS_BY_SECTOR_DATA:
+      return Array.from(
+        action.contributions
+          .flatMap((group) => group.contributions)
+          .map((contribution) => contribution.sector)
+          .reduce((sectors, sector) => sectors.add(sector), new Set<string>())
+      );
+    default:
+      return state;
+  }
+}
+
+/**
  * Modify the current state by adding the contribution represented by `action`
  * into the appropriate organization.
  * @param {object} state
@@ -107,24 +131,13 @@ function handleByOrganization(
  * @returns an updated `contributions` state.
  */
 function handle(
-  state: ContributionsState = initialState,
+  state: ContributionsState = INITIAL_CONTRIBUTIONS,
   action: Action
 ): ContributionsState {
-  const { type } = action;
-  switch (type) {
-    case ActionType.RECEIVE_CONTRIBUTION_DATA:
-      return {
-        ...state,
-        byOrganization: handleByOrganization(state.byOrganization, action),
-      };
-    case ActionType.RECEIVE_CONTRIBUTIONS_DATA:
-      return {
-        ...state,
-        byOrganization: handleByOrganization(state.byOrganization, action),
-      };
-    default:
-      return state;
-  }
+  return {
+    byOrganization: handleByOrganization(state.byOrganization, action),
+    sectors: handleSectors(state.sectors, action),
+  };
 }
 
 export default icebox(handle);
