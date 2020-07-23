@@ -18,8 +18,8 @@ export const INITIAL_CONTRIBUTIONS: ContributionsState = {
 
 /**
  * Check whether two contributions match in legislator and organization.
- * @param {Contribution} c1 a contribution for comparison.
- * @param {Contribution} c2 a contribution for comparison.
+ * @param c1 a contribution for comparison.
+ * @param c2 a contribution for comparison.
  * @returns `true` if legislator and organization match, `false` otherwise.
  */
 function isContributionMatch(c1: Contribution, c2: Contribution): boolean {
@@ -31,9 +31,8 @@ function isContributionMatch(c1: Contribution, c2: Contribution): boolean {
 /**
  * Add a `contribution` to the list of `contributions` ensuring only one
  * contribution for each legislator.
- * @param {Contribution[]} contributions list to which `contribution` will
- *    be added.
- * @param {Contribution} contribution to be added.
+ * @param contributions list to which `contribution` will be added.
+ * @param contribution to be added.
  * @returns a copy of `contributions` containing `contribution`.
  */
 function addContribution(
@@ -57,8 +56,8 @@ function addContribution(
 /**
  * Modifies `ContributionsByOrganization` state by adding the given
  * `Contribution`.
- * @param {ContributionsByOrganization} state to be modified.
- * @param {Contribution} contribution to be added.
+ * @param state to be modified.
+ * @param contribution to be added.
  * @returns a new copy of `ContributionsByOrganization` state.
  */
 function handleContribution(
@@ -76,13 +75,9 @@ function handleContribution(
 /**
  * Modify the current state by adding the contribution represented by `action`
  * into the appropriate organization.
- * @param {object} state with lists of contributions for each organization key.
- * @param {object} action to be processed.
- * @param {string} action.type of action.
- * @param {number} action.amount of the contribution received.
- * @param {string} action.legislatorId that received the contribution.
- * @param {string} action.organization to be modified.
- * @returns an updated `contributions.byOrganization` state.
+ * @param state with lists of contributions for each organization key.
+ * @param action to be processed.
+ * @returns an updated `ContributionsByOrganization` state.
  */
 function handleByOrganization(
   state: ContributionsByOrganization,
@@ -125,9 +120,8 @@ function handleSectors(state: string[], action: Action): string[] {
 /**
  * Modify the current state by adding the contribution represented by `action`
  * into the appropriate organization.
- * @param {object} state
- * @param {object} state.byOrganization with lists of contributions for each organization key.
- * @param {object} action to be processed.
+ * @param state
+ * @param action to be processed.
  * @returns an updated `contributions` state.
  */
 function handle(
