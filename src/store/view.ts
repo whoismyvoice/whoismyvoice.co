@@ -17,12 +17,12 @@ function handle(state: ViewState = initialState, action: Action): ViewState {
   switch (action.type) {
     case ActionType.RECEIVE_ADDRESS: // Intentional fall through
     case ActionType.RECEIVE_ZIP_CODE: // Intentional fall through
-    case ActionType.RECEIVE_OFFICIALS:
+    case ActionType.RECEIVE_OFFICES:
       return {
         ...state,
         addressErrorMessage: undefined,
       };
-    case ActionType.RECEIVE_OFFICIALS_ERROR:
+    case ActionType.RECEIVE_OFFICES_ERROR:
       return {
         ...state,
         addressErrorMessage: action.message,

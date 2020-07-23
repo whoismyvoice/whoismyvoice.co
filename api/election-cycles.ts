@@ -46,19 +46,19 @@ async function getElectionCycles(): Promise<ElectionCycle[]> {
   return cycles
     .sort(compareCycles)
     .slice(0, 2)
-    .map(cycle => ({ year: cycle.ElectionCycle, label: cycle.label }));
+    .map((cycle) => ({ year: cycle.ElectionCycle, label: cycle.label }));
 }
 
 function handler(request: NowRequest, response: NowResponse): void {
   switch (request.method) {
     case 'GET':
       getElectionCycles()
-        .then(cycles =>
+        .then((cycles) =>
           response
             .writeHead(200, DEFAULT_RESPONSE_HEADERS)
             .end(JSON.stringify(cycles))
         )
-        .catch(err =>
+        .catch((err) =>
           response
             .writeHead(500, DEFAULT_RESPONSE_HEADERS)
             .end(JSON.stringify({ error: err.message }))

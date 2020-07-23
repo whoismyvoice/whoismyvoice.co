@@ -21,7 +21,7 @@ export interface Response<T = string> {
  */
 export function encodeParameter(key: string, value: string | string[]): string {
   const values = typeof value === 'string' ? [value] : value;
-  return values.map(value => `${key}=${encodeURIComponent(value)}`).join('&');
+  return values.map((value) => `${key}=${encodeURIComponent(value)}`).join('&');
 }
 
 /**
@@ -48,7 +48,7 @@ export function request(
   expects: string
 ): Promise<Response<string>> {
   return new Promise((resolve, reject) => {
-    const req = fetch(url, res => {
+    const req = fetch(url, (res) => {
       const result = {
         body: '',
         headers: res.headers,
@@ -79,7 +79,7 @@ export function request(
       } else {
         res.setEncoding('utf8');
         let rawData = '';
-        res.on('data', chunk => (rawData += chunk));
+        res.on('data', (chunk) => (rawData += chunk));
         res.on('end', () => {
           result.body = rawData;
           try {
@@ -90,7 +90,7 @@ export function request(
         });
       }
     });
-    req.on('error', e => reject(e));
+    req.on('error', (e) => reject(e));
   });
 }
 
@@ -108,5 +108,5 @@ export async function execute(
   url: string,
   expects = 'application/json'
 ): Promise<string> {
-  return request(url, expects).then(res => res.body);
+  return request(url, expects).then((res) => res.body);
 }

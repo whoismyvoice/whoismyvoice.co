@@ -1,8 +1,15 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { receiveContribution, reset, receiveContributions } from '../actions';
+import {
+  receiveContribution,
+  reset,
+  receiveContributions,
+  receiveContributionsBySector,
+} from '../actions';
 import { Action, ActionType } from '../actions/types';
 import { createContribution } from '../models/Contribution.test';
-import contributions, { ContributionsState } from './contributions';
+import contributions, {
+  ContributionsState,
+  INITIAL_CONTRIBUTIONS,
+} from './contributions';
 
 jest.mock('mixpanel-browser');
 
@@ -78,37 +85,84 @@ describe('byOrganization', () => {
     expect(byOrganization['SuperPAC'].length).toBe(3);
     expect(byOrganization['SuperPAC']).toContainEqual({
       amount: 1000,
-      legislatorId: 'johnsmith',
+      legislatorId: 'JOHN SMITH',
       organization: 'SuperPAC',
     });
     expect(byOrganization['SuperPAC']).toContainEqual({
       amount: 1000,
-      legislatorId: 'johnsmithjr',
+      legislatorId: 'JOHN SMITH JR.',
       organization: 'SuperPAC',
     });
     expect(byOrganization['SuperPAC']).toContainEqual({
       amount: 1000,
-      legislatorId: 'johnsmithiii',
+      legislatorId: 'JOHN SMITH III',
       organization: 'SuperPAC',
+    });
+  });
+
+  describe('existing state', () => {
+    let initialState = contributions(undefined, action());
+    beforeEach(() => {
+      initialState = contributions(
+        undefined,
+        receiveContribution('John Smith', 'SuperPAC', 1000)
+      );
+      initialState = contributions(
+        undefined,
+        receiveContribution('John Smith Jr.', 'SuperPAC', 2000)
+      );
+    });
+
+    it('will not be reset', () => {
+      const state = contributions(initialState, reset());
+      expect(state.byOrganization).toEqual(initialState.byOrganization);
     });
   });
 });
 
-describe('existing state', () => {
-  let initialState = contributions(undefined, action());
-  beforeEach(() => {
-    initialState = contributions(
-      undefined,
-      receiveContribution('John Smith', 'SuperPAC', 1000)
-    );
-    initialState = contributions(
-      undefined,
-      receiveContribution('John Smith Jr.', 'SuperPAC', 2000)
-    );
+describe('sectors', () => {
+  it('is initially empty', () => {
+    const state = contributions(undefined, action());
+    expect(state.sectors).toHaveLength(0);
   });
 
-  it('will not be reset', () => {
-    const state = contributions(initialState, reset());
-    expect(state).toBe(initialState);
+  it('is populated by SectorContributions', () => {
+    const state = contributions(
+      INITIAL_CONTRIBUTIONS,
+      receiveContributionsBySector([
+        {
+          legislatorId: 'FOO',
+          contributions: [{ amount: 300, sector: 'Agribiz', sectorCode: '2' }],
+        },
+      ])
+    );
+    expect(state.sectors).toHaveLength(1);
+    expect(state.sectors).toContain('Agribiz');
+  });
+
+  it('is cleared by reset', () => {
+    const state = contributions(
+      { ...INITIAL_CONTRIBUTIONS, sectors: ['Agribiz'] },
+      reset()
+    );
+    expect(state.sectors).toHaveLength(0);
+  });
+
+  it('contains a unique list', () => {
+    const state = contributions(
+      INITIAL_CONTRIBUTIONS,
+      receiveContributionsBySector([
+        {
+          legislatorId: 'FOO',
+          contributions: [{ amount: 300, sector: 'Agribiz', sectorCode: '2' }],
+        },
+        {
+          legislatorId: 'BAR',
+          contributions: [{ amount: 500, sector: 'Agribiz', sectorCode: '2' }],
+        },
+      ])
+    );
+    expect(state.sectors).toHaveLength(1);
+    expect(state.sectors).toContain('Agribiz');
   });
 });

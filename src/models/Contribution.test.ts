@@ -10,7 +10,7 @@ export function createContribution(
   const legislator = new Legislator(createLegislator(legislatorId));
   return {
     amount,
-    legislatorId: legislator.identifier,
+    legislatorId: legislator.bioguide,
     organization,
   };
 }

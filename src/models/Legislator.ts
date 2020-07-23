@@ -1,5 +1,6 @@
 import { Contribution } from './Contribution';
 import { Record as Official } from './Official';
+import { isString } from 'lodash';
 
 export type TermType = 'sen' | 'rep';
 export enum Party {
@@ -33,10 +34,21 @@ export interface IdRecord {
   opensecrets: OpenSecretsId;
 }
 
+export interface CongressPerson {
+  districtId: string;
+  bioguideId: BioguideId;
+}
+
+export interface Senator {
+  state: string;
+  bioguideId: BioguideId;
+}
+
 export interface NameRecord {
   first?: string;
   last?: string;
-  official_full: string;
+  middle?: string;
+  official_full?: string;
 }
 
 export interface TermRecord {
@@ -120,6 +132,17 @@ export class Legislator implements Record {
   }
 
   /**
+   * Retrieve the full, official name of the Legislator associated with `NameRecord`.
+   * @param record holding name values for an official or legislator.
+   * @returns full, official name.
+   */
+  static getFullName(record: NameRecord): Identifier {
+    return typeof record.official_full !== 'undefined'
+      ? record.official_full
+      : [record.first, record.middle, record.last].filter(isString).join(' ');
+  }
+
+  /**
    * Get the legislator's identifier from the given `record`.
    * @param {Record | Official | Legislator} record that matches the `PropType`
    *    defined for `Legislator` instances.
@@ -132,7 +155,7 @@ export class Legislator implements Record {
     } else if (typeof record.name === 'string') {
       identifier = normalizeForIdentifier(record.name);
     } else if (typeof record.name !== 'undefined') {
-      identifier = normalizeForIdentifier(record.name.official_full);
+      identifier = normalizeForIdentifier(Legislator.getFullName(record.name));
     } else {
       identifier = record.identifier || 'unknown';
     }
@@ -154,10 +177,10 @@ export class Legislator implements Record {
   ): number {
     const id =
       legislator instanceof Legislator
-        ? legislator.identifier
-        : Legislator.getIdentifier(legislator);
+        ? legislator.bioguide
+        : Legislator.getBioguideId(legislator);
     const contribution = contributions.find(
-      record => record.legislatorId === id
+      (record) => record.legislatorId === id
     );
     if (contribution !== undefined) {
       return contribution.amount;
@@ -243,7 +266,7 @@ export class Legislator implements Record {
    * @returns full, official name.
    */
   get fullName(): string {
-    return this.name.official_full;
+    return Legislator.getFullName(this.name);
   }
 
   /**
@@ -367,7 +390,7 @@ export class Legislator implements Record {
    */
   get twitter(): string | undefined {
     const channels = this.record.channels || [];
-    const channel = channels.find(c => c.type === 'Twitter');
+    const channel = channels.find((c) => c.type === 'Twitter');
     return channel === undefined ? undefined : channel.id;
   }
 }

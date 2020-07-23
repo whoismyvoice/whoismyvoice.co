@@ -1,10 +1,11 @@
 import { Action, ActionType } from '../actions/types';
 import {
+  BioguideId,
+  CongressPerson,
   Legislator,
-  Identifier as LegislatorIdentifier,
   Record as LegislatorRecord,
+  Senator,
 } from '../models/Legislator';
-import { Record as Official } from '../models/Official';
 import icebox from './icebox';
 
 type LegislatorsById = {
@@ -12,53 +13,37 @@ type LegislatorsById = {
 };
 
 export type OfficialsState = {
-  byId: LegislatorsById;
-  ids: Array<LegislatorIdentifier>;
+  byBioguideId: Record<BioguideId, LegislatorRecord>;
+  house: CongressPerson[];
+  legislators: LegislatorRecord[];
+  senate: Senator[];
 };
 
-const initialState = {
-  byId: {},
-  ids: [],
+export const INITIAL_OFFICIALS: OfficialsState = {
+  byBioguideId: {},
+  house: [],
+  legislators: [],
+  senate: [],
 };
 
 /**
- * Provide byId object for given action.
- *
- * `action.officials` should at least have the form:
- *
- *    {
- *      "name": {
- *        "official_full": <string>,
- *      }
- *    }
- *
- * @param {object} state the current object of ids as keys to official.
- * @param {object} action to be processed.
- * @param {string} action.type of action.
- * @param {array} action.officials received by the action.
- * @returns the `byId` object with ids as keys and official as values.
+ * Provide byBioguideId object for given action.
+ * @param state the current object of ids as keys to official.
+ * @param action to be processed.
+ * @returns the `byBioguideId` object with bioguide ids as keys and official as
+ * values.
  */
-function handleById(state: LegislatorsById, action: Action): LegislatorsById {
+function handleByBioguideId(
+  state: OfficialsState['byBioguideId'],
+  action: Action
+): OfficialsState['byBioguideId'] {
   switch (action.type) {
-    case ActionType.RECEIVE_OFFICIALS:
-      return action.officials.reduce(
-        (byId: LegislatorsById, official: Official) => ({
-          ...byId,
-          [Legislator.getIdentifier(official)]: {
-            ...(byId[Legislator.getIdentifier(official)] || {}),
-            channels: official.channels,
-            identifier: Legislator.getIdentifier(official),
-            photoUrl: official.photoUrl,
-          },
-        }),
-        state
-      );
     case ActionType.RECEIVE_OFFICIALS_ALL:
       return action.officials.reduce(
-        (byId: LegislatorsById, official: LegislatorRecord) => ({
-          ...byId,
-          [Legislator.getIdentifier(official)]: {
-            ...byId[Legislator.getIdentifier(official)],
+        (byBioguideId: LegislatorsById, official: LegislatorRecord) => ({
+          ...byBioguideId,
+          [Legislator.getBioguideId(official)]: {
+            ...byBioguideId[Legislator.getBioguideId(official)],
             ...official,
             identifier: Legislator.getIdentifier(official),
           },
@@ -70,65 +55,63 @@ function handleById(state: LegislatorsById, action: Action): LegislatorsById {
   }
 }
 
-/**
- * Provide ids array for given action.
- *
- * `action.officials` should at least have the form:
- *
- *    {
- *      "name": <string>,
- *    }
- *
- * @param {object} state the current set of ids.
- * @param {object} action to be processed.
- * @param {string} action.type of action.
- * @param {array} action.officials received by the action.
- * @returns the set of ids after processing `action`.
- */
-function handleIds(
-  state: Array<LegislatorIdentifier>,
+function handleLegislators(
+  state: OfficialsState,
   action: Action
-): Array<LegislatorIdentifier> {
+): OfficialsState['legislators'] {
   switch (action.type) {
-    case ActionType.RECEIVE_OFFICIALS:
-      return action.officials.reduce(
-        (ids: Array<string>, official: Official) => {
-          const identifier = Legislator.getIdentifier(official);
-          if (ids.includes(identifier)) {
-            return ids;
-          } else {
-            return [...ids, identifier];
-          }
-        },
-        []
-      );
     case ActionType.RESET_CURRENT:
       return [];
+    case ActionType.RECEIVE_OFFICES:
+      return action.offices
+        .map((office) => {
+          if (office.congressionalDistrict) {
+            return state.house
+              .filter((person) => person.districtId === office.id)
+              .map((person) => state.byBioguideId[person.bioguideId]);
+          } else if (office.state) {
+            return state.senate
+              .filter((senator) => senator.state === office.state)
+              .map((senator) => state.byBioguideId[senator.bioguideId]);
+          } else {
+            return [];
+          }
+        })
+        .flat();
     default:
-      return state;
+      return state.legislators;
   }
 }
 
 function handle(
-  state: OfficialsState = initialState,
+  state: OfficialsState = INITIAL_OFFICIALS,
   action: Action
 ): OfficialsState {
   switch (action.type) {
+    case ActionType.RECEIVE_OFFICES:
+      return {
+        ...state,
+        legislators: handleLegislators(state, action),
+      };
     case ActionType.RECEIVE_OFFICIALS_ALL:
       return {
         ...state,
-        byId: handleById(state.byId, action),
+        byBioguideId: handleByBioguideId(state.byBioguideId, action),
       };
-    case ActionType.RECEIVE_OFFICIALS:
+    case ActionType.RECEIVE_HOUSE:
       return {
         ...state,
-        byId: handleById(state.byId, action),
-        ids: handleIds(state.ids, action),
+        house: action.congressPersons,
+      };
+    case ActionType.RECEIVE_SENATE:
+      return {
+        ...state,
+        senate: action.senators,
       };
     case ActionType.RESET_CURRENT:
       return {
         ...state,
-        ids: handleIds(state.ids, action),
+        legislators: handleLegislators(state, action),
       };
     default:
       return state;

@@ -9,14 +9,22 @@ import {
   SectorContributions,
 } from '../models/Contribution';
 import {
+  BioguideId,
+  CongressPerson,
   Legislator,
-  Identifier as LegislatorIdentifier,
   Record as LegislatorRecord,
+  Senator,
 } from '../models/Legislator';
 import { MaplightResultsRecord } from '../models/MaplightResults';
-import { Record as Official } from '../models/Official';
+import { Office, Record as OfficeRecord } from '../models/Office';
 import { GoogleResponseError } from '../models/GoogleResponseError';
 import { ResponseError } from '../models/ResponseError';
+import store from '../store';
+
+/**
+ * Describes a function which extracts arbitrary data from a given XML document.
+ */
+type Extractor<T> = (document: Document) => T;
 
 const fetch = unfetch;
 
@@ -50,7 +58,7 @@ function createContribution(
   contributionData: MaplightResultsRecord
 ): Contribution {
   return {
-    legislatorId: Legislator.getIdentifier(legislator),
+    legislatorId: Legislator.getBioguideId(legislator),
     organization: contributionData.search_terms.donor.donor_organization,
     amount: contributionData.data.aggregate_totals[0].total_amount,
   };
@@ -96,7 +104,7 @@ function createSectorContributions(
   document: Document
 ): SectorContributions {
   const nodes = document.getElementsByTagName('sector');
-  const legislatorId = Legislator.getIdentifier(legislator);
+  const legislatorId = Legislator.getBioguideId(legislator);
   const elements = Array.from(nodes);
   const contributions = elements
     .map(createSectorContribution)
@@ -132,7 +140,7 @@ function fetchContributions(organization: string) {
   return async (
     legislator: LegislatorRecord
   ): Promise<MaplightResultsRecord> => {
-    const candidateFecIds = legislator.id.fec.filter(fecId =>
+    const candidateFecIds = legislator.id.fec.filter((fecId) =>
       FEC_ID_REGEX.test(fecId)
     );
     const baseUrl = '/api/contributions';
@@ -157,6 +165,83 @@ function fetchContributions(organization: string) {
 }
 
 /**
+ * Get the congressional district and bioguide id of members of the House of
+ * Representatives from the given XML document.
+ * @param document containing information about members of congress.
+ * @returns a list of objects correlating districts with bioguide identifiers.
+ */
+function extractCongressPersons(document: Document): CongressPerson[] {
+  const nodes = document.getElementsByTagName('member');
+  const elements = Array.from(nodes);
+  return elements
+    .map((node) => {
+      const districtId = node.querySelector('statedistrict')?.textContent;
+      const bioguideId = node.querySelector('bioguideID')?.textContent;
+      if (districtId && bioguideId) {
+        return {
+          districtId,
+          bioguideId,
+        };
+      } else {
+        return undefined;
+      }
+    })
+    .filter(isDefined);
+}
+
+/**
+ * Get the state and bioguide id of members of the Senate from the given XML
+ * document.
+ * @param document containing information about members of congress.
+ * @returns a list of objects correlating states with bioguide identifiers.
+ */
+function extractSenators(document: Document): Senator[] {
+  const nodes = document.getElementsByTagName('member');
+  const elements = Array.from(nodes);
+  return elements
+    .map((node) => {
+      const state = node.querySelector('state')?.textContent;
+      const bioguideId = node.querySelector('bioguide_id')?.textContent;
+      if (state && bioguideId) {
+        return {
+          state,
+          bioguideId,
+        };
+      } else {
+        return undefined;
+      }
+    })
+    .filter(isDefined);
+}
+
+/**
+ * Retrieve XML data from the given `url` and parse the resulting `Document`
+ * into the desired data on success.
+ * @param url from which the XML will be requested.
+ * @param extractor used to get data from the XML document.
+ * @returns the results of extracting Document data with `extractor`.
+ * @throws `ResponseError` if the request to `url` does not return an OK
+ * response.
+ */
+async function fetchXml<T>(url: string, extractor: Extractor<T>): Promise<T> {
+  const response = await fetch(url, {
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'text/xml',
+    },
+  });
+  if (response.ok) {
+    const body = await response.text();
+    // Parse XML document
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(body, 'text/xml');
+    return extractor(doc);
+  } else {
+    throw new ResponseError(response, response.statusText);
+  }
+}
+
+/**
  * Retrieve contributions group by business sector.
  * @param {LegislatorRecord} legislator for whom data will be retrieved.
  * @returns contribution data.
@@ -171,37 +256,22 @@ async function fetchContributionsBySector(
   const encodedId = encodeURIComponent(opensecretsId);
   const params = `cycle=${encodedCycle}&id=${encodedId}`;
   const url = `${baseUrl}?${params}`;
-  const response = await fetch(url, {
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'text/xml',
-    },
-  });
-  if (response.ok) {
-    const body = await response.text();
-    // Parse XML document
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(body, 'text/xml');
-    return createSectorContributions(legislator, doc);
-  } else {
-    throw new ResponseError(response, response.statusText);
-  }
+  return fetchXml(url, (doc) => createSectorContributions(legislator, doc));
 }
 
 /**
- * Retrieve data about officials/representatives based the provided address.
- * @param {string} address to use in lookup.
- * @returns array of officials.
+ * Retrieve data about offices based the provided address.
+ * @param address to use in lookup.
+ * @returns array of Offices.
  */
-async function fetchOfficialsForAddress(address: string): Promise<Official[]> {
+async function fetchOfficesForAddress(address: string): Promise<Office[]> {
   const baseUrl = `/api/civic-information`;
   const encodedAddress = encodeURIComponent(address);
   const params = `address=${encodedAddress}`;
   const response = await fetch(`${baseUrl}?${params}`);
   if (response.ok) {
     const body = await response.json();
-    const officials = body.officials;
-    return officials as Array<Official>;
+    return body.offices.map((office: OfficeRecord) => new Office(office));
   } else {
     throw new GoogleResponseError(response, response.statusText);
   }
@@ -220,21 +290,6 @@ async function fetchLegislatorsAll(): Promise<LegislatorRecord[]> {
   } else {
     throw new ResponseError(response, response.statusText);
   }
-}
-
-/**
- * Create a function that searches `allLegislators` for `official`.
- * @param {Array<LegislatorRecord>} allLegislators records to be searched.
- * @returns function that tries to match given `official` to a
- *    `LegislatorRecord`.
- */
-function getLegislatorForOfficial(allLegislators: Array<LegislatorRecord>) {
-  return (official: Official): LegislatorRecord | undefined =>
-    allLegislators.find(
-      legislator =>
-        Legislator.getIdentifier(legislator) ===
-        Legislator.getIdentifier(official)
-    );
 }
 
 /**
@@ -271,7 +326,7 @@ export function receiveAddress(address: string): Action {
  * @returns action.
  */
 export function receiveContribution(
-  legislatorId: LegislatorIdentifier,
+  legislatorId: BioguideId,
   organization: string,
   amount: number
 ): Action {
@@ -318,15 +373,28 @@ export function receiveContributionsBySector(
 }
 
 /**
- * Create action to notify officials retrieved.
- * @param {array} officials received.
+ * Create action to notify members of the house of representatives have been
+ * received.
+ * @param congressPersons received.
  * @returns action.
  */
-export function receiveOfficials(officials: Array<Official>): Action {
-  mixpanel.track(ActionType.RECEIVE_OFFICIALS, { count: officials.length });
+export function receiveHouse(congressPersons: CongressPerson[]): Action {
   return {
-    type: ActionType.RECEIVE_OFFICIALS,
-    officials,
+    type: ActionType.RECEIVE_HOUSE,
+    congressPersons,
+  };
+}
+
+/**
+ * Create action to notify offices have been successfully retrieved for an
+ * address.
+ * @param offices received.
+ * @returns action.
+ */
+export function receiveOffices(offices: Office[]): Action {
+  return {
+    type: ActionType.RECEIVE_OFFICES,
+    offices,
   };
 }
 
@@ -346,23 +414,35 @@ export function receiveOfficialsAll(
 }
 
 /**
- * Create action to notify officials retrieved an error.
+ * Create action to notify retrieving offices encountered an error.
  * @param {error} error received.
  * @returns action.
  */
-export async function receiveOfficialsError(
+export async function receiveOfficesError(
   error: GoogleResponseError
 ): Promise<Action> {
-  mixpanel.track(ActionType.RECEIVE_OFFICIALS_ERROR, {
+  mixpanel.track(ActionType.RECEIVE_OFFICES_ERROR, {
     message: error.message,
   });
   return {
-    type: ActionType.RECEIVE_OFFICIALS_ERROR,
+    type: ActionType.RECEIVE_OFFICES_ERROR,
     code: await error.code,
     isGlobal: await error.isGlobal,
     isParseError: await error.isParseError,
     message: await error.responseMessage,
     messages: await error.errorMessages,
+  };
+}
+
+/**
+ * Create action to notify members of the senate have been received.
+ * @param senators received.
+ * @returns action.
+ */
+export function receiveSenate(senators: Senator[]): Action {
+  return {
+    type: ActionType.RECEIVE_SENATE,
+    senators,
   };
 }
 
@@ -427,16 +507,27 @@ export function setAddress(address: string) {
   return async (dispatch: Dispatch): Promise<void> => {
     try {
       dispatch(receiveAddress(address));
-      const [allLegislators, officials] = await Promise.all([
+      const [
+        allLegislators,
+        congressPersons,
+        senators,
+        offices,
+      ] = await Promise.all([
         fetchLegislatorsAll(),
-        fetchOfficialsForAddress(address),
+        fetchXml('/api/congress/house', extractCongressPersons),
+        fetchXml('/api/congress/senate', extractSenators),
+        fetchOfficesForAddress(address),
       ]);
+      dispatch(receiveHouse(congressPersons));
+      dispatch(receiveSenate(senators));
       dispatch(receiveOfficialsAll(allLegislators));
-      dispatch(receiveOfficials(officials));
+      dispatch(receiveOffices(offices));
+      const { getState } = store;
       const fetchContribution = fetchContributionByOrg.bind(null, ORGANIZATION);
-      const getLegislator = getLegislatorForOfficial(allLegislators);
-      const legislators = officials.map(getLegislator).filter(isDefined);
-      Promise.all(legislators.map(record => fetchContributionsBySector(record)))
+      const legislators = getState().officials.legislators;
+      Promise.all(
+        legislators.map((record) => fetchContributionsBySector(record))
+      )
         .then(receiveContributionsBySector)
         .then(dispatch);
       Promise.all(legislators.map(fetchContribution))
@@ -445,7 +536,7 @@ export function setAddress(address: string) {
     } catch (error) {
       if (error instanceof GoogleResponseError) {
         // response is error; abort
-        receiveOfficialsError(error).then(dispatch);
+        receiveOfficesError(error).then(dispatch);
         return;
       }
     }

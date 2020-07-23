@@ -12,7 +12,7 @@ exports[`renders correctly with a legislator 1`] = `
     >
       <img
         alt="John Smith"
-        src="https://theunitedstates.io/images/congress/original/.jpg"
+        src="https://theunitedstates.io/images/congress/original/JOHN SMITH.jpg"
       />
     </div>
     <div
@@ -108,7 +108,7 @@ exports[`renders correctly with a legislator and contribution 1`] = `
     >
       <img
         alt="John Smith"
-        src="https://theunitedstates.io/images/congress/original/.jpg"
+        src="https://theunitedstates.io/images/congress/original/JOHN SMITH.jpg"
       />
     </div>
     <div

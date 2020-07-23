@@ -87,12 +87,10 @@ function mapStateToProps(state: State): Props {
   return {
     currentPage: view.currentPage,
     didSearch: address.value !== undefined,
-    numberRepresentatives: officials.ids.length,
-    numberHouse: officials.ids.length - 2,
+    numberRepresentatives: officials.legislators.length,
+    numberHouse: officials.legislators.length - 2,
     contributions: organizationContributions,
-    representatives: officials.ids
-      .map(id => officials.byId[id])
-      .filter(rep => !!rep),
+    representatives: officials.legislators,
   };
 }
 

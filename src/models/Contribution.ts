@@ -1,9 +1,11 @@
+import { BioguideId } from './Legislator';
+
 /**
  * Defines the type alias for a `Contribution` record.
  */
 export interface Contribution {
   amount: number;
-  legislatorId: string;
+  legislatorId: BioguideId;
   organization: string;
 }
 
