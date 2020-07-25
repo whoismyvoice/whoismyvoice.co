@@ -44,6 +44,21 @@ exports[`renders correctly 1`] = `
       >
         the @unitedstates project
       </a>
+       and raw member data from the
+       
+      <a
+        href="http://clerk.house.gov/xml/lists/MemberData.xml"
+      >
+        House
+      </a>
+       
+      and
+       
+      <a
+        href="http://www.senate.gov/general/contact_information/senators_cfm.xml"
+      >
+        Senate
+      </a>
       .
     </p>
     <h3>

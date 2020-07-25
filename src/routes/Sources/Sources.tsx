@@ -15,7 +15,7 @@ function Sources(props: Props): JSX.Element {
     mixpanel.track(...SOURCES_ROUTE);
   }, []);
   const { cycles } = props;
-  const cycleMessage = cycles.map(cycle => cycle.label).join(' and ');
+  const cycleMessage = cycles.map((cycle) => cycle.label).join(' and ');
   return (
     <div className="page-block light-white">
       <FadedBG color="white" />
@@ -38,7 +38,14 @@ function Sources(props: Props): JSX.Element {
           to lookup representatives by address. Current legislator information
           from the Google Civic Information API is matched up with information
           from{' '}
-          <a href="https://theunitedstates.io">the @unitedstates project</a>.
+          <a href="https://theunitedstates.io">the @unitedstates project</a> and
+          raw member data from the{' '}
+          <a href="http://clerk.house.gov/xml/lists/MemberData.xml">House</a>{' '}
+          and{' '}
+          <a href="http://www.senate.gov/general/contact_information/senators_cfm.xml">
+            Senate
+          </a>
+          .
         </p>
         <h3>For More Information</h3>
         <ul className="sources">
