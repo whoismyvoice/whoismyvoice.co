@@ -66,7 +66,7 @@
     "prebuild": "curl https://api.maplight.org/maplight-api/fec/election_cycles > src/election-cycles.json",
     "dev": "react-scripts start",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "start": "npx now dev",
+    "start": "npx vercel dev",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

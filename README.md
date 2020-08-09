@@ -42,9 +42,9 @@ with credentials that give access to the Who Is My Voice AWS Account,
 1. `git clone https://github.com/whoismyvoice/whoismyvoice.co.git`
 1. `cd whoismyvoice.co`
 1. `yarn install`
-1. `npx now secrets add "react_app_mixpanel_token" "<mixpanel-token-here>"`
-1. `npx now secrets add "open_secrets_api_key" "<opensecrets-api-key-here>"`
-1. `npx now secrets add "google_civic_api_key" "<google-api-key-here>"`
+1. `npx vercel secrets add "react_app_mixpanel_token" "<mixpanel-token-here>"`
+1. `npx vercel secrets add "open_secrets_api_key" "<opensecrets-api-key-here>"`
+1. `npx vercel secrets add "google_civic_api_key" "<google-api-key-here>"`
 1. Create `.env` file with `REACT_APP_MIXPANEL_TOKEN`, `GOOGLE_CIVIC_API_KEY`
    and `OPEN_SECRETS_API_KEY` values.
 1. Copy `.env` to `.env.build`.
@@ -70,32 +70,32 @@ Tests are executed by [GitHub Actions][actions] (see
 
 #### Build for production
 
-This should only be necessary if zeit now encounters a problem executing the
+This should only be necessary if vercel encounters a problem executing the
 build step.
 
     yarn run build
 
 ## Serverless Functions
 
-The front end application uses [Zeit Now serverless functions][now-serverless]
+The front end application uses [Vercel serverless functions][vercel-serverless]
 to proxy requests to get around CORS and to hide API keys. The serverless
 functions are defined by in the `api` directory.
 
-[now-serverless]: https://zeit.co/docs/v2/serverless-functions/introduction/
+[vercel-serverless]: https://vercel.com/docs/serverless-functions/introduction
 
 ## Environment Variables
 
-These are managed by [Zeit Now secrets][now-secrets]. These are declared in the
+These are managed by [Zeit Now secrets][vercel-secrets]. These are declared in the
 `now.json` file to be injected into the environment.
 
-[now-secrets]: https://zeit.co/docs/v2/environment-variables-and-secrets/
+[vercel-secrets]: https://vercel.com/docs/build-step#environment-variables
 
 ## Deployments
 
-[Zeit now][ci] handles building and deploying. The deployment process uses the
+[Vercel][ci] handles building and deploying. The deployment process uses the
 `build` script defined in `package.json`.
 
-[ci]: https://zeit.co/whoismyvoice
+[ci]: https://vercel.com/whoismyvoice
 
 ## Development Guidelines
 
