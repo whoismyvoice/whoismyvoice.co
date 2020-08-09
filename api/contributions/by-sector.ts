@@ -44,14 +44,14 @@ function handler(request: NowRequest, response: NowResponse): void {
   switch (request.method) {
     case 'GET':
       getContributions(request)
-        .then(res => {
+        .then((res) => {
           const headers: OutgoingHttpHeaders = {
             ...res.headers,
             ...DEFAULT_RESPONSE_HEADERS,
           };
           response.writeHead(200, headers).end(res.body);
         })
-        .catch(err => {
+        .catch((err: Error) => {
           const headers: OutgoingHttpHeaders = {
             ...DEFAULT_RESPONSE_HEADERS,
             'content-type': 'application/json',

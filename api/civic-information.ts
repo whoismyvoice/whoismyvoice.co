@@ -33,7 +33,7 @@ function handler(request: NowRequest, response: NowResponse): void {
         .then((data) =>
           response.writeHead(200, DEFAULT_RESPONSE_HEADERS).end(data)
         )
-        .catch((err) =>
+        .catch((err: Error) =>
           response
             .writeHead(500, DEFAULT_RESPONSE_HEADERS)
             .end(JSON.stringify({ error: err.message }))
