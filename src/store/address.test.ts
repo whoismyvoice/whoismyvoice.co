@@ -48,7 +48,7 @@ describe('zip set', () => {
   });
   it('will be reset', () => {
     const result = address(state, reset());
-    expect(result).toBe(initialState);
+    expect(result).toEqual(initialState);
   });
 });
 
@@ -60,6 +60,6 @@ describe('zip and address set', () => {
   const state = actions.reduce((s, a) => address(s, a), initialState);
   it('will be reset', () => {
     const result = address(state, reset());
-    expect(result).toBe(initialState);
+    expect(result).toEqual(initialState);
   });
 });

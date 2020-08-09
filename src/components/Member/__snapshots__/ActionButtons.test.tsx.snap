@@ -10,7 +10,7 @@ exports[`renders correctly 1`] = `
     target="_blank"
   >
     <button
-      className="contact__button_small undefined"
+      className="contact__button_small "
     >
       <div
         className="button__small__icon phone"

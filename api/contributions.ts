@@ -11,7 +11,6 @@ const DEFAULT_RESPONSE_HEADERS: OutgoingHttpHeaders = {
 
 const BASE_URL = 'https://api.maplight.org/maplight-api/fec/contributions';
 
-/* eslint-disable @typescript-eslint/camelcase */
 async function getContributions(request: NowRequest): Promise<string> {
   const { query } = request;
   const { fecIds, cycle, organization } = query;
@@ -32,7 +31,6 @@ async function getContributions(request: NowRequest): Promise<string> {
   const url = `${BASE_URL}?${params}`;
   return execute(url);
 }
-/* eslint-enable @typescript-eslint/camelcase */
 
 function handler(request: NowRequest, response: NowResponse): void {
   switch (request.method) {
@@ -41,7 +39,7 @@ function handler(request: NowRequest, response: NowResponse): void {
         .then((data) =>
           response.writeHead(200, DEFAULT_RESPONSE_HEADERS).end(data)
         )
-        .catch((err) =>
+        .catch((err: Error) =>
           response
             .writeHead(500, DEFAULT_RESPONSE_HEADERS)
             .end(JSON.stringify({ error: err.message }))

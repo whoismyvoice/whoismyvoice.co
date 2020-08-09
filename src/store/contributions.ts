@@ -1,14 +1,12 @@
+import { castDraft, Draft, produce } from 'immer';
 import { Action, ActionType } from '../actions/types';
 import { Contribution } from '../models/Contribution';
-import icebox from './icebox';
 
-interface ContributionsByOrganization {
-  [name: string]: Array<Contribution>;
-}
+type ContributionsByOrganization = Record<string, Contribution[]>;
 
 export interface ContributionsState {
-  byOrganization: ContributionsByOrganization;
-  sectors: string[];
+  readonly byOrganization: ContributionsByOrganization;
+  readonly sectors: string[];
 }
 
 export const INITIAL_CONTRIBUTIONS: ContributionsState = {
@@ -38,19 +36,17 @@ function isContributionMatch(c1: Contribution, c2: Contribution): boolean {
 function addContribution(
   contributions: Array<Contribution>,
   contribution: Contribution
-): Array<Contribution> {
-  const recipientIndex = contributions.findIndex((contrib) =>
-    isContributionMatch(contrib, contribution)
-  );
-  if (recipientIndex === -1) {
-    return [...contributions, contribution];
-  } else {
-    return [
-      ...contributions.slice(0, recipientIndex),
-      ...contributions.slice(recipientIndex + 1),
-      contribution,
-    ];
-  }
+): Contribution[] {
+  return produce(contributions, (draft) => {
+    const recipientIndex = contributions.findIndex((contrib) =>
+      isContributionMatch(contrib, contribution)
+    );
+    if (recipientIndex === -1) {
+      draft.push(contribution);
+    } else {
+      draft.splice(recipientIndex, 1, contribution);
+    }
+  });
 }
 
 /**
@@ -60,17 +56,13 @@ function addContribution(
  * @param contribution to be added.
  * @returns a new copy of `ContributionsByOrganization` state.
  */
-function handleContribution(
-  state: ContributionsByOrganization,
-  contribution: Contribution
-): ContributionsByOrganization {
-  const organization = contribution.organization;
-  const contributions = state[organization] || [];
-  return {
-    ...state,
-    [organization]: addContribution(contributions, contribution),
-  };
-}
+const handleContribution = produce(
+  (draft: Draft<ContributionsByOrganization>, contribution: Contribution) => {
+    const organization = contribution.organization;
+    const contributions = draft[organization] || [];
+    draft[organization] = addContribution(contributions, contribution);
+  }
+);
 
 /**
  * Modify the current state by adding the contribution represented by `action`
@@ -85,7 +77,7 @@ function handleByOrganization(
 ): ContributionsByOrganization {
   switch (action.type) {
     case ActionType.RECEIVE_CONTRIBUTION_DATA:
-      // eslint-disable-next-line no-case-declarations
+      // eslint-disable-next-line no-case-declarations, @typescript-eslint/no-unused-vars
       const { type, ...payload } = action;
       return handleContribution(state, payload);
     case ActionType.RECEIVE_CONTRIBUTIONS_DATA:
@@ -124,14 +116,11 @@ function handleSectors(state: string[], action: Action): string[] {
  * @param action to be processed.
  * @returns an updated `contributions` state.
  */
-function handle(
-  state: ContributionsState = INITIAL_CONTRIBUTIONS,
-  action: Action
-): ContributionsState {
-  return {
-    byOrganization: handleByOrganization(state.byOrganization, action),
-    sectors: handleSectors(state.sectors, action),
-  };
-}
+const handler = produce((draft: Draft<ContributionsState>, action: Action) => {
+  draft.byOrganization = castDraft(
+    handleByOrganization(draft.byOrganization, action)
+  );
+  draft.sectors = handleSectors(draft.sectors, action);
+}, INITIAL_CONTRIBUTIONS);
 
-export default icebox(handle);
+export default handler;

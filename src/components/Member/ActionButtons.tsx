@@ -14,17 +14,23 @@ interface Props {
 class SupportActions extends React.Component<Props> {
   renderTwitter(): JSX.Element {
     const { legislator } = this.props;
-    const { genderPronoun, twitter } = legislator;
-    const twitterLink = `https://twitter.com/intent/tweet?hashtags=WhoIsMyVoice&text=@${twitter}`;
-    return twitter === undefined ? (
+    const { genderPronoun } = legislator;
+    return this.twitterLink === undefined ? (
       <React.Fragment />
     ) : (
       <ContactButtonSmall
-        link={twitterLink}
+        link={this.twitterLink}
         icon="twitter"
         text={`Tweet at ${genderPronoun}`}
       />
     );
+  }
+
+  get twitterLink(): string | undefined {
+    const username = this.props.legislator.twitter;
+    return username === undefined
+      ? undefined
+      : `https://twitter.com/intent/tweet?hashtags=WhoIsMyVoice&text=@${username}`;
   }
 
   render(): JSX.Element {

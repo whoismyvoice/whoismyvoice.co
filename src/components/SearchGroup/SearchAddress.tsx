@@ -27,7 +27,6 @@ export class SearchAddress extends React.Component<Props> {
   render(): JSX.Element {
     const { address, addressErrorMessage, onSubmit, placeholder } = this.props;
     const inputClasses = cx('input', {
-      // eslint-disable-next-line @typescript-eslint/camelcase
       address_search: this.props.isStreetAddressNeeded,
     });
     let formFields: React.ReactFragment = <React.Fragment />;

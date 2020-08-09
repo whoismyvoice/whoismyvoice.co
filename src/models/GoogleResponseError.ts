@@ -33,13 +33,15 @@ export class GoogleResponseError extends ResponseError {
     Object.setPrototypeOf(this, GoogleResponseError.prototype);
     this.response = response;
     const content: Promise<BodyContent> = this.response.json();
-    this.code = content.then(body => body.error?.code || 500);
-    this.errors = content.then(body => body.error?.errors || []);
-    this.responseMessage = content.then(body => body.error?.message || 'Error');
+    this.code = content.then((body) => body.error?.code || 500);
+    this.errors = content.then((body) => body.error?.errors || []);
+    this.responseMessage = content.then(
+      (body) => body.error?.message || 'Error'
+    );
   }
 
   get isGlobal(): Promise<boolean> {
-    return this.errors.then(errors => {
+    return this.errors.then((errors) => {
       return errors.reduce<boolean>(
         (r, err) =>
           r && typeof err.domain === 'string' && err.domain === 'global',
@@ -49,7 +51,7 @@ export class GoogleResponseError extends ResponseError {
   }
 
   get isParseError(): Promise<boolean> {
-    return this.errors.then(errors => {
+    return this.errors.then((errors) => {
       return errors.reduce<boolean>(
         (r, err) =>
           r && typeof err.reason === 'string' && err.reason === 'parseError',
@@ -59,9 +61,9 @@ export class GoogleResponseError extends ResponseError {
   }
 
   get errorMessages(): Promise<Array<string>> {
-    return this.errors.then(errors => {
+    return this.errors.then((errors) => {
       return errors
-        .map(err => err.message)
+        .map((err) => err.message)
         .filter((m): m is string => typeof m === 'string');
     });
   }

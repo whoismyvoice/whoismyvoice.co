@@ -24,7 +24,6 @@ export function createLegislator(name: string, photoUrl?: string): Record {
       opensecrets: '',
     },
     name: {
-      // eslint-disable-next-line @typescript-eslint/camelcase
       official_full: name,
     },
     photoUrl,

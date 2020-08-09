@@ -17,19 +17,19 @@ async function fetchElectionCycles(): Promise<ElectionCycle[]> {
 
 async function importElectionCycles(): Promise<ElectionCycle[]> {
   const cycles = await import('../election-cycles.json').then(
-    cyclesData => cyclesData.data.election_cycles
+    (cyclesData) => cyclesData.data.election_cycles
   );
   return cycles
     .sort(compareElectionCycles)
     .slice(0, 2)
-    .map(cycle => ({ year: cycle.ElectionCycle, label: cycle.label }));
+    .map((cycle) => ({ year: cycle.ElectionCycle, label: cycle.label }));
 }
 
 export const ELECTION_CYCLES = importElectionCycles().catch(
   fetchElectionCycles
 );
-export const ELECTION_CYCLE = ELECTION_CYCLES.then(cycles =>
-  cycles.map(cycle => cycle.year)
-).then(years => years.join('|'));
+export const ELECTION_CYCLE = ELECTION_CYCLES.then((cycles) =>
+  cycles.map((cycle) => cycle.year)
+).then((years) => years.join('|'));
 export const ORGANIZATION = 'National Rifle Association';
 export const ORGANIZATION_DISPLAY = 'the NRA';

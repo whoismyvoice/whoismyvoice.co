@@ -156,8 +156,8 @@ function fetchContributions(organization: string) {
       },
     });
     if (response.ok) {
-      const body = await response.json();
-      return body as MaplightResultsRecord;
+      const body: MaplightResultsRecord = await response.json();
+      return body;
     } else {
       throw new ResponseError(response, response.statusText);
     }
@@ -270,7 +270,7 @@ async function fetchOfficesForAddress(address: string): Promise<Office[]> {
   const params = `address=${encodedAddress}`;
   const response = await fetch(`${baseUrl}?${params}`);
   if (response.ok) {
-    const body = await response.json();
+    const body: { offices: OfficeRecord[] } = await response.json();
     return body.offices.map((office: OfficeRecord) => new Office(office));
   } else {
     throw new GoogleResponseError(response, response.statusText);
@@ -496,7 +496,7 @@ export function toggleMenu(): Action {
 export function setZipCode(zipCode: string) {
   return (dispatch: Dispatch): void => {
     dispatch(receiveZipCode(zipCode));
-    setAddress(zipCode)(dispatch);
+    void setAddress(zipCode)(dispatch);
   };
 }
 
@@ -522,22 +522,20 @@ export function setAddress(address: string) {
       dispatch(receiveSenate(senators));
       dispatch(receiveOfficialsAll(allLegislators));
       dispatch(receiveOffices(offices));
-      const { getState } = store;
       const fetchContribution = fetchContributionByOrg.bind(null, ORGANIZATION);
-      const legislators = getState().officials.legislators;
-      Promise.all(
+      const legislators = store.getState().officials.legislators;
+      void Promise.all(
         legislators.map((record) => fetchContributionsBySector(record))
       )
         .then(receiveContributionsBySector)
         .then(dispatch);
-      Promise.all(legislators.map(fetchContribution))
+      void Promise.all(legislators.map(fetchContribution))
         .then(receiveContributions)
         .then(dispatch);
     } catch (error) {
       if (error instanceof GoogleResponseError) {
         // response is error; abort
-        receiveOfficesError(error).then(dispatch);
-        return;
+        void receiveOfficesError(error).then(dispatch);
       }
     }
   };

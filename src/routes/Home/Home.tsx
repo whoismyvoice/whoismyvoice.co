@@ -10,7 +10,6 @@ import { StarTitle } from '../../components/Title/StarTitle';
 import { Contribution } from '../../models/Contribution';
 import { Record as LegislatorType } from '../../models/Legislator';
 import { State } from '../../store';
-import { Dispatch } from '../../actions/types';
 // Constants
 import { ORGANIZATION, ORGANIZATION_DISPLAY } from '../../constants';
 import { HOME_ROUTE } from '../../constants/mixpanel-events';
@@ -94,8 +93,4 @@ function mapStateToProps(state: State): Props {
   };
 }
 
-function mapDispatchToProps(dispatch: Dispatch): {} {
-  return {};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);

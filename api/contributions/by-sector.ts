@@ -25,6 +25,8 @@ async function getContributions(request: NowRequest): Promise<Response> {
     throw new Error('id must be provided.');
   } else if (isEmpty(cycle)) {
     throw new Error('cycle must be provided.');
+  } else if (OPEN_SECRETS_API_KEY === undefined) {
+    throw new Error('OpenSecrets API key must be set.');
   }
   const apiKey = `apikey=${OPEN_SECRETS_API_KEY}`;
   const candidateId = encodeParameter('cid', id);
@@ -44,14 +46,14 @@ function handler(request: NowRequest, response: NowResponse): void {
   switch (request.method) {
     case 'GET':
       getContributions(request)
-        .then(res => {
+        .then((res) => {
           const headers: OutgoingHttpHeaders = {
             ...res.headers,
             ...DEFAULT_RESPONSE_HEADERS,
           };
           response.writeHead(200, headers).end(res.body);
         })
-        .catch(err => {
+        .catch((err: Error) => {
           const headers: OutgoingHttpHeaders = {
             ...DEFAULT_RESPONSE_HEADERS,
             'content-type': 'application/json',

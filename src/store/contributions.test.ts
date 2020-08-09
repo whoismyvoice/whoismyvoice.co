@@ -6,10 +6,7 @@ import {
 } from '../actions';
 import { Action, ActionType } from '../actions/types';
 import { createContribution } from '../models/Contribution.test';
-import contributions, {
-  ContributionsState,
-  INITIAL_CONTRIBUTIONS,
-} from './contributions';
+import contributions, { INITIAL_CONTRIBUTIONS } from './contributions';
 
 jest.mock('mixpanel-browser');
 
@@ -18,8 +15,6 @@ function action(): Action {
     type: ActionType.OTHER,
   };
 }
-
-type State = ContributionsState | undefined;
 
 it('provides an initial state when given undefined', () => {
   const initialState = contributions(undefined, action());
@@ -49,11 +44,11 @@ describe('byOrganization', () => {
       receiveContribution('John Smith', 'SuperPAC', 1000),
       receiveContribution('John Smith', 'SuperPAC', 2000),
     ];
-    const state = actions.reduce<State>(
+    const state = actions.reduce(
       (s, a) => contributions(s, a),
-      undefined
+      INITIAL_CONTRIBUTIONS
     );
-    const { byOrganization } = state!;
+    const { byOrganization } = state;
     expect(Object.keys(byOrganization).length).toBe(1);
     expect(Object.keys(byOrganization)).toContain('SuperPAC');
     expect(byOrganization['SuperPAC']).not.toContainEqual({
@@ -75,11 +70,11 @@ describe('byOrganization', () => {
       createContribution('John Smith III'),
     ];
     const actions = [receiveContributions(contributionsRecords)];
-    const state = actions.reduce<State>(
+    const state = actions.reduce(
       (s, a) => contributions(s, a),
-      undefined
+      INITIAL_CONTRIBUTIONS
     );
-    const { byOrganization } = state!;
+    const { byOrganization } = state;
     expect(Object.keys(byOrganization).length).toBe(1);
     expect(Object.keys(byOrganization)).toContain('SuperPAC');
     expect(byOrganization['SuperPAC'].length).toBe(3);
