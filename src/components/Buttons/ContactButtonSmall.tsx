@@ -11,7 +11,7 @@ interface Props {
 }
 
 const ContactButtonSmall = ({
-  addStyle,
+  addStyle = '',
   icon,
   link,
   text,
