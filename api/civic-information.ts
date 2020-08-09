@@ -17,6 +17,8 @@ async function getCivicInformation(request: NowRequest): Promise<string> {
   const { address } = query;
   if (isEmpty(address)) {
     throw new Error('address must be provided.');
+  } else if (GOOGLE_CIVIC_API_KEY === undefined) {
+    throw new Error('GOOGLE_CIVIC_API_KEY must be defined in environment.');
   }
   const configParams =
     'levels=country&roles=legislatorLowerBody&roles=legislatorUpperBody&includeOffices=true';
