@@ -35,7 +35,7 @@ function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
         'input[name="zipCode"]'
       );
       const streetAddress = addressNode?.value;
-      const zipCode = zipCodeNode?.value;
+      const zipCode = zipCodeNode?.value ?? '';
       if (streetAddress) {
         const address = `${streetAddress}, ${zipCode}`;
         setAddress(address)(dispatch);
