@@ -1,56 +1,42 @@
+import { Draft, produce } from 'immer';
 import { Action, ActionType } from '../actions/types';
-import icebox from './icebox';
 
-export type ViewState = {
-  addressErrorMessage?: string;
-  currentPage?: 1 | 2;
-  isMenuOpen: boolean;
-};
+export interface ViewState {
+  readonly addressErrorMessage?: string;
+  readonly currentPage?: 1 | 2;
+  readonly isMenuOpen: boolean;
+}
 
-const initialState = {
+const initialState: ViewState = {
   addressErrorMessage: undefined,
   currentPage: undefined,
   isMenuOpen: false,
 };
 
-function handle(state: ViewState = initialState, action: Action): ViewState {
+const handler = produce((draft: Draft<ViewState>, action: Action) => {
   switch (action.type) {
     case ActionType.RECEIVE_ADDRESS: // Intentional fall through
     case ActionType.RECEIVE_ZIP_CODE: // Intentional fall through
     case ActionType.RECEIVE_OFFICES:
-      return {
-        ...state,
-        addressErrorMessage: undefined,
-      };
+      draft.addressErrorMessage = undefined;
+      break;
     case ActionType.RECEIVE_OFFICES_ERROR:
-      return {
-        ...state,
-        addressErrorMessage: action.message,
-      };
+      draft.addressErrorMessage = action.message;
+      break;
     case ActionType.RECEIVE_PAGE:
-      return {
-        ...state,
-        currentPage: action.page,
-      };
+      draft.currentPage = action.page;
+      break;
     case ActionType.RESET_CURRENT:
-      return {
-        ...state,
-        addressErrorMessage: undefined,
-        currentPage: undefined,
-      };
+      draft.addressErrorMessage = undefined;
+      draft.currentPage = undefined;
+      break;
     case ActionType.TOGGLE_MENU:
-      return {
-        ...state,
-        isMenuOpen: !state.isMenuOpen,
-      };
+      draft.isMenuOpen = !draft.isMenuOpen;
+      break;
     case ActionType.RECEIVE_ZIP_CODE_INVALID:
-      return {
-        ...state,
-        addressErrorMessage: 'Valid zip code is required.',
-      };
-    default:
-      return state;
+      draft.addressErrorMessage = 'Valid zip code is required.';
+      break;
   }
-}
+}, initialState);
 
-export default icebox(handle);
+export default handler;
