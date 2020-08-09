@@ -25,6 +25,8 @@ async function getContributions(request: NowRequest): Promise<Response> {
     throw new Error('id must be provided.');
   } else if (isEmpty(cycle)) {
     throw new Error('cycle must be provided.');
+  } else if (OPEN_SECRETS_API_KEY === undefined) {
+    throw new Error('OpenSecrets API key must be set.');
   }
   const apiKey = `apikey=${OPEN_SECRETS_API_KEY}`;
   const candidateId = encodeParameter('cid', id);
