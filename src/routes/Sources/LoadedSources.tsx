@@ -7,7 +7,7 @@ import Sources from './Sources';
 export function LoadedSources(): JSX.Element {
   const [cycles, setCycles] = useState<ElectionCycle[]>([]);
   useEffect(() => {
-    ELECTION_CYCLES.then(cycles => setCycles([...cycles].reverse()));
+    void ELECTION_CYCLES.then((cycles) => setCycles([...cycles].reverse()));
   }, []);
   if (cycles.length === 0) {
     return <h1>Loading...</h1>;
