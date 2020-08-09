@@ -4,7 +4,7 @@ import { TemplateExecutor, template } from 'lodash';
 import '../../styles/TitleComponent.scss';
 
 interface Props {
-  templateData?: object;
+  templateData: Record<string, unknown>;
   templateString?: string;
 }
 
