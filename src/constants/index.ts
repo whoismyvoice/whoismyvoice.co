@@ -5,7 +5,6 @@ const fetch = unfetch;
 async function fetchElectionCycles(): Promise<ElectionCycle[]> {
   const response = await fetch('/api/election-cycles');
   if (response.ok) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const cycles: ElectionCycle[] = await response.json();
     return cycles;
   } else {

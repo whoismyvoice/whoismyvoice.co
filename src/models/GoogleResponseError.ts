@@ -32,7 +32,6 @@ export class GoogleResponseError extends ResponseError {
     // Set the prototype explicitly.
     Object.setPrototypeOf(this, GoogleResponseError.prototype);
     this.response = response;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const content: Promise<BodyContent> = this.response.json();
     this.code = content.then((body) => body.error?.code || 500);
     this.errors = content.then((body) => body.error?.errors || []);
