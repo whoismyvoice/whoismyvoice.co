@@ -14,6 +14,16 @@ interface ElectionCycle {
   label: string;
 }
 
+/**
+ * Expected shape of the response from maplight API.
+ * @see https://api.maplight.org/maplight-api/fec/election_cycles
+ */
+interface ElectionCyclesResponse {
+  data: {
+    election_cycles: ResponseElectionCycle[];
+  };
+}
+
 const DEFAULT_RESPONSE_HEADERS: OutgoingHttpHeaders = {
   'content-type': 'application/json',
   'Access-Control-Allow-Origin': '*',
@@ -40,7 +50,7 @@ function compareCycles(
 async function getElectionCycles(): Promise<ElectionCycle[]> {
   const url = `${BASE_URL}`;
   const result = await execute(url);
-  const responseData = JSON.parse(result);
+  const responseData: ElectionCyclesResponse = JSON.parse(result);
   /* See https://api.maplight.org/maplight-api/fec/election_cycles */
   const cycles: ResponseElectionCycle[] = responseData.data.election_cycles;
   return cycles
@@ -58,7 +68,7 @@ function handler(request: NowRequest, response: NowResponse): void {
             .writeHead(200, DEFAULT_RESPONSE_HEADERS)
             .end(JSON.stringify(cycles))
         )
-        .catch((err) =>
+        .catch((err: Error) =>
           response
             .writeHead(500, DEFAULT_RESPONSE_HEADERS)
             .end(JSON.stringify({ error: err.message }))
