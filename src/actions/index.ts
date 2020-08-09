@@ -156,8 +156,8 @@ function fetchContributions(organization: string) {
       },
     });
     if (response.ok) {
-      const body = await response.json();
-      return body as MaplightResultsRecord;
+      const body: MaplightResultsRecord = await response.json();
+      return body;
     } else {
       throw new ResponseError(response, response.statusText);
     }
@@ -270,7 +270,7 @@ async function fetchOfficesForAddress(address: string): Promise<Office[]> {
   const params = `address=${encodedAddress}`;
   const response = await fetch(`${baseUrl}?${params}`);
   if (response.ok) {
-    const body = await response.json();
+    const body: { offices: OfficeRecord[] } = await response.json();
     return body.offices.map((office: OfficeRecord) => new Office(office));
   } else {
     throw new GoogleResponseError(response, response.statusText);
