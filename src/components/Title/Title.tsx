@@ -4,13 +4,13 @@ import { TemplateExecutor, template } from 'lodash';
 import '../../styles/TitleComponent.scss';
 
 export interface Props {
-  className?: string;
-  templateData?: object;
-  templateString?: string;
+  className: string;
+  templateData: Record<string, string>;
+  templateString: string;
 }
 
 export interface State {
-  templateData?: object;
+  templateData?: Record<string, string>;
   templateString?: string;
 }
 
@@ -46,7 +46,7 @@ export class Title<P extends Props, S extends State> extends React.Component<
     }
   }
 
-  getTemplateData(): object | undefined {
+  getTemplateData(): Record<string, string> | undefined {
     if (this.state && this.state.templateData !== undefined) {
       return this.state.templateData;
     } else if (this.props.templateData !== undefined) {
