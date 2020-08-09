@@ -1,15 +1,15 @@
+import { Draft, produce } from 'immer';
 import { Action, ActionType } from '../actions/types';
-import icebox from './icebox';
 
-export type AddressState = {
-  value?: string;
-  street?: string;
-  zipCode?: string;
-  latitude?: string;
-  longitude?: string;
-};
+export interface AddressState {
+  readonly value?: string;
+  readonly street?: string;
+  readonly zipCode?: string;
+  readonly latitude?: string;
+  readonly longitude?: string;
+}
 
-const initialState = {
+const initialState: AddressState = {
   value: undefined,
   street: undefined,
   zipCode: undefined,
@@ -17,36 +17,33 @@ const initialState = {
   longitude: undefined,
 };
 
-function handle(
-  state: AddressState = initialState,
-  action: Action
-): AddressState {
+const handler = produce((draft: Draft<AddressState>, action: Action) => {
   switch (action.type) {
     case ActionType.RECEIVE_ADDRESS:
-      if (state.zipCode === undefined) {
+      if (draft.zipCode === undefined) {
         throw new Error('Can not receive street address when zipCode not set.');
       }
-      return {
-        ...state,
-        street: action.address.replace(new RegExp(`(, )?${state.zipCode}`), ''),
-        value: action.address,
-      };
+      draft.street = action.address.replace(
+        new RegExp(`(, )?${draft.zipCode}`),
+        ''
+      );
+      draft.value = action.address;
+      break;
     case ActionType.RECEIVE_GPS:
-      return {
-        ...state,
-        latitude: action.latitude,
-        longitude: action.longitude,
-      };
+      draft.latitude = action.latitude;
+      draft.longitude = action.longitude;
+      break;
     case ActionType.RECEIVE_ZIP_CODE:
-      return {
-        ...state,
-        zipCode: action.zipCode,
-      };
+      draft.zipCode = action.zipCode;
+      break;
     case ActionType.RESET_CURRENT:
-      return initialState;
-    default:
-      return state;
+      draft.latitude = undefined;
+      draft.longitude = undefined;
+      draft.street = undefined;
+      draft.value = undefined;
+      draft.zipCode = undefined;
+      break;
   }
-}
+}, initialState);
 
-export default icebox(handle);
+export default handler;
