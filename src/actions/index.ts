@@ -496,7 +496,7 @@ export function toggleMenu(): Action {
 export function setZipCode(zipCode: string) {
   return (dispatch: Dispatch): void => {
     dispatch(receiveZipCode(zipCode));
-    setAddress(zipCode)(dispatch);
+    void setAddress(zipCode)(dispatch);
   };
 }
 

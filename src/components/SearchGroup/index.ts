@@ -38,7 +38,7 @@ function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
       const zipCode = zipCodeNode?.value ?? '';
       if (streetAddress) {
         const address = `${streetAddress}, ${zipCode}`;
-        setAddress(address)(dispatch);
+        void setAddress(address)(dispatch);
       } else if (isZipCodeValid(zipCode)) {
         setZipCode(zipCode)(dispatch);
       } else {
