@@ -56,7 +56,7 @@ export function request(
         statusCode: res.statusCode,
         url: res.url,
       };
-      const statusCode = res.statusCode;
+      const statusCode = res.statusCode || -1;
       const contentType = res.headers['content-type'];
       const contentTypeMatcher = new RegExp(expects);
       let error: Error | undefined = undefined;
