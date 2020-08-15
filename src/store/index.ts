@@ -15,12 +15,11 @@ export interface State {
 }
 
 export default createStore(
-  combineReducers({
+  combineReducers<State>({
     address,
     contributions,
     officials,
     view,
   }),
-  {},
   applyMiddleware(thunkMiddleware, loggerMiddleware)
 );
