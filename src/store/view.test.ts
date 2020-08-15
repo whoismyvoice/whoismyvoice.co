@@ -20,10 +20,10 @@ function action(): Action {
 }
 
 function createResponse(): Response {
-  // @ts-ignore not a full Response object
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error not a full Response object
   return {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    json: (): Promise<any> => {
+    json: () => {
       return Promise.resolve({
         error: { message: 'foo' },
       });
