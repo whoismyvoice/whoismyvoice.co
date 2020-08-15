@@ -27,8 +27,8 @@ export class GoogleResponseError extends ResponseError {
   response: Response;
   responseMessage: Promise<string>;
 
-  constructor(response: Response, ...args: Array<any>) {
-    super(response, ...args);
+  constructor(response: Response, message?: string) {
+    super(response, message);
     // Set the prototype explicitly.
     Object.setPrototypeOf(this, GoogleResponseError.prototype);
     this.name = 'GoogleResponseError';

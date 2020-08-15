@@ -5,8 +5,8 @@
 export class ResponseError extends Error {
   response: Response;
 
-  constructor(response: Response, ...args: Array<any>) {
-    super(...args);
+  constructor(response: Response, message?: string) {
+    super(message);
     // Set the prototype explicitly.
     Object.setPrototypeOf(this, ResponseError.prototype);
     this.name = 'ResponseError';
