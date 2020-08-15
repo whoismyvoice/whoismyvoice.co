@@ -9,6 +9,7 @@ export class ResponseError extends Error {
     super(...args);
     // Set the prototype explicitly.
     Object.setPrototypeOf(this, ResponseError.prototype);
+    this.name = 'ResponseError';
     this.response = response;
   }
 }

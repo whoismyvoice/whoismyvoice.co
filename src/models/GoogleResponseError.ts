@@ -31,6 +31,7 @@ export class GoogleResponseError extends ResponseError {
     super(response, ...args);
     // Set the prototype explicitly.
     Object.setPrototypeOf(this, GoogleResponseError.prototype);
+    this.name = 'GoogleResponseError';
     this.response = response;
     const content: Promise<BodyContent> = this.response.json();
     this.code = content.then((body) => body.error?.code || 500);
