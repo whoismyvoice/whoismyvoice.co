@@ -1,10 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export interface Response {
-  ok: boolean;
-  status: number;
-  json(): Promise<any>;
-}
-
 /**
  * Extends `Error` accepting a Fetch response in addition to normal `Error`
  * arguments.

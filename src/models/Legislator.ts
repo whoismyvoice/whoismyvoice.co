@@ -19,56 +19,56 @@ export enum Chamber {
 export type Identifier = string;
 
 export interface BioRecord {
-  birthday: string;
-  gender: string;
+  readonly birthday: string;
+  readonly gender: string;
 }
 
 export interface ChannelRecord {
-  id: string;
-  type: string;
+  readonly id: string;
+  readonly type: string;
 }
 
 export interface IdRecord {
-  bioguide: BioguideId;
-  fec: Array<FecId>;
-  opensecrets: OpenSecretsId;
+  readonly bioguide: BioguideId;
+  readonly fec: Array<FecId>;
+  readonly opensecrets: OpenSecretsId;
 }
 
 export interface CongressPerson {
-  districtId: string;
-  bioguideId: BioguideId;
+  readonly districtId: string;
+  readonly bioguideId: BioguideId;
 }
 
 export interface Senator {
-  state: string;
-  bioguideId: BioguideId;
+  readonly state: string;
+  readonly bioguideId: BioguideId;
 }
 
 export interface NameRecord {
-  first?: string;
-  last?: string;
-  middle?: string;
-  official_full?: string;
+  readonly first?: string;
+  readonly last?: string;
+  readonly middle?: string;
+  readonly official_full?: string;
 }
 
 export interface TermRecord {
-  type: TermType;
-  start: string;
-  end: string;
-  state: string;
-  district?: string;
-  party: Party;
-  phone: string;
+  readonly type: TermType;
+  readonly start: string;
+  readonly end: string;
+  readonly state: string;
+  readonly district?: string;
+  readonly party: Party;
+  readonly phone: string;
 }
 
 export interface Record {
-  id: IdRecord;
-  identifier?: string;
-  name: string | NameRecord;
-  bio: BioRecord;
-  channels: Array<ChannelRecord>;
-  photoUrl?: string;
-  terms: Array<TermRecord>;
+  readonly id: IdRecord;
+  readonly identifier?: string;
+  readonly name: string | NameRecord;
+  readonly bio: BioRecord;
+  readonly channels: Array<ChannelRecord>;
+  readonly photoUrl?: string;
+  readonly terms: Array<TermRecord>;
 }
 
 const BIOGUIDE_PHOTO_REGEX = /.*\/([A-Z0-9]+)\.\w+$/;

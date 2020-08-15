@@ -8,10 +8,10 @@ import officials, { OfficialsState } from './officials';
 import view, { ViewState } from './view';
 
 export interface State {
-  address: AddressState;
-  contributions: ContributionsState;
-  officials: OfficialsState;
-  view: ViewState;
+  readonly address: AddressState;
+  readonly contributions: ContributionsState;
+  readonly officials: OfficialsState;
+  readonly view: ViewState;
 }
 
 export default createStore(

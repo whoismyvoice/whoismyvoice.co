@@ -1,20 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Response, ResponseError } from './ResponseError';
+import { ResponseError } from './ResponseError';
 
 interface BodyContent {
-  error?: BodyErrorContent;
+  readonly error?: BodyErrorContent;
 }
 
 interface BodyErrorContent {
-  code?: number;
-  errors?: Array<ErrorRecord>;
-  message?: string;
+  readonly code?: number;
+  readonly errors?: Array<ErrorRecord>;
+  readonly message?: string;
 }
 
 interface ErrorRecord {
-  domain: string | undefined;
-  message: string | undefined;
-  reason: string | undefined;
+  readonly domain: string | undefined;
+  readonly message: string | undefined;
+  readonly reason: string | undefined;
 }
 
 /**

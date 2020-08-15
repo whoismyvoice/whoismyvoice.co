@@ -8,16 +8,14 @@ import {
 } from '../models/Legislator';
 import icebox from './icebox';
 
-type LegislatorsById = {
-  [id: string]: LegislatorRecord;
-};
+type LegislatorsById = Readonly<Record<string, LegislatorRecord>>;
 
-export type OfficialsState = {
-  byBioguideId: Record<BioguideId, LegislatorRecord>;
-  house: CongressPerson[];
-  legislators: LegislatorRecord[];
-  senate: Senator[];
-};
+export interface OfficialsState {
+  readonly byBioguideId: Record<BioguideId, LegislatorRecord>;
+  readonly house: CongressPerson[];
+  readonly legislators: LegislatorRecord[];
+  readonly senate: Senator[];
+}
 
 export const INITIAL_OFFICIALS: OfficialsState = {
   byBioguideId: {},
