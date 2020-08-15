@@ -20,6 +20,7 @@ import { Office, Record as OfficeRecord } from '../models/Office';
 import { GoogleResponseError } from '../models/GoogleResponseError';
 import { ResponseError } from '../models/ResponseError';
 import store from '../store';
+import { isDefined } from '../util';
 
 /**
  * Describes a function which extracts arbitrary data from a given XML document.
@@ -34,16 +35,6 @@ const fetch = unfetch;
  * interested in those contributions.
  */
 const FEC_ID_REGEX = /[HS]\d{1,3}[A-Z]{2}\d+/;
-
-/**
- * Type guard to check if the given item exists (is not `null` and not
- * `undefined`.
- * @param item to test.
- * @return `true` iff `item` is neither `null` nor `undefined`.
- */
-function isDefined<T>(item: T | undefined | null): item is T {
-  return item !== undefined && item !== null;
-}
 
 /**
  * Finesse the `MaplightResultsRecord` and `LegislatorRecord` data into a

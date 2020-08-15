@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { TemplateExecutor, template } from 'lodash';
+import template from 'lodash.template';
 
 import '../../styles/TitleComponent.scss';
+
+type TemplateExecutor = ReturnType<typeof template>;
 
 interface Props {
   templateData: Record<string, unknown>;
