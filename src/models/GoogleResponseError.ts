@@ -1,20 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Response, ResponseError } from './ResponseError';
+import { ResponseError } from './ResponseError';
 
 interface BodyContent {
-  error?: BodyErrorContent;
+  readonly error?: BodyErrorContent;
 }
 
 interface BodyErrorContent {
-  code?: number;
-  errors?: Array<ErrorRecord>;
-  message?: string;
+  readonly code?: number;
+  readonly errors?: Array<ErrorRecord>;
+  readonly message?: string;
 }
 
 interface ErrorRecord {
-  domain: string | undefined;
-  message: string | undefined;
-  reason: string | undefined;
+  readonly domain: string | undefined;
+  readonly message: string | undefined;
+  readonly reason: string | undefined;
 }
 
 /**
@@ -27,10 +27,11 @@ export class GoogleResponseError extends ResponseError {
   response: Response;
   responseMessage: Promise<string>;
 
-  constructor(response: Response, ...args: Array<any>) {
-    super(response, ...args);
+  constructor(response: Response, message?: string) {
+    super(response, message);
     // Set the prototype explicitly.
     Object.setPrototypeOf(this, GoogleResponseError.prototype);
+    this.name = 'GoogleResponseError';
     this.response = response;
     const content: Promise<BodyContent> = this.response.json();
     this.code = content.then((body) => body.error?.code || 500);

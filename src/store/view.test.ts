@@ -8,7 +8,6 @@ import {
   receiveZipCodeInvalid,
 } from '../actions';
 import { Action, ActionType } from '../actions/types';
-import { Response } from '../models/ResponseError';
 import { GoogleResponseError } from '../models/GoogleResponseError';
 import view, { ViewState } from './view';
 
@@ -21,9 +20,10 @@ function action(): Action {
 }
 
 function createResponse(): Response {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error not a full Response object
   return {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    json: (): Promise<any> => {
+    json: () => {
       return Promise.resolve({
         error: { message: 'foo' },
       });

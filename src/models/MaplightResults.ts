@@ -2,8 +2,8 @@
  * The type for an aggregate total record in `MaplightResults` record.
  */
 interface AggregateTotal {
-  contributions: number;
-  total_amount: number;
+  readonly contributions: number;
+  readonly total_amount: number;
 }
 
 /**

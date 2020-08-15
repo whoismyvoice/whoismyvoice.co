@@ -1,3 +1,4 @@
+import { Draft, produce } from 'immer';
 import { Action, ActionType } from '../actions/types';
 import {
   BioguideId,
@@ -6,18 +7,15 @@ import {
   Record as LegislatorRecord,
   Senator,
 } from '../models/Legislator';
-import icebox from './icebox';
 
-type LegislatorsById = {
-  [id: string]: LegislatorRecord;
-};
+type LegislatorsById = Readonly<Record<BioguideId, LegislatorRecord>>;
 
-export type OfficialsState = {
-  byBioguideId: Record<BioguideId, LegislatorRecord>;
-  house: CongressPerson[];
-  legislators: LegislatorRecord[];
-  senate: Senator[];
-};
+export interface OfficialsState {
+  readonly byBioguideId: LegislatorsById;
+  readonly house: CongressPerson[];
+  readonly legislators: LegislatorRecord[];
+  readonly senate: Senator[];
+}
 
 export const INITIAL_OFFICIALS: OfficialsState = {
   byBioguideId: {},
@@ -27,6 +25,38 @@ export const INITIAL_OFFICIALS: OfficialsState = {
 };
 
 /**
+ * Combine data from two `LegislatorRecord` instances into one.
+ * @param left to use as the base `LegislatorRecord`.
+ * @param right to be combined with `left`, values from `right` will overwrite
+ * values from `left`.
+ * @returns the combined `LegislatorRecord`.
+ */
+function mergeLegislator(
+  left: LegislatorRecord,
+  right: LegislatorRecord
+): LegislatorRecord {
+  return {
+    ...left,
+    ...right,
+    identifier: Legislator.getIdentifier(right),
+  };
+}
+
+/**
+ * Modifies `LegislatorsById` state by adding the given `LegislatorRecord`.
+ * @param state to be modified.
+ * @param official to be added.
+ * @returns a new copy of `LegislatorsById` state.
+ */
+const handleLegislator = produce(
+  (draft: Draft<LegislatorsById>, official: LegislatorRecord) => {
+    const id = Legislator.getBioguideId(official);
+    const current = draft[id];
+    draft[id] = mergeLegislator(current, official);
+  }
+);
+
+/**
  * Provide byBioguideId object for given action.
  * @param state the current object of ids as keys to official.
  * @param action to be processed.
@@ -34,22 +64,12 @@ export const INITIAL_OFFICIALS: OfficialsState = {
  * values.
  */
 function handleByBioguideId(
-  state: OfficialsState['byBioguideId'],
+  state: LegislatorsById,
   action: Action
-): OfficialsState['byBioguideId'] {
+): LegislatorsById {
   switch (action.type) {
     case ActionType.RECEIVE_OFFICIALS_ALL:
-      return action.officials.reduce(
-        (byBioguideId: LegislatorsById, official: LegislatorRecord) => ({
-          ...byBioguideId,
-          [Legislator.getBioguideId(official)]: {
-            ...byBioguideId[Legislator.getBioguideId(official)],
-            ...official,
-            identifier: Legislator.getIdentifier(official),
-          },
-        }),
-        state
-      );
+      return action.officials.reduce(handleLegislator, state);
     default:
       return state;
   }
@@ -83,39 +103,23 @@ function handleLegislators(
   }
 }
 
-function handle(
-  state: OfficialsState = INITIAL_OFFICIALS,
-  action: Action
-): OfficialsState {
+const handler = produce((draft: Draft<OfficialsState>, action: Action) => {
   switch (action.type) {
-    case ActionType.RECEIVE_OFFICES:
-      return {
-        ...state,
-        legislators: handleLegislators(state, action),
-      };
+    case ActionType.RECEIVE_OFFICES: // Intentional fall through
     case ActionType.RECEIVE_OFFICIALS_ALL:
-      return {
-        ...state,
-        byBioguideId: handleByBioguideId(state.byBioguideId, action),
-      };
+      draft.legislators = handleLegislators(draft, action);
+      draft.byBioguideId = handleByBioguideId(draft.byBioguideId, action);
+      break;
     case ActionType.RECEIVE_HOUSE:
-      return {
-        ...state,
-        house: action.congressPersons,
-      };
+      draft.house = action.congressPersons;
+      break;
     case ActionType.RECEIVE_SENATE:
-      return {
-        ...state,
-        senate: action.senators,
-      };
+      draft.senate = action.senators;
+      break;
     case ActionType.RESET_CURRENT:
-      return {
-        ...state,
-        legislators: handleLegislators(state, action),
-      };
-    default:
-      return state;
+      draft.legislators = [];
+      break;
   }
-}
+}, INITIAL_OFFICIALS);
 
-export default icebox(handle);
+export default handler;

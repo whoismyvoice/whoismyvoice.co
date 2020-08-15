@@ -1,8 +1,8 @@
 export interface Record {
-  name: string;
-  divisionId: string;
-  levels: string[];
-  roles: string[];
+  readonly name: string;
+  readonly divisionId: string;
+  readonly levels: string[];
+  readonly roles: string[];
 }
 
 const STATE_DIVISION_REGEX = /^state:(\w{2})/;

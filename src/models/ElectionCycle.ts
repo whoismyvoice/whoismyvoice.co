@@ -1,11 +1,11 @@
 export interface ElectionCycle {
-  year: string;
-  label: string;
+  readonly year: string;
+  readonly label: string;
 }
 
 interface ResponseElectionCycle {
-  ElectionCycle: string;
-  label: string;
+  readonly ElectionCycle: string;
+  readonly label: string;
 }
 
 export function compareElectionCycles(
