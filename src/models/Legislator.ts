@@ -1,6 +1,6 @@
 import { Contribution } from './Contribution';
 import { Record as Official } from './Official';
-import { isString } from 'lodash';
+import { isDefined } from '../util';
 
 export type TermType = 'sen' | 'rep';
 export enum Party {
@@ -139,7 +139,7 @@ export class Legislator implements Record {
   static getFullName(record: NameRecord): Identifier {
     return typeof record.official_full !== 'undefined'
       ? record.official_full
-      : [record.first, record.middle, record.last].filter(isString).join(' ');
+      : [record.first, record.middle, record.last].filter(isDefined).join(' ');
   }
 
   /**
