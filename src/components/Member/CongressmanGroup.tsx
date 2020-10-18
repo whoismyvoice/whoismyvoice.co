@@ -43,7 +43,7 @@ class CongressmanGroup extends React.Component<Props> {
           <MemberRibbon legislator={legislator} />
           <PaymentCounter
             numContributors={numContributors}
-            payment={`${totalContribution}`}
+            payment={totalContribution}
           />
           <div
             className="mobile-contact-options"

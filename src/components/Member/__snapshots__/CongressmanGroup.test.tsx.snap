@@ -42,7 +42,7 @@ exports[`renders correctly with a legislator 1`] = `
         Received
       </span>
       <span
-        className="counter__digit digit__margin"
+        className="counter__digit"
       >
         $
         <span
@@ -139,7 +139,7 @@ exports[`renders correctly with a legislator and contribution 1`] = `
         Received
       </span>
       <span
-        className="counter__digit digit__margin"
+        className="counter__digit"
       >
         $
         <span

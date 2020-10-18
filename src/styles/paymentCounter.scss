@@ -45,14 +45,6 @@
   }
 }
 
-.digit__margin {
-  margin-left: 12px;
-
-  @media screen and (max-width: $iphone6) {
-    margin-left: 0;
-  }
-}
-
 .counter__from {
   display: block;
   margin-left: 10px;

@@ -10,7 +10,7 @@ exports[`renders correctly payment=0 1`] = `
     Received
   </span>
   <span
-    className="counter__digit digit__margin"
+    className="counter__digit"
   >
     $
     <span
@@ -45,7 +45,7 @@ exports[`renders correctly payment=1000 1`] = `
     Received
   </span>
   <span
-    className="counter__digit digit__margin"
+    className="counter__digit"
   >
     $
     <span
@@ -56,6 +56,14 @@ exports[`renders correctly payment=1000 1`] = `
     className="counter__digit"
   >
     1
+    <span
+      className="counter__gradient-top"
+    />
+  </span>
+  <span
+    className="counter__digit"
+  >
+    ,
     <span
       className="counter__gradient-top"
     />
@@ -104,7 +112,7 @@ exports[`renders correctly payment=50000 1`] = `
     Received
   </span>
   <span
-    className="counter__digit digit__margin"
+    className="counter__digit"
   >
     $
     <span
@@ -123,6 +131,14 @@ exports[`renders correctly payment=50000 1`] = `
     className="counter__digit"
   >
     0
+    <span
+      className="counter__gradient-top"
+    />
+  </span>
+  <span
+    className="counter__digit"
+  >
+    ,
     <span
       className="counter__gradient-top"
     />

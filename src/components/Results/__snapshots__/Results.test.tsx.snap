@@ -69,7 +69,7 @@ Array [
             Received
           </span>
           <span
-            className="counter__digit digit__margin"
+            className="counter__digit"
           >
             $
             <span
@@ -200,7 +200,7 @@ Array [
             Received
           </span>
           <span
-            className="counter__digit digit__margin"
+            className="counter__digit"
           >
             $
             <span
@@ -290,7 +290,7 @@ Array [
             Received
           </span>
           <span
-            className="counter__digit digit__margin"
+            className="counter__digit"
           >
             $
             <span
@@ -384,7 +384,7 @@ Array [
             Received
           </span>
           <span
-            className="counter__digit digit__margin"
+            className="counter__digit"
           >
             $
             <span
@@ -510,7 +510,7 @@ Array [
             Received
           </span>
           <span
-            className="counter__digit digit__margin"
+            className="counter__digit"
           >
             $
             <span
@@ -600,7 +600,7 @@ Array [
             Received
           </span>
           <span
-            className="counter__digit digit__margin"
+            className="counter__digit"
           >
             $
             <span
