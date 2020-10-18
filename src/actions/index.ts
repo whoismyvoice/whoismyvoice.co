@@ -139,12 +139,7 @@ function extractSenators(document: Document): Senator[] {
  * response.
  */
 async function fetchXml<T>(url: string, extractor: Extractor<T>): Promise<T> {
-  const response = await fetch(url, {
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'text/xml',
-    },
-  });
+  const response = await fetch(url, { mode: 'cors' });
   if (response.ok) {
     const body = await response.text();
     // Parse XML document
