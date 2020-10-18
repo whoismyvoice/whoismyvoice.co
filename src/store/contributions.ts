@@ -1,17 +1,21 @@
 import { castDraft, Draft, produce } from 'immer';
 import { Action, ActionType } from '../actions/types';
-import { Contribution } from '../models/Contribution';
+import { Contribution, SectorContributions } from '../models/Contribution';
+import { BioguideId } from '../models/Legislator';
 
 type ContributionsByOrganization = Record<string, Contribution[]>;
+type ContributionsByLegislator = Record<BioguideId, SectorContributions>;
 
 export interface ContributionsState {
   readonly byOrganization: ContributionsByOrganization;
   readonly sectors: string[];
+  readonly sectorsByLegislator: ContributionsByLegislator;
 }
 
 export const INITIAL_CONTRIBUTIONS: ContributionsState = {
   byOrganization: {},
   sectors: [],
+  sectorsByLegislator: {},
 };
 
 /**
@@ -110,6 +114,23 @@ function handleSectors(state: string[], action: Action): string[] {
 }
 
 /**
+ * Update the lookups object of `ContributionsByLegislator` based on data in the given `action`.
+ * @param state representing the current view of the `ContributionsByLegislator`
+ * @param aciton to be processed
+ * @returns an update `ContributionsByLegislator` lookup "table"
+ */
+const handleSectorsByLegislator = produce(
+  (draft: Draft<ContributionsByLegislator>, action: Action) => {
+    if (action.type !== ActionType.RECEIVE_CONTRIBUTIONS_BY_SECTOR_DATA) {
+      return;
+    }
+    for (const group of action.contributions) {
+      draft[group.legislatorId] = castDraft(group);
+    }
+  }
+);
+
+/**
  * Modify the current state by adding the contribution represented by `action`
  * into the appropriate organization.
  * @param state
@@ -121,6 +142,10 @@ const handler = produce((draft: Draft<ContributionsState>, action: Action) => {
     handleByOrganization(draft.byOrganization, action)
   );
   draft.sectors = handleSectors(draft.sectors, action);
+  draft.sectorsByLegislator = handleSectorsByLegislator(
+    draft.sectorsByLegislator,
+    action
+  );
 }, INITIAL_CONTRIBUTIONS);
 
 export default handler;

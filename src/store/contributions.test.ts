@@ -103,7 +103,7 @@ describe('byOrganization', () => {
         receiveContribution('John Smith', 'SuperPAC', 1000)
       );
       initialState = contributions(
-        undefined,
+        initialState,
         receiveContribution('John Smith Jr.', 'SuperPAC', 2000)
       );
     });
@@ -159,5 +159,88 @@ describe('sectors', () => {
     );
     expect(state.sectors).toHaveLength(1);
     expect(state.sectors).toContain('Agribiz');
+  });
+});
+
+describe('sectorsByLegislator', () => {
+  it('is initially empty', () => {
+    const state = contributions(undefined, action());
+    expect(state.sectorsByLegislator).toEqual({});
+  });
+
+  it('is populated by SectorContributions', () => {
+    const state = contributions(
+      INITIAL_CONTRIBUTIONS,
+      receiveContributionsBySector([
+        {
+          legislatorId: 'FOO',
+          contributions: [{ amount: 300, sector: 'Agribiz', sectorCode: '2' }],
+        },
+      ])
+    );
+    const { sectorsByLegislator } = state;
+    expect(Object.keys(sectorsByLegislator)).toHaveLength(1);
+    expect(Object.keys(sectorsByLegislator)).toContain('FOO');
+    expect(sectorsByLegislator.FOO.contributions).toContainEqual({
+      amount: 300,
+      sector: 'Agribiz',
+      sectorCode: '2',
+    });
+  });
+
+  it('is not cleared by reset', () => {
+    const state = contributions(
+      {
+        ...INITIAL_CONTRIBUTIONS,
+        sectorsByLegislator: {
+          FOO: {
+            legislatorId: 'FOO',
+            contributions: [
+              { amount: 300, sector: 'Agribiz', sectorCode: '2' },
+            ],
+          },
+        },
+      },
+      reset()
+    );
+    expect(state.sectorsByLegislator.FOO).toBeDefined();
+  });
+
+  describe('existing state', () => {
+    const createInitialState = () => {
+      return contributions(
+        INITIAL_CONTRIBUTIONS,
+        receiveContributionsBySector([
+          {
+            legislatorId: 'FOO',
+            contributions: [
+              { amount: 300, sector: 'Agribiz', sectorCode: '2' },
+            ],
+          },
+        ])
+      );
+    };
+
+    it('overwrites existing contributions', () => {
+      const state = contributions(
+        createInitialState(),
+        receiveContributionsBySector([
+          {
+            legislatorId: 'FOO',
+            contributions: [
+              { amount: 500, sector: 'Agribiz', sectorCode: '2' },
+            ],
+          },
+        ])
+      );
+      const { sectorsByLegislator } = state;
+      expect(Object.keys(sectorsByLegislator)).toHaveLength(1);
+      expect(Object.keys(sectorsByLegislator)).toContain('FOO');
+      expect(sectorsByLegislator.FOO.contributions).toContainEqual({
+        amount: 500,
+        sector: 'Agribiz',
+        sectorCode: '2',
+      });
+    });
   });
 });
