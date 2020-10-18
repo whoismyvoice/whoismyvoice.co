@@ -7,11 +7,10 @@ import * as mixpanel from 'mixpanel-browser';
 import Results from '../../components/Results';
 import SearchGroup from '../../components/SearchGroup';
 import { StarTitle } from '../../components/Title/StarTitle';
-import { Contribution, SectorContributions } from '../../models/Contribution';
+import { SectorContributions } from '../../models/Contribution';
 import { Record as LegislatorType } from '../../models/Legislator';
 import { State } from '../../store';
 // Constants
-import { ORGANIZATION } from '../../constants';
 import { HOME_ROUTE } from '../../constants/mixpanel-events';
 // Assets
 import '../../styles/Home.scss';
@@ -21,7 +20,6 @@ interface Props {
   didSearch: boolean;
   numberHouse: number;
   numberRepresentatives: number;
-  contributions: Array<Contribution>;
   representatives: Array<LegislatorType>;
   sectorContributions: SectorContributions[];
 }
@@ -35,7 +33,6 @@ export function Home(props: Props): JSX.Element {
     didSearch,
     numberHouse,
     numberRepresentatives,
-    contributions,
     representatives,
     sectorContributions,
   } = props;
@@ -73,7 +70,6 @@ export function Home(props: Props): JSX.Element {
           <SearchGroup />
         </div>
         <Results
-          contributions={contributions}
           representatives={representatives}
           sectorContributions={sectorContributions}
         />
@@ -84,14 +80,11 @@ export function Home(props: Props): JSX.Element {
 
 function mapStateToProps(state: State): Props {
   const { address, contributions, officials, view } = state;
-  const organizationContributions =
-    contributions.byOrganization[ORGANIZATION] || [];
   return {
     currentPage: view.currentPage,
     didSearch: address.value !== undefined,
     numberRepresentatives: officials.legislators.length,
     numberHouse: officials.legislators.length - 2,
-    contributions: organizationContributions,
     representatives: officials.legislators,
     sectorContributions: Object.values(contributions.sectorsByLegislator),
   };

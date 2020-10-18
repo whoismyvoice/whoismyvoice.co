@@ -3,7 +3,7 @@ import * as React from 'react';
 // Components
 import TextButton, { Props as TextButtonProps } from '../Buttons/TextButton';
 import MemberResults from '../MemberResults';
-import { Contribution, SectorContributions } from '../../models/Contribution';
+import { SectorContributions } from '../../models/Contribution';
 import {
   Legislator,
   Record as LegislatorRecord,
@@ -20,7 +20,6 @@ export interface DispatchProps {
 }
 
 export interface Props extends StateProps, DispatchProps {
-  contributions: Array<Contribution>;
   representatives: Array<LegislatorRecord>;
   sectorContributions: SectorContributions[];
 }
@@ -29,7 +28,6 @@ export class Results extends React.Component<Props> {
   static defaultProps: Props = {
     didSearch: false,
     sectors: [],
-    contributions: [],
     representatives: [],
     sectorContributions: [],
     onBack: () => undefined,
@@ -44,7 +42,6 @@ export class Results extends React.Component<Props> {
 
   render(): JSX.Element {
     const {
-      contributions,
       onNext,
       representatives,
       sectors,
@@ -55,12 +52,8 @@ export class Results extends React.Component<Props> {
     }
     const calcButtonProps = this.getButtonProps.bind(this);
     const legislators = representatives.map((rep) => new Legislator(rep));
-    const getAmount = Legislator.getContributionAmount.bind(
-      this,
-      contributions
-    );
-    const firstRep = legislators.filter((rep) => getAmount(rep) > 0);
-    const secondRep = legislators.filter((rep) => getAmount(rep) === 0);
+    const firstRep = legislators.filter((rep) => rep.isSenator);
+    const secondRep = legislators.filter((rep) => rep.isRepresentative);
     const sections = [firstRep, secondRep]
       .filter((partition) => partition.length > 0)
       .map((partition, index) => (
@@ -70,7 +63,6 @@ export class Results extends React.Component<Props> {
           id={`section-${index + 1}`}
         >
           <MemberResults
-            contributions={contributions}
             legislators={partition}
             onNext={onNext}
             section={index + 1}

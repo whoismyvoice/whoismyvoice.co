@@ -5,14 +5,13 @@ import MemberImg from './MemberImg';
 import MemberRibbon from './MemberRibbon';
 import ActionButtons from './ActionButtons';
 import PaymentCounter from '../PaymentCounter';
-import { Contribution, SectorContributions } from '../../models/Contribution';
+import { SectorContributions } from '../../models/Contribution';
 import { Legislator } from '../../models/Legislator';
 
 // Styles
 import './../../styles/CongressmanGroup.scss';
 
 interface Props {
-  contributions: Array<Contribution>;
   legislators: Array<Legislator>;
   sectorContributions: SectorContributions[];
 }

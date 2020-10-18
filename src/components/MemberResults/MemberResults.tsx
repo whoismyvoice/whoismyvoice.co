@@ -2,7 +2,7 @@ import React from 'react';
 
 // Components
 import CongressmanGroup from '../Member/CongressmanGroup';
-import { Contribution, SectorContributions } from '../../models/Contribution';
+import { SectorContributions } from '../../models/Contribution';
 import { Legislator } from '../../models/Legislator';
 import { MemberResultsTitle } from '../MemberResultsTitle';
 // Constants
@@ -13,7 +13,6 @@ export interface DispatchProps {
 }
 
 export interface Props extends DispatchProps {
-  contributions: Array<Contribution>;
   legislators: Array<Legislator>;
   section: number;
   sectors: string[];
@@ -22,7 +21,6 @@ export interface Props extends DispatchProps {
 
 class MemberResults extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
-    contributions: [],
     legislators: [],
     onNext: () => undefined,
     section: 1,
@@ -34,7 +32,7 @@ class MemberResults extends React.Component<Props> {
       return <React.Fragment />;
     }
 
-    const { legislators, contributions, sectorContributions } = this.props;
+    const { legislators, sectorContributions } = this.props;
 
     const templateString = `Your <%= memberType %> received money from <span class="bold"><b><%= sectorCount %></b></span> different industries.`;
     const templateData = {
@@ -53,12 +51,10 @@ class MemberResults extends React.Component<Props> {
         />
         <CongressmanGroup
           legislators={groupOne}
-          contributions={contributions}
           sectorContributions={sectorContributions}
         />
         <CongressmanGroup
           legislators={groupTwo}
-          contributions={contributions}
           sectorContributions={sectorContributions}
         />
       </React.Fragment>
