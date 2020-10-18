@@ -1,5 +1,5 @@
 import { OutgoingHttpHeaders } from 'http';
-import { NowRequest, NowResponse } from '@now/node';
+import { NowRequest, NowResponse } from '@vercel/node';
 import { encodeParameter, execute, isEmpty } from './_utils';
 
 const DEFAULT_RESPONSE_HEADERS: OutgoingHttpHeaders = {
