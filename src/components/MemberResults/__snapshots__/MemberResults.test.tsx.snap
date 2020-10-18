@@ -9,7 +9,7 @@ Array [
       className="title-component__description"
       dangerouslySetInnerHTML={
         Object {
-          "__html": "Your Senator received money from <span class=\\"bold\\"><b>0</b></span> different industries.",
+          "__html": "Your <span class=\\"bold\\"><b>Senator</b></span>",
         }
       }
     />
@@ -125,7 +125,7 @@ Array [
       className="title-component__description"
       dangerouslySetInnerHTML={
         Object {
-          "__html": "Your Senators & Representative received money from <span class=\\"bold\\"><b>0</b></span> different industries.",
+          "__html": "Your <span class=\\"bold\\"><b>Senators & Representative</b></span>",
         }
       }
     />
@@ -420,7 +420,7 @@ Array [
       className="title-component__description"
       dangerouslySetInnerHTML={
         Object {
-          "__html": "Your Senators received money from <span class=\\"bold\\"><b>0</b></span> different industries.",
+          "__html": "Your <span class=\\"bold\\"><b>Senators</b></span>",
         }
       }
     />

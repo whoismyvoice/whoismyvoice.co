@@ -5,8 +5,6 @@ import CongressmanGroup from '../Member/CongressmanGroup';
 import { SectorContributions } from '../../models/Contribution';
 import { Legislator } from '../../models/Legislator';
 import { MemberResultsTitle } from '../MemberResultsTitle';
-// Constants
-import { ORGANIZATION_DISPLAY } from '../../constants';
 
 export interface DispatchProps {
   onNext?: (event: React.MouseEvent<HTMLElement>) => void;
@@ -34,9 +32,8 @@ class MemberResults extends React.Component<Props> {
 
     const { legislators, sectorContributions } = this.props;
 
-    const templateString = `Your <%= memberType %> received money from <span class="bold"><b><%= sectorCount %></b></span> different industries.`;
+    const templateString = `Your <span class="bold"><b><%= memberType %></b></span>`;
     const templateData = {
-      organizationName: ORGANIZATION_DISPLAY,
       sectorCount: this.props.sectors.length,
     };
     const groupOne = legislators.slice(0, 2);
