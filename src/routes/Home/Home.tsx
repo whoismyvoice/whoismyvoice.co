@@ -11,7 +11,7 @@ import { Contribution } from '../../models/Contribution';
 import { Record as LegislatorType } from '../../models/Legislator';
 import { State } from '../../store';
 // Constants
-import { ORGANIZATION, ORGANIZATION_DISPLAY } from '../../constants';
+import { ORGANIZATION } from '../../constants';
 import { HOME_ROUTE } from '../../constants/mixpanel-events';
 // Assets
 import '../../styles/Home.scss';
@@ -54,9 +54,9 @@ export function Home(props: Props): JSX.Element {
   );
 
   // tslint:disable
-  const templateString = `Did my representatives accept campaign contributions <span class="strike-out">from <%= organizationName %>?</span>`;
+  const templateString = `Learn about who funds <span class="strike-out">your representatives!</span>`;
   // tslint:enable
-  const templateData = { organizationName: ORGANIZATION_DISPLAY };
+  const templateData = {};
   return (
     <div className={containerClasses}>
       <div className="overlay">
