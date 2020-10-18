@@ -44,15 +44,15 @@ export class Results extends React.Component<Props> {
       return <React.Fragment />;
     }
     const calcButtonProps = this.getButtonProps.bind(this);
-    const legislators = representatives.map(rep => new Legislator(rep));
+    const legislators = representatives.map((rep) => new Legislator(rep));
     const getAmount = Legislator.getContributionAmount.bind(
       this,
       contributions
     );
-    const firstRep = legislators.filter(rep => getAmount(rep) > 0);
-    const secondRep = legislators.filter(rep => getAmount(rep) === 0);
+    const firstRep = legislators.filter((rep) => getAmount(rep) > 0);
+    const secondRep = legislators.filter((rep) => getAmount(rep) === 0);
     const sections = [firstRep, secondRep]
-      .filter(partition => partition.length > 0)
+      .filter((partition) => partition.length > 0)
       .map((partition, index) => (
         <div
           key={partition.reduce(
