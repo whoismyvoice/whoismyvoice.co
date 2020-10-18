@@ -11,6 +11,7 @@ import {
 
 export interface StateProps {
   didSearch?: boolean;
+  sectors: string[];
 }
 
 export interface DispatchProps {
@@ -26,6 +27,7 @@ export interface Props extends StateProps, DispatchProps {
 export class Results extends React.Component<Props> {
   static defaultProps: Props = {
     didSearch: false,
+    sectors: [],
     contributions: [],
     representatives: [],
     onBack: () => undefined,
@@ -39,7 +41,7 @@ export class Results extends React.Component<Props> {
   }
 
   render(): JSX.Element {
-    const { contributions, onNext, representatives } = this.props;
+    const { contributions, onNext, representatives, sectors } = this.props;
     if (representatives.length === 0) {
       return <React.Fragment />;
     }
@@ -67,7 +69,7 @@ export class Results extends React.Component<Props> {
             legislators={partition}
             onNext={onNext}
             section={index + 1}
-            sectors={[]}
+            sectors={sectors}
           />
         </div>
       ));
