@@ -22,6 +22,6 @@ export interface SectorContribution {
  * Associates a legislatorId with a list of `SectorContribution` records.
  */
 export interface SectorContributions {
-  readonly legislatorId: string;
+  readonly legislatorId: BioguideId;
   readonly contributions: Readonly<SectorContribution[]>;
 }
