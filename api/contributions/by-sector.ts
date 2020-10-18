@@ -31,7 +31,8 @@ async function getContributions(request: NowRequest): Promise<Response> {
   const apiKey = `apikey=${OPEN_SECRETS_API_KEY}`;
   const candidateId = encodeParameter('cid', id);
   const apiMethod = encodeParameter('method', METHOD);
-  const params = `${apiMethod}&${apiKey}&${candidateId}`;
+  const electionCycle = encodeParameter('cycle', cycle);
+  const params = `${apiMethod}&${apiKey}&${candidateId}&${electionCycle}`;
   const url = `${BASE_URL}?${params}`;
   return fetch(url, 'text/xml');
 }
