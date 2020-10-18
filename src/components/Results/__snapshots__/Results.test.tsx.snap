@@ -23,7 +23,7 @@ Array [
         className="title-component__description"
         dangerouslySetInnerHTML={
           Object {
-            "__html": "Your Senator <span class=\\"bold\\"><b>accepted money</b></span> <span class=\\"strike-out\\">from the NRA</span> in their recent election cycles.",
+            "__html": "Your Senator received money from <span class=\\"bold\\"><b>0</b></span> different industries.",
           }
         }
       />
@@ -177,7 +177,7 @@ Array [
         className="title-component__description"
         dangerouslySetInnerHTML={
           Object {
-            "__html": "Your Senators & Representative <span class=\\"bold\\"><b>accepted money</b></span> <span class=\\"strike-out\\">from the NRA</span> in their recent election cycles.",
+            "__html": "Your Senators & Representative received money from <span class=\\"bold\\"><b>0</b></span> different industries.",
           }
         }
       />
@@ -556,7 +556,7 @@ Array [
         className="title-component__description"
         dangerouslySetInnerHTML={
           Object {
-            "__html": "Your Senators <span class=\\"bold\\"><b>accepted money</b></span> <span class=\\"strike-out\\">from the NRA</span> in their recent election cycles.",
+            "__html": "Your Senators received money from <span class=\\"bold\\"><b>0</b></span> different industries.",
           }
         }
       />

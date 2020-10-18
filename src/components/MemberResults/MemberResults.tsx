@@ -16,10 +16,11 @@ export interface Props extends DispatchProps {
   contributions: Array<Contribution>;
   legislators: Array<Legislator>;
   section: number;
+  sectors: string[];
 }
 
 class MemberResults extends React.Component<Props> {
-  static defaultProps: Props = {
+  static defaultProps: Partial<Props> = {
     contributions: [],
     legislators: [],
     onNext: () => undefined,
@@ -33,28 +34,18 @@ class MemberResults extends React.Component<Props> {
 
     const { legislators, contributions } = this.props;
 
-    const yayTemplateString = `Your <%= memberType %> <span class="bold"><b>accepted money</b></span> <span class="strike-out">from <%= organizationName %></span> in their recent election cycles.`;
-    const nayTemplateString = `Your <%= memberType %> <span class="bold"><b>did not</b></span> take any money <span class="strike-out">from <%= organizationName %></span> in their recent election cycles.`;
+    const templateString = `Your <%= memberType %> received money from <span class="bold"><b><%= sectorCount %></b></span> different industries.`;
     const templateData = {
       organizationName: ORGANIZATION_DISPLAY,
+      sectorCount: this.props.sectors.length,
     };
-    const getAmount = Legislator.getContributionAmount.bind(
-      this,
-      contributions
-    );
-    const paymentAmount = legislators.reduce(
-      (amount, legislator) => amount + getAmount(legislator),
-      0
-    );
     const groupOne = legislators.slice(0, 2);
     const groupTwo = legislators.slice(2);
     return (
       <React.Fragment>
         <MemberResultsTitle
           className="title-component--results"
-          templateString={
-            paymentAmount > 0 ? yayTemplateString : nayTemplateString
-          }
+          templateString={templateString}
           templateData={templateData}
           legislators={legislators}
         />

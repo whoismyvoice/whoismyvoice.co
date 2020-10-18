@@ -67,6 +67,7 @@ export class Results extends React.Component<Props> {
             legislators={partition}
             onNext={onNext}
             section={index + 1}
+            sectors={[]}
           />
         </div>
       ));
