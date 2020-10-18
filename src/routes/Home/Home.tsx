@@ -7,7 +7,6 @@ import * as mixpanel from 'mixpanel-browser';
 import Results from '../../components/Results';
 import SearchGroup from '../../components/SearchGroup';
 import { StarTitle } from '../../components/Title/StarTitle';
-import { SectorContributions } from '../../models/Contribution';
 import { Record as LegislatorType } from '../../models/Legislator';
 import { State } from '../../store';
 // Constants
@@ -21,7 +20,7 @@ interface Props {
   numberHouse: number;
   numberRepresentatives: number;
   representatives: Array<LegislatorType>;
-  sectorContributions: SectorContributions[];
+  sectorContributions: State['contributions']['sectorsByLegislator'];
 }
 
 export function Home(props: Props): JSX.Element {
@@ -86,7 +85,7 @@ function mapStateToProps(state: State): Props {
     numberRepresentatives: officials.legislators.length,
     numberHouse: officials.legislators.length - 2,
     representatives: officials.legislators,
-    sectorContributions: Object.values(contributions.sectorsByLegislator),
+    sectorContributions: contributions.sectorsByLegislator,
   };
 }
 

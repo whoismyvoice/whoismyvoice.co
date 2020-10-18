@@ -3,7 +3,7 @@ import React from 'react';
 // Components
 import CongressmanGroup from '../Member/CongressmanGroup';
 import { SectorContributions } from '../../models/Contribution';
-import { Legislator } from '../../models/Legislator';
+import { BioguideId, Legislator } from '../../models/Legislator';
 import { MemberResultsTitle } from '../MemberResultsTitle';
 
 export interface DispatchProps {
@@ -14,7 +14,7 @@ export interface Props extends DispatchProps {
   legislators: Array<Legislator>;
   section: number;
   sectors: string[];
-  sectorContributions: SectorContributions[];
+  sectorContributions: Record<BioguideId, SectorContributions>;
 }
 
 class MemberResults extends React.Component<Props> {
@@ -22,7 +22,7 @@ class MemberResults extends React.Component<Props> {
     legislators: [],
     onNext: () => undefined,
     section: 1,
-    sectorContributions: [],
+    sectorContributions: {},
   };
 
   render(): JSX.Element {

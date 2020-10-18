@@ -5,6 +5,7 @@ import TextButton, { Props as TextButtonProps } from '../Buttons/TextButton';
 import MemberResults from '../MemberResults';
 import { SectorContributions } from '../../models/Contribution';
 import {
+  BioguideId,
   Legislator,
   Record as LegislatorRecord,
 } from '../../models/Legislator';
@@ -21,7 +22,7 @@ export interface DispatchProps {
 
 export interface Props extends StateProps, DispatchProps {
   representatives: Array<LegislatorRecord>;
-  sectorContributions: SectorContributions[];
+  sectorContributions: Record<BioguideId, SectorContributions>;
 }
 
 export class Results extends React.Component<Props> {
@@ -29,7 +30,7 @@ export class Results extends React.Component<Props> {
     didSearch: false,
     sectors: [],
     representatives: [],
-    sectorContributions: [],
+    sectorContributions: {},
     onBack: () => undefined,
     onNext: () => undefined,
   };
