@@ -3,7 +3,7 @@ import * as React from 'react';
 // Components
 import TextButton, { Props as TextButtonProps } from '../Buttons/TextButton';
 import MemberResults from '../MemberResults';
-import { Contribution } from '../../models/Contribution';
+import { Contribution, SectorContributions } from '../../models/Contribution';
 import {
   Legislator,
   Record as LegislatorRecord,
@@ -22,6 +22,7 @@ export interface DispatchProps {
 export interface Props extends StateProps, DispatchProps {
   contributions: Array<Contribution>;
   representatives: Array<LegislatorRecord>;
+  sectorContributions: SectorContributions[];
 }
 
 export class Results extends React.Component<Props> {
@@ -30,6 +31,7 @@ export class Results extends React.Component<Props> {
     sectors: [],
     contributions: [],
     representatives: [],
+    sectorContributions: [],
     onBack: () => undefined,
     onNext: () => undefined,
   };
@@ -41,7 +43,13 @@ export class Results extends React.Component<Props> {
   }
 
   render(): JSX.Element {
-    const { contributions, onNext, representatives, sectors } = this.props;
+    const {
+      contributions,
+      onNext,
+      representatives,
+      sectors,
+      sectorContributions,
+    } = this.props;
     if (representatives.length === 0) {
       return <React.Fragment />;
     }
@@ -57,10 +65,7 @@ export class Results extends React.Component<Props> {
       .filter((partition) => partition.length > 0)
       .map((partition, index) => (
         <div
-          key={partition.reduce(
-            (key, legislator) => key + legislator.identifier,
-            ''
-          )}
+          key={partition.map((legislator) => legislator.identifier).join('')}
           className="section-block"
           id={`section-${index + 1}`}
         >
@@ -70,6 +75,7 @@ export class Results extends React.Component<Props> {
             onNext={onNext}
             section={index + 1}
             sectors={sectors}
+            sectorContributions={sectorContributions}
           />
         </div>
       ));

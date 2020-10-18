@@ -1,11 +1,10 @@
 import * as React from 'react';
 
-// Constants
-import { ORGANIZATION_DISPLAY } from '../../constants';
 // Style
 import '../../styles/paymentCounter.scss';
 
 interface Props {
+  numContributors: number;
   payment: string;
 }
 
@@ -23,13 +22,15 @@ class PaymentCounter extends React.Component<Props> {
 
     return (
       <span className="member__payment">
-        <span className="counter__accept">Accepted</span>
+        <span className="counter__accept">Received</span>
         <span className="counter__digit digit__margin">
           $
           <span className="counter__gradient-top" />
         </span>
         {digits}
-        <span className="counter__from">from {ORGANIZATION_DISPLAY}</span>
+        <span className="counter__from">
+          from their top {this.props.numContributors} contributing industries
+        </span>
       </span>
     );
   }

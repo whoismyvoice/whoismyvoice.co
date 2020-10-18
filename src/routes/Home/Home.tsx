@@ -7,7 +7,7 @@ import * as mixpanel from 'mixpanel-browser';
 import Results from '../../components/Results';
 import SearchGroup from '../../components/SearchGroup';
 import { StarTitle } from '../../components/Title/StarTitle';
-import { Contribution } from '../../models/Contribution';
+import { Contribution, SectorContributions } from '../../models/Contribution';
 import { Record as LegislatorType } from '../../models/Legislator';
 import { State } from '../../store';
 // Constants
@@ -23,6 +23,7 @@ interface Props {
   numberRepresentatives: number;
   contributions: Array<Contribution>;
   representatives: Array<LegislatorType>;
+  sectorContributions: SectorContributions[];
 }
 
 export function Home(props: Props): JSX.Element {
@@ -36,6 +37,7 @@ export function Home(props: Props): JSX.Element {
     numberRepresentatives,
     contributions,
     representatives,
+    sectorContributions,
   } = props;
   useEffect(() => {
     document.body.classList[didSearch ? 'add' : 'remove']('orange-bg');
@@ -54,7 +56,7 @@ export function Home(props: Props): JSX.Element {
   );
 
   // tslint:disable
-  const templateString = `Learn about who funds <span class="strike-out">your representatives!</span>`;
+  const templateString = `Learn about who funds the campaigns of <span class="strike-out">your representatives!</span>`;
   // tslint:enable
   const templateData = {};
   return (
@@ -73,6 +75,7 @@ export function Home(props: Props): JSX.Element {
         <Results
           contributions={contributions}
           representatives={representatives}
+          sectorContributions={sectorContributions}
         />
       </div>
     </div>
@@ -90,6 +93,7 @@ function mapStateToProps(state: State): Props {
     numberHouse: officials.legislators.length - 2,
     contributions: organizationContributions,
     representatives: officials.legislators,
+    sectorContributions: Object.values(contributions.sectorsByLegislator),
   };
 }
 

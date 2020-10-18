@@ -2,7 +2,7 @@ import React from 'react';
 
 // Components
 import CongressmanGroup from '../Member/CongressmanGroup';
-import { Contribution } from '../../models/Contribution';
+import { Contribution, SectorContributions } from '../../models/Contribution';
 import { Legislator } from '../../models/Legislator';
 import { MemberResultsTitle } from '../MemberResultsTitle';
 // Constants
@@ -17,6 +17,7 @@ export interface Props extends DispatchProps {
   legislators: Array<Legislator>;
   section: number;
   sectors: string[];
+  sectorContributions: SectorContributions[];
 }
 
 class MemberResults extends React.Component<Props> {
@@ -25,6 +26,7 @@ class MemberResults extends React.Component<Props> {
     legislators: [],
     onNext: () => undefined,
     section: 1,
+    sectorContributions: [],
   };
 
   render(): JSX.Element {
@@ -32,7 +34,7 @@ class MemberResults extends React.Component<Props> {
       return <React.Fragment />;
     }
 
-    const { legislators, contributions } = this.props;
+    const { legislators, contributions, sectorContributions } = this.props;
 
     const templateString = `Your <%= memberType %> received money from <span class="bold"><b><%= sectorCount %></b></span> different industries.`;
     const templateData = {
@@ -52,10 +54,12 @@ class MemberResults extends React.Component<Props> {
         <CongressmanGroup
           legislators={groupOne}
           contributions={contributions}
+          sectorContributions={sectorContributions}
         />
         <CongressmanGroup
           legislators={groupTwo}
           contributions={contributions}
+          sectorContributions={sectorContributions}
         />
       </React.Fragment>
     );

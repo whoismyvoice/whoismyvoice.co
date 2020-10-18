@@ -7,7 +7,7 @@ exports[`renders correctly payment=0 1`] = `
   <span
     className="counter__accept"
   >
-    Accepted
+    Received
   </span>
   <span
     className="counter__digit digit__margin"
@@ -28,8 +28,9 @@ exports[`renders correctly payment=0 1`] = `
   <span
     className="counter__from"
   >
-    from 
-    the NRA
+    from their top 
+    5
+     contributing industries
   </span>
 </span>
 `;
@@ -41,7 +42,7 @@ exports[`renders correctly payment=1000 1`] = `
   <span
     className="counter__accept"
   >
-    Accepted
+    Received
   </span>
   <span
     className="counter__digit digit__margin"
@@ -86,8 +87,9 @@ exports[`renders correctly payment=1000 1`] = `
   <span
     className="counter__from"
   >
-    from 
-    the NRA
+    from their top 
+    5
+     contributing industries
   </span>
 </span>
 `;
@@ -99,7 +101,7 @@ exports[`renders correctly payment=50000 1`] = `
   <span
     className="counter__accept"
   >
-    Accepted
+    Received
   </span>
   <span
     className="counter__digit digit__margin"
@@ -152,8 +154,9 @@ exports[`renders correctly payment=50000 1`] = `
   <span
     className="counter__from"
   >
-    from 
-    the NRA
+    from their top 
+    10
+     contributing industries
   </span>
 </span>
 `;
