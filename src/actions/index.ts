@@ -159,14 +159,17 @@ async function fetchXml<T>(url: string, extractor: Extractor<T>): Promise<T> {
 async function fetchContributionsBySector(
   legislator: LegislatorRecord
 ): Promise<SectorContributions> {
-  const opensecretsId = legislator.id.opensecrets;
-  const baseUrl = '/api/contributions/by-sector';
   const electionCycle = await ELECTION_CYCLE;
+  const apiKey = encodeURIComponent(
+    `${process.env.REACT_APP_OPEN_SECRETS_API_KEY}`
+  );
+  const candidateId = encodeURIComponent(legislator.id.opensecrets);
+  const apiMethod = encodeURIComponent('candSector');
   const encodedCycle = encodeURIComponent(electionCycle.split('|')[0]);
-  const encodedId = encodeURIComponent(opensecretsId);
-  const params = `cycle=${encodedCycle}&id=${encodedId}`;
-  const url = `${baseUrl}?${params}`;
-  return fetchXml(url, (doc) => createSectorContributions(legislator, doc));
+  const params = `method=${apiMethod}&apikey=${apiKey}&cid=${candidateId}&cycle=${encodedCycle}`;
+  return fetchXml(`https://www.opensecrets.org/api/?${params}`, (doc) =>
+    createSectorContributions(legislator, doc)
+  );
 }
 
 /**
