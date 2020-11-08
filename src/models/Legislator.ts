@@ -1,4 +1,3 @@
-import { Contribution } from './Contribution';
 import { Record as Official } from './Official';
 import { isDefined } from '../util';
 
@@ -160,33 +159,6 @@ export class Legislator implements Record {
       identifier = record.identifier || 'unknown';
     }
     return identifier;
-  }
-
-  /**
-   * Retrieve the first contribution out of `contributions` that matches the identifier
-   * of the given legislator.
-   * @param {Array<ContributionRecord>} contributions records to be searched.
-   * @param {Record|Legislator} legislator instance or record for which contributions
-   *    will be searched.
-   * @returns `-1` if no records from `contributions` match `legislator`, `amount`
-   *    property of the contribution record otherwise.
-   */
-  static getContributionAmount(
-    contributions: Array<Contribution>,
-    legislator: Record | Legislator
-  ): number {
-    const id =
-      legislator instanceof Legislator
-        ? legislator.bioguide
-        : Legislator.getBioguideId(legislator);
-    const contribution = contributions.find(
-      (record) => record.legislatorId === id
-    );
-    if (contribution !== undefined) {
-      return contribution.amount;
-    } else {
-      return -1;
-    }
   }
 
   /**

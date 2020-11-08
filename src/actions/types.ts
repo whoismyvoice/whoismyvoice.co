@@ -1,5 +1,5 @@
 import { Dispatch as ReduxDispatch } from 'redux';
-import { Contribution, SectorContributions } from '../models/Contribution';
+import { SectorContributions } from '../models/Contribution';
 import {
   CongressPerson,
   Record as Legislator,
@@ -52,11 +52,6 @@ export interface ContributionDataAction {
   amount: number;
   legislatorId: string;
   organization: string;
-}
-
-export interface ContributionsDataAction {
-  type: ActionType.RECEIVE_CONTRIBUTIONS_DATA;
-  contributions: Array<Contribution>;
 }
 
 export interface ContributionsBySectorDataAction {
@@ -131,7 +126,6 @@ export interface GpsAction {
 export type Action =
   | AddressAction
   | ContributionDataAction
-  | ContributionsDataAction
   | ContributionsBySectorDataAction
   | HouseAction
   | LegislatorsAction

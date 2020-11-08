@@ -1,15 +1,6 @@
 import { BioguideId } from './Legislator';
 
 /**
- * Defines the type alias for a `Contribution` record.
- */
-export interface Contribution {
-  readonly amount: number;
-  readonly legislatorId: BioguideId;
-  readonly organization: string;
-}
-
-/**
  * Defines a record representing a contribution from a specified sector.
  */
 export interface SectorContribution {
