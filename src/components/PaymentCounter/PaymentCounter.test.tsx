@@ -2,8 +2,6 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import { PaymentCounter } from './PaymentCounter';
 
-jest.mock('mixpanel-browser');
-
 it('renders correctly payment=0', () => {
   const tree = renderer.create(<PaymentCounter payment={0} />).toJSON();
   expect(tree).toMatchSnapshot();

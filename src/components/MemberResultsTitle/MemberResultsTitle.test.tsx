@@ -4,8 +4,6 @@ import { MemberResultsTitle, getMemberType } from './MemberResultsTitle';
 import { createLegislator, createTerm } from '../../models/Legislator.test';
 import { Legislator, TermRecord } from '../../models/Legislator';
 
-jest.mock('mixpanel-browser');
-
 function createLegislatorWithTerm(
   name: string,
   terms: Array<TermRecord>

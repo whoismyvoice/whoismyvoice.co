@@ -3,8 +3,6 @@ import * as ReactDOM from 'react-dom';
 import * as renderer from 'react-test-renderer';
 import TextButton from './TextButton';
 
-jest.mock('mixpanel-browser');
-
 const props = {
   link: 'link',
   text: 'text',

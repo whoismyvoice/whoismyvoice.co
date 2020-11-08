@@ -11,8 +11,6 @@ import { Action, ActionType } from '../actions/types';
 import { Office } from '../models/Office';
 import { createCivicOfficeRecord } from '../models/Office.test';
 
-jest.mock('mixpanel-browser');
-
 function createLegislator(name: string, photoUrl?: string): LegislatorRecord {
   return {
     bio: {

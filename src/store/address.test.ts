@@ -3,8 +3,6 @@ import { receiveAddress, receiveZipCode, reset } from '../actions';
 import { Action, ActionType } from '../actions/types';
 import address from './address';
 
-jest.mock('mixpanel-browser');
-
 function action(): Action {
   return {
     type: ActionType.OTHER,

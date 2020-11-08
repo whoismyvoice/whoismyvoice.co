@@ -1,5 +1,4 @@
 import unfetch from 'isomorphic-unfetch';
-import * as mixpanel from 'mixpanel-browser';
 
 import { ELECTION_CYCLE } from '../constants';
 import { Action, ActionType, Dispatch } from './types';
@@ -225,7 +224,6 @@ export function navigateLegislators(page: 1 | 2): Action {
  * @returns action.
  */
 export function receiveAddress(address: string): Action {
-  mixpanel.track(ActionType.RECEIVE_ADDRESS);
   return {
     type: ActionType.RECEIVE_ADDRESS,
     address,
@@ -261,9 +259,6 @@ export function receiveContribution(
 export function receiveContributionsBySector(
   contributions: SectorContributions[]
 ): Action {
-  mixpanel.track(ActionType.RECEIVE_CONTRIBUTION_DATA, {
-    count: contributions.length,
-  });
   return {
     type: ActionType.RECEIVE_CONTRIBUTIONS_BY_SECTOR_DATA,
     contributions: contributions,
@@ -304,7 +299,6 @@ export function receiveOffices(offices: Office[]): Action {
 export function receiveOfficialsAll(
   officials: Array<LegislatorRecord>
 ): Action {
-  mixpanel.track(ActionType.RECEIVE_OFFICIALS_ALL);
   return {
     type: ActionType.RECEIVE_OFFICIALS_ALL,
     officials,
@@ -319,9 +313,6 @@ export function receiveOfficialsAll(
 export async function receiveOfficesError(
   error: GoogleResponseError
 ): Promise<Action> {
-  mixpanel.track(ActionType.RECEIVE_OFFICES_ERROR, {
-    message: error.message,
-  });
   return {
     type: ActionType.RECEIVE_OFFICES_ERROR,
     code: await error.code,
@@ -371,7 +362,6 @@ export function receiveZipCodeInvalid(): Action {
  * @returns action.
  */
 export function reset(): Action {
-  mixpanel.track(ActionType.RESET_CURRENT);
   return {
     type: ActionType.RESET_CURRENT,
   };
@@ -382,7 +372,6 @@ export function reset(): Action {
  * @returns action.
  */
 export function toggleMenu(): Action {
-  mixpanel.track(ActionType.TOGGLE_MENU);
   return {
     type: ActionType.TOGGLE_MENU,
   };

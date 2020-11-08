@@ -3,8 +3,6 @@ import * as ReactDOM from 'react-dom';
 import * as renderer from 'react-test-renderer';
 import { SearchAddress } from './SearchAddress';
 
-jest.mock('mixpanel-browser');
-
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<SearchAddress isStreetAddressNeeded={false} />, div);

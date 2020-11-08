@@ -5,8 +5,6 @@ import MemberRibbon from './MemberRibbon';
 import { createLegislator } from '../../models/Legislator.test';
 import { Legislator } from '../../models/Legislator';
 
-jest.mock('mixpanel-browser');
-
 const props = {
   legislator: new Legislator(createLegislator('John Smith')),
 };

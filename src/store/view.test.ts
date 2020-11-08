@@ -11,8 +11,6 @@ import { Action, ActionType } from '../actions/types';
 import { GoogleResponseError } from '../models/GoogleResponseError';
 import view, { ViewState } from './view';
 
-jest.mock('mixpanel-browser');
-
 function action(): Action {
   return {
     type: ActionType.OTHER,

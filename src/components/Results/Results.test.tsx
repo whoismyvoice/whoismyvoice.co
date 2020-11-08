@@ -3,8 +3,6 @@ import * as renderer from 'react-test-renderer';
 import { Results } from './Results';
 import { createLegislator } from '../../models/Legislator.test';
 
-jest.mock('mixpanel-browser');
-
 it('renders correctly with empty props', () => {
   const props = {
     representatives: [],

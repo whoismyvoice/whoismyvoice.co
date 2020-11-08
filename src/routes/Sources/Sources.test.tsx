@@ -4,8 +4,6 @@ import * as renderer from 'react-test-renderer';
 import { ElectionCycle } from '../../models/ElectionCycle';
 import Sources from './Sources';
 
-jest.mock('mixpanel-browser');
-
 const cycles: ElectionCycle[] = [
   { year: '2018', label: '2017-2018' },
   { year: '2020', label: '2019-2020' },

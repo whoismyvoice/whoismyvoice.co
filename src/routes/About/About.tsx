@@ -1,7 +1,4 @@
 import * as React from 'react';
-import * as mixpanel from 'mixpanel-browser';
-
-import { ABOUT_ROUTE } from '../../constants/mixpanel-events';
 
 // Components
 import FadedBG from '../../components/FadedBg';
@@ -11,10 +8,6 @@ import '../../styles/About.scss';
 import siberiaLogo from '../../img/siberia_logo.png';
 
 class About extends React.Component {
-  componentDidMount(): void {
-    mixpanel.track(...ABOUT_ROUTE);
-  }
-
   render(): JSX.Element {
     return (
       <div className="page-block light-white">
