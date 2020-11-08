@@ -4,7 +4,7 @@ import * as React from 'react';
 import MemberImg from './MemberImg';
 import MemberRibbon from './MemberRibbon';
 import ActionButtons from './ActionButtons';
-import PaymentCounter from '../PaymentCounter';
+import { PaymentCounter } from '../PaymentCounter';
 import { SectorContributions } from '../../models/Contribution';
 import { BioguideId, Legislator } from '../../models/Legislator';
 
@@ -19,7 +19,6 @@ interface Props {
 class CongressmanGroup extends React.Component<Props> {
   static defaultProps = {
     legislators: [],
-    contributions: [],
     sectorContributions: {},
   };
 
@@ -28,7 +27,6 @@ class CongressmanGroup extends React.Component<Props> {
     const members = legislators.map((legislator, idx) => {
       const contributionToLegislator =
         sectorContributions[legislator.bioguide]?.contributions || [];
-      const numContributors = contributionToLegislator.length;
       const totalContribution = contributionToLegislator
         .map((contribution) => contribution.amount)
         .reduce((total, amount) => total + amount, 0);
@@ -36,10 +34,7 @@ class CongressmanGroup extends React.Component<Props> {
         <div className="member-container" key={legislator.identifier}>
           <MemberImg legislator={legislator} repNumber={idx + 1} />
           <MemberRibbon legislator={legislator} />
-          <PaymentCounter
-            numContributors={numContributors}
-            payment={totalContribution}
-          />
+          <PaymentCounter payment={totalContribution} />
           <div
             className="mobile-contact-options"
             id={`legislator-contact-${idx}`}

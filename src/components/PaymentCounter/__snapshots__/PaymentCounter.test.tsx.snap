@@ -28,9 +28,7 @@ exports[`renders correctly payment=0 1`] = `
   <span
     className="counter__from"
   >
-    from their top 
-    5
-     contributing industries
+    from their top contributing industries
   </span>
 </span>
 `;
@@ -95,9 +93,7 @@ exports[`renders correctly payment=1000 1`] = `
   <span
     className="counter__from"
   >
-    from their top 
-    5
-     contributing industries
+    from their top contributing industries
   </span>
 </span>
 `;
@@ -170,9 +166,7 @@ exports[`renders correctly payment=50000 1`] = `
   <span
     className="counter__from"
   >
-    from their top 
-    10
-     contributing industries
+    from their top contributing industries
   </span>
 </span>
 `;

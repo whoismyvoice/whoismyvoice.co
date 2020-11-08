@@ -60,9 +60,7 @@ exports[`renders correctly with a legislator 1`] = `
       <span
         className="counter__from"
       >
-        from their top 
-        0
-         contributing industries
+        from their top contributing industries
       </span>
     </span>
     <div
@@ -157,9 +155,7 @@ exports[`renders correctly with a legislator and contribution 1`] = `
       <span
         className="counter__from"
       >
-        from their top 
-        0
-         contributing industries
+        from their top contributing industries
       </span>
     </span>
     <div

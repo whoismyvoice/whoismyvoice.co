@@ -1,3 +1,1 @@
-import Component from './PaymentCounter';
-
-export default Component;
+export { PaymentCounter } from './PaymentCounter';
