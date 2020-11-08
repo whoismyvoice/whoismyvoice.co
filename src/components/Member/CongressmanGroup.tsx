@@ -4,6 +4,7 @@ import * as React from 'react';
 import MemberImg from './MemberImg';
 import MemberRibbon from './MemberRibbon';
 import ActionButtons from './ActionButtons';
+import { PaymentGraph } from './PaymentGraph';
 import { PaymentCounter } from '../PaymentCounter';
 import { SectorContributions } from '../../models/Contribution';
 import { BioguideId, Legislator } from '../../models/Legislator';
@@ -12,6 +13,7 @@ import { BioguideId, Legislator } from '../../models/Legislator';
 import './../../styles/CongressmanGroup.scss';
 
 interface Props {
+  allLegislators: Array<Legislator>;
   legislators: Array<Legislator>;
   sectorContributions: Record<BioguideId, SectorContributions>;
 }
@@ -23,7 +25,13 @@ class CongressmanGroup extends React.Component<Props> {
   };
 
   render(): JSX.Element {
-    const { legislators, sectorContributions } = this.props;
+    const { allLegislators, legislators, sectorContributions } = this.props;
+    const maxContribution = allLegislators.reduce((max, legislator) => {
+      const contributions =
+        sectorContributions[legislator.bioguide]?.contributions || [];
+      return Math.max(max, ...contributions.map((c) => c.amount));
+    }, 0);
+
     const members = legislators.map((legislator, idx) => {
       const contributionToLegislator =
         sectorContributions[legislator.bioguide]?.contributions || [];
@@ -35,6 +43,13 @@ class CongressmanGroup extends React.Component<Props> {
           <MemberImg legislator={legislator} repNumber={idx + 1} />
           <MemberRibbon legislator={legislator} />
           <PaymentCounter payment={totalContribution} />
+          <PaymentGraph
+            width={300}
+            height={300}
+            contributions={contributionToLegislator}
+            maxContribution={maxContribution}
+            legislatorParty={legislator.party}
+          />
           <div
             className="mobile-contact-options"
             id={`legislator-contact-${idx}`}

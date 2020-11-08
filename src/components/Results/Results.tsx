@@ -64,6 +64,7 @@ export class Results extends React.Component<Props> {
           id={`section-${index + 1}`}
         >
           <MemberResults
+            allLegislators={legislators}
             legislators={partition}
             onNext={onNext}
             section={index + 1}

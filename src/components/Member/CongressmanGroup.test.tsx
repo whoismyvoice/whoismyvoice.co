@@ -9,6 +9,7 @@ import { Legislator } from '../../models/Legislator';
 jest.mock('mixpanel-browser');
 
 const baseProps = {
+  allLegislators: [],
   contributions: [],
   legislators: [],
   section: 1,

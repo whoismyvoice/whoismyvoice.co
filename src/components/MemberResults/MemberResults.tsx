@@ -11,6 +11,7 @@ export interface DispatchProps {
 }
 
 export interface Props extends DispatchProps {
+  allLegislators: Array<Legislator>;
   legislators: Array<Legislator>;
   section: number;
   sectors: string[];
@@ -19,6 +20,7 @@ export interface Props extends DispatchProps {
 
 class MemberResults extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
+    allLegislators: [],
     legislators: [],
     onNext: () => undefined,
     section: 1,
@@ -30,7 +32,7 @@ class MemberResults extends React.Component<Props> {
       return <React.Fragment />;
     }
 
-    const { legislators, sectorContributions } = this.props;
+    const { allLegislators, legislators, sectorContributions } = this.props;
 
     const templateString = `Your <span class="bold"><b><%= memberType %></b></span>`;
     const templateData = {
@@ -47,10 +49,12 @@ class MemberResults extends React.Component<Props> {
           legislators={legislators}
         />
         <CongressmanGroup
+          allLegislators={allLegislators}
           legislators={groupOne}
           sectorContributions={sectorContributions}
         />
         <CongressmanGroup
+          allLegislators={allLegislators}
           legislators={groupTwo}
           sectorContributions={sectorContributions}
         />

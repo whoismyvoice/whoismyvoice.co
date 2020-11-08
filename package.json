@@ -48,6 +48,11 @@
   },
   "dependencies": {
     "@vercel/node": "1.8.4",
+    "@visx/axis": "1.1.0",
+    "@visx/group": "1.0.0",
+    "@visx/scale": "1.1.0",
+    "@visx/shape": "1.1.0",
+    "@visx/tooltip": "1.1.0",
     "classnames": "2.2.6",
     "immer": "7.0.14",
     "isomorphic-unfetch": "3.1.0",
