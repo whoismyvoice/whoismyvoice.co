@@ -35,7 +35,7 @@ exports[`renders correctly 1`] = `
           className="title-component__description"
           dangerouslySetInnerHTML={
             Object {
-              "__html": "Did my representatives accept campaign contributions <span class=\\"strike-out\\">from the NRA?</span>",
+              "__html": "Learn about who funds the campaigns of <span class=\\"strike-out\\">your representatives!</span>",
             }
           }
         />

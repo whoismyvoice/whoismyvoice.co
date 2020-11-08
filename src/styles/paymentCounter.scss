@@ -45,26 +45,20 @@
   }
 }
 
-.digit__margin {
-  margin-left: 12px;
-
-  @media screen and (max-width: $iphone6) {
-    margin-left: 0;
-  }
-}
-
 .counter__from {
+  display: block;
   margin-left: 10px;
+  margin-top: 15px;
   @media screen and (max-width: $iphone6) {
-    display: block;
     margin-top: 15px;
     margin-left: 0;
   }
 }
 
 .counter__accept {
+  display: block;
+  margin-bottom: 5px;
   @media screen and (max-width: $iphone6) {
-    display: block;
     margin-bottom: 10px;
     margin-right: 0;
   }

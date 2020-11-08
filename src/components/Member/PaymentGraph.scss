@@ -1,0 +1,20 @@
+.payments--graph {
+  position: relative;
+
+  span,
+  strong {
+    display: block;
+  }
+}
+
+.payments--republican .visx-bar {
+  fill: #e04242;
+}
+
+.payments--democrat .visx-bar {
+  fill: #3569ca;
+}
+
+.ribbon--independent .visx-bar {
+  fill: #bcbcbc;
+}

@@ -2,14 +2,13 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as renderer from 'react-test-renderer';
 import CongressmanGroup from './CongressmanGroup';
-import { createContribution } from '../../models/Contribution.test';
 import { createLegislator } from '../../models/Legislator.test';
 import { Legislator } from '../../models/Legislator';
 
 jest.mock('mixpanel-browser');
 
 const baseProps = {
-  contributions: [],
+  allLegislators: [],
   legislators: [],
   section: 1,
 };
@@ -40,7 +39,6 @@ it('renders correctly with a legislator', () => {
 it('renders correctly with a legislator and contribution', () => {
   const props = {
     ...baseProps,
-    contributions: [createContribution('John Smith')],
     legislators: [new Legislator(createLegislator('John Smith'))],
   };
   const tree = renderer.create(<CongressmanGroup {...props} />).toJSON();

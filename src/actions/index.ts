@@ -1,10 +1,9 @@
 import unfetch from 'isomorphic-unfetch';
 import * as mixpanel from 'mixpanel-browser';
 
-import { ELECTION_CYCLE, ORGANIZATION } from '../constants';
+import { ELECTION_CYCLE } from '../constants';
 import { Action, ActionType, Dispatch } from './types';
 import {
-  Contribution,
   SectorContribution,
   SectorContributions,
 } from '../models/Contribution';
@@ -15,7 +14,6 @@ import {
   Record as LegislatorRecord,
   Senator,
 } from '../models/Legislator';
-import { MaplightResultsRecord } from '../models/MaplightResults';
 import { Office, Record as OfficeRecord } from '../models/Office';
 import { GoogleResponseError } from '../models/GoogleResponseError';
 import { ResponseError } from '../models/ResponseError';
@@ -28,32 +26,6 @@ import { isDefined } from '../util';
 type Extractor<T> = (document: Document) => T;
 
 const fetch = unfetch;
-
-/**
- * Match FEC ids for house and senate races. Potentially important because some
- * of these candidates may run for other offices (e.g. President) and we are not
- * interested in those contributions.
- */
-const FEC_ID_REGEX = /[HS]\d{1,3}[A-Z]{2}\d+/;
-
-/**
- * Finesse the `MaplightResultsRecord` and `LegislatorRecord` data into a
- * `Contribution`.
- * @param {LegislatorRecord} legislator from which identifier will be retrieved.
- * @param {MaplightResultsRecord} contributionData from which amount and
- *    organization will be retrieved.
- * @returns the data as a `Contribution`.
- */
-function createContribution(
-  legislator: LegislatorRecord,
-  contributionData: MaplightResultsRecord
-): Contribution {
-  return {
-    legislatorId: Legislator.getBioguideId(legislator),
-    organization: contributionData.search_terms.donor.donor_organization,
-    amount: contributionData.data.aggregate_totals[0].total_amount,
-  };
-}
 
 /**
  * Create a `SectorContribution` from the given `node` by reading its properties.
@@ -103,55 +75,6 @@ function createSectorContributions(
   return {
     legislatorId,
     contributions,
-  };
-}
-
-/**
- * Get contributions to the given `legislator` from the `organization`.
- * @param organization whose contributions to `legislator` should be retrieved.
- * @param legislator for whome `organization` contributions will be retrieved.
- * @returns a `Contribution` record for `legislator` from `organization`.
- */
-async function fetchContributionByOrg(
-  organization: string,
-  legislator: LegislatorRecord
-): Promise<Contribution> {
-  const getContributions = fetchContributions(organization);
-  const contributionData = await getContributions(legislator);
-  return createContribution(legislator, contributionData);
-}
-
-/**
- * Retrieve aggregated contribution data for given `organization` and `legislator`.
- * @param {string} organization name whose contributions will be searched.
- * @param {LegislatorRecord} legislator for whom data will be retrieved.
- * @returns contribution data.
- */
-function fetchContributions(organization: string) {
-  return async (
-    legislator: LegislatorRecord
-  ): Promise<MaplightResultsRecord> => {
-    const candidateFecIds = legislator.id.fec.filter((fecId) =>
-      FEC_ID_REGEX.test(fecId)
-    );
-    const baseUrl = '/api/contributions';
-    const electionCycle = encodeURIComponent(await ELECTION_CYCLE);
-    const organizationName = encodeURIComponent(organization);
-    const fecIds = encodeURIComponent(candidateFecIds.join('|'));
-    const params = `cycle=${electionCycle}&fecIds=${fecIds}&organization=${organizationName}`;
-    const url = `${baseUrl}?${params}`;
-    const response = await fetch(url, {
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'text/plain',
-      },
-    });
-    if (response.ok) {
-      const body: MaplightResultsRecord = await response.json();
-      return body;
-    } else {
-      throw new ResponseError(response, response.statusText);
-    }
   };
 }
 
@@ -215,12 +138,7 @@ function extractSenators(document: Document): Senator[] {
  * response.
  */
 async function fetchXml<T>(url: string, extractor: Extractor<T>): Promise<T> {
-  const response = await fetch(url, {
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'text/xml',
-    },
-  });
+  const response = await fetch(url, { mode: 'cors' });
   if (response.ok) {
     const body = await response.text();
     // Parse XML document
@@ -240,14 +158,20 @@ async function fetchXml<T>(url: string, extractor: Extractor<T>): Promise<T> {
 async function fetchContributionsBySector(
   legislator: LegislatorRecord
 ): Promise<SectorContributions> {
-  const opensecretsId = legislator.id.opensecrets;
-  const baseUrl = '/api/contributions/by-sector';
   const electionCycle = await ELECTION_CYCLE;
+  if (process.env.REACT_APP_OPEN_SECRETS_API_KEY === undefined) {
+    throw new Error('REACT_APP_OPEN_SECRETS_API_KEY must be set');
+  }
+  const apiKey = encodeURIComponent(
+    `${process.env.REACT_APP_OPEN_SECRETS_API_KEY}`
+  );
+  const candidateId = encodeURIComponent(legislator.id.opensecrets);
+  const apiMethod = encodeURIComponent('candSector');
   const encodedCycle = encodeURIComponent(electionCycle.split('|')[0]);
-  const encodedId = encodeURIComponent(opensecretsId);
-  const params = `cycle=${encodedCycle}&id=${encodedId}`;
-  const url = `${baseUrl}?${params}`;
-  return fetchXml(url, (doc) => createSectorContributions(legislator, doc));
+  const params = `method=${apiMethod}&apikey=${apiKey}&cid=${candidateId}&cycle=${encodedCycle}`;
+  return fetchXml(`https://www.opensecrets.org/api/?${params}`, (doc) =>
+    createSectorContributions(legislator, doc)
+  );
 }
 
 /**
@@ -326,23 +250,6 @@ export function receiveContribution(
     amount,
     legislatorId,
     organization,
-  };
-}
-
-/**
- * Create action to notify of bulk contribution data received.
- * @param {Array<Contribution>} contributions received.
- * @returns action.
- */
-export function receiveContributions(
-  contributions: Array<Contribution>
-): Action {
-  mixpanel.track(ActionType.RECEIVE_CONTRIBUTION_DATA, {
-    count: contributions.length,
-  });
-  return {
-    type: ActionType.RECEIVE_CONTRIBUTIONS_DATA,
-    contributions: contributions,
   };
 }
 
@@ -513,15 +420,11 @@ export function setAddress(address: string) {
       dispatch(receiveSenate(senators));
       dispatch(receiveOfficialsAll(allLegislators));
       dispatch(receiveOffices(offices));
-      const fetchContribution = fetchContributionByOrg.bind(null, ORGANIZATION);
       const legislators = store.getState().officials.legislators;
       void Promise.all(
         legislators.map((record) => fetchContributionsBySector(record))
       )
         .then(receiveContributionsBySector)
-        .then(dispatch);
-      void Promise.all(legislators.map(fetchContribution))
-        .then(receiveContributions)
         .then(dispatch);
     } catch (error) {
       if (error instanceof GoogleResponseError) {

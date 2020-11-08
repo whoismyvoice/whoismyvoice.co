@@ -3,14 +3,16 @@ import * as React from 'react';
 // Components
 import TextButton, { Props as TextButtonProps } from '../Buttons/TextButton';
 import MemberResults from '../MemberResults';
-import { Contribution } from '../../models/Contribution';
+import { SectorContributions } from '../../models/Contribution';
 import {
+  BioguideId,
   Legislator,
   Record as LegislatorRecord,
 } from '../../models/Legislator';
 
 export interface StateProps {
   didSearch?: boolean;
+  sectors: string[];
 }
 
 export interface DispatchProps {
@@ -19,15 +21,16 @@ export interface DispatchProps {
 }
 
 export interface Props extends StateProps, DispatchProps {
-  contributions: Array<Contribution>;
   representatives: Array<LegislatorRecord>;
+  sectorContributions: Record<BioguideId, SectorContributions>;
 }
 
 export class Results extends React.Component<Props> {
   static defaultProps: Props = {
     didSearch: false,
-    contributions: [],
+    sectors: [],
     representatives: [],
+    sectorContributions: {},
     onBack: () => undefined,
     onNext: () => undefined,
   };
@@ -39,34 +42,34 @@ export class Results extends React.Component<Props> {
   }
 
   render(): JSX.Element {
-    const { contributions, onNext, representatives } = this.props;
+    const {
+      onNext,
+      representatives,
+      sectors,
+      sectorContributions,
+    } = this.props;
     if (representatives.length === 0) {
       return <React.Fragment />;
     }
     const calcButtonProps = this.getButtonProps.bind(this);
-    const legislators = representatives.map(rep => new Legislator(rep));
-    const getAmount = Legislator.getContributionAmount.bind(
-      this,
-      contributions
-    );
-    const firstRep = legislators.filter(rep => getAmount(rep) > 0);
-    const secondRep = legislators.filter(rep => getAmount(rep) === 0);
+    const legislators = representatives.map((rep) => new Legislator(rep));
+    const firstRep = legislators.filter((rep) => rep.isSenator);
+    const secondRep = legislators.filter((rep) => rep.isRepresentative);
     const sections = [firstRep, secondRep]
-      .filter(partition => partition.length > 0)
+      .filter((partition) => partition.length > 0)
       .map((partition, index) => (
         <div
-          key={partition.reduce(
-            (key, legislator) => key + legislator.identifier,
-            ''
-          )}
+          key={partition.map((legislator) => legislator.identifier).join('')}
           className="section-block"
           id={`section-${index + 1}`}
         >
           <MemberResults
-            contributions={contributions}
+            allLegislators={legislators}
             legislators={partition}
             onNext={onNext}
             section={index + 1}
+            sectors={sectors}
+            sectorContributions={sectorContributions}
           />
         </div>
       ));

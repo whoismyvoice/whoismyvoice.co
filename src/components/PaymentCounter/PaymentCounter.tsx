@@ -1,38 +1,38 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
-// Constants
-import { ORGANIZATION_DISPLAY } from '../../constants';
 // Style
 import '../../styles/paymentCounter.scss';
 
 interface Props {
-  payment: string;
+  payment: number;
 }
 
-class PaymentCounter extends React.Component<Props> {
-  render(): JSX.Element {
-    const numbers = this.props.payment.split('');
-    const digits = numbers.map((result, idx) => {
-      return (
-        <span className="counter__digit" key={idx}>
-          {result}
-          <span className="counter__gradient-top" />
-        </span>
-      );
-    });
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  maximumFractionDigits: 0,
+  minimumFractionDigits: 0,
+});
 
+export const PaymentCounter: FC<Props> = (props) => {
+  const payment = formatter.format(props.payment);
+  const numbers = payment.split('');
+  const digits = numbers.map((result, idx) => {
     return (
-      <span className="member__payment">
-        <span className="counter__accept">Accepted</span>
-        <span className="counter__digit digit__margin">
-          $
-          <span className="counter__gradient-top" />
-        </span>
-        {digits}
-        <span className="counter__from">from {ORGANIZATION_DISPLAY}</span>
+      <span className="counter__digit" key={idx}>
+        {result}
+        <span className="counter__gradient-top" />
       </span>
     );
-  }
-}
+  });
 
-export default PaymentCounter;
+  return (
+    <span className="member__payment">
+      <span className="counter__accept">Received</span>
+      {digits}
+      <span className="counter__from">
+        from their top contributing industries
+      </span>
+    </span>
+  );
+};

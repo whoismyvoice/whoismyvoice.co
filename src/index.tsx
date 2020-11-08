@@ -15,8 +15,18 @@ if (process.env.REACT_APP_MIXPANEL_TOKEN) {
   mixpanel.disable();
 }
 
-const root = document.getElementById('root');
-if (root !== undefined && root !== null) {
-  ReactDOM.render(<App />, root);
-}
+const loadComponent = (Component: typeof App): void => {
+  const root = document.getElementById('root');
+  if (root !== undefined && root !== null) {
+    ReactDOM.render(<Component />, root);
+  }
+};
+loadComponent(App);
 registerServiceWorker();
+
+if (module.hot) {
+  module.hot.accept('./App', () => {
+    const NextApp = require('./App').default;
+    loadComponent(NextApp);
+  });
+}

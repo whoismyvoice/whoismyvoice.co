@@ -117,53 +117,38 @@
   font-size: 1.3em;
   width: 100%;
   margin: 0 auto;
-  height: 80px;
   display: block;
-  margin-top: -10px;
   color: $white;
   font-weight: bold;
 
   @media screen and (min-width: 1500px) and (max-width: 1650px) {
-    height: 50px;
     font-size: 1.1em;
-    margin-top: -15px;
     margin-bottom: 0px;
   }
 
   @media screen and (min-width: 1300px) and (max-width: 1499px) {
-    height: 65px;
     font-size: 1.1em;
-    margin-top: -20px;
     margin-bottom: 5px;
   }
 
   @media screen and (min-width: 1200px) and (max-width: 1299px) {
-    height: 65px;
     font-size: 1.1em;
-    margin-top: -15px;
     margin-bottom: 10px;
   }
 
   @media screen and (min-width: 1000px) and (max-width: 1199px) {
-    height: 70px;
     font-size: 1.1em;
-    margin-top: -15px;
   }
 
   @media screen and (max-height: 650px) {
-    height: 60px;
-    margin-top: -10px;
     font-size: 0.9em;
   }
 
   @media screen and (max-width: $iphone6) {
     font-size: 1em;
-    height: 95px;
-    margin-top: -15px;
   }
 
   @media screen and (max-width: $iphone5-min) {
-    height: 80px;
     font-size: 0.8em;
   }
 }

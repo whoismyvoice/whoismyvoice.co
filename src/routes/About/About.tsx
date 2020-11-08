@@ -35,20 +35,20 @@ class About extends React.Component {
             <br />
             Please send any comments or fact checking{' '}
             <a
-              href="mailto:&#113;&#117;&#101;&#115;&#116;&#105;&#111;&#110;&#115;&#064;&#119;&#104;&#111;&#105;&#115;&#109;&#121;&#118;&#111;&#105;&#099;&#101;&#046;&#099;&#111;&#109;?Subject=WhoIsMyVoice.com Question"
+              href="mailto:q%75est&#105;%6f&#110;&#115;@w%68o%69s%6dyvoice%2e%63o?subject=whoismyvoivce.co%20Question"
               className="strike-out"
             >
-              here
+              questions [at] whoismyvoice [dot] co
             </a>
             .
             <br />
             <br />
             Please send any business or media inquiries{' '}
             <a
-              href="mailto:&#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#119;&#104;&#111;&#105;&#115;&#109;&#121;&#118;&#111;&#105;&#099;&#101;&#046;&#099;&#111;&#109;?Subject=WhoIsMyVoice.com Contact"
+              href="mailto:%63onta%63%74%40w%68%6fi%73%6d%79%76&#111;i%63%65&#46;%63&#111;?subject=whoismyvoivce.co%20Inquiry"
               className="strike-out"
             >
-              here
+              contact [at] whoismyvoice [dot] co
             </a>
             .<br />
             <br />

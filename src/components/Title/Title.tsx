@@ -7,7 +7,7 @@ type TemplateExecutor = ReturnType<typeof template>;
 
 export interface Props {
   className: string;
-  templateData: Record<string, string>;
+  templateData: Record<string, unknown>;
   templateString: string;
 }
 
@@ -48,7 +48,7 @@ export class Title<P extends Props, S extends State> extends React.Component<
     }
   }
 
-  getTemplateData(): Record<string, string> | undefined {
+  getTemplateData(): Record<string, unknown> | undefined {
     if (this.state && this.state.templateData !== undefined) {
       return this.state.templateData;
     } else if (this.props.templateData !== undefined) {

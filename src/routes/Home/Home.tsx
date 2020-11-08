@@ -7,11 +7,9 @@ import * as mixpanel from 'mixpanel-browser';
 import Results from '../../components/Results';
 import SearchGroup from '../../components/SearchGroup';
 import { StarTitle } from '../../components/Title/StarTitle';
-import { Contribution } from '../../models/Contribution';
 import { Record as LegislatorType } from '../../models/Legislator';
 import { State } from '../../store';
 // Constants
-import { ORGANIZATION, ORGANIZATION_DISPLAY } from '../../constants';
 import { HOME_ROUTE } from '../../constants/mixpanel-events';
 // Assets
 import '../../styles/Home.scss';
@@ -21,8 +19,8 @@ interface Props {
   didSearch: boolean;
   numberHouse: number;
   numberRepresentatives: number;
-  contributions: Array<Contribution>;
   representatives: Array<LegislatorType>;
+  sectorContributions: State['contributions']['sectorsByLegislator'];
 }
 
 export function Home(props: Props): JSX.Element {
@@ -34,8 +32,8 @@ export function Home(props: Props): JSX.Element {
     didSearch,
     numberHouse,
     numberRepresentatives,
-    contributions,
     representatives,
+    sectorContributions,
   } = props;
   useEffect(() => {
     document.body.classList[didSearch ? 'add' : 'remove']('orange-bg');
@@ -54,9 +52,9 @@ export function Home(props: Props): JSX.Element {
   );
 
   // tslint:disable
-  const templateString = `Did my representatives accept campaign contributions <span class="strike-out">from <%= organizationName %>?</span>`;
+  const templateString = `Learn about who funds the campaigns of <span class="strike-out">your representatives!</span>`;
   // tslint:enable
-  const templateData = { organizationName: ORGANIZATION_DISPLAY };
+  const templateData = {};
   return (
     <div className={containerClasses}>
       <div className="overlay">
@@ -71,8 +69,8 @@ export function Home(props: Props): JSX.Element {
           <SearchGroup />
         </div>
         <Results
-          contributions={contributions}
           representatives={representatives}
+          sectorContributions={sectorContributions}
         />
       </div>
     </div>
@@ -81,15 +79,13 @@ export function Home(props: Props): JSX.Element {
 
 function mapStateToProps(state: State): Props {
   const { address, contributions, officials, view } = state;
-  const organizationContributions =
-    contributions.byOrganization[ORGANIZATION] || [];
   return {
     currentPage: view.currentPage,
     didSearch: address.value !== undefined,
     numberRepresentatives: officials.legislators.length,
     numberHouse: officials.legislators.length - 2,
-    contributions: organizationContributions,
     representatives: officials.legislators,
+    sectorContributions: contributions.sectorsByLegislator,
   };
 }
 

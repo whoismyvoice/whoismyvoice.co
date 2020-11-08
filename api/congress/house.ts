@@ -9,6 +9,12 @@ const DEFAULT_RESPONSE_HEADERS: OutgoingHttpHeaders = {
   'Access-Control-Allow-Methods': 'GET,OPTIONS',
 };
 
+const HEADERS_TO_REMOVE = [
+  'content-security-policy',
+  'x-content-security-policy',
+  'vary',
+];
+
 const BASE_URL = 'https://clerk.house.gov/xml/lists/MemberData.xml';
 
 /**
@@ -22,8 +28,13 @@ function handler(request: NowRequest, response: NowResponse): void {
     case 'GET':
       fetch(BASE_URL, 'text/xml')
         .then((res) => {
+          const responseHeaders = res.headers;
+          HEADERS_TO_REMOVE.forEach((header) => {
+            delete responseHeaders[header];
+          });
           const headers: OutgoingHttpHeaders = {
-            ...res.headers,
+            'Cache-Control': 'public, max-age=86400, must-revalidate',
+            ...responseHeaders,
             ...DEFAULT_RESPONSE_HEADERS,
           };
           response.writeHead(200, headers).end(res.body);

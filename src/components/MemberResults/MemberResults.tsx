@@ -2,28 +2,29 @@ import React from 'react';
 
 // Components
 import CongressmanGroup from '../Member/CongressmanGroup';
-import { Contribution } from '../../models/Contribution';
-import { Legislator } from '../../models/Legislator';
+import { SectorContributions } from '../../models/Contribution';
+import { BioguideId, Legislator } from '../../models/Legislator';
 import { MemberResultsTitle } from '../MemberResultsTitle';
-// Constants
-import { ORGANIZATION_DISPLAY } from '../../constants';
 
 export interface DispatchProps {
   onNext?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 export interface Props extends DispatchProps {
-  contributions: Array<Contribution>;
+  allLegislators: Array<Legislator>;
   legislators: Array<Legislator>;
   section: number;
+  sectors: string[];
+  sectorContributions: Record<BioguideId, SectorContributions>;
 }
 
 class MemberResults extends React.Component<Props> {
-  static defaultProps: Props = {
-    contributions: [],
+  static defaultProps: Partial<Props> = {
+    allLegislators: [],
     legislators: [],
     onNext: () => undefined,
     section: 1,
+    sectorContributions: {},
   };
 
   render(): JSX.Element {
@@ -31,40 +32,31 @@ class MemberResults extends React.Component<Props> {
       return <React.Fragment />;
     }
 
-    const { legislators, contributions } = this.props;
+    const { allLegislators, legislators, sectorContributions } = this.props;
 
-    const yayTemplateString = `Your <%= memberType %> <span class="bold"><b>accepted money</b></span> <span class="strike-out">from <%= organizationName %></span> in their recent election cycles.`;
-    const nayTemplateString = `Your <%= memberType %> <span class="bold"><b>did not</b></span> take any money <span class="strike-out">from <%= organizationName %></span> in their recent election cycles.`;
+    const templateString = `Your <span class="bold"><b><%= memberType %></b></span>`;
     const templateData = {
-      organizationName: ORGANIZATION_DISPLAY,
+      sectorCount: this.props.sectors.length,
     };
-    const getAmount = Legislator.getContributionAmount.bind(
-      this,
-      contributions
-    );
-    const paymentAmount = legislators.reduce(
-      (amount, legislator) => amount + getAmount(legislator),
-      0
-    );
     const groupOne = legislators.slice(0, 2);
     const groupTwo = legislators.slice(2);
     return (
       <React.Fragment>
         <MemberResultsTitle
           className="title-component--results"
-          templateString={
-            paymentAmount > 0 ? yayTemplateString : nayTemplateString
-          }
+          templateString={templateString}
           templateData={templateData}
           legislators={legislators}
         />
         <CongressmanGroup
+          allLegislators={allLegislators}
           legislators={groupOne}
-          contributions={contributions}
+          sectorContributions={sectorContributions}
         />
         <CongressmanGroup
+          allLegislators={allLegislators}
           legislators={groupTwo}
-          contributions={contributions}
+          sectorContributions={sectorContributions}
         />
       </React.Fragment>
     );
