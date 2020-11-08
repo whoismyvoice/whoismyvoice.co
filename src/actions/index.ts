@@ -4,7 +4,6 @@ import * as mixpanel from 'mixpanel-browser';
 import { ELECTION_CYCLE } from '../constants';
 import { Action, ActionType, Dispatch } from './types';
 import {
-  Contribution,
   SectorContribution,
   SectorContributions,
 } from '../models/Contribution';
@@ -251,23 +250,6 @@ export function receiveContribution(
     amount,
     legislatorId,
     organization,
-  };
-}
-
-/**
- * Create action to notify of bulk contribution data received.
- * @param {Array<Contribution>} contributions received.
- * @returns action.
- */
-export function receiveContributions(
-  contributions: Array<Contribution>
-): Action {
-  mixpanel.track(ActionType.RECEIVE_CONTRIBUTION_DATA, {
-    count: contributions.length,
-  });
-  return {
-    type: ActionType.RECEIVE_CONTRIBUTIONS_DATA,
-    contributions: contributions,
   };
 }
 
