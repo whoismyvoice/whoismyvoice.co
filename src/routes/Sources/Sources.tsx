@@ -29,9 +29,11 @@ function Sources(props: Props): JSX.Element {
           $200 threshold do not need to be itemized.
         </p>
         <p>
-          WhoIsMyVoice.com uses APIs provided by{' '}
-          <a href="https://maplight.org/">MapLight</a> to search FEC data and
-          the{' '}
+          whoismyvoice.co uses APIs provided by{' '}
+          <a href="https://www.opensecrets.org">
+            OpenSecrets and the Center for Responsive Politics
+          </a>{' '}
+          to search FEC data and the{' '}
           <a href="https://developers.google.com/civic-information">
             Google Civic Information API
           </a>{' '}
@@ -47,7 +49,19 @@ function Sources(props: Props): JSX.Element {
           </a>
           .
         </p>
-        <h3>For More Information</h3>
+        <p>
+          This project was originally focused on highlighting the influx of
+          money from a specific organizations, the National Rifle Association.
+          The resources relevant to that original focus on gun violence are
+          included below for reference. While gun violence remains an important
+          issue to many, as{' '}
+          <a href="https://www.opensecrets.org/news/2020/10/cost-of-2020-election-14billion-update">
+            political spending reaches record numbers
+          </a>{' '}
+          it has become more important to highlight all the money flowing into
+          politics.
+        </p>
+        <h3>For More Information on Gun Violence</h3>
         <ul className="sources">
           <li>
             <a href="https://www.cdc.gov/nchs/pressroom/sosmap/firearm_mortality/firearm.htm">
