@@ -160,6 +160,9 @@ async function fetchContributionsBySector(
   legislator: LegislatorRecord
 ): Promise<SectorContributions> {
   const electionCycle = await ELECTION_CYCLE;
+  if (process.env.REACT_APP_OPEN_SECRETS_API_KEY === undefined) {
+    throw new Error('REACT_APP_OPEN_SECRETS_API_KEY must be set');
+  }
   const apiKey = encodeURIComponent(
     `${process.env.REACT_APP_OPEN_SECRETS_API_KEY}`
   );
