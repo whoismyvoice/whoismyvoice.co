@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import cx from 'classnames';
-import * as mixpanel from 'mixpanel-browser';
 
 // Components
 import Results from '../../components/Results';
@@ -9,8 +8,6 @@ import SearchGroup from '../../components/SearchGroup';
 import { StarTitle } from '../../components/Title/StarTitle';
 import { Record as LegislatorType } from '../../models/Legislator';
 import { State } from '../../store';
-// Constants
-import { HOME_ROUTE } from '../../constants/mixpanel-events';
 // Assets
 import '../../styles/Home.scss';
 
@@ -24,9 +21,6 @@ interface Props {
 }
 
 export function Home(props: Props): JSX.Element {
-  useEffect(() => {
-    mixpanel.track(...HOME_ROUTE);
-  }, []);
   const {
     currentPage,
     didSearch,

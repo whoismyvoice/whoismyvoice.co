@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
-import * as mixpanel from 'mixpanel-browser';
+import React from 'react';
 
-import { SOURCES_ROUTE } from '../../constants/mixpanel-events';
 import FadedBG from '../../components/FadedBg';
 import { ElectionCycle } from '../../models/ElectionCycle';
 import '../../styles/Sources.scss';
@@ -11,9 +9,6 @@ interface Props {
 }
 
 function Sources(props: Props): JSX.Element {
-  useEffect(() => {
-    mixpanel.track(...SOURCES_ROUTE);
-  }, []);
   const { cycles } = props;
   const cycleMessage = cycles.map((cycle) => cycle.label).join(' and ');
   return (

@@ -5,8 +5,6 @@ import { Provider } from 'react-redux';
 import { Home } from './Home';
 import store from '../../store';
 
-jest.mock('mixpanel-browser');
-
 const props = {
   didSearch: false,
   numberHouse: 0,

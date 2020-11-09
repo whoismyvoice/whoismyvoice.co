@@ -3,8 +3,6 @@ import * as ReactDOM from 'react-dom';
 import * as renderer from 'react-test-renderer';
 import TextFormButton from './TextFormButton';
 
-jest.mock('mixpanel-browser');
-
 const props = {
   text: 'text',
 };

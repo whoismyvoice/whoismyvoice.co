@@ -3,8 +3,6 @@ import * as ReactDOM from 'react-dom';
 import * as renderer from 'react-test-renderer';
 import ContactButtonSmall from './ContactButtonSmall';
 
-jest.mock('mixpanel-browser');
-
 const props = {
   icon: 'icon',
   link: 'link',

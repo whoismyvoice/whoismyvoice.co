@@ -2,8 +2,6 @@ import { reset, receiveContributionsBySector } from '../actions';
 import { Action, ActionType } from '../actions/types';
 import contributions, { INITIAL_CONTRIBUTIONS } from './contributions';
 
-jest.mock('mixpanel-browser');
-
 function action(): Action {
   return {
     type: ActionType.OTHER,

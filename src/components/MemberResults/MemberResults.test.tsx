@@ -4,8 +4,6 @@ import MemberResults from './MemberResults';
 import { Legislator } from '../../models/Legislator';
 import { createLegislator as createLegislatorRecord } from '../../models/Legislator.test';
 
-jest.mock('mixpanel-browser');
-
 function createLegislator(name: string): Legislator {
   return new Legislator(createLegislatorRecord(name));
 }

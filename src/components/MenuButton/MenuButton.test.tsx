@@ -6,8 +6,6 @@ import { Provider } from 'react-redux';
 import MenuButton from './MenuButton';
 import store from '../../store';
 
-jest.mock('mixpanel-browser');
-
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(

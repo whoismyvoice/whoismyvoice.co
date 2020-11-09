@@ -5,8 +5,6 @@ import CongressmanGroup from './CongressmanGroup';
 import { createLegislator } from '../../models/Legislator.test';
 import { Legislator } from '../../models/Legislator';
 
-jest.mock('mixpanel-browser');
-
 const baseProps = {
   allLegislators: [],
   legislators: [],
