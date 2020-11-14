@@ -3,6 +3,7 @@
 exports[`renders correctly 1`] = `
 <div
   className="animated fadeIn"
+  data-testid="search-group"
 >
   <form
     method="GET"

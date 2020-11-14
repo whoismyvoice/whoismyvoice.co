@@ -32,7 +32,7 @@ export class SearchGroup extends React.Component<Props> {
       zipCode,
     } = this.props;
     return (
-      <div className="animated fadeIn">
+      <div className="animated fadeIn" data-testid="search-group">
         <SearchAddress
           address={address}
           addressErrorMessage={addressErrorMessage}

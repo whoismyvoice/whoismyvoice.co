@@ -55,6 +55,7 @@ export class Results extends React.Component<Props> {
           key={partition.map((legislator) => legislator.identifier).join('')}
           className="section-block"
           id={`section-${index + 1}`}
+          data-testid={`result-section-${index + 1}`}
         >
           <MemberResults
             allLegislators={legislators}

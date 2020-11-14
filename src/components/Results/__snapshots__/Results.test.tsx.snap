@@ -14,6 +14,7 @@ Array [
   </a>,
   <div
     className="section-block"
+    data-testid="result-section-1"
     id="section-1"
   >
     <div
@@ -445,6 +446,7 @@ Array [
   </a>,
   <div
     className="section-block"
+    data-testid="result-section-1"
     id="section-1"
   >
     <div
@@ -1645,6 +1647,7 @@ Array [
   </a>,
   <div
     className="section-block"
+    data-testid="result-section-1"
     id="section-1"
   >
     <div
