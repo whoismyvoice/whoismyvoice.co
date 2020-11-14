@@ -1,18 +1,16 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import * as renderer from 'react-test-renderer';
+import React from 'react';
+import '@testing-library/jest-dom/extend-expect';
+import { render } from '@testing-library/react';
 
 import { SearchGroup } from './SearchGroup';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<SearchGroup isStreetAddressNeeded={false} />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  const { container } = render(<SearchGroup isStreetAddressNeeded={false} />);
+  expect(container).toBeInTheDocument();
 });
 
 it('renders correctly', () => {
-  const tree = renderer
-    .create(<SearchGroup isStreetAddressNeeded={false} />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { getByTestId } = render(<SearchGroup isStreetAddressNeeded={false} />);
+  expect(getByTestId('search-group')).toBeInTheDocument();
+  expect(getByTestId('search-address')).toBeInTheDocument();
 });
