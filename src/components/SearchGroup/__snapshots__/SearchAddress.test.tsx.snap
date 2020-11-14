@@ -2,6 +2,7 @@
 
 exports[`street address needed renders correctly 1`] = `
 <form
+  data-testid="search-address"
   method="GET"
   onSubmit={[Function]}
 >
@@ -44,6 +45,7 @@ exports[`street address needed renders correctly 1`] = `
 
 exports[`street address needed renders correctly with error message 1`] = `
 <form
+  data-testid="search-address"
   method="GET"
   onSubmit={[Function]}
 >
@@ -86,6 +88,7 @@ exports[`street address needed renders correctly with error message 1`] = `
 
 exports[`street address needed renders correctly with placeholder 1`] = `
 <form
+  data-testid="search-address"
   method="GET"
   onSubmit={[Function]}
 >
@@ -128,6 +131,7 @@ exports[`street address needed renders correctly with placeholder 1`] = `
 
 exports[`street address not needed renders correctly 1`] = `
 <form
+  data-testid="search-address"
   method="GET"
   onSubmit={[Function]}
 >
@@ -157,6 +161,7 @@ exports[`street address not needed renders correctly 1`] = `
 
 exports[`street address not needed renders correctly with error message 1`] = `
 <form
+  data-testid="search-address"
   method="GET"
   onSubmit={[Function]}
 >
@@ -191,6 +196,7 @@ exports[`street address not needed renders correctly with error message 1`] = `
 
 exports[`street address not needed renders correctly with placeholder 1`] = `
 <form
+  data-testid="search-address"
   method="GET"
   onSubmit={[Function]}
 >
