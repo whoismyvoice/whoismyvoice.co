@@ -7,6 +7,8 @@ import { createLegislator, createTerm } from '../../models/Legislator.test';
 it('renders correctly with empty props', () => {
   const props = {
     representatives: [],
+    sectorContributions: {},
+    sectors: [],
   };
   const { container, queryByText, queryByTestId } = render(
     <Results {...props} />
@@ -19,6 +21,8 @@ it('renders correctly with empty props', () => {
 it('renders correctly with one legislator', () => {
   const props = {
     representatives: [createLegislator('John Smith')],
+    sectorContributions: {},
+    sectors: [],
   };
   const { container, getByTestId, getByText, queryByTestId } = render(
     <Results {...props} />
@@ -35,6 +39,8 @@ it('renders correctly with two legislators', () => {
       createLegislator('John Smith'),
       createLegislator('John Smith Jr.'),
     ],
+    sectorContributions: {},
+    sectors: [],
   };
   const { container, getByTestId, getByText, queryByTestId } = render(
     <Results {...props} />
@@ -52,6 +58,8 @@ it('renders correctly with three legislators', () => {
       createLegislator('John Smith Jr'),
       { ...createLegislator('John Smith III'), terms: [createTerm('rep')] },
     ],
+    sectorContributions: {},
+    sectors: [],
   };
   const { container, getByTestId, getByText } = render(<Results {...props} />);
   expect(container).toBeInTheDocument();
