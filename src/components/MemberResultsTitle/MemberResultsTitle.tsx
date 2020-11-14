@@ -1,9 +1,6 @@
+import React, { VFC } from 'react';
 import { Chamber, Legislator } from '../../models/Legislator';
-import {
-  Props as TitleProps,
-  State as TitleState,
-  Title,
-} from '../Title/Title';
+import { Props as TitleProps, Title } from '../Title/Title';
 
 import '../../styles/TitleComponent.scss';
 
@@ -18,7 +15,6 @@ type MemberType =
   | 'Senator & Representative'
   | 'Senators'
   | 'Senators & Representative';
-type State = TitleState;
 
 export function getMemberType(legislators: Array<Legislator>): MemberType {
   let memberType: MemberType;
@@ -27,8 +23,8 @@ export function getMemberType(legislators: Array<Legislator>): MemberType {
     const [rep] = legislators;
     return rep.chamber === Senate ? 'Senator' : 'Representative';
   } else if (legislators.length === 2) {
-    const chambers = legislators.map(legislator => legislator.chamber);
-    const houseIndex = chambers.findIndex(chamber => chamber === House);
+    const chambers = legislators.map((legislator) => legislator.chamber);
+    const houseIndex = chambers.findIndex((chamber) => chamber === House);
     if (houseIndex === -1) {
       memberType = 'Senators';
     } else if (houseIndex === 0) {
@@ -47,30 +43,14 @@ export function getMemberType(legislators: Array<Legislator>): MemberType {
   return memberType;
 }
 
-export class MemberResultsTitle extends Title<Props, State> {
-  static defaultProps = {
-    ...Title.defaultProps,
-    legislators: [],
-  };
-
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      templateData: {
-        ...props.templateData,
-        memberType: getMemberType(props.legislators),
-      },
-    };
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps: Readonly<Props>): void {
-    const { legislators } = nextProps;
-    this.setState({
-      templateData: {
-        ...this.state.templateData,
-        ...nextProps.templateData,
-        memberType: getMemberType(legislators),
-      },
-    });
-  }
-}
+export const MemberResultsTitle: VFC<Props> = ({ legislators, ...props }) => {
+  const memberType = getMemberType(legislators);
+  return (
+    <Title {...props}>
+      Your{' '}
+      <span className="bold">
+        <b>{memberType}</b>
+      </span>
+    </Title>
+  );
+};

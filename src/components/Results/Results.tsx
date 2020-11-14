@@ -17,7 +17,6 @@ export interface StateProps {
 
 export interface DispatchProps {
   onBack?: React.MouseEventHandler<HTMLElement>;
-  onNext?: React.MouseEventHandler<HTMLElement>;
 }
 
 export interface Props extends StateProps, DispatchProps {
@@ -32,22 +31,16 @@ export class Results extends React.Component<Props> {
     representatives: [],
     sectorContributions: {},
     onBack: () => undefined,
-    onNext: () => undefined,
   };
 
   getButtonProps(index: number): Pick<TextButtonProps, 'link' | 'onClick'> {
-    const { onBack, onNext } = this.props;
+    const { onBack } = this.props;
     const link = `#section-${index}`;
-    return index === 0 ? { link, onClick: onBack } : { link, onClick: onNext };
+    return index === 0 ? { link, onClick: onBack } : { link };
   }
 
   render(): JSX.Element {
-    const {
-      onNext,
-      representatives,
-      sectors,
-      sectorContributions,
-    } = this.props;
+    const { representatives, sectors, sectorContributions } = this.props;
     if (representatives.length === 0) {
       return <React.Fragment />;
     }
@@ -66,8 +59,6 @@ export class Results extends React.Component<Props> {
           <MemberResults
             allLegislators={legislators}
             legislators={partition}
-            onNext={onNext}
-            section={index + 1}
             sectors={sectors}
             sectorContributions={sectorContributions}
           />

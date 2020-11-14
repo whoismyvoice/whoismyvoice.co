@@ -6,14 +6,9 @@ import { SectorContributions } from '../../models/Contribution';
 import { BioguideId, Legislator } from '../../models/Legislator';
 import { MemberResultsTitle } from '../MemberResultsTitle';
 
-export interface DispatchProps {
-  onNext?: (event: React.MouseEvent<HTMLElement>) => void;
-}
-
-export interface Props extends DispatchProps {
+export interface Props {
   allLegislators: Array<Legislator>;
   legislators: Array<Legislator>;
-  section: number;
   sectors: string[];
   sectorContributions: Record<BioguideId, SectorContributions>;
 }
@@ -22,8 +17,6 @@ class MemberResults extends React.Component<Props> {
   static defaultProps: Partial<Props> = {
     allLegislators: [],
     legislators: [],
-    onNext: () => undefined,
-    section: 1,
     sectorContributions: {},
   };
 
@@ -34,18 +27,12 @@ class MemberResults extends React.Component<Props> {
 
     const { allLegislators, legislators, sectorContributions } = this.props;
 
-    const templateString = `Your <span class="bold"><b><%= memberType %></b></span>`;
-    const templateData = {
-      sectorCount: this.props.sectors.length,
-    };
     const groupOne = legislators.slice(0, 2);
     const groupTwo = legislators.slice(2);
     return (
       <React.Fragment>
         <MemberResultsTitle
           className="title-component--results"
-          templateString={templateString}
-          templateData={templateData}
           legislators={legislators}
         />
         <CongressmanGroup

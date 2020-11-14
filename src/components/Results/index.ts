@@ -32,7 +32,6 @@ function dispatchToProps(dispatch: Dispatch): DispatchProps {
 
   return {
     onBack: handleNavigation,
-    onNext: handleNavigation,
   };
 }
 
