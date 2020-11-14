@@ -21,6 +21,7 @@
   },
   "homepage": "https://www.whoismyvoice.com",
   "devDependencies": {
+    "@testing-library/react": "11.1.2",
     "@types/classnames": "2.2.11",
     "@types/jest": "26.0.15",
     "@types/lodash.template": "4.5.0",
