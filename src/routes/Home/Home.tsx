@@ -6,7 +6,7 @@ import cx from 'classnames';
 import Results from '../../components/Results';
 import SearchGroup from '../../components/SearchGroup';
 import { StarTitle } from '../../components/Title/StarTitle';
-import { Record as LegislatorType } from '../../models/Legislator';
+import { Record as LegislatorRecord } from '../../models/Legislator';
 import { State } from '../../store';
 // Assets
 import '../../styles/Home.scss';
@@ -16,7 +16,7 @@ interface Props {
   didSearch: boolean;
   numberHouse: number;
   numberRepresentatives: number;
-  representatives: Array<LegislatorType>;
+  representatives: Array<LegislatorRecord>;
   sectorContributions: State['contributions']['sectorsByLegislator'];
 }
 

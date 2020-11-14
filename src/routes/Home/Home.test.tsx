@@ -1,6 +1,5 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import * as renderer from 'react-test-renderer';
+import React from 'react';
+import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { Home } from './Home';
 import store from '../../store';
@@ -9,28 +8,32 @@ const props = {
   didSearch: false,
   numberHouse: 0,
   numberRepresentatives: 0,
-  contributions: [],
   representatives: [],
+  sectorContributions: {},
 };
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(
+  const { container } = render(
     <Provider store={store}>
       <Home {...props} />
-    </Provider>,
-    div
+    </Provider>
   );
-  ReactDOM.unmountComponentAtNode(div);
+  expect(container).not.toBeNull();
 });
 
 it('renders correctly', () => {
-  const tree = renderer
-    .create(
-      <Provider store={store}>
-        <Home {...props} />
-      </Provider>
+  const { getByText, getByTestId, queryByTestId } = render(
+    <Provider store={store}>
+      <Home {...props} />
+    </Provider>
+  );
+  expect(
+    getByText(
+      'This site is only supported in portrait mode. Please turn your phone.'
     )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  ).toBeDefined();
+  expect(getByText('Learn about who funds the campaigns of')).toBeDefined();
+  expect(getByText('your representatives!')).toBeDefined();
+  expect(getByTestId('search-group')).toBeDefined();
+  expect(queryByTestId('result-section-1')).toBeNull();
 });
