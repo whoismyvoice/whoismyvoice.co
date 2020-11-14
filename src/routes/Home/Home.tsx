@@ -45,10 +45,6 @@ export function Home(props: Props): JSX.Element {
     { full: didSearch && numberHouse === 1 && numberRepresentatives > 2 }
   );
 
-  // tslint:disable
-  const templateString = `Learn about who funds the campaigns of <span class="strike-out">your representatives!</span>`;
-  // tslint:enable
-  const templateData = {};
   return (
     <div className={containerClasses}>
       <div className="overlay">
@@ -56,10 +52,11 @@ export function Home(props: Props): JSX.Element {
       </div>
       <div className={blockClasses}>
         <div className="section-block">
-          <StarTitle
-            templateData={templateData}
-            templateString={templateString}
-          />
+          <StarTitle>
+            Learn about who funds the campaigns of
+            <br />
+            <span className="strike-out">your representatives!</span>
+          </StarTitle>
           <SearchGroup />
         </div>
         <Results

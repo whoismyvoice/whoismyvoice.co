@@ -33,12 +33,15 @@ exports[`renders correctly 1`] = `
         </div>
         <div
           className="title-component__description"
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "Learn about who funds the campaigns of <span class=\\"strike-out\\">your representatives!</span>",
-            }
-          }
-        />
+        >
+          Learn about who funds the campaigns of
+          <br />
+          <span
+            className="strike-out"
+          >
+            your representatives!
+          </span>
+        </div>
       </div>
       <div
         className="animated fadeIn"
