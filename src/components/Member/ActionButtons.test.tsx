@@ -1,21 +1,36 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import * as renderer from 'react-test-renderer';
+import React from 'react';
+import '@testing-library/jest-dom/extend-expect';
+import { render } from '@testing-library/react';
 import ActionButtons from './ActionButtons';
 import { createLegislator } from '../../models/Legislator.test';
 import { Legislator } from '../../models/Legislator';
 
-const props = {
-  legislator: new Legislator(createLegislator('John Smith')),
-};
-
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<ActionButtons {...props} />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  const legislator = new Legislator(createLegislator('John Smith'));
+  const { container } = render(<ActionButtons legislator={legislator} />);
+  expect(container).toBeInTheDocument();
+  expect(container.querySelector('.actionButtons')).toBeInTheDocument();
+  expect(
+    container.querySelector('.button__small__icon.phone')
+  ).toBeInTheDocument();
 });
 
-it('renders correctly', () => {
-  const tree = renderer.create(<ActionButtons {...props} />).toJSON();
-  expect(tree).toMatchSnapshot();
+it('has no twitter contact if no channels', () => {
+  const legislator = new Legislator({
+    ...createLegislator('John Smith'),
+    channels: [],
+  });
+  const { container } = render(<ActionButtons legislator={legislator} />);
+  expect(container.querySelector('.button__small__icon.twitter')).toBeNull();
+});
+
+it('has twitter contact if twitter channel', () => {
+  const legislator = new Legislator({
+    ...createLegislator('John Smith'),
+    channels: [{ id: 'johnsmith', type: 'Twitter' }],
+  });
+  const { container } = render(<ActionButtons legislator={legislator} />);
+  expect(
+    container.querySelector('.button__small__icon.twitter')
+  ).toBeInTheDocument();
 });
