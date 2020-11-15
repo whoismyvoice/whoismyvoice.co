@@ -12,7 +12,6 @@ import {
 
 export interface StateProps {
   didSearch?: boolean;
-  sectors: string[];
 }
 
 export interface DispatchProps {
@@ -25,7 +24,7 @@ export interface Props extends StateProps, DispatchProps {
 }
 
 export const Results: FC<Props> = (props: Props) => {
-  const { representatives, sectors, sectorContributions } = props;
+  const { representatives, sectorContributions } = props;
   if (representatives.length === 0) {
     return <React.Fragment />;
   }
@@ -44,7 +43,6 @@ export const Results: FC<Props> = (props: Props) => {
         <MemberResults
           allLegislators={legislators}
           legislators={partition}
-          sectors={sectors}
           sectorContributions={sectorContributions}
         />
       </div>

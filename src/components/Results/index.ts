@@ -10,7 +10,6 @@ function stateToProps(state: State): StateProps {
   const { address } = state;
   return {
     didSearch: address.value !== undefined,
-    sectors: state.contributions.sectors,
   };
 }
 
