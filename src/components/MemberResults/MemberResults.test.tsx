@@ -12,7 +12,6 @@ function createLegislator(name: string): Legislator {
 it('renders correctly with empty props', () => {
   const props = {
     legislators: [],
-    sectors: [],
     sectorContributions: {},
   };
   const { container } = render(<MemberResults {...props} />);
@@ -24,7 +23,6 @@ it('renders correctly with empty props', () => {
 it('renders correctly with contribution and legislator', () => {
   const props = {
     legislators: [createLegislator('John Smith')],
-    sectors: [],
     sectorContributions: {},
   };
   const { container, getByText } = render(<MemberResults {...props} />);
@@ -42,7 +40,6 @@ it('renders correctly with two contributions and legislators', () => {
       createLegislator('John Smith I'),
       createLegislator('John Smith Jr.'),
     ],
-    sectors: [],
     sectorContributions: {},
   };
   const { container, getByText } = render(<MemberResults {...props} />);
@@ -62,8 +59,6 @@ it('renders correctly with three contributions and legislators', () => {
       createLegislator('John Smith Jr.'),
       createLegislator('John Smith III'),
     ],
-    section: 1,
-    sectors: [],
   };
   const { container, getByText } = render(<MemberResults {...props} />);
   expect(
