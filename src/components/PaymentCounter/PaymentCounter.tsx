@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { VFC } from 'react';
 
 // Style
 import '../../styles/paymentCounter.scss';
@@ -14,7 +14,7 @@ const formatter = new Intl.NumberFormat('en-US', {
   minimumFractionDigits: 0,
 });
 
-export const PaymentCounter: FC<Props> = (props) => {
+export const PaymentCounter: VFC<Props> = (props) => {
   const payment = formatter.format(props.payment);
   const numbers = payment.split('');
   const digits = numbers.map((result, idx) => {
