@@ -41,7 +41,7 @@ export const SearchInput: VFC<Props> = (props) => {
   );
 };
 
-const SearchInputError: VFC<Pick<Props, 'errorMessage'>> = (props) => {
+export const SearchInputError: VFC<Pick<Props, 'errorMessage'>> = (props) => {
   const { errorMessage } = props;
   return errorMessage === undefined ? (
     <React.Fragment />

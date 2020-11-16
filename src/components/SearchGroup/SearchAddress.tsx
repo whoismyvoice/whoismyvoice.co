@@ -2,7 +2,7 @@ import React, { VFC } from 'react';
 import cx from 'classnames';
 
 // Component
-import { SearchInput } from './SearchInput';
+import { SearchInput, SearchInputError } from './SearchInput';
 import TextFormButton from '../Buttons/TextFormButton';
 
 interface Props {
@@ -30,6 +30,7 @@ export const SearchAddress: VFC<Props> = (props) => {
   if (isStreetAddressNeeded) {
     formFields = (
       <React.Fragment>
+        <SearchInputError errorMessage={addressErrorMessage} />
         <p>Multiple Congressional Representatives in</p>
         <div key="zipCodeDisplay" className="locked__zip">
           ZIP: {zipCode}
@@ -48,7 +49,11 @@ export const SearchAddress: VFC<Props> = (props) => {
   } else {
     formFields = (
       <React.Fragment>
-        <SearchInput errorMessage={addressErrorMessage} name="zipCode" />
+        <SearchInput
+          errorMessage={addressErrorMessage}
+          name="zipCode"
+          placeholder={placeholder}
+        />
       </React.Fragment>
     );
   }
