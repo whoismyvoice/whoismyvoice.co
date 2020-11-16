@@ -1,13 +1,7 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import * as renderer from 'react-test-renderer';
+import React from 'react';
+import '@testing-library/jest-dom/extend-expect';
+import { render } from '@testing-library/react';
 import { SearchAddress } from './SearchAddress';
-
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<SearchAddress isStreetAddressNeeded={false} />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
 
 describe('street address not needed', () => {
   const props = {
@@ -15,22 +9,22 @@ describe('street address not needed', () => {
   };
 
   it('renders correctly', () => {
-    const tree = renderer.create(<SearchAddress {...props} />).toJSON();
-    expect(tree).toMatchSnapshot();
+    const { getByTestId } = render(<SearchAddress {...props} />);
+    expect(getByTestId('search-address')).toBeInTheDocument();
   });
 
   it('renders correctly with error message', () => {
-    const tree = renderer
-      .create(<SearchAddress {...props} addressErrorMessage="foo errors" />)
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+    const { getByText } = render(
+      <SearchAddress {...props} addressErrorMessage="foo errors" />
+    );
+    expect(getByText('foo errors')).toBeInTheDocument();
   });
 
   it('renders correctly with placeholder', () => {
-    const tree = renderer
-      .create(<SearchAddress {...props} placeholder="fooholder" />)
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+    const { getByPlaceholderText } = render(
+      <SearchAddress {...props} placeholder="fooholder" />
+    );
+    expect(getByPlaceholderText('fooholder')).toBeInTheDocument();
   });
 });
 
@@ -41,21 +35,23 @@ describe('street address needed', () => {
   };
 
   it('renders correctly', () => {
-    const tree = renderer.create(<SearchAddress {...props} />).toJSON();
-    expect(tree).toMatchSnapshot();
+    const { getByText } = render(<SearchAddress {...props} />);
+    expect(getByText('ZIP: 12345')).toBeInTheDocument();
   });
 
   it('renders correctly with error message', () => {
-    const tree = renderer
-      .create(<SearchAddress {...props} addressErrorMessage="foo errors" />)
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+    const { getByText } = render(
+      <SearchAddress {...props} addressErrorMessage="foo errors" />
+    );
+    expect(getByText('ZIP: 12345')).toBeInTheDocument();
+    expect(getByText('foo errors')).toBeInTheDocument();
   });
 
   it('renders correctly with placeholder', () => {
-    const tree = renderer
-      .create(<SearchAddress {...props} placeholder="fooholder" />)
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+    const { getByPlaceholderText, getByText } = render(
+      <SearchAddress {...props} placeholder="fooholder" />
+    );
+    expect(getByText('ZIP: 12345')).toBeInTheDocument();
+    expect(getByPlaceholderText('fooholder')).toBeInTheDocument();
   });
 });

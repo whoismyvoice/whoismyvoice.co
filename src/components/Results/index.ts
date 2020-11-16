@@ -10,7 +10,6 @@ function stateToProps(state: State): StateProps {
   const { address } = state;
   return {
     didSearch: address.value !== undefined,
-    sectors: state.contributions.sectors,
   };
 }
 
@@ -32,7 +31,6 @@ function dispatchToProps(dispatch: Dispatch): DispatchProps {
 
   return {
     onBack: handleNavigation,
-    onNext: handleNavigation,
   };
 }
 

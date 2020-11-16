@@ -1,6 +1,6 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import * as renderer from 'react-test-renderer';
+import React from 'react';
+import '@testing-library/jest-dom/extend-expect';
+import { render } from '@testing-library/react';
 import ContactButtonSmall from './ContactButtonSmall';
 
 const props = {
@@ -9,13 +9,12 @@ const props = {
   text: 'text',
 };
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<ContactButtonSmall {...props} />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
-
-it('renders correctly', () => {
-  const tree = renderer.create(<ContactButtonSmall {...props} />).toJSON();
-  expect(tree).toMatchSnapshot();
+describe('ContactButtonSmall', () => {
+  it('renders correctly', () => {
+    const { container, getByText } = render(<ContactButtonSmall {...props} />);
+    expect(getByText(props.text)).toBeInTheDocument();
+    expect(
+      container.querySelector('.button__small__icon.icon')
+    ).toBeInTheDocument();
+  });
 });

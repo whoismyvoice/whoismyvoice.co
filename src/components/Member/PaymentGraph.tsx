@@ -1,6 +1,5 @@
 import React, { FC, useMemo } from 'react';
 import cx from 'classnames';
-import sortBy from 'lodash/sortBy';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { Group } from '@visx/group';
 import { Bar } from '@visx/shape';
@@ -98,7 +97,7 @@ export const PaymentGraph: FC<PaymentGraphProps> = (props) => {
     [graphHeight, contributions]
   );
   const sortedContributions = useMemo(
-    () => sortBy(contributions.concat([]), 'sectorCode'),
+    () => contributions.concat([]).sort(compareSectorContribution),
     [contributions]
   );
   const getAmountWidth = (data: SectorContribution) => amountScale(x(data));
@@ -177,4 +176,24 @@ export const PaymentGraph: FC<PaymentGraphProps> = (props) => {
       )}
     </div>
   );
+};
+
+/**
+ * Compare two `SectorContribution` records in order to sort them.
+ * @param a the first record
+ * @param b the second record
+ * @returns -1 if `a` is sorted before `b`, 1 if `a` is sorted after `b`, 0 if
+ * `a` and `b` should be left in their current order.
+ */
+const compareSectorContribution = (
+  a: SectorContribution,
+  b: SectorContribution
+): number => {
+  if (a.sectorCode < b.sectorCode) {
+    return -1;
+  } else if (a.sectorCode > b.sectorCode) {
+    return 1;
+  } else {
+    return 0;
+  }
 };

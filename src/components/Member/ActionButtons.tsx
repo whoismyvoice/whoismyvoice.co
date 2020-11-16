@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { VFC } from 'react';
 
 // Components
 import ContactButtonSmall from './../Buttons/ContactButtonSmall';
@@ -11,43 +11,42 @@ interface Props {
   legislator: Legislator;
 }
 
-class SupportActions extends React.Component<Props> {
-  renderTwitter(): JSX.Element {
-    const { legislator } = this.props;
-    const { genderPronoun } = legislator;
-    return this.twitterLink === undefined ? (
-      <React.Fragment />
-    ) : (
+export const ActionButtons: VFC<Props> = (props) => {
+  const { legislator } = props;
+  // Define each value used for every member
+  const { genderPronoun, phone } = legislator;
+  return (
+    <div className="actionButtons">
       <ContactButtonSmall
-        link={this.twitterLink}
-        icon="twitter"
-        text={`Tweet at ${genderPronoun}`}
+        link={`tel:${phone}`}
+        icon="phone"
+        text={`Call ${genderPronoun}`}
       />
-    );
-  }
+      <TwitterActionButton legislator={legislator} />
+    </div>
+  );
+};
 
-  get twitterLink(): string | undefined {
-    const username = this.props.legislator.twitter;
-    return username === undefined
-      ? undefined
-      : `https://twitter.com/intent/tweet?hashtags=WhoIsMyVoice&text=@${username}`;
-  }
+const TwitterActionButton: VFC<Props> = (props) => {
+  const { legislator } = props;
+  const { genderPronoun } = legislator;
+  const twitterLink = getTwitterLink(legislator);
+  return twitterLink === undefined ? (
+    <React.Fragment />
+  ) : (
+    <ContactButtonSmall
+      link={twitterLink}
+      icon="twitter"
+      text={`Tweet at ${genderPronoun}`}
+    />
+  );
+};
 
-  render(): JSX.Element {
-    const { legislator } = this.props;
-    // Define each value used for every member
-    const { genderPronoun, phone } = legislator;
-    return (
-      <div className="actionButtons">
-        <ContactButtonSmall
-          link={`tel:${phone}`}
-          icon="phone"
-          text={`Call ${genderPronoun}`}
-        />
-        {this.renderTwitter()}
-      </div>
-    );
-  }
-}
+const getTwitterLink = (legislator: Legislator): string | undefined => {
+  const username = legislator.twitter;
+  return username === undefined
+    ? undefined
+    : `https://twitter.com/intent/tweet?hashtags=WhoIsMyVoice&text=@${username}`;
+};
 
-export default SupportActions;
+export default ActionButtons;

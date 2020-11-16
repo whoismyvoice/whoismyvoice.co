@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { ChangeEventHandler, VFC, useState } from 'react';
 
 // Assets
 import '../../styles/SearchInput.scss';
@@ -12,68 +12,40 @@ interface Props {
   placeholder?: string;
 }
 
-interface State {
-  isError: boolean;
-}
-
-export class SearchInput extends React.Component<Props, State> {
-  static defaultProps = {
-    errorMessage: undefined,
-    pattern: '[0-9]*',
-    placeholder: 'Enter Your Zip Code',
-  };
-
-  state = {
-    isError: false,
-  };
-
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      isError: props.errorMessage !== undefined,
-    };
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps: Props): void {
-    if (nextProps.errorMessage !== undefined) {
-      this.setState({
-        isError: true,
-      });
-    }
-  }
-
-  onChange(event: React.ChangeEvent<HTMLInputElement>): void {
+export const SearchInput: VFC<Props> = (props) => {
+  const {
+    errorMessage,
+    pattern = '[0-9]*',
+    placeholder = 'Enter Your Zip Code',
+    name,
+  } = props;
+  const [isValidInput, setIsValidInput] = useState(true);
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const target = event.target;
     const value = target.value;
-    this.setState({
-      isError: value !== null && value !== '' && !isUsZip.test(value),
-    });
-  }
+    setIsValidInput(value === null || value === '' || isUsZip.test(value));
+  };
+  const isError = !isValidInput || errorMessage !== undefined;
+  return (
+    <React.Fragment>
+      <SearchInputError errorMessage={errorMessage} />
+      <input
+        type="text"
+        name={name}
+        className={isError ? 'error' : ''}
+        pattern={pattern}
+        placeholder={placeholder}
+        onChange={handleChange}
+      />
+    </React.Fragment>
+  );
+};
 
-  renderError(): JSX.Element {
-    const { errorMessage } = this.props;
-    return errorMessage === undefined ? (
-      <React.Fragment />
-    ) : (
-      <p className="search-input-message--error">{errorMessage}</p>
-    );
-  }
-
-  render(): JSX.Element {
-    const { name, pattern, placeholder } = this.props;
-    const { isError } = this.state;
-    return (
-      <React.Fragment>
-        {this.renderError()}
-        <input
-          type="text"
-          name={name}
-          className={isError ? 'error' : ''}
-          pattern={pattern}
-          placeholder={placeholder}
-          onChange={this.onChange.bind(this)}
-        />
-      </React.Fragment>
-    );
-  }
-}
+export const SearchInputError: VFC<Pick<Props, 'errorMessage'>> = (props) => {
+  const { errorMessage } = props;
+  return errorMessage === undefined ? (
+    <React.Fragment />
+  ) : (
+    <p className="search-input-message--error">{errorMessage}</p>
+  );
+};

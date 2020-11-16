@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { VFC } from 'react';
 
 import FadedBG from '../../components/FadedBg';
 import { ElectionCycle } from '../../models/ElectionCycle';
@@ -8,7 +8,7 @@ interface Props {
   cycles: ElectionCycle[];
 }
 
-function Sources(props: Props): JSX.Element {
+export const Sources: VFC<Props> = (props) => {
   const { cycles } = props;
   const cycleMessage = cycles.map((cycle) => cycle.label).join(' and ');
   return (
@@ -80,6 +80,6 @@ function Sources(props: Props): JSX.Element {
       </div>
     </div>
   );
-}
+};
 
 export default Sources;

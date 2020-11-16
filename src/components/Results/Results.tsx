@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
 // Components
-import TextButton, { Props as TextButtonProps } from '../Buttons/TextButton';
+import TextButton from '../Buttons/TextButton';
 import MemberResults from '../MemberResults';
 import { SectorContributions } from '../../models/Contribution';
 import {
@@ -12,12 +12,10 @@ import {
 
 export interface StateProps {
   didSearch?: boolean;
-  sectors: string[];
 }
 
 export interface DispatchProps {
   onBack?: React.MouseEventHandler<HTMLElement>;
-  onNext?: React.MouseEventHandler<HTMLElement>;
 }
 
 export interface Props extends StateProps, DispatchProps {
@@ -25,60 +23,35 @@ export interface Props extends StateProps, DispatchProps {
   sectorContributions: Record<BioguideId, SectorContributions>;
 }
 
-export class Results extends React.Component<Props> {
-  static defaultProps: Props = {
-    didSearch: false,
-    sectors: [],
-    representatives: [],
-    sectorContributions: {},
-    onBack: () => undefined,
-    onNext: () => undefined,
-  };
-
-  getButtonProps(index: number): Pick<TextButtonProps, 'link' | 'onClick'> {
-    const { onBack, onNext } = this.props;
-    const link = `#section-${index}`;
-    return index === 0 ? { link, onClick: onBack } : { link, onClick: onNext };
+export const Results: FC<Props> = (props: Props) => {
+  const { representatives, sectorContributions } = props;
+  if (representatives.length === 0) {
+    return <React.Fragment />;
   }
+  const legislators = representatives.map((rep) => new Legislator(rep));
+  const firstRep = legislators.filter((rep) => rep.isSenator);
+  const secondRep = legislators.filter((rep) => rep.isRepresentative);
+  const sections = [firstRep, secondRep]
+    .filter((partition) => partition.length > 0)
+    .map((partition, index) => (
+      <div
+        key={partition.map((legislator) => legislator.identifier).join('')}
+        className="section-block"
+        id={`section-${index + 1}`}
+        data-testid={`result-section-${index + 1}`}
+      >
+        <MemberResults
+          allLegislators={legislators}
+          legislators={partition}
+          sectorContributions={sectorContributions}
+        />
+      </div>
+    ));
 
-  render(): JSX.Element {
-    const {
-      onNext,
-      representatives,
-      sectors,
-      sectorContributions,
-    } = this.props;
-    if (representatives.length === 0) {
-      return <React.Fragment />;
-    }
-    const calcButtonProps = this.getButtonProps.bind(this);
-    const legislators = representatives.map((rep) => new Legislator(rep));
-    const firstRep = legislators.filter((rep) => rep.isSenator);
-    const secondRep = legislators.filter((rep) => rep.isRepresentative);
-    const sections = [firstRep, secondRep]
-      .filter((partition) => partition.length > 0)
-      .map((partition, index) => (
-        <div
-          key={partition.map((legislator) => legislator.identifier).join('')}
-          className="section-block"
-          id={`section-${index + 1}`}
-        >
-          <MemberResults
-            allLegislators={legislators}
-            legislators={partition}
-            onNext={onNext}
-            section={index + 1}
-            sectors={sectors}
-            sectorContributions={sectorContributions}
-          />
-        </div>
-      ));
-
-    return (
-      <React.Fragment>
-        <TextButton text="Search Another Zip Code" {...calcButtonProps(0)} />
-        {sections}
-      </React.Fragment>
-    );
-  }
-}
+  return (
+    <React.Fragment>
+      <TextButton text="Search Another Zip Code" link="#section-0" />
+      {sections}
+    </React.Fragment>
+  );
+};

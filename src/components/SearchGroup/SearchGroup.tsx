@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { VFC } from 'react';
 
 // Components
 import { SearchAddress } from './SearchAddress';
@@ -16,31 +16,23 @@ export interface DispatchProps {
 
 export interface Props extends StateProps, DispatchProps {}
 
-export class SearchGroup extends React.Component<Props> {
-  static defaultProps: Props = {
-    addressErrorMessage: undefined,
-    isStreetAddressNeeded: false,
-    onAddressSubmit: () => undefined,
-  };
-
-  render(): JSX.Element {
-    const {
-      address,
-      addressErrorMessage,
-      isStreetAddressNeeded,
-      onAddressSubmit,
-      zipCode,
-    } = this.props;
-    return (
-      <div className="animated fadeIn">
-        <SearchAddress
-          address={address}
-          addressErrorMessage={addressErrorMessage}
-          isStreetAddressNeeded={isStreetAddressNeeded}
-          onSubmit={onAddressSubmit}
-          zipCode={zipCode}
-        />
-      </div>
-    );
-  }
-}
+export const SearchGroup: VFC<Props> = (props) => {
+  const {
+    address,
+    addressErrorMessage,
+    isStreetAddressNeeded = false,
+    onAddressSubmit = () => void 0,
+    zipCode,
+  } = props;
+  return (
+    <div className="animated fadeIn" data-testid="search-group">
+      <SearchAddress
+        address={address}
+        addressErrorMessage={addressErrorMessage}
+        isStreetAddressNeeded={isStreetAddressNeeded}
+        onSubmit={onAddressSubmit}
+        zipCode={zipCode}
+      />
+    </div>
+  );
+};

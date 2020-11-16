@@ -1,6 +1,7 @@
 import {
   receiveOfficesError,
   toggleMenu,
+  receiveAddress,
   receiveOffices,
   receiveZipCode,
   reset,
@@ -151,7 +152,15 @@ describe('initial state', () => {
       beforeEach(() => {
         state = view(state, receiveZipCode('12345'));
       });
-      it('has an address error message string', () => {
+      it('has address error message cleared', () => {
+        expect(state.addressErrorMessage).toBeUndefined();
+      });
+    });
+    describe('receiveAddress', () => {
+      beforeEach(() => {
+        state = view(state, receiveAddress('12345'));
+      });
+      it('has address error message cleared', () => {
         expect(state.addressErrorMessage).toBeUndefined();
       });
     });

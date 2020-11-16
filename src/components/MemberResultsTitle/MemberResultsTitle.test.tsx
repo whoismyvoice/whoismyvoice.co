@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as renderer from 'react-test-renderer';
+import React from 'react';
+import { render } from '@testing-library/react';
 import { MemberResultsTitle, getMemberType } from './MemberResultsTitle';
 import { createLegislator, createTerm } from '../../models/Legislator.test';
 import { Legislator, TermRecord } from '../../models/Legislator';
@@ -97,8 +97,8 @@ describe('MemberResultsTitle', () => {
         createLegislatorWithTerm('John Smith', [createTerm('sen')]),
       ];
       const props = { legislators };
-      const tree = renderer.create(<MemberResultsTitle {...props} />).toJSON();
-      expect(tree).toMatchSnapshot();
+      const { getByText } = render(<MemberResultsTitle {...props} />);
+      expect(getByText(getMemberType(legislators))).not.toBeNull();
     });
 
     it('is rep', () => {
@@ -106,8 +106,8 @@ describe('MemberResultsTitle', () => {
         createLegislatorWithTerm('John Smith', [createTerm('rep')]),
       ];
       const props = { legislators };
-      const tree = renderer.create(<MemberResultsTitle {...props} />).toJSON();
-      expect(tree).toMatchSnapshot();
+      const { getByText } = render(<MemberResultsTitle {...props} />);
+      expect(getByText(getMemberType(legislators))).not.toBeNull();
     });
   });
 
@@ -118,8 +118,8 @@ describe('MemberResultsTitle', () => {
         createLegislatorWithTerm('John Smith Jr.', [createTerm('sen')]),
       ];
       const props = { legislators };
-      const tree = renderer.create(<MemberResultsTitle {...props} />).toJSON();
-      expect(tree).toMatchSnapshot();
+      const { getByText } = render(<MemberResultsTitle {...props} />);
+      expect(getByText(getMemberType(legislators))).not.toBeNull();
     });
 
     it('is senator & rep', () => {
@@ -128,8 +128,8 @@ describe('MemberResultsTitle', () => {
         createLegislatorWithTerm('John Smith Jr.', [createTerm('rep')]),
       ];
       const props = { legislators };
-      const tree = renderer.create(<MemberResultsTitle {...props} />).toJSON();
-      expect(tree).toMatchSnapshot();
+      const { getByText } = render(<MemberResultsTitle {...props} />);
+      expect(getByText(getMemberType(legislators))).not.toBeNull();
     });
 
     it('is rep & senator', () => {
@@ -138,8 +138,8 @@ describe('MemberResultsTitle', () => {
         createLegislatorWithTerm('John Smith Jr.', [createTerm('sen')]),
       ];
       const props = { legislators };
-      const tree = renderer.create(<MemberResultsTitle {...props} />).toJSON();
-      expect(tree).toMatchSnapshot();
+      const { getByText } = render(<MemberResultsTitle {...props} />);
+      expect(getByText(getMemberType(legislators))).not.toBeNull();
     });
   });
 
@@ -151,8 +151,8 @@ describe('MemberResultsTitle', () => {
         createLegislatorWithTerm('John Smith III', [createTerm('rep')]),
       ];
       const props = { legislators };
-      const tree = renderer.create(<MemberResultsTitle {...props} />).toJSON();
-      expect(tree).toMatchSnapshot();
+      const { getByText } = render(<MemberResultsTitle {...props} />);
+      expect(getByText(getMemberType(legislators))).not.toBeNull();
     });
   });
 });

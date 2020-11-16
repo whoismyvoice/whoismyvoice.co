@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { VFC } from 'react';
 
 // Styles
 import '../../styles/ContactButtonSmall.scss';
@@ -10,12 +10,12 @@ interface Props {
   text: string;
 }
 
-const ContactButtonSmall = ({
+export const ContactButtonSmall: VFC<Props> = ({
   addStyle = '',
   icon,
   link,
   text,
-}: Props): JSX.Element => {
+}) => {
   return (
     <a href={link} target="_blank" rel="noopener noreferrer">
       <button className={`contact__button_small ${addStyle}`}>

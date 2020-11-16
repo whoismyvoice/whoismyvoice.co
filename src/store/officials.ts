@@ -80,8 +80,6 @@ function handleLegislators(
   action: Action
 ): OfficialsState['legislators'] {
   switch (action.type) {
-    case ActionType.RESET_CURRENT:
-      return [];
     case ActionType.RECEIVE_OFFICES:
       return action.offices
         .map((office) => {
