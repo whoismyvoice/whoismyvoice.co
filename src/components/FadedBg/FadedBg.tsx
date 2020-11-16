@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { VFC } from 'react';
 import cx from 'classnames';
 
 interface Props {
@@ -6,18 +6,13 @@ interface Props {
   didScroll?: boolean;
 }
 
-class FadedBG extends React.Component<Props> {
-  static defaultProps = {
-    color: 'white',
-  };
+export const FadedBg: VFC<Props> = (props) => {
+  const { color = 'white', didScroll = false } = props;
+  const fadedClasses = cx(['faded-bg'], {
+    'faded-white': color === 'white',
+    hide: !didScroll,
+  });
+  return <div className={fadedClasses} />;
+};
 
-  render(): JSX.Element {
-    const fadedClasses = cx(['faded-bg'], {
-      'faded-white': this.props.color === 'white',
-      hide: !this.props.didScroll,
-    });
-    return <div className={fadedClasses} />;
-  }
-}
-
-export default FadedBG;
+export default FadedBg;

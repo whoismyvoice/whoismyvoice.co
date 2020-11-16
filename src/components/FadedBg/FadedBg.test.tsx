@@ -1,30 +1,30 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import * as renderer from 'react-test-renderer';
+import React from 'react';
+import '@testing-library/jest-dom/extend-expect';
+import { render } from '@testing-library/react';
 import FadedBg from './FadedBg';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<FadedBg />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+describe('FadedBg', () => {
+  it('renders without crashing', () => {
+    const { container } = render(<FadedBg />);
+    expect(container.querySelector('.faded-bg')).toHaveClass('faded-white');
+    expect(container.querySelector('.faded-bg')).toHaveClass('hide');
+  });
 
-it('renders correctly no props', () => {
-  const tree = renderer.create(<FadedBg />).toJSON();
-  expect(tree).toMatchSnapshot();
-});
+  it('renders correctly color=black', () => {
+    const { container } = render(<FadedBg color="black" />);
+    expect(container.querySelector('.faded-bg')).not.toHaveClass('faded-white');
+    expect(container.querySelector('.faded-bg')).toHaveClass('hide');
+  });
 
-it('renders correctly color=black', () => {
-  const tree = renderer.create(<FadedBg color="black" />).toJSON();
-  expect(tree).toMatchSnapshot();
-});
+  it('renders correctly didScroll=false', () => {
+    const { container } = render(<FadedBg didScroll={false} />);
+    expect(container.querySelector('.faded-bg')).toHaveClass('faded-white');
+    expect(container.querySelector('.faded-bg')).toHaveClass('hide');
+  });
 
-it('renders correctly didScroll=false', () => {
-  const tree = renderer.create(<FadedBg didScroll={false} />).toJSON();
-  expect(tree).toMatchSnapshot();
-});
-
-it('renders correctly didScroll=true', () => {
-  const tree = renderer.create(<FadedBg didScroll={true} />).toJSON();
-  expect(tree).toMatchSnapshot();
+  it('renders correctly didScroll=true', () => {
+    const { container } = render(<FadedBg didScroll={true} />);
+    expect(container.querySelector('.faded-bg')).toHaveClass('faded-white');
+    expect(container.querySelector('.faded-bg')).not.toHaveClass('hide');
+  });
 });
