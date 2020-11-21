@@ -146,7 +146,7 @@ describe('initial state', () => {
       expect(state.addressErrorMessage).toBeDefined();
     });
     it('has an address error message string', () => {
-      expect(state.addressErrorMessage).toMatchSnapshot();
+      expect(state.addressErrorMessage).toBe('Valid zip code is required.');
     });
     describe('receiveZipCode', () => {
       beforeEach(() => {

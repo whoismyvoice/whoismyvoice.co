@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`initial state ZipCodeInvalid has an address error message string 1`] = `"Valid zip code is required."`;
