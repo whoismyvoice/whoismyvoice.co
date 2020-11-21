@@ -16,7 +16,7 @@ import {
 import { Office, Record as OfficeRecord } from '../models/Office';
 import { GoogleResponseError } from '../models/GoogleResponseError';
 import { ResponseError } from '../models/ResponseError';
-import store, { State } from '../store';
+import { State } from '../store';
 import { isDefined } from '../util';
 
 /**
@@ -392,10 +392,9 @@ export function setZipCode(zipCode: string) {
  */
 export function setAddress(address: string) {
   return async (dispatch: Dispatch, getState: () => State): Promise<void> => {
-    const { officials } = getState();
     try {
       dispatch(receiveAddress(address));
-      if (officials.loadedDatasets.size === 3) {
+      if (getState().officials.loadedDatasets.size === 3) {
         const offices = await fetchOfficesForAddress(address);
         dispatch(receiveOffices(offices));
       } else {
@@ -415,7 +414,7 @@ export function setAddress(address: string) {
         dispatch(receiveOfficialsAll(allLegislators));
         dispatch(receiveOffices(offices));
       }
-      const legislators = store.getState().officials.legislators;
+      const legislators = getState().officials.legislators;
       void Promise.all(
         legislators.map((record) => fetchContributionsBySector(record))
       )
