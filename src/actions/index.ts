@@ -1,4 +1,5 @@
 import unfetch from 'isomorphic-unfetch';
+import LRU from 'lru-cache';
 
 import { ELECTION_CYCLE } from '../constants';
 import { Action, ActionType, Dispatch } from './types';
@@ -24,6 +25,7 @@ import { isDefined } from '../util';
  */
 type Extractor<T> = (document: Document) => T;
 
+const cache = new LRU<string, SectorContributions>(6);
 const fetch = unfetch;
 
 /**
@@ -146,6 +148,26 @@ async function fetchXml<T>(url: string, extractor: Extractor<T>): Promise<T> {
     return extractor(doc);
   } else {
     throw new ResponseError(response, response.statusText);
+  }
+}
+
+/**
+ * Retrieve contributions group by business sector, if they have already been
+ * retrieved return them from the cache otherwise hit the network.
+ * @param {LegislatorRecord} legislator for whom data will be retrieved.
+ * @returns contribution data.
+ */
+async function fetchCachedContributionsBySector(
+  legislator: LegislatorRecord
+): Promise<SectorContributions> {
+  const cachedContributions = cache.get(legislator.id.opensecrets);
+  if (cachedContributions !== undefined) {
+    return cachedContributions;
+  } else {
+    return fetchContributionsBySector(legislator).then((contributions) => {
+      cache.set(legislator.id.opensecrets, contributions);
+      return contributions;
+    });
   }
 }
 
@@ -416,7 +438,7 @@ export function setAddress(address: string) {
       }
       const legislators = getState().officials.legislators;
       void Promise.all(
-        legislators.map((record) => fetchContributionsBySector(record))
+        legislators.map((record) => fetchCachedContributionsBySector(record))
       )
         .then(receiveContributionsBySector)
         .then(dispatch);
