@@ -16,7 +16,7 @@ import {
 import { Office, Record as OfficeRecord } from '../models/Office';
 import { GoogleResponseError } from '../models/GoogleResponseError';
 import { ResponseError } from '../models/ResponseError';
-import store from '../store';
+import store, { State } from '../store';
 import { isDefined } from '../util';
 
 /**
@@ -381,9 +381,9 @@ export function toggleMenu(): Action {
  * Asynchronously dispatch updates to zip code and address.
  */
 export function setZipCode(zipCode: string) {
-  return (dispatch: Dispatch): void => {
+  return (dispatch: Dispatch, getState: () => State): void => {
     dispatch(receiveZipCode(zipCode));
-    setAddress(zipCode)(dispatch);
+    setAddress(zipCode)(dispatch, getState);
   };
 }
 
@@ -391,24 +391,30 @@ export function setZipCode(zipCode: string) {
  * Asynchronously dispatch updates to address.
  */
 export function setAddress(address: string) {
-  return async (dispatch: Dispatch): Promise<void> => {
+  return async (dispatch: Dispatch, getState: () => State): Promise<void> => {
+    const { officials } = getState();
     try {
       dispatch(receiveAddress(address));
-      const [
-        allLegislators,
-        congressPersons,
-        senators,
-        offices,
-      ] = await Promise.all([
-        fetchLegislatorsAll(),
-        fetchXml('/api/congress/house', extractCongressPersons),
-        fetchXml('/api/congress/senate', extractSenators),
-        fetchOfficesForAddress(address),
-      ]);
-      dispatch(receiveHouse(congressPersons));
-      dispatch(receiveSenate(senators));
-      dispatch(receiveOfficialsAll(allLegislators));
-      dispatch(receiveOffices(offices));
+      if (officials.loadedDatasets.size === 3) {
+        const offices = await fetchOfficesForAddress(address);
+        dispatch(receiveOffices(offices));
+      } else {
+        const [
+          allLegislators,
+          congressPersons,
+          senators,
+          offices,
+        ] = await Promise.all([
+          fetchLegislatorsAll(),
+          fetchXml('/api/congress/house', extractCongressPersons),
+          fetchXml('/api/congress/senate', extractSenators),
+          fetchOfficesForAddress(address),
+        ]);
+        dispatch(receiveHouse(congressPersons));
+        dispatch(receiveSenate(senators));
+        dispatch(receiveOfficialsAll(allLegislators));
+        dispatch(receiveOffices(offices));
+      }
       const legislators = store.getState().officials.legislators;
       void Promise.all(
         legislators.map((record) => fetchContributionsBySector(record))
@@ -419,6 +425,9 @@ export function setAddress(address: string) {
       if (error instanceof GoogleResponseError) {
         // response is error; abort
         void receiveOfficesError(error).then(dispatch);
+      } else if (error instanceof ResponseError) {
+        // error fetching data
+        // start over?
       }
     }
   };

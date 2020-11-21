@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { DispatchProps, StateProps, SearchGroup } from './SearchGroup';
 import { Dispatch } from '../../actions/types';
-import { State } from '../../store';
+import store, { State } from '../../store';
 import { setAddress, setZipCode, receiveZipCodeInvalid } from '../../actions';
 
 const ZIP_CODE_REGEX = /^\d{4,}.*$/;
@@ -38,9 +38,9 @@ function mapDispatchToProps(dispatch: Dispatch): DispatchProps {
       const zipCode = zipCodeNode?.value ?? '';
       if (streetAddress) {
         const address = `${streetAddress}, ${zipCode}`;
-        void setAddress(address)(dispatch);
+        setAddress(address)(dispatch, store.getState.bind(store));
       } else if (isZipCodeValid(zipCode)) {
-        setZipCode(zipCode)(dispatch);
+        setZipCode(zipCode)(dispatch, store.getState.bind(store));
       } else {
         dispatch(receiveZipCodeInvalid());
       }
