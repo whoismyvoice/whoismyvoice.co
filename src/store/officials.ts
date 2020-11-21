@@ -1,5 +1,10 @@
 import { Draft, produce } from 'immer';
-import { Action, ActionType } from '../actions/types';
+import {
+  Action,
+  ActionType,
+  LegislatorsAction,
+  OfficesAction,
+} from '../actions/types';
 import {
   BioguideId,
   CongressPerson,
@@ -65,47 +70,38 @@ const handleLegislator = produce(
  */
 function handleByBioguideId(
   state: LegislatorsById,
-  action: Action
+  action: LegislatorsAction
 ): LegislatorsById {
-  switch (action.type) {
-    case ActionType.RECEIVE_OFFICIALS_ALL:
-      return action.officials.reduce(handleLegislator, state);
-    default:
-      return state;
-  }
+  return action.officials.reduce(handleLegislator, state);
 }
 
 function handleLegislators(
   state: OfficialsState,
-  action: Action
+  action: OfficesAction
 ): OfficialsState['legislators'] {
-  switch (action.type) {
-    case ActionType.RECEIVE_OFFICES:
-      return action.offices
-        .map((office) => {
-          if (office.congressionalDistrict) {
-            return state.house
-              .filter((person) => person.districtId === office.id)
-              .map((person) => state.byBioguideId[person.bioguideId]);
-          } else if (office.state) {
-            return state.senate
-              .filter((senator) => senator.state === office.state)
-              .map((senator) => state.byBioguideId[senator.bioguideId]);
-          } else {
-            return [];
-          }
-        })
-        .flat();
-    default:
-      return state.legislators;
-  }
+  return action.offices
+    .map((office) => {
+      if (office.congressionalDistrict) {
+        return state.house
+          .filter((person) => person.districtId === office.id)
+          .map((person) => state.byBioguideId[person.bioguideId]);
+      } else if (office.state) {
+        return state.senate
+          .filter((senator) => senator.state === office.state)
+          .map((senator) => state.byBioguideId[senator.bioguideId]);
+      } else {
+        return [];
+      }
+    })
+    .flat();
 }
 
 const handler = produce((draft: Draft<OfficialsState>, action: Action) => {
   switch (action.type) {
-    case ActionType.RECEIVE_OFFICES: // Intentional fall through
-    case ActionType.RECEIVE_OFFICIALS_ALL:
+    case ActionType.RECEIVE_OFFICES:
       draft.legislators = handleLegislators(draft, action);
+      break;
+    case ActionType.RECEIVE_OFFICIALS_ALL:
       draft.byBioguideId = handleByBioguideId(draft.byBioguideId, action);
       break;
     case ActionType.RECEIVE_HOUSE:
