@@ -50,7 +50,11 @@ export const Results: FC<Props> = (props: Props) => {
 
   return (
     <React.Fragment>
-      <TextButton text="Search Another Zip Code" link="#section-0" />
+      <TextButton
+        text="Search Another Zip Code"
+        link="#section-0"
+        onClick={props.onBack}
+      />
       {sections}
     </React.Fragment>
   );
