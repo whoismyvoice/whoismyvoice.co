@@ -1,4 +1,4 @@
-import { Draft, produce } from 'immer';
+import { Draft, enableMapSet, produce } from 'immer';
 import {
   Action,
   ActionType,
@@ -13,6 +13,8 @@ import {
   Senator,
 } from '../models/Legislator';
 
+enableMapSet();
+
 type LegislatorsById = Readonly<Record<BioguideId, LegislatorRecord>>;
 
 export interface OfficialsState {
@@ -20,6 +22,7 @@ export interface OfficialsState {
   readonly house: CongressPerson[];
   readonly legislators: LegislatorRecord[];
   readonly senate: Senator[];
+  readonly loadedDatasets: Set<'house' | 'officials' | 'senate'>;
 }
 
 export const INITIAL_OFFICIALS: OfficialsState = {
@@ -27,6 +30,7 @@ export const INITIAL_OFFICIALS: OfficialsState = {
   house: [],
   legislators: [],
   senate: [],
+  loadedDatasets: new Set(),
 };
 
 /**
@@ -103,12 +107,15 @@ const handler = produce((draft: Draft<OfficialsState>, action: Action) => {
       break;
     case ActionType.RECEIVE_OFFICIALS_ALL:
       draft.byBioguideId = handleByBioguideId(draft.byBioguideId, action);
+      draft.loadedDatasets.add('officials');
       break;
     case ActionType.RECEIVE_HOUSE:
       draft.house = action.congressPersons;
+      draft.loadedDatasets.add('house');
       break;
     case ActionType.RECEIVE_SENATE:
       draft.senate = action.senators;
+      draft.loadedDatasets.add('senate');
       break;
     case ActionType.RESET_CURRENT:
       draft.legislators = [];

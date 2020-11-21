@@ -70,6 +70,9 @@ it('does not change legisltors if byBioguideId not populated', () => {
   );
   const { legislators } = state;
   expect(legislators).toHaveLength(0);
+  expect(state.loadedDatasets).toContain('house');
+  expect(state.loadedDatasets).not.toContain('officials');
+  expect(state.loadedDatasets).not.toContain('senate');
 });
 
 it('overwrites an official in dictionary with same id', () => {
@@ -84,6 +87,9 @@ it('overwrites an official in dictionary with same id', () => {
   expect(Object.keys(byBioguideId).length).toBe(1);
   expect(Object.keys(byBioguideId)).toContain('JOHN SMITH');
   expect(byBioguideId['JOHN SMITH'].photoUrl).toBe('2');
+  expect(state.loadedDatasets).not.toContain('house');
+  expect(state.loadedDatasets).toContain('officials');
+  expect(state.loadedDatasets).not.toContain('senate');
 });
 
 describe('w/ officials received', () => {
@@ -96,6 +102,12 @@ describe('w/ officials received', () => {
     (state, action) => officials(state, action),
     INITIAL_OFFICIALS
   );
+
+  it('has datasets populated', () => {
+    expect(initialState.loadedDatasets).toContain('house');
+    expect(initialState.loadedDatasets).toContain('officials');
+    expect(initialState.loadedDatasets).toContain('senate');
+  });
 
   it('populates a legislator when receiving an office', () => {
     const state = officials(
