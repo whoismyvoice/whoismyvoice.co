@@ -55,7 +55,7 @@
     "@visx/shape": "1.1.0",
     "@visx/tooltip": "1.1.0",
     "classnames": "2.2.6",
-    "immer": "8.0.0",
+    "immer": "8.0.1",
     "isomorphic-unfetch": "3.1.0",
     "lru-cache": "6.0.0",
     "react": "16.14.0",
