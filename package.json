@@ -21,8 +21,8 @@
   },
   "homepage": "https://www.whoismyvoice.com",
   "devDependencies": {
-    "@testing-library/jest-dom": "5.11.6",
-    "@testing-library/react": "11.2.2",
+    "@testing-library/jest-dom": "5.11.9",
+    "@testing-library/react": "11.2.3",
     "@types/classnames": "2.2.11",
     "@types/jest": "26.0.20",
     "@types/lru-cache": "5.1.0",
